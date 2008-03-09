@@ -1,0 +1,9 @@
+//
+// Prefix header for all source files of the 'ToxicSQL' target in the 'ToxicSQL' project.
+//
+
+#ifdef __OBJC__
+	#define TXComponentID @"ToxicSQL"
+
+    #import <Foundation/Foundation.h>
+#endif

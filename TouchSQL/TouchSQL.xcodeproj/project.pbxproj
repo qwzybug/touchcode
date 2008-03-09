@@ -1,0 +1,579 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		45603B4C0D838D48005B99BF /* All */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 45603B570D838D5C005B99BF /* Build configuration list for PBXAggregateTarget "All" */;
+			buildPhases = (
+			);
+			dependencies = (
+				45603B500D838D5A005B99BF /* PBXTargetDependency */,
+				45603B520D838D5A005B99BF /* PBXTargetDependency */,
+			);
+			name = All;
+			productName = All;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		45552D5A0856C5B7006456A2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 45552D560856C5B7006456A2 /* Info.plist */; };
+		45552D5B0856C5B7006456A2 /* UnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 45552D590856C5B7006456A2 /* UnitTests.m */; };
+		45552D650856C5D5006456A2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
+		45552E450856C7DE006456A2 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45552E440856C7DE006456A2 /* SenTestingKit.framework */; };
+		45603B3F0D838D39005B99BF /* ToxicFrameworks_Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 45603B3D0D838D39005B99BF /* ToxicFrameworks_Debug.xcconfig */; };
+		45603B400D838D39005B99BF /* ToxicFrameworks_Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 45603B3E0D838D39005B99BF /* ToxicFrameworks_Release.xcconfig */; };
+		4593A183066D2D2E007B6932 /* CSqliteDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 4593A167066D2D2E007B6932 /* CSqliteDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4593A184066D2D2E007B6932 /* CSqliteDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4593A168066D2D2E007B6932 /* CSqliteDatabase.m */; };
+		4593A185066D2D2E007B6932 /* CSqliteDatabase_ConvenienceExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 4593A169066D2D2E007B6932 /* CSqliteDatabase_ConvenienceExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4593A186066D2D2E007B6932 /* CSqliteDatabase_ConvenienceExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4593A16A066D2D2E007B6932 /* CSqliteDatabase_ConvenienceExtensions.m */; };
+		4593A187066D2D2E007B6932 /* CSqliteDatabase_Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 4593A16B066D2D2E007B6932 /* CSqliteDatabase_Extensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4593A188066D2D2E007B6932 /* CSqliteDatabase_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4593A16C066D2D2E007B6932 /* CSqliteDatabase_Extensions.m */; };
+		4593A189066D2D2E007B6932 /* CSqliteEnumerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 4593A16D066D2D2E007B6932 /* CSqliteEnumerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4593A18A066D2D2E007B6932 /* CSqliteEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4593A16E066D2D2E007B6932 /* CSqliteEnumerator.m */; };
+		4593A18B066D2D2E007B6932 /* NSArray_SqlExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 4593A16F066D2D2E007B6932 /* NSArray_SqlExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4593A18C066D2D2E007B6932 /* NSArray_SqlExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4593A170066D2D2E007B6932 /* NSArray_SqlExtensions.m */; };
+		4593A18D066D2D2E007B6932 /* NSString_SqlExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 4593A171066D2D2E007B6932 /* NSString_SqlExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4593A18E066D2D2E007B6932 /* NSString_SqlExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4593A172066D2D2E007B6932 /* NSString_SqlExtensions.m */; };
+		4593A3BB066D2D47007B6932 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
+		45E92DD20856B3E800B7327A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E92DD10856B3E800B7327A /* libsqlite3.dylib */; };
+		45E92DE20856B4CC00B7327A /* ToxicSQL.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E92DE10856B4CC00B7327A /* ToxicSQL.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		45E92DF20856B4EF00B7327A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 45E92DED0856B4EF00B7327A /* InfoPlist.strings */; };
+		45E92DF40856B4EF00B7327A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 45E92DF10856B4EF00B7327A /* Info.plist */; };
+		45E92E180856B56000B7327A /* sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E92E170856B56000B7327A /* sqlite3.h */; };
+		45E931B90856C14300B7327A /* TouchSQL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TouchSQL.framework */; };
+		8DC2EF510486A6940098B216 /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF5E0370ADEE00C91783 /* Prefix.pch */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		45603B4F0D838D5A005B99BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* ToxicSQL */;
+			remoteInfo = ToxicSQL;
+		};
+		45603B510D838D5A005B99BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 45E931A40856C12500B7327A /* UnitTests */;
+			remoteInfo = UnitTests;
+		};
+		45E931C90856C16000B7327A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = ToxicSQL;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		32DBCF5E0370ADEE00C91783 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		45552D560856C5B7006456A2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
+		45552D580856C5B7006456A2 /* UnitTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitTests.h; sourceTree = "<group>"; };
+		45552D590856C5B7006456A2 /* UnitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitTests.m; sourceTree = "<group>"; };
+		45552E440856C7DE006456A2 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = /System/Library/Frameworks/SenTestingKit.framework; sourceTree = "<absolute>"; };
+		45603B3D0D838D39005B99BF /* ToxicFrameworks_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = ToxicFrameworks_Debug.xcconfig; path = /Users/schwa/Developer/Subversion/WorkingDirectories/touchcode/TouchSQL/Configurations/ToxicFrameworks_Debug.xcconfig; sourceTree = "<absolute>"; };
+		45603B3E0D838D39005B99BF /* ToxicFrameworks_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = ToxicFrameworks_Release.xcconfig; path = /Users/schwa/Developer/Subversion/WorkingDirectories/touchcode/TouchSQL/Configurations/ToxicFrameworks_Release.xcconfig; sourceTree = "<absolute>"; };
+		4593A167066D2D2E007B6932 /* CSqliteDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSqliteDatabase.h; sourceTree = "<group>"; };
+		4593A168066D2D2E007B6932 /* CSqliteDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSqliteDatabase.m; sourceTree = "<group>"; };
+		4593A169066D2D2E007B6932 /* CSqliteDatabase_ConvenienceExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSqliteDatabase_ConvenienceExtensions.h; sourceTree = "<group>"; };
+		4593A16A066D2D2E007B6932 /* CSqliteDatabase_ConvenienceExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSqliteDatabase_ConvenienceExtensions.m; sourceTree = "<group>"; };
+		4593A16B066D2D2E007B6932 /* CSqliteDatabase_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSqliteDatabase_Extensions.h; sourceTree = "<group>"; };
+		4593A16C066D2D2E007B6932 /* CSqliteDatabase_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSqliteDatabase_Extensions.m; sourceTree = "<group>"; };
+		4593A16D066D2D2E007B6932 /* CSqliteEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSqliteEnumerator.h; sourceTree = "<group>"; };
+		4593A16E066D2D2E007B6932 /* CSqliteEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSqliteEnumerator.m; sourceTree = "<group>"; };
+		4593A16F066D2D2E007B6932 /* NSArray_SqlExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArray_SqlExtensions.h; sourceTree = "<group>"; };
+		4593A170066D2D2E007B6932 /* NSArray_SqlExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArray_SqlExtensions.m; sourceTree = "<group>"; };
+		4593A171066D2D2E007B6932 /* NSString_SqlExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSString_SqlExtensions.h; sourceTree = "<group>"; };
+		4593A172066D2D2E007B6932 /* NSString_SqlExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_SqlExtensions.m; sourceTree = "<group>"; };
+		45E92DD10856B3E800B7327A /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = /usr/lib/libsqlite3.0.dylib; sourceTree = "<absolute>"; };
+		45E92DE10856B4CC00B7327A /* ToxicSQL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToxicSQL.h; sourceTree = "<group>"; };
+		45E92DEE0856B4EF00B7327A /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		45E92DF10856B4EF00B7327A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
+		45E92E170856B56000B7327A /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sqlite3.h; path = /usr/include/sqlite3.h; sourceTree = "<absolute>"; };
+		45E931A50856C12500B7327A /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DC2EF5B0486A6940098B216 /* TouchSQL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TouchSQL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		45E931A20856C12500B7327A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45E931B90856C14300B7327A /* TouchSQL.framework in Frameworks */,
+				45552D650856C5D5006456A2 /* Foundation.framework in Frameworks */,
+				45552E450856C7DE006456A2 /* SenTestingKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DC2EF560486A6940098B216 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4593A3BB066D2D47007B6932 /* Foundation.framework in Frameworks */,
+				45E92DD20856B3E800B7327A /* libsqlite3.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		034768DFFF38A50411DB9C8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8DC2EF5B0486A6940098B216 /* TouchSQL.framework */,
+				45E931A50856C12500B7327A /* UnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0867D691FE84028FC02AAC07 /* ToxicSQL */ = {
+			isa = PBXGroup;
+			children = (
+				32DBCF5E0370ADEE00C91783 /* Prefix.pch */,
+				45603B3C0D838D39005B99BF /* Configurations */,
+				4593A14C066D2D2D007B6932 /* Source */,
+				45E92DEC0856B4EF00B7327A /* Resources */,
+				45552D540856C5B7006456A2 /* UnitTests */,
+				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
+				034768DFFF38A50411DB9C8B /* Products */,
+			);
+			name = ToxicSQL;
+			sourceTree = "<group>";
+		};
+		0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				45E92E170856B56000B7327A /* sqlite3.h */,
+				45E92DD10856B3E800B7327A /* libsqlite3.dylib */,
+				1058C7B2FEA5585E11CA2CBB /* Other Frameworks */,
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		1058C7B2FEA5585E11CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				45552E440856C7DE006456A2 /* SenTestingKit.framework */,
+				0867D69BFE84028FC02AAC07 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		45552D540856C5B7006456A2 /* UnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				45552D550856C5B7006456A2 /* Resources */,
+				45552D570856C5B7006456A2 /* Source */,
+			);
+			path = UnitTests;
+			sourceTree = "<group>";
+		};
+		45552D550856C5B7006456A2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				45552D560856C5B7006456A2 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		45552D570856C5B7006456A2 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				45552D580856C5B7006456A2 /* UnitTests.h */,
+				45552D590856C5B7006456A2 /* UnitTests.m */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		45603B3C0D838D39005B99BF /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				45603B3D0D838D39005B99BF /* ToxicFrameworks_Debug.xcconfig */,
+				45603B3E0D838D39005B99BF /* ToxicFrameworks_Release.xcconfig */,
+			);
+			name = Configurations;
+			path = /Users/schwa/Developer/Subversion/WorkingDirectories/touchcode/TouchSQL/Configurations;
+			sourceTree = "<absolute>";
+		};
+		4593A14C066D2D2D007B6932 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				45E92DE10856B4CC00B7327A /* ToxicSQL.h */,
+				4593A167066D2D2E007B6932 /* CSqliteDatabase.h */,
+				4593A168066D2D2E007B6932 /* CSqliteDatabase.m */,
+				4593A169066D2D2E007B6932 /* CSqliteDatabase_ConvenienceExtensions.h */,
+				4593A16A066D2D2E007B6932 /* CSqliteDatabase_ConvenienceExtensions.m */,
+				4593A16B066D2D2E007B6932 /* CSqliteDatabase_Extensions.h */,
+				4593A16C066D2D2E007B6932 /* CSqliteDatabase_Extensions.m */,
+				4593A16D066D2D2E007B6932 /* CSqliteEnumerator.h */,
+				4593A16E066D2D2E007B6932 /* CSqliteEnumerator.m */,
+				4593A16F066D2D2E007B6932 /* NSArray_SqlExtensions.h */,
+				4593A170066D2D2E007B6932 /* NSArray_SqlExtensions.m */,
+				4593A171066D2D2E007B6932 /* NSString_SqlExtensions.h */,
+				4593A172066D2D2E007B6932 /* NSString_SqlExtensions.m */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		45E92DEC0856B4EF00B7327A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				45E92DED0856B4EF00B7327A /* InfoPlist.strings */,
+				45E92DF10856B4EF00B7327A /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		8DC2EF500486A6940098B216 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DC2EF510486A6940098B216 /* Prefix.pch in Headers */,
+				4593A183066D2D2E007B6932 /* CSqliteDatabase.h in Headers */,
+				4593A185066D2D2E007B6932 /* CSqliteDatabase_ConvenienceExtensions.h in Headers */,
+				4593A187066D2D2E007B6932 /* CSqliteDatabase_Extensions.h in Headers */,
+				4593A189066D2D2E007B6932 /* CSqliteEnumerator.h in Headers */,
+				4593A18B066D2D2E007B6932 /* NSArray_SqlExtensions.h in Headers */,
+				4593A18D066D2D2E007B6932 /* NSString_SqlExtensions.h in Headers */,
+				45E92DE20856B4CC00B7327A /* ToxicSQL.h in Headers */,
+				45E92E180856B56000B7327A /* sqlite3.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		45E931A40856C12500B7327A /* UnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 45E931AA0856C12600B7327A /* Build configuration list for PBXNativeTarget "UnitTests" */;
+			buildPhases = (
+				45E931A00856C12500B7327A /* Resources */,
+				45E931A10856C12500B7327A /* Sources */,
+				45E931A20856C12500B7327A /* Frameworks */,
+				45E931A30856C12500B7327A /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				45E931CA0856C16000B7327A /* PBXTargetDependency */,
+			);
+			name = UnitTests;
+			productName = "Unit Test";
+			productReference = 45E931A50856C12500B7327A /* UnitTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+		8DC2EF4F0486A6940098B216 /* TouchSQL */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 45E92DA40856B35600B7327A /* Build configuration list for PBXNativeTarget "TouchSQL" */;
+			buildPhases = (
+				8DC2EF500486A6940098B216 /* Headers */,
+				8DC2EF520486A6940098B216 /* Resources */,
+				8DC2EF540486A6940098B216 /* Sources */,
+				8DC2EF560486A6940098B216 /* Frameworks */,
+				8DC2EF580486A6940098B216 /* Rez */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TouchSQL;
+			productInstallPath = "$(HOME)/Library/Frameworks";
+			productName = ToxicSQL;
+			productReference = 8DC2EF5B0486A6940098B216 /* TouchSQL.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0867D690FE84028FC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 45E92DA80856B35600B7327A /* Build configuration list for PBXProject "TouchSQL" */;
+			compatibilityVersion = "Xcode 2.4";
+			hasScannedForEncodings = 1;
+			mainGroup = 0867D691FE84028FC02AAC07 /* ToxicSQL */;
+			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8DC2EF4F0486A6940098B216 /* TouchSQL */,
+				45E931A40856C12500B7327A /* UnitTests */,
+				45603B4C0D838D48005B99BF /* All */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		45E931A00856C12500B7327A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45552D5A0856C5B7006456A2 /* Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DC2EF520486A6940098B216 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45E92DF20856B4EF00B7327A /* InfoPlist.strings in Resources */,
+				45E92DF40856B4EF00B7327A /* Info.plist in Resources */,
+				45603B3F0D838D39005B99BF /* ToxicFrameworks_Debug.xcconfig in Resources */,
+				45603B400D838D39005B99BF /* ToxicFrameworks_Release.xcconfig in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXRezBuildPhase section */
+		8DC2EF580486A6940098B216 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXRezBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		45E931A30856C12500B7327A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		45E931A10856C12500B7327A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45552D5B0856C5B7006456A2 /* UnitTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DC2EF540486A6940098B216 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4593A184066D2D2E007B6932 /* CSqliteDatabase.m in Sources */,
+				4593A186066D2D2E007B6932 /* CSqliteDatabase_ConvenienceExtensions.m in Sources */,
+				4593A188066D2D2E007B6932 /* CSqliteDatabase_Extensions.m in Sources */,
+				4593A18A066D2D2E007B6932 /* CSqliteEnumerator.m in Sources */,
+				4593A18C066D2D2E007B6932 /* NSArray_SqlExtensions.m in Sources */,
+				4593A18E066D2D2E007B6932 /* NSString_SqlExtensions.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		45603B500D838D5A005B99BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DC2EF4F0486A6940098B216 /* TouchSQL */;
+			targetProxy = 45603B4F0D838D5A005B99BF /* PBXContainerItemProxy */;
+		};
+		45603B520D838D5A005B99BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 45E931A40856C12500B7327A /* UnitTests */;
+			targetProxy = 45603B510D838D5A005B99BF /* PBXContainerItemProxy */;
+		};
+		45E931CA0856C16000B7327A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DC2EF4F0486A6940098B216 /* TouchSQL */;
+			targetProxy = 45E931C90856C16000B7327A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		45E92DED0856B4EF00B7327A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				45E92DEE0856B4EF00B7327A /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		45603B4D0D838D49005B99BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = All;
+			};
+			name = Debug;
+		};
+		45603B4E0D838D49005B99BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = All;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		45E92DA50856B35600B7327A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREFIX_HEADER = Prefix.pch;
+				INFOPLIST_FILE = Resources/Info.plist;
+				LIBRARY_SEARCH_PATHS = /usr/lib;
+				OTHER_LDFLAGS = (
+					"-headerpad_max_install_names",
+					"-seg1addr",
+					0xd1800000,
+				);
+				PRODUCT_NAME = TouchSQL;
+			};
+			name = Debug;
+		};
+		45E92DA60856B35600B7327A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREFIX_HEADER = Prefix.pch;
+				INFOPLIST_FILE = Resources/Info.plist;
+				LIBRARY_SEARCH_PATHS = /usr/lib;
+				OTHER_LDFLAGS = (
+					"-headerpad_max_install_names",
+					"-seg1addr",
+					0xd1800000,
+				);
+				PRODUCT_NAME = TouchSQL;
+			};
+			name = Release;
+		};
+		45E92DA90856B35600B7327A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		45E92DAA0856B35600B7327A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		45E931AB0856C12600B7327A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					/System/Library/Frameworks,
+					"$(DEVELOPER_FRAMEWORKS_DIR_QUOTED)",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				INFOPLIST_FILE = UnitTests/Resources/Info.plist;
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				LIBRARY_STYLE = BUNDLE;
+				OPTIMIZATION_CFLAGS = "-O0";
+				PRODUCT_NAME = UnitTests;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		45E931AC0856C12600B7327A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					/System/Library/Frameworks,
+					"$(DEVELOPER_FRAMEWORKS_DIR_QUOTED)",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				INFOPLIST_FILE = UnitTests/Resources/Info.plist;
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				LIBRARY_STYLE = BUNDLE;
+				OPTIMIZATION_CFLAGS = "-O0";
+				PRODUCT_NAME = UnitTests;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		45603B570D838D5C005B99BF /* Build configuration list for PBXAggregateTarget "All" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				45603B4D0D838D49005B99BF /* Debug */,
+				45603B4E0D838D49005B99BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		45E92DA40856B35600B7327A /* Build configuration list for PBXNativeTarget "TouchSQL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				45E92DA50856B35600B7327A /* Debug */,
+				45E92DA60856B35600B7327A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		45E92DA80856B35600B7327A /* Build configuration list for PBXProject "TouchSQL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				45E92DA90856B35600B7327A /* Debug */,
+				45E92DAA0856B35600B7327A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		45E931AA0856C12600B7327A /* Build configuration list for PBXNativeTarget "UnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				45E931AB0856C12600B7327A /* Debug */,
+				45E931AC0856C12600B7327A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
+}
