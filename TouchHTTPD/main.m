@@ -24,7 +24,7 @@ theServer.type = @"_http._tcp.";
 NSError *theError;
 [theServer start:&theError];
 
-NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%d/", [[NSHost currentHost] name], theServer.port]];
+NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%d/webcam.jpg", [[NSHost currentHost] name], theServer.port]];
 [[NSWorkspace sharedWorkspace] openURL:theURL];
 
 CNATPMPManager *theManager = [[[CNATPMPManager alloc] init] autorelease];
