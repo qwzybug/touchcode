@@ -8,44 +8,13 @@
 
 #import "CSqliteDatabase_Extensions.h"
 
-
 @implementation CSqliteDatabase (CSqliteDatabase_Extensions)
-
-- (BOOL)executeExpressionIgnoringExceptions:(NSString *)inExpression
-{
-char *theMessage = NULL;
-
-int theResult = sqlite3_exec(self.sql, [inExpression UTF8String], NULL, NULL, &theMessage);
-if (theMessage)
-	{
-	sqlite3_free(theMessage);
-	}
-return(theResult == SQLITE_OK);
-}
-
-- (void)executeExpressionFormat:(NSString *)inFormat, ...
-{
-va_list theArgs;
-va_start(theArgs, inFormat);
-NSString *theExpression = [[[NSString alloc] initWithFormat:inFormat arguments:theArgs] autorelease];
-va_end(theArgs);
-[self executeExpression:theExpression];
-}
-
-- (NSEnumerator *)enumeratorForExpressionFormat:(NSString *)inFormat, ...
-{
-va_list theArgs;
-va_start(theArgs, inFormat);
-NSString *theExpression = [[[NSString alloc] initWithFormat:inFormat arguments:theArgs] autorelease];
-va_end(theArgs);
-return([self enumeratorForExpression:theExpression]);
-}
 
 // TODO -- most of these methods can be heavily optimised and more error checking added (search for NULL)
 
-- (NSUInteger)countRowsInTable:(NSString *)inTableName
+- (NSUInteger)countRowsInTable:(NSString *)inTableName error:(NSError **)outError
 {
-id theEnumerator = [self enumeratorForExpressionFormat:@"select count(*) from %@;", inTableName];
+id theEnumerator = [self enumeratorForExpression:[NSString stringWithFormat:@"select count(*) from %@;", inTableName] error:outError];
 NSArray *theObjects = [theEnumerator allObjects];
 // TODO make sure only 1 object is returned.
 NSArray *theValues = [[theObjects lastObject] allValues];
@@ -54,24 +23,24 @@ NSString *theString = [theValues lastObject];
 return([theString intValue]);
 }
 
-- (NSDictionary *)rowForExpression:(NSString *)inExpression
+- (NSDictionary *)rowForExpression:(NSString *)inExpression error:(NSError **)outError
 {
-NSArray *theRows = [self rowsForExpression:inExpression];
+NSArray *theRows = [self rowsForExpression:inExpression error:outError];
 if ([theRows count] > 0)
 	return([theRows objectAtIndex:0]);
 else
 	return(NULL);
 }
 
-- (NSArray *)valuesForExpression:(NSString *)inExpression
+- (NSArray *)valuesForExpression:(NSString *)inExpression error:(NSError **)outError
 {
-NSDictionary *theRow = [self rowForExpression:inExpression];
+NSDictionary *theRow = [self rowForExpression:inExpression error:outError];
 return([theRow allValues]);
 }
 
-- (NSString *)valueForExpression:(NSString *)inExpression
+- (NSString *)valueForExpression:(NSString *)inExpression error:(NSError **)outError
 {
-NSArray *theValues = [self valuesForExpression:inExpression];
+NSArray *theValues = [self valuesForExpression:inExpression error:outError];
 // TODO -- check only 1 object is returned?
 return([theValues lastObject]);
 }
@@ -79,7 +48,7 @@ return([theValues lastObject]);
 - (BOOL)objectExistsOfType:(NSString *)inType name:(NSString *)inTableName temporary:(BOOL)inTemporary
 {
 NSString *theSQL = [NSString stringWithFormat:@"select count(*) from %@ where TYPE = '%@' and NAME = '%@'", inTemporary == YES ? @"SQLITE_TEMP_MASTER" : @"SQLITE_MASTER", inType, inTableName];
-NSString *theValue = [self valueForExpression:theSQL];
+NSString *theValue = [self valueForExpression:theSQL error:NULL];
 return([theValue intValue] == 1);
 }
 

@@ -14,7 +14,6 @@
 			);
 			dependencies = (
 				45603B500D838D5A005B99BF /* PBXTargetDependency */,
-				45603B520D838D5A005B99BF /* PBXTargetDependency */,
 			);
 			name = All;
 			productName = All;
@@ -44,7 +43,6 @@
 		45E92DD20856B3E800B7327A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E92DD10856B3E800B7327A /* libsqlite3.dylib */; };
 		45E92DE20856B4CC00B7327A /* ToxicSQL.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E92DE10856B4CC00B7327A /* ToxicSQL.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45E92DF20856B4EF00B7327A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 45E92DED0856B4EF00B7327A /* InfoPlist.strings */; };
-		45E92DF40856B4EF00B7327A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 45E92DF10856B4EF00B7327A /* Info.plist */; };
 		45E92E180856B56000B7327A /* sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E92E170856B56000B7327A /* sqlite3.h */; };
 		45E931B90856C14300B7327A /* TouchSQL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TouchSQL.framework */; };
 		8DC2EF510486A6940098B216 /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF5E0370ADEE00C91783 /* Prefix.pch */; };
@@ -55,15 +53,8 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* ToxicSQL */;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
 			remoteInfo = ToxicSQL;
-		};
-		45603B510D838D5A005B99BF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 45E931A40856C12500B7327A /* UnitTests */;
-			remoteInfo = UnitTests;
 		};
 		45E931C90856C16000B7327A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -308,9 +299,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				45603B4C0D838D48005B99BF /* All */,
 				8DC2EF4F0486A6940098B216 /* TouchSQL */,
 				45E931A40856C12500B7327A /* UnitTests */,
-				45603B4C0D838D48005B99BF /* All */,
 			);
 		};
 /* End PBXProject section */
@@ -329,7 +320,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				45E92DF20856B4EF00B7327A /* InfoPlist.strings in Resources */,
-				45E92DF40856B4EF00B7327A /* Info.plist in Resources */,
 				45603B3F0D838D39005B99BF /* ToxicFrameworks_Debug.xcconfig in Resources */,
 				45603B400D838D39005B99BF /* ToxicFrameworks_Release.xcconfig in Resources */,
 			);
@@ -392,11 +382,6 @@
 			isa = PBXTargetDependency;
 			target = 8DC2EF4F0486A6940098B216 /* TouchSQL */;
 			targetProxy = 45603B4F0D838D5A005B99BF /* PBXContainerItemProxy */;
-		};
-		45603B520D838D5A005B99BF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 45E931A40856C12500B7327A /* UnitTests */;
-			targetProxy = 45603B510D838D5A005B99BF /* PBXContainerItemProxy */;
 		};
 		45E931CA0856C16000B7327A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -477,12 +462,22 @@
 		45E92DA90856B35600B7327A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 			};
 			name = Debug;
 		};
 		45E92DAA0856B35600B7327A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 			};
 			name = Release;
 		};

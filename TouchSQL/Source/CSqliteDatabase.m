@@ -13,6 +13,8 @@
 #import "CSqliteEnumerator.h"
 #import "CSqliteDatabase_Extensions.h"
 
+NSString *TouchSQLErrorDomain = @"TouchSQLErrorDomain";
+
 @interface CSqliteDatabase ()
 @property (readwrite, retain) NSString *path;
 @property (readwrite, assign) sqlite3 *sql;
@@ -47,15 +49,21 @@ self.path = NULL;
 
 #pragma mark -
 
-- (void)open
+- (BOOL)open:(NSError **)outError
 {
 if (sql == NULL)
 	{
 	sqlite3 *theSql = NULL;
 	int theResult = sqlite3_open([self.path UTF8String], &theSql);
-	if (theResult != SQLITE_OK) [NSException raise:NSGenericException format:@"sqlite3_open() failed with %d", theResult];
+	if (theResult != SQLITE_OK)
+		{
+		if (outError)
+			*outError = [NSError errorWithDomain:TouchSQLErrorDomain code:theResult userInfo:NULL];
+		return(NO);
+		}
 	self.sql = theSql;
 	}
+return(YES);
 }
 
 - (void)close
@@ -83,41 +91,46 @@ if (sql != inSql)
 
 #pragma mark -
 
-- (void)executeExpression:(NSString *)inExpression
+- (BOOL)executeExpression:(NSString *)inExpression error:(NSError **)outError
 {
 NSAssert(self.sql != NULL, @"Database not open.");
 
 char *theMessage = NULL;
 int theResult = sqlite3_exec(self.sql, [inExpression UTF8String], NULL, NULL, &theMessage);
-if (theResult != SQLITE_OK) [NSException raise:NSGenericException format:@"sqlite3_exec() failed with %s", theMessage];
-if (theMessage)
+if (theResult != SQLITE_OK) 
 	{
-	sqlite3_free(theMessage); // TODO: If this is set then we've already thrown an exception and this will leak.
+	if (outError)
+		*outError = [NSError errorWithDomain:TouchSQLErrorDomain code:theResult userInfo:NULL];
+	if (theMessage)
+		{
+		sqlite3_free(theMessage); // TODO: If this is set then we've already thrown an exception and this will leak.
+		}
 	}
+return(theResult == SQLITE_OK ? YES : NO);
 }
 
-- (NSEnumerator *)enumeratorForExpression:(NSString *)inExpression
+- (NSEnumerator *)enumeratorForExpression:(NSString *)inExpression error:(NSError **)outError
 {
 NSAssert(self.sql != NULL, @"Database not open.");
 
-char *theMessage = NULL;
-const char *theTail;
-sqlite3_stmt *theStatement;
+const char *theTail = NULL;
+sqlite3_stmt *theStatement = NULL;
 
 int theResult = sqlite3_prepare(self.sql, [inExpression UTF8String], [inExpression length], &theStatement, &theTail);
-if (theResult != SQLITE_OK) [NSException raise:NSGenericException format:@"sqlite3_compile() failed with %d", theResult];
-if (theMessage)
+if (theResult != SQLITE_OK) 
 	{
-	sqlite3_free(theMessage); // TODO: If this is set then we've already thrown an exception and this will leak.
+	if (outError)
+		*outError = [NSError errorWithDomain:TouchSQLErrorDomain code:theResult userInfo:NULL];
+	return(NULL);
 	}
-if (strlen(theTail) != 0) [NSException raise:NSGenericException format:@"sqlite3_compile() tail is not empty (\"%s\")", theTail];
-//
+NSAssert(strlen(theTail) == 0, @"enumeratorForExpression:, tail remaining for sqlite3_prepare");
+	
 CSqliteEnumerator *theEnumerator = [[[CSqliteEnumerator alloc] initWithStatement:theStatement] autorelease];
 
 return(theEnumerator);
 }
 
-- (NSArray *)rowsForExpression:(NSString *)inExpression
+- (NSArray *)rowsForExpression:(NSString *)inExpression error:(NSError **)outError
 {
 NSAssert(self.sql != NULL, @"Database not open.");
 char **theRows = NULL;
@@ -125,10 +138,15 @@ int theRowCount = 0;
 int theColumnCount = 0;
 char *theMessage;
 int theResult = sqlite3_get_table(self.sql, [inExpression UTF8String], &theRows, &theRowCount, &theColumnCount, &theMessage);
-if (theResult != SQLITE_OK) [NSException raise:NSGenericException format:@"sqlite3_get_table() failed with \"%s\"", theMessage];
-if (theMessage)
+if (theResult != SQLITE_OK)
 	{
-	sqlite3_free(theMessage); // TODO: If this is set then we've already thrown an exception and this will leak.
+	if (outError)
+		*outError = [NSError errorWithDomain:TouchSQLErrorDomain code:theResult userInfo:NULL];
+	if (theMessage)
+		{
+		sqlite3_free(theMessage); // TODO: If this is set then we've already thrown an exception and this will leak.
+		}
+	return(NULL);
 	}
 //
 NSMutableArray *theKeys = [NSMutableArray array];
@@ -167,39 +185,43 @@ return(theRowsArray);
 
 @implementation CSqliteDatabase (CSqliteDatabase_Configuration)
 
+@dynamic cacheSize;
+@dynamic synchronous;
+@dynamic tempStore;
+
 - (NSString *)integrityCheck
 {
-return([self valueForExpression:@"pragma integrity_check;"]);
-}
-
-- (void)setCacheSize:(int)inCacheSize
-{
-[self executeExpressionFormat:@"pragma cache_size=%d;", inCacheSize];
+return([self valueForExpression:@"pragma integrity_check;" error:NULL]);
 }
 
 - (int)cacheSize
 {
-return([[self valueForExpression:@"pragma cache_size;"] intValue]);
+return([[self valueForExpression:@"pragma cache_size;" error:NULL] intValue]);
 }
 
-- (void)setSynchronous:(int)inSynchronous
+- (void)setCacheSize:(int)inCacheSize
 {
-[self executeExpressionFormat:@"pragma synchronous=%d;", inSynchronous];
+[self executeExpression:[NSString stringWithFormat:@"pragma cache_size=%d;", inCacheSize] error:NULL];
 }
 
 - (int)synchronous
 {
-return([[self valueForExpression:@"pragma synchronous;"] intValue]);
+return([[self valueForExpression:@"pragma synchronous;" error:NULL] intValue]);
 }
 
-- (void)setTempStore:(int)inTempStore
+- (void)setSynchronous:(int)inSynchronous
 {
-[self executeExpressionFormat:@"pragma temp_store=%d;", inTempStore];
+[self executeExpression:[NSString stringWithFormat:@"pragma synchronous=%d;", inSynchronous] error:NULL];
 }
 
 - (int)tempStore
 {
-return([[self valueForExpression:@"pragma temp_store;"] intValue]);
+return([[self valueForExpression:@"pragma temp_store;" error:NULL] intValue]);
+}
+
+- (void)setTempStore:(int)inTempStore
+{
+[self executeExpression:[NSString stringWithFormat:@"pragma temp_store=%d;", inTempStore] error:NULL];
 }
 
 @end

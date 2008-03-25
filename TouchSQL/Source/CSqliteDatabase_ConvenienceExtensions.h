@@ -8,8 +8,9 @@
 
 #import "CSqliteDatabase.h"
 
+// Deprecated
 @interface CSqliteDatabase (CSqliteDatabase_ConvenienceExtensions)
 
-- (void)populateTableName:(NSString *)inTableName tableColumns:(NSArray *)inTableColumns columnTypes:(NSArray *)inColumnTypes indexName:(NSString *)inIndexName indexColumns:(NSArray *)inIndexColumns primaryKey:(NSString *)inPrimaryKey withDictionariesFromEnumerator:(NSEnumerator *)inEnumerator;
+- (BOOL)populateTableName:(NSString *)inTableName tableColumns:(NSArray *)inTableColumns columnTypes:(NSArray *)inColumnTypes indexName:(NSString *)inIndexName indexColumns:(NSArray *)inIndexColumns primaryKey:(NSString *)inPrimaryKey withDictionariesFromEnumerator:(NSEnumerator *)inEnumerator error:(NSError **)outError;
 
 @end

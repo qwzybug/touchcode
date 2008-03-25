@@ -14,8 +14,6 @@
 	sqlite3_stmt *statement;
 }
 
-@property (readonly, assign) sqlite3_stmt *statement;
-
 - (id)initWithStatement:(sqlite3_stmt *)inStatement;
 
 @end

@@ -28,10 +28,11 @@ return(self);
 - (void)dealloc
 {
 int theResult = sqlite3_finalize(statement);
-if (theResult != SQLITE_OK) [NSException raise:NSGenericException format:@"sqlite3_finalize() failed with %d", theResult];
 self.statement = NULL;
 //
 [super dealloc];
+//
+if (theResult != SQLITE_OK) [NSException raise:NSGenericException format:@"sqlite3_finalize() failed with %d", theResult];
 }
 
 - (id)nextObject

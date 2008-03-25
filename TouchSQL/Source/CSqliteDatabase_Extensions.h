@@ -10,19 +10,13 @@
 
 @interface CSqliteDatabase (CSqliteDatabase_Extensions)
 
-- (BOOL)executeExpressionIgnoringExceptions:(NSString *)inExpression;
+- (NSUInteger)countRowsInTable:(NSString *)inTableName error:(NSError **)outError;
 
-- (void)executeExpressionFormat:(NSString *)inFormat, ...;
+- (NSDictionary *)rowForExpression:(NSString *)inExpression error:(NSError **)outError;
 
-- (NSEnumerator *)enumeratorForExpressionFormat:(NSString *)inFormat, ...;
+- (NSArray *)valuesForExpression:(NSString *)inExpression error:(NSError **)outError;
 
-- (NSUInteger)countRowsInTable:(NSString *)inTableName;
-
-- (NSDictionary *)rowForExpression:(NSString *)inExpression;
-
-- (NSArray *)valuesForExpression:(NSString *)inExpression;
-
-- (NSString *)valueForExpression:(NSString *)inExpression;
+- (NSString *)valueForExpression:(NSString *)inExpression error:(NSError **)outError;
 
 - (BOOL)objectExistsOfType:(NSString *)inType name:(NSString *)inTableName temporary:(BOOL)inTemporary;
 - (BOOL)tableExists:(NSString *)inTableName;

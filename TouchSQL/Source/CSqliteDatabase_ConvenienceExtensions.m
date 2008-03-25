@@ -13,7 +13,7 @@
 
 @implementation CSqliteDatabase (CSqliteDatabase_ConvenienceExtensions)
 
-- (void)populateTableName:(NSString *)inTableName tableColumns:(NSArray *)inTableColumns columnTypes:(NSArray *)inColumnTypes indexName:(NSString *)inIndexName indexColumns:(NSArray *)inIndexColumns primaryKey:(NSString *)inPrimaryKey withDictionariesFromEnumerator:(NSEnumerator *)inEnumerator
+- (BOOL)populateTableName:(NSString *)inTableName tableColumns:(NSArray *)inTableColumns columnTypes:(NSArray *)inColumnTypes indexName:(NSString *)inIndexName indexColumns:(NSArray *)inIndexColumns primaryKey:(NSString *)inPrimaryKey withDictionariesFromEnumerator:(NSEnumerator *)inEnumerator error:(NSError **)outError
 {
 // ### Create table and index...
 if ([self tableExists:inTableName] == NO)
@@ -32,14 +32,14 @@ if ([self tableExists:inTableName] == NO)
 		}
 
 	NSString *theSQL = [NSString stringWithFormat:@"create table %@ (%@)", inTableName, [theTableColumns componentsJoinedByString:@", "]];
-	[self executeExpression:theSQL];
+	[self executeExpression:theSQL error:outError];
 	}
 if (inIndexName != NULL)
 	{
 	if ([self objectExistsOfType:@"index" name:inIndexName temporary:NO] == NO)
 		{
 		NSString *theSQL = [NSString stringWithFormat:@"create unique index %@ on %@(%@)", inIndexName, inTableName, [inIndexColumns componentsJoinedByString:@", "]];
-		[self executeExpression:theSQL];
+		[self executeExpression:theSQL error:outError];
 		}
 	}
 // ### Enumerator through the dictionaries and insert them into the table...
@@ -49,7 +49,7 @@ while ((theDictionary = [inEnumerator nextObject]) != NULL)
 	NSAutoreleasePool *theAutoreleasePool = [[NSAutoreleasePool alloc] init];
 	//
 	NSString *theSQL = [NSString stringWithFormat:@"replace into %@(%@) values (%@)", inTableName, [[theDictionary allKeys] componentsJoinedByString:@", "], [[theDictionary allValues] componentsJoinedByQuotedSQLEscapedCommas]];
-	[self executeExpression:theSQL];
+	[self executeExpression:theSQL error:outError];
 	//
 	[theAutoreleasePool release];
 	}

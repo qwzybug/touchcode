@@ -8,15 +8,15 @@
 
 #import "UnitTests.h"
 
-#import <ToxicSQL/ToxicSQL.h>
+//#import <ToxicSQL/ToxicSQL.h>
 
 @implementation UnitTests
 
 - (void)testFoo
 {
-	CSqliteDatabase *theDatabase = [[[CSqliteDatabase alloc] initInMemory] autorelease];
+//	CSqliteDatabase *theDatabase = [[[CSqliteDatabase alloc] initInMemory] autorelease];
 
-	[theDatabase executeExpression:@"create table foo (name varchar(100))"];
+//	[theDatabase executeExpression:@"create table foo (name varchar(100))"];
 
 }
 

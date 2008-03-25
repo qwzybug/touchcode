@@ -10,6 +10,8 @@
 
 #import <sqlite3.h>
 
+extern NSString *TouchSQLErrorDomain /* = @"TouchSQLErrorDomain" */;
+
 @interface CSqliteDatabase : NSObject {
 	NSString *path;
 	sqlite3 *sql;
@@ -21,12 +23,12 @@
 - (id)initWithPath:(NSString *)inPath;
 - (id)initInMemory;
 
-- (void)open;
+- (BOOL)open:(NSError **)outError;
 - (void)close;
 
-- (void)executeExpression:(NSString *)inExpression;
-- (NSEnumerator *)enumeratorForExpression:(NSString *)inExpression;
-- (NSArray *)rowsForExpression:(NSString *)inExpression;
+- (BOOL)executeExpression:(NSString *)inExpression error:(NSError **)outError;
+- (NSEnumerator *)enumeratorForExpression:(NSString *)inExpression error:(NSError **)outError;
+- (NSArray *)rowsForExpression:(NSString *)inExpression error:(NSError **)outError;
 
 @end
 
@@ -36,13 +38,8 @@
 
 - (NSString *)integrityCheck;
 
-- (void)setCacheSize:(int)inCacheSize;
-- (int)cacheSize;
-
-- (void)setSynchronous:(int)inSynchronous;
-- (int)synchronous;
-
-- (void)setTempStore:(int)inTempStore;
-- (int)tempStore;
+@property (readwrite, assign) int cacheSize;
+@property (readwrite, assign) int synchronous;
+@property (readwrite, assign) int tempStore;
 
 @end
