@@ -133,49 +133,86 @@ return(theEnumerator);
 - (NSArray *)rowsForExpression:(NSString *)inExpression error:(NSError **)outError
 {
 NSAssert(self.sql != NULL, @"Database not open.");
-char **theRows = NULL;
-int theRowCount = 0;
 int theColumnCount = 0;
-char *theMessage;
-int theResult = sqlite3_get_table(self.sql, [inExpression UTF8String], &theRows, &theRowCount, &theColumnCount, &theMessage);
+int cColumnType = 0;
+NSInteger cColumnIntegerVal;
+NSMutableDictionary *cRowDict = nil;
+double cColumnDoubleVal;
+const unsigned char *cColumnCStrVal;
+const void *cColumnBlobVal;
+int cColumnBlobValLen;
+id cBoxedColumnValue = nil;
+const char* cColumnName;
+sqlite3_stmt *pStmt = NULL;
+const char *tail = NULL;
+
+int theResult = sqlite3_prepare_v2(self.sql, [inExpression UTF8String], -1, 
+                                   &pStmt, &tail);    
+
+// int theResult = sqlite3_get_table(self.sql, [inExpression UTF8String], &theRows, &theRowCount, &theColumnCount, &theMessage);
 if (theResult != SQLITE_OK)
 	{
 	if (outError)
 		*outError = [NSError errorWithDomain:TouchSQLErrorDomain code:theResult userInfo:NULL];
-	if (theMessage)
-		{
-		sqlite3_free(theMessage); // TODO: If this is set then we've already thrown an exception and this will leak.
-		}
 	return(NULL);
 	}
 //
-NSMutableArray *theKeys = [NSMutableArray array];
-for (int theColumn = 0; theColumn < theColumnCount; ++theColumn)
-	{
-	NSString *theKey = [NSString stringWithUTF8String:theRows[theColumn]];
-	[theKeys addObject:theKey];
-	}
-//
 NSMutableArray *theRowsArray = [NSMutableArray array];
-for (int theRow = 1; theRow < theRowCount + 1; ++theRow)
-	{
-	NSMutableArray *theValues = [NSMutableArray array];
-	for (int theColumn = 0; theColumn != theColumnCount; ++theColumn)
-		{
-		int theIndex = theRow * theColumnCount + theColumn;
-		char *theString = theRows[theIndex];;
-		id theValue = NULL;
-		if (theString == NULL)
-			theValue = [NSNull null];
-		else
-			theValue = [NSString stringWithUTF8String:theString];
-		[theValues addObject:theValue];
-		}
-	//
-	NSMutableDictionary *theRowDictionary = [NSMutableDictionary dictionaryWithObjects:theValues forKeys:theKeys];
-	[theRowsArray addObject:theRowDictionary];
-	}
-//
+theColumnCount = sqlite3_column_count(pStmt);
+while (1)
+    {
+    theResult = sqlite3_step(pStmt);
+    if ((theResult == SQLITE_ROW) || (theResult == SQLITE_DONE))
+        {
+        
+        // Read the next row
+        cRowDict = [NSMutableDictionary dictionaryWithCapacity:theColumnCount];
+        
+        for (int theColumn = 0; theColumn < theColumnCount; ++theColumn)
+            {
+                cColumnType = sqlite3_column_type(pStmt, theColumn);
+                cColumnName = sqlite3_column_name(pStmt, theColumn);
+                
+                switch(cColumnType)
+                    {
+                    case SQLITE_INTEGER:
+                        cColumnIntegerVal = sqlite3_column_int(pStmt, theColumn);
+                        cBoxedColumnValue = [NSNumber numberWithInteger:cColumnIntegerVal];
+                        break;
+                    case SQLITE_FLOAT:
+                        cColumnDoubleVal = sqlite3_column_double(pStmt, theColumn);
+                        cBoxedColumnValue = [NSNumber numberWithDouble:cColumnDoubleVal];
+                        break;
+                    case SQLITE_BLOB:
+                        cColumnBlobVal = sqlite3_column_blob(pStmt, theColumn);
+                        cColumnBlobValLen = sqlite3_column_bytes(pStmt, theColumn);
+                        cBoxedColumnValue = [NSData dataWithBytes:cColumnBlobVal length:cColumnBlobValLen];
+                        break;
+                    case SQLITE_NULL:
+                        cBoxedColumnValue = [NSNull null];
+                        break;
+                    case SQLITE_TEXT:
+                        cColumnCStrVal = sqlite3_column_text(pStmt, theColumn);
+                        cBoxedColumnValue = [NSString stringWithUTF8String:(const char *)cColumnCStrVal];
+                        break;
+                    }
+                
+                [cRowDict setObject:cBoxedColumnValue forKey:[NSString stringWithUTF8String:cColumnName]];
+            }
+        
+        [theRowsArray addObject:cRowDict];
+        
+        }
+    else
+        {
+        // We're done
+        break;
+        }
+    }
+
+sqlite3_finalize(pStmt);
+pStmt = NULL;
+
 return(theRowsArray);
 }
 
