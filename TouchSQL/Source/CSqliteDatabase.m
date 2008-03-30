@@ -149,7 +149,6 @@ const char *tail = NULL;
 int theResult = sqlite3_prepare_v2(self.sql, [inExpression UTF8String], -1, 
                                    &pStmt, &tail);    
 
-// int theResult = sqlite3_get_table(self.sql, [inExpression UTF8String], &theRows, &theRowCount, &theColumnCount, &theMessage);
 if (theResult != SQLITE_OK)
 	{
 	if (outError)
