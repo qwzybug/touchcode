@@ -62,4 +62,14 @@ return([self objectExistsOfType:@"table" name:inTableName temporary:NO]);
 return([self objectExistsOfType:@"table" name:inTableName temporary:YES]);
 }
 
++ (NSDateFormatter *)dbDateFormatter
+{
+NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSSSSS"];
+[dateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+[dateFormatter setGeneratesCalendarDates:NO];
+
+return dateFormatter;
+}
+
 @end

@@ -22,4 +22,6 @@
 - (BOOL)tableExists:(NSString *)inTableName;
 - (BOOL)temporaryTableExists:(NSString *)inTableName;
 
++ (NSDateFormatter *)dbDateFormatter;
+
 @end
