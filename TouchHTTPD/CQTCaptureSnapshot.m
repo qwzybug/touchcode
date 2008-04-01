@@ -49,7 +49,7 @@ self.session = NULL;
 
 - (NSData *)jpegData
 {
-if (jpegData == NULL)
+if (jpegData == NULL && self.image)
 	{
 	CGRect theExtent = [self.image extent];
 
