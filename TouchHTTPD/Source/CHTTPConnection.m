@@ -22,8 +22,6 @@
 
 - (void)dataReceived:(NSData *)inData
 {
-NSLog(@"DATA RECEIVED: %d", [inData length]);
-
 if (self.request == NULL)
 	{
 	self.request = CFHTTPMessageCreateEmpty(kCFAllocatorDefault, YES);
@@ -37,8 +35,6 @@ if (theResult == NO)
 
 if (CFHTTPMessageIsHeaderComplete(self.request))
 	{
-	NSLog(@"%@", [(NSDictionary *)CFHTTPMessageCopyAllHeaderFields(self.request) autorelease]);
-	
 	NSInteger theContentLength = [[(NSString *)CFHTTPMessageCopyHeaderFieldValue(self.request, CFSTR("Content-Length")) autorelease] integerValue];
         
 	NSData *theBody = [(NSData *)CFHTTPMessageCopyBody(self.request) autorelease];

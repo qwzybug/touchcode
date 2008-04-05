@@ -34,7 +34,6 @@ return(theConnection);
 {
 #pragma unused (inConnection, inRequest, outTarget, outSelector, outError)
 NSURL *theURL = [(NSURL *)CFHTTPMessageCopyRequestURL(inRequest) autorelease];
-NSLog(@"URL: %@", theURL);
 
 *outTarget = self;
 

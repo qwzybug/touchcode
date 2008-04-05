@@ -21,7 +21,7 @@ SEL theSelector = NULL;
 
 BOOL theResult = [self.router routeConnection:self request:inRequest toTarget:&theTarget selector:&theSelector error:&theError];
 
-if (theResult == NO)
+if (theResult == NO || theTarget == NULL || theSelector == NULL)
 	{
 	theTarget = self;
 	theSelector = @selector(errorNotFoundResponseForRequest:error:);
@@ -33,7 +33,7 @@ NSInvocation *theInvocation = [NSInvocation invocationWithMethodSignature:[theTa
 [theInvocation setSelector:theSelector];
 [theInvocation setTarget:theTarget];
 [theInvocation setArgument:&inRequest atIndex:2];
-[theInvocation setArgument:&theErrorArgument atIndex:2];
+[theInvocation setArgument:&theErrorArgument atIndex:3];
 
 [theInvocation invoke];
 
