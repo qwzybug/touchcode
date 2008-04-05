@@ -208,6 +208,34 @@ self.IPV4Socket = NULL;
 self.IPV6Socket = NULL;
 }
 
+- (void)serveForever
+{
+NSError *theError = NULL;
+if ([self start:&theError] == NO)
+	return;
+
+NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
+
+BOOL theFlag = self.netService != NULL;
+while (theFlag)
+	{
+	@try
+		{
+		NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
+		[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
+		theFlag = self.netService != NULL;
+		[thePool drain];
+		}
+	@catch (NSException *exception)
+		{
+		NSLog(@"Exception caught. Exiting runloop.");
+		theFlag = NO;
+		}
+	}
+
+[thePool drain];
+}
+
 - (CTCPConnection *)createTCPConnectionWithAddress:(NSData *)inAddress inputStream:(NSInputStream *)inInputStream outputStream:(NSOutputStream *)inOutputStream;
 {
 CTCPConnection *theConnection = NULL;
@@ -277,7 +305,6 @@ CFReadStreamSetProperty(theInputStream, kCFStreamPropertyShouldCloseNativeSocket
 CFWriteStreamSetProperty(theOutputStream, kCFStreamPropertyShouldCloseNativeSocket, kCFBooleanTrue);
 
 CTCPConnection *theConnection = [self createTCPConnectionWithAddress:inAddress inputStream:(NSInputStream *)theInputStream outputStream:(NSOutputStream *)theOutputStream];
-NSLog(@"> %@", theConnection);
 
 CFRelease(theInputStream);
 CFRelease(theOutputStream);

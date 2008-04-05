@@ -36,6 +36,7 @@
 
 - (BOOL)start:(NSError **)outError;
 - (void)stop;
+- (void)serveForever;
 
 - (BOOL)shouldHandleNewConnectionFromAddress:(NSData *)inAddress;
 

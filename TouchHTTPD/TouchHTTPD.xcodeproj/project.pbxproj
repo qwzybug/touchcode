@@ -23,8 +23,6 @@
 		45B271610DA7FF2C007D8730 /* CTCPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271550DA7FF2C007D8730 /* CTCPServer.m */; };
 		45B2718B0DA800CA007D8730 /* getgateway.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B271840DA800CA007D8730 /* getgateway.c */; };
 		45B2718D0DA800CA007D8730 /* natpmp.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B271870DA800CA007D8730 /* natpmp.c */; };
-		45B271EA0DA803CF007D8730 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271E70DA803CF007D8730 /* main.m */; };
-		45B271EB0DA803CF007D8730 /* CUserDefaultsHTTPHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271E80DA803CF007D8730 /* CUserDefaultsHTTPHandler.m */; };
 		45B271EE0DA803D9007D8730 /* CBufferedTCPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271430DA7FF2C007D8730 /* CBufferedTCPConnection.m */; };
 		45B271EF0DA803D9007D8730 /* CHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271450DA7FF2C007D8730 /* CHTTPConnection.m */; };
 		45B271F00DA803D9007D8730 /* CHTTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271470DA7FF2C007D8730 /* CHTTPMessage.m */; };
@@ -33,13 +31,8 @@
 		45B271F30DA803D9007D8730 /* CTCPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271510DA7FF2C007D8730 /* CTCPConnection.m */; };
 		45B271F40DA803D9007D8730 /* CTCPEchoConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271530DA7FF2C007D8730 /* CTCPEchoConnection.m */; };
 		45B271F50DA803D9007D8730 /* CTCPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271550DA7FF2C007D8730 /* CTCPServer.m */; };
-		45B271F60DA803D9007D8730 /* CQTCaptureSnapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2717A0DA80086007D8730 /* CQTCaptureSnapshot.m */; };
-		45B271F70DA803D9007D8730 /* CSampleHTTPHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2717C0DA80086007D8730 /* CSampleHTTPHandler.m */; };
-		45B271F80DA803D9007D8730 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2717D0DA80086007D8730 /* main.m */; };
 		45B271F90DA803D9007D8730 /* getgateway.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B271840DA800CA007D8730 /* getgateway.c */; };
 		45B271FA0DA803D9007D8730 /* natpmp.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B271870DA800CA007D8730 /* natpmp.c */; };
-		45B271FB0DA803D9007D8730 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271E70DA803CF007D8730 /* main.m */; };
-		45B271FC0DA803D9007D8730 /* CUserDefaultsHTTPHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271E80DA803CF007D8730 /* CUserDefaultsHTTPHandler.m */; };
 		45B271FE0DA803D9007D8730 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
 		45B271FF0DA803D9007D8730 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 457C92760D86EDA100FCE32F /* Carbon.framework */; };
 		45B272000DA803D9007D8730 /* PubSub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 457C945F0D87096200FCE32F /* PubSub.framework */; };
@@ -49,6 +42,15 @@
 		45B272040DA803D9007D8730 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458798880D8791C1004D5E47 /* QuartzCore.framework */; };
 		45B272060DA803D9007D8730 /* TouchHTTP.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6859EA3029092ED04C91782 /* TouchHTTP.1 */; };
 		45B272BB0DA80D62007D8730 /* NSURL_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B272BA0DA80D62007D8730 /* NSURL_Extensions.m */; };
+		45DFF2280DA8303400103CBA /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DFF21E0DA8303400103CBA /* CJSONDeserializer.m */; };
+		45DFF2290DA8303400103CBA /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DFF2200DA8303400103CBA /* CJSONScanner.m */; };
+		45DFF22A0DA8303400103CBA /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DFF2220DA8303400103CBA /* CJSONSerializer.m */; };
+		45DFF22B0DA8303400103CBA /* NSCharacterSet_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DFF2250DA8303400103CBA /* NSCharacterSet_Extensions.m */; };
+		45DFF22C0DA8303400103CBA /* NSScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DFF2270DA8303400103CBA /* NSScanner_Extensions.m */; };
+		45DFF22E0DA8305400103CBA /* CUserDefaultsHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DFF0E80DA8203800103CBA /* CUserDefaultsHTTPClient.m */; };
+		45DFF22F0DA8305500103CBA /* CUserDefaultsHTTPHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271E80DA803CF007D8730 /* CUserDefaultsHTTPHandler.m */; };
+		45DFF2300DA8305500103CBA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271E70DA803CF007D8730 /* main.m */; };
+		45DFF26A0DA832B600103CBA /* NSURL_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B272BA0DA80D62007D8730 /* NSURL_Extensions.m */; };
 		8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
 		8DD76F9F0486AA7600D96B5E /* TouchHTTP.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6859EA3029092ED04C91782 /* TouchHTTP.1 */; };
 /* End PBXBuildFile section */
@@ -116,6 +118,20 @@
 		45B2720A0DA803D9007D8730 /* UserDefaultsServer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UserDefaultsServer; sourceTree = BUILT_PRODUCTS_DIR; };
 		45B272B90DA80D62007D8730 /* NSURL_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSURL_Extensions.h; sourceTree = "<group>"; };
 		45B272BA0DA80D62007D8730 /* NSURL_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSURL_Extensions.m; sourceTree = "<group>"; };
+		45DFF0E70DA8203800103CBA /* CUserDefaultsHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUserDefaultsHTTPClient.h; sourceTree = "<group>"; };
+		45DFF0E80DA8203800103CBA /* CUserDefaultsHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CUserDefaultsHTTPClient.m; sourceTree = "<group>"; };
+		45DFF21D0DA8303400103CBA /* CJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONDeserializer.h; sourceTree = "<group>"; };
+		45DFF21E0DA8303400103CBA /* CJSONDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONDeserializer.m; sourceTree = "<group>"; };
+		45DFF21F0DA8303400103CBA /* CJSONScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONScanner.h; sourceTree = "<group>"; };
+		45DFF2200DA8303400103CBA /* CJSONScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONScanner.m; sourceTree = "<group>"; };
+		45DFF2210DA8303400103CBA /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializer.h; sourceTree = "<group>"; };
+		45DFF2220DA8303400103CBA /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
+		45DFF2240DA8303400103CBA /* NSCharacterSet_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSCharacterSet_Extensions.h; sourceTree = "<group>"; };
+		45DFF2250DA8303400103CBA /* NSCharacterSet_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSCharacterSet_Extensions.m; sourceTree = "<group>"; };
+		45DFF2260DA8303400103CBA /* NSScanner_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSScanner_Extensions.h; sourceTree = "<group>"; };
+		45DFF2270DA8303400103CBA /* NSScanner_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSScanner_Extensions.m; sourceTree = "<group>"; };
+		45DFF2C30DA8378D00103CBA /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = UnitTests.octest; path = /Users/schwa/Development/Products/Debug/UnitTests.octest; sourceTree = "<absolute>"; };
+		45DFF2C40DA8378D00103CBA /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		8DD76FA10486AA7600D96B5E /* TouchHTTP */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TouchHTTP; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6859EA3029092ED04C91782 /* TouchHTTP.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = TouchHTTP.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -132,6 +148,13 @@
 				45B272020DA803D9007D8730 /* QuickTime.framework in Frameworks */,
 				45B272030DA803D9007D8730 /* QTKit.framework in Frameworks */,
 				45B272040DA803D9007D8730 /* QuartzCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		45DFF2C00DA8378D00103CBA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,9 +181,11 @@
 				45B271410DA7FF2C007D8730 /* Source */,
 				45B271760DA80086007D8730 /* Samples */,
 				45B271820DA800CA007D8730 /* libnatpmp-20071213 */,
+				45DFF21A0DA8302400103CBA /* TouchJSON */,
 				C6859EA2029092E104C91782 /* Documentation */,
 				08FB779DFE84155DC02AAC07 /* External Frameworks and Libraries */,
 				1AB674ADFE9D54B511CA2CBB /* Products */,
+				45DFF2C40DA8378D00103CBA /* UnitTests-Info.plist */,
 			);
 			name = TouchHTTP;
 			sourceTree = "<group>";
@@ -184,6 +209,7 @@
 			children = (
 				8DD76FA10486AA7600D96B5E /* TouchHTTP */,
 				45B2720A0DA803D9007D8730 /* UserDefaultsServer */,
+				45DFF2C30DA8378D00103CBA /* UnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -229,6 +255,8 @@
 				45B271E70DA803CF007D8730 /* main.m */,
 				45B271E90DA803CF007D8730 /* CUserDefaultsHTTPHandler.h */,
 				45B271E80DA803CF007D8730 /* CUserDefaultsHTTPHandler.m */,
+				45DFF0E70DA8203800103CBA /* CUserDefaultsHTTPClient.h */,
+				45DFF0E80DA8203800103CBA /* CUserDefaultsHTTPClient.m */,
 			);
 			path = UserDefaultsServer;
 			sourceTree = "<group>";
@@ -255,6 +283,41 @@
 			);
 			path = "libnatpmp-20071213";
 			sourceTree = "<group>";
+		};
+		45DFF21A0DA8302400103CBA /* TouchJSON */ = {
+			isa = PBXGroup;
+			children = (
+				45DFF21C0DA8303400103CBA /* JSON */,
+				45DFF2230DA8303400103CBA /* Extensions */,
+			);
+			name = TouchJSON;
+			sourceTree = "<group>";
+		};
+		45DFF21C0DA8303400103CBA /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				45DFF21D0DA8303400103CBA /* CJSONDeserializer.h */,
+				45DFF21E0DA8303400103CBA /* CJSONDeserializer.m */,
+				45DFF21F0DA8303400103CBA /* CJSONScanner.h */,
+				45DFF2200DA8303400103CBA /* CJSONScanner.m */,
+				45DFF2210DA8303400103CBA /* CJSONSerializer.h */,
+				45DFF2220DA8303400103CBA /* CJSONSerializer.m */,
+			);
+			name = JSON;
+			path = ../TouchJSON/Source/JSON;
+			sourceTree = SOURCE_ROOT;
+		};
+		45DFF2230DA8303400103CBA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				45DFF2240DA8303400103CBA /* NSCharacterSet_Extensions.h */,
+				45DFF2250DA8303400103CBA /* NSCharacterSet_Extensions.m */,
+				45DFF2260DA8303400103CBA /* NSScanner_Extensions.h */,
+				45DFF2270DA8303400103CBA /* NSScanner_Extensions.m */,
+			);
+			name = Extensions;
+			path = ../TouchJSON/Source/Extensions;
+			sourceTree = SOURCE_ROOT;
 		};
 		C6859EA2029092E104C91782 /* Documentation */ = {
 			isa = PBXGroup;
@@ -284,6 +347,24 @@
 			productName = TouchHTTP;
 			productReference = 45B2720A0DA803D9007D8730 /* UserDefaultsServer */;
 			productType = "com.apple.product-type.tool";
+		};
+		45DFF2C20DA8378D00103CBA /* UnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 45DFF2C70DA8378E00103CBA /* Build configuration list for PBXNativeTarget "UnitTests" */;
+			buildPhases = (
+				45DFF2BE0DA8378D00103CBA /* Resources */,
+				45DFF2BF0DA8378D00103CBA /* Sources */,
+				45DFF2C00DA8378D00103CBA /* Frameworks */,
+				45DFF2C10DA8378D00103CBA /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UnitTests;
+			productName = UnitTests;
+			productReference = 45DFF2C30DA8378D00103CBA /* UnitTests.octest */;
+			productType = "com.apple.product-type.bundle";
 		};
 		8DD76F960486AA7600D96B5E /* TouchHTTP */ = {
 			isa = PBXNativeTarget;
@@ -317,9 +398,36 @@
 			targets = (
 				8DD76F960486AA7600D96B5E /* TouchHTTP */,
 				45B271EC0DA803D9007D8730 /* UserDefaultsServer */,
+				45DFF2C20DA8378D00103CBA /* UnitTests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		45DFF2BE0DA8378D00103CBA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		45DFF2C10DA8378D00103CBA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		45B271ED0DA803D9007D8730 /* Sources */ = {
@@ -334,13 +442,24 @@
 				45B271F30DA803D9007D8730 /* CTCPConnection.m in Sources */,
 				45B271F40DA803D9007D8730 /* CTCPEchoConnection.m in Sources */,
 				45B271F50DA803D9007D8730 /* CTCPServer.m in Sources */,
-				45B271F60DA803D9007D8730 /* CQTCaptureSnapshot.m in Sources */,
-				45B271F70DA803D9007D8730 /* CSampleHTTPHandler.m in Sources */,
-				45B271F80DA803D9007D8730 /* main.m in Sources */,
 				45B271F90DA803D9007D8730 /* getgateway.c in Sources */,
 				45B271FA0DA803D9007D8730 /* natpmp.c in Sources */,
-				45B271FB0DA803D9007D8730 /* main.m in Sources */,
-				45B271FC0DA803D9007D8730 /* CUserDefaultsHTTPHandler.m in Sources */,
+				45DFF2280DA8303400103CBA /* CJSONDeserializer.m in Sources */,
+				45DFF2290DA8303400103CBA /* CJSONScanner.m in Sources */,
+				45DFF22A0DA8303400103CBA /* CJSONSerializer.m in Sources */,
+				45DFF22B0DA8303400103CBA /* NSCharacterSet_Extensions.m in Sources */,
+				45DFF22C0DA8303400103CBA /* NSScanner_Extensions.m in Sources */,
+				45DFF22E0DA8305400103CBA /* CUserDefaultsHTTPClient.m in Sources */,
+				45DFF22F0DA8305500103CBA /* CUserDefaultsHTTPHandler.m in Sources */,
+				45DFF2300DA8305500103CBA /* main.m in Sources */,
+				45DFF26A0DA832B600103CBA /* NSURL_Extensions.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		45DFF2BF0DA8378D00103CBA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,8 +477,6 @@
 				45B271610DA7FF2C007D8730 /* CTCPServer.m in Sources */,
 				45B2718B0DA800CA007D8730 /* getgateway.c in Sources */,
 				45B2718D0DA800CA007D8730 /* natpmp.c in Sources */,
-				45B271EA0DA803CF007D8730 /* main.m in Sources */,
-				45B271EB0DA803CF007D8730 /* CUserDefaultsHTTPHandler.m in Sources */,
 				45B272BB0DA80D62007D8730 /* NSURL_Extensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -463,6 +580,62 @@
 			};
 			name = Release;
 		};
+		45DFF2C50DA8378E00103CBA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "UnitTests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTests;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		45DFF2C60DA8378E00103CBA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "UnitTests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTests;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -489,6 +662,15 @@
 			buildConfigurations = (
 				45B272080DA803D9007D8730 /* Debug */,
 				45B272090DA803D9007D8730 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		45DFF2C70DA8378E00103CBA /* Build configuration list for PBXNativeTarget "UnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				45DFF2C50DA8378E00103CBA /* Debug */,
+				45DFF2C60DA8378E00103CBA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

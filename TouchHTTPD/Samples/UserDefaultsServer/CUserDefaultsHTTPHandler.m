@@ -9,7 +9,7 @@
 #import "CUserDefaultsHTTPHandler.h"
 
 #import "CRoutingHTTPConnection.h"
-
+#import "CJSONSerializer.h"
 #import "NSURL_Extensions.h"
 
 @implementation CUserDefaultsHTTPHandler
@@ -21,7 +21,6 @@
 if ((self = [super init]) != NULL)
 	{
 	self.store = [NSMutableDictionary dictionary];
-	[self.store setValue:@"Hello world" forKey:@"test"];
 	}
 return(self);
 }
@@ -38,16 +37,12 @@ return(theConnection);
 #pragma unused (inConnection, outError)
 NSURL *theURL = [(NSURL *)CFHTTPMessageCopyRequestURL(inRequest) autorelease];
 NSString *theMethod = [(NSString *)CFHTTPMessageCopyRequestMethod(inRequest) autorelease];
-NSLog(@"%@ %@", theMethod, theURL);
 
 *outTarget = self;
 
 // GET /key/<KEYNAME>
 // PUT /key/<KEYNAME>?value=<VALUE>(&type=<TYPE>)
 // DELETE /key/<KEYNAME>
-
-NSLog(@"%@", theURL.path.pathComponents);
-NSLog(@"%@", theURL.query);
 
 if ([theMethod isEqualToString:@"GET"] && [[theURL path] isEqualToString:@"/"])
 	*outSelector = @selector(defaultResponseForRequest:error:);
@@ -83,8 +78,6 @@ return(theResponse);
 {
 #pragma unused (outError)
 
-NSLog(@"GETTER");
-
 CFHTTPMessageRef theResponse = NULL;
 NSURL *theURL = [(NSURL *)CFHTTPMessageCopyRequestURL(inRequest) autorelease];
 NSString *theKey = [theURL.path.pathComponents objectAtIndex:2];
@@ -93,9 +86,14 @@ if (theValue)
 	{
 	theResponse = CFHTTPMessageCreateResponse(kCFAllocatorDefault, 200, (CFStringRef)@"OK", kCFHTTPVersion1_0);
 
-	NSData *theBodyData = [theValue dataUsingEncoding:NSUTF8StringEncoding];
-	CFHTTPMessageSetBody(theResponse, (CFDataRef)theBodyData);
+	NSDictionary *theDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+		theValue, @"value",
+		NULL];
 
+	NSString *theBodyString = [[CJSONSerializer serializer] serializeObject:theDictionary];
+	NSData *theBodyData = [theBodyString dataUsingEncoding:NSUTF8StringEncoding];
+
+	CFHTTPMessageSetBody(theResponse, (CFDataRef)theBodyData);
 	CFHTTPMessageSetHeaderFieldValue(theResponse, (CFStringRef)@"Content-Type", (CFStringRef)@"text/plain");
 	CFHTTPMessageSetHeaderFieldValue(theResponse, (CFStringRef)@"Content-Length", (CFStringRef)[[NSNumber numberWithInteger:theBodyData.length] stringValue]);
 	}
@@ -119,9 +117,17 @@ return(theResponse);
 
 CFHTTPMessageRef theResponse = NULL;
 NSURL *theURL = [(NSURL *)CFHTTPMessageCopyRequestURL(inRequest) autorelease];
+NSDictionary *theQueryDictionary = theURL.queryDictionary;
 NSString *theKey = [theURL.path.pathComponents objectAtIndex:2];
-NSString *theValue = [theURL.queryDictionary objectForKey:@"value"];
+NSString *theStringValue = [theQueryDictionary objectForKey:@"value"];
+NSString *theType = [theQueryDictionary objectForKey:@"type"];
 
+NSString *theValuePropertyList = [NSString stringWithFormat:@"<plist version=\"1.0\"><dict><key>value</key><%@>%@</%@></dict></plist>", theType, theStringValue, theType];
+
+NSString *theErrorString = NULL;
+NSDictionary *theValueDictionary = [NSPropertyListSerialization propertyListFromData:[theValuePropertyList dataUsingEncoding:NSUTF8StringEncoding] mutabilityOption:NSPropertyListImmutable format:NULL errorDescription:&theErrorString];
+
+id theValue = [theValueDictionary objectForKey:@"value"];
 if (theValue)
 	{
 	[self.store setObject:theValue forKey:theKey];
