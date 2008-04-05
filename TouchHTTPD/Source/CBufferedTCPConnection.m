@@ -127,7 +127,7 @@ if (outputBuffer != NULL)
 	if (theBufferLength > 0)
 		{
 		UInt8 *thePtr = self.outputBuffer.mutableBytes;
-		NSUInteger theBytesWritten = [self.outputStream write:thePtr maxLength:theBufferLength];
+		NSInteger theBytesWritten = [self.outputStream write:thePtr maxLength:theBufferLength];
 		if (theBytesWritten == theBufferLength)
 			{
 			self.outputBuffer.length = 0;
@@ -136,10 +136,11 @@ if (outputBuffer != NULL)
 			{
 			self.outputBuffer = [NSMutableData dataWithBytes:thePtr + theBytesWritten length:theBufferLength - theBytesWritten];
 			}
-		else if (theBytesWritten < 0)
-			[NSException raise:NSGenericException format:@"Error TODO"];
-		else if (theBytesWritten == 0)
-			[NSException raise:NSGenericException format:@"Error TODO"];
+		else if (theBytesWritten <= 0)
+			{
+			// TODO Not totally sure what to do here. Ignoring the error seems to be a good idea. Can easily cause this code to be hit by using the webcam sample and hitting reload a lot.
+//			[NSException raise:NSGenericException format:@"flushOutputBuffer failed with %d", theBytesWritten];
+			}
 		}
 	}
 }

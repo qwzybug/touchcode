@@ -17,13 +17,15 @@
 		45B271590DA7FF2C007D8730 /* CHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271450DA7FF2C007D8730 /* CHTTPConnection.m */; };
 		45B2715A0DA7FF2C007D8730 /* CHTTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271470DA7FF2C007D8730 /* CHTTPMessage.m */; };
 		45B2715B0DA7FF2C007D8730 /* CNATPMPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271490DA7FF2C007D8730 /* CNATPMPManager.m */; };
-		45B2715C0DA7FF2C007D8730 /* CQTCaptureSnapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2714B0DA7FF2C007D8730 /* CQTCaptureSnapshot.m */; };
 		45B2715D0DA7FF2C007D8730 /* CRoutingHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2714D0DA7FF2C007D8730 /* CRoutingHTTPConnection.m */; };
-		45B2715E0DA7FF2C007D8730 /* CSampleHTTPHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2714F0DA7FF2C007D8730 /* CSampleHTTPHandler.m */; };
 		45B2715F0DA7FF2C007D8730 /* CTCPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271510DA7FF2C007D8730 /* CTCPConnection.m */; };
 		45B271600DA7FF2C007D8730 /* CTCPEchoConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271530DA7FF2C007D8730 /* CTCPEchoConnection.m */; };
 		45B271610DA7FF2C007D8730 /* CTCPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271550DA7FF2C007D8730 /* CTCPServer.m */; };
-		45B271620DA7FF2C007D8730 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271560DA7FF2C007D8730 /* main.m */; };
+		45B2717E0DA80086007D8730 /* CQTCaptureSnapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2717A0DA80086007D8730 /* CQTCaptureSnapshot.m */; };
+		45B2717F0DA80086007D8730 /* CSampleHTTPHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2717C0DA80086007D8730 /* CSampleHTTPHandler.m */; };
+		45B271800DA80086007D8730 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2717D0DA80086007D8730 /* main.m */; };
+		45B2718B0DA800CA007D8730 /* getgateway.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B271840DA800CA007D8730 /* getgateway.c */; };
+		45B2718D0DA800CA007D8730 /* natpmp.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B271870DA800CA007D8730 /* natpmp.c */; };
 		8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
 		8DD76F9F0486AA7600D96B5E /* TouchHTTP.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6859EA3029092ED04C91782 /* TouchHTTP.1 */; };
 /* End PBXBuildFile section */
@@ -57,20 +59,24 @@
 		45B271470DA7FF2C007D8730 /* CHTTPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTTPMessage.m; sourceTree = "<group>"; };
 		45B271480DA7FF2C007D8730 /* CNATPMPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNATPMPManager.h; sourceTree = "<group>"; };
 		45B271490DA7FF2C007D8730 /* CNATPMPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNATPMPManager.m; sourceTree = "<group>"; };
-		45B2714A0DA7FF2C007D8730 /* CQTCaptureSnapshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQTCaptureSnapshot.h; sourceTree = "<group>"; };
-		45B2714B0DA7FF2C007D8730 /* CQTCaptureSnapshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQTCaptureSnapshot.m; sourceTree = "<group>"; };
 		45B2714C0DA7FF2C007D8730 /* CRoutingHTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRoutingHTTPConnection.h; sourceTree = "<group>"; };
 		45B2714D0DA7FF2C007D8730 /* CRoutingHTTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRoutingHTTPConnection.m; sourceTree = "<group>"; };
-		45B2714E0DA7FF2C007D8730 /* CSampleHTTPHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSampleHTTPHandler.h; sourceTree = "<group>"; };
-		45B2714F0DA7FF2C007D8730 /* CSampleHTTPHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSampleHTTPHandler.m; sourceTree = "<group>"; };
 		45B271500DA7FF2C007D8730 /* CTCPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTCPConnection.h; sourceTree = "<group>"; };
 		45B271510DA7FF2C007D8730 /* CTCPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTCPConnection.m; sourceTree = "<group>"; };
 		45B271520DA7FF2C007D8730 /* CTCPEchoConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTCPEchoConnection.h; sourceTree = "<group>"; };
 		45B271530DA7FF2C007D8730 /* CTCPEchoConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTCPEchoConnection.m; sourceTree = "<group>"; };
 		45B271540DA7FF2C007D8730 /* CTCPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTCPServer.h; sourceTree = "<group>"; };
 		45B271550DA7FF2C007D8730 /* CTCPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTCPServer.m; sourceTree = "<group>"; };
-		45B271560DA7FF2C007D8730 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		45B271570DA7FF2C007D8730 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		45B271790DA80086007D8730 /* CQTCaptureSnapshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQTCaptureSnapshot.h; sourceTree = "<group>"; };
+		45B2717A0DA80086007D8730 /* CQTCaptureSnapshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQTCaptureSnapshot.m; sourceTree = "<group>"; };
+		45B2717B0DA80086007D8730 /* CSampleHTTPHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSampleHTTPHandler.h; sourceTree = "<group>"; };
+		45B2717C0DA80086007D8730 /* CSampleHTTPHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSampleHTTPHandler.m; sourceTree = "<group>"; };
+		45B2717D0DA80086007D8730 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		45B271840DA800CA007D8730 /* getgateway.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = getgateway.c; sourceTree = "<group>"; };
+		45B271850DA800CA007D8730 /* getgateway.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = getgateway.h; sourceTree = "<group>"; };
+		45B271870DA800CA007D8730 /* natpmp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = natpmp.c; sourceTree = "<group>"; };
+		45B271880DA800CA007D8730 /* natpmp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = natpmp.h; sourceTree = "<group>"; };
 		8DD76FA10486AA7600D96B5E /* TouchHTTP */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TouchHTTP; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6859EA3029092ED04C91782 /* TouchHTTP.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = TouchHTTP.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,6 +103,8 @@
 			isa = PBXGroup;
 			children = (
 				45B271410DA7FF2C007D8730 /* Source */,
+				45B271760DA80086007D8730 /* Samples */,
+				45B271820DA800CA007D8730 /* libnatpmp-20071213 */,
 				C6859EA2029092E104C91782 /* Documentation */,
 				08FB779DFE84155DC02AAC07 /* External Frameworks and Libraries */,
 				1AB674ADFE9D54B511CA2CBB /* Products */,
@@ -137,22 +145,56 @@
 				45B271470DA7FF2C007D8730 /* CHTTPMessage.m */,
 				45B271480DA7FF2C007D8730 /* CNATPMPManager.h */,
 				45B271490DA7FF2C007D8730 /* CNATPMPManager.m */,
-				45B2714A0DA7FF2C007D8730 /* CQTCaptureSnapshot.h */,
-				45B2714B0DA7FF2C007D8730 /* CQTCaptureSnapshot.m */,
 				45B2714C0DA7FF2C007D8730 /* CRoutingHTTPConnection.h */,
 				45B2714D0DA7FF2C007D8730 /* CRoutingHTTPConnection.m */,
-				45B2714E0DA7FF2C007D8730 /* CSampleHTTPHandler.h */,
-				45B2714F0DA7FF2C007D8730 /* CSampleHTTPHandler.m */,
 				45B271500DA7FF2C007D8730 /* CTCPConnection.h */,
 				45B271510DA7FF2C007D8730 /* CTCPConnection.m */,
 				45B271520DA7FF2C007D8730 /* CTCPEchoConnection.h */,
 				45B271530DA7FF2C007D8730 /* CTCPEchoConnection.m */,
 				45B271540DA7FF2C007D8730 /* CTCPServer.h */,
 				45B271550DA7FF2C007D8730 /* CTCPServer.m */,
-				45B271560DA7FF2C007D8730 /* main.m */,
 				45B271570DA7FF2C007D8730 /* Prefix.pch */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		45B271760DA80086007D8730 /* Samples */ = {
+			isa = PBXGroup;
+			children = (
+				45B271770DA80086007D8730 /* UserDefaultsServer */,
+				45B271780DA80086007D8730 /* WebCamServer */,
+			);
+			path = Samples;
+			sourceTree = "<group>";
+		};
+		45B271770DA80086007D8730 /* UserDefaultsServer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UserDefaultsServer;
+			sourceTree = "<group>";
+		};
+		45B271780DA80086007D8730 /* WebCamServer */ = {
+			isa = PBXGroup;
+			children = (
+				45B271790DA80086007D8730 /* CQTCaptureSnapshot.h */,
+				45B2717A0DA80086007D8730 /* CQTCaptureSnapshot.m */,
+				45B2717B0DA80086007D8730 /* CSampleHTTPHandler.h */,
+				45B2717C0DA80086007D8730 /* CSampleHTTPHandler.m */,
+				45B2717D0DA80086007D8730 /* main.m */,
+			);
+			path = WebCamServer;
+			sourceTree = "<group>";
+		};
+		45B271820DA800CA007D8730 /* libnatpmp-20071213 */ = {
+			isa = PBXGroup;
+			children = (
+				45B271840DA800CA007D8730 /* getgateway.c */,
+				45B271850DA800CA007D8730 /* getgateway.h */,
+				45B271870DA800CA007D8730 /* natpmp.c */,
+				45B271880DA800CA007D8730 /* natpmp.h */,
+			);
+			path = "libnatpmp-20071213";
 			sourceTree = "<group>";
 		};
 		C6859EA2029092E104C91782 /* Documentation */ = {
@@ -210,13 +252,15 @@
 				45B271590DA7FF2C007D8730 /* CHTTPConnection.m in Sources */,
 				45B2715A0DA7FF2C007D8730 /* CHTTPMessage.m in Sources */,
 				45B2715B0DA7FF2C007D8730 /* CNATPMPManager.m in Sources */,
-				45B2715C0DA7FF2C007D8730 /* CQTCaptureSnapshot.m in Sources */,
 				45B2715D0DA7FF2C007D8730 /* CRoutingHTTPConnection.m in Sources */,
-				45B2715E0DA7FF2C007D8730 /* CSampleHTTPHandler.m in Sources */,
 				45B2715F0DA7FF2C007D8730 /* CTCPConnection.m in Sources */,
 				45B271600DA7FF2C007D8730 /* CTCPEchoConnection.m in Sources */,
 				45B271610DA7FF2C007D8730 /* CTCPServer.m in Sources */,
-				45B271620DA7FF2C007D8730 /* main.m in Sources */,
+				45B2717E0DA80086007D8730 /* CQTCaptureSnapshot.m in Sources */,
+				45B2717F0DA80086007D8730 /* CSampleHTTPHandler.m in Sources */,
+				45B271800DA80086007D8730 /* main.m in Sources */,
+				45B2718B0DA800CA007D8730 /* getgateway.c in Sources */,
+				45B2718D0DA800CA007D8730 /* natpmp.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

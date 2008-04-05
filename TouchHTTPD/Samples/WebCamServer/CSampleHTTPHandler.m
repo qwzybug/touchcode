@@ -41,10 +41,10 @@ NSLog(@"URL: %@", theURL);
 
 if ([[theURL path] isEqualToString:@"/favicon.ico"])
 	*outSelector = @selector(favIconResponseForRequest:error:);
-else if ([[theURL path] isEqualToString:@"/webcam.jpg"])
+else// if ([[theURL path] isEqualToString:@"/webcam.jpg"])
 	*outSelector = @selector(webcamResponseForRequest:error:);
-else
-	*outSelector = @selector(defaultResponseForRequest:error:);
+//else
+//	*outSelector = @selector(defaultResponseForRequest:error:);
 
 return(YES);
 }
