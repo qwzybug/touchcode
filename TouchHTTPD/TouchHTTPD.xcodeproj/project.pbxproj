@@ -7,25 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		457C8F000D86BD3F00FCE32F /* CTCPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 457C8EFF0D86BD3F00FCE32F /* CTCPServer.m */; };
-		457C8F230D86BF7900FCE32F /* CTCPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 457C8F220D86BF7900FCE32F /* CTCPConnection.m */; };
-		457C8F2D0D86C16500FCE32F /* CTCPEchoConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 457C8F2C0D86C16500FCE32F /* CTCPEchoConnection.m */; };
-		457C905F0D86CD6100FCE32F /* CBufferedTCPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 457C905E0D86CD2E00FCE32F /* CBufferedTCPConnection.m */; };
-		457C91880D86E21200FCE32F /* CHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 457C91870D86E21200FCE32F /* CHTTPConnection.m */; };
 		457C92770D86EDA100FCE32F /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 457C92760D86EDA100FCE32F /* Carbon.framework */; };
-		457C94330D87036000FCE32F /* natpmp.c in Sources */ = {isa = PBXBuildFile; fileRef = 457C93FF0D86FD4400FCE32F /* natpmp.c */; };
-		457C94340D87036100FCE32F /* getgateway.c in Sources */ = {isa = PBXBuildFile; fileRef = 457C93FC0D86FD4400FCE32F /* getgateway.c */; };
-		457C94350D87036700FCE32F /* CNATPMPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 457C94100D86FDF800FCE32F /* CNATPMPManager.m */; };
 		457C94600D87096200FCE32F /* PubSub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 457C945F0D87096200FCE32F /* PubSub.framework */; };
-		457C94700D870C7400FCE32F /* CRoutingHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 457C946F0D870C7400FCE32F /* CRoutingHTTPConnection.m */; };
-		457C94E20D87168400FCE32F /* CHTTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 457C94E10D87168400FCE32F /* CHTTPMessage.m */; };
-		4587959C0D877333004D5E47 /* CSampleHTTPHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4587959B0D877333004D5E47 /* CSampleHTTPHandler.m */; };
 		458796BA0D8789D1004D5E47 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458796B90D8789D1004D5E47 /* AppKit.framework */; };
 		458797D20D878D9F004D5E47 /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458797D00D878D9F004D5E47 /* QuickTime.framework */; };
 		458797D30D878D9F004D5E47 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458797D10D878D9F004D5E47 /* QTKit.framework */; };
-		4587981D0D878E4E004D5E47 /* CQTCaptureSnapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 4587981C0D878E4E004D5E47 /* CQTCaptureSnapshot.m */; };
 		458798890D8791C1004D5E47 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458798880D8791C1004D5E47 /* QuartzCore.framework */; };
-		8DD76F9A0486AA7600D96B5E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* main.m */; settings = {ATTRIBUTES = (); }; };
+		45B271580DA7FF2C007D8730 /* CBufferedTCPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271430DA7FF2C007D8730 /* CBufferedTCPConnection.m */; };
+		45B271590DA7FF2C007D8730 /* CHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271450DA7FF2C007D8730 /* CHTTPConnection.m */; };
+		45B2715A0DA7FF2C007D8730 /* CHTTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271470DA7FF2C007D8730 /* CHTTPMessage.m */; };
+		45B2715B0DA7FF2C007D8730 /* CNATPMPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271490DA7FF2C007D8730 /* CNATPMPManager.m */; };
+		45B2715C0DA7FF2C007D8730 /* CQTCaptureSnapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2714B0DA7FF2C007D8730 /* CQTCaptureSnapshot.m */; };
+		45B2715D0DA7FF2C007D8730 /* CRoutingHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2714D0DA7FF2C007D8730 /* CRoutingHTTPConnection.m */; };
+		45B2715E0DA7FF2C007D8730 /* CSampleHTTPHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2714F0DA7FF2C007D8730 /* CSampleHTTPHandler.m */; };
+		45B2715F0DA7FF2C007D8730 /* CTCPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271510DA7FF2C007D8730 /* CTCPConnection.m */; };
+		45B271600DA7FF2C007D8730 /* CTCPEchoConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271530DA7FF2C007D8730 /* CTCPEchoConnection.m */; };
+		45B271610DA7FF2C007D8730 /* CTCPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271550DA7FF2C007D8730 /* CTCPServer.m */; };
+		45B271620DA7FF2C007D8730 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271560DA7FF2C007D8730 /* main.m */; };
 		8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
 		8DD76F9F0486AA7600D96B5E /* TouchHTTP.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6859EA3029092ED04C91782 /* TouchHTTP.1 */; };
 /* End PBXBuildFile section */
@@ -44,39 +42,35 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		08FB7796FE84155DC02AAC07 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		08FB779EFE84155DC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		457C8EFE0D86BD3F00FCE32F /* CTCPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTCPServer.h; sourceTree = "<group>"; };
-		457C8EFF0D86BD3F00FCE32F /* CTCPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTCPServer.m; sourceTree = "<group>"; };
-		457C8F210D86BF7900FCE32F /* CTCPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTCPConnection.h; sourceTree = "<group>"; };
-		457C8F220D86BF7900FCE32F /* CTCPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTCPConnection.m; sourceTree = "<group>"; };
-		457C8F2B0D86C16500FCE32F /* CTCPEchoConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTCPEchoConnection.h; sourceTree = "<group>"; };
-		457C8F2C0D86C16500FCE32F /* CTCPEchoConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTCPEchoConnection.m; sourceTree = "<group>"; };
-		457C905D0D86CD2E00FCE32F /* CBufferedTCPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBufferedTCPConnection.h; sourceTree = "<group>"; };
-		457C905E0D86CD2E00FCE32F /* CBufferedTCPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBufferedTCPConnection.m; sourceTree = "<group>"; };
-		457C91860D86E21200FCE32F /* CHTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHTTPConnection.h; path = /Users/schwa/Developer/Mercurial/Repositories/scratch/TouchHTTP/CHTTPConnection.h; sourceTree = "<absolute>"; };
-		457C91870D86E21200FCE32F /* CHTTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CHTTPConnection.m; path = /Users/schwa/Developer/Mercurial/Repositories/scratch/TouchHTTP/CHTTPConnection.m; sourceTree = "<absolute>"; };
 		457C92760D86EDA100FCE32F /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
-		457C93FC0D86FD4400FCE32F /* getgateway.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = getgateway.c; path = "/Users/schwa/Developer/Mercurial/Repositories/scratch/TouchHTTP/libnatpmp-20071213/getgateway.c"; sourceTree = "<absolute>"; };
-		457C93FD0D86FD4400FCE32F /* getgateway.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = getgateway.h; path = "/Users/schwa/Developer/Mercurial/Repositories/scratch/TouchHTTP/libnatpmp-20071213/getgateway.h"; sourceTree = "<absolute>"; };
-		457C93FF0D86FD4400FCE32F /* natpmp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = natpmp.c; path = "/Users/schwa/Developer/Mercurial/Repositories/scratch/TouchHTTP/libnatpmp-20071213/natpmp.c"; sourceTree = "<absolute>"; };
-		457C94000D86FD4400FCE32F /* natpmp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = natpmp.h; path = "/Users/schwa/Developer/Mercurial/Repositories/scratch/TouchHTTP/libnatpmp-20071213/natpmp.h"; sourceTree = "<absolute>"; };
-		457C940F0D86FDF800FCE32F /* CNATPMPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNATPMPManager.h; sourceTree = "<group>"; };
-		457C94100D86FDF800FCE32F /* CNATPMPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNATPMPManager.m; sourceTree = "<group>"; };
 		457C945F0D87096200FCE32F /* PubSub.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PubSub.framework; path = /System/Library/Frameworks/PubSub.framework; sourceTree = "<absolute>"; };
-		457C946E0D870C7400FCE32F /* CRoutingHTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CRoutingHTTPConnection.h; path = /Users/schwa/Developer/Mercurial/Repositories/scratch/TouchHTTP/CRoutingHTTPConnection.h; sourceTree = "<absolute>"; };
-		457C946F0D870C7400FCE32F /* CRoutingHTTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CRoutingHTTPConnection.m; path = /Users/schwa/Developer/Mercurial/Repositories/scratch/TouchHTTP/CRoutingHTTPConnection.m; sourceTree = "<absolute>"; };
-		457C94E00D87168400FCE32F /* CHTTPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHTTPMessage.h; path = /Users/schwa/Developer/Mercurial/Repositories/scratch/TouchHTTP/CHTTPMessage.h; sourceTree = "<absolute>"; };
-		457C94E10D87168400FCE32F /* CHTTPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CHTTPMessage.m; path = /Users/schwa/Developer/Mercurial/Repositories/scratch/TouchHTTP/CHTTPMessage.m; sourceTree = "<absolute>"; };
-		4587959A0D877333004D5E47 /* CSampleHTTPHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CSampleHTTPHandler.h; path = /Users/schwa/Developer/Mercurial/Repositories/scratch/TouchHTTP/CSampleHTTPHandler.h; sourceTree = "<absolute>"; };
-		4587959B0D877333004D5E47 /* CSampleHTTPHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CSampleHTTPHandler.m; path = /Users/schwa/Developer/Mercurial/Repositories/scratch/TouchHTTP/CSampleHTTPHandler.m; sourceTree = "<absolute>"; };
 		458796B90D8789D1004D5E47 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		458797D00D878D9F004D5E47 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = /System/Library/Frameworks/QuickTime.framework; sourceTree = "<absolute>"; };
 		458797D10D878D9F004D5E47 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
-		4587981B0D878E4E004D5E47 /* CQTCaptureSnapshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQTCaptureSnapshot.h; sourceTree = "<group>"; };
-		4587981C0D878E4E004D5E47 /* CQTCaptureSnapshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQTCaptureSnapshot.m; sourceTree = "<group>"; };
 		458798880D8791C1004D5E47 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
-		45FC9BCD0D8A098D00E2E6BF /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Prefix.pch; path = /Users/schwa/Developer/Subversion/WorkingDirectories/touchcode/TouchHTTPD/Prefix.pch; sourceTree = "<absolute>"; };
+		45B271420DA7FF2C007D8730 /* CBufferedTCPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBufferedTCPConnection.h; sourceTree = "<group>"; };
+		45B271430DA7FF2C007D8730 /* CBufferedTCPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBufferedTCPConnection.m; sourceTree = "<group>"; };
+		45B271440DA7FF2C007D8730 /* CHTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHTTPConnection.h; sourceTree = "<group>"; };
+		45B271450DA7FF2C007D8730 /* CHTTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTTPConnection.m; sourceTree = "<group>"; };
+		45B271460DA7FF2C007D8730 /* CHTTPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHTTPMessage.h; sourceTree = "<group>"; };
+		45B271470DA7FF2C007D8730 /* CHTTPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTTPMessage.m; sourceTree = "<group>"; };
+		45B271480DA7FF2C007D8730 /* CNATPMPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNATPMPManager.h; sourceTree = "<group>"; };
+		45B271490DA7FF2C007D8730 /* CNATPMPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNATPMPManager.m; sourceTree = "<group>"; };
+		45B2714A0DA7FF2C007D8730 /* CQTCaptureSnapshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQTCaptureSnapshot.h; sourceTree = "<group>"; };
+		45B2714B0DA7FF2C007D8730 /* CQTCaptureSnapshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQTCaptureSnapshot.m; sourceTree = "<group>"; };
+		45B2714C0DA7FF2C007D8730 /* CRoutingHTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRoutingHTTPConnection.h; sourceTree = "<group>"; };
+		45B2714D0DA7FF2C007D8730 /* CRoutingHTTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRoutingHTTPConnection.m; sourceTree = "<group>"; };
+		45B2714E0DA7FF2C007D8730 /* CSampleHTTPHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSampleHTTPHandler.h; sourceTree = "<group>"; };
+		45B2714F0DA7FF2C007D8730 /* CSampleHTTPHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSampleHTTPHandler.m; sourceTree = "<group>"; };
+		45B271500DA7FF2C007D8730 /* CTCPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTCPConnection.h; sourceTree = "<group>"; };
+		45B271510DA7FF2C007D8730 /* CTCPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTCPConnection.m; sourceTree = "<group>"; };
+		45B271520DA7FF2C007D8730 /* CTCPEchoConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTCPEchoConnection.h; sourceTree = "<group>"; };
+		45B271530DA7FF2C007D8730 /* CTCPEchoConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTCPEchoConnection.m; sourceTree = "<group>"; };
+		45B271540DA7FF2C007D8730 /* CTCPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTCPServer.h; sourceTree = "<group>"; };
+		45B271550DA7FF2C007D8730 /* CTCPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTCPServer.m; sourceTree = "<group>"; };
+		45B271560DA7FF2C007D8730 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		45B271570DA7FF2C007D8730 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		8DD76FA10486AA7600D96B5E /* TouchHTTP */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TouchHTTP; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6859EA3029092ED04C91782 /* TouchHTTP.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = TouchHTTP.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -102,42 +96,12 @@
 		08FB7794FE84155DC02AAC07 /* TouchHTTP */ = {
 			isa = PBXGroup;
 			children = (
-				08FB7795FE84155DC02AAC07 /* Source */,
+				45B271410DA7FF2C007D8730 /* Source */,
 				C6859EA2029092E104C91782 /* Documentation */,
 				08FB779DFE84155DC02AAC07 /* External Frameworks and Libraries */,
 				1AB674ADFE9D54B511CA2CBB /* Products */,
 			);
 			name = TouchHTTP;
-			sourceTree = "<group>";
-		};
-		08FB7795FE84155DC02AAC07 /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				457C8EFE0D86BD3F00FCE32F /* CTCPServer.h */,
-				457C8EFF0D86BD3F00FCE32F /* CTCPServer.m */,
-				457C8F210D86BF7900FCE32F /* CTCPConnection.h */,
-				457C8F220D86BF7900FCE32F /* CTCPConnection.m */,
-				457C905D0D86CD2E00FCE32F /* CBufferedTCPConnection.h */,
-				457C905E0D86CD2E00FCE32F /* CBufferedTCPConnection.m */,
-				457C8F2B0D86C16500FCE32F /* CTCPEchoConnection.h */,
-				457C8F2C0D86C16500FCE32F /* CTCPEchoConnection.m */,
-				457C94E00D87168400FCE32F /* CHTTPMessage.h */,
-				457C94E10D87168400FCE32F /* CHTTPMessage.m */,
-				457C91860D86E21200FCE32F /* CHTTPConnection.h */,
-				457C91870D86E21200FCE32F /* CHTTPConnection.m */,
-				457C946E0D870C7400FCE32F /* CRoutingHTTPConnection.h */,
-				457C946F0D870C7400FCE32F /* CRoutingHTTPConnection.m */,
-				457C940F0D86FDF800FCE32F /* CNATPMPManager.h */,
-				457C94100D86FDF800FCE32F /* CNATPMPManager.m */,
-				4587959A0D877333004D5E47 /* CSampleHTTPHandler.h */,
-				4587959B0D877333004D5E47 /* CSampleHTTPHandler.m */,
-				4587981B0D878E4E004D5E47 /* CQTCaptureSnapshot.h */,
-				4587981C0D878E4E004D5E47 /* CQTCaptureSnapshot.m */,
-				45FC9BCD0D8A098D00E2E6BF /* Prefix.pch */,
-				08FB7796FE84155DC02AAC07 /* main.m */,
-				457C93FA0D86FD4400FCE32F /* libnatpmp-20071213 */,
-			);
-			name = Source;
 			sourceTree = "<group>";
 		};
 		08FB779DFE84155DC02AAC07 /* External Frameworks and Libraries */ = {
@@ -162,17 +126,34 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		457C93FA0D86FD4400FCE32F /* libnatpmp-20071213 */ = {
+		45B271410DA7FF2C007D8730 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				457C93FC0D86FD4400FCE32F /* getgateway.c */,
-				457C93FD0D86FD4400FCE32F /* getgateway.h */,
-				457C93FF0D86FD4400FCE32F /* natpmp.c */,
-				457C94000D86FD4400FCE32F /* natpmp.h */,
+				45B271420DA7FF2C007D8730 /* CBufferedTCPConnection.h */,
+				45B271430DA7FF2C007D8730 /* CBufferedTCPConnection.m */,
+				45B271440DA7FF2C007D8730 /* CHTTPConnection.h */,
+				45B271450DA7FF2C007D8730 /* CHTTPConnection.m */,
+				45B271460DA7FF2C007D8730 /* CHTTPMessage.h */,
+				45B271470DA7FF2C007D8730 /* CHTTPMessage.m */,
+				45B271480DA7FF2C007D8730 /* CNATPMPManager.h */,
+				45B271490DA7FF2C007D8730 /* CNATPMPManager.m */,
+				45B2714A0DA7FF2C007D8730 /* CQTCaptureSnapshot.h */,
+				45B2714B0DA7FF2C007D8730 /* CQTCaptureSnapshot.m */,
+				45B2714C0DA7FF2C007D8730 /* CRoutingHTTPConnection.h */,
+				45B2714D0DA7FF2C007D8730 /* CRoutingHTTPConnection.m */,
+				45B2714E0DA7FF2C007D8730 /* CSampleHTTPHandler.h */,
+				45B2714F0DA7FF2C007D8730 /* CSampleHTTPHandler.m */,
+				45B271500DA7FF2C007D8730 /* CTCPConnection.h */,
+				45B271510DA7FF2C007D8730 /* CTCPConnection.m */,
+				45B271520DA7FF2C007D8730 /* CTCPEchoConnection.h */,
+				45B271530DA7FF2C007D8730 /* CTCPEchoConnection.m */,
+				45B271540DA7FF2C007D8730 /* CTCPServer.h */,
+				45B271550DA7FF2C007D8730 /* CTCPServer.m */,
+				45B271560DA7FF2C007D8730 /* main.m */,
+				45B271570DA7FF2C007D8730 /* Prefix.pch */,
 			);
-			name = "libnatpmp-20071213";
-			path = "/Users/schwa/Developer/Mercurial/Repositories/scratch/TouchHTTP/libnatpmp-20071213";
-			sourceTree = "<absolute>";
+			path = Source;
+			sourceTree = "<group>";
 		};
 		C6859EA2029092E104C91782 /* Documentation */ = {
 			isa = PBXGroup;
@@ -225,19 +206,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				457C905F0D86CD6100FCE32F /* CBufferedTCPConnection.m in Sources */,
-				8DD76F9A0486AA7600D96B5E /* main.m in Sources */,
-				457C8F000D86BD3F00FCE32F /* CTCPServer.m in Sources */,
-				457C8F230D86BF7900FCE32F /* CTCPConnection.m in Sources */,
-				457C8F2D0D86C16500FCE32F /* CTCPEchoConnection.m in Sources */,
-				457C91880D86E21200FCE32F /* CHTTPConnection.m in Sources */,
-				457C94330D87036000FCE32F /* natpmp.c in Sources */,
-				457C94340D87036100FCE32F /* getgateway.c in Sources */,
-				457C94350D87036700FCE32F /* CNATPMPManager.m in Sources */,
-				457C94700D870C7400FCE32F /* CRoutingHTTPConnection.m in Sources */,
-				457C94E20D87168400FCE32F /* CHTTPMessage.m in Sources */,
-				4587959C0D877333004D5E47 /* CSampleHTTPHandler.m in Sources */,
-				4587981D0D878E4E004D5E47 /* CQTCaptureSnapshot.m in Sources */,
+				45B271580DA7FF2C007D8730 /* CBufferedTCPConnection.m in Sources */,
+				45B271590DA7FF2C007D8730 /* CHTTPConnection.m in Sources */,
+				45B2715A0DA7FF2C007D8730 /* CHTTPMessage.m in Sources */,
+				45B2715B0DA7FF2C007D8730 /* CNATPMPManager.m in Sources */,
+				45B2715C0DA7FF2C007D8730 /* CQTCaptureSnapshot.m in Sources */,
+				45B2715D0DA7FF2C007D8730 /* CRoutingHTTPConnection.m in Sources */,
+				45B2715E0DA7FF2C007D8730 /* CSampleHTTPHandler.m in Sources */,
+				45B2715F0DA7FF2C007D8730 /* CTCPConnection.m in Sources */,
+				45B271600DA7FF2C007D8730 /* CTCPEchoConnection.m in Sources */,
+				45B271610DA7FF2C007D8730 /* CTCPServer.m in Sources */,
+				45B271620DA7FF2C007D8730 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,7 +238,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Prefix.pch;
+				GCC_PREFIX_HEADER = Source/Prefix.pch;
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				INSTALL_PATH = /usr/local/bin;
 				PRODUCT_NAME = TouchHTTP;
@@ -278,7 +257,7 @@
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Prefix.pch;
+				GCC_PREFIX_HEADER = Source/Prefix.pch;
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				INSTALL_PATH = /usr/local/bin;
 				PRODUCT_NAME = TouchHTTP;
