@@ -15,9 +15,14 @@
 
 @interface CUserDefaultsHTTPHandler : NSObject <CTCPServerDelegate, CHTTPRequestRouter> {
 	NSMutableDictionary *store;
+	NSURL *storeURL;
 }
 
 @property (readwrite, retain) NSMutableDictionary *store;
+@property (readwrite, retain) NSURL *storeURL;
+
+- (void)reload;
+- (void)save;
 
 - (BOOL)routeConnection:(CRoutingHTTPConnection *)inConnection request:(CFHTTPMessageRef)inRequest toTarget:(id *)outTarget selector:(SEL *)outSelector error:(NSError **)outError;
 

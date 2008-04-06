@@ -21,6 +21,7 @@
     NSNetService *netService;
 	Class connectionClass;
 	NSMutableArray *_connections;
+	BOOL serving;
 }
 
 @property (readwrite, assign) id <CTCPServerDelegate> delegate;
@@ -33,6 +34,7 @@
 @property (readonly, retain) NSNetService *netService;
 @property (readwrite, assign) Class connectionClass;
 @property (readonly, retain) NSArray *connections;
+@property (readonly, assign) BOOL serving;
 
 - (BOOL)start:(NSError **)outError;
 - (void)stop;

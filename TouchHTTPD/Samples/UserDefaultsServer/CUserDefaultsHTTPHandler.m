@@ -10,11 +10,17 @@
 
 #import "CRoutingHTTPConnection.h"
 #import "CJSONSerializer.h"
+#import "CJSONDeserializer.h"
 #import "NSURL_Extensions.h"
+
+// GET /key/<KEYNAME>
+// PUT /key/<KEYNAME>?value=<VALUE>(&type=<TYPE>)
+// DELETE /key/<KEYNAME>
 
 @implementation CUserDefaultsHTTPHandler
 
 @synthesize store;
+@synthesize storeURL;
 
 - (id)init
 {
@@ -25,12 +31,40 @@ if ((self = [super init]) != NULL)
 return(self);
 }
 
+- (void)dealloc
+{
+//
+[super dealloc];
+}
+
+#pragma mark -
+
+- (void)reload
+{
+if (self.storeURL)
+	{
+	self.store = [NSMutableDictionary dictionaryWithContentsOfURL:self.storeURL];
+	}
+}
+
+- (void)save
+{
+if (self.storeURL)
+	{
+	[self.store writeToURL:self.storeURL atomically:YES];
+	}
+}
+
+#pragma mark -
+
 - (CTCPConnection *)TCPServer:(CTCPServer *)inServer createTCPConnectionWithAddress:(NSData *)inAddress inputStream:(NSInputStream *)inInputStream outputStream:(NSOutputStream *)inOutputStream;
 {
 CRoutingHTTPConnection *theConnection = [[[CRoutingHTTPConnection alloc] initWithTCPServer:inServer address:inAddress inputStream:inInputStream outputStream:inOutputStream] autorelease];
 theConnection.router = self;
 return(theConnection);
 }
+
+#pragma mark -
 
 - (BOOL)routeConnection:(CRoutingHTTPConnection *)inConnection request:(CFHTTPMessageRef)inRequest toTarget:(id *)outTarget selector:(SEL *)outSelector error:(NSError **)outError;
 {
@@ -40,17 +74,13 @@ NSString *theMethod = [(NSString *)CFHTTPMessageCopyRequestMethod(inRequest) aut
 
 *outTarget = self;
 
-// GET /key/<KEYNAME>
-// PUT /key/<KEYNAME>?value=<VALUE>(&type=<TYPE>)
-// DELETE /key/<KEYNAME>
-
 if ([theMethod isEqualToString:@"GET"] && [[theURL path] isEqualToString:@"/"])
 	*outSelector = @selector(defaultResponseForRequest:error:);
 else if (theURL.path.pathComponents.count == 3 && [[theURL.path.pathComponents objectAtIndex:1] isEqualToString:@"key"])
 	{
 	if ([theMethod isEqualToString:@"GET"])
 		*outSelector = @selector(keyGetterResponseForRequest:error:);
-	else if ([theMethod isEqualToString:@"PUT"])
+	else if ([theMethod isEqualToString:@"POST"])
 		*outSelector = @selector(keyPutterResponseForRequest:error:);
 	else if ([theMethod isEqualToString:@"DELETE"])
 		*outSelector = @selector(keyDeleterResponseForRequest:error:);
@@ -59,13 +89,15 @@ else if (theURL.path.pathComponents.count == 3 && [[theURL.path.pathComponents o
 return(YES);
 }
 
+#pragma mark -
+
 - (CFHTTPMessageRef)defaultResponseForRequest:(CFHTTPMessageRef)inRequest error:(NSError **)outError
 {
 #pragma unused (inRequest, outError)
 CFHTTPMessageRef theResponse = CFHTTPMessageCreateResponse(kCFAllocatorDefault, 200, (CFStringRef)@"OK", kCFHTTPVersion1_0);
 
-NSString *theBody = @"DEFAULT!";
-NSData *theBodyData = [theBody dataUsingEncoding:NSUTF8StringEncoding];
+NSString *theBodyString = [[CJSONSerializer serializer] serializeObject:self.store];
+NSData *theBodyData = [theBodyString dataUsingEncoding:NSUTF8StringEncoding];
 CFHTTPMessageSetBody(theResponse, (CFDataRef)theBodyData);
 
 CFHTTPMessageSetHeaderFieldValue(theResponse, (CFStringRef)@"Content-Type", (CFStringRef)@"text/plain");
@@ -117,22 +149,21 @@ return(theResponse);
 
 CFHTTPMessageRef theResponse = NULL;
 NSURL *theURL = [(NSURL *)CFHTTPMessageCopyRequestURL(inRequest) autorelease];
-NSDictionary *theQueryDictionary = theURL.queryDictionary;
 NSString *theKey = [theURL.path.pathComponents objectAtIndex:2];
-NSString *theStringValue = [theQueryDictionary objectForKey:@"value"];
-NSString *theType = [theQueryDictionary objectForKey:@"type"];
 
-NSString *theValuePropertyList = [NSString stringWithFormat:@"<plist version=\"1.0\"><dict><key>value</key><%@>%@</%@></dict></plist>", theType, theStringValue, theType];
+NSData *theBodyData = [(NSData *)CFHTTPMessageCopyBody(inRequest) autorelease];
+NSString *theBodyString = [[[NSString alloc] initWithData:theBodyData encoding:NSUTF8StringEncoding] autorelease];
+NSDictionary *theDictionary = [[CJSONDeserializer deserializer] deserialize:theBodyString];
 
-NSString *theErrorString = NULL;
-NSDictionary *theValueDictionary = [NSPropertyListSerialization propertyListFromData:[theValuePropertyList dataUsingEncoding:NSUTF8StringEncoding] mutabilityOption:NSPropertyListImmutable format:NULL errorDescription:&theErrorString];
+id theValue = [theDictionary objectForKey:@"value"];
 
-id theValue = [theValueDictionary objectForKey:@"value"];
+
+
 if (theValue)
 	{
 	[self.store setObject:theValue forKey:theKey];
+	[self save];
 	theResponse = CFHTTPMessageCreateResponse(kCFAllocatorDefault, 200, (CFStringRef)@"OK", kCFHTTPVersion1_0);
-
 	CFHTTPMessageSetHeaderFieldValue(theResponse, (CFStringRef)@"Content-Length", (CFStringRef)@"0");
 	}
 else
@@ -160,6 +191,7 @@ NSString *theKey = [theURL.path.pathComponents objectAtIndex:2];
 if ([self.store objectForKey:theKey])
 	{
 	[self.store removeObjectForKey:theKey];
+	[self save];
 	theResponse = CFHTTPMessageCreateResponse(kCFAllocatorDefault, 200, (CFStringRef)@"OK", kCFHTTPVersion1_0);
 
 	CFHTTPMessageSetHeaderFieldValue(theResponse, (CFStringRef)@"Content-Length", (CFStringRef)@"0");
@@ -177,7 +209,5 @@ else
 
 return(theResponse);
 }
-
-
 
 @end

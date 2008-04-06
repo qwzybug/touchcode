@@ -20,6 +20,7 @@ static void TCPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType typ
 @property (readwrite, assign) CFSocketRef IPV6Socket;
 @property (readwrite, retain) NSNetService *netService;
 @property (readwrite, retain) NSMutableArray *_connections;
+@property (readwrite, assign) BOOL serving;
 
 - (void)handleNewConnectionFromAddress:(NSData *)addr nativeHandke:(CFSocketNativeHandle)inNativeHandle;
 - (BOOL)openIPV4Socket:(NSError **)outError;
@@ -40,6 +41,7 @@ static void TCPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType typ
 @synthesize connectionClass;
 @dynamic connections;
 @synthesize _connections;
+@synthesize serving;
 
 - (id)init
 {
@@ -196,11 +198,15 @@ if (self.type != NULL)
 	[self.netService publish];
 	}
 
+self.serving = YES;
+
 return YES;
 }
 
 - (void)stop
 {
+self.serving = NO;
+
 [self.netService stop];
 self.netService = nil;
 
@@ -216,14 +222,14 @@ if ([self start:&theError] == NO)
 
 NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
 
-BOOL theFlag = self.netService != NULL;
+BOOL theFlag = self.serving;
 while (theFlag)
 	{
 	@try
 		{
 		NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
 		[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
-		theFlag = self.netService != NULL;
+		theFlag = self.serving;
 		[thePool drain];
 		}
 	@catch (NSException *exception)
@@ -235,6 +241,8 @@ while (theFlag)
 
 [thePool drain];
 }
+
+#pragma mark -
 
 - (CTCPConnection *)createTCPConnectionWithAddress:(NSData *)inAddress inputStream:(NSInputStream *)inInputStream outputStream:(NSOutputStream *)inOutputStream;
 {

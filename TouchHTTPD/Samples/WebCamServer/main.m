@@ -28,7 +28,7 @@ CNATPMPManager *theManager = [[[CNATPMPManager alloc] init] autorelease];
 [theManager externalAddress:&theError];
 [theManager openPortForProtocol:NATPMP_PROTOCOL_TCP privatePort:theServer.port publicPort:theServer.port lifetime:5 * 60 error:&theError];
 
-[theServer serveForever:&theError];
+[theServer serveForever];
 
 [pool drain];
 return 0;

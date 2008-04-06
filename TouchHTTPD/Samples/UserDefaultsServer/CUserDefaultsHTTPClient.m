@@ -9,6 +9,9 @@
 #import "CUserDefaultsHTTPClient.h"
 
 #import "CJSONDeserializer.h"
+#import "CJSONSerializer.h"
+
+static CUserDefaultsHTTPClient *gInstance = NULL;
 
 @implementation CUserDefaultsHTTPClient
 
@@ -17,10 +20,14 @@
 
 + (CUserDefaultsHTTPClient *)standardUserDefaults
 {
-CUserDefaultsHTTPClient *theClient = [[[self alloc] init] autorelease];
-theClient.host = [NSHost currentHost];
-theClient.port = 8765;
-return(theClient);
+if (gInstance == NULL)
+	{
+	CUserDefaultsHTTPClient *theClient = [[[self alloc] init] autorelease];
+	theClient.host = [NSHost currentHost];
+	theClient.port = 8080;
+	gInstance = [theClient retain];
+	}
+return(gInstance);
 }
 
 - (id)objectForKey:(NSString *)inDefaultName
@@ -48,12 +55,10 @@ return(theObject);
 - (void)setObject:(id)inValue forKey:(NSString *)inDefaultName
 {
 NSString *theType = NULL;
-NSString *theStringValue = NULL;
 
 if ([inValue isKindOfClass:[NSString class]])
 	{
 	theType = @"string";
-	theStringValue = inValue;
 	}
 else if ([inValue isKindOfClass:[NSNumber class]])
 	{
@@ -80,38 +85,45 @@ else if ([inValue isKindOfClass:[NSNumber class]])
 			theType = @"real";
 			break;
 		}
-	theStringValue = [inValue stringValue];
 	}
 else if ([inValue isKindOfClass:[NSArray class]])
 	{
 	theType = @"array";
-	theStringValue = [inValue stringValue];
 	}
-else if ([inValue isKindOfClass:[NSArray class]])
+else if ([inValue isKindOfClass:[NSDictionary class]])
 	{
-	theType = @"array";
-	theStringValue = [inValue stringValue];
+	theType = @"dict";
 	}
 else if ([inValue isKindOfClass:[NSDate class]])
 	{
 	theType = @"date";
-	theStringValue = [inValue stringValue];
 	}
 else
 	{
 	NSAssert(NO, @"Cannot setObject for object of that type.");
 	}
 
+NSDictionary *theDictionary = [NSDictionary dictionaryWithObject:inValue forKey:@"value"];
+NSData *theValueData = [[[CJSONSerializer serializer] serializeDictionary:theDictionary] dataUsingEncoding:NSUTF8StringEncoding];
 
-NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%d/key/%@?value=%@&type=%@", self.host.name, self.port, inDefaultName, theStringValue, theType]];
+NSString *theURLString = [NSString stringWithFormat:@"http://%@:%d/key/%@", self.host.name, self.port, inDefaultName];
+	
+NSURL *theURL = [NSURL URLWithString:theURLString];
 
 NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:theURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:5.0];
-[theRequest setHTTPMethod:@"PUT"];
+[theRequest setHTTPMethod:@"POST"];
+if (theValueData)
+	[theRequest setHTTPBody:theValueData];
 
-NSURLResponse *theResponse = NULL;
+NSHTTPURLResponse *theResponse = NULL;
 NSError *theError = NULL;
 NSData *theData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&theError];
-NSLog(@"%@ %@", theResponse, theData);
+if (theError != NULL)
+	[NSException raise:NSGenericException format:@"setObject:forKey: returned with error %@", theError];
+else if (theResponse.statusCode != 200)
+	{
+	[NSException raise:NSGenericException format:@"setObject:forKey: returned with %d (%@)", theResponse.statusCode, [[[NSString alloc] initWithData:theData encoding:NSUTF8StringEncoding] autorelease]];;
+	}
 }
 
 - (void)removeObjectForKey:(NSString *)inDefaultName

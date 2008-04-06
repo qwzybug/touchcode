@@ -34,14 +34,16 @@ NSOperationQueue *theQueue = [[[NSOperationQueue alloc] init] autorelease];
 NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%d", [[NSHost currentHost] name], theServer.port]];
 [[NSWorkspace sharedWorkspace] openURL:theURL];
 
-sleep(2);
-NSLog(@"RESULT: %@", [[CUserDefaultsHTTPClient standardUserDefaults] objectForKey:@"test"]);
-[[CUserDefaultsHTTPClient standardUserDefaults] setObject:@"banana" forKey:@"test"];
-NSLog(@"RESULT: %@", [[CUserDefaultsHTTPClient standardUserDefaults] objectForKey:@"test"]);
-NSLog(@"RESULT: %@", [[CUserDefaultsHTTPClient standardUserDefaults] objectForKey:@"test_float"]);
-NSLog(@"RESULT: %@", [[CUserDefaultsHTTPClient standardUserDefaults] objectForKey:@"test_array"]);
+[CUserDefaultsHTTPClient standardUserDefaults].host = [NSHost currentHost];
+[CUserDefaultsHTTPClient standardUserDefaults].port = theServer.port;
 
-sleep(2000);
+id theInputValue = [NSArray arrayWithObjects:@"A", @"B", @"C", NULL];
+[[CUserDefaultsHTTPClient standardUserDefaults] setObject:theInputValue forKey:@"test"];
+id theOutputValue = [[CUserDefaultsHTTPClient standardUserDefaults] objectForKey:@"test"];
+NSLog(@"%@", NSStringFromClass([theInputValue class]));
+NSLog(@"%@", NSStringFromClass([theOutputValue class]));
+NSLog(@"%@ %@", theInputValue, theOutputValue);
+NSLog(@"%d", [theInputValue isEqual:theOutputValue]);
 
 [pool drain];
 return 0;
