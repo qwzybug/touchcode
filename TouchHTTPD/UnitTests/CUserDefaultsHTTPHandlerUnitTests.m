@@ -62,17 +62,22 @@ STAssertEqualObjects(theInputValue, theOutputValue, NULL);
 [self tearDown];
 }
 
+- (void)processKey:(NSString *)inKey value:(id)inValue
+{
+STAssertNil([self.requestHandler.store objectForKey:inKey], NULL);
+[[CUserDefaultsHTTPClient standardUserDefaults] setObject:inValue forKey:inKey];
+STAssertEqualObjects([inValue description], [[self.requestHandler.store objectForKey:inKey] description], NULL);
+id theOutputValue = [[CUserDefaultsHTTPClient standardUserDefaults] objectForKey:inKey];
+STAssertEqualObjects([inValue description], [theOutputValue description], NULL);
+}
+
 - (void)testWritingReadingIntegers
 {
 [self prepare];
 
 id theInputValue = [NSNumber numberWithInt:42];
 NSString *theKey = @"some_key";
-STAssertNil([self.requestHandler.store objectForKey:theKey], NULL);
-[[CUserDefaultsHTTPClient standardUserDefaults] setObject:theInputValue forKey:theKey];
-STAssertEqualObjects(theInputValue, [self.requestHandler.store objectForKey:theKey], NULL);
-id theOutputValue = [[CUserDefaultsHTTPClient standardUserDefaults] objectForKey:theKey];
-STAssertEqualObjects(theInputValue, theOutputValue, NULL);
+[self processKey:theKey value:theInputValue];
 
 [self tearDown];
 }
@@ -83,11 +88,7 @@ STAssertEqualObjects(theInputValue, theOutputValue, NULL);
 
 id theInputValue = [NSNumber numberWithDouble:3.14];
 NSString *theKey = @"some_key";
-STAssertNil([self.requestHandler.store objectForKey:theKey], NULL);
-[[CUserDefaultsHTTPClient standardUserDefaults] setObject:theInputValue forKey:theKey];
-STAssertEqualObjects(theInputValue, [self.requestHandler.store objectForKey:theKey], NULL);
-id theOutputValue = [[CUserDefaultsHTTPClient standardUserDefaults] objectForKey:theKey];
-STAssertEqualObjects(theInputValue, theOutputValue, NULL);
+[self processKey:theKey value:theInputValue];
 
 [self tearDown];
 }
@@ -98,11 +99,7 @@ STAssertEqualObjects(theInputValue, theOutputValue, NULL);
 
 id theInputValue = [NSArray arrayWithObjects:@"A", @"B", @"C", NULL];
 NSString *theKey = @"some_key";
-STAssertNil([self.requestHandler.store objectForKey:theKey], NULL);
-[[CUserDefaultsHTTPClient standardUserDefaults] setObject:theInputValue forKey:theKey];
-STAssertEqualObjects(theInputValue, [self.requestHandler.store objectForKey:theKey], NULL);
-id theOutputValue = [[CUserDefaultsHTTPClient standardUserDefaults] objectForKey:theKey];
-STAssertEqualObjects(theInputValue, theOutputValue, NULL);
+[self processKey:theKey value:theInputValue];
 
 [self tearDown];
 }
@@ -113,11 +110,7 @@ STAssertEqualObjects(theInputValue, theOutputValue, NULL);
 
 id theInputValue = [NSDictionary dictionaryWithObjectsAndKeys:@"xyzzy", @"foo", @"neep", @"bar", NULL];
 NSString *theKey = @"some_key";
-STAssertNil([self.requestHandler.store objectForKey:theKey], NULL);
-[[CUserDefaultsHTTPClient standardUserDefaults] setObject:theInputValue forKey:theKey];
-STAssertEqualObjects(theInputValue, [self.requestHandler.store objectForKey:theKey], NULL);
-id theOutputValue = [[CUserDefaultsHTTPClient standardUserDefaults] objectForKey:theKey];
-STAssertEqualObjects(theInputValue, theOutputValue, NULL);
+[self processKey:theKey value:theInputValue];
 
 [self tearDown];
 }
@@ -128,16 +121,25 @@ STAssertEqualObjects(theInputValue, theOutputValue, NULL);
 
 id theInputValue = [NSDate date];
 NSString *theKey = @"some_key";
-STAssertNil([self.requestHandler.store objectForKey:theKey], NULL);
-[[CUserDefaultsHTTPClient standardUserDefaults] setObject:theInputValue forKey:theKey];
-STAssertEqualObjects([theInputValue description], [[self.requestHandler.store objectForKey:theKey] description], NULL);
-id theOutputValue = [[CUserDefaultsHTTPClient standardUserDefaults] objectForKey:theKey];
-STAssertEqualObjects([theInputValue description], [theOutputValue description], NULL);
+[self processKey:theKey value:theInputValue];
 
 [self tearDown];
 }
 
 #pragma mark -
+
+/*
+- (void)testFunkeyKeyNames
+{
+[self prepare];
+
+id theInputValue = @"banana";
+NSString *theKey = @"this is & a = key with a / funny | name";
+[self processKey:theKey value:theInputValue];
+
+[self tearDown];
+}
+*/
 
 - (void)testDeletions
 {
@@ -157,26 +159,5 @@ STAssertNil(theOutputValue, NULL);
 
 [self tearDown];
 }
-
-/*
-- (void)testFunkeyKeyNames
-{
-[self prepare];
-
-id theInputValue = @"banana";
-NSString *theKey = @"this is & a = key with a / funny | name";
-STAssertNil([self.requestHandler.store objectForKey:theKey], NULL);
-[[CUserDefaultsHTTPClient standardUserDefaults] setObject:theInputValue forKey:theKey];
-STAssertEqualObjects(theInputValue, [self.requestHandler.store objectForKey:theKey], NULL);
-id theOutputValue = [[CUserDefaultsHTTPClient standardUserDefaults] objectForKey:theKey];
-STAssertEqualObjects(theInputValue, theOutputValue, NULL);
-[[CUserDefaultsHTTPClient standardUserDefaults] removeObjectForKey:theKey];
-STAssertNil([self.requestHandler.store objectForKey:theKey], NULL);
-theOutputValue = [[CUserDefaultsHTTPClient standardUserDefaults] objectForKey:theKey];
-STAssertNil(theOutputValue, NULL);
-
-[self tearDown];
-}
-*/
 
 @end
