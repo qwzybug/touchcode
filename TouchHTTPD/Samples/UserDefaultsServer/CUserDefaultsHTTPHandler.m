@@ -9,12 +9,10 @@
 #import "CUserDefaultsHTTPHandler.h"
 
 #import "CRoutingHTTPConnection.h"
-#import "CJSONSerializer.h"
-#import "CJSONDeserializer.h"
 #import "NSURL_Extensions.h"
 
 // GET /key/<KEYNAME>
-// PUT /key/<KEYNAME>?value=<VALUE>(&type=<TYPE>)
+// POST /key/<KEYNAME>
 // DELETE /key/<KEYNAME>
 
 @implementation CUserDefaultsHTTPHandler
@@ -96,8 +94,8 @@ return(YES);
 #pragma unused (inRequest, outError)
 CFHTTPMessageRef theResponse = CFHTTPMessageCreateResponse(kCFAllocatorDefault, 200, (CFStringRef)@"OK", kCFHTTPVersion1_0);
 
-NSString *theBodyString = [[CJSONSerializer serializer] serializeObject:self.store];
-NSData *theBodyData = [theBodyString dataUsingEncoding:NSUTF8StringEncoding];
+NSString *theErrorDescription = NULL;
+NSData *theBodyData = [NSPropertyListSerialization dataFromPropertyList:self.store format:NSPropertyListXMLFormat_v1_0 errorDescription:&theErrorDescription];
 CFHTTPMessageSetBody(theResponse, (CFDataRef)theBodyData);
 
 CFHTTPMessageSetHeaderFieldValue(theResponse, (CFStringRef)@"Content-Type", (CFStringRef)@"text/plain");
@@ -112,7 +110,8 @@ return(theResponse);
 
 CFHTTPMessageRef theResponse = NULL;
 NSURL *theURL = [(NSURL *)CFHTTPMessageCopyRequestURL(inRequest) autorelease];
-NSString *theKey = [theURL.path.pathComponents objectAtIndex:2];
+NSString *theKey = [[theURL.path.pathComponents objectAtIndex:2] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+NSLog(@"%@", theKey);
 NSString *theValue = [self.store objectForKey:theKey];
 if (theValue)
 	{
@@ -122,8 +121,8 @@ if (theValue)
 		theValue, @"value",
 		NULL];
 
-	NSString *theBodyString = [[CJSONSerializer serializer] serializeObject:theDictionary];
-	NSData *theBodyData = [theBodyString dataUsingEncoding:NSUTF8StringEncoding];
+	NSString *theErrorDescription = NULL;
+	NSData *theBodyData = [NSPropertyListSerialization dataFromPropertyList:theDictionary format:NSPropertyListXMLFormat_v1_0 errorDescription:&theErrorDescription];
 
 	CFHTTPMessageSetBody(theResponse, (CFDataRef)theBodyData);
 	CFHTTPMessageSetHeaderFieldValue(theResponse, (CFStringRef)@"Content-Type", (CFStringRef)@"text/plain");
@@ -149,15 +148,14 @@ return(theResponse);
 
 CFHTTPMessageRef theResponse = NULL;
 NSURL *theURL = [(NSURL *)CFHTTPMessageCopyRequestURL(inRequest) autorelease];
-NSString *theKey = [theURL.path.pathComponents objectAtIndex:2];
+NSString *theKey = [[theURL.path.pathComponents objectAtIndex:2] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+NSLog(@"%@", theKey);
 
 NSData *theBodyData = [(NSData *)CFHTTPMessageCopyBody(inRequest) autorelease];
-NSString *theBodyString = [[[NSString alloc] initWithData:theBodyData encoding:NSUTF8StringEncoding] autorelease];
-NSDictionary *theDictionary = [[CJSONDeserializer deserializer] deserialize:theBodyString];
+NSString *theErrorString = NULL;
+NSDictionary *theDictionary = [NSPropertyListSerialization propertyListFromData:theBodyData mutabilityOption:NSPropertyListImmutable format:NULL errorDescription:&theErrorString];
 
 id theValue = [theDictionary objectForKey:@"value"];
-
-
 
 if (theValue)
 	{
@@ -186,7 +184,8 @@ return(theResponse);
 
 CFHTTPMessageRef theResponse = NULL;
 NSURL *theURL = [(NSURL *)CFHTTPMessageCopyRequestURL(inRequest) autorelease];
-NSString *theKey = [theURL.path.pathComponents objectAtIndex:2];
+NSString *theKey = [[theURL.path.pathComponents objectAtIndex:2] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+NSLog(@"%@", theKey);
 
 if ([self.store objectForKey:theKey])
 	{

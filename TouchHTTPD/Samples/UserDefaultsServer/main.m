@@ -37,14 +37,16 @@ NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%d",
 [CUserDefaultsHTTPClient standardUserDefaults].host = [NSHost currentHost];
 [CUserDefaultsHTTPClient standardUserDefaults].port = theServer.port;
 
-id theInputValue = [NSArray arrayWithObjects:@"A", @"B", @"C", NULL];
-[[CUserDefaultsHTTPClient standardUserDefaults] setObject:theInputValue forKey:@"test"];
-id theOutputValue = [[CUserDefaultsHTTPClient standardUserDefaults] objectForKey:@"test"];
+id theInputValue = @"banana";
+NSString *theKey = @"WEIRD/KEY";
+[[CUserDefaultsHTTPClient standardUserDefaults] setObject:theInputValue forKey:theKey];
+id theOutputValue = [[CUserDefaultsHTTPClient standardUserDefaults] objectForKey:theKey];
 NSLog(@"%@", NSStringFromClass([theInputValue class]));
 NSLog(@"%@", NSStringFromClass([theOutputValue class]));
 NSLog(@"%@ %@", theInputValue, theOutputValue);
 NSLog(@"%d", [theInputValue isEqual:theOutputValue]);
 
+sleep(1000);
 [pool drain];
 return 0;
 }

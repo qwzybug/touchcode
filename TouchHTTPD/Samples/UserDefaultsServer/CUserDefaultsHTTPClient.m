@@ -8,8 +8,7 @@
 
 #import "CUserDefaultsHTTPClient.h"
 
-#import "CJSONDeserializer.h"
-#import "CJSONSerializer.h"
+#import "NSString_Extensions.h"
 
 static CUserDefaultsHTTPClient *gInstance = NULL;
 
@@ -30,9 +29,9 @@ if (gInstance == NULL)
 return(gInstance);
 }
 
-- (id)objectForKey:(NSString *)inDefaultName
+- (id)objectForKey:(NSString *)inKey
 {
-NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%d/key/%@", self.host.name, self.port, inDefaultName]];
+NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%d/key/%@", self.host.name, self.port, [inKey stringByObsessivelyAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
 
 NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:theURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:5.0];
 [theRequest setHTTPMethod:@"GET"];
@@ -44,15 +43,15 @@ NSData *theData = [NSURLConnection sendSynchronousRequest:theRequest returningRe
 id theObject = NULL;
 if ([theResponse statusCode] == 200)
 	{
-	NSString *theString = [[[NSString alloc] initWithData:theData encoding:NSUTF8StringEncoding] autorelease];
-	NSDictionary *theDictionary = [[CJSONDeserializer deserializer] deserialize:theString];
+	NSString *theErrorString = NULL;
+	NSDictionary *theDictionary = [NSPropertyListSerialization propertyListFromData:theData mutabilityOption:NSPropertyListImmutable format:NULL errorDescription:&theErrorString];
 	theObject = [theDictionary objectForKey:@"value"];
 	}
 
 return(theObject);
 }
 
-- (void)setObject:(id)inValue forKey:(NSString *)inDefaultName
+- (void)setObject:(id)inValue forKey:(NSString *)inKey
 {
 NSString *theType = NULL;
 
@@ -104,11 +103,13 @@ else
 	}
 
 NSDictionary *theDictionary = [NSDictionary dictionaryWithObject:inValue forKey:@"value"];
-NSData *theValueData = [[[CJSONSerializer serializer] serializeDictionary:theDictionary] dataUsingEncoding:NSUTF8StringEncoding];
+NSString *theErrorString = NULL;
+NSData *theValueData = [NSPropertyListSerialization dataFromPropertyList:theDictionary format:NSPropertyListXMLFormat_v1_0 errorDescription:&theErrorString];
 
-NSString *theURLString = [NSString stringWithFormat:@"http://%@:%d/key/%@", self.host.name, self.port, inDefaultName];
+NSString *theURLString = [NSString stringWithFormat:@"http://%@:%d/key/%@", self.host.name, self.port, [inKey stringByObsessivelyAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 	
 NSURL *theURL = [NSURL URLWithString:theURLString];
+NSLog(@"%@", theURL);
 
 NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:theURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:5.0];
 [theRequest setHTTPMethod:@"POST"];
@@ -126,9 +127,9 @@ else if (theResponse.statusCode != 200)
 	}
 }
 
-- (void)removeObjectForKey:(NSString *)inDefaultName
+- (void)removeObjectForKey:(NSString *)inKey
 {
-NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%d/key/%@", self.host.name, self.port, inDefaultName]];
+NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%d/key/%@", self.host.name, self.port, [inKey stringByObsessivelyAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
 
 NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:theURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:5.0];
 [theRequest setHTTPMethod:@"DELETE"];
@@ -146,20 +147,20 @@ NSLog(@"%@ %@", theResponse, theData);
 @implementation CUserDefaultsHTTPClient (CUserDefaultsHTTPClient_ConvenienceExtensions)
 
 /*
-- (NSString *)stringForKey:(NSString *)inDefaultName;
-- (NSArray *)arrayForKey:(NSString *)inDefaultName;
-- (NSDictionary *)dictionaryForKey:(NSString *)inDefaultName;
-- (NSData *)dataForKey:(NSString *)inDefaultName;
-- (NSArray *)stringArrayForKey:(NSString *)inDefaultName;
-- (NSInteger)integerForKey:(NSString *)inDefaultName;
-- (float)floatForKey:(NSString *)inDefaultName;
-- (double)doubleForKey:(NSString *)inDefaultName;
-- (BOOL)boolForKey:(NSString *)inDefaultName;
+- (NSString *)stringForKey:(NSString *)inKey;
+- (NSArray *)arrayForKey:(NSString *)inKey;
+- (NSDictionary *)dictionaryForKey:(NSString *)inKey;
+- (NSData *)dataForKey:(NSString *)inKey;
+- (NSArray *)stringArrayForKey:(NSString *)inKey;
+- (NSInteger)integerForKey:(NSString *)inKey;
+- (float)floatForKey:(NSString *)inKey;
+- (double)doubleForKey:(NSString *)inKey;
+- (BOOL)boolForKey:(NSString *)inKey;
 
-- (void)setInteger:(NSInteger)value forKey:(NSString *)inDefaultName;
-- (void)setFloat:(float)value forKey:(NSString *)inDefaultName;
-- (void)setDouble:(double)value forKey:(NSString *)inDefaultName;
-- (void)setBool:(BOOL)value forKey:(NSString *)inDefaultName;
+- (void)setInteger:(NSInteger)value forKey:(NSString *)inKey;
+- (void)setFloat:(float)value forKey:(NSString *)inKey;
+- (void)setDouble:(double)value forKey:(NSString *)inKey;
+- (void)setBool:(BOOL)value forKey:(NSString *)inKey;
 
 - (NSDictionary *)dictionaryRepresentation;
 */

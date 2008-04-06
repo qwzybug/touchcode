@@ -26,6 +26,8 @@
 		4513398E0DA84A6900535F85 /* CQTCaptureSnapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2717A0DA80086007D8730 /* CQTCaptureSnapshot.m */; };
 		4513398F0DA84A6A00535F85 /* CSampleHTTPHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2717C0DA80086007D8730 /* CSampleHTTPHandler.m */; };
 		451339900DA84A6A00535F85 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2717D0DA80086007D8730 /* main.m */; };
+		45133B520DA8709D00535F85 /* NSString_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45133B510DA8709D00535F85 /* NSString_Extensions.m */; };
+		45133B530DA870A000535F85 /* NSString_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45133B510DA8709D00535F85 /* NSString_Extensions.m */; };
 		457C92770D86EDA100FCE32F /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 457C92760D86EDA100FCE32F /* Carbon.framework */; };
 		457C94600D87096200FCE32F /* PubSub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 457C945F0D87096200FCE32F /* PubSub.framework */; };
 		458796BA0D8789D1004D5E47 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458796B90D8789D1004D5E47 /* AppKit.framework */; };
@@ -61,11 +63,6 @@
 		45B272040DA803D9007D8730 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458798880D8791C1004D5E47 /* QuartzCore.framework */; };
 		45B272060DA803D9007D8730 /* TouchHTTP.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6859EA3029092ED04C91782 /* TouchHTTP.1 */; };
 		45B272BB0DA80D62007D8730 /* NSURL_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B272BA0DA80D62007D8730 /* NSURL_Extensions.m */; };
-		45DFF2280DA8303400103CBA /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DFF21E0DA8303400103CBA /* CJSONDeserializer.m */; };
-		45DFF2290DA8303400103CBA /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DFF2200DA8303400103CBA /* CJSONScanner.m */; };
-		45DFF22A0DA8303400103CBA /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DFF2220DA8303400103CBA /* CJSONSerializer.m */; };
-		45DFF22B0DA8303400103CBA /* NSCharacterSet_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DFF2250DA8303400103CBA /* NSCharacterSet_Extensions.m */; };
-		45DFF22C0DA8303400103CBA /* NSScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DFF2270DA8303400103CBA /* NSScanner_Extensions.m */; };
 		45DFF22E0DA8305400103CBA /* CUserDefaultsHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DFF0E80DA8203800103CBA /* CUserDefaultsHTTPClient.m */; };
 		45DFF22F0DA8305500103CBA /* CUserDefaultsHTTPHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271E80DA803CF007D8730 /* CUserDefaultsHTTPHandler.m */; };
 		45DFF2300DA8305500103CBA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271E70DA803CF007D8730 /* main.m */; };
@@ -83,11 +80,6 @@
 		45DFF2DA0DA8389700103CBA /* NSURL_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B272BA0DA80D62007D8730 /* NSURL_Extensions.m */; };
 		45DFF2DB0DA8389B00103CBA /* CUserDefaultsHTTPHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271E80DA803CF007D8730 /* CUserDefaultsHTTPHandler.m */; };
 		45DFF2DC0DA8389C00103CBA /* CUserDefaultsHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DFF0E80DA8203800103CBA /* CUserDefaultsHTTPClient.m */; };
-		45DFF2DD0DA838A500103CBA /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DFF21E0DA8303400103CBA /* CJSONDeserializer.m */; };
-		45DFF2DE0DA838A600103CBA /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DFF2200DA8303400103CBA /* CJSONScanner.m */; };
-		45DFF2DF0DA838A700103CBA /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DFF2220DA8303400103CBA /* CJSONSerializer.m */; };
-		45DFF2E00DA838AB00103CBA /* NSCharacterSet_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DFF2250DA8303400103CBA /* NSCharacterSet_Extensions.m */; };
-		45DFF2E10DA838AC00103CBA /* NSScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DFF2270DA8303400103CBA /* NSScanner_Extensions.m */; };
 		45DFF2E20DA838B000103CBA /* getgateway.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B271840DA800CA007D8730 /* getgateway.c */; };
 		45DFF2E30DA838B000103CBA /* natpmp.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B271870DA800CA007D8730 /* natpmp.c */; };
 		45DFF2EB0DA838C500103CBA /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 457C92760D86EDA100FCE32F /* Carbon.framework */; };
@@ -145,6 +137,8 @@
 
 /* Begin PBXFileReference section */
 		08FB779EFE84155DC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		45133B500DA8709D00535F85 /* NSString_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSString_Extensions.h; sourceTree = "<group>"; };
+		45133B510DA8709D00535F85 /* NSString_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_Extensions.m; sourceTree = "<group>"; };
 		457C92760D86EDA100FCE32F /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		457C945F0D87096200FCE32F /* PubSub.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PubSub.framework; path = /System/Library/Frameworks/PubSub.framework; sourceTree = "<absolute>"; };
 		458796B90D8789D1004D5E47 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
@@ -185,16 +179,6 @@
 		45B272BA0DA80D62007D8730 /* NSURL_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSURL_Extensions.m; sourceTree = "<group>"; };
 		45DFF0E70DA8203800103CBA /* CUserDefaultsHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUserDefaultsHTTPClient.h; sourceTree = "<group>"; };
 		45DFF0E80DA8203800103CBA /* CUserDefaultsHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CUserDefaultsHTTPClient.m; sourceTree = "<group>"; };
-		45DFF21D0DA8303400103CBA /* CJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONDeserializer.h; sourceTree = "<group>"; };
-		45DFF21E0DA8303400103CBA /* CJSONDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONDeserializer.m; sourceTree = "<group>"; };
-		45DFF21F0DA8303400103CBA /* CJSONScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONScanner.h; sourceTree = "<group>"; };
-		45DFF2200DA8303400103CBA /* CJSONScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONScanner.m; sourceTree = "<group>"; };
-		45DFF2210DA8303400103CBA /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializer.h; sourceTree = "<group>"; };
-		45DFF2220DA8303400103CBA /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
-		45DFF2240DA8303400103CBA /* NSCharacterSet_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSCharacterSet_Extensions.h; sourceTree = "<group>"; };
-		45DFF2250DA8303400103CBA /* NSCharacterSet_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSCharacterSet_Extensions.m; sourceTree = "<group>"; };
-		45DFF2260DA8303400103CBA /* NSScanner_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSScanner_Extensions.h; sourceTree = "<group>"; };
-		45DFF2270DA8303400103CBA /* NSScanner_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSScanner_Extensions.m; sourceTree = "<group>"; };
 		45DFF2C30DA8378D00103CBA /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		45DFF2C90DA8382500103CBA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45DFF2CD0DA8385C00103CBA /* CUserDefaultsHTTPHandlerUnitTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUserDefaultsHTTPHandlerUnitTests.h; sourceTree = "<group>"; };
@@ -250,7 +234,6 @@
 				45B271410DA7FF2C007D8730 /* Source */,
 				45B271760DA80086007D8730 /* Samples */,
 				45B271820DA800CA007D8730 /* libnatpmp-20071213 */,
-				45DFF21A0DA8302400103CBA /* TouchJSON */,
 				45DFF2C80DA8382500103CBA /* UnitTests */,
 				C6859EA2029092E104C91782 /* Documentation */,
 				08FB779DFE84155DC02AAC07 /* External Frameworks and Libraries */,
@@ -304,6 +287,8 @@
 				45B271550DA7FF2C007D8730 /* CTCPServer.m */,
 				45B272B90DA80D62007D8730 /* NSURL_Extensions.h */,
 				45B272BA0DA80D62007D8730 /* NSURL_Extensions.m */,
+				45133B500DA8709D00535F85 /* NSString_Extensions.h */,
+				45133B510DA8709D00535F85 /* NSString_Extensions.m */,
 				45B271570DA7FF2C007D8730 /* Prefix.pch */,
 			);
 			path = Source;
@@ -352,41 +337,6 @@
 			);
 			path = "libnatpmp-20071213";
 			sourceTree = "<group>";
-		};
-		45DFF21A0DA8302400103CBA /* TouchJSON */ = {
-			isa = PBXGroup;
-			children = (
-				45DFF21C0DA8303400103CBA /* JSON */,
-				45DFF2230DA8303400103CBA /* Extensions */,
-			);
-			name = TouchJSON;
-			sourceTree = "<group>";
-		};
-		45DFF21C0DA8303400103CBA /* JSON */ = {
-			isa = PBXGroup;
-			children = (
-				45DFF21D0DA8303400103CBA /* CJSONDeserializer.h */,
-				45DFF21E0DA8303400103CBA /* CJSONDeserializer.m */,
-				45DFF21F0DA8303400103CBA /* CJSONScanner.h */,
-				45DFF2200DA8303400103CBA /* CJSONScanner.m */,
-				45DFF2210DA8303400103CBA /* CJSONSerializer.h */,
-				45DFF2220DA8303400103CBA /* CJSONSerializer.m */,
-			);
-			name = JSON;
-			path = ../TouchJSON/Source/JSON;
-			sourceTree = SOURCE_ROOT;
-		};
-		45DFF2230DA8303400103CBA /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				45DFF2240DA8303400103CBA /* NSCharacterSet_Extensions.h */,
-				45DFF2250DA8303400103CBA /* NSCharacterSet_Extensions.m */,
-				45DFF2260DA8303400103CBA /* NSScanner_Extensions.h */,
-				45DFF2270DA8303400103CBA /* NSScanner_Extensions.m */,
-			);
-			name = Extensions;
-			path = ../TouchJSON/Source/Extensions;
-			sourceTree = SOURCE_ROOT;
 		};
 		45DFF2C80DA8382500103CBA /* UnitTests */ = {
 			isa = PBXGroup;
@@ -525,15 +475,11 @@
 				45B271F50DA803D9007D8730 /* CTCPServer.m in Sources */,
 				45B271F90DA803D9007D8730 /* getgateway.c in Sources */,
 				45B271FA0DA803D9007D8730 /* natpmp.c in Sources */,
-				45DFF2280DA8303400103CBA /* CJSONDeserializer.m in Sources */,
-				45DFF2290DA8303400103CBA /* CJSONScanner.m in Sources */,
-				45DFF22A0DA8303400103CBA /* CJSONSerializer.m in Sources */,
-				45DFF22B0DA8303400103CBA /* NSCharacterSet_Extensions.m in Sources */,
-				45DFF22C0DA8303400103CBA /* NSScanner_Extensions.m in Sources */,
 				45DFF22E0DA8305400103CBA /* CUserDefaultsHTTPClient.m in Sources */,
 				45DFF22F0DA8305500103CBA /* CUserDefaultsHTTPHandler.m in Sources */,
 				45DFF2300DA8305500103CBA /* main.m in Sources */,
 				45DFF26A0DA832B600103CBA /* NSURL_Extensions.m in Sources */,
+				45133B530DA870A000535F85 /* NSString_Extensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,13 +499,9 @@
 				45DFF2DA0DA8389700103CBA /* NSURL_Extensions.m in Sources */,
 				45DFF2DB0DA8389B00103CBA /* CUserDefaultsHTTPHandler.m in Sources */,
 				45DFF2DC0DA8389C00103CBA /* CUserDefaultsHTTPClient.m in Sources */,
-				45DFF2DD0DA838A500103CBA /* CJSONDeserializer.m in Sources */,
-				45DFF2DE0DA838A600103CBA /* CJSONScanner.m in Sources */,
-				45DFF2DF0DA838A700103CBA /* CJSONSerializer.m in Sources */,
-				45DFF2E00DA838AB00103CBA /* NSCharacterSet_Extensions.m in Sources */,
-				45DFF2E10DA838AC00103CBA /* NSScanner_Extensions.m in Sources */,
 				45DFF2E20DA838B000103CBA /* getgateway.c in Sources */,
 				45DFF2E30DA838B000103CBA /* natpmp.c in Sources */,
+				45133B520DA8709D00535F85 /* NSString_Extensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
