@@ -216,9 +216,12 @@ self.IPV6Socket = NULL;
 
 - (void)serveForever
 {
-NSError *theError = NULL;
-if ([self start:&theError] == NO)
-	return;
+if (self.serving == NO)
+	{
+	NSError *theError = NULL;
+	if ([self start:&theError] == NO)
+		return;
+	}
 
 NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
 

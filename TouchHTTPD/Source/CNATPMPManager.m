@@ -54,6 +54,7 @@ while (YES)
 
 - (BOOL)openPortForProtocol:(int)protocol privatePort:(int)privateport publicPort:(int)publicport lifetime:(int)lifetime error:(NSError **)outError
 {
+#pragma unused (outError)
 natpmpresp_t theResponse;
 int theResult;
 

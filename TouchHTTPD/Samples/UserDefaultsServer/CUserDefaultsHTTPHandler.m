@@ -10,6 +10,8 @@
 
 #import "CRoutingHTTPConnection.h"
 #import "NSURL_Extensions.h"
+#import "CHTTPMessage.h"
+#import "CHTTPMessage_ConvenienceExtensions.h"
 
 // GET /key/<KEYNAME>
 // POST /key/<KEYNAME>
@@ -64,11 +66,11 @@ return(theConnection);
 
 #pragma mark -
 
-- (BOOL)routeConnection:(CRoutingHTTPConnection *)inConnection request:(CFHTTPMessageRef)inRequest toTarget:(id *)outTarget selector:(SEL *)outSelector error:(NSError **)outError;
+- (BOOL)routeConnection:(CRoutingHTTPConnection *)inConnection request:(CHTTPMessage *)inRequest toTarget:(id *)outTarget selector:(SEL *)outSelector error:(NSError **)outError;
 {
 #pragma unused (inConnection, outError)
-NSURL *theURL = [(NSURL *)CFHTTPMessageCopyRequestURL(inRequest) autorelease];
-NSString *theMethod = [(NSString *)CFHTTPMessageCopyRequestMethod(inRequest) autorelease];
+NSURL *theURL = inRequest.requestURL;
+NSString *theMethod = [inRequest requestMethod];
 
 *outTarget = self;
 
@@ -89,33 +91,30 @@ return(YES);
 
 #pragma mark -
 
-- (CFHTTPMessageRef)defaultResponseForRequest:(CFHTTPMessageRef)inRequest error:(NSError **)outError
+- (CHTTPMessage *)defaultResponseForRequest:(CHTTPMessage *)inRequest error:(NSError **)outError
 {
 #pragma unused (inRequest, outError)
-CFHTTPMessageRef theResponse = CFHTTPMessageCreateResponse(kCFAllocatorDefault, 200, (CFStringRef)@"OK", kCFHTTPVersion1_0);
-
+CHTTPMessage *theResponse = [CHTTPMessage HTTPMessageResponseWithStatusCode:200 statusDescription:@"OK" httpVersion:kHTTPVersion1_0];
 NSString *theErrorDescription = NULL;
 NSData *theBodyData = [NSPropertyListSerialization dataFromPropertyList:self.store format:NSPropertyListXMLFormat_v1_0 errorDescription:&theErrorDescription];
-CFHTTPMessageSetBody(theResponse, (CFDataRef)theBodyData);
 
-CFHTTPMessageSetHeaderFieldValue(theResponse, (CFStringRef)@"Content-Type", (CFStringRef)@"text/plain");
-CFHTTPMessageSetHeaderFieldValue(theResponse, (CFStringRef)@"Content-Length", (CFStringRef)[[NSNumber numberWithInteger:theBodyData.length] stringValue]);
+[theResponse setContentType:@"text/plain" body:theBodyData];
 
 return(theResponse);
 }
 
-- (CFHTTPMessageRef)keyGetterResponseForRequest:(CFHTTPMessageRef)inRequest error:(NSError **)outError
+- (CHTTPMessage *)keyGetterResponseForRequest:(CHTTPMessage *)inRequest error:(NSError **)outError
 {
 #pragma unused (outError)
 
-CFHTTPMessageRef theResponse = NULL;
-NSURL *theURL = [(NSURL *)CFHTTPMessageCopyRequestURL(inRequest) autorelease];
+CHTTPMessage *theResponse = NULL;
+NSURL *theURL = [inRequest requestURL];
 NSString *theKey = [[theURL.path.pathComponents objectAtIndex:2] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-NSLog(@"%@", theKey);
+//NSLog(@"%@", theKey);
 NSString *theValue = [self.store objectForKey:theKey];
 if (theValue)
 	{
-	theResponse = CFHTTPMessageCreateResponse(kCFAllocatorDefault, 200, (CFStringRef)@"OK", kCFHTTPVersion1_0);
+	theResponse = [CHTTPMessage HTTPMessageResponseWithStatusCode:200 statusDescription:@"OK" httpVersion:kHTTPVersion1_0];
 
 	NSDictionary *theDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
 		theValue, @"value",
@@ -124,34 +123,26 @@ if (theValue)
 	NSString *theErrorDescription = NULL;
 	NSData *theBodyData = [NSPropertyListSerialization dataFromPropertyList:theDictionary format:NSPropertyListXMLFormat_v1_0 errorDescription:&theErrorDescription];
 
-	CFHTTPMessageSetBody(theResponse, (CFDataRef)theBodyData);
-	CFHTTPMessageSetHeaderFieldValue(theResponse, (CFStringRef)@"Content-Type", (CFStringRef)@"text/plain");
-	CFHTTPMessageSetHeaderFieldValue(theResponse, (CFStringRef)@"Content-Length", (CFStringRef)[[NSNumber numberWithInteger:theBodyData.length] stringValue]);
+	[theResponse setContentType:@"text/plain" body:theBodyData];
 	}
 else
 	{
-	theResponse = CFHTTPMessageCreateResponse(kCFAllocatorDefault, 404, (CFStringRef)@"Not found", kCFHTTPVersion1_0);
-
-	NSData *theBodyData = [@"404 Not found" dataUsingEncoding:NSUTF8StringEncoding];
-	CFHTTPMessageSetBody(theResponse, (CFDataRef)theBodyData);
-
-	CFHTTPMessageSetHeaderFieldValue(theResponse, (CFStringRef)@"Content-Type", (CFStringRef)@"text/plain");
-	CFHTTPMessageSetHeaderFieldValue(theResponse, (CFStringRef)@"Content-Length", (CFStringRef)[[NSNumber numberWithInteger:theBodyData.length] stringValue]);
+	theResponse = [CHTTPMessage HTTPMessageResponseWithStatusCode:404 bodyString:@"404 Not found"];
 	}
 
 return(theResponse);
 }
 
-- (CFHTTPMessageRef)keyPutterResponseForRequest:(CFHTTPMessageRef)inRequest error:(NSError **)outError
+- (CHTTPMessage *)keyPutterResponseForRequest:(CHTTPMessage *)inRequest error:(NSError **)outError
 {
 #pragma unused (outError)
 
-CFHTTPMessageRef theResponse = NULL;
-NSURL *theURL = [(NSURL *)CFHTTPMessageCopyRequestURL(inRequest) autorelease];
+CHTTPMessage *theResponse = NULL;
+NSURL *theURL = [inRequest requestURL];
 NSString *theKey = [[theURL.path.pathComponents objectAtIndex:2] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-NSLog(@"%@", theKey);
+//NSLog(@"%@", theKey);
 
-NSData *theBodyData = [(NSData *)CFHTTPMessageCopyBody(inRequest) autorelease];
+NSData *theBodyData = [inRequest body];
 NSString *theErrorString = NULL;
 NSDictionary *theDictionary = [NSPropertyListSerialization propertyListFromData:theBodyData mutabilityOption:NSPropertyListImmutable format:NULL errorDescription:&theErrorString];
 
@@ -161,49 +152,36 @@ if (theValue)
 	{
 	[self.store setObject:theValue forKey:theKey];
 	[self save];
-	theResponse = CFHTTPMessageCreateResponse(kCFAllocatorDefault, 200, (CFStringRef)@"OK", kCFHTTPVersion1_0);
-	CFHTTPMessageSetHeaderFieldValue(theResponse, (CFStringRef)@"Content-Length", (CFStringRef)@"0");
+	theResponse = [CHTTPMessage HTTPMessageResponseWithStatusCode:200 statusDescription:@"OK" httpVersion:kHTTPVersion1_0];
+	[theResponse setHeader:@"0" forKey:@"Content-Length"];
 	}
 else
 	{
-	theResponse = CFHTTPMessageCreateResponse(kCFAllocatorDefault, 200, (CFStringRef)@"Internal Error", kCFHTTPVersion1_0);
-
-	NSData *theBodyData = [@"500 Internal Error" dataUsingEncoding:NSUTF8StringEncoding];
-	CFHTTPMessageSetBody(theResponse, (CFDataRef)theBodyData);
-
-	CFHTTPMessageSetHeaderFieldValue(theResponse, (CFStringRef)@"Content-Type", (CFStringRef)@"text/plain");
-	CFHTTPMessageSetHeaderFieldValue(theResponse, (CFStringRef)@"Content-Length", (CFStringRef)[[NSNumber numberWithInteger:theBodyData.length] stringValue]);
+	theResponse = [CHTTPMessage HTTPMessageResponseWithStatusCode:500 bodyString:@"500 Internal Error"];
 	}
 
 return(theResponse);
 }
 
-- (CFHTTPMessageRef)keyDeleterResponseForRequest:(CFHTTPMessageRef)inRequest error:(NSError **)outError
+- (CHTTPMessage *)keyDeleterResponseForRequest:(CHTTPMessage *)inRequest error:(NSError **)outError
 {
 #pragma unused (outError)
 
-CFHTTPMessageRef theResponse = NULL;
-NSURL *theURL = [(NSURL *)CFHTTPMessageCopyRequestURL(inRequest) autorelease];
+CHTTPMessage *theResponse = NULL;
+NSURL *theURL = [inRequest requestURL];
 NSString *theKey = [[theURL.path.pathComponents objectAtIndex:2] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-NSLog(@"%@", theKey);
+//NSLog(@"%@", theKey);
 
 if ([self.store objectForKey:theKey])
 	{
 	[self.store removeObjectForKey:theKey];
 	[self save];
-	theResponse = CFHTTPMessageCreateResponse(kCFAllocatorDefault, 200, (CFStringRef)@"OK", kCFHTTPVersion1_0);
-
-	CFHTTPMessageSetHeaderFieldValue(theResponse, (CFStringRef)@"Content-Length", (CFStringRef)@"0");
+	theResponse = [CHTTPMessage HTTPMessageResponseWithStatusCode:200 statusDescription:@"OK" httpVersion:kHTTPVersion1_0];
+	[theResponse setHeader:@"0" forKey:@"Content-Length"];
 	}
 else
 	{
-	theResponse = CFHTTPMessageCreateResponse(kCFAllocatorDefault, 200, (CFStringRef)@"Internal Error", kCFHTTPVersion1_0);
-
-	NSData *theBodyData = [@"500 Internal Error" dataUsingEncoding:NSUTF8StringEncoding];
-	CFHTTPMessageSetBody(theResponse, (CFDataRef)theBodyData);
-
-	CFHTTPMessageSetHeaderFieldValue(theResponse, (CFStringRef)@"Content-Type", (CFStringRef)@"text/plain");
-	CFHTTPMessageSetHeaderFieldValue(theResponse, (CFStringRef)@"Content-Length", (CFStringRef)[[NSNumber numberWithInteger:theBodyData.length] stringValue]);
+	theResponse = [CHTTPMessage HTTPMessageResponseWithStatusCode:500 bodyString:@"500 Internal Error"];
 	}
 
 return(theResponse);

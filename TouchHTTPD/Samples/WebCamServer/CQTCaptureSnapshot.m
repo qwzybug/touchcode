@@ -35,6 +35,11 @@ if ((self = [super init]) != NULL)
 	[self.session addOutput:theOutput error:&theError];
 	
 	[self.session startRunning];
+
+	while (self.image == NULL)
+		{
+		[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+		}
 	}
 return(self);
 }
@@ -100,7 +105,6 @@ if (jpegData == NULL && self.image)
 	CFRelease(theCGImage);
 
 	self.jpegData = theData;
-	
 	}
 return(jpegData);
 }

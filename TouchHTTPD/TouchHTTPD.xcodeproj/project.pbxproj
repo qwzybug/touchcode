@@ -28,6 +28,40 @@
 		451339900DA84A6A00535F85 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2717D0DA80086007D8730 /* main.m */; };
 		45133B520DA8709D00535F85 /* NSString_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45133B510DA8709D00535F85 /* NSString_Extensions.m */; };
 		45133B530DA870A000535F85 /* NSString_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45133B510DA8709D00535F85 /* NSString_Extensions.m */; };
+		45133BDD0DA8770200535F85 /* CHTTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 45133BDC0DA8770200535F85 /* CHTTPMessage.m */; };
+		45133BDE0DA8770200535F85 /* CHTTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 45133BDC0DA8770200535F85 /* CHTTPMessage.m */; };
+		45133BDF0DA8770200535F85 /* CHTTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 45133BDC0DA8770200535F85 /* CHTTPMessage.m */; };
+		454EF3670DA8876C005E651B /* NSString_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45133B510DA8709D00535F85 /* NSString_Extensions.m */; };
+		454EF4520DA89F7E005E651B /* CBasicAuthHTTPHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 454EF4500DA89F7E005E651B /* CBasicAuthHTTPHandler.m */; };
+		454EF4530DA89F7E005E651B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 454EF4510DA89F7E005E651B /* main.m */; };
+		454EF4560DA89F7E005E651B /* CBasicAuthHTTPHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 454EF4500DA89F7E005E651B /* CBasicAuthHTTPHandler.m */; };
+		454EF4570DA89F7E005E651B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 454EF4510DA89F7E005E651B /* main.m */; };
+		454EF45A0DA89F8F005E651B /* CBufferedTCPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271430DA7FF2C007D8730 /* CBufferedTCPConnection.m */; };
+		454EF45B0DA89F8F005E651B /* CHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271450DA7FF2C007D8730 /* CHTTPConnection.m */; };
+		454EF45C0DA89F8F005E651B /* CNATPMPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271490DA7FF2C007D8730 /* CNATPMPManager.m */; };
+		454EF45D0DA89F8F005E651B /* CRoutingHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2714D0DA7FF2C007D8730 /* CRoutingHTTPConnection.m */; };
+		454EF45E0DA89F8F005E651B /* CTCPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271510DA7FF2C007D8730 /* CTCPConnection.m */; };
+		454EF45F0DA89F8F005E651B /* CTCPEchoConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271530DA7FF2C007D8730 /* CTCPEchoConnection.m */; };
+		454EF4600DA89F8F005E651B /* CTCPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271550DA7FF2C007D8730 /* CTCPServer.m */; };
+		454EF4610DA89F8F005E651B /* getgateway.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B271840DA800CA007D8730 /* getgateway.c */; };
+		454EF4620DA89F8F005E651B /* natpmp.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B271870DA800CA007D8730 /* natpmp.c */; };
+		454EF4630DA89F8F005E651B /* NSURL_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B272BA0DA80D62007D8730 /* NSURL_Extensions.m */; };
+		454EF4670DA89F8F005E651B /* CHTTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 45133BDC0DA8770200535F85 /* CHTTPMessage.m */; };
+		454EF4680DA89F8F005E651B /* CHTTPMessage_ConvenienceExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4572C5C90DA87D2700C16D0D /* CHTTPMessage_ConvenienceExtensions.m */; };
+		454EF4690DA89F8F005E651B /* NSString_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45133B510DA8709D00535F85 /* NSString_Extensions.m */; };
+		454EF46A0DA89F8F005E651B /* CBasicAuthHTTPHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 454EF4500DA89F7E005E651B /* CBasicAuthHTTPHandler.m */; };
+		454EF46B0DA89F8F005E651B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 454EF4510DA89F7E005E651B /* main.m */; };
+		454EF46D0DA89F8F005E651B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
+		454EF46E0DA89F8F005E651B /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 457C92760D86EDA100FCE32F /* Carbon.framework */; };
+		454EF46F0DA89F8F005E651B /* PubSub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 457C945F0D87096200FCE32F /* PubSub.framework */; };
+		454EF4700DA89F8F005E651B /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458796B90D8789D1004D5E47 /* AppKit.framework */; };
+		454EF4710DA89F8F005E651B /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458797D00D878D9F004D5E47 /* QuickTime.framework */; };
+		454EF4720DA89F8F005E651B /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458797D10D878D9F004D5E47 /* QTKit.framework */; };
+		454EF4730DA89F8F005E651B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458798880D8791C1004D5E47 /* QuartzCore.framework */; };
+		454EF4750DA89F8F005E651B /* TouchHTTP.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6859EA3029092ED04C91782 /* TouchHTTP.1 */; };
+		4572C5CA0DA87D2700C16D0D /* CHTTPMessage_ConvenienceExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4572C5C90DA87D2700C16D0D /* CHTTPMessage_ConvenienceExtensions.m */; };
+		4572C5CB0DA87D2700C16D0D /* CHTTPMessage_ConvenienceExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4572C5C90DA87D2700C16D0D /* CHTTPMessage_ConvenienceExtensions.m */; };
+		4572C5CC0DA87D2700C16D0D /* CHTTPMessage_ConvenienceExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4572C5C90DA87D2700C16D0D /* CHTTPMessage_ConvenienceExtensions.m */; };
 		457C92770D86EDA100FCE32F /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 457C92760D86EDA100FCE32F /* Carbon.framework */; };
 		457C94600D87096200FCE32F /* PubSub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 457C945F0D87096200FCE32F /* PubSub.framework */; };
 		458796BA0D8789D1004D5E47 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458796B90D8789D1004D5E47 /* AppKit.framework */; };
@@ -36,7 +70,6 @@
 		458798890D8791C1004D5E47 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458798880D8791C1004D5E47 /* QuartzCore.framework */; };
 		45B271580DA7FF2C007D8730 /* CBufferedTCPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271430DA7FF2C007D8730 /* CBufferedTCPConnection.m */; };
 		45B271590DA7FF2C007D8730 /* CHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271450DA7FF2C007D8730 /* CHTTPConnection.m */; };
-		45B2715A0DA7FF2C007D8730 /* CHTTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271470DA7FF2C007D8730 /* CHTTPMessage.m */; };
 		45B2715B0DA7FF2C007D8730 /* CNATPMPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271490DA7FF2C007D8730 /* CNATPMPManager.m */; };
 		45B2715D0DA7FF2C007D8730 /* CRoutingHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2714D0DA7FF2C007D8730 /* CRoutingHTTPConnection.m */; };
 		45B2715F0DA7FF2C007D8730 /* CTCPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271510DA7FF2C007D8730 /* CTCPConnection.m */; };
@@ -46,7 +79,6 @@
 		45B2718D0DA800CA007D8730 /* natpmp.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B271870DA800CA007D8730 /* natpmp.c */; };
 		45B271EE0DA803D9007D8730 /* CBufferedTCPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271430DA7FF2C007D8730 /* CBufferedTCPConnection.m */; };
 		45B271EF0DA803D9007D8730 /* CHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271450DA7FF2C007D8730 /* CHTTPConnection.m */; };
-		45B271F00DA803D9007D8730 /* CHTTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271470DA7FF2C007D8730 /* CHTTPMessage.m */; };
 		45B271F10DA803D9007D8730 /* CNATPMPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271490DA7FF2C007D8730 /* CNATPMPManager.m */; };
 		45B271F20DA803D9007D8730 /* CRoutingHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2714D0DA7FF2C007D8730 /* CRoutingHTTPConnection.m */; };
 		45B271F30DA803D9007D8730 /* CTCPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271510DA7FF2C007D8730 /* CTCPConnection.m */; };
@@ -71,7 +103,6 @@
 		45DFF2CF0DA8385C00103CBA /* CUserDefaultsHTTPHandlerUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DFF2CE0DA8385C00103CBA /* CUserDefaultsHTTPHandlerUnitTests.m */; };
 		45DFF2D20DA8389000103CBA /* CBufferedTCPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271430DA7FF2C007D8730 /* CBufferedTCPConnection.m */; };
 		45DFF2D30DA8389100103CBA /* CHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271450DA7FF2C007D8730 /* CHTTPConnection.m */; };
-		45DFF2D40DA8389100103CBA /* CHTTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271470DA7FF2C007D8730 /* CHTTPMessage.m */; };
 		45DFF2D50DA8389200103CBA /* CNATPMPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271490DA7FF2C007D8730 /* CNATPMPManager.m */; };
 		45DFF2D60DA8389300103CBA /* CRoutingHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2714D0DA7FF2C007D8730 /* CRoutingHTTPConnection.m */; };
 		45DFF2D70DA8389400103CBA /* CTCPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271510DA7FF2C007D8730 /* CTCPConnection.m */; };
@@ -93,26 +124,36 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8DD76F960486AA7600D96B5E /* TouchHTTP */;
+			remoteGlobalIDString = 8DD76F960486AA7600D96B5E;
 			remoteInfo = TouchHTTP;
 		};
 		451339C60DA84BC500535F85 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 45B271EC0DA803D9007D8730 /* UserDefaultsServer */;
+			remoteGlobalIDString = 45B271EC0DA803D9007D8730;
 			remoteInfo = UserDefaultsServer;
 		};
 		451339C80DA84BC500535F85 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 45DFF2C20DA8378D00103CBA /* UnitTests */;
+			remoteGlobalIDString = 45DFF2C20DA8378D00103CBA;
 			remoteInfo = UnitTests;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		454EF4740DA89F8F005E651B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 8;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				454EF4750DA89F8F005E651B /* TouchHTTP.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		45B272050DA803D9007D8730 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 8;
@@ -139,6 +180,14 @@
 		08FB779EFE84155DC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		45133B500DA8709D00535F85 /* NSString_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSString_Extensions.h; sourceTree = "<group>"; };
 		45133B510DA8709D00535F85 /* NSString_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_Extensions.m; sourceTree = "<group>"; };
+		45133BD60DA876DE00535F85 /* CHTTPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHTTPMessage.h; sourceTree = "<group>"; };
+		45133BDC0DA8770200535F85 /* CHTTPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTTPMessage.m; sourceTree = "<group>"; };
+		454EF44F0DA89F7E005E651B /* CBasicAuthHTTPHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBasicAuthHTTPHandler.h; sourceTree = "<group>"; };
+		454EF4500DA89F7E005E651B /* CBasicAuthHTTPHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBasicAuthHTTPHandler.m; sourceTree = "<group>"; };
+		454EF4510DA89F7E005E651B /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		454EF47A0DA89F8F005E651B /* BasicAuthServer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BasicAuthServer; sourceTree = BUILT_PRODUCTS_DIR; };
+		4572C5C80DA87D2700C16D0D /* CHTTPMessage_ConvenienceExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHTTPMessage_ConvenienceExtensions.h; sourceTree = "<group>"; };
+		4572C5C90DA87D2700C16D0D /* CHTTPMessage_ConvenienceExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTTPMessage_ConvenienceExtensions.m; sourceTree = "<group>"; };
 		457C92760D86EDA100FCE32F /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		457C945F0D87096200FCE32F /* PubSub.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PubSub.framework; path = /System/Library/Frameworks/PubSub.framework; sourceTree = "<absolute>"; };
 		458796B90D8789D1004D5E47 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
@@ -149,8 +198,6 @@
 		45B271430DA7FF2C007D8730 /* CBufferedTCPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBufferedTCPConnection.m; sourceTree = "<group>"; };
 		45B271440DA7FF2C007D8730 /* CHTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHTTPConnection.h; sourceTree = "<group>"; };
 		45B271450DA7FF2C007D8730 /* CHTTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTTPConnection.m; sourceTree = "<group>"; };
-		45B271460DA7FF2C007D8730 /* CHTTPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHTTPMessage.h; sourceTree = "<group>"; };
-		45B271470DA7FF2C007D8730 /* CHTTPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTTPMessage.m; sourceTree = "<group>"; };
 		45B271480DA7FF2C007D8730 /* CNATPMPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNATPMPManager.h; sourceTree = "<group>"; };
 		45B271490DA7FF2C007D8730 /* CNATPMPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNATPMPManager.m; sourceTree = "<group>"; };
 		45B2714C0DA7FF2C007D8730 /* CRoutingHTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRoutingHTTPConnection.h; sourceTree = "<group>"; };
@@ -183,11 +230,25 @@
 		45DFF2C90DA8382500103CBA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45DFF2CD0DA8385C00103CBA /* CUserDefaultsHTTPHandlerUnitTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUserDefaultsHTTPHandlerUnitTests.h; sourceTree = "<group>"; };
 		45DFF2CE0DA8385C00103CBA /* CUserDefaultsHTTPHandlerUnitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CUserDefaultsHTTPHandlerUnitTests.m; sourceTree = "<group>"; };
-		8DD76FA10486AA7600D96B5E /* TouchHTTP */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TouchHTTP; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DD76FA10486AA7600D96B5E /* WebcamServer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = WebcamServer; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6859EA3029092ED04C91782 /* TouchHTTP.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = TouchHTTP.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		454EF46C0DA89F8F005E651B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				454EF46D0DA89F8F005E651B /* Foundation.framework in Frameworks */,
+				454EF46E0DA89F8F005E651B /* Carbon.framework in Frameworks */,
+				454EF46F0DA89F8F005E651B /* PubSub.framework in Frameworks */,
+				454EF4700DA89F8F005E651B /* AppKit.framework in Frameworks */,
+				454EF4710DA89F8F005E651B /* QuickTime.framework in Frameworks */,
+				454EF4720DA89F8F005E651B /* QTKit.framework in Frameworks */,
+				454EF4730DA89F8F005E651B /* QuartzCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		45B271FD0DA803D9007D8730 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -259,11 +320,22 @@
 		1AB674ADFE9D54B511CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8DD76FA10486AA7600D96B5E /* TouchHTTP */,
+				8DD76FA10486AA7600D96B5E /* WebcamServer */,
 				45B2720A0DA803D9007D8730 /* UserDefaultsServer */,
 				45DFF2C30DA8378D00103CBA /* UnitTests.octest */,
+				454EF47A0DA89F8F005E651B /* BasicAuthServer */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		454EF44E0DA89F7E005E651B /* BasicAuthServer */ = {
+			isa = PBXGroup;
+			children = (
+				454EF44F0DA89F7E005E651B /* CBasicAuthHTTPHandler.h */,
+				454EF4500DA89F7E005E651B /* CBasicAuthHTTPHandler.m */,
+				454EF4510DA89F7E005E651B /* main.m */,
+			);
+			path = BasicAuthServer;
 			sourceTree = "<group>";
 		};
 		45B271410DA7FF2C007D8730 /* Source */ = {
@@ -273,8 +345,6 @@
 				45B271430DA7FF2C007D8730 /* CBufferedTCPConnection.m */,
 				45B271440DA7FF2C007D8730 /* CHTTPConnection.h */,
 				45B271450DA7FF2C007D8730 /* CHTTPConnection.m */,
-				45B271460DA7FF2C007D8730 /* CHTTPMessage.h */,
-				45B271470DA7FF2C007D8730 /* CHTTPMessage.m */,
 				45B271480DA7FF2C007D8730 /* CNATPMPManager.h */,
 				45B271490DA7FF2C007D8730 /* CNATPMPManager.m */,
 				45B2714C0DA7FF2C007D8730 /* CRoutingHTTPConnection.h */,
@@ -287,6 +357,10 @@
 				45B271550DA7FF2C007D8730 /* CTCPServer.m */,
 				45B272B90DA80D62007D8730 /* NSURL_Extensions.h */,
 				45B272BA0DA80D62007D8730 /* NSURL_Extensions.m */,
+				45133BD60DA876DE00535F85 /* CHTTPMessage.h */,
+				45133BDC0DA8770200535F85 /* CHTTPMessage.m */,
+				4572C5C80DA87D2700C16D0D /* CHTTPMessage_ConvenienceExtensions.h */,
+				4572C5C90DA87D2700C16D0D /* CHTTPMessage_ConvenienceExtensions.m */,
 				45133B500DA8709D00535F85 /* NSString_Extensions.h */,
 				45133B510DA8709D00535F85 /* NSString_Extensions.m */,
 				45B271570DA7FF2C007D8730 /* Prefix.pch */,
@@ -299,6 +373,7 @@
 			children = (
 				45B271770DA80086007D8730 /* UserDefaultsServer */,
 				45B271780DA80086007D8730 /* WebCamServer */,
+				454EF44E0DA89F7E005E651B /* BasicAuthServer */,
 			);
 			path = Samples;
 			sourceTree = "<group>";
@@ -359,6 +434,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		454EF4580DA89F8F005E651B /* BasicAuthServer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 454EF4760DA89F8F005E651B /* Build configuration list for PBXNativeTarget "BasicAuthServer" */;
+			buildPhases = (
+				454EF4590DA89F8F005E651B /* Sources */,
+				454EF46C0DA89F8F005E651B /* Frameworks */,
+				454EF4740DA89F8F005E651B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BasicAuthServer;
+			productInstallPath = "$(HOME)/bin";
+			productName = TouchHTTP;
+			productReference = 454EF47A0DA89F8F005E651B /* BasicAuthServer */;
+			productType = "com.apple.product-type.tool";
+		};
 		45B271EC0DA803D9007D8730 /* UserDefaultsServer */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 45B272070DA803D9007D8730 /* Build configuration list for PBXNativeTarget "UserDefaultsServer" */;
@@ -395,9 +488,9 @@
 			productReference = 45DFF2C30DA8378D00103CBA /* UnitTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
-		8DD76F960486AA7600D96B5E /* TouchHTTP */ = {
+		8DD76F960486AA7600D96B5E /* WebcamServer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1DEB927408733DD40010E9CD /* Build configuration list for PBXNativeTarget "TouchHTTP" */;
+			buildConfigurationList = 1DEB927408733DD40010E9CD /* Build configuration list for PBXNativeTarget "WebcamServer" */;
 			buildPhases = (
 				8DD76F990486AA7600D96B5E /* Sources */,
 				8DD76F9B0486AA7600D96B5E /* Frameworks */,
@@ -407,10 +500,10 @@
 			);
 			dependencies = (
 			);
-			name = TouchHTTP;
+			name = WebcamServer;
 			productInstallPath = "$(HOME)/bin";
 			productName = TouchHTTP;
-			productReference = 8DD76FA10486AA7600D96B5E /* TouchHTTP */;
+			productReference = 8DD76FA10486AA7600D96B5E /* WebcamServer */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -426,8 +519,9 @@
 			projectRoot = "";
 			targets = (
 				451339C10DA84BBA00535F85 /* All */,
-				8DD76F960486AA7600D96B5E /* TouchHTTP */,
+				8DD76F960486AA7600D96B5E /* WebcamServer */,
 				45B271EC0DA803D9007D8730 /* UserDefaultsServer */,
+				454EF4580DA89F8F005E651B /* BasicAuthServer */,
 				45DFF2C20DA8378D00103CBA /* UnitTests */,
 			);
 		};
@@ -461,13 +555,34 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		454EF4590DA89F8F005E651B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				454EF45A0DA89F8F005E651B /* CBufferedTCPConnection.m in Sources */,
+				454EF45B0DA89F8F005E651B /* CHTTPConnection.m in Sources */,
+				454EF45C0DA89F8F005E651B /* CNATPMPManager.m in Sources */,
+				454EF45D0DA89F8F005E651B /* CRoutingHTTPConnection.m in Sources */,
+				454EF45E0DA89F8F005E651B /* CTCPConnection.m in Sources */,
+				454EF45F0DA89F8F005E651B /* CTCPEchoConnection.m in Sources */,
+				454EF4600DA89F8F005E651B /* CTCPServer.m in Sources */,
+				454EF4610DA89F8F005E651B /* getgateway.c in Sources */,
+				454EF4620DA89F8F005E651B /* natpmp.c in Sources */,
+				454EF4630DA89F8F005E651B /* NSURL_Extensions.m in Sources */,
+				454EF4670DA89F8F005E651B /* CHTTPMessage.m in Sources */,
+				454EF4680DA89F8F005E651B /* CHTTPMessage_ConvenienceExtensions.m in Sources */,
+				454EF4690DA89F8F005E651B /* NSString_Extensions.m in Sources */,
+				454EF46A0DA89F8F005E651B /* CBasicAuthHTTPHandler.m in Sources */,
+				454EF46B0DA89F8F005E651B /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		45B271ED0DA803D9007D8730 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				45B271EE0DA803D9007D8730 /* CBufferedTCPConnection.m in Sources */,
 				45B271EF0DA803D9007D8730 /* CHTTPConnection.m in Sources */,
-				45B271F00DA803D9007D8730 /* CHTTPMessage.m in Sources */,
 				45B271F10DA803D9007D8730 /* CNATPMPManager.m in Sources */,
 				45B271F20DA803D9007D8730 /* CRoutingHTTPConnection.m in Sources */,
 				45B271F30DA803D9007D8730 /* CTCPConnection.m in Sources */,
@@ -480,6 +595,10 @@
 				45DFF2300DA8305500103CBA /* main.m in Sources */,
 				45DFF26A0DA832B600103CBA /* NSURL_Extensions.m in Sources */,
 				45133B530DA870A000535F85 /* NSString_Extensions.m in Sources */,
+				45133BDE0DA8770200535F85 /* CHTTPMessage.m in Sources */,
+				4572C5CC0DA87D2700C16D0D /* CHTTPMessage_ConvenienceExtensions.m in Sources */,
+				454EF4560DA89F7E005E651B /* CBasicAuthHTTPHandler.m in Sources */,
+				454EF4570DA89F7E005E651B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,7 +609,6 @@
 				45DFF2CF0DA8385C00103CBA /* CUserDefaultsHTTPHandlerUnitTests.m in Sources */,
 				45DFF2D20DA8389000103CBA /* CBufferedTCPConnection.m in Sources */,
 				45DFF2D30DA8389100103CBA /* CHTTPConnection.m in Sources */,
-				45DFF2D40DA8389100103CBA /* CHTTPMessage.m in Sources */,
 				45DFF2D50DA8389200103CBA /* CNATPMPManager.m in Sources */,
 				45DFF2D60DA8389300103CBA /* CRoutingHTTPConnection.m in Sources */,
 				45DFF2D70DA8389400103CBA /* CTCPConnection.m in Sources */,
@@ -502,6 +620,10 @@
 				45DFF2E20DA838B000103CBA /* getgateway.c in Sources */,
 				45DFF2E30DA838B000103CBA /* natpmp.c in Sources */,
 				45133B520DA8709D00535F85 /* NSString_Extensions.m in Sources */,
+				45133BDD0DA8770200535F85 /* CHTTPMessage.m in Sources */,
+				4572C5CA0DA87D2700C16D0D /* CHTTPMessage_ConvenienceExtensions.m in Sources */,
+				454EF4520DA89F7E005E651B /* CBasicAuthHTTPHandler.m in Sources */,
+				454EF4530DA89F7E005E651B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,7 +633,6 @@
 			files = (
 				45B271580DA7FF2C007D8730 /* CBufferedTCPConnection.m in Sources */,
 				45B271590DA7FF2C007D8730 /* CHTTPConnection.m in Sources */,
-				45B2715A0DA7FF2C007D8730 /* CHTTPMessage.m in Sources */,
 				45B2715B0DA7FF2C007D8730 /* CNATPMPManager.m in Sources */,
 				45B2715D0DA7FF2C007D8730 /* CRoutingHTTPConnection.m in Sources */,
 				45B2715F0DA7FF2C007D8730 /* CTCPConnection.m in Sources */,
@@ -523,6 +644,9 @@
 				4513398E0DA84A6900535F85 /* CQTCaptureSnapshot.m in Sources */,
 				4513398F0DA84A6A00535F85 /* CSampleHTTPHandler.m in Sources */,
 				451339900DA84A6A00535F85 /* main.m in Sources */,
+				45133BDF0DA8770200535F85 /* CHTTPMessage.m in Sources */,
+				4572C5CB0DA87D2700C16D0D /* CHTTPMessage_ConvenienceExtensions.m in Sources */,
+				454EF3670DA8876C005E651B /* NSString_Extensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,7 +655,7 @@
 /* Begin PBXTargetDependency section */
 		451339C50DA84BC500535F85 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8DD76F960486AA7600D96B5E /* TouchHTTP */;
+			target = 8DD76F960486AA7600D96B5E /* WebcamServer */;
 			targetProxy = 451339C40DA84BC500535F85 /* PBXContainerItemProxy */;
 		};
 		451339C70DA84BC500535F85 /* PBXTargetDependency */ = {
@@ -565,7 +689,7 @@
 				GCC_PREFIX_HEADER = Source/Prefix.pch;
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				INSTALL_PATH = /usr/local/bin;
-				PRODUCT_NAME = TouchHTTP;
+				PRODUCT_NAME = WebcamServer;
 			};
 			name = Debug;
 		};
@@ -584,7 +708,7 @@
 				GCC_PREFIX_HEADER = Source/Prefix.pch;
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				INSTALL_PATH = /usr/local/bin;
-				PRODUCT_NAME = TouchHTTP;
+				PRODUCT_NAME = WebcamServer;
 			};
 			name = Release;
 		};
@@ -677,7 +801,7 @@
 				GCC_PREFIX_HEADER = Source/Prefix.pch;
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				INSTALL_PATH = /usr/local/bin;
-				PRODUCT_NAME = TouchHTTP;
+				PRODUCT_NAME = WebcamServer;
 			};
 			name = Coverage;
 		};
@@ -724,6 +848,69 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = UnitTests;
 				WRAPPER_EXTENSION = octest;
+			};
+			name = Coverage;
+		};
+		454EF4770DA89F8F005E651B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\\\"$(SRCROOT)\\\"",
+					"\\\"$(SRCROOT)/../../../../Products/Debug\\\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Source/Prefix.pch;
+				GCC_WARN_UNUSED_PARAMETER = YES;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = BasicAuthServer;
+			};
+			name = Debug;
+		};
+		454EF4780DA89F8F005E651B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\\\"$(SRCROOT)\\\"",
+					"\\\"$(SRCROOT)/../../../../Products/Debug\\\"",
+				);
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Source/Prefix.pch;
+				GCC_WARN_UNUSED_PARAMETER = YES;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = BasicAuthServer;
+			};
+			name = Release;
+		};
+		454EF4790DA89F8F005E651B /* Coverage */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\\\"$(SRCROOT)\\\"",
+					"\\\"$(SRCROOT)/../../../../Products/Debug\\\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Source/Prefix.pch;
+				GCC_WARN_UNUSED_PARAMETER = YES;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = BasicAuthServer;
 			};
 			name = Coverage;
 		};
@@ -819,7 +1006,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1DEB927408733DD40010E9CD /* Build configuration list for PBXNativeTarget "TouchHTTP" */ = {
+		1DEB927408733DD40010E9CD /* Build configuration list for PBXNativeTarget "WebcamServer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1DEB927508733DD40010E9CD /* Debug */,
@@ -845,6 +1032,16 @@
 				451339C20DA84BBA00535F85 /* Debug */,
 				451339C30DA84BBA00535F85 /* Release */,
 				451339F50DA84E1B00535F85 /* Coverage */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		454EF4760DA89F8F005E651B /* Build configuration list for PBXNativeTarget "BasicAuthServer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				454EF4770DA89F8F005E651B /* Debug */,
+				454EF4780DA89F8F005E651B /* Release */,
+				454EF4790DA89F8F005E651B /* Coverage */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

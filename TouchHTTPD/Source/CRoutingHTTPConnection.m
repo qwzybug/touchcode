@@ -8,62 +8,55 @@
 
 #import "CRoutingHTTPConnection.h"
 
+#import "CHTTPMessage.h"
+#import "CHTTPMessage_ConvenienceExtensions.h"
+
 @implementation CRoutingHTTPConnection
 
 @synthesize router;
 
-- (void)requestReceived:(CFHTTPMessageRef)inRequest
+- (void)requestReceived:(CHTTPMessage *)inRequest
 {
-NSError *theError = NULL;
+CHTTPMessage *theResponse = NULL;
 
-id theTarget = NULL;
-SEL theSelector = NULL;
-
-BOOL theResult = [self.router routeConnection:self request:inRequest toTarget:&theTarget selector:&theSelector error:&theError];
-
-if (theResult == NO || theTarget == NULL || theSelector == NULL)
+@try
 	{
-	theTarget = self;
-	theSelector = @selector(errorNotFoundResponseForRequest:error:);
+	NSError *theError = NULL;
+
+	id theTarget = NULL;
+	SEL theSelector = NULL;
+
+	BOOL theResult = [self.router routeConnection:self request:inRequest toTarget:&theTarget selector:&theSelector error:&theError];
+
+	if (theResult == NO || theTarget == NULL || theSelector == NULL)
+		{
+		theTarget = self;
+		theSelector = @selector(errorNotFoundResponseForRequest:error:);
+		}
+
+	NSError **theErrorArgument = &theError;
+
+	NSInvocation *theInvocation = [NSInvocation invocationWithMethodSignature:[theTarget methodSignatureForSelector:theSelector]];
+	[theInvocation setSelector:theSelector];
+	[theInvocation setTarget:theTarget];
+	[theInvocation setArgument:&inRequest atIndex:2];
+	[theInvocation setArgument:&theErrorArgument atIndex:3];
+
+	[theInvocation invoke];
+
+	[theInvocation getReturnValue:&theResponse];
+	}
+@catch (NSException *localException)
+	{
 	}
 
-NSError **theErrorArgument = &theError;
-
-NSInvocation *theInvocation = [NSInvocation invocationWithMethodSignature:[theTarget methodSignatureForSelector:theSelector]];
-[theInvocation setSelector:theSelector];
-[theInvocation setTarget:theTarget];
-[theInvocation setArgument:&inRequest atIndex:2];
-[theInvocation setArgument:&theErrorArgument atIndex:3];
-
-[theInvocation invoke];
-
-CFHTTPMessageRef theResponse = NULL;
-
-[theInvocation getReturnValue:&theResponse];
-
 [self sendResponse:theResponse];
-
-CFRelease(theResponse);
 }
 
-- (SEL)selectorForRequest:(CFHTTPMessageRef)inRequest
-{
-#pragma unused (inRequest, NULL)
-return(NULL);
-}
-
-- (CFHTTPMessageRef)errorNotFoundResponseForRequest:(CFHTTPMessageRef)inRequest error:(NSError **)outError
+- (CHTTPMessage *)errorNotFoundResponseForRequest:(CHTTPMessage *)inRequest error:(NSError **)outError
 {
 #pragma unused (inRequest, outError)
-CFHTTPMessageRef theResponse = CFHTTPMessageCreateResponse(kCFAllocatorDefault, 404, (CFStringRef)@"NOT FOUND", kCFHTTPVersion1_0);
-
-NSString *theBody = @"404 NOT FOUND";
-NSData *theBodyData = [theBody dataUsingEncoding:NSUTF8StringEncoding];
-CFHTTPMessageSetBody(theResponse, (CFDataRef)theBodyData);
-
-CFHTTPMessageSetHeaderFieldValue(theResponse, (CFStringRef)@"Content-Type", (CFStringRef)@"text/plain");
-CFHTTPMessageSetHeaderFieldValue(theResponse, (CFStringRef)@"Content-Length", (CFStringRef)[[NSNumber numberWithInteger:theBodyData.length] stringValue]);
-
+CHTTPMessage *theResponse = [CHTTPMessage HTTPMessageResponseWithStatusCode:404 bodyString:@"404 NOT FOUND"];
 return(theResponse);
 }
 

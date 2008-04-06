@@ -24,6 +24,4 @@
 - (void)reload;
 - (void)save;
 
-- (BOOL)routeConnection:(CRoutingHTTPConnection *)inConnection request:(CFHTTPMessageRef)inRequest toTarget:(id *)outTarget selector:(SEL *)outSelector error:(NSError **)outError;
-
 @end

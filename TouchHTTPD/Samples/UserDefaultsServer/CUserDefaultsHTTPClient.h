@@ -22,6 +22,7 @@
 - (void)setObject:(id)value forKey:(NSString *)inKey;
 - (void)removeObjectForKey:(NSString *)inKey;
 
+
 @end
 
 #pragma mark -

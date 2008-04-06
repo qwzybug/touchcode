@@ -12,6 +12,12 @@
 
 static CUserDefaultsHTTPClient *gInstance = NULL;
 
+@interface CUserDefaultsHTTPClient ()
+- (NSURL *)URLForKey:(NSString *)inKey;
+@end
+
+#pragma mark -
+
 @implementation CUserDefaultsHTTPClient
 
 @synthesize host;
@@ -31,7 +37,7 @@ return(gInstance);
 
 - (id)objectForKey:(NSString *)inKey
 {
-NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%d/key/%@", self.host.name, self.port, [inKey stringByObsessivelyAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+NSURL *theURL = [self URLForKey:inKey];
 
 NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:theURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:5.0];
 [theRequest setHTTPMethod:@"GET"];
@@ -105,11 +111,9 @@ else
 NSDictionary *theDictionary = [NSDictionary dictionaryWithObject:inValue forKey:@"value"];
 NSString *theErrorString = NULL;
 NSData *theValueData = [NSPropertyListSerialization dataFromPropertyList:theDictionary format:NSPropertyListXMLFormat_v1_0 errorDescription:&theErrorString];
-
-NSString *theURLString = [NSString stringWithFormat:@"http://%@:%d/key/%@", self.host.name, self.port, [inKey stringByObsessivelyAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 	
-NSURL *theURL = [NSURL URLWithString:theURLString];
-NSLog(@"%@", theURL);
+NSURL *theURL = [self URLForKey:inKey];
+//NSLog(@"%@", theURL);
 
 NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:theURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:5.0];
 [theRequest setHTTPMethod:@"POST"];
@@ -129,15 +133,20 @@ else if (theResponse.statusCode != 200)
 
 - (void)removeObjectForKey:(NSString *)inKey
 {
-NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%d/key/%@", self.host.name, self.port, [inKey stringByObsessivelyAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+NSURL *theURL = [self URLForKey:inKey];
 
 NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:theURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:5.0];
 [theRequest setHTTPMethod:@"DELETE"];
 
 NSURLResponse *theResponse = NULL;
 NSError *theError = NULL;
-NSData *theData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&theError];
-NSLog(@"%@ %@", theResponse, theData);
+[NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&theError];
+}
+
+- (NSURL *)URLForKey:(NSString *)inKey
+{
+NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%d/key/%@", self.host.name, self.port, [inKey stringByObsessivelyAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+return(theURL);
 }
 
 @end

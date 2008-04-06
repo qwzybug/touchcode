@@ -8,12 +8,14 @@
 
 #import "CBufferedTCPConnection.h"
 
+@class CHTTPMessage;
+
 @interface CHTTPConnection : CBufferedTCPConnection {
-	CFHTTPMessageRef request;
-	CFHTTPMessageRef response;
+	CHTTPMessage *request;
+	CHTTPMessage *response;
 }
 
-- (void)requestReceived:(CFHTTPMessageRef)inRequest;
-- (void)sendResponse:(CFHTTPMessageRef)inResponse;
+- (void)requestReceived:(CHTTPMessage *)inRequest;
+- (void)sendResponse:(CHTTPMessage *)inResponse;
 
 @end

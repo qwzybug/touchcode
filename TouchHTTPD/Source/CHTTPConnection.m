@@ -8,9 +8,11 @@
 
 #import "CHTTPConnection.h"
 
+#import "CHTTPMessage.h"
+
 @interface CHTTPConnection ()
-@property (readwrite, assign) CFHTTPMessageRef request;
-@property (readwrite, assign) CFHTTPMessageRef response;
+@property (readwrite, retain) CHTTPMessage *request;
+@property (readwrite, retain) CHTTPMessage *response;
 @end
 
 #pragma mark -
@@ -20,24 +22,28 @@
 @synthesize request;
 @synthesize response;
 
+- (void)dealloc
+{
+self.request = NULL;
+self.response = NULL;
+//
+[super dealloc];
+}
+
 - (void)dataReceived:(NSData *)inData
 {
 if (self.request == NULL)
 	{
-	self.request = CFHTTPMessageCreateEmpty(kCFAllocatorDefault, YES);
+	self.request = [CHTTPMessage HTTPMessageRequest];
 	}
 
-BOOL theResult = CFHTTPMessageAppendBytes(self.request, inData.bytes, inData.length);
-if (theResult == NO)
-	{
-	[NSException raise:NSGenericException format:@"HTTP ERROR"];
-	}
+[self.request appendData:inData];
 
-if (CFHTTPMessageIsHeaderComplete(self.request))
+if ([self.request isHeaderComplete])
 	{
-	NSInteger theContentLength = [[(NSString *)CFHTTPMessageCopyHeaderFieldValue(self.request, CFSTR("Content-Length")) autorelease] integerValue];
+	NSInteger theContentLength = [[self.request headerForKey:@"Content-Length"] integerValue];
         
-	NSData *theBody = [(NSData *)CFHTTPMessageCopyBody(self.request) autorelease];
+	NSData *theBody = [self.request body];
 	if ([theBody length] >= theContentLength)
 		{
 		[self requestReceived:self.request];
@@ -45,15 +51,14 @@ if (CFHTTPMessageIsHeaderComplete(self.request))
 	}
 }
 
-- (void)requestReceived:(CFHTTPMessageRef)inRequest
+- (void)requestReceived:(CHTTPMessage *)inRequest
 {
 #pragma unused (inRequest)
 }
 
-- (void)sendResponse:(CFHTTPMessageRef)inResponse
+- (void)sendResponse:(CHTTPMessage *)inResponse
 {
-NSData *theData = [(NSData *)CFHTTPMessageCopySerializedMessage(inResponse) autorelease];
-[self sendData:theData];
+[self sendData:[inResponse serializedMessage]];
 }
 
 @end

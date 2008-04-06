@@ -7,10 +7,14 @@
 #import "CNATPMPManager.h"
 #import "CUserDefaultsHTTPHandler.h"
 #import "CUserDefaultsHTTPClient.h"
+#import <Foundation/NSDebug.h>
 
 int main (int argc, const char * argv[])
 {
 #pragma unused (argc, argv)
+
+NSZombieEnabled = YES;
+NSDeallocateZombies = NO;
 
 NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 
@@ -37,8 +41,12 @@ NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%d",
 [CUserDefaultsHTTPClient standardUserDefaults].host = [NSHost currentHost];
 [CUserDefaultsHTTPClient standardUserDefaults].port = theServer.port;
 
+id foo = [[CUserDefaultsHTTPClient standardUserDefaults] objectForKey:@"asfasfaf"];
+
+
 id theInputValue = @"banana";
-NSString *theKey = @"WEIRD/KEY";
+NSString *theKey = @"KEY";
+//NSString *theKey = @"WEIRD/KEY";
 [[CUserDefaultsHTTPClient standardUserDefaults] setObject:theInputValue forKey:theKey];
 id theOutputValue = [[CUserDefaultsHTTPClient standardUserDefaults] objectForKey:theKey];
 NSLog(@"%@", NSStringFromClass([theInputValue class]));

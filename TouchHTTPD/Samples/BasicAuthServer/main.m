@@ -5,7 +5,7 @@
 #import "CHTTPConnection.h"
 #import "CRoutingHTTPConnection.h"
 #import "CNATPMPManager.h"
-#import "CSampleHTTPHandler.h"
+#import "CBasicAuthHTTPHandler.h"
 
 int main (int argc, const char * argv[])
 {
@@ -13,7 +13,7 @@ int main (int argc, const char * argv[])
 
 NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 
-CSampleHTTPHandler *theRequestHandler = [[[CSampleHTTPHandler alloc] init] autorelease];
+CBasicAuthHTTPHandler *theRequestHandler = [[[CBasicAuthHTTPHandler alloc] init] autorelease];
 
 CTCPServer *theServer = [[[CTCPServer alloc] init] autorelease];
 theServer.delegate = theRequestHandler;
@@ -22,7 +22,7 @@ theServer.port = 8080;
 
 [theServer start:NULL];
 
-NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%d/webcam.jpg", [[NSHost currentHost] name], theServer.port]];
+NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%d", [[NSHost currentHost] name], theServer.port]];
 [[NSWorkspace sharedWorkspace] openURL:theURL];
 
 NSError *theError = NULL;

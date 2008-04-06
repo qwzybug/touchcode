@@ -9,9 +9,10 @@
 #import "CHTTPConnection.h"
 
 @class CRoutingHTTPConnection;
+@class CHTTPMessage;
 
 @protocol CHTTPRequestRouter
-- (BOOL)routeConnection:(CRoutingHTTPConnection *)inConnection request:(CFHTTPMessageRef)inRequest toTarget:(id *)outTarget selector:(SEL *)outSelector error:(NSError **)outError;
+- (BOOL)routeConnection:(CRoutingHTTPConnection *)inConnection request:(CHTTPMessage *)inRequest toTarget:(id *)outTarget selector:(SEL *)outSelector error:(NSError **)outError;
 @end
 
 @interface CRoutingHTTPConnection : CHTTPConnection {

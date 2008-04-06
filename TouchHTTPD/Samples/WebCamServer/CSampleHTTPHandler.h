@@ -17,6 +17,6 @@
 	CQTCaptureSnapshot *snapshot;
 }
 
-- (BOOL)routeConnection:(CRoutingHTTPConnection *)inConnection request:(CFHTTPMessageRef)inRequest toTarget:(id *)outTarget selector:(SEL *)outSelector error:(NSError **)outError;
+@property (readwrite, retain) CQTCaptureSnapshot *snapshot;
 
 @end
