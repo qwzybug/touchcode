@@ -24,7 +24,7 @@
 
 /* Begin PBXBuildFile section */
 		4513398E0DA84A6900535F85 /* CQTCaptureSnapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2717A0DA80086007D8730 /* CQTCaptureSnapshot.m */; };
-		4513398F0DA84A6A00535F85 /* CSampleHTTPHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2717C0DA80086007D8730 /* CSampleHTTPHandler.m */; };
+		4513398F0DA84A6A00535F85 /* CWebcamHTTPRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2717C0DA80086007D8730 /* CWebcamHTTPRouter.m */; };
 		451339900DA84A6A00535F85 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2717D0DA80086007D8730 /* main.m */; };
 		45133B520DA8709D00535F85 /* NSString_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45133B510DA8709D00535F85 /* NSString_Extensions.m */; };
 		45133B530DA870A000535F85 /* NSString_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45133B510DA8709D00535F85 /* NSString_Extensions.m */; };
@@ -35,17 +35,17 @@
 		454EF45A0DA89F8F005E651B /* CBufferedTCPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271430DA7FF2C007D8730 /* CBufferedTCPConnection.m */; };
 		454EF45B0DA89F8F005E651B /* CHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271450DA7FF2C007D8730 /* CHTTPConnection.m */; };
 		454EF45C0DA89F8F005E651B /* CNATPMPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271490DA7FF2C007D8730 /* CNATPMPManager.m */; };
-		454EF45D0DA89F8F005E651B /* CRoutingHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2714D0DA7FF2C007D8730 /* CRoutingHTTPConnection.m */; };
+		454EF45D0DA89F8F005E651B /* CRoutingHTTPRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2714D0DA7FF2C007D8730 /* CRoutingHTTPRequestHandler.m */; };
 		454EF45E0DA89F8F005E651B /* CTCPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271510DA7FF2C007D8730 /* CTCPConnection.m */; };
 		454EF45F0DA89F8F005E651B /* CTCPEchoConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271530DA7FF2C007D8730 /* CTCPEchoConnection.m */; };
-		454EF4600DA89F8F005E651B /* CTCPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271550DA7FF2C007D8730 /* CTCPServer.m */; };
+		454EF4600DA89F8F005E651B /* CTCPSocketListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271550DA7FF2C007D8730 /* CTCPSocketListener.m */; };
 		454EF4610DA89F8F005E651B /* getgateway.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B271840DA800CA007D8730 /* getgateway.c */; };
 		454EF4620DA89F8F005E651B /* natpmp.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B271870DA800CA007D8730 /* natpmp.c */; };
 		454EF4630DA89F8F005E651B /* NSURL_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B272BA0DA80D62007D8730 /* NSURL_Extensions.m */; };
 		454EF4670DA89F8F005E651B /* CHTTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 45133BDC0DA8770200535F85 /* CHTTPMessage.m */; };
 		454EF4680DA89F8F005E651B /* CHTTPMessage_ConvenienceExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4572C5C90DA87D2700C16D0D /* CHTTPMessage_ConvenienceExtensions.m */; };
 		454EF4690DA89F8F005E651B /* NSString_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45133B510DA8709D00535F85 /* NSString_Extensions.m */; };
-		454EF46A0DA89F8F005E651B /* CBasicAuthHTTPHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 454EF4500DA89F7E005E651B /* CBasicAuthHTTPHandler.m */; };
+		454EF46A0DA89F8F005E651B /* CBasicAuthHTTPRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 454EF4500DA89F7E005E651B /* CBasicAuthHTTPRouter.m */; };
 		454EF46B0DA89F8F005E651B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 454EF4510DA89F7E005E651B /* main.m */; };
 		454EF46D0DA89F8F005E651B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
 		454EF46E0DA89F8F005E651B /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 457C92760D86EDA100FCE32F /* Carbon.framework */; };
@@ -55,6 +55,41 @@
 		454EF4720DA89F8F005E651B /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458797D10D878D9F004D5E47 /* QTKit.framework */; };
 		454EF4730DA89F8F005E651B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458798880D8791C1004D5E47 /* QuartzCore.framework */; };
 		454EF4750DA89F8F005E651B /* TouchHTTP.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6859EA3029092ED04C91782 /* TouchHTTP.1 */; };
+		455CD9130DA93A5B0039F01A /* CBufferedTCPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271430DA7FF2C007D8730 /* CBufferedTCPConnection.m */; };
+		455CD9140DA93A5B0039F01A /* CHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271450DA7FF2C007D8730 /* CHTTPConnection.m */; };
+		455CD9150DA93A5B0039F01A /* CNATPMPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271490DA7FF2C007D8730 /* CNATPMPManager.m */; };
+		455CD9160DA93A5B0039F01A /* CRoutingHTTPRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2714D0DA7FF2C007D8730 /* CRoutingHTTPRequestHandler.m */; };
+		455CD9170DA93A5B0039F01A /* CTCPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271510DA7FF2C007D8730 /* CTCPConnection.m */; };
+		455CD9180DA93A5B0039F01A /* CTCPEchoConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271530DA7FF2C007D8730 /* CTCPEchoConnection.m */; };
+		455CD9190DA93A5B0039F01A /* CTCPSocketListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271550DA7FF2C007D8730 /* CTCPSocketListener.m */; };
+		455CD91A0DA93A5B0039F01A /* getgateway.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B271840DA800CA007D8730 /* getgateway.c */; };
+		455CD91B0DA93A5B0039F01A /* natpmp.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B271870DA800CA007D8730 /* natpmp.c */; };
+		455CD91C0DA93A5B0039F01A /* NSURL_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B272BA0DA80D62007D8730 /* NSURL_Extensions.m */; };
+		455CD91D0DA93A5B0039F01A /* CHTTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 45133BDC0DA8770200535F85 /* CHTTPMessage.m */; };
+		455CD91E0DA93A5B0039F01A /* CHTTPMessage_ConvenienceExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4572C5C90DA87D2700C16D0D /* CHTTPMessage_ConvenienceExtensions.m */; };
+		455CD91F0DA93A5B0039F01A /* NSString_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45133B510DA8709D00535F85 /* NSString_Extensions.m */; };
+		455CD9230DA93A5B0039F01A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
+		455CD9240DA93A5B0039F01A /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 457C92760D86EDA100FCE32F /* Carbon.framework */; };
+		455CD9250DA93A5B0039F01A /* PubSub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 457C945F0D87096200FCE32F /* PubSub.framework */; };
+		455CD9260DA93A5B0039F01A /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458796B90D8789D1004D5E47 /* AppKit.framework */; };
+		455CD9270DA93A5B0039F01A /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458797D00D878D9F004D5E47 /* QuickTime.framework */; };
+		455CD9280DA93A5B0039F01A /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458797D10D878D9F004D5E47 /* QTKit.framework */; };
+		455CD9290DA93A5B0039F01A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458798880D8791C1004D5E47 /* QuartzCore.framework */; };
+		455CD92B0DA93A5B0039F01A /* TouchHTTP.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6859EA3029092ED04C91782 /* TouchHTTP.1 */; };
+		455CD9320DA93AA10039F01A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 455CD9010DA93A530039F01A /* main.m */; };
+		455CD9330DA93AA20039F01A /* CHelloWorldHTTPHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 455CD9000DA93A530039F01A /* CHelloWorldHTTPHandler.m */; };
+		455CD9760DA93E1D0039F01A /* CHTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 455CD9750DA93E1D0039F01A /* CHTTPServer.m */; };
+		455CD9770DA93E210039F01A /* CHTTPRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 455CD8FA0DA9384B0039F01A /* CHTTPRequestHandler.m */; };
+		455CDA190DA947260039F01A /* CHTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 455CD9750DA93E1D0039F01A /* CHTTPServer.m */; };
+		455CDA1A0DA947280039F01A /* CHTTPRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 455CD8FA0DA9384B0039F01A /* CHTTPRequestHandler.m */; };
+		455CDA4F0DA948D00039F01A /* CHTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 455CD9750DA93E1D0039F01A /* CHTTPServer.m */; };
+		455CDA500DA948D20039F01A /* CHTTPRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 455CD8FA0DA9384B0039F01A /* CHTTPRequestHandler.m */; };
+		455CDA800DA964DF0039F01A /* CHTTPRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 455CD8FA0DA9384B0039F01A /* CHTTPRequestHandler.m */; };
+		455CDA810DA964E00039F01A /* CHTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 455CD9750DA93E1D0039F01A /* CHTTPServer.m */; };
+		455CDAB40DA966F50039F01A /* CHTTPRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 455CD8FA0DA9384B0039F01A /* CHTTPRequestHandler.m */; };
+		455CDAB50DA966F60039F01A /* CHTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 455CD9750DA93E1D0039F01A /* CHTTPServer.m */; };
+		455CDAB80DA967140039F01A /* CUserDefaultsHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DFF0E80DA8203800103CBA /* CUserDefaultsHTTPClient.m */; };
+		455CDAB90DA967150039F01A /* CUserDefaultsHTTPRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271E80DA803CF007D8730 /* CUserDefaultsHTTPRouter.m */; };
 		4572C5CA0DA87D2700C16D0D /* CHTTPMessage_ConvenienceExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4572C5C90DA87D2700C16D0D /* CHTTPMessage_ConvenienceExtensions.m */; };
 		4572C5CB0DA87D2700C16D0D /* CHTTPMessage_ConvenienceExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4572C5C90DA87D2700C16D0D /* CHTTPMessage_ConvenienceExtensions.m */; };
 		4572C5CC0DA87D2700C16D0D /* CHTTPMessage_ConvenienceExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4572C5C90DA87D2700C16D0D /* CHTTPMessage_ConvenienceExtensions.m */; };
@@ -67,19 +102,19 @@
 		45B271580DA7FF2C007D8730 /* CBufferedTCPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271430DA7FF2C007D8730 /* CBufferedTCPConnection.m */; };
 		45B271590DA7FF2C007D8730 /* CHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271450DA7FF2C007D8730 /* CHTTPConnection.m */; };
 		45B2715B0DA7FF2C007D8730 /* CNATPMPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271490DA7FF2C007D8730 /* CNATPMPManager.m */; };
-		45B2715D0DA7FF2C007D8730 /* CRoutingHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2714D0DA7FF2C007D8730 /* CRoutingHTTPConnection.m */; };
+		45B2715D0DA7FF2C007D8730 /* CRoutingHTTPRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2714D0DA7FF2C007D8730 /* CRoutingHTTPRequestHandler.m */; };
 		45B2715F0DA7FF2C007D8730 /* CTCPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271510DA7FF2C007D8730 /* CTCPConnection.m */; };
 		45B271600DA7FF2C007D8730 /* CTCPEchoConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271530DA7FF2C007D8730 /* CTCPEchoConnection.m */; };
-		45B271610DA7FF2C007D8730 /* CTCPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271550DA7FF2C007D8730 /* CTCPServer.m */; };
+		45B271610DA7FF2C007D8730 /* CTCPSocketListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271550DA7FF2C007D8730 /* CTCPSocketListener.m */; };
 		45B2718B0DA800CA007D8730 /* getgateway.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B271840DA800CA007D8730 /* getgateway.c */; };
 		45B2718D0DA800CA007D8730 /* natpmp.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B271870DA800CA007D8730 /* natpmp.c */; };
 		45B271EE0DA803D9007D8730 /* CBufferedTCPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271430DA7FF2C007D8730 /* CBufferedTCPConnection.m */; };
 		45B271EF0DA803D9007D8730 /* CHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271450DA7FF2C007D8730 /* CHTTPConnection.m */; };
 		45B271F10DA803D9007D8730 /* CNATPMPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271490DA7FF2C007D8730 /* CNATPMPManager.m */; };
-		45B271F20DA803D9007D8730 /* CRoutingHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2714D0DA7FF2C007D8730 /* CRoutingHTTPConnection.m */; };
+		45B271F20DA803D9007D8730 /* CRoutingHTTPRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2714D0DA7FF2C007D8730 /* CRoutingHTTPRequestHandler.m */; };
 		45B271F30DA803D9007D8730 /* CTCPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271510DA7FF2C007D8730 /* CTCPConnection.m */; };
 		45B271F40DA803D9007D8730 /* CTCPEchoConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271530DA7FF2C007D8730 /* CTCPEchoConnection.m */; };
-		45B271F50DA803D9007D8730 /* CTCPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271550DA7FF2C007D8730 /* CTCPServer.m */; };
+		45B271F50DA803D9007D8730 /* CTCPSocketListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271550DA7FF2C007D8730 /* CTCPSocketListener.m */; };
 		45B271F90DA803D9007D8730 /* getgateway.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B271840DA800CA007D8730 /* getgateway.c */; };
 		45B271FA0DA803D9007D8730 /* natpmp.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B271870DA800CA007D8730 /* natpmp.c */; };
 		45B271FE0DA803D9007D8730 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
@@ -92,7 +127,7 @@
 		45B272060DA803D9007D8730 /* TouchHTTP.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6859EA3029092ED04C91782 /* TouchHTTP.1 */; };
 		45B272BB0DA80D62007D8730 /* NSURL_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B272BA0DA80D62007D8730 /* NSURL_Extensions.m */; };
 		45DFF22E0DA8305400103CBA /* CUserDefaultsHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DFF0E80DA8203800103CBA /* CUserDefaultsHTTPClient.m */; };
-		45DFF22F0DA8305500103CBA /* CUserDefaultsHTTPHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271E80DA803CF007D8730 /* CUserDefaultsHTTPHandler.m */; };
+		45DFF22F0DA8305500103CBA /* CUserDefaultsHTTPRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271E80DA803CF007D8730 /* CUserDefaultsHTTPRouter.m */; };
 		45DFF2300DA8305500103CBA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271E70DA803CF007D8730 /* main.m */; };
 		45DFF26A0DA832B600103CBA /* NSURL_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B272BA0DA80D62007D8730 /* NSURL_Extensions.m */; };
 		45DFF2CA0DA8382500103CBA /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 45DFF2C90DA8382500103CBA /* Info.plist */; };
@@ -100,13 +135,11 @@
 		45DFF2D20DA8389000103CBA /* CBufferedTCPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271430DA7FF2C007D8730 /* CBufferedTCPConnection.m */; };
 		45DFF2D30DA8389100103CBA /* CHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271450DA7FF2C007D8730 /* CHTTPConnection.m */; };
 		45DFF2D50DA8389200103CBA /* CNATPMPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271490DA7FF2C007D8730 /* CNATPMPManager.m */; };
-		45DFF2D60DA8389300103CBA /* CRoutingHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2714D0DA7FF2C007D8730 /* CRoutingHTTPConnection.m */; };
+		45DFF2D60DA8389300103CBA /* CRoutingHTTPRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B2714D0DA7FF2C007D8730 /* CRoutingHTTPRequestHandler.m */; };
 		45DFF2D70DA8389400103CBA /* CTCPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271510DA7FF2C007D8730 /* CTCPConnection.m */; };
 		45DFF2D80DA8389500103CBA /* CTCPEchoConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271530DA7FF2C007D8730 /* CTCPEchoConnection.m */; };
-		45DFF2D90DA8389600103CBA /* CTCPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271550DA7FF2C007D8730 /* CTCPServer.m */; };
+		45DFF2D90DA8389600103CBA /* CTCPSocketListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271550DA7FF2C007D8730 /* CTCPSocketListener.m */; };
 		45DFF2DA0DA8389700103CBA /* NSURL_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B272BA0DA80D62007D8730 /* NSURL_Extensions.m */; };
-		45DFF2DB0DA8389B00103CBA /* CUserDefaultsHTTPHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271E80DA803CF007D8730 /* CUserDefaultsHTTPHandler.m */; };
-		45DFF2DC0DA8389C00103CBA /* CUserDefaultsHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DFF0E80DA8203800103CBA /* CUserDefaultsHTTPClient.m */; };
 		45DFF2E20DA838B000103CBA /* getgateway.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B271840DA800CA007D8730 /* getgateway.c */; };
 		45DFF2E30DA838B000103CBA /* natpmp.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B271870DA800CA007D8730 /* natpmp.c */; };
 		45DFF2EB0DA838C500103CBA /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 457C92760D86EDA100FCE32F /* Carbon.framework */; };
@@ -150,6 +183,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		455CD92A0DA93A5B0039F01A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 8;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				455CD92B0DA93A5B0039F01A /* TouchHTTP.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		45B272050DA803D9007D8730 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 8;
@@ -178,10 +221,18 @@
 		45133B510DA8709D00535F85 /* NSString_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_Extensions.m; sourceTree = "<group>"; };
 		45133BD60DA876DE00535F85 /* CHTTPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHTTPMessage.h; sourceTree = "<group>"; };
 		45133BDC0DA8770200535F85 /* CHTTPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTTPMessage.m; sourceTree = "<group>"; };
-		454EF44F0DA89F7E005E651B /* CBasicAuthHTTPHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBasicAuthHTTPHandler.h; sourceTree = "<group>"; };
-		454EF4500DA89F7E005E651B /* CBasicAuthHTTPHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBasicAuthHTTPHandler.m; sourceTree = "<group>"; };
+		454EF44F0DA89F7E005E651B /* CBasicAuthHTTPRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBasicAuthHTTPRouter.h; sourceTree = "<group>"; };
+		454EF4500DA89F7E005E651B /* CBasicAuthHTTPRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBasicAuthHTTPRouter.m; sourceTree = "<group>"; };
 		454EF4510DA89F7E005E651B /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		454EF47A0DA89F8F005E651B /* BasicAuthServer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BasicAuthServer; sourceTree = BUILT_PRODUCTS_DIR; };
+		455CD8F90DA9384B0039F01A /* CHTTPRequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHTTPRequestHandler.h; sourceTree = "<group>"; };
+		455CD8FA0DA9384B0039F01A /* CHTTPRequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTTPRequestHandler.m; sourceTree = "<group>"; };
+		455CD8FF0DA93A530039F01A /* CHelloWorldHTTPHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHelloWorldHTTPHandler.h; sourceTree = "<group>"; };
+		455CD9000DA93A530039F01A /* CHelloWorldHTTPHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHelloWorldHTTPHandler.m; sourceTree = "<group>"; };
+		455CD9010DA93A530039F01A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		455CD9300DA93A5B0039F01A /* HelloWorldServer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HelloWorldServer; sourceTree = BUILT_PRODUCTS_DIR; };
+		455CD9740DA93E1D0039F01A /* CHTTPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHTTPServer.h; sourceTree = "<group>"; };
+		455CD9750DA93E1D0039F01A /* CHTTPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTTPServer.m; sourceTree = "<group>"; };
 		4572C5C80DA87D2700C16D0D /* CHTTPMessage_ConvenienceExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHTTPMessage_ConvenienceExtensions.h; sourceTree = "<group>"; };
 		4572C5C90DA87D2700C16D0D /* CHTTPMessage_ConvenienceExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTTPMessage_ConvenienceExtensions.m; sourceTree = "<group>"; };
 		457C92760D86EDA100FCE32F /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
@@ -196,27 +247,27 @@
 		45B271450DA7FF2C007D8730 /* CHTTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTTPConnection.m; sourceTree = "<group>"; };
 		45B271480DA7FF2C007D8730 /* CNATPMPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNATPMPManager.h; sourceTree = "<group>"; };
 		45B271490DA7FF2C007D8730 /* CNATPMPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNATPMPManager.m; sourceTree = "<group>"; };
-		45B2714C0DA7FF2C007D8730 /* CRoutingHTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRoutingHTTPConnection.h; sourceTree = "<group>"; };
-		45B2714D0DA7FF2C007D8730 /* CRoutingHTTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRoutingHTTPConnection.m; sourceTree = "<group>"; };
+		45B2714C0DA7FF2C007D8730 /* CRoutingHTTPRequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRoutingHTTPRequestHandler.h; sourceTree = "<group>"; };
+		45B2714D0DA7FF2C007D8730 /* CRoutingHTTPRequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRoutingHTTPRequestHandler.m; sourceTree = "<group>"; };
 		45B271500DA7FF2C007D8730 /* CTCPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTCPConnection.h; sourceTree = "<group>"; };
 		45B271510DA7FF2C007D8730 /* CTCPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTCPConnection.m; sourceTree = "<group>"; };
 		45B271520DA7FF2C007D8730 /* CTCPEchoConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTCPEchoConnection.h; sourceTree = "<group>"; };
 		45B271530DA7FF2C007D8730 /* CTCPEchoConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTCPEchoConnection.m; sourceTree = "<group>"; };
-		45B271540DA7FF2C007D8730 /* CTCPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTCPServer.h; sourceTree = "<group>"; };
-		45B271550DA7FF2C007D8730 /* CTCPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTCPServer.m; sourceTree = "<group>"; };
+		45B271540DA7FF2C007D8730 /* CTCPSocketListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTCPSocketListener.h; sourceTree = "<group>"; };
+		45B271550DA7FF2C007D8730 /* CTCPSocketListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTCPSocketListener.m; sourceTree = "<group>"; };
 		45B271570DA7FF2C007D8730 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		45B271790DA80086007D8730 /* CQTCaptureSnapshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQTCaptureSnapshot.h; sourceTree = "<group>"; };
 		45B2717A0DA80086007D8730 /* CQTCaptureSnapshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQTCaptureSnapshot.m; sourceTree = "<group>"; };
-		45B2717B0DA80086007D8730 /* CSampleHTTPHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSampleHTTPHandler.h; sourceTree = "<group>"; };
-		45B2717C0DA80086007D8730 /* CSampleHTTPHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSampleHTTPHandler.m; sourceTree = "<group>"; };
+		45B2717B0DA80086007D8730 /* CWebcamHTTPRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWebcamHTTPRouter.h; sourceTree = "<group>"; };
+		45B2717C0DA80086007D8730 /* CWebcamHTTPRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWebcamHTTPRouter.m; sourceTree = "<group>"; };
 		45B2717D0DA80086007D8730 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		45B271840DA800CA007D8730 /* getgateway.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = getgateway.c; sourceTree = "<group>"; };
 		45B271850DA800CA007D8730 /* getgateway.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = getgateway.h; sourceTree = "<group>"; };
 		45B271870DA800CA007D8730 /* natpmp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = natpmp.c; sourceTree = "<group>"; };
 		45B271880DA800CA007D8730 /* natpmp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = natpmp.h; sourceTree = "<group>"; };
 		45B271E70DA803CF007D8730 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		45B271E80DA803CF007D8730 /* CUserDefaultsHTTPHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CUserDefaultsHTTPHandler.m; sourceTree = "<group>"; };
-		45B271E90DA803CF007D8730 /* CUserDefaultsHTTPHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUserDefaultsHTTPHandler.h; sourceTree = "<group>"; };
+		45B271E80DA803CF007D8730 /* CUserDefaultsHTTPRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CUserDefaultsHTTPRouter.m; sourceTree = "<group>"; };
+		45B271E90DA803CF007D8730 /* CUserDefaultsHTTPRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUserDefaultsHTTPRouter.h; sourceTree = "<group>"; };
 		45B2720A0DA803D9007D8730 /* UserDefaultsServer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UserDefaultsServer; sourceTree = BUILT_PRODUCTS_DIR; };
 		45B272B90DA80D62007D8730 /* NSURL_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSURL_Extensions.h; sourceTree = "<group>"; };
 		45B272BA0DA80D62007D8730 /* NSURL_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSURL_Extensions.m; sourceTree = "<group>"; };
@@ -242,6 +293,20 @@
 				454EF4710DA89F8F005E651B /* QuickTime.framework in Frameworks */,
 				454EF4720DA89F8F005E651B /* QTKit.framework in Frameworks */,
 				454EF4730DA89F8F005E651B /* QuartzCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		455CD9220DA93A5B0039F01A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				455CD9230DA93A5B0039F01A /* Foundation.framework in Frameworks */,
+				455CD9240DA93A5B0039F01A /* Carbon.framework in Frameworks */,
+				455CD9250DA93A5B0039F01A /* PubSub.framework in Frameworks */,
+				455CD9260DA93A5B0039F01A /* AppKit.framework in Frameworks */,
+				455CD9270DA93A5B0039F01A /* QuickTime.framework in Frameworks */,
+				455CD9280DA93A5B0039F01A /* QTKit.framework in Frameworks */,
+				455CD9290DA93A5B0039F01A /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,6 +385,7 @@
 				45B2720A0DA803D9007D8730 /* UserDefaultsServer */,
 				45DFF2C30DA8378D00103CBA /* UnitTests.octest */,
 				454EF47A0DA89F8F005E651B /* BasicAuthServer */,
+				455CD9300DA93A5B0039F01A /* HelloWorldServer */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -327,11 +393,21 @@
 		454EF44E0DA89F7E005E651B /* BasicAuthServer */ = {
 			isa = PBXGroup;
 			children = (
-				454EF44F0DA89F7E005E651B /* CBasicAuthHTTPHandler.h */,
-				454EF4500DA89F7E005E651B /* CBasicAuthHTTPHandler.m */,
+				454EF44F0DA89F7E005E651B /* CBasicAuthHTTPRouter.h */,
+				454EF4500DA89F7E005E651B /* CBasicAuthHTTPRouter.m */,
 				454EF4510DA89F7E005E651B /* main.m */,
 			);
 			path = BasicAuthServer;
+			sourceTree = "<group>";
+		};
+		455CD8FE0DA93A530039F01A /* HelloWorldServer */ = {
+			isa = PBXGroup;
+			children = (
+				455CD8FF0DA93A530039F01A /* CHelloWorldHTTPHandler.h */,
+				455CD9000DA93A530039F01A /* CHelloWorldHTTPHandler.m */,
+				455CD9010DA93A530039F01A /* main.m */,
+			);
+			path = HelloWorldServer;
 			sourceTree = "<group>";
 		};
 		45B271410DA7FF2C007D8730 /* Source */ = {
@@ -343,20 +419,24 @@
 				45B271450DA7FF2C007D8730 /* CHTTPConnection.m */,
 				45B271480DA7FF2C007D8730 /* CNATPMPManager.h */,
 				45B271490DA7FF2C007D8730 /* CNATPMPManager.m */,
-				45B2714C0DA7FF2C007D8730 /* CRoutingHTTPConnection.h */,
-				45B2714D0DA7FF2C007D8730 /* CRoutingHTTPConnection.m */,
+				45B2714C0DA7FF2C007D8730 /* CRoutingHTTPRequestHandler.h */,
+				45B2714D0DA7FF2C007D8730 /* CRoutingHTTPRequestHandler.m */,
 				45B271500DA7FF2C007D8730 /* CTCPConnection.h */,
 				45B271510DA7FF2C007D8730 /* CTCPConnection.m */,
 				45B271520DA7FF2C007D8730 /* CTCPEchoConnection.h */,
 				45B271530DA7FF2C007D8730 /* CTCPEchoConnection.m */,
-				45B271540DA7FF2C007D8730 /* CTCPServer.h */,
-				45B271550DA7FF2C007D8730 /* CTCPServer.m */,
+				45B271540DA7FF2C007D8730 /* CTCPSocketListener.h */,
+				45B271550DA7FF2C007D8730 /* CTCPSocketListener.m */,
 				45B272B90DA80D62007D8730 /* NSURL_Extensions.h */,
 				45B272BA0DA80D62007D8730 /* NSURL_Extensions.m */,
+				455CD9740DA93E1D0039F01A /* CHTTPServer.h */,
+				455CD9750DA93E1D0039F01A /* CHTTPServer.m */,
 				45133BD60DA876DE00535F85 /* CHTTPMessage.h */,
 				45133BDC0DA8770200535F85 /* CHTTPMessage.m */,
 				4572C5C80DA87D2700C16D0D /* CHTTPMessage_ConvenienceExtensions.h */,
 				4572C5C90DA87D2700C16D0D /* CHTTPMessage_ConvenienceExtensions.m */,
+				455CD8F90DA9384B0039F01A /* CHTTPRequestHandler.h */,
+				455CD8FA0DA9384B0039F01A /* CHTTPRequestHandler.m */,
 				45133B500DA8709D00535F85 /* NSString_Extensions.h */,
 				45133B510DA8709D00535F85 /* NSString_Extensions.m */,
 				45B271570DA7FF2C007D8730 /* Prefix.pch */,
@@ -367,6 +447,7 @@
 		45B271760DA80086007D8730 /* Samples */ = {
 			isa = PBXGroup;
 			children = (
+				455CD8FE0DA93A530039F01A /* HelloWorldServer */,
 				45B271770DA80086007D8730 /* UserDefaultsServer */,
 				45B271780DA80086007D8730 /* WebCamServer */,
 				454EF44E0DA89F7E005E651B /* BasicAuthServer */,
@@ -378,8 +459,8 @@
 			isa = PBXGroup;
 			children = (
 				45B271E70DA803CF007D8730 /* main.m */,
-				45B271E90DA803CF007D8730 /* CUserDefaultsHTTPHandler.h */,
-				45B271E80DA803CF007D8730 /* CUserDefaultsHTTPHandler.m */,
+				45B271E90DA803CF007D8730 /* CUserDefaultsHTTPRouter.h */,
+				45B271E80DA803CF007D8730 /* CUserDefaultsHTTPRouter.m */,
 				45DFF0E70DA8203800103CBA /* CUserDefaultsHTTPClient.h */,
 				45DFF0E80DA8203800103CBA /* CUserDefaultsHTTPClient.m */,
 			);
@@ -391,8 +472,8 @@
 			children = (
 				45B271790DA80086007D8730 /* CQTCaptureSnapshot.h */,
 				45B2717A0DA80086007D8730 /* CQTCaptureSnapshot.m */,
-				45B2717B0DA80086007D8730 /* CSampleHTTPHandler.h */,
-				45B2717C0DA80086007D8730 /* CSampleHTTPHandler.m */,
+				45B2717B0DA80086007D8730 /* CWebcamHTTPRouter.h */,
+				45B2717C0DA80086007D8730 /* CWebcamHTTPRouter.m */,
 				45B2717D0DA80086007D8730 /* main.m */,
 			);
 			path = WebCamServer;
@@ -446,6 +527,24 @@
 			productInstallPath = "$(HOME)/bin";
 			productName = TouchHTTP;
 			productReference = 454EF47A0DA89F8F005E651B /* BasicAuthServer */;
+			productType = "com.apple.product-type.tool";
+		};
+		455CD9110DA93A5B0039F01A /* HelloWorldServer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 455CD92C0DA93A5B0039F01A /* Build configuration list for PBXNativeTarget "HelloWorldServer" */;
+			buildPhases = (
+				455CD9120DA93A5B0039F01A /* Sources */,
+				455CD9220DA93A5B0039F01A /* Frameworks */,
+				455CD92A0DA93A5B0039F01A /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HelloWorldServer;
+			productInstallPath = "$(HOME)/bin";
+			productName = TouchHTTP;
+			productReference = 455CD9300DA93A5B0039F01A /* HelloWorldServer */;
 			productType = "com.apple.product-type.tool";
 		};
 		45B271EC0DA803D9007D8730 /* UserDefaultsServer */ = {
@@ -518,6 +617,7 @@
 				8DD76F960486AA7600D96B5E /* WebcamServer */,
 				45B271EC0DA803D9007D8730 /* UserDefaultsServer */,
 				454EF4580DA89F8F005E651B /* BasicAuthServer */,
+				455CD9110DA93A5B0039F01A /* HelloWorldServer */,
 				45DFF2C20DA8378D00103CBA /* UnitTests */,
 			);
 		};
@@ -558,18 +658,44 @@
 				454EF45A0DA89F8F005E651B /* CBufferedTCPConnection.m in Sources */,
 				454EF45B0DA89F8F005E651B /* CHTTPConnection.m in Sources */,
 				454EF45C0DA89F8F005E651B /* CNATPMPManager.m in Sources */,
-				454EF45D0DA89F8F005E651B /* CRoutingHTTPConnection.m in Sources */,
+				454EF45D0DA89F8F005E651B /* CRoutingHTTPRequestHandler.m in Sources */,
 				454EF45E0DA89F8F005E651B /* CTCPConnection.m in Sources */,
 				454EF45F0DA89F8F005E651B /* CTCPEchoConnection.m in Sources */,
-				454EF4600DA89F8F005E651B /* CTCPServer.m in Sources */,
+				454EF4600DA89F8F005E651B /* CTCPSocketListener.m in Sources */,
 				454EF4610DA89F8F005E651B /* getgateway.c in Sources */,
 				454EF4620DA89F8F005E651B /* natpmp.c in Sources */,
 				454EF4630DA89F8F005E651B /* NSURL_Extensions.m in Sources */,
 				454EF4670DA89F8F005E651B /* CHTTPMessage.m in Sources */,
 				454EF4680DA89F8F005E651B /* CHTTPMessage_ConvenienceExtensions.m in Sources */,
 				454EF4690DA89F8F005E651B /* NSString_Extensions.m in Sources */,
-				454EF46A0DA89F8F005E651B /* CBasicAuthHTTPHandler.m in Sources */,
+				454EF46A0DA89F8F005E651B /* CBasicAuthHTTPRouter.m in Sources */,
 				454EF46B0DA89F8F005E651B /* main.m in Sources */,
+				455CDA190DA947260039F01A /* CHTTPServer.m in Sources */,
+				455CDA1A0DA947280039F01A /* CHTTPRequestHandler.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		455CD9120DA93A5B0039F01A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				455CD9130DA93A5B0039F01A /* CBufferedTCPConnection.m in Sources */,
+				455CD9140DA93A5B0039F01A /* CHTTPConnection.m in Sources */,
+				455CD9150DA93A5B0039F01A /* CNATPMPManager.m in Sources */,
+				455CD9160DA93A5B0039F01A /* CRoutingHTTPRequestHandler.m in Sources */,
+				455CD9170DA93A5B0039F01A /* CTCPConnection.m in Sources */,
+				455CD9180DA93A5B0039F01A /* CTCPEchoConnection.m in Sources */,
+				455CD9190DA93A5B0039F01A /* CTCPSocketListener.m in Sources */,
+				455CD91A0DA93A5B0039F01A /* getgateway.c in Sources */,
+				455CD91B0DA93A5B0039F01A /* natpmp.c in Sources */,
+				455CD91C0DA93A5B0039F01A /* NSURL_Extensions.m in Sources */,
+				455CD91D0DA93A5B0039F01A /* CHTTPMessage.m in Sources */,
+				455CD91E0DA93A5B0039F01A /* CHTTPMessage_ConvenienceExtensions.m in Sources */,
+				455CD91F0DA93A5B0039F01A /* NSString_Extensions.m in Sources */,
+				455CD9320DA93AA10039F01A /* main.m in Sources */,
+				455CD9330DA93AA20039F01A /* CHelloWorldHTTPHandler.m in Sources */,
+				455CD9760DA93E1D0039F01A /* CHTTPServer.m in Sources */,
+				455CD9770DA93E210039F01A /* CHTTPRequestHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,19 +706,21 @@
 				45B271EE0DA803D9007D8730 /* CBufferedTCPConnection.m in Sources */,
 				45B271EF0DA803D9007D8730 /* CHTTPConnection.m in Sources */,
 				45B271F10DA803D9007D8730 /* CNATPMPManager.m in Sources */,
-				45B271F20DA803D9007D8730 /* CRoutingHTTPConnection.m in Sources */,
+				45B271F20DA803D9007D8730 /* CRoutingHTTPRequestHandler.m in Sources */,
 				45B271F30DA803D9007D8730 /* CTCPConnection.m in Sources */,
 				45B271F40DA803D9007D8730 /* CTCPEchoConnection.m in Sources */,
-				45B271F50DA803D9007D8730 /* CTCPServer.m in Sources */,
+				45B271F50DA803D9007D8730 /* CTCPSocketListener.m in Sources */,
 				45B271F90DA803D9007D8730 /* getgateway.c in Sources */,
 				45B271FA0DA803D9007D8730 /* natpmp.c in Sources */,
 				45DFF22E0DA8305400103CBA /* CUserDefaultsHTTPClient.m in Sources */,
-				45DFF22F0DA8305500103CBA /* CUserDefaultsHTTPHandler.m in Sources */,
+				45DFF22F0DA8305500103CBA /* CUserDefaultsHTTPRouter.m in Sources */,
 				45DFF2300DA8305500103CBA /* main.m in Sources */,
 				45DFF26A0DA832B600103CBA /* NSURL_Extensions.m in Sources */,
 				45133B530DA870A000535F85 /* NSString_Extensions.m in Sources */,
 				45133BDE0DA8770200535F85 /* CHTTPMessage.m in Sources */,
 				4572C5CC0DA87D2700C16D0D /* CHTTPMessage_ConvenienceExtensions.m in Sources */,
+				455CDA800DA964DF0039F01A /* CHTTPRequestHandler.m in Sources */,
+				455CDA810DA964E00039F01A /* CHTTPServer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -604,18 +732,20 @@
 				45DFF2D20DA8389000103CBA /* CBufferedTCPConnection.m in Sources */,
 				45DFF2D30DA8389100103CBA /* CHTTPConnection.m in Sources */,
 				45DFF2D50DA8389200103CBA /* CNATPMPManager.m in Sources */,
-				45DFF2D60DA8389300103CBA /* CRoutingHTTPConnection.m in Sources */,
+				45DFF2D60DA8389300103CBA /* CRoutingHTTPRequestHandler.m in Sources */,
 				45DFF2D70DA8389400103CBA /* CTCPConnection.m in Sources */,
 				45DFF2D80DA8389500103CBA /* CTCPEchoConnection.m in Sources */,
-				45DFF2D90DA8389600103CBA /* CTCPServer.m in Sources */,
+				45DFF2D90DA8389600103CBA /* CTCPSocketListener.m in Sources */,
 				45DFF2DA0DA8389700103CBA /* NSURL_Extensions.m in Sources */,
-				45DFF2DB0DA8389B00103CBA /* CUserDefaultsHTTPHandler.m in Sources */,
-				45DFF2DC0DA8389C00103CBA /* CUserDefaultsHTTPClient.m in Sources */,
 				45DFF2E20DA838B000103CBA /* getgateway.c in Sources */,
 				45DFF2E30DA838B000103CBA /* natpmp.c in Sources */,
 				45133B520DA8709D00535F85 /* NSString_Extensions.m in Sources */,
 				45133BDD0DA8770200535F85 /* CHTTPMessage.m in Sources */,
 				4572C5CA0DA87D2700C16D0D /* CHTTPMessage_ConvenienceExtensions.m in Sources */,
+				455CDAB40DA966F50039F01A /* CHTTPRequestHandler.m in Sources */,
+				455CDAB50DA966F60039F01A /* CHTTPServer.m in Sources */,
+				455CDAB80DA967140039F01A /* CUserDefaultsHTTPClient.m in Sources */,
+				455CDAB90DA967150039F01A /* CUserDefaultsHTTPRouter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -626,19 +756,21 @@
 				45B271580DA7FF2C007D8730 /* CBufferedTCPConnection.m in Sources */,
 				45B271590DA7FF2C007D8730 /* CHTTPConnection.m in Sources */,
 				45B2715B0DA7FF2C007D8730 /* CNATPMPManager.m in Sources */,
-				45B2715D0DA7FF2C007D8730 /* CRoutingHTTPConnection.m in Sources */,
+				45B2715D0DA7FF2C007D8730 /* CRoutingHTTPRequestHandler.m in Sources */,
 				45B2715F0DA7FF2C007D8730 /* CTCPConnection.m in Sources */,
 				45B271600DA7FF2C007D8730 /* CTCPEchoConnection.m in Sources */,
-				45B271610DA7FF2C007D8730 /* CTCPServer.m in Sources */,
+				45B271610DA7FF2C007D8730 /* CTCPSocketListener.m in Sources */,
 				45B2718B0DA800CA007D8730 /* getgateway.c in Sources */,
 				45B2718D0DA800CA007D8730 /* natpmp.c in Sources */,
 				45B272BB0DA80D62007D8730 /* NSURL_Extensions.m in Sources */,
 				4513398E0DA84A6900535F85 /* CQTCaptureSnapshot.m in Sources */,
-				4513398F0DA84A6A00535F85 /* CSampleHTTPHandler.m in Sources */,
+				4513398F0DA84A6A00535F85 /* CWebcamHTTPRouter.m in Sources */,
 				451339900DA84A6A00535F85 /* main.m in Sources */,
 				45133BDF0DA8770200535F85 /* CHTTPMessage.m in Sources */,
 				4572C5CB0DA87D2700C16D0D /* CHTTPMessage_ConvenienceExtensions.m in Sources */,
 				454EF3670DA8876C005E651B /* NSString_Extensions.m in Sources */,
+				455CDA4F0DA948D00039F01A /* CHTTPServer.m in Sources */,
+				455CDA500DA948D20039F01A /* CHTTPRequestHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -906,6 +1038,69 @@
 			};
 			name = Coverage;
 		};
+		455CD92D0DA93A5B0039F01A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\\\\\\\"$(SRCROOT)\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../../../../Products/Debug\\\\\\\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Source/Prefix.pch;
+				GCC_WARN_UNUSED_PARAMETER = YES;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = HelloWorldServer;
+			};
+			name = Debug;
+		};
+		455CD92E0DA93A5B0039F01A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\\\\\\\"$(SRCROOT)\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../../../../Products/Debug\\\\\\\"",
+				);
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Source/Prefix.pch;
+				GCC_WARN_UNUSED_PARAMETER = YES;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = HelloWorldServer;
+			};
+			name = Release;
+		};
+		455CD92F0DA93A5B0039F01A /* Coverage */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\\\\\\\"$(SRCROOT)\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../../../../Products/Debug\\\\\\\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Source/Prefix.pch;
+				GCC_WARN_UNUSED_PARAMETER = YES;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = HelloWorldServer;
+			};
+			name = Coverage;
+		};
 		45B272080DA803D9007D8730 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1034,6 +1229,16 @@
 				454EF4770DA89F8F005E651B /* Debug */,
 				454EF4780DA89F8F005E651B /* Release */,
 				454EF4790DA89F8F005E651B /* Coverage */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		455CD92C0DA93A5B0039F01A /* Build configuration list for PBXNativeTarget "HelloWorldServer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				455CD92D0DA93A5B0039F01A /* Debug */,
+				455CD92E0DA93A5B0039F01A /* Release */,
+				455CD92F0DA93A5B0039F01A /* Coverage */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

@@ -6,16 +6,16 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
-#import "CHTTPConnection.h"
+#import "CHTTPRequestHandler.h"
 
-@class CRoutingHTTPConnection;
+@class CRoutingHTTPRequestHandler;
 @class CHTTPMessage;
 
 @protocol CHTTPRequestRouter
-- (BOOL)routeConnection:(CRoutingHTTPConnection *)inConnection request:(CHTTPMessage *)inRequest toTarget:(id *)outTarget selector:(SEL *)outSelector error:(NSError **)outError;
+- (BOOL)routeConnection:(CRoutingHTTPRequestHandler *)inConnection request:(CHTTPMessage *)inRequest toTarget:(id *)outTarget selector:(SEL *)outSelector error:(NSError **)outError;
 @end
 
-@interface CRoutingHTTPConnection : CHTTPConnection {
+@interface CRoutingHTTPRequestHandler : CHTTPRequestHandler {
 	id <CHTTPRequestRouter> router;
 }
 

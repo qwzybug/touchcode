@@ -8,10 +8,10 @@
 #import <CoreServices/CoreServices.h>
 
 @class CTCPConnection;
-@protocol CTCPServerDelegate;
+@protocol CTCPSocketListenerDelegate;
 
-@interface CTCPServer : NSObject {
-    id <CTCPServerDelegate> delegate;
+@interface CTCPSocketListener : NSObject {
+    id <CTCPSocketListenerDelegate> delegate;
     uint16_t port;
     NSString *domain;
     NSString *name;
@@ -24,7 +24,7 @@
 	BOOL serving;
 }
 
-@property (readwrite, assign) id <CTCPServerDelegate> delegate;
+@property (readwrite, assign) id <CTCPSocketListenerDelegate> delegate;
 @property (readwrite, assign) uint16_t port;
 @property (readwrite, retain) NSString *domain;
 @property (readwrite, retain) NSString *name;
@@ -54,9 +54,9 @@
 
 #pragma mark -
 
-@protocol CTCPServerDelegate
+@protocol CTCPSocketListenerDelegate
 
 @optional
-- (CTCPConnection *)TCPServer:(CTCPServer *)inServer createTCPConnectionWithAddress:(NSData *)inAddress inputStream:(NSInputStream *)inInputStream outputStream:(NSOutputStream *)inOutputStream;
+- (CTCPConnection *)TCPServer:(CTCPSocketListener *)inServer createTCPConnectionWithAddress:(NSData *)inAddress inputStream:(NSInputStream *)inInputStream outputStream:(NSOutputStream *)inOutputStream;
 
 @end

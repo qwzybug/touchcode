@@ -8,25 +8,33 @@
 
 #import "CUserDefaultsHTTPHandlerUnitTests.h"
 
-#import "CUserDefaultsHTTPHandler.h"
-#import "CTCPServer.h"
+#import "CUserDefaultsHTTPRouter.h"
+#import "CTCPSocketListener.h"
 #import "CUserDefaultsHTTPClient.h"
+#import "CHTTPServer.h"
 
 @implementation CUserDefaultsHTTPHandlerUnitTests
 
 @synthesize queue;
 @synthesize server;
-@synthesize requestHandler;
+@synthesize requestRouter;
 
 - (void)prepare
 {
 if (self.server == NULL)
 	{
-	self.requestHandler = [[[CUserDefaultsHTTPHandler alloc] init] autorelease];
+	self.requestRouter = [[[CUserDefaultsHTTPRouter alloc] init] autorelease];
 
-	self.server = [[[CTCPServer alloc] init] autorelease];
-	self.server.delegate = self.requestHandler;
-	self.server.type = @"_http._tcp.";
+	self.server = [[[CHTTPServer alloc] init] autorelease];
+	[self.server createDefaultSocketListener];
+	
+	CRoutingHTTPRequestHandler *theRoutingRequestHandler = [[[CRoutingHTTPRequestHandler alloc] init] autorelease];
+	theRoutingRequestHandler.router = self.requestRouter;
+
+	[self.server.defaultRequestHandlers addObject:theRoutingRequestHandler];
+
+	[self.server.socketListener start:NULL];
+
 
 	NSInvocationOperation *theServerOperation = [[[NSInvocationOperation alloc] initWithTarget:self.server selector:@selector(serveForever) object:NULL] autorelease];
 
@@ -34,16 +42,15 @@ if (self.server == NULL)
 	[self.queue addOperation:theServerOperation];
 
 	[CUserDefaultsHTTPClient standardUserDefaults].host = [NSHost currentHost];
-	[CUserDefaultsHTTPClient standardUserDefaults].port = self.server.port;
-	
+	[CUserDefaultsHTTPClient standardUserDefaults].port = self.server.socketListener.port;
 	}
 }
 
 - (void)tearDown
 {
-[self.server stop];
+[self.server.socketListener stop];
 self.server = NULL;
-self.requestHandler = NULL;
+self.requestRouter = NULL;
 self.queue = NULL;
 }
 
@@ -53,9 +60,9 @@ self.queue = NULL;
 
 id theInputValue = @"banana";
 NSString *theKey = @"some_key";
-STAssertNil([self.requestHandler.store objectForKey:theKey], NULL);
+STAssertNil([self.requestRouter.store objectForKey:theKey], NULL);
 [[CUserDefaultsHTTPClient standardUserDefaults] setObject:theInputValue forKey:theKey];
-STAssertEqualObjects(theInputValue, [self.requestHandler.store objectForKey:theKey], NULL);
+STAssertEqualObjects(theInputValue, [self.requestRouter.store objectForKey:theKey], NULL);
 id theOutputValue = [[CUserDefaultsHTTPClient standardUserDefaults] objectForKey:theKey];
 STAssertEqualObjects(theInputValue, theOutputValue, NULL);
 
@@ -64,9 +71,9 @@ STAssertEqualObjects(theInputValue, theOutputValue, NULL);
 
 - (void)processKey:(NSString *)inKey value:(id)inValue
 {
-STAssertNil([self.requestHandler.store objectForKey:inKey], NULL);
+STAssertNil([self.requestRouter.store objectForKey:inKey], NULL);
 [[CUserDefaultsHTTPClient standardUserDefaults] setObject:inValue forKey:inKey];
-STAssertEqualObjects([inValue description], [[self.requestHandler.store objectForKey:inKey] description], NULL);
+STAssertEqualObjects([inValue description], [[self.requestRouter.store objectForKey:inKey] description], NULL);
 id theOutputValue = [[CUserDefaultsHTTPClient standardUserDefaults] objectForKey:inKey];
 STAssertEqualObjects([inValue description], [theOutputValue description], NULL);
 }
@@ -147,13 +154,13 @@ NSString *theKey = @"this is & a = key with a / funny | name";
 
 id theInputValue = @"banana";
 NSString *theKey = @"some_key";
-STAssertNil([self.requestHandler.store objectForKey:theKey], NULL);
+STAssertNil([self.requestRouter.store objectForKey:theKey], NULL);
 [[CUserDefaultsHTTPClient standardUserDefaults] setObject:theInputValue forKey:theKey];
-STAssertEqualObjects(theInputValue, [self.requestHandler.store objectForKey:theKey], NULL);
+STAssertEqualObjects(theInputValue, [self.requestRouter.store objectForKey:theKey], NULL);
 id theOutputValue = [[CUserDefaultsHTTPClient standardUserDefaults] objectForKey:theKey];
 STAssertEqualObjects(theInputValue, theOutputValue, NULL);
 [[CUserDefaultsHTTPClient standardUserDefaults] removeObjectForKey:theKey];
-STAssertNil([self.requestHandler.store objectForKey:theKey], NULL);
+STAssertNil([self.requestRouter.store objectForKey:theKey], NULL);
 theOutputValue = [[CUserDefaultsHTTPClient standardUserDefaults] objectForKey:theKey];
 STAssertNil(theOutputValue, NULL);
 

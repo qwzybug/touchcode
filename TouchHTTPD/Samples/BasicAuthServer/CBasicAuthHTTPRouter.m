@@ -6,36 +6,15 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
-#import "CBasicAuthHTTPHandler.h"
+#import "CBasicAuthHTTPRouter.h"
 
-#import "CRoutingHTTPConnection.h"
+#import "CRoutingHTTPRequestHandler.h"
 #import "CHTTPMessage.h"
 #import "CHTTPMessage_ConvenienceExtensions.h"
 
-@implementation CBasicAuthHTTPHandler
+@implementation CBasicAuthHTTPRouter
 
-- (id)init
-{
-if ((self = [super init]) != NULL)
-	{
-	}
-return(self);
-}
-
-- (void)dealloc
-{
-//
-[super dealloc];
-}
-
-- (CTCPConnection *)TCPServer:(CTCPServer *)inServer createTCPConnectionWithAddress:(NSData *)inAddress inputStream:(NSInputStream *)inInputStream outputStream:(NSOutputStream *)inOutputStream;
-{
-CRoutingHTTPConnection *theConnection = [[[CRoutingHTTPConnection alloc] initWithTCPServer:inServer address:inAddress inputStream:inInputStream outputStream:inOutputStream] autorelease];
-theConnection.router = self;
-return(theConnection);
-}
-
-- (BOOL)routeConnection:(CRoutingHTTPConnection *)inConnection request:(CHTTPMessage *)inRequest toTarget:(id *)outTarget selector:(SEL *)outSelector error:(NSError **)outError;
+- (BOOL)routeConnection:(CRoutingHTTPRequestHandler *)inConnection request:(CHTTPMessage *)inRequest toTarget:(id *)outTarget selector:(SEL *)outSelector error:(NSError **)outError;
 {
 #pragma unused (inConnection, inRequest, outTarget, outSelector, outError)
 

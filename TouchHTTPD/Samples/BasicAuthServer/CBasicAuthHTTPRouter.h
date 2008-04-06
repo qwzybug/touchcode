@@ -8,10 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "CTCPServer.h"
-#import "CRoutingHTTPConnection.h"
+#import "CTCPSocketListener.h"
+#import "CRoutingHTTPRequestHandler.h"
 
-@interface CBasicAuthHTTPHandler : NSObject <CTCPServerDelegate, CHTTPRequestRouter> {
+@interface CBasicAuthHTTPRouter : NSObject <CHTTPRequestRouter> {
 }
 
 @end

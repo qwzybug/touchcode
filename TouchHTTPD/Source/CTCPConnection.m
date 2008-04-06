@@ -8,10 +8,10 @@
 
 #import "CTCPConnection.h"
 
-#import "CTCPServer.h"
+#import "CTCPSocketListener.h"
 
 @interface CTCPConnection ()
-@property (readwrite, assign) CTCPServer *server;
+@property (readwrite, assign) CTCPSocketListener *server;
 @property (readwrite, retain) NSData *address;
 @property (readwrite, retain) NSInputStream *inputStream;
 @property (readwrite, retain) NSOutputStream *outputStream;
@@ -24,7 +24,7 @@
 @synthesize inputStream;
 @synthesize outputStream;
 
-- (id)initWithTCPServer:(CTCPServer *)inServer address:(NSData *)inAddress inputStream:(NSInputStream *)inInputStream outputStream:(NSOutputStream *)inOutputStream
+- (id)initWithTCPServer:(CTCPSocketListener *)inServer address:(NSData *)inAddress inputStream:(NSInputStream *)inInputStream outputStream:(NSOutputStream *)inOutputStream
 {
 if ((self = [self init]) != NULL)
 	{

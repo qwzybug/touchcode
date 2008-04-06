@@ -6,14 +6,14 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
-#import "CSampleHTTPHandler.h"
+#import "CWebcamHTTPRouter.h"
 
-#import "CRoutingHTTPConnection.h"
+#import "CRoutingHTTPRequestHandler.h"
 #import "CHTTPMessage.h"
 #import "CHTTPMessage_ConvenienceExtensions.h"
 #import "CQTCaptureSnapshot.h"
 
-@implementation CSampleHTTPHandler
+@implementation CWebcamHTTPRouter
 
 @synthesize snapshot;
 
@@ -33,14 +33,7 @@ self.snapshot = NULL;
 [super dealloc];
 }
 
-- (CTCPConnection *)TCPServer:(CTCPServer *)inServer createTCPConnectionWithAddress:(NSData *)inAddress inputStream:(NSInputStream *)inInputStream outputStream:(NSOutputStream *)inOutputStream;
-{
-CRoutingHTTPConnection *theConnection = [[[CRoutingHTTPConnection alloc] initWithTCPServer:inServer address:inAddress inputStream:inInputStream outputStream:inOutputStream] autorelease];
-theConnection.router = self;
-return(theConnection);
-}
-
-- (BOOL)routeConnection:(CRoutingHTTPConnection *)inConnection request:(CHTTPMessage *)inRequest toTarget:(id *)outTarget selector:(SEL *)outSelector error:(NSError **)outError;
+- (BOOL)routeConnection:(CRoutingHTTPRequestHandler *)inConnection request:(CHTTPMessage *)inRequest toTarget:(id *)outTarget selector:(SEL *)outSelector error:(NSError **)outError;
 {
 #pragma unused (inConnection, inRequest, outTarget, outSelector, outError)
 NSURL *theURL = [inRequest requestURL];

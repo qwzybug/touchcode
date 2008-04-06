@@ -9,11 +9,14 @@
 #import "CBufferedTCPConnection.h"
 
 @class CHTTPMessage;
+@class CHTTPRequestHandler;
 
 @interface CHTTPConnection : CBufferedTCPConnection {
 	CHTTPMessage *request;
-	CHTTPMessage *response;
+	NSMutableArray *requestHandlers;
 }
+
+@property (readwrite, retain) NSMutableArray *requestHandlers;
 
 - (void)requestReceived:(CHTTPMessage *)inRequest;
 - (void)sendResponse:(CHTTPMessage *)inResponse;

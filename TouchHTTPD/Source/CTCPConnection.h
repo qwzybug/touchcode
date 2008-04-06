@@ -8,21 +8,21 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class CTCPServer;
+@class CTCPSocketListener;
 
 @interface CTCPConnection : NSObject {
-	CTCPServer *server; // Not retained.
+	CTCPSocketListener *server; // Not retained.
 	NSData *address;
 	NSInputStream *inputStream;
 	NSOutputStream *outputStream;
 }
 
-@property (readonly, assign) CTCPServer *server;
+@property (readonly, assign) CTCPSocketListener *server;
 @property (readonly, retain) NSData *address;
 @property (readonly, retain) NSInputStream *inputStream;
 @property (readonly, retain) NSOutputStream *outputStream;
 
-- (id)initWithTCPServer:(CTCPServer *)inServer address:(NSData *)inAddress inputStream:(NSInputStream *)inInputStream outputStream:(NSOutputStream *)inOutputStream;
+- (id)initWithTCPServer:(CTCPSocketListener *)inServer address:(NSData *)inAddress inputStream:(NSInputStream *)inInputStream outputStream:(NSOutputStream *)inOutputStream;
 
 - (void)inputStreamHandleEvent:(NSStreamEvent)inEventCode;
 - (void)outputStreamHandleEvent:(NSStreamEvent)inEventCode;

@@ -4,7 +4,7 @@
  Abstract: Interface description for a basic TCP/IP server Foundation class
 */ 
 
-#import "CTCPServer.h"
+#import "CTCPSocketListener.h"
 
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -14,7 +14,7 @@
 
 static void TCPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType type, CFDataRef address, const void *data, void *info);
 
-@interface CTCPServer ()
+@interface CTCPSocketListener ()
 
 @property (readwrite, assign) CFSocketRef IPV4Socket;
 @property (readwrite, assign) CFSocketRef IPV6Socket;
@@ -28,7 +28,7 @@ static void TCPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType typ
 
 @end
 
-@implementation CTCPServer
+@implementation CTCPSocketListener
 
 @synthesize delegate;
 @synthesize port;
@@ -423,7 +423,7 @@ static void TCPServerAcceptCallBack(CFSocketRef inSocket, CFSocketCallBackType i
 {
 #pragma unused (inSocket, inAddress)
 
-CTCPServer *theTCPServer = (CTCPServer *)ioInfo;
+CTCPSocketListener *theTCPSocketListener = (CTCPSocketListener *)ioInfo;
 if (inCallbackType == kCFSocketAcceptCallBack)
 	{ 
 	// for an AcceptCallBack, the data parameter is a pointer to a CFSocketNativeHandle
@@ -436,7 +436,7 @@ if (inCallbackType == kCFSocketAcceptCallBack)
 		thePeerAddress = [NSData dataWithBytes:theSocketName length:theSocketNameLength];
 		}
 		
-	[theTCPServer handleNewConnectionFromAddress:thePeerAddress nativeHandke:theNativeSocketHandle];
+	[theTCPSocketListener handleNewConnectionFromAddress:thePeerAddress nativeHandke:theNativeSocketHandle];
 	}
 else
 	{

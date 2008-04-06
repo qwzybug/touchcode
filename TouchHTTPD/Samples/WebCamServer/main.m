@@ -1,37 +1,41 @@
 #import <Foundation/Foundation.h>
 
-#import "CTCPServer.h"
+#import "CTCPSocketListener.h"
 #import "CTCPEchoConnection.h"
 #import "CHTTPConnection.h"
-#import "CRoutingHTTPConnection.h"
+#import "CRoutingHTTPRequestHandler.h"
 #import "CNATPMPManager.h"
-#import "CSampleHTTPHandler.h"
+#import "CHTTPServer.h"
+#import "CWebcamHTTPRouter.h"
 
 int main (int argc, const char * argv[])
 {
 #pragma unused (argc, argv)
 
-NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
-CSampleHTTPHandler *theRequestHandler = [[[CSampleHTTPHandler alloc] init] autorelease];
+CHTTPServer *theHTTPServer = [[[CHTTPServer alloc] init] autorelease];
+[theHTTPServer createDefaultSocketListener];
 
-CTCPServer *theServer = [[[CTCPServer alloc] init] autorelease];
-theServer.delegate = theRequestHandler;
-theServer.type = @"_http._tcp.";
-theServer.port = 8080;
+CWebcamHTTPRouter *theRequestRouter = [[[CWebcamHTTPRouter alloc] init] autorelease];
 
-[theServer start:NULL];
+CRoutingHTTPRequestHandler *theRoutingRequestHandler = [[[CRoutingHTTPRequestHandler alloc] init] autorelease];
+theRoutingRequestHandler.router = theRequestRouter;
 
-NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%d/webcam.jpg", [[NSHost currentHost] name], theServer.port]];
-[[NSWorkspace sharedWorkspace] openURL:theURL];
+
+[theHTTPServer.defaultRequestHandlers addObject:theRoutingRequestHandler];
+
+[theHTTPServer.socketListener start:NULL];
 
 NSError *theError = NULL;
 CNATPMPManager *theManager = [[[CNATPMPManager alloc] init] autorelease];
 [theManager externalAddress:&theError];
-[theManager openPortForProtocol:NATPMP_PROTOCOL_TCP privatePort:theServer.port publicPort:theServer.port lifetime:5 * 60 error:&theError];
+[theManager openPortForProtocol:NATPMP_PROTOCOL_TCP privatePort:theHTTPServer.socketListener.port publicPort:theHTTPServer.socketListener.port lifetime:5 * 60 error:&theError];
 
+NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%d", [[NSHost currentHost] name], theHTTPServer.socketListener.port]];
+[[NSWorkspace sharedWorkspace] openURL:theURL];
 
-[theServer serveForever];
+[theHTTPServer.socketListener serveForever];
 
 [pool drain];
 return 0;

@@ -6,9 +6,9 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
-#import "CUserDefaultsHTTPHandler.h"
+#import "CUserDefaultsHTTPRouter.h"
 
-#import "CRoutingHTTPConnection.h"
+#import "CRoutingHTTPRequestHandler.h"
 #import "NSURL_Extensions.h"
 #import "CHTTPMessage.h"
 #import "CHTTPMessage_ConvenienceExtensions.h"
@@ -17,7 +17,7 @@
 // POST /key/<KEYNAME>
 // DELETE /key/<KEYNAME>
 
-@implementation CUserDefaultsHTTPHandler
+@implementation CUserDefaultsHTTPRouter
 
 @synthesize store;
 @synthesize storeURL;
@@ -33,6 +33,7 @@ return(self);
 
 - (void)dealloc
 {
+self.store = NULL;
 //
 [super dealloc];
 }
@@ -57,16 +58,7 @@ if (self.storeURL)
 
 #pragma mark -
 
-- (CTCPConnection *)TCPServer:(CTCPServer *)inServer createTCPConnectionWithAddress:(NSData *)inAddress inputStream:(NSInputStream *)inInputStream outputStream:(NSOutputStream *)inOutputStream;
-{
-CRoutingHTTPConnection *theConnection = [[[CRoutingHTTPConnection alloc] initWithTCPServer:inServer address:inAddress inputStream:inInputStream outputStream:inOutputStream] autorelease];
-theConnection.router = self;
-return(theConnection);
-}
-
-#pragma mark -
-
-- (BOOL)routeConnection:(CRoutingHTTPConnection *)inConnection request:(CHTTPMessage *)inRequest toTarget:(id *)outTarget selector:(SEL *)outSelector error:(NSError **)outError;
+- (BOOL)routeConnection:(CRoutingHTTPRequestHandler *)inConnection request:(CHTTPMessage *)inRequest toTarget:(id *)outTarget selector:(SEL *)outSelector error:(NSError **)outError;
 {
 #pragma unused (inConnection, outError)
 NSURL *theURL = inRequest.requestURL;

@@ -6,16 +6,16 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
-#import "CRoutingHTTPConnection.h"
+#import "CRoutingHTTPRequestHandler.h"
 
 #import "CHTTPMessage.h"
 #import "CHTTPMessage_ConvenienceExtensions.h"
 
-@implementation CRoutingHTTPConnection
+@implementation CRoutingHTTPRequestHandler
 
 @synthesize router;
 
-- (void)requestReceived:(CHTTPMessage *)inRequest
+- (BOOL)handleRequest:(CHTTPMessage *)inRequest forConnection:(CHTTPConnection *)inConnection response:(CHTTPMessage **)outResponse error:(NSError **)outError
 {
 CHTTPMessage *theResponse = NULL;
 
@@ -50,7 +50,8 @@ CHTTPMessage *theResponse = NULL;
 	{
 	}
 
-[self sendResponse:theResponse];
+*outResponse = theResponse;
+return(YES);
 }
 
 - (CHTTPMessage *)errorNotFoundResponseForRequest:(CHTTPMessage *)inRequest error:(NSError **)outError

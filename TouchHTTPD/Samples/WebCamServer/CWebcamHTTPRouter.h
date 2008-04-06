@@ -8,12 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "CTCPServer.h"
-#import "CRoutingHTTPConnection.h"
+#import "CRoutingHTTPRequestHandler.h"
 
 @class CQTCaptureSnapshot;
 
-@interface CSampleHTTPHandler : NSObject <CTCPServerDelegate, CHTTPRequestRouter> {
+@interface CWebcamHTTPRouter : NSObject <CHTTPRequestRouter> {
 	CQTCaptureSnapshot *snapshot;
 }
 

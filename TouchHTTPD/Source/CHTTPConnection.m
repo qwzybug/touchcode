@@ -9,23 +9,32 @@
 #import "CHTTPConnection.h"
 
 #import "CHTTPMessage.h"
+#import "CHTTPRequestHandler.h"
 
 @interface CHTTPConnection ()
 @property (readwrite, retain) CHTTPMessage *request;
-@property (readwrite, retain) CHTTPMessage *response;
 @end
 
 #pragma mark -
 
 @implementation CHTTPConnection
 
+@synthesize requestHandlers;
 @synthesize request;
-@synthesize response;
+
+- (id)init
+{
+if ((self = [super init]) != NULL)
+	{
+	self.requestHandlers = [NSMutableArray array];
+	}
+return(self);
+}
 
 - (void)dealloc
 {
+self.requestHandlers = NULL;
 self.request = NULL;
-self.response = NULL;
 //
 [super dealloc];
 }
@@ -53,7 +62,18 @@ if ([self.request isHeaderComplete])
 
 - (void)requestReceived:(CHTTPMessage *)inRequest
 {
-#pragma unused (inRequest)
+
+CHTTPMessage *theResponse = NULL;
+NSError *theError = NULL;
+for (CHTTPRequestHandler *theHandler in self.requestHandlers)
+	{
+	NSLog(@"requestReceived - trying: %@", theHandler);
+	BOOL theResult = [theHandler handleRequest:inRequest forConnection:self response:&theResponse error:&theError];
+	if (theResult == YES)
+		break;
+	}
+if (theResponse != NULL)
+	[self sendResponse:theResponse];
 }
 
 - (void)sendResponse:(CHTTPMessage *)inResponse

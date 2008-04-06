@@ -8,17 +8,17 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-@class CTCPServer;
-@class CUserDefaultsHTTPHandler;
+@class CHTTPServer;
+@class CUserDefaultsHTTPRouter;
 
 @interface CUserDefaultsHTTPHandlerUnitTests : SenTestCase {
 	NSOperationQueue *queue;
-	CTCPServer *server;
-	CUserDefaultsHTTPHandler *requestHandler;
+	CHTTPServer *server;
+	CUserDefaultsHTTPRouter *requestRouter;
 }
 
 @property (readwrite, retain) NSOperationQueue *queue;
-@property (readwrite, retain) CTCPServer *server;
-@property (readwrite, retain) CUserDefaultsHTTPHandler *requestHandler;
+@property (readwrite, retain) CHTTPServer *server;
+@property (readwrite, retain) CUserDefaultsHTTPRouter *requestRouter;
 
 @end
