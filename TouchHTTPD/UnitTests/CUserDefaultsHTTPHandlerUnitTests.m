@@ -24,19 +24,15 @@
 if (self.server == NULL)
 	{
 	self.requestRouter = [[[CUserDefaultsHTTPRouter alloc] init] autorelease];
-
-	self.server = [[[CHTTPServer alloc] init] autorelease];
-	[self.server createDefaultSocketListener];
 	
 	CRoutingHTTPRequestHandler *theRoutingRequestHandler = [[[CRoutingHTTPRequestHandler alloc] init] autorelease];
 	theRoutingRequestHandler.router = self.requestRouter;
 
+	self.server = [[[CHTTPServer alloc] init] autorelease];
+	[self.server createDefaultSocketListener];
 	[self.server.defaultRequestHandlers addObject:theRoutingRequestHandler];
 
-	[self.server.socketListener start:NULL];
-
-
-	NSInvocationOperation *theServerOperation = [[[NSInvocationOperation alloc] initWithTarget:self.server selector:@selector(serveForever) object:NULL] autorelease];
+	NSInvocationOperation *theServerOperation = [[[NSInvocationOperation alloc] initWithTarget:self.server.socketListener selector:@selector(serveForever) object:NULL] autorelease];
 
 	self.queue = [[[NSOperationQueue alloc] init] autorelease];
 	[self.queue addOperation:theServerOperation];
@@ -133,21 +129,6 @@ NSString *theKey = @"some_key";
 [self tearDown];
 }
 
-#pragma mark -
-
-/*
-- (void)testFunkeyKeyNames
-{
-[self prepare];
-
-id theInputValue = @"banana";
-NSString *theKey = @"this is & a = key with a / funny | name";
-[self processKey:theKey value:theInputValue];
-
-[self tearDown];
-}
-*/
-
 - (void)testDeletions
 {
 [self prepare];
@@ -166,5 +147,20 @@ STAssertNil(theOutputValue, NULL);
 
 [self tearDown];
 }
+
+#pragma mark -
+
+/*
+- (void)testFunkeyKeyNames
+{
+[self prepare];
+
+id theInputValue = @"banana";
+NSString *theKey = @"this is & a = key with a / funny | name";
+[self processKey:theKey value:theInputValue];
+
+[self tearDown];
+}
+*/
 
 @end
