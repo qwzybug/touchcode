@@ -47,9 +47,9 @@ if (self.socketListener == NULL)
 	}
 }
 
-- (CTCPConnection *)TCPServer:(CTCPSocketListener *)inServer createTCPConnectionWithAddress:(NSData *)inAddress inputStream:(NSInputStream *)inInputStream outputStream:(NSOutputStream *)inOutputStream;
+- (CTCPConnection *)TCPSocketListener:(CTCPSocketListener *)inSocketListener createTCPConnectionWithAddress:(NSData *)inAddress inputStream:(NSInputStream *)inInputStream outputStream:(NSOutputStream *)inOutputStream;
 {
-CHTTPConnection *theConnection = [[[CHTTPConnection alloc] initWithTCPServer:inServer address:inAddress inputStream:inInputStream outputStream:inOutputStream] autorelease];
+CHTTPConnection *theConnection = [[[CHTTPConnection alloc] initWithTCPSocketListener:inSocketListener address:inAddress inputStream:inInputStream outputStream:inOutputStream] autorelease];
 
 theConnection.requestHandlers = defaultRequestHandlers;
 

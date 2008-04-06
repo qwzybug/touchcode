@@ -62,7 +62,6 @@ if ([self.request isHeaderComplete])
 
 - (void)requestReceived:(CHTTPMessage *)inRequest
 {
-
 CHTTPMessage *theResponse = NULL;
 NSError *theError = NULL;
 for (CHTTPRequestHandler *theHandler in self.requestHandlers)

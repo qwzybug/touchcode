@@ -1,8 +1,10 @@
-/*
- File: TCPServer.m
- 
- Abstract: Interface description for a basic TCP/IP server Foundation class
-*/ 
+//
+//  CTCPSocketListener.m
+//  TouchHTTP
+//
+//  Created by Jonathan Wight on 03/11/08.
+//  Copyright 2008 __MyCompanyName__. All rights reserved.
+//
 
 #import "CTCPSocketListener.h"
 
@@ -12,7 +14,7 @@
 
 #import "CTCPConnection.h"
 
-static void TCPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType type, CFDataRef address, const void *data, void *info);
+static void TCPSocketListenerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType type, CFDataRef address, const void *data, void *info);
 
 @interface CTCPSocketListener ()
 
@@ -251,14 +253,14 @@ while (theFlag)
 {
 CTCPConnection *theConnection = NULL;
 
-if (self.delegate && [(id)self.delegate respondsToSelector:@selector(TCPServer:createTCPConnectionWithAddress:inputStream:outputStream:)])
+if (self.delegate && [(id)self.delegate respondsToSelector:@selector(TCPSocketListener:createTCPConnectionWithAddress:inputStream:outputStream:)])
 	{
-	theConnection = [self.delegate TCPServer:self createTCPConnectionWithAddress:inAddress inputStream:inInputStream outputStream:inOutputStream];
+	theConnection = [self.delegate TCPSocketListener:self createTCPConnectionWithAddress:inAddress inputStream:inInputStream outputStream:inOutputStream];
 	}
 
 if (theConnection == NULL)
 	{
-	theConnection = [[[self.connectionClass alloc] initWithTCPServer:self address:inAddress inputStream:inInputStream outputStream:inOutputStream] autorelease];
+	theConnection = [[[self.connectionClass alloc] initWithTCPSocketListener:self address:inAddress inputStream:inInputStream outputStream:inOutputStream] autorelease];
 	}
 return(theConnection);
 }
@@ -328,7 +330,7 @@ NSError *theError = NULL;
 - (BOOL)openIPV4Socket:(NSError **)outError
 {
 CFSocketContext socketCtxt = { 0, self, NULL, NULL, NULL };
-CFSocketRef theSocket = CFSocketCreate(kCFAllocatorDefault, PF_INET, SOCK_STREAM, IPPROTO_TCP, kCFSocketAcceptCallBack, (CFSocketCallBack)&TCPServerAcceptCallBack, &socketCtxt);
+CFSocketRef theSocket = CFSocketCreate(kCFAllocatorDefault, PF_INET, SOCK_STREAM, IPPROTO_TCP, kCFSocketAcceptCallBack, (CFSocketCallBack)&TCPSocketListenerAcceptCallBack, &socketCtxt);
 if (theSocket == NULL)
 	{
 	if (outError)
@@ -377,7 +379,7 @@ return(YES);
 - (BOOL)openIPV6Socket:(NSError **)outError
 {
 CFSocketContext socketCtxt = { 0, self, NULL, NULL, NULL };
-CFSocketRef theSocket = CFSocketCreate(kCFAllocatorDefault, PF_INET, SOCK_STREAM, IPPROTO_TCP, kCFSocketAcceptCallBack, (CFSocketCallBack)&TCPServerAcceptCallBack, &socketCtxt);
+CFSocketRef theSocket = CFSocketCreate(kCFAllocatorDefault, PF_INET, SOCK_STREAM, IPPROTO_TCP, kCFSocketAcceptCallBack, (CFSocketCallBack)&TCPSocketListenerAcceptCallBack, &socketCtxt);
 if (theSocket == NULL)
 	{
 	if (outError)
@@ -418,8 +420,8 @@ return(YES);
 
 @end
 
-// This function is called by CFSocket when a new connection comes in. We gather some data here, and convert the function call to a method invocation on TCPServer.
-static void TCPServerAcceptCallBack(CFSocketRef inSocket, CFSocketCallBackType inCallbackType, CFDataRef inAddress, const void *inData, void *ioInfo)
+// This function is called by CFSocket when a new connection comes in. We gather some data here, and convert the function call to a method invocation on TCPSocketListener.
+static void TCPSocketListenerAcceptCallBack(CFSocketRef inSocket, CFSocketCallBackType inCallbackType, CFDataRef inAddress, const void *inData, void *ioInfo)
 {
 #pragma unused (inSocket, inAddress)
 

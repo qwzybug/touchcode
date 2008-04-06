@@ -1,8 +1,10 @@
-/*
- File: CTCPServer.h
- 
- Abstract: Interface description for a basic TCP/IP server Foundation class
-*/ 
+//
+//  CTCPSocketListener.h
+//  TouchHTTP
+//
+//  Created by Jonathan Wight on 03/11/08.
+//  Copyright 2008 __MyCompanyName__. All rights reserved.
+//
 
 #import <Foundation/Foundation.h>
 #import <CoreServices/CoreServices.h>
@@ -57,6 +59,6 @@
 @protocol CTCPSocketListenerDelegate
 
 @optional
-- (CTCPConnection *)TCPServer:(CTCPSocketListener *)inServer createTCPConnectionWithAddress:(NSData *)inAddress inputStream:(NSInputStream *)inInputStream outputStream:(NSOutputStream *)inOutputStream;
+- (CTCPConnection *)TCPSocketListener:(CTCPSocketListener *)inSocketListener createTCPConnectionWithAddress:(NSData *)inAddress inputStream:(NSInputStream *)inInputStream outputStream:(NSOutputStream *)inOutputStream;
 
 @end

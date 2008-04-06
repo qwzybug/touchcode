@@ -11,18 +11,18 @@
 @class CTCPSocketListener;
 
 @interface CTCPConnection : NSObject {
-	CTCPSocketListener *server; // Not retained.
+	CTCPSocketListener *socketListener; // Not retained.
 	NSData *address;
 	NSInputStream *inputStream;
 	NSOutputStream *outputStream;
 }
 
-@property (readonly, assign) CTCPSocketListener *server;
+@property (readonly, assign) CTCPSocketListener *socketListener;
 @property (readonly, retain) NSData *address;
 @property (readonly, retain) NSInputStream *inputStream;
 @property (readonly, retain) NSOutputStream *outputStream;
 
-- (id)initWithTCPServer:(CTCPSocketListener *)inServer address:(NSData *)inAddress inputStream:(NSInputStream *)inInputStream outputStream:(NSOutputStream *)inOutputStream;
+- (id)initWithTCPSocketListener:(CTCPSocketListener *)inSocketListener address:(NSData *)inAddress inputStream:(NSInputStream *)inInputStream outputStream:(NSOutputStream *)inOutputStream;
 
 - (void)inputStreamHandleEvent:(NSStreamEvent)inEventCode;
 - (void)outputStreamHandleEvent:(NSStreamEvent)inEventCode;

@@ -11,7 +11,7 @@
 #import "CTCPSocketListener.h"
 
 @interface CTCPConnection ()
-@property (readwrite, assign) CTCPSocketListener *server;
+@property (readwrite, assign) CTCPSocketListener *socketListener;
 @property (readwrite, retain) NSData *address;
 @property (readwrite, retain) NSInputStream *inputStream;
 @property (readwrite, retain) NSOutputStream *outputStream;
@@ -19,16 +19,16 @@
 
 @implementation CTCPConnection
 
-@synthesize server;
+@synthesize socketListener;
 @synthesize address;
 @synthesize inputStream;
 @synthesize outputStream;
 
-- (id)initWithTCPServer:(CTCPSocketListener *)inServer address:(NSData *)inAddress inputStream:(NSInputStream *)inInputStream outputStream:(NSOutputStream *)inOutputStream
+- (id)initWithTCPSocketListener:(CTCPSocketListener *)inSocketListener address:(NSData *)inAddress inputStream:(NSInputStream *)inInputStream outputStream:(NSOutputStream *)inOutputStream
 {
 if ((self = [self init]) != NULL)
 	{
-	self.server = inServer;
+	self.socketListener = inSocketListener;
 	self.address = inAddress;
 	self.inputStream = inInputStream;
 	self.outputStream = inOutputStream;
@@ -41,7 +41,7 @@ return(self);
 
 - (void)dealloc
 {
-self.server = NULL;
+self.socketListener = NULL;
 self.address = NULL;
 self.inputStream = NULL;
 self.outputStream = NULL;
@@ -52,7 +52,7 @@ self.outputStream = NULL;
 - (BOOL)open:(NSError **)outError
 {
 #pragma unused (outError)
-[self.server connectionWillOpen:self];
+[self.socketListener connectionWillOpen:self];
 
 [self.inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:(id)kCFRunLoopCommonModes];
 [self.outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:(id)kCFRunLoopCommonModes];
@@ -60,14 +60,14 @@ self.outputStream = NULL;
 [self.inputStream open];
 [self.outputStream open];
 
-[self.server connectionDidOpen:self];
+[self.socketListener connectionDidOpen:self];
 
 return(YES);
 }
 
 - (void)close
 {
-[self.server connectionWillClose:self];
+[self.socketListener connectionWillClose:self];
 
 [self.inputStream close];
 [self.outputStream close];
@@ -78,7 +78,7 @@ return(YES);
 self.inputStream.delegate = NULL;
 self.outputStream.delegate = NULL;
 
-[self.server connectionDidClose:self];
+[self.socketListener connectionDidClose:self];
 }
 
 - (void)stream:(NSStream *)inStream handleEvent:(NSStreamEvent)inEventCode

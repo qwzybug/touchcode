@@ -13,9 +13,11 @@
 			buildPhases = (
 			);
 			dependencies = (
+				451339C90DA84BC500535F85 /* PBXTargetDependency */,
 				451339C50DA84BC500535F85 /* PBXTargetDependency */,
 				451339C70DA84BC500535F85 /* PBXTargetDependency */,
-				451339C90DA84BC500535F85 /* PBXTargetDependency */,
+				454EF5660DA96AF5005E651B /* PBXTargetDependency */,
+				454EF5680DA96AF5005E651B /* PBXTargetDependency */,
 			);
 			name = All;
 			productName = All;
@@ -169,6 +171,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 45DFF2C20DA8378D00103CBA;
 			remoteInfo = UnitTests;
+		};
+		454EF5650DA96AF5005E651B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 454EF4580DA89F8F005E651B;
+			remoteInfo = BasicAuthServer;
+		};
+		454EF5670DA96AF5005E651B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 455CD9110DA93A5B0039F01A;
+			remoteInfo = HelloWorldServer;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -815,6 +831,16 @@
 			isa = PBXTargetDependency;
 			target = 45DFF2C20DA8378D00103CBA /* UnitTests */;
 			targetProxy = 451339C80DA84BC500535F85 /* PBXContainerItemProxy */;
+		};
+		454EF5660DA96AF5005E651B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 454EF4580DA89F8F005E651B /* BasicAuthServer */;
+			targetProxy = 454EF5650DA96AF5005E651B /* PBXContainerItemProxy */;
+		};
+		454EF5680DA96AF5005E651B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 455CD9110DA93A5B0039F01A /* HelloWorldServer */;
+			targetProxy = 454EF5670DA96AF5005E651B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

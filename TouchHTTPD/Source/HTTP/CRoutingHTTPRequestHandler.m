@@ -17,6 +17,7 @@
 
 - (BOOL)handleRequest:(CHTTPMessage *)inRequest forConnection:(CHTTPConnection *)inConnection response:(CHTTPMessage **)outResponse error:(NSError **)outError
 {
+#pragma unused (inConnection, outError)
 CHTTPMessage *theResponse = NULL;
 
 @try
