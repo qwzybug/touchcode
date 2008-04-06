@@ -32,10 +32,6 @@
 		45133BDE0DA8770200535F85 /* CHTTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 45133BDC0DA8770200535F85 /* CHTTPMessage.m */; };
 		45133BDF0DA8770200535F85 /* CHTTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 45133BDC0DA8770200535F85 /* CHTTPMessage.m */; };
 		454EF3670DA8876C005E651B /* NSString_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45133B510DA8709D00535F85 /* NSString_Extensions.m */; };
-		454EF4520DA89F7E005E651B /* CBasicAuthHTTPHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 454EF4500DA89F7E005E651B /* CBasicAuthHTTPHandler.m */; };
-		454EF4530DA89F7E005E651B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 454EF4510DA89F7E005E651B /* main.m */; };
-		454EF4560DA89F7E005E651B /* CBasicAuthHTTPHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 454EF4500DA89F7E005E651B /* CBasicAuthHTTPHandler.m */; };
-		454EF4570DA89F7E005E651B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 454EF4510DA89F7E005E651B /* main.m */; };
 		454EF45A0DA89F8F005E651B /* CBufferedTCPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271430DA7FF2C007D8730 /* CBufferedTCPConnection.m */; };
 		454EF45B0DA89F8F005E651B /* CHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271450DA7FF2C007D8730 /* CHTTPConnection.m */; };
 		454EF45C0DA89F8F005E651B /* CNATPMPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B271490DA7FF2C007D8730 /* CNATPMPManager.m */; };
@@ -597,8 +593,6 @@
 				45133B530DA870A000535F85 /* NSString_Extensions.m in Sources */,
 				45133BDE0DA8770200535F85 /* CHTTPMessage.m in Sources */,
 				4572C5CC0DA87D2700C16D0D /* CHTTPMessage_ConvenienceExtensions.m in Sources */,
-				454EF4560DA89F7E005E651B /* CBasicAuthHTTPHandler.m in Sources */,
-				454EF4570DA89F7E005E651B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -622,8 +616,6 @@
 				45133B520DA8709D00535F85 /* NSString_Extensions.m in Sources */,
 				45133BDD0DA8770200535F85 /* CHTTPMessage.m in Sources */,
 				4572C5CA0DA87D2700C16D0D /* CHTTPMessage_ConvenienceExtensions.m in Sources */,
-				454EF4520DA89F7E005E651B /* CBasicAuthHTTPHandler.m in Sources */,
-				454EF4530DA89F7E005E651B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

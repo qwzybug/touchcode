@@ -41,7 +41,7 @@ NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%d",
 [CUserDefaultsHTTPClient standardUserDefaults].host = [NSHost currentHost];
 [CUserDefaultsHTTPClient standardUserDefaults].port = theServer.port;
 
-id foo = [[CUserDefaultsHTTPClient standardUserDefaults] objectForKey:@"asfasfaf"];
+[[CUserDefaultsHTTPClient standardUserDefaults] objectForKey:@"asfasfaf"];
 
 
 id theInputValue = @"banana";
