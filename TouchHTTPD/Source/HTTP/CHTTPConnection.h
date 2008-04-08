@@ -11,7 +11,7 @@
 @class CHTTPMessage;
 @class CHTTPRequestHandler;
 
-@interface CHTTPConnection : CBufferedTCPConnection {
+@interface CHTTPConnection : CProtocol {
 	CHTTPMessage *request;
 	NSMutableArray *requestHandlers;
 }

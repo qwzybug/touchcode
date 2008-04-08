@@ -1,11 +1,8 @@
 #import <Foundation/Foundation.h>
 
-#import "CTCPSocketListener.h"
 #import "CHTTPServer.h"
-#import "CHTTPConnection.h"
-#import "CRoutingHTTPRequestHandler.h"
-#import "CNATPMPManager.h"
-#import "CBasicAuthHTTPRouter.h"
+#import "CHelloWorldHTTPHandler.h"
+#import "CHTTPBasicAuthHandler.h"
 
 int main (int argc, const char * argv[])
 {
@@ -16,13 +13,11 @@ NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 CHTTPServer *theHTTPServer = [[[CHTTPServer alloc] init] autorelease];
 [theHTTPServer createDefaultSocketListener];
 
-CBasicAuthHTTPRouter *theRequestRouter = [[[CBasicAuthHTTPRouter alloc] init] autorelease];
+CHelloWorldHTTPHandler *theRequestHandler = [[[CHelloWorldHTTPHandler alloc] init] autorelease];
 
-CRoutingHTTPRequestHandler *theRoutingRequestHandler = [[[CRoutingHTTPRequestHandler alloc] init] autorelease];
-theRoutingRequestHandler.router = theRequestRouter;
-
-
-[theHTTPServer.defaultRequestHandlers addObject:theRoutingRequestHandler];
+CHTTPBasicAuthHandler *theAuthHandler = [[[CHTTPBasicAuthHandler alloc] init] autorelease];
+theAuthHandler.childHandler = theRequestHandler;
+[theHTTPServer.defaultRequestHandlers addObject:theAuthHandler];
 
 [theHTTPServer.socketListener start:NULL];
 

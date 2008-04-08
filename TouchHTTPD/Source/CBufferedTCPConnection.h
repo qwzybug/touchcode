@@ -9,11 +9,10 @@
 #import "CTCPConnection.h"
 
 @interface CBufferedTCPConnection : CTCPConnection {
-	NSMutableData *inputBuffer;
+	BOOL bufferOutput;
 	NSMutableData *outputBuffer;
 }
 
-- (void)dataReceived:(NSData *)inData;
-- (void)sendData:(NSData *)inData;
+@property (readwrite, assign) BOOL bufferOutput;
 
 @end

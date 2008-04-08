@@ -13,10 +13,14 @@
 @interface CHTTPServer : NSObject <CTCPSocketListenerDelegate> {
 	CTCPSocketListener *socketListener;
 	NSMutableArray *defaultRequestHandlers;
+	BOOL useHTTPS;
+	NSArray *SSLCertificates;
 }
 
 @property (readwrite, retain) CTCPSocketListener *socketListener;
 @property (readwrite, retain) NSMutableArray *defaultRequestHandlers;
+@property (readwrite, assign) BOOL useHTTPS;
+@property (readwrite, retain) NSArray *SSLCertificates;
 
 - (void)createDefaultSocketListener;
 

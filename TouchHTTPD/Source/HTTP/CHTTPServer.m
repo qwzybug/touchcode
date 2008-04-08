@@ -9,6 +9,7 @@
 #import "CHTTPServer.h"
 
 #import "CHTTPConnection.h"
+#import "CSecureTransportConnection.h"
 
 #import "CHelloWorldHTTPHandler.h" // TODO remove me
 
@@ -16,6 +17,8 @@
 
 @synthesize socketListener;
 @synthesize defaultRequestHandlers;
+@synthesize useHTTPS;
+@synthesize SSLCertificates;
 
 - (id)init
 {
@@ -49,11 +52,29 @@ if (self.socketListener == NULL)
 
 - (CTCPConnection *)TCPSocketListener:(CTCPSocketListener *)inSocketListener createTCPConnectionWithAddress:(NSData *)inAddress inputStream:(NSInputStream *)inInputStream outputStream:(NSOutputStream *)inOutputStream;
 {
-CHTTPConnection *theConnection = [[[CHTTPConnection alloc] initWithTCPSocketListener:inSocketListener address:inAddress inputStream:inInputStream outputStream:inOutputStream] autorelease];
+CTCPConnection *theTCPConnection = [[[CBufferedTCPConnection alloc] initWithTCPSocketListener:inSocketListener address:inAddress inputStream:inInputStream outputStream:inOutputStream] autorelease];
 
-theConnection.requestHandlers = defaultRequestHandlers;
+CProtocol *theLowerLink = theTCPConnection;
 
-return(theConnection);
+if (self.useHTTPS)
+	{
+	CSecureTransportConnection *theSecureTransportConnection = [[[CSecureTransportConnection alloc] init] autorelease];
+	theSecureTransportConnection.certificates = self.SSLCertificates;
+	theLowerLink.upperLink = theSecureTransportConnection;
+	theSecureTransportConnection.lowerLink = theLowerLink;
+	
+	theLowerLink = theSecureTransportConnection;
+	}
+
+
+CHTTPConnection *theHTTPConnection = [[[CHTTPConnection alloc] init] autorelease];
+theHTTPConnection.lowerLink = theLowerLink;
+theLowerLink.upperLink = theHTTPConnection;
+
+
+theHTTPConnection.requestHandlers = defaultRequestHandlers;
+
+return(theTCPConnection);
 }
 
 

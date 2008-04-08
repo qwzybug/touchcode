@@ -39,6 +39,8 @@ self.request = NULL;
 [super dealloc];
 }
 
+#pragma mark -
+
 - (void)dataReceived:(NSData *)inData
 {
 if (self.request == NULL)
@@ -60,13 +62,14 @@ if ([self.request isHeaderComplete])
 	}
 }
 
+#pragma mark -
+
 - (void)requestReceived:(CHTTPMessage *)inRequest
 {
 CHTTPMessage *theResponse = NULL;
 NSError *theError = NULL;
 for (CHTTPRequestHandler *theHandler in self.requestHandlers)
 	{
-	NSLog(@"requestReceived - trying: %@", theHandler);
 	BOOL theResult = [theHandler handleRequest:inRequest forConnection:self response:&theResponse error:&theError];
 	if (theResult == YES)
 		break;
@@ -78,6 +81,8 @@ if (theResponse != NULL)
 - (void)sendResponse:(CHTTPMessage *)inResponse
 {
 [self sendData:[inResponse serializedMessage]];
+
+//[self close];
 }
 
 @end

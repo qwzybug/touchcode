@@ -83,9 +83,7 @@ CFHTTPMessageSetBody(self.message, (CFDataRef)inBody);
 - (NSData *)serializedMessage
 {
 NSData *theData = [(NSData *)CFHTTPMessageCopySerializedMessage(self.message) autorelease];
-NSLog(@"SERISLIZED LEN:%d", [theData length]);
 return(theData);
 }
-
 
 @end

@@ -9,7 +9,6 @@
 #import "CBufferedTCPConnection.h"
 
 @interface CBufferedTCPConnection ()
-@property (readwrite, retain) NSMutableData *inputBuffer;
 @property (readwrite, retain) NSMutableData *outputBuffer;
 
 - (void)flushOutputBuffer;
@@ -17,130 +16,67 @@
 
 @implementation CBufferedTCPConnection
 
-@dynamic inputBuffer;
-@dynamic outputBuffer;
+@synthesize outputBuffer;
+@synthesize bufferOutput;
+
+- (id)init
+{
+if ((self = [super init]) != NULL)
+	{
+	self.outputBuffer = [NSMutableData data];
+	}
+return self;
+}
 
 - (void)dealloc
 {
-self.inputBuffer = NULL;
 self.outputBuffer = NULL;
 //
 [super dealloc];
 }
 
-- (NSMutableData *)inputBuffer
-{
-if (inputBuffer == NULL)
-	{
-	inputBuffer = [[NSMutableData dataWithLength:1024] retain];
-	}
-return(inputBuffer); 
-}
-
-- (void)setInputBuffer:(NSMutableData *)inInputBuffer
-{
-if (inputBuffer != inInputBuffer)
-	{
-	[inputBuffer autorelease];
-	inputBuffer = [inInputBuffer retain];
-    }
-}
-
-- (NSMutableData *)outputBuffer
-{
-if (outputBuffer == NULL)
-	{
-	outputBuffer = [[NSMutableData data] retain];
-	}
-return(outputBuffer); 
-}
-
-- (void)setOutputBuffer:(NSMutableData *)inOutputBuffer
-{
-if (outputBuffer != inOutputBuffer)
-	{
-	[outputBuffer autorelease];
-	outputBuffer = [inOutputBuffer retain];
-    }
-}
-
-- (void)inputStreamHandleEvent:(NSStreamEvent)inEventCode
-{
-if (inEventCode == NSStreamEventHasBytesAvailable)
-	{
-	NSData *theData = NULL;
-	// NSInputStream
-	uint8_t *theBufferPtr = NULL;
-	NSInteger theBufferLength = 0;
-	BOOL theResult = [self.inputStream getBuffer:&theBufferPtr length:(NSUInteger *)&theBufferLength];
-	if (theResult == NO)
-		{
-		theBufferPtr = self.inputBuffer.mutableBytes;
-		theBufferLength = [self.inputStream read:theBufferPtr maxLength:self.inputBuffer.length];
-		if (theBufferLength < 0)
-			{
-			NSLog(@"TODO read returned %d (%d)", theBufferLength, self.inputStream.hasBytesAvailable);
-			return;
-			}
-		}
-
-	theData = [NSData dataWithBytesNoCopy:theBufferPtr length:theBufferLength freeWhenDone:NO];
-
-	[self dataReceived:theData];
-	}
-}
-
 - (void)outputStreamHandleEvent:(NSStreamEvent)inEventCode
 {
-if (inEventCode == NSStreamEventHasSpaceAvailable)
+if (inEventCode == NSStreamEventHasSpaceAvailable || inEventCode == NSStreamEventHasBytesAvailable)
 	{
 	[self flushOutputBuffer];
 	}
 }
 
+/*
 - (void)dataReceived:(NSData *)inData;
 {
 #pragma unused (inData)
 NSLog(@"You should probably override dataReceived:");
 }
+*/
 
-- (void)sendData:(NSData *)inData
+- (size_t)sendData:(NSData *)inData
 {
 [self.outputBuffer appendData:inData];
-
-if (self.outputStream.hasSpaceAvailable)
-	{
-	[self.outputBuffer appendData:inData];
-	[self flushOutputBuffer];
-	}
-else
-	{
-	[self.outputBuffer appendData:inData];
-	}
+[self flushOutputBuffer];
+return(inData.length);
 }
 
 - (void)flushOutputBuffer
 {
-if (outputBuffer != NULL)
+if ([self.outputStream hasSpaceAvailable] == NO)
 	{
-	NSUInteger theBufferLength = self.outputBuffer.length;
-	if (theBufferLength > 0)
+	return;
+	}
+NSUInteger theBufferLength = self.outputBuffer.length;
+if (theBufferLength > 0)
+	{
+	UInt8 *thePtr = self.outputBuffer.mutableBytes;
+	NSInteger theBytesWritten = [self.outputStream write:thePtr maxLength:theBufferLength];
+	if (theBytesWritten == theBufferLength)
 		{
-		UInt8 *thePtr = self.outputBuffer.mutableBytes;
-		NSInteger theBytesWritten = [self.outputStream write:thePtr maxLength:theBufferLength];
-		if (theBytesWritten == theBufferLength)
-			{
-			self.outputBuffer.length = 0;
-			}
-		else if (theBytesWritten > 0)
-			{
-			self.outputBuffer = [NSMutableData dataWithBytes:thePtr + theBytesWritten length:theBufferLength - theBytesWritten];
-			}
-		else if (theBytesWritten <= 0)
-			{
-			// TODO Not totally sure what to do here. Ignoring the error seems to be a good idea. Can easily cause this code to be hit by using the webcam sample and hitting reload a lot.
-//			[NSException raise:NSGenericException format:@"flushOutputBuffer failed with %d", theBytesWritten];
-			}
+		self.outputBuffer.length = 0;
+		}
+	else if (theBytesWritten >= 0)
+		{
+		NSLog(@"* Couldn't write everything to outputstream, storing rest in buffer.");
+		self.outputBuffer = [NSMutableData dataWithBytes:thePtr + theBytesWritten length:theBufferLength - theBytesWritten];
 		}
 	}
 }

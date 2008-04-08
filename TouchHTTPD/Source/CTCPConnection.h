@@ -6,11 +6,11 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import "CProtocol.h"
 
 @class CTCPSocketListener;
 
-@interface CTCPConnection : NSObject {
+@interface CTCPConnection : CProtocol {
 	CTCPSocketListener *socketListener; // Not retained.
 	NSData *address;
 	NSInputStream *inputStream;

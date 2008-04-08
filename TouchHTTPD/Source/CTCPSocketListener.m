@@ -240,6 +240,7 @@ while (theFlag)
 	@catch (NSException *exception)
 		{
 		NSLog(@"Exception caught. Exiting runloop.");
+		NSLog(@"%@", exception);
 		theFlag = NO;
 		}
 	}
@@ -321,7 +322,6 @@ CTCPConnection *theConnection = [self createTCPConnectionWithAddress:inAddress i
 
 CFRelease(theInputStream);
 CFRelease(theOutputStream);
-
 
 NSError *theError = NULL;
 [theConnection open:&theError];

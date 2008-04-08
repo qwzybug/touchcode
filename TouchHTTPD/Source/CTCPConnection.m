@@ -52,6 +52,7 @@ self.outputStream = NULL;
 - (BOOL)open:(NSError **)outError
 {
 #pragma unused (outError)
+
 [self.socketListener connectionWillOpen:self];
 
 [self.inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:(id)kCFRunLoopCommonModes];
@@ -81,6 +82,34 @@ self.outputStream.delegate = NULL;
 [self.socketListener connectionDidClose:self];
 }
 
+#pragma mark -
+
+/*
+- (size_t)writeData:(NSData *)inData
+{
+NSUInteger theBufferLength = inData.length;
+if (theBufferLength > 0)
+	{
+	UInt8 *thePtr = inData.mutableBytes;
+	NSInteger theBytesWritten = [self.outputStream write:thePtr maxLength:theBufferLength];
+	if (theBytesWritten == theBufferLength)
+		{
+		inData.length = 0;
+		}
+	else if (theBytesWritten > 0)
+		{
+		inData = [NSMutableData dataWithBytes:thePtr + theBytesWritten length:theBufferLength - theBytesWritten];
+		}
+	else if (theBytesWritten <= 0)
+		{
+		// TODO Not totally sure what to do here. Ignoring the error seems to be a good idea. Can easily cause this code to be hit by using the webcam sample and hitting reload a lot.
+//			[NSException raise:NSGenericException format:@"flushOutputBuffer failed with %d", theBytesWritten];
+		}
+	}
+}
+*/
+
+
 - (void)stream:(NSStream *)inStream handleEvent:(NSStreamEvent)inEventCode
 {
 if (inEventCode == NSStreamEventEndEncountered)
@@ -106,8 +135,31 @@ else
 
 - (void)inputStreamHandleEvent:(NSStreamEvent)inEventCode
 {
-#pragma unused (inEventCode)
-NSLog(@"You should probably override inputStreamHandleEvent:");
+if (inEventCode == NSStreamEventHasBytesAvailable)
+	{
+	NSData *theData = NULL;
+	uint8_t *theBufferPtr = NULL;
+	NSInteger theBufferLength = 0;
+	BOOL theResult = [self.inputStream getBuffer:&theBufferPtr length:(NSUInteger *)&theBufferLength];
+	if (theResult == YES)
+		{
+		theData = [NSData dataWithBytesNoCopy:theBufferPtr length:theBufferLength freeWhenDone:NO];
+		}
+	else if (theResult == NO)
+		{
+		NSMutableData *theMutableData = [NSMutableData dataWithLength:1024];
+		theBufferLength = [self.inputStream read:theMutableData.mutableBytes maxLength:theMutableData.length];
+		if (theBufferLength <= 0)
+			{
+			NSLog(@"TODO read returned %d (%d)", theBufferLength, self.inputStream.hasBytesAvailable);
+			return;
+			}
+		theMutableData.length = theBufferLength;
+		theData = theMutableData;
+		}
+
+	[self dataReceived:theData];
+	}
 }
 
 - (void)outputStreamHandleEvent:(NSStreamEvent)inEventCode
