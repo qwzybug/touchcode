@@ -11,7 +11,6 @@
 		4534C3420DA7031D00F77B07 /* hmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 4595BE4E0DA6FD3800E2D457 /* hmac.c */; };
 		4534C34D0DA7037300F77B07 /* Base64Transcoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 4534C34B0DA7037300F77B07 /* Base64Transcoder.c */; };
 		4534C34E0DA7037300F77B07 /* Base64Transcoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 4534C34B0DA7037300F77B07 /* Base64Transcoder.c */; };
-		4534C34F0DA7037300F77B07 /* Base64Transcoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 4534C34C0DA7037300F77B07 /* Base64Transcoder.h */; };
 		4534C3A00DA7065C00F77B07 /* NSURL+Base.m in Sources */ = {isa = PBXBuildFile; fileRef = FC98DF560CD19A7C00453F6C /* NSURL+Base.m */; };
 		4534C3A10DA7065D00F77B07 /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAAF3CB0CCA69D600C52F82 /* NSMutableURLRequest+Parameters.m */; };
 		4534C3A20DA7065E00F77B07 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAAF35F0CC9E73200C52F82 /* NSString+URLEncoding.m */; };
@@ -33,7 +32,9 @@
 		4534C3BE0DA706FD00F77B07 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4534C3BB0DA706BB00F77B07 /* main.m */; };
 		4595BE510DA6FD3800E2D457 /* hmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 4595BE4E0DA6FD3800E2D457 /* hmac.c */; };
 		4595BE520DA6FD3800E2D457 /* sha1.c in Sources */ = {isa = PBXBuildFile; fileRef = 4595BE4F0DA6FD3800E2D457 /* sha1.c */; };
-		45CA8C4E0DAC4BD700DBECF8 /* sha1.h in Headers */ = {isa = PBXBuildFile; fileRef = 45CA8C4D0DAC4BD700DBECF8 /* sha1.h */; };
+		45CA8C690DAC4E3700DBECF8 /* OAToken_KeychainExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45CA8C670DAC4E3700DBECF8 /* OAToken_KeychainExtensions.m */; };
+		45CA8C6A0DAC4E3700DBECF8 /* OAToken_KeychainExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 45CA8C680DAC4E3700DBECF8 /* OAToken_KeychainExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		45CA8C6B0DAC4E3C00DBECF8 /* OAToken_KeychainExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45CA8C670DAC4E3700DBECF8 /* OAToken_KeychainExtensions.m */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 		FC37EA3C0CDA42A00036EF8E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
@@ -90,7 +91,6 @@
 		FCDD1C1E0CDD12C800DB97C5 /* OAuthConsumer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* OAuthConsumer.framework */; };
 		FCDD1C270CDD132600DB97C5 /* OAConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAAF2130CC9846D00C52F82 /* OAConsumer.m */; };
 		FCF317EF0CE181A30023F60C /* OADataFetcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF317EE0CE181A30023F60C /* OADataFetcherTest.m */; };
-		FCF317F00CE181A30023F60C /* OADataFetcherTest.h in Headers */ = {isa = PBXBuildFile; fileRef = FCF317ED0CE181A30023F60C /* OADataFetcherTest.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +117,8 @@
 		4595BE4E0DA6FD3800E2D457 /* hmac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hmac.c; sourceTree = "<group>"; };
 		4595BE4F0DA6FD3800E2D457 /* sha1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sha1.c; sourceTree = "<group>"; };
 		45CA8C4D0DAC4BD700DBECF8 /* sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha1.h; sourceTree = "<group>"; };
+		45CA8C670DAC4E3700DBECF8 /* OAToken_KeychainExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAToken_KeychainExtensions.m; sourceTree = "<group>"; };
+		45CA8C680DAC4E3700DBECF8 /* OAToken_KeychainExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAToken_KeychainExtensions.h; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* OAuthConsumer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OAuthConsumer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -259,6 +261,8 @@
 				FC53ABB20CD99348001B1B99 /* OAuthConsumer.h */,
 				FCAAF07E0CC95E6A00C52F82 /* OAToken.h */,
 				FCAAF07F0CC95E6A00C52F82 /* OAToken.m */,
+				45CA8C680DAC4E3700DBECF8 /* OAToken_KeychainExtensions.h */,
+				45CA8C670DAC4E3700DBECF8 /* OAToken_KeychainExtensions.m */,
 				FCAAF2120CC9846D00C52F82 /* OAConsumer.h */,
 				FCAAF2130CC9846D00C52F82 /* OAConsumer.m */,
 				FCAAF3C50CC9F5B500C52F82 /* OAMutableURLRequest.h */,
@@ -397,9 +401,7 @@
 				FC6C10C40CD9998400A85842 /* OARequestParameter.h in Headers */,
 				FCB87CA90CDFF1A000C75049 /* OAServiceTicket.h in Headers */,
 				FCB87CB20CDFF40A00C75049 /* OADataFetcher.h in Headers */,
-				FCF317F00CE181A30023F60C /* OADataFetcherTest.h in Headers */,
-				4534C34F0DA7037300F77B07 /* Base64Transcoder.h in Headers */,
-				45CA8C4E0DAC4BD700DBECF8 /* sha1.h in Headers */,
+				45CA8C6A0DAC4E3700DBECF8 /* OAToken_KeychainExtensions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,6 +537,7 @@
 				4534C3AC0DA7066900F77B07 /* OAConsumer.m in Sources */,
 				4534C3AD0DA7066900F77B07 /* OAToken.m in Sources */,
 				4534C3BE0DA706FD00F77B07 /* main.m in Sources */,
+				45CA8C6B0DAC4E3C00DBECF8 /* OAToken_KeychainExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,6 +560,7 @@
 				4534C3420DA7031D00F77B07 /* hmac.c in Sources */,
 				4534C34E0DA7037300F77B07 /* Base64Transcoder.c in Sources */,
 				4534C3BD0DA706BB00F77B07 /* main.m in Sources */,
+				45CA8C690DAC4E3700DBECF8 /* OAToken_KeychainExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
