@@ -3,7 +3,7 @@
 //  kcal
 //
 //  Created by Ian Baird on 3/30/08.
-//  Copyright 2008 Skorpiostech, Inc.. All rights reserved.
+//  Copyright 2008 Skorpiostech, Inc. All rights reserved.
 //
 
 #import "NSData_SqlExtensions.h"
