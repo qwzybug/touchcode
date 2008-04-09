@@ -1,23 +1,53 @@
+//
+//  hmac.c
+//  OAuthConsumer
+//
+//  Created by Jonathan Wight on 4/8/8.
+//  Copyright 2008 Jonathan Wight. All rights reserved.
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
+
+/*
+ * Implementation of HMAC-SHA1. Adapted from example at http://tools.ietf.org/html/rfc2104
+ 
+ */
+
 #include "sha1.h"
 
 #include <stdlib.h>
 #include <string.h>
 
-void hmac_md5(unsigned char *inText, int inTextLength, unsigned char* inKey, int inKeyLength, unsigned char *outDigest)
+void hmac_sha1(const unsigned char *inText, size_t inTextLength, unsigned char* inKey, size_t inKeyLength, unsigned char *outDigest)
 {
-const int B = 64;
-const int L = 20;
+const size_t B = 64;
+const size_t L = 20;
 
-sha1_context theSHA1Context;
+SHA1_CTX theSHA1Context;
 unsigned char k_ipad[B + 1]; /* inner padding - key XORd with ipad */
 unsigned char k_opad[B + 1]; /* outer padding - key XORd with opad */
 
-/* if key is longer than 64 bytes reset it to key=MD5(key) */
+/* if key is longer than 64 bytes reset it to key=SHA1 (key) */
 if (inKeyLength > B)
 	{
-	sha1_starts(&theSHA1Context);
-	sha1_update(&theSHA1Context, inKey, inKeyLength);
-	sha1_finish(&theSHA1Context, inKey);
+	SHA1Init(&theSHA1Context);
+	SHA1Update(&theSHA1Context, inKey, inKeyLength);
+	SHA1Final(inKey, &theSHA1Context);
 	inKeyLength = L;
 	}
 
@@ -36,21 +66,21 @@ for (i = 0; i < B; i++)
 	}
 	
 /*
-* perform inner MD5
+* perform inner SHA1
 */
-sha1_starts(&theSHA1Context);                 /* init context for 1st pass */
-sha1_update(&theSHA1Context, k_ipad, B);     /* start with inner pad */
-sha1_update(&theSHA1Context, inText, inTextLength); /* then text of datagram */
-sha1_finish(&theSHA1Context, outDigest);                /* finish up 1st pass */
+SHA1Init(&theSHA1Context);                 /* init context for 1st pass */
+SHA1Update(&theSHA1Context, k_ipad, B);     /* start with inner pad */
+SHA1Update(&theSHA1Context, (unsigned char *)inText, inTextLength); /* then text of datagram */
+SHA1Final((unsigned char *)outDigest, &theSHA1Context);                /* finish up 1st pass */
 
 /*
-* perform outer MD5
+* perform outer SHA1
 */
-sha1_starts(&theSHA1Context);                   /* init context for 2nd
+SHA1Init(&theSHA1Context);                   /* init context for 2nd
 * pass */
-sha1_update(&theSHA1Context, k_opad, B);     /* start with outer pad */
-sha1_update(&theSHA1Context, outDigest, L);     /* then results of 1st
+SHA1Update(&theSHA1Context, k_opad, B);     /* start with outer pad */
+SHA1Update(&theSHA1Context, outDigest, L);     /* then results of 1st
 * hash */
-sha1_finish(&theSHA1Context, outDigest);          /* finish up 2nd pass */
+SHA1Final(outDigest, &theSHA1Context);          /* finish up 2nd pass */
 
 }
