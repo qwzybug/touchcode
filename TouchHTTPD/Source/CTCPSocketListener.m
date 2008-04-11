@@ -22,7 +22,7 @@ static void TCPSocketListenerAcceptCallBack(CFSocketRef socket, CFSocketCallBack
 @property (readwrite, assign) CFSocketRef IPV6Socket;
 @property (readwrite, retain) NSNetService *netService;
 @property (readwrite, retain) NSMutableArray *_connections;
-@property (readwrite, assign) BOOL serving;
+@property (readwrite, assign) BOOL listening;
 
 - (void)handleNewConnectionFromAddress:(NSData *)addr nativeHandke:(CFSocketNativeHandle)inNativeHandle;
 - (BOOL)openIPV4Socket:(NSError **)outError;
@@ -43,7 +43,7 @@ static void TCPSocketListenerAcceptCallBack(CFSocketRef socket, CFSocketCallBack
 @synthesize connectionClass;
 @dynamic connections;
 @synthesize _connections;
-@synthesize serving;
+@synthesize listening;
 
 - (id)init
 {
@@ -200,14 +200,14 @@ if (self.type != NULL)
 	[self.netService publish];
 	}
 
-self.serving = YES;
+self.listening = YES;
 
 return YES;
 }
 
 - (void)stop
 {
-self.serving = NO;
+self.listening = NO;
 
 [self.netService stop];
 self.netService = nil;
@@ -218,7 +218,7 @@ self.IPV6Socket = NULL;
 
 - (void)serveForever
 {
-if (self.serving == NO)
+if (self.listening == NO)
 	{
 	NSError *theError = NULL;
 	if ([self start:&theError] == NO)
@@ -227,14 +227,14 @@ if (self.serving == NO)
 
 NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
 
-BOOL theFlag = self.serving;
+BOOL theFlag = self.listening;
 while (theFlag)
 	{
 	@try
 		{
 		NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
 		[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
-		theFlag = self.serving;
+		theFlag = self.listening;
 		[thePool drain];
 		}
 	@catch (NSException *exception)

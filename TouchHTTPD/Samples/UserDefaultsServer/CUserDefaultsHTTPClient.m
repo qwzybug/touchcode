@@ -13,6 +13,9 @@
 static CUserDefaultsHTTPClient *gInstance = NULL;
 
 @interface CUserDefaultsHTTPClient ()
+@property (readwrite, retain) NSNetService *service;
+@property (readwrite, assign) BOOL serviceResolveFinished;
+
 - (NSURL *)URLForKey:(NSString *)inKey;
 @end
 
@@ -22,18 +25,86 @@ static CUserDefaultsHTTPClient *gInstance = NULL;
 
 @synthesize host;
 @synthesize port;
+@synthesize service;
+@synthesize serviceResolveFinished;
 
 + (CUserDefaultsHTTPClient *)standardUserDefaults
 {
 if (gInstance == NULL)
 	{
 	CUserDefaultsHTTPClient *theClient = [[[self alloc] init] autorelease];
-	theClient.host = [NSHost currentHost];
-	theClient.port = 8080;
+//	theClient.host = [NSHost currentHost];
+//	theClient.port = 8080;
 	gInstance = [theClient retain];
 	}
 return(gInstance);
 }
+
+- (id)init
+{
+if ((self = [super init]) != NULL)
+	{
+	NSLog(@"Searching for netservices!");
+	NSError *theError;
+	BOOL theResult = [self findService:&theError];
+	if (theResult == NO)
+		return(NULL);
+	NSLog(@"Found netservices: %@ %d", self.host, self.port);
+	}
+return(self);
+}
+
+- (void)dealloc
+{
+self.host = NULL;
+self.service = NULL;
+//
+[super dealloc];
+}
+
+- (BOOL)findService:(NSError **)outError
+{
+self.service = NULL;
+
+NSNetServiceBrowser *theNetService = [[NSNetServiceBrowser alloc] init];
+theNetService.delegate = self;
+[theNetService searchForServicesOfType:@"_userdefaults._tcp." inDomain:@""];
+
+NSDate *theStartDate = [NSDate date];
+while (self.service == NULL || [[NSDate date] timeIntervalSinceDate:theStartDate] > 30.0)
+	[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+	
+[theNetService release];
+theNetService = NULL;
+
+if (self.service == NULL)
+	{
+	if (outError)
+		*outError = [NSError errorWithDomain:@"CUserDefaultsHTTPClient_Domain" code:-1 userInfo:NULL];
+	return(NO);
+	}
+
+self.serviceResolveFinished = NO;
+self.service.delegate = self;
+[self.service resolveWithTimeout:15.0];
+
+while (self.serviceResolveFinished == NO)
+	[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+
+if (self.service == NULL)
+	{
+	if (outError)
+		*outError = [NSError errorWithDomain:@"CUserDefaultsHTTPClient_Domain" code:-2 userInfo:NULL];
+	return(NO);
+	}
+
+self.host = [NSHost hostWithName:self.service.hostName];
+self.port = self.service.port;
+
+return(YES);
+}
+
+#pragma mark -
 
 - (id)objectForKey:(NSString *)inKey
 {
@@ -147,6 +218,32 @@ NSError *theError = NULL;
 {
 NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%d/key/%@", self.host.name, self.port, [inKey stringByObsessivelyAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
 return(theURL);
+}
+
+#pragma mark -
+
+- (void)netServiceBrowser:(NSNetServiceBrowser *)inNetServiceBrowser didFindService:(NSNetService *)inNetService moreComing:(BOOL)inMoreServicesComing
+{
+#pragma unused (inNetServiceBrowser, inMoreServicesComing)
+self.service = inNetService;
+}
+
+- (void)netServiceDidResolveAddress:(NSNetService *)inSender
+{
+if (inSender == self.service)
+	{
+	self.serviceResolveFinished = YES;
+	}
+}
+
+- (void)netService:(NSNetService *)inSender didNotResolve:(NSDictionary *)errorDict;
+{
+#pragma unused (errorDict)
+if (inSender == self.service)
+	{
+	self.service = NULL;
+	self.serviceResolveFinished = YES;
+	}
 }
 
 @end

@@ -13,10 +13,12 @@
 @interface CHTTPBasicAuthHandler : CHTTPRequestHandler {
 	CHTTPRequestHandler *childHandler;
 	id <CHTTPBasicAuthHandlerDelegate> delegate;
+	NSString *realm;
 }
 
 @property (readwrite, retain) CHTTPRequestHandler *childHandler;
 @property (readwrite, assign) id <CHTTPBasicAuthHandlerDelegate> delegate;
+@property (readwrite, copy) NSString *realm;
 
 @end
 

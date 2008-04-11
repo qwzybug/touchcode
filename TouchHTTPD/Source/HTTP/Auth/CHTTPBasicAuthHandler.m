@@ -15,6 +15,26 @@
 
 @synthesize childHandler;
 @synthesize delegate;
+@synthesize realm;
+
+- (id) init
+{
+if ((self = [super init]) != nil)
+	{
+	self.realm = @"Default Realm";
+	}
+return(self);
+}
+
+- (void) dealloc
+{
+self.childHandler = NULL;
+self.delegate = NULL;
+self.realm = NULL;
+//
+[super dealloc];
+}
+
 
 - (BOOL)handleRequest:(CHTTPMessage *)inRequest forConnection:(CHTTPConnection *)inConnection response:(CHTTPMessage **)outResponse error:(NSError **)outError
 {
@@ -44,16 +64,11 @@ if (theAuthorizationHeader)
 		}
 	}
 	
+CHTTPMessage *theResponse = [CHTTPMessage HTTPMessageResponseWithStatusCode:401 bodyString:@"Unauthorized"];
+[theResponse setHeader:[NSString stringWithFormat:@"Basic realm=\"%@\"", self.realm] forKey:@"WWW-Authenticate"];
 
-if ([theAuthorizationHeader isEqualToString:@"Basic Zm9vOmZvbw=="] == NO)
-	{
-	CHTTPMessage *theResponse = [CHTTPMessage HTTPMessageResponseWithStatusCode:401 bodyString:@"Unauthorized"];
-	[theResponse setHeader:@"Basic realm=\"Test Realm\"" forKey:@"WWW-Authenticate"];
-
-	*outResponse = theResponse;
-	*outError = NULL;
-	return(YES);
-	}
+*outResponse = theResponse;
+*outError = NULL;
 return(YES);
 }
 

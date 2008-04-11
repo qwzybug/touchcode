@@ -11,6 +11,8 @@
 @interface CUserDefaultsHTTPClient : NSObject {
 	NSHost *host;
 	NSInteger port;
+	NSNetService *service;
+	BOOL serviceResolveFinished;
 }
 
 @property (readwrite, retain) NSHost *host;
@@ -18,10 +20,11 @@
 
 + (CUserDefaultsHTTPClient *)standardUserDefaults;
 
+- (BOOL)findService:(NSError **)outError;
+
 - (id)objectForKey:(NSString *)inKey;
 - (void)setObject:(id)value forKey:(NSString *)inKey;
 - (void)removeObjectForKey:(NSString *)inKey;
-
 
 @end
 

@@ -119,6 +119,7 @@ if (theValue)
 	}
 else
 	{
+	NSLog(@"[%@ %s] responding with 404", NSStringFromClass([self class]), __PRETTY_FUNCTION__);
 	theResponse = [CHTTPMessage HTTPMessageResponseWithStatusCode:404 bodyString:@"404 Not found"];
 	}
 

@@ -18,14 +18,10 @@ NSDeallocateZombies = NO;
 
 NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 
-CUserDefaultsHTTPRouter *theRequestHandler = [[[CUserDefaultsHTTPRouter alloc] init] autorelease];
-[theRequestHandler.store setValue:@"Hello world" forKey:@"test"];
-[theRequestHandler.store setValue:[NSNumber numberWithInt:42] forKey:@"test_int"];
-[theRequestHandler.store setValue:[NSNumber numberWithFloat:3.14] forKey:@"test_float"];
-[theRequestHandler.store setValue:[NSArray arrayWithObjects:@"a", @"b", @"c", NULL] forKey:@"test_array"];
-
 CHTTPServer *theHTTPServer = [[[CHTTPServer alloc] init] autorelease];
 [theHTTPServer createDefaultSocketListener];
+theHTTPServer.socketListener.type = @"_userdefaults._tcp.";
+theHTTPServer.socketListener.port = 0;
 
 CUserDefaultsHTTPRouter *theRequestRouter = [[[CUserDefaultsHTTPRouter alloc] init] autorelease];
 
@@ -41,11 +37,8 @@ NSInvocationOperation *theServerOperation = [[[NSInvocationOperation alloc] init
 NSOperationQueue *theQueue = [[[NSOperationQueue alloc] init] autorelease];
 [theQueue addOperation:theServerOperation];
 
-NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%d", [[NSHost currentHost] name], theHTTPServer.socketListener.port]];
-[[NSWorkspace sharedWorkspace] openURL:theURL];
-
-[CUserDefaultsHTTPClient standardUserDefaults].host = [NSHost currentHost];
-[CUserDefaultsHTTPClient standardUserDefaults].port = theHTTPServer.socketListener.port;
+//[CUserDefaultsHTTPClient standardUserDefaults].host = [NSHost currentHost];
+//[CUserDefaultsHTTPClient standardUserDefaults].port = theHTTPServer.socketListener.port;
 
 [[CUserDefaultsHTTPClient standardUserDefaults] objectForKey:@"asfasfaf"];
 
