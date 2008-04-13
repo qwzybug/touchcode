@@ -65,7 +65,6 @@ self.IPV6Socket = NULL;
 self.domain = NULL;
 self.name = NULL;
 self.type = NULL;
-self.port = 0;
 //
 [super dealloc];
 }

@@ -11,8 +11,6 @@
 #import "CHTTPConnection.h"
 #import "CSecureTransportConnection.h"
 
-#import "CHelloWorldHTTPHandler.h" // TODO remove me
-
 @implementation CHTTPServer
 
 @synthesize socketListener;

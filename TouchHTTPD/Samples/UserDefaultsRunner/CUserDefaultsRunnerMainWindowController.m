@@ -40,6 +40,8 @@ if ((self = [super init]) != nil)
 	{
 	self.server = [[[CHTTPServer alloc] init] autorelease];
 	[self.server createDefaultSocketListener];
+//	self.server.socketListener.port = 0;
+	self.server.socketListener.type = @"_userdefaults._tcp.";
 
 	self.userDefaultsRouter = [[[CUserDefaultsHTTPRouter alloc] init] autorelease];
 

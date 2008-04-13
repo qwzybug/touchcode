@@ -10,12 +10,13 @@
 
 #import "NSString_Extensions.h"
 
+#import </usr/include/objc/objc-class.h>
+
 static CUserDefaultsHTTPClient *gInstance = NULL;
 
 @interface CUserDefaultsHTTPClient ()
 @property (readwrite, retain) NSNetService *service;
 @property (readwrite, assign) BOOL serviceResolveFinished;
-
 - (NSURL *)URLForKey:(NSString *)inKey;
 @end
 
@@ -27,15 +28,21 @@ static CUserDefaultsHTTPClient *gInstance = NULL;
 @synthesize port;
 @synthesize service;
 @synthesize serviceResolveFinished;
+@synthesize authUsername;
+@synthesize authPassword;
 
 + (CUserDefaultsHTTPClient *)standardUserDefaults
 {
 if (gInstance == NULL)
 	{
+	NSAutoreleasePool *theAutoreleasePool = [[NSAutoreleasePool alloc] init];
+	
 	CUserDefaultsHTTPClient *theClient = [[[self alloc] init] autorelease];
 //	theClient.host = [NSHost currentHost];
 //	theClient.port = 8080;
 	gInstance = [theClient retain];
+	
+	[theAutoreleasePool release];
 	}
 return(gInstance);
 }
@@ -70,8 +77,10 @@ NSNetServiceBrowser *theNetService = [[NSNetServiceBrowser alloc] init];
 theNetService.delegate = self;
 [theNetService searchForServicesOfType:@"_userdefaults._tcp." inDomain:@""];
 
+NSLog(@"Searching for services of type.");
+
 NSDate *theStartDate = [NSDate date];
-while (self.service == NULL || [[NSDate date] timeIntervalSinceDate:theStartDate] > 30.0)
+while (self.service == NULL && [[NSDate date] timeIntervalSinceDate:theStartDate] < 15.0)
 	[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
 	
 [theNetService release];
@@ -84,6 +93,8 @@ if (self.service == NULL)
 	return(NO);
 	}
 
+NSLog(@"Resolving service.");
+
 self.serviceResolveFinished = NO;
 self.service.delegate = self;
 [self.service resolveWithTimeout:15.0];
@@ -93,10 +104,13 @@ while (self.serviceResolveFinished == NO)
 
 if (self.service == NULL)
 	{
+	NSLog(@"Failed to resolve.h");
 	if (outError)
 		*outError = [NSError errorWithDomain:@"CUserDefaultsHTTPClient_Domain" code:-2 userInfo:NULL];
 	return(NO);
 	}
+
+NSLog(@"Resolved");
 
 self.host = [NSHost hostWithName:self.service.hostName];
 self.port = self.service.port;
@@ -216,7 +230,12 @@ NSError *theError = NULL;
 
 - (NSURL *)URLForKey:(NSString *)inKey
 {
-NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%d/key/%@", self.host.name, self.port, [inKey stringByObsessivelyAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+
+NSURL *theURL = NULL;
+if (self.authUsername != NULL && self.authPassword != NULL)
+	theURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%@?%@:%d/key/%@", self.authUsername, self.authPassword, self.host.name, self.port, [inKey stringByObsessivelyAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+else
+	theURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%d/key/%@", self.host.name, self.port, [inKey stringByObsessivelyAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
 return(theURL);
 }
 
@@ -230,6 +249,7 @@ self.service = inNetService;
 
 - (void)netServiceDidResolveAddress:(NSNetService *)inSender
 {
+NSLog(@"SUCCESS");
 if (inSender == self.service)
 	{
 	self.serviceResolveFinished = YES;
@@ -239,6 +259,7 @@ if (inSender == self.service)
 - (void)netService:(NSNetService *)inSender didNotResolve:(NSDictionary *)errorDict;
 {
 #pragma unused (errorDict)
+NSLog(@"FAILED");
 if (inSender == self.service)
 	{
 	self.service = NULL;

@@ -6,7 +6,7 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 #define kHTTPVersion1_0 (NSString *)kCFHTTPVersion1_0
 #define kHTTPVersion1_1 (NSString *)kCFHTTPVersion1_1

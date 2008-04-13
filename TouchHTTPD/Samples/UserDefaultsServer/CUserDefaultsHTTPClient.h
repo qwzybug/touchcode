@@ -13,10 +13,14 @@
 	NSInteger port;
 	NSNetService *service;
 	BOOL serviceResolveFinished;
+	NSString *authUsername;
+	NSString *authPassword;
 }
 
 @property (readwrite, retain) NSHost *host;
 @property (readwrite, assign) NSInteger port;
+@property (readwrite, retain) NSString *authUsername;
+@property (readwrite, retain) NSString *authPassword;
 
 + (CUserDefaultsHTTPClient *)standardUserDefaults;
 
