@@ -198,6 +198,17 @@ while ((theResult = sqlite3_step(pStmt)) == SQLITE_ROW)
     [theRowsArray addObject:cRowDict];
     }
 
+if ( (theResult != SQLITE_OK) && (theResult != SQLITE_DONE) )
+    {
+    if (outError)
+        {
+        NSString *errStr = [NSString stringWithUTF8String:sqlite3_errmsg(self.sql)];
+        *outError = [NSError errorWithDomain:TouchSQLErrorDomain 
+                                        code:theResult 
+                                    userInfo:[NSDictionary dictionaryWithObject:errStr forKey:NSLocalizedDescriptionKey]];
+        }
+    }
+    
 sqlite3_finalize(pStmt);
 pStmt = NULL;
 
