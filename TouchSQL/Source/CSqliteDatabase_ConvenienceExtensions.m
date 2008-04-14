@@ -53,6 +53,7 @@ while ((theDictionary = [inEnumerator nextObject]) != NULL)
 	//
 	[theAutoreleasePool release];
 	}
+return YES;
 }
 
 
