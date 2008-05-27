@@ -1,0 +1,381 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D3623260D0F684500981E51 /* TouchHTTPD_iPhoneServerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* TouchHTTPD_iPhoneServerAppDelegate.m */; };
+		1D3623EC0D0F72F000981E51 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D3623EB0D0F72F000981E51 /* CoreGraphics.framework */; };
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		289E37760D53116900ACCF19 /* MyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 289E37750D53116900ACCF19 /* MyView.m */; };
+		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		4592E8B10DB2AA3200B50CC8 /* CBufferedTCPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4592E88A0DB2AA3200B50CC8 /* CBufferedTCPConnection.m */; };
+		4592E8B20DB2AA3200B50CC8 /* CProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 4592E88C0DB2AA3200B50CC8 /* CProtocol.m */; };
+		4592E8B40DB2AA3200B50CC8 /* CTCPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4592E8900DB2AA3200B50CC8 /* CTCPConnection.m */; };
+		4592E8B50DB2AA3200B50CC8 /* CTCPSocketListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 4592E8920DB2AA3200B50CC8 /* CTCPSocketListener.m */; };
+		4592E8B60DB2AA3200B50CC8 /* CHTTPBasicAuthHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4592E8960DB2AA3200B50CC8 /* CHTTPBasicAuthHandler.m */; };
+		4592E8B70DB2AA3200B50CC8 /* CHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4592E8980DB2AA3200B50CC8 /* CHTTPConnection.m */; };
+		4592E8B80DB2AA3200B50CC8 /* CHTTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4592E89A0DB2AA3200B50CC8 /* CHTTPMessage.m */; };
+		4592E8B90DB2AA3200B50CC8 /* CHTTPMessage_ConvenienceExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4592E89C0DB2AA3200B50CC8 /* CHTTPMessage_ConvenienceExtensions.m */; };
+		4592E8BA0DB2AA3200B50CC8 /* CHTTPRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4592E89E0DB2AA3200B50CC8 /* CHTTPRequestHandler.m */; };
+		4592E8BC0DB2AA3200B50CC8 /* CRoutingHTTPRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4592E8A20DB2AA3200B50CC8 /* CRoutingHTTPRequestHandler.m */; };
+		4592E8BF0DB2AA3200B50CC8 /* Base64Transcoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 4592E8AB0DB2AA3200B50CC8 /* Base64Transcoder.c */; };
+		4592E8C00DB2AA3200B50CC8 /* NSString_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4592E8AE0DB2AA3200B50CC8 /* NSString_Extensions.m */; };
+		4592E8C10DB2AA3200B50CC8 /* NSURL_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4592E8B00DB2AA3200B50CC8 /* NSURL_Extensions.m */; };
+		4592E8C70DB2AAA700B50CC8 /* CHTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4592E8A00DB2AA3200B50CC8 /* CHTTPServer.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623240D0F684500981E51 /* TouchHTTPD_iPhoneServerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchHTTPD_iPhoneServerAppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* TouchHTTPD_iPhoneServerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchHTTPD_iPhoneServerAppDelegate.m; sourceTree = "<group>"; };
+		1D3623EB0D0F72F000981E51 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1D6058910D05DD3D006BFB54 /* TouchHTTPD_iPhoneServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TouchHTTPD_iPhoneServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		289E37740D53116900ACCF19 /* MyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyView.h; sourceTree = "<group>"; };
+		289E37750D53116900ACCF19 /* MyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyView.m; sourceTree = "<group>"; };
+		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* TouchHTTPD_iPhoneServer_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchHTTPD_iPhoneServer_Prefix.pch; sourceTree = "<group>"; };
+		4592E8890DB2AA3200B50CC8 /* CBufferedTCPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBufferedTCPConnection.h; sourceTree = "<group>"; };
+		4592E88A0DB2AA3200B50CC8 /* CBufferedTCPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBufferedTCPConnection.m; sourceTree = "<group>"; };
+		4592E88B0DB2AA3200B50CC8 /* CProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CProtocol.h; sourceTree = "<group>"; };
+		4592E88C0DB2AA3200B50CC8 /* CProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CProtocol.m; sourceTree = "<group>"; };
+		4592E88D0DB2AA3200B50CC8 /* CSecureTransportConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSecureTransportConnection.h; sourceTree = "<group>"; };
+		4592E88E0DB2AA3200B50CC8 /* CSecureTransportConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSecureTransportConnection.m; sourceTree = "<group>"; };
+		4592E88F0DB2AA3200B50CC8 /* CTCPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTCPConnection.h; sourceTree = "<group>"; };
+		4592E8900DB2AA3200B50CC8 /* CTCPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTCPConnection.m; sourceTree = "<group>"; };
+		4592E8910DB2AA3200B50CC8 /* CTCPSocketListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTCPSocketListener.h; sourceTree = "<group>"; };
+		4592E8920DB2AA3200B50CC8 /* CTCPSocketListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTCPSocketListener.m; sourceTree = "<group>"; };
+		4592E8950DB2AA3200B50CC8 /* CHTTPBasicAuthHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHTTPBasicAuthHandler.h; sourceTree = "<group>"; };
+		4592E8960DB2AA3200B50CC8 /* CHTTPBasicAuthHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTTPBasicAuthHandler.m; sourceTree = "<group>"; };
+		4592E8970DB2AA3200B50CC8 /* CHTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHTTPConnection.h; sourceTree = "<group>"; };
+		4592E8980DB2AA3200B50CC8 /* CHTTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTTPConnection.m; sourceTree = "<group>"; };
+		4592E8990DB2AA3200B50CC8 /* CHTTPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHTTPMessage.h; sourceTree = "<group>"; };
+		4592E89A0DB2AA3200B50CC8 /* CHTTPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTTPMessage.m; sourceTree = "<group>"; };
+		4592E89B0DB2AA3200B50CC8 /* CHTTPMessage_ConvenienceExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHTTPMessage_ConvenienceExtensions.h; sourceTree = "<group>"; };
+		4592E89C0DB2AA3200B50CC8 /* CHTTPMessage_ConvenienceExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTTPMessage_ConvenienceExtensions.m; sourceTree = "<group>"; };
+		4592E89D0DB2AA3200B50CC8 /* CHTTPRequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHTTPRequestHandler.h; sourceTree = "<group>"; };
+		4592E89E0DB2AA3200B50CC8 /* CHTTPRequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTTPRequestHandler.m; sourceTree = "<group>"; };
+		4592E89F0DB2AA3200B50CC8 /* CHTTPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHTTPServer.h; sourceTree = "<group>"; };
+		4592E8A00DB2AA3200B50CC8 /* CHTTPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTTPServer.m; sourceTree = "<group>"; };
+		4592E8A10DB2AA3200B50CC8 /* CRoutingHTTPRequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRoutingHTTPRequestHandler.h; sourceTree = "<group>"; };
+		4592E8A20DB2AA3200B50CC8 /* CRoutingHTTPRequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRoutingHTTPRequestHandler.m; sourceTree = "<group>"; };
+		4592E8A40DB2AA3200B50CC8 /* CNATPMPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNATPMPManager.h; sourceTree = "<group>"; };
+		4592E8A50DB2AA3200B50CC8 /* CNATPMPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNATPMPManager.m; sourceTree = "<group>"; };
+		4592E8A60DB2AA3200B50CC8 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		4592E8AB0DB2AA3200B50CC8 /* Base64Transcoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Base64Transcoder.c; sourceTree = "<group>"; };
+		4592E8AC0DB2AA3200B50CC8 /* Base64Transcoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Transcoder.h; sourceTree = "<group>"; };
+		4592E8AD0DB2AA3200B50CC8 /* NSString_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSString_Extensions.h; sourceTree = "<group>"; };
+		4592E8AE0DB2AA3200B50CC8 /* NSString_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_Extensions.m; sourceTree = "<group>"; };
+		4592E8AF0DB2AA3200B50CC8 /* NSURL_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSURL_Extensions.h; sourceTree = "<group>"; };
+		4592E8B00DB2AA3200B50CC8 /* NSURL_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSURL_Extensions.m; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				1D3623EC0D0F72F000981E51 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				289E37740D53116900ACCF19 /* MyView.h */,
+				289E37750D53116900ACCF19 /* MyView.m */,
+				1D3623240D0F684500981E51 /* TouchHTTPD_iPhoneServerAppDelegate.h */,
+				1D3623250D0F684500981E51 /* TouchHTTPD_iPhoneServerAppDelegate.m */,
+				4592E8880DB2AA3200B50CC8 /* Source */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* TouchHTTPD_iPhoneServer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* TouchHTTPD_iPhoneServer_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+				8D1107310486CEB800E47090 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1D3623EB0D0F72F000981E51 /* CoreGraphics.framework */,
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4592E8880DB2AA3200B50CC8 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				4592E8890DB2AA3200B50CC8 /* CBufferedTCPConnection.h */,
+				4592E88A0DB2AA3200B50CC8 /* CBufferedTCPConnection.m */,
+				4592E88B0DB2AA3200B50CC8 /* CProtocol.h */,
+				4592E88C0DB2AA3200B50CC8 /* CProtocol.m */,
+				4592E88D0DB2AA3200B50CC8 /* CSecureTransportConnection.h */,
+				4592E88E0DB2AA3200B50CC8 /* CSecureTransportConnection.m */,
+				4592E88F0DB2AA3200B50CC8 /* CTCPConnection.h */,
+				4592E8900DB2AA3200B50CC8 /* CTCPConnection.m */,
+				4592E8910DB2AA3200B50CC8 /* CTCPSocketListener.h */,
+				4592E8920DB2AA3200B50CC8 /* CTCPSocketListener.m */,
+				4592E8930DB2AA3200B50CC8 /* HTTP */,
+				4592E8A30DB2AA3200B50CC8 /* NATPMP */,
+				4592E8A60DB2AA3200B50CC8 /* Prefix.pch */,
+				4592E8AA0DB2AA3200B50CC8 /* Utilitiy */,
+			);
+			name = Source;
+			path = ../Source;
+			sourceTree = SOURCE_ROOT;
+		};
+		4592E8930DB2AA3200B50CC8 /* HTTP */ = {
+			isa = PBXGroup;
+			children = (
+				4592E8940DB2AA3200B50CC8 /* Auth */,
+				4592E8970DB2AA3200B50CC8 /* CHTTPConnection.h */,
+				4592E8980DB2AA3200B50CC8 /* CHTTPConnection.m */,
+				4592E8990DB2AA3200B50CC8 /* CHTTPMessage.h */,
+				4592E89A0DB2AA3200B50CC8 /* CHTTPMessage.m */,
+				4592E89B0DB2AA3200B50CC8 /* CHTTPMessage_ConvenienceExtensions.h */,
+				4592E89C0DB2AA3200B50CC8 /* CHTTPMessage_ConvenienceExtensions.m */,
+				4592E89D0DB2AA3200B50CC8 /* CHTTPRequestHandler.h */,
+				4592E89E0DB2AA3200B50CC8 /* CHTTPRequestHandler.m */,
+				4592E89F0DB2AA3200B50CC8 /* CHTTPServer.h */,
+				4592E8A00DB2AA3200B50CC8 /* CHTTPServer.m */,
+				4592E8A10DB2AA3200B50CC8 /* CRoutingHTTPRequestHandler.h */,
+				4592E8A20DB2AA3200B50CC8 /* CRoutingHTTPRequestHandler.m */,
+			);
+			path = HTTP;
+			sourceTree = "<group>";
+		};
+		4592E8940DB2AA3200B50CC8 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				4592E8950DB2AA3200B50CC8 /* CHTTPBasicAuthHandler.h */,
+				4592E8960DB2AA3200B50CC8 /* CHTTPBasicAuthHandler.m */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		4592E8A30DB2AA3200B50CC8 /* NATPMP */ = {
+			isa = PBXGroup;
+			children = (
+				4592E8A40DB2AA3200B50CC8 /* CNATPMPManager.h */,
+				4592E8A50DB2AA3200B50CC8 /* CNATPMPManager.m */,
+			);
+			path = NATPMP;
+			sourceTree = "<group>";
+		};
+		4592E8AA0DB2AA3200B50CC8 /* Utilitiy */ = {
+			isa = PBXGroup;
+			children = (
+				4592E8AB0DB2AA3200B50CC8 /* Base64Transcoder.c */,
+				4592E8AC0DB2AA3200B50CC8 /* Base64Transcoder.h */,
+				4592E8AD0DB2AA3200B50CC8 /* NSString_Extensions.h */,
+				4592E8AE0DB2AA3200B50CC8 /* NSString_Extensions.m */,
+				4592E8AF0DB2AA3200B50CC8 /* NSURL_Extensions.h */,
+				4592E8B00DB2AA3200B50CC8 /* NSURL_Extensions.m */,
+			);
+			path = Utilitiy;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* TouchHTTPD_iPhoneServer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "TouchHTTPD_iPhoneServer" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TouchHTTPD_iPhoneServer;
+			productName = TouchHTTPD_iPhoneServer;
+			productReference = 1D6058910D05DD3D006BFB54 /* TouchHTTPD_iPhoneServer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TouchHTTPD_iPhoneServer" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* TouchHTTPD_iPhoneServer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				1D3623260D0F684500981E51 /* TouchHTTPD_iPhoneServerAppDelegate.m in Sources */,
+				289E37760D53116900ACCF19 /* MyView.m in Sources */,
+				4592E8B10DB2AA3200B50CC8 /* CBufferedTCPConnection.m in Sources */,
+				4592E8B20DB2AA3200B50CC8 /* CProtocol.m in Sources */,
+				4592E8B40DB2AA3200B50CC8 /* CTCPConnection.m in Sources */,
+				4592E8B50DB2AA3200B50CC8 /* CTCPSocketListener.m in Sources */,
+				4592E8B60DB2AA3200B50CC8 /* CHTTPBasicAuthHandler.m in Sources */,
+				4592E8B70DB2AA3200B50CC8 /* CHTTPConnection.m in Sources */,
+				4592E8B80DB2AA3200B50CC8 /* CHTTPMessage.m in Sources */,
+				4592E8B90DB2AA3200B50CC8 /* CHTTPMessage_ConvenienceExtensions.m in Sources */,
+				4592E8BA0DB2AA3200B50CC8 /* CHTTPRequestHandler.m in Sources */,
+				4592E8BC0DB2AA3200B50CC8 /* CRoutingHTTPRequestHandler.m in Sources */,
+				4592E8BF0DB2AA3200B50CC8 /* Base64Transcoder.c in Sources */,
+				4592E8C00DB2AA3200B50CC8 /* NSString_Extensions.m in Sources */,
+				4592E8C10DB2AA3200B50CC8 /* NSURL_Extensions.m in Sources */,
+				4592E8C70DB2AAA700B50CC8 /* CHTTPServer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = TouchHTTPD_iPhoneServer_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = TouchHTTPD_iPhoneServer;
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = TouchHTTPD_iPhoneServer_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = TouchHTTPD_iPhoneServer;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos2.0;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos2.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "TouchHTTPD_iPhoneServer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TouchHTTPD_iPhoneServer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

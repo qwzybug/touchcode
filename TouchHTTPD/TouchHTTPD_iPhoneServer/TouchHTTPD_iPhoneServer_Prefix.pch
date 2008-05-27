@@ -1,0 +1,8 @@
+//
+// Prefix header for all source files of the 'TouchHTTPD_iPhoneServer' target in the 'TouchHTTPD_iPhoneServer' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+#endif

@@ -21,5 +21,4 @@
 - (void)dataReceived:(NSData *)inData;
 - (size_t)sendData:(NSData *)inData;
 
-
 @end
