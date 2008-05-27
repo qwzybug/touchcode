@@ -10,6 +10,39 @@
 
 #include <sqlite3.h>
 
+// sqlite group_concat functionality
+
+typedef struct {
+    NSMutableArray *values;
+} group_concat_ctxt;
+
+void group_concat_step(sqlite3_context *ctx, int ncols, sqlite3_value **values)
+{
+    group_concat_ctxt *g;
+    const unsigned char *bytes;
+    
+    g = (group_concat_ctxt *)sqlite3_aggregate_context(ctx, sizeof(group_concat_ctxt));
+    
+    if (sqlite3_aggregate_count(ctx) == 1)
+    {
+        g->values = [[NSMutableArray alloc] init];
+    }
+    
+    bytes = sqlite3_value_text(values[0]); 
+    [g->values addObject:[NSString stringWithCString:(const char *)bytes encoding:NSUTF8StringEncoding]];
+}
+
+void group_concat_finalize(sqlite3_context *ctx)
+{
+    group_concat_ctxt *g;
+    
+    g = (group_concat_ctxt *)sqlite3_aggregate_context(ctx, sizeof(group_concat_ctxt));
+    const char *finalString = [[g->values componentsJoinedByString:@", "] UTF8String];
+    sqlite3_result_text(ctx, finalString, strlen(finalString), NULL);
+    [g->values release];
+    g->values = nil;
+}
+
 #import "CSqliteEnumerator.h"
 #import "CSqliteDatabase_Extensions.h"
 
@@ -62,6 +95,7 @@ if (sql == NULL)
 		return(NO);
 		}
 	self.sql = theSql;
+    sqlite3_create_function(theSql, "group_concat", 1, SQLITE_UTF8, theSql, NULL, group_concat_step, group_concat_finalize);    
 	}
 return(YES);
 }
@@ -213,6 +247,16 @@ sqlite3_finalize(pStmt);
 pStmt = NULL;
 
 return(theRowsArray);
+}
+
+- (BOOL)begin
+{
+    return [[self valueForExpression:@"BEGIN TRANSACTION" error:NULL] boolValue];
+}
+
+- (BOOL)commit
+{
+    return [[self valueForExpression:@"COMMIT" error:NULL] boolValue];
 }
 
 @end

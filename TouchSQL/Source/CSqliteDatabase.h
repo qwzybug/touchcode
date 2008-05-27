@@ -30,6 +30,9 @@ extern NSString *TouchSQLErrorDomain /* = @"TouchSQLErrorDomain" */;
 - (NSEnumerator *)enumeratorForExpression:(NSString *)inExpression error:(NSError **)outError;
 - (NSArray *)rowsForExpression:(NSString *)inExpression error:(NSError **)outError;
 
+- (BOOL)begin;
+- (BOOL)commit;
+
 @end
 
 #pragma mark -
