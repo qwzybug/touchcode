@@ -25,8 +25,6 @@
 		45552D5B0856C5B7006456A2 /* UnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 45552D590856C5B7006456A2 /* UnitTests.m */; };
 		45552D650856C5D5006456A2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
 		45552E450856C7DE006456A2 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45552E440856C7DE006456A2 /* SenTestingKit.framework */; };
-		45603B3F0D838D39005B99BF /* ToxicFrameworks_Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 45603B3D0D838D39005B99BF /* ToxicFrameworks_Debug.xcconfig */; };
-		45603B400D838D39005B99BF /* ToxicFrameworks_Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 45603B3E0D838D39005B99BF /* ToxicFrameworks_Release.xcconfig */; };
 		4593A183066D2D2E007B6932 /* CSqliteDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 4593A167066D2D2E007B6932 /* CSqliteDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4593A184066D2D2E007B6932 /* CSqliteDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4593A168066D2D2E007B6932 /* CSqliteDatabase.m */; };
 		4593A185066D2D2E007B6932 /* CSqliteDatabase_ConvenienceExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 4593A169066D2D2E007B6932 /* CSqliteDatabase_ConvenienceExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -40,11 +38,13 @@
 		4593A18D066D2D2E007B6932 /* NSString_SqlExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 4593A171066D2D2E007B6932 /* NSString_SqlExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4593A18E066D2D2E007B6932 /* NSString_SqlExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4593A172066D2D2E007B6932 /* NSString_SqlExtensions.m */; };
 		4593A3BB066D2D47007B6932 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
-		45E92DD20856B3E800B7327A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E92DD10856B3E800B7327A /* libsqlite3.dylib */; };
 		45E92DE20856B4CC00B7327A /* ToxicSQL.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E92DE10856B4CC00B7327A /* ToxicSQL.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45E92DF20856B4EF00B7327A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 45E92DED0856B4EF00B7327A /* InfoPlist.strings */; };
-		45E92E180856B56000B7327A /* sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E92E170856B56000B7327A /* sqlite3.h */; };
 		45E931B90856C14300B7327A /* TouchSQL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TouchSQL.framework */; };
+		45FA852C0DEC78880071DD28 /* ToxicFrameworks_Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 45FA852A0DEC78880071DD28 /* ToxicFrameworks_Debug.xcconfig */; };
+		45FA852D0DEC78880071DD28 /* ToxicFrameworks_Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 45FA852B0DEC78880071DD28 /* ToxicFrameworks_Release.xcconfig */; };
+		45FA852E0DEC78880071DD28 /* ToxicFrameworks_Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 45FA852A0DEC78880071DD28 /* ToxicFrameworks_Debug.xcconfig */; };
+		45FA852F0DEC78880071DD28 /* ToxicFrameworks_Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 45FA852B0DEC78880071DD28 /* ToxicFrameworks_Release.xcconfig */; };
 		8DC2EF510486A6940098B216 /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF5E0370ADEE00C91783 /* Prefix.pch */; };
 /* End PBXBuildFile section */
 
@@ -72,8 +72,6 @@
 		45552D580856C5B7006456A2 /* UnitTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitTests.h; sourceTree = "<group>"; };
 		45552D590856C5B7006456A2 /* UnitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitTests.m; sourceTree = "<group>"; };
 		45552E440856C7DE006456A2 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = /System/Library/Frameworks/SenTestingKit.framework; sourceTree = "<absolute>"; };
-		45603B3D0D838D39005B99BF /* ToxicFrameworks_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = ToxicFrameworks_Debug.xcconfig; path = /Users/schwa/Developer/Subversion/WorkingDirectories/touchcode/TouchSQL/Configurations/ToxicFrameworks_Debug.xcconfig; sourceTree = "<absolute>"; };
-		45603B3E0D838D39005B99BF /* ToxicFrameworks_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = ToxicFrameworks_Release.xcconfig; path = /Users/schwa/Developer/Subversion/WorkingDirectories/touchcode/TouchSQL/Configurations/ToxicFrameworks_Release.xcconfig; sourceTree = "<absolute>"; };
 		4593A167066D2D2E007B6932 /* CSqliteDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSqliteDatabase.h; sourceTree = "<group>"; };
 		4593A168066D2D2E007B6932 /* CSqliteDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSqliteDatabase.m; sourceTree = "<group>"; };
 		4593A169066D2D2E007B6932 /* CSqliteDatabase_ConvenienceExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSqliteDatabase_ConvenienceExtensions.h; sourceTree = "<group>"; };
@@ -86,12 +84,12 @@
 		4593A170066D2D2E007B6932 /* NSArray_SqlExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArray_SqlExtensions.m; sourceTree = "<group>"; };
 		4593A171066D2D2E007B6932 /* NSString_SqlExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSString_SqlExtensions.h; sourceTree = "<group>"; };
 		4593A172066D2D2E007B6932 /* NSString_SqlExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_SqlExtensions.m; sourceTree = "<group>"; };
-		45E92DD10856B3E800B7327A /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = /usr/lib/libsqlite3.0.dylib; sourceTree = "<absolute>"; };
 		45E92DE10856B4CC00B7327A /* ToxicSQL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToxicSQL.h; sourceTree = "<group>"; };
 		45E92DEE0856B4EF00B7327A /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		45E92DF10856B4EF00B7327A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
-		45E92E170856B56000B7327A /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sqlite3.h; path = /usr/include/sqlite3.h; sourceTree = "<absolute>"; };
 		45E931A50856C12500B7327A /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		45FA852A0DEC78880071DD28 /* ToxicFrameworks_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = ToxicFrameworks_Debug.xcconfig; sourceTree = "<group>"; };
+		45FA852B0DEC78880071DD28 /* ToxicFrameworks_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = ToxicFrameworks_Release.xcconfig; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* TouchSQL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TouchSQL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -111,7 +109,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4593A3BB066D2D47007B6932 /* Foundation.framework in Frameworks */,
-				45E92DD20856B3E800B7327A /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,7 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				32DBCF5E0370ADEE00C91783 /* Prefix.pch */,
-				45603B3C0D838D39005B99BF /* Configurations */,
+				45FA85290DEC78880071DD28 /* Configurations */,
 				4593A14C066D2D2D007B6932 /* Source */,
 				45E92DEC0856B4EF00B7327A /* Resources */,
 				45552D540856C5B7006456A2 /* UnitTests */,
@@ -144,8 +141,6 @@
 		0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				45E92E170856B56000B7327A /* sqlite3.h */,
-				45E92DD10856B3E800B7327A /* libsqlite3.dylib */,
 				1058C7B2FEA5585E11CA2CBB /* Other Frameworks */,
 			);
 			name = "External Frameworks and Libraries";
@@ -186,16 +181,6 @@
 			path = Source;
 			sourceTree = "<group>";
 		};
-		45603B3C0D838D39005B99BF /* Configurations */ = {
-			isa = PBXGroup;
-			children = (
-				45603B3D0D838D39005B99BF /* ToxicFrameworks_Debug.xcconfig */,
-				45603B3E0D838D39005B99BF /* ToxicFrameworks_Release.xcconfig */,
-			);
-			name = Configurations;
-			path = /Users/schwa/Developer/Subversion/WorkingDirectories/touchcode/TouchSQL/Configurations;
-			sourceTree = "<absolute>";
-		};
 		4593A14C066D2D2D007B6932 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +210,16 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		45FA85290DEC78880071DD28 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				45FA852A0DEC78880071DD28 /* ToxicFrameworks_Debug.xcconfig */,
+				45FA852B0DEC78880071DD28 /* ToxicFrameworks_Release.xcconfig */,
+			);
+			name = Configurations;
+			path = ../Configurations;
+			sourceTree = SOURCE_ROOT;
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -240,7 +235,6 @@
 				4593A18B066D2D2E007B6932 /* NSArray_SqlExtensions.h in Headers */,
 				4593A18D066D2D2E007B6932 /* NSString_SqlExtensions.h in Headers */,
 				45E92DE20856B4CC00B7327A /* ToxicSQL.h in Headers */,
-				45E92E180856B56000B7327A /* sqlite3.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,6 +306,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				45552D5A0856C5B7006456A2 /* Info.plist in Resources */,
+				45FA852E0DEC78880071DD28 /* ToxicFrameworks_Debug.xcconfig in Resources */,
+				45FA852F0DEC78880071DD28 /* ToxicFrameworks_Release.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,8 +316,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				45E92DF20856B4EF00B7327A /* InfoPlist.strings in Resources */,
-				45603B3F0D838D39005B99BF /* ToxicFrameworks_Debug.xcconfig in Resources */,
-				45603B400D838D39005B99BF /* ToxicFrameworks_Release.xcconfig in Resources */,
+				45FA852C0DEC78880071DD28 /* ToxicFrameworks_Debug.xcconfig in Resources */,
+				45FA852D0DEC78880071DD28 /* ToxicFrameworks_Release.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,13 +426,10 @@
 				DYLIB_CURRENT_VERSION = 1;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREFIX_HEADER = Prefix.pch;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Resources/Info.plist;
 				LIBRARY_SEARCH_PATHS = /usr/lib;
-				OTHER_LDFLAGS = (
-					"-headerpad_max_install_names",
-					"-seg1addr",
-					0xd1800000,
-				);
+				OTHER_LDFLAGS = "-lsqlite3";
 				PRODUCT_NAME = TouchSQL;
 			};
 			name = Debug;
@@ -448,13 +441,10 @@
 				DYLIB_CURRENT_VERSION = 1;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREFIX_HEADER = Prefix.pch;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Resources/Info.plist;
 				LIBRARY_SEARCH_PATHS = /usr/lib;
-				OTHER_LDFLAGS = (
-					"-headerpad_max_install_names",
-					"-seg1addr",
-					0xd1800000,
-				);
+				OTHER_LDFLAGS = "-lsqlite3";
 				PRODUCT_NAME = TouchSQL;
 			};
 			name = Release;
@@ -491,10 +481,11 @@
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = UnitTests/Resources/Info.plist;
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				LIBRARY_STYLE = BUNDLE;
-				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_LDFLAGS = "-lsqlite3";
 				PRODUCT_NAME = UnitTests;
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -515,10 +506,11 @@
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = UnitTests/Resources/Info.plist;
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				LIBRARY_STYLE = BUNDLE;
-				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_LDFLAGS = "-lsqlite3";
 				PRODUCT_NAME = UnitTests;
 				WARNING_CFLAGS = (
 					"-Wmost",
