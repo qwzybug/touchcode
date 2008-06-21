@@ -10,6 +10,15 @@
 
 @implementation NSString (NSString_SqlExtensions)
 
+- (NSString *)encodedForLike
+{
+    NSMutableString *theString = [NSMutableString stringWithString:[self encodedForSql]];
+    [theString replaceOccurrencesOfString:@"%" withString:@"\\%" options:NSLiteralSearch range:NSMakeRange(0, [theString length])];
+    [theString replaceOccurrencesOfString:@"_" withString:@"\\_" options:NSLiteralSearch range:NSMakeRange(0, [theString length])];
+    
+    return theString;
+}
+    
 - (NSString *)encodedForSql
 {
 NSMutableString *theString = [NSMutableString stringWithString:self];

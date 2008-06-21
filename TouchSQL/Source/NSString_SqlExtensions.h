@@ -11,6 +11,7 @@
 
 @interface NSString (NSString_SqlExtensions)
 
+- (NSString *)encodedForLike;
 - (NSString *)encodedForSql;
 
 @end
