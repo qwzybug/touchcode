@@ -43,6 +43,43 @@ void group_concat_finalize(sqlite3_context *ctx)
     g->values = nil;
 }
 
+// sqlite word search function
+
+void word_search_func(sqlite3_context* ctx, int argc, sqlite3_value** argv)
+{    
+    int wasFound = 0;
+    
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    
+    const unsigned char *s1 = sqlite3_value_text(argv[0]);
+    NSString *string1 = [[NSString alloc] initWithUTF8String:(const char *)s1];
+    const unsigned char *s2 = sqlite3_value_text(argv[1]);
+    NSString *string2 = [[NSString alloc] initWithUTF8String:(const char *)s2];
+    
+    if ([string1 hasPrefix:string2])
+    {
+        wasFound = 1;
+    }
+    else
+    {
+        NSString *spacePrependedString = [NSString stringWithFormat:@" %@",string2];
+        NSRange foundRange = [string1 rangeOfString:spacePrependedString 
+                                            options:(NSDiacriticInsensitiveSearch | NSCaseInsensitiveSearch)];
+        if (foundRange.location != NSNotFound)
+        {
+            wasFound = 1;
+        }
+    }
+        
+    
+    [string1 release];
+    [string2 release];
+    
+    [pool drain];
+    
+    sqlite3_result_int(ctx, wasFound);
+}
+
 #import "CSqliteEnumerator.h"
 #import "CSqliteDatabase_Extensions.h"
 
@@ -95,7 +132,10 @@ if (sql == NULL)
 		return(NO);
 		}
 	self.sql = theSql;
-    sqlite3_create_function(theSql, "group_concat", 1, SQLITE_UTF8, theSql, NULL, group_concat_step, group_concat_finalize);    
+    int res = sqlite3_create_function(theSql, "group_concat", 1, SQLITE_UTF8, theSql, NULL, group_concat_step, group_concat_finalize);    
+    NSAssert(res == SQLITE_OK, @"Unable to register group_concat function!");
+    res = sqlite3_create_function(theSql, "word_search", 2, SQLITE_UTF8, NULL, word_search_func, NULL, NULL);
+    NSAssert(res == SQLITE_OK, @"Unable to register CADI collation!");    
 	}
 return(YES);
 }
