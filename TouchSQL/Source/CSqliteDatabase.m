@@ -48,35 +48,53 @@ void group_concat_finalize(sqlite3_context *ctx)
 void word_search_func(sqlite3_context* ctx, int argc, sqlite3_value** argv)
 {    
     int wasFound = 0;
+    static NSCharacterSet *charSet = nil;
     
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    if (!charSet)
+    {
+        charSet = [[NSCharacterSet characterSetWithCharactersInString:@" "] retain];
+    }
     
-    const unsigned char *s1 = sqlite3_value_text(argv[0]);
-    NSString *string1 = [[NSString alloc] initWithUTF8String:(const char *)s1];
     const unsigned char *s2 = sqlite3_value_text(argv[1]);
     NSString *string2 = [[NSString alloc] initWithUTF8String:(const char *)s2];
     
-    if ([string1 hasPrefix:string2])
+    // Borrow the buffer here
+    const unsigned char *s1 = sqlite3_value_text(argv[0]);
+    NSString *string1 = [[NSString alloc] initWithBytesNoCopy:(void *)s1 length:sqlite3_value_bytes(argv[0]) encoding:NSUTF8StringEncoding freeWhenDone:NO];
+    
+    // Prepare to be searched!
+    int curLoc = 0;
+    int maxLoc = [string1 length];
+    
+    int string2Len = [string2 length];
+    while (curLoc < maxLoc)
     {
-        wasFound = 1;
-    }
-    else
-    {
-        NSString *spacePrependedString = [NSString stringWithFormat:@" %@",string2];
-        NSRange foundRange = [string1 rangeOfString:spacePrependedString 
-                                            options:(NSDiacriticInsensitiveSearch | NSCaseInsensitiveSearch)];
-        if (foundRange.location != NSNotFound)
+        NSRange searchRange = NSMakeRange(curLoc, maxLoc - curLoc);
+        if (searchRange.length < string2Len)
+        {
+            break;
+        }
+        
+        NSComparisonResult res = [string1 compare:string2 options:NSDiacriticInsensitiveSearch|NSCaseInsensitiveSearch range:NSMakeRange(curLoc, string2Len)];
+        
+        if (res == 0)
         {
             wasFound = 1;
+            break;
         }
-    }
         
+        // find the next whitespace to start from
+        NSRange wsRange = [string1 rangeOfCharacterFromSet:charSet options:NSLiteralSearch range:searchRange];
+        if (wsRange.location == NSNotFound)
+        {
+            break;
+        }
+        curLoc = wsRange.location + 1;
+    }
     
     [string1 release];
     [string2 release];
-    
-    [pool drain];
-    
+        
     sqlite3_result_int(ctx, wasFound);
 }
 
@@ -285,7 +303,7 @@ if ( (theResult != SQLITE_OK) && (theResult != SQLITE_DONE) )
     
 sqlite3_finalize(pStmt);
 pStmt = NULL;
-
+    
 return(theRowsArray);
 }
 
