@@ -38,7 +38,7 @@ NSDictionary *theRow = [self rowForExpression:inExpression error:outError];
 return([theRow allValues]);
 }
 
-- (NSString *)valueForExpression:(NSString *)inExpression error:(NSError **)outError
+- (id)valueForExpression:(NSString *)inExpression error:(NSError **)outError
 {
 NSArray *theValues = [self valuesForExpression:inExpression error:outError];
 // TODO -- check only 1 object is returned?
@@ -65,7 +65,7 @@ return([self objectExistsOfType:@"table" name:inTableName temporary:YES]);
 + (NSDateFormatter *)dbDateFormatter
 {
 NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
-[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSSSSS"];
+[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
 [dateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
 [dateFormatter setGeneratesCalendarDates:NO];
 

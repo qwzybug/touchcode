@@ -16,7 +16,7 @@
 
 - (NSArray *)valuesForExpression:(NSString *)inExpression error:(NSError **)outError;
 
-- (NSString *)valueForExpression:(NSString *)inExpression error:(NSError **)outError;
+- (id)valueForExpression:(NSString *)inExpression error:(NSError **)outError;
 
 - (BOOL)objectExistsOfType:(NSString *)inType name:(NSString *)inTableName temporary:(BOOL)inTemporary;
 - (BOOL)tableExists:(NSString *)inTableName;
