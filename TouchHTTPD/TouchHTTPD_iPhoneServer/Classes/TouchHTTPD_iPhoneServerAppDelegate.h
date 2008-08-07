@@ -8,15 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@class MyView;
-
 @interface TouchHTTPD_iPhoneServerAppDelegate : NSObject {
 	IBOutlet UIWindow *window;
-	IBOutlet MyView *contentView;
+	IBOutlet UIViewController *initialViewController;
 }
 
 @property (nonatomic, retain) UIWindow *window;
-@property (nonatomic, retain) MyView *contentView;
+@property (nonatomic, retain) UIViewController *initialViewController;
 
 @end
 

@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#if TARGET_OS_MAC == 1 && TARGET_OS_IPHONE == 0
 #import <CoreServices/CoreServices.h>
+#elif TARGET_OS_MAC == 1 && TARGET_OS_IPHONE == 1
+#import <CFNetwork/CFNetwork.h>
+#endif
 
 @class CTCPConnection;
 @protocol CTCPSocketListenerDelegate;

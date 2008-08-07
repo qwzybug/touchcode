@@ -7,23 +7,26 @@
 //
 
 #import "TouchHTTPD_iPhoneServerAppDelegate.h"
-#import "MyView.h"
 
 @implementation TouchHTTPD_iPhoneServerAppDelegate
 
 @synthesize window;
-@synthesize contentView;
+@synthesize initialViewController;
 
-
-- (void)applicationDidFinishLaunching:(UIApplication *)application {	
-	[window makeKeyAndVisible];
+- (void)dealloc
+{
+self.window = NULL;
+//
+[super dealloc];
 }
 
+- (void)applicationDidFinishLaunching:(UIApplication *)application
+{
+[self.window addSubview:self.initialViewController.view];
+[self.window makeKeyAndVisible];
 
-- (void)dealloc {
-	[contentView release];
-	[window release];
-	[super dealloc];
+
+[self.initialViewController actionStartServing:NULL];
 }
 
 @end

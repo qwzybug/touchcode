@@ -8,8 +8,12 @@
 
 #import "CHTTPServer.h"
 
+#define USE_HTTPS 0
+
 #import "CHTTPConnection.h"
+#if USE_HTTPS == 1
 #import "CSecureTransportConnection.h"
+#endif
 
 @implementation CHTTPServer
 
@@ -54,14 +58,19 @@ CTCPConnection *theTCPConnection = [[[CBufferedTCPConnection alloc] initWithTCPS
 
 CProtocol *theLowerLink = theTCPConnection;
 
+
 if (self.useHTTPS)
 	{
+#if USE_HTTPS == 1
 	CSecureTransportConnection *theSecureTransportConnection = [[[CSecureTransportConnection alloc] init] autorelease];
 	theSecureTransportConnection.certificates = self.SSLCertificates;
 	theLowerLink.upperLink = theSecureTransportConnection;
 	theSecureTransportConnection.lowerLink = theLowerLink;
 	
 	theLowerLink = theSecureTransportConnection;
+#else
+	NSAssert(NO, @"HTTPS turned on but disabled by compiler.");
+#endif
 	}
 
 
