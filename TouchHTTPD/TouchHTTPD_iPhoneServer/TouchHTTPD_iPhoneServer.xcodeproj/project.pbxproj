@@ -28,6 +28,9 @@
 		4592E8C00DB2AA3200B50CC8 /* NSString_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4592E8AE0DB2AA3200B50CC8 /* NSString_Extensions.m */; };
 		4592E8C10DB2AA3200B50CC8 /* NSURL_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4592E8B00DB2AA3200B50CC8 /* NSURL_Extensions.m */; };
 		4592E8C70DB2AAA700B50CC8 /* CHTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4592E8A00DB2AA3200B50CC8 /* CHTTPServer.m */; };
+		45AE24180E4B6BB5002EF3EE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45AE24170E4B6BB4002EF3EE /* CFNetwork.framework */; };
+		45AE24290E4B6BD0002EF3EE /* CSecureTransportConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4592E88E0DB2AA3200B50CC8 /* CSecureTransportConnection.m */; };
+		45AE24750E4B6BFA002EF3EE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45AE24740E4B6BFA002EF3EE /* Security.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +78,8 @@
 		4592E8AE0DB2AA3200B50CC8 /* NSString_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_Extensions.m; sourceTree = "<group>"; };
 		4592E8AF0DB2AA3200B50CC8 /* NSURL_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSURL_Extensions.h; sourceTree = "<group>"; };
 		4592E8B00DB2AA3200B50CC8 /* NSURL_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSURL_Extensions.m; sourceTree = "<group>"; };
+		45AE24170E4B6BB4002EF3EE /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		45AE24740E4B6BFA002EF3EE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,6 +91,8 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				1D3623EC0D0F72F000981E51 /* CoreGraphics.framework in Frameworks */,
+				45AE24180E4B6BB5002EF3EE /* CFNetwork.framework in Frameworks */,
+				45AE24750E4B6BFA002EF3EE /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +152,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				45AE24740E4B6BFA002EF3EE /* Security.framework */,
+				45AE24170E4B6BB4002EF3EE /* CFNetwork.framework */,
 				1D3623EB0D0F72F000981E51 /* CoreGraphics.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
@@ -295,6 +304,7 @@
 				4592E8C00DB2AA3200B50CC8 /* NSString_Extensions.m in Sources */,
 				4592E8C10DB2AA3200B50CC8 /* NSURL_Extensions.m in Sources */,
 				4592E8C70DB2AAA700B50CC8 /* CHTTPServer.m in Sources */,
+				45AE24290E4B6BD0002EF3EE /* CSecureTransportConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
