@@ -1,12 +1,14 @@
 //
 //  CGeoLineString.m
-//  TouchTheFireEagle
+//  TouchGeo
 //
 //  Created by Jonathan Wight on 08/13/08.
 //  Copyright 2008 toxicsoftware.com. All rights reserved.
 //
 
 #import "CGeoLineString.h"
+
+#import "CGeoPoint.h"
 
 @implementation CGeoLineString
 
@@ -45,15 +47,26 @@ return(theCopy);
 return([[super dictionaryKeys] setByAddingObject:@"coordinates"]);
 }
 
-- (id)initWithDictionary:(NSDictionary *)inDictionary
++ (id)objectFromDictionary:(NSDictionary *)inDictionary
 {
-if ((self = [self initWithDictionary:inDictionary]) != NULL)
+CGeoLineString *theObject = [super objectFromDictionary:inDictionary];
+
+NSMutableArray *thePoints = [NSMutableArray array];
+
+NSArray *theCoordinates = [inDictionary objectForKey:@"coordinates"];
+for (NSArray *thePointCoordinates in theCoordinates)
 	{
-	
-	
-	NSArray *theCoordinates = [inDictionary objectForKey:@"coordinates"];
+	CGeoPoint *thePoint = [[[CGeoPoint alloc] initWithCoordinates:thePointCoordinates] autorelease];
+	[thePoints addObject:thePoint];
 	}
-return(self);
+	
+theObject.points = thePoints;
+
+return(theObject);
+}
+
+- (NSDictionary *)asDictionary
+{
 }
 
 #pragma mark -
