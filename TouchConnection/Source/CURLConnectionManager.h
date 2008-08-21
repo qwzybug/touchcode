@@ -12,9 +12,9 @@
 
 @class CURLConnectionManagerChannel;
 
+/** A CURLConnectionManager is a singleton class that works hand in hand with CManagedURLConnection to create channels of connections. */
 @interface CURLConnectionManager : NSObject <CManagedURLConnectionDelegate> {
 	BOOL started;
-	
 	NSMutableDictionary *channels;
 	BOOL networkActivity;
 }

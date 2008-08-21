@@ -10,6 +10,7 @@
 
 @class CURLConnectionManager;
 
+/** CURLConnectionManagerChannel is used by CURLConnectionManager to represent a "channel" of active and waiting connections. Generally you do not create these objects yourself, but rely on CURLConnection manager to create them for you. */
 @interface CURLConnectionManagerChannel : NSObject {
 	CURLConnectionManager *manager;
 	NSString *name;
