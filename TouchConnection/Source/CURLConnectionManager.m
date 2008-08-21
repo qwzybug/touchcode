@@ -10,6 +10,13 @@
 
 #import "CURLConnectionManagerChannel.h"
 
+// TODO put into a header?
+@interface CManagedURLConnection (CManagedURLConnection_PrivateExtensions)
+@property (readwrite, nonatomic, assign) CURLConnectionManager *manager;
+@end
+
+#pragma mark -
+
 static CURLConnectionManager *gInstance = NULL;
 
 @interface CURLConnectionManager ()
@@ -25,7 +32,6 @@ static CURLConnectionManager *gInstance = NULL;
 @implementation CURLConnectionManager
 
 @synthesize started;
-@synthesize delegate;
 @synthesize channels;
 @synthesize networkActivity;
 
@@ -55,7 +61,6 @@ return(self);
 [self stop];
 
 // TODO cancel all activeConnections?
-self.delegate = NULL;
 self.channels = NULL;
 
 [super dealloc];

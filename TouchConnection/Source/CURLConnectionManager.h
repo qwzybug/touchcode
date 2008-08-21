@@ -10,20 +10,16 @@
 
 #import "CManagedURLConnection.h"
 
-@protocol CURLConnectionManagerDelegate; // TODO - there is no delegate defined!!!
-
 @class CURLConnectionManagerChannel;
 
 @interface CURLConnectionManager : NSObject <CManagedURLConnectionDelegate> {
 	BOOL started;
-	id <CURLConnectionManagerDelegate> delegate;
 	
 	NSMutableDictionary *channels;
 	BOOL networkActivity;
 }
 
 @property (readonly, nonatomic, assign) BOOL started;
-@property (readwrite, nonatomic, assign) id <CURLConnectionManagerDelegate> delegate;
 @property (readonly, nonatomic, assign) BOOL networkActivity;
 
 + (CURLConnectionManager *)instance;

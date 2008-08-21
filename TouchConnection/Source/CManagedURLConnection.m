@@ -18,6 +18,7 @@
 #endif
 
 @interface CManagedURLConnection ()
+@property (readwrite, nonatomic, assign) CURLConnectionManager *manager;
 @property (readwrite, nonatomic, retain) NSURLRequest *request;
 @property (readwrite, nonatomic, retain) NSString *identifier;
 @property (readwrite, nonatomic, retain) NSURLConnection *connection;

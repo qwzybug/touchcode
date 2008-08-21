@@ -11,6 +11,7 @@
 @protocol CManagedURLConnectionDelegate;
 @class CURLConnectionManager;
 
+/** A URL Connection that does most of the grunt work for you. You should generally use this with CURLConnectionManager. */
 @interface CManagedURLConnection : NSObject {
 	CURLConnectionManager *manager; // Never retained.
 
@@ -34,7 +35,7 @@
 	NSTimeInterval endTime;
 }
 
-@property (readwrite, nonatomic, assign) CURLConnectionManager *manager; // TODO -- really need to make this read only.
+@property (readonly, nonatomic, assign) CURLConnectionManager *manager;
 
 @property (readonly, nonatomic, retain) NSString *identifier;
 
