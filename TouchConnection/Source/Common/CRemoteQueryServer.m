@@ -11,6 +11,7 @@
 #import "CURLConnectionManager.h"
 
 NSString *const kRemoteQueryServerDefaultChannelName = @"kRemoteQueryServerDefaultChannelName";
+NSString *const kHTTPStatusCodeErrorDomain = @"kHTTPStatusCodeErrorDomain";
 
 @implementation CRemoteQueryServer
 
@@ -107,8 +108,20 @@ CManagedURLConnection *theURLConnection = [[[CManagedURLConnection alloc] initWi
 
 - (void)deserializeQueryDataForConnection:(CManagedURLConnection *)inConnection
 {
+NSDictionary *theDictionary = NULL;
 NSError *theError = NULL;
-NSDictionary *theDictionary = [self.deserializer deserializeAsDictionary:inConnection.data error:&theError];
+
+// TODO -- should really work with non HTTP responses.
+NSAssert([inConnection.response isKindOfClass:[NSHTTPURLResponse class]], @"Response should be a HTTP response.");
+
+if (((NSHTTPURLResponse *)inConnection.response).statusCode == 200)
+	{
+	theDictionary = [self.deserializer deserializeAsDictionary:inConnection.data error:&theError];
+	}
+else
+	{
+	theError = [NSError errorWithDomain:kHTTPStatusCodeErrorDomain code:((NSHTTPURLResponse *)inConnection.response).statusCode userInfo:NULL];
+	}
 
 if (theDictionary == NULL)
 	{
@@ -158,9 +171,8 @@ SEL theSelector = @selector(didFailWithConnection:error:);
 NSInvocation *theInvocation = [NSInvocation invocationWithMethodSignature:[self methodSignatureForSelector:theSelector]];
 theInvocation.selector = theSelector;
 theInvocation.target = self;
-[theInvocation setArgument:self atIndex:2];
-[theInvocation setArgument:inConnection atIndex:3];
-[theInvocation setArgument:inError atIndex:4];
+[theInvocation setArgument:&inConnection atIndex:2];
+[theInvocation setArgument:&inError atIndex:3];
 [theInvocation retainArguments];
 //
 [theInvocation performSelectorOnMainThread:@selector(invoke) withObject:NULL waitUntilDone:NO];

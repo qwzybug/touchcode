@@ -16,11 +16,11 @@
 @interface CURLConnectionManager : NSObject <CManagedURLConnectionDelegate> {
 	BOOL started;
 	NSMutableDictionary *channels;
-	BOOL networkActivity;
+	NSInteger activeConnectionCount;
 }
 
 @property (readonly, nonatomic, assign) BOOL started;
-@property (readonly, nonatomic, assign) BOOL networkActivity;
+@property (readonly, nonatomic, assign) NSInteger activeConnectionCount;
 
 + (CURLConnectionManager *)instance;
 

@@ -23,7 +23,7 @@ static CURLConnectionManager *gInstance = NULL;
 
 @property (readwrite, nonatomic, assign) BOOL started;
 @property (readwrite, nonatomic, retain) NSMutableDictionary *channels;
-@property (readwrite, nonatomic, assign) BOOL networkActivity;
+@property (readwrite, nonatomic, assign) NSInteger activeConnectionCount;
 
 @end
 
@@ -33,7 +33,7 @@ static CURLConnectionManager *gInstance = NULL;
 
 @synthesize started;
 @synthesize channels;
-@synthesize networkActivity;
+@synthesize activeConnectionCount;
 
 + (CURLConnectionManager *)instance;
 {
@@ -118,8 +118,9 @@ if (self.started == YES)
 
 		theTotalActiveConnections += theChannel.activeConnections.count;
 
-		self.networkActivity = (theTotalActiveConnections > 0) ? YES : NO;
 		}
+
+	self.activeConnectionCount = theTotalActiveConnections;
 	}
 }
 

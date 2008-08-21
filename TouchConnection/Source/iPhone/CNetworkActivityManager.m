@@ -8,7 +8,9 @@
 
 #import "CNetworkActivityManager.h"
 
-static NSString *const kWebViewLoading = @"kWebViewLoading";
+#import "CURLConnectionManager.h"
+
+static NSString *const kActiveConnectionCountContext = @"kActiveConnectionCountContext";
 
 static CNetworkActivityManager *gInstance = NULL;
 
@@ -30,8 +32,18 @@ return(gInstance);
 
 #pragma mark -
 
+- (id)init
+{
+if ((self = [super init]) != NULL)
+	{
+	[[CURLConnectionManager instance] addObserver:self forKeyPath:@"activeConnectionCount" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld | NSKeyValueObservingOptionInitial context:kActiveConnectionCountContext];
+	}
+return(self);
+}
+
 - (void)dealloc
 {
+[[CURLConnectionManager instance] removeObserver:self forKeyPath:@"activeConnectionCount"];
 //
 [super dealloc];
 }
@@ -48,6 +60,30 @@ return(networkActivityCount);
 networkActivityCount = inNetworkActivityCount;
 
 [UIApplication sharedApplication].networkActivityIndicatorVisible = (networkActivityCount > 0) ? YES : NO;
+}
+
+#pragma mark -
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+if (context == kActiveConnectionCountContext)
+	{
+	NSInteger theNew = 0;
+	id theNewValue = [change valueForKey:NSKeyValueChangeNewKey];
+	if (theNewValue && theNewValue != [NSNull null])
+		theNew = [theNewValue integerValue];
+
+	NSInteger theOld = 0;
+	id theOldValue = [change valueForKey:NSKeyValueChangeOldKey];
+	if (theOldValue && theOldValue != [NSNull null])
+		theOld = [theOldValue integerValue];
+		
+	self.networkActivityCount += theNew - theOld;
+	}
+else
+	{
+	[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+	}
 }
 
 @end

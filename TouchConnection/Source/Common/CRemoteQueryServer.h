@@ -12,6 +12,7 @@
 #import "CJSONDeserializer.h"
 
 extern NSString *const kRemoteQueryServerDefaultChannelName /* = @"kRemoteQueryServerDefaultChannelName" */;
+extern NSString *const kHTTPStatusCodeErrorDomain /* = @"kHTTPStatusCodeErrorDomain" */;
 
 @protocol CRemoteQueryServerDelegate;
 
