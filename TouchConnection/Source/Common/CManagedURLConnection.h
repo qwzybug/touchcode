@@ -11,8 +11,6 @@
 @protocol CManagedURLConnectionDelegate;
 @class CURLConnectionManager;
 
-// TODO move all the file based code into a sub-class?
-
 /** A URL Connection that does most of the grunt work for you. You should generally use this with CURLConnectionManager. */
 @interface CManagedURLConnection : NSObject {
 	CURLConnectionManager *manager; // Never retained.

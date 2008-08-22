@@ -203,6 +203,7 @@ if (self.manager)
 	[self.manager connection:self didFailWithError:inError];
 
 self.connection = NULL;
+
 }
 
 @end
