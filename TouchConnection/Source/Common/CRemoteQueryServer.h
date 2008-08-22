@@ -31,7 +31,9 @@ extern NSString *const kHTTPStatusCodeErrorDomain /* = @"kHTTPStatusCodeErrorDom
 @property (readwrite, assign) id <CRemoteQueryServerDelegate> delegate;
 
 - (NSURLRequest *)requestWithRelativeURL:(NSURL *)inRelativeURL;
-- (void)addQueryWithURLRequest:(NSURLRequest *)inRequest identifier:(NSString *)inIdentifier;
+- (NSMutableURLRequest *)mutableRequestWithRelativeURL:(NSURL *)inRelativeURL;
+
+- (void)addQueryWithURLRequest:(NSURLRequest *)inRequest identifier:(NSString *)inIdentifier userInfo:(id)inUserInfo;
 
 @end
 

@@ -97,9 +97,20 @@ NSURLRequest *theRequest = [NSURLRequest requestWithURL:theURL];
 return(theRequest);
 }
 
-- (void)addQueryWithURLRequest:(NSURLRequest *)inRequest identifier:(NSString *)inIdentifier;
+- (NSMutableURLRequest *)mutableRequestWithRelativeURL:(NSURL *)inRelativeURL
 {
-CManagedURLConnection *theURLConnection = [[[CManagedURLConnection alloc] initWithRequest:inRequest identifier:inIdentifier delegate:self userInfo:NULL] autorelease];
+NSURL *theURL = [NSURL URLWithString:[inRelativeURL relativePath] relativeToURL:self.rootURL];
+
+// TODO cache policy and timeout policys?
+
+NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:theURL];
+
+return(theRequest);
+}
+
+- (void)addQueryWithURLRequest:(NSURLRequest *)inRequest identifier:(NSString *)inIdentifier userInfo:(id)inUserInfo
+{
+CManagedURLConnection *theURLConnection = [[[CManagedURLConnection alloc] initWithRequest:inRequest identifier:inIdentifier delegate:self userInfo:inUserInfo] autorelease];
 
 [[CURLConnectionManager instance] addAutomaticURLConnection:theURLConnection toChannel:self.connectionChannelName];
 }

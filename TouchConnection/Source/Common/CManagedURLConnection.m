@@ -24,8 +24,6 @@
 @property (readwrite, nonatomic, retain) NSURLConnection *connection;
 @property (readwrite, nonatomic, retain) NSURLResponse *response;
 @property (readwrite, nonatomic, retain) NSData *data;
-@property (readwrite, nonatomic, retain) NSString *filePath;
-@property (readwrite, nonatomic, retain) NSFileHandle *fileHandle;
 @property (readwrite, nonatomic, assign) NSTimeInterval startTime;
 @property (readwrite, nonatomic, assign) NSTimeInterval endTime;
 
@@ -39,15 +37,12 @@
 @synthesize request;
 @synthesize identifier;
 @synthesize delegate;
-@synthesize useFileFlag;
 @synthesize userInfo;
 @synthesize priority;
 @synthesize channel;
 @synthesize connection;
 @synthesize response;
-@dynamic data;
-@synthesize filePath;
-@synthesize fileHandle;
+@synthesize data;
 @synthesize startTime;
 @synthesize endTime;
 
@@ -65,11 +60,6 @@ return(self);
 
 - (void)dealloc
 {
-if ([[NSFileManager defaultManager] fileExistsAtPath:self.filePath])
-	{
-	NSError *theError = NULL;
-	[[NSFileManager defaultManager] removeItemAtPath:self.filePath error:&theError];
-	}
 [self.connection cancel];
 
 self.manager = NULL;
@@ -81,29 +71,9 @@ self.channel = NULL;
 self.connection = NULL;
 self.response = NULL;
 self.data = NULL;
-self.filePath = NULL;
-self.fileHandle = NULL;
 //
 [super dealloc];
 } 
-
-#pragma mark -
-
-- (NSData *)data
-{
-if (data == NULL && self.useFileFlag)
-	return([NSData dataWithContentsOfFile:self.filePath options:0 error:NULL]);
-return(data); 
-}
-
-- (void)setData:(NSData *)inData
-{
-if (data != inData)
-	{
-	[data autorelease];
-	data = [inData retain];
-    }
-}
 
 #pragma mark -
 
@@ -166,65 +136,27 @@ NSAssert(self.connection == inConnection, NULL);
 
 _Log(@"DID RECEIVE DATA");
 
-if (useFileFlag == YES)
+if (self.data == NULL)
 	{
-	if (self.fileHandle == NULL)
-		{
-		// TODO - most of this could be moved to the connection manager.
-		NSString *theTempRoot = [@"~/Library/Temporary Items/TouchCode" stringByExpandingTildeInPath];
-		NSError *theError = NULL;
-		BOOL theResult = [[NSFileManager defaultManager] createDirectoryAtPath:theTempRoot withIntermediateDirectories:YES attributes:NO error:&theError];
-		if (theResult == NO)
-			{
-			NSLog(@"Could not create temporary directory: %@.", theError);
-			return;
-			}
-
-		NSString *theTempPath = [theTempRoot stringByAppendingPathComponent:@"TEMP_XXXXXXX"];
-
-		char theBuffer[theTempPath.length + 1];
-		strncpy(theBuffer, [theTempPath UTF8String], theTempPath.length + 1);
-		
-		self.filePath = [NSString stringWithUTF8String:mktemp(theBuffer)];
-
-		theResult = [[NSFileManager defaultManager] createFileAtPath:self.filePath contents:inData attributes:NULL];
-		if (theResult == NO)
-			{
-			NSLog(@"createFileAtPath (%@) failed!");
-			}
-		
-		self.fileHandle = [NSFileHandle fileHandleForWritingAtPath:self.filePath];
-		[self.fileHandle seekToEndOfFile];
-		}
-	else
-		{
-		[self.fileHandle writeData:inData];
-		}
+	// Let's just store this data!
+	data = [inData retain];
+	dataIsMutable = NO;
 	}
 else
 	{
-	if (self.data == NULL)
+	if (dataIsMutable == YES)
 		{
-		// Let's just store this data!
-		data = [inData retain];
-		dataIsMutable = NO;
+		// self.data is already NSMutableData. We just need to append.
+		[data appendData:inData];
 		}
 	else
 		{
-		if (dataIsMutable == YES)
-			{
-			// self.data is already NSMutableData. We just need to append.
-			[data appendData:inData];
-			}
-		else
-			{
-			// We have some data, but it is NSData. We need to make a mutable copy first then append.
-			NSMutableData *theCopy = [self.data mutableCopy];
-			[data release];
-			data = theCopy;
-			[data appendData:inData];
-			dataIsMutable = YES;
-			}
+		// We have some data, but it is NSData. We need to make a mutable copy first then append.
+		NSMutableData *theCopy = [self.data mutableCopy];
+		[data release];
+		data = theCopy;
+		[data appendData:inData];
+		dataIsMutable = YES;
 		}
 	}
 }
@@ -241,13 +173,6 @@ NSAssert(self.connection == inConnection, NULL);
 _Log(@"DID FINISH LOADING");
 
 self.endTime = [[NSDate date] timeIntervalSinceReferenceDate];
-
-if (self.fileHandle != NULL)
-	{
-	[self.fileHandle synchronizeFile];
-	[self.fileHandle closeFile];
-	self.fileHandle = NULL;
-	}
 
 if (self.delegate && [self.delegate respondsToSelector:@selector(connection:didSucceedWithResponse:)])
 	[self.delegate connection:self didSucceedWithResponse:self.response];
@@ -278,7 +203,6 @@ if (self.manager)
 	[self.manager connection:self didFailWithError:inError];
 
 self.connection = NULL;
-
 }
 
 @end

@@ -11,6 +11,8 @@
 @protocol CManagedURLConnectionDelegate;
 @class CURLConnectionManager;
 
+// TODO move all the file based code into a sub-class?
+
 /** A URL Connection that does most of the grunt work for you. You should generally use this with CURLConnectionManager. */
 @interface CManagedURLConnection : NSObject {
 	CURLConnectionManager *manager; // Never retained.
@@ -19,7 +21,6 @@
 
 	NSURLRequest *request;
 	id <CManagedURLConnectionDelegate> delegate;
-	BOOL useFileFlag;
 	id userInfo;
 	NSInteger priority;
 	NSString *channel;
@@ -28,8 +29,6 @@
 	NSURLResponse *response;
 	id data;
 	BOOL dataIsMutable;
-	NSString *filePath;
-	NSFileHandle *fileHandle;
 	
 	NSTimeInterval startTime;
 	NSTimeInterval endTime;
@@ -41,7 +40,6 @@
 
 @property (readonly, nonatomic, retain) NSURLRequest *request;
 @property (readwrite, nonatomic, assign) id <CManagedURLConnectionDelegate> delegate;
-@property (readwrite, nonatomic, assign) BOOL useFileFlag;
 @property (readwrite, nonatomic, retain) id userInfo;
 @property (readwrite, nonatomic, assign) NSInteger priority;
 @property (readwrite, nonatomic, retain) NSString *channel;
@@ -50,8 +48,6 @@
 @property (readonly, nonatomic, retain) NSURLResponse *response;
  
 @property (readonly, nonatomic, retain) NSData *data;
-@property (readonly, nonatomic, retain) NSString *filePath;
-@property (readonly, nonatomic, retain) NSFileHandle *fileHandle;
 
 @property (readonly, nonatomic, assign) NSTimeInterval startTime;
 @property (readonly, nonatomic, assign) NSTimeInterval endTime;
