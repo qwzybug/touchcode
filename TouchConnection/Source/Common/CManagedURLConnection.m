@@ -8,7 +8,7 @@
 
 #import "CManagedURLConnection.h"
 
-#import "CURLConnectionManager.h"
+#import "CCompletionTicket.h"
 
 //#define DEBUG 1
 #if URL_LOGGING
@@ -18,9 +18,7 @@
 #endif
 
 @interface CManagedURLConnection ()
-@property (readwrite, nonatomic, assign) CURLConnectionManager *manager;
 @property (readwrite, nonatomic, retain) NSURLRequest *request;
-@property (readwrite, nonatomic, retain) NSString *identifier;
 @property (readwrite, nonatomic, retain) NSURLConnection *connection;
 @property (readwrite, nonatomic, retain) NSURLResponse *response;
 @property (readwrite, nonatomic, retain) NSData *data;
@@ -33,11 +31,8 @@
 
 @implementation CManagedURLConnection
 
-@synthesize manager;
+@synthesize completionTicket;
 @synthesize request;
-@synthesize identifier;
-@synthesize delegate;
-@synthesize userInfo;
 @synthesize priority;
 @synthesize channel;
 @synthesize connection;
@@ -46,14 +41,12 @@
 @synthesize startTime;
 @synthesize endTime;
 
-- (id)initWithRequest:(NSURLRequest *)inRequest identifier:(NSString *)inIdentifier delegate:(id <CManagedURLConnectionDelegate>)inDelegate userInfo:(id)inUserInfo;
+- (id)initWithRequest:(NSURLRequest *)inRequest completionTicket:(CCompletionTicket *)inCompletionTicket
 {
 if ((self = [self init]) != NULL)
 	{
 	self.request = inRequest;
-	self.identifier = inIdentifier;
-	self.delegate = inDelegate;
-	self.userInfo = inUserInfo;
+	self.completionTicket = inCompletionTicket;
 	}
 return(self);
 }
@@ -62,11 +55,8 @@ return(self);
 {
 [self.connection cancel];
 
-self.manager = NULL;
-self.identifier = NULL;
+self.completionTicket = NULL;
 self.request = NULL;
-self.delegate = NULL;
-self.userInfo = NULL;
 self.channel = NULL;
 self.connection = NULL;
 self.response = NULL;
@@ -98,15 +88,7 @@ if (self.connection)
 	self.connection = NULL;
 	}
 
-if (self.delegate && [self.delegate respondsToSelector:@selector(connectionDidCancel:)])
-	[self.delegate connectionDidCancel:self];
-
-if (self.manager)
-	[self.manager connectionDidCancel:self];
-
-// No reason to keep the delegate or manage around if we cancel.
-self.delegate = NULL;
-self.manager = NULL;
+[self.completionTicket didCancelForTarget:self];
 }
 
 #pragma mark -
@@ -174,12 +156,8 @@ _Log(@"DID FINISH LOADING");
 
 self.endTime = [[NSDate date] timeIntervalSinceReferenceDate];
 
-if (self.delegate && [self.delegate respondsToSelector:@selector(connection:didSucceedWithResponse:)])
-	[self.delegate connection:self didSucceedWithResponse:self.response];
-		
-if (self.manager)
-	[self.manager connection:self didSucceedWithResponse:self.response];
-	
+[self.completionTicket didCompleteForTarget:self result:NULL];
+
 self.connection = NULL;
 }
 
@@ -196,11 +174,7 @@ _Log(@"DID FINISH LOADING");
 
 self.endTime = [[NSDate date] timeIntervalSinceReferenceDate];
 
-if (self.delegate && [self.delegate respondsToSelector:@selector(connection:didFailWithError:)])
-	[self.delegate connection:self didFailWithError:inError];
-
-if (self.manager)
-	[self.manager connection:self didFailWithError:inError];
+[self.completionTicket didFailForTarget:self error:inError];
 
 self.connection = NULL;
 

@@ -81,7 +81,7 @@ self.started = NO;
 
 - (void)addAutomaticURLConnection:(CManagedURLConnection *)inConnection toChannel:(NSString *)inChannel
 {
-inConnection.manager = self;
+[inConnection.completionTicket addDelegate:self];
 
 CURLConnectionManagerChannel *theChannel = [self.channels objectForKey:inChannel];
 if (theChannel == NULL)
@@ -131,26 +131,32 @@ return([self.channels objectForKey:inName]);
 
 #pragma mark -
 
-- (void)connection:(CManagedURLConnection *)inConnection didSucceedWithResponse:(NSURLResponse *)inResponse
+- (void)completionTicket:(CCompletionTicket *)inCompletionTicket didCompleteForTarget:(id)inTarget result:(id)inResult
 {
-CURLConnectionManagerChannel *theChannel = [self.channels objectForKey:inConnection.channel];
-[theChannel.activeConnections removeObject:inConnection];
+NSAssert([inTarget isKindOfClass:[CManagedURLConnection class]], @"TODO");
+CManagedURLConnection *theConnection = (CManagedURLConnection *)inTarget;
+CURLConnectionManagerChannel *theChannel = [self.channels objectForKey:theConnection.channel];
+[theChannel.activeConnections removeObject:theConnection];
 //
 [self processConnections];
 }
 
-- (void)connection:(CManagedURLConnection *)inConnection didFailWithError:(NSError *)inError
+- (void)completionTicket:(CCompletionTicket *)inCompletionTicket didFailForTarget:(id)inTarget error:(NSError *)inError
 {
-CURLConnectionManagerChannel *theChannel = [self.channels objectForKey:inConnection.channel];
-[theChannel.activeConnections removeObject:inConnection];
+NSAssert([inTarget isKindOfClass:[CManagedURLConnection class]], @"TODO");
+CManagedURLConnection *theConnection = (CManagedURLConnection *)inTarget;
+CURLConnectionManagerChannel *theChannel = [self.channels objectForKey:theConnection.channel];
+[theChannel.activeConnections removeObject:theConnection];
 //
 [self processConnections];
 }
 
-- (void)connectionDidCancel:(CManagedURLConnection *)inConnection;
+- (void)completionTicket:(CCompletionTicket *)inCompletionTicket didCancelForTarget:(id)inTarget
 {
-CURLConnectionManagerChannel *theChannel = [self.channels objectForKey:inConnection.channel];
-[theChannel.activeConnections removeObject:inConnection];
+NSAssert([inTarget isKindOfClass:[CManagedURLConnection class]], @"TODO");
+CManagedURLConnection *theConnection = (CManagedURLConnection *)inTarget;
+CURLConnectionManagerChannel *theChannel = [self.channels objectForKey:theConnection.channel];
+[theChannel.activeConnections removeObject:theConnection];
 //
 [self processConnections];
 }
@@ -159,12 +165,12 @@ CURLConnectionManagerChannel *theChannel = [self.channels objectForKey:inConnect
 
 #pragma mark -
 
-@implementation CURLConnectionManager (CURLConnectionManager_ConvenienceMethods)
-
-- (void)addAutomaticURLConnectionForRequest:(NSURLRequest *)inRequest toChannel:(NSString *)inChannel delegate:(id <CManagedURLConnectionDelegate>)inDelegate
-{
-CManagedURLConnection *theConnection = [[[CManagedURLConnection alloc] initWithRequest:inRequest identifier:NULL delegate:inDelegate userInfo:NULL] autorelease];
-[self addAutomaticURLConnection:theConnection toChannel:inChannel];
-}
-
-@end
+//@implementation CURLConnectionManager (CURLConnectionManager_ConvenienceMethods)
+//
+//- (void)addAutomaticURLConnectionForRequest:(NSURLRequest *)inRequest toChannel:(NSString *)inChannel delegate:(id)inDelegate
+//{
+//CManagedURLConnection *theConnection = [[[CManagedURLConnection alloc] initWithRequest:inRequest identifier:NULL delegate:inDelegate userInfo:NULL] autorelease];
+//[self addAutomaticURLConnection:theConnection toChannel:inChannel];
+//}
+//
+//@end

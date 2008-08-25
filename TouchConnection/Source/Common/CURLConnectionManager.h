@@ -9,11 +9,12 @@
 #import <Foundation/Foundation.h>
 
 #import "CManagedURLConnection.h"
+#import "CCompletionTicket.h"
 
 @class CURLConnectionManagerChannel;
 
 /** A CURLConnectionManager is a singleton class that works hand in hand with CManagedURLConnection to create channels of connections. */
-@interface CURLConnectionManager : NSObject <CManagedURLConnectionDelegate> {
+@interface CURLConnectionManager : NSObject <CCompletionTicketDelegate> {
 	BOOL started;
 	NSMutableDictionary *channels;
 	NSInteger activeConnectionCount;
@@ -37,8 +38,8 @@
 
 #pragma mark -
 
-@interface CURLConnectionManager (CURLConnectionManager_ConvenienceMethods)
-
-- (void)addAutomaticURLConnectionForRequest:(NSURLRequest *)inRequest toChannel:(NSString *)inChannel delegate:(id <CManagedURLConnectionDelegate>)inDelegate;
-
-@end
+//@interface CURLConnectionManager (CURLConnectionManager_ConvenienceMethods)
+//
+//- (void)addAutomaticURLConnectionForRequest:(NSURLRequest *)inRequest toChannel:(NSString *)inChannel delegate:(id)inDelegate;
+//
+//@end

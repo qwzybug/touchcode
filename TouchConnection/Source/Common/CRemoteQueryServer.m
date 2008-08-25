@@ -8,10 +8,17 @@
 
 #import "CRemoteQueryServer.h"
 
+#import "CCompletionTicket.h"
 #import "CURLConnectionManager.h"
+#import "NSObject_InvocationGrabberExtensions.h"
 
 NSString *const kRemoteQueryServerDefaultChannelName = @"kRemoteQueryServerDefaultChannelName";
 NSString *const kHTTPStatusCodeErrorDomain = @"kHTTPStatusCodeErrorDomain";
+
+@interface CRemoteQueryServer ()
+@end
+
+#pragma mark -
 
 @implementation CRemoteQueryServer
 
@@ -19,7 +26,6 @@ NSString *const kHTTPStatusCodeErrorDomain = @"kHTTPStatusCodeErrorDomain";
 @dynamic connectionChannelName;
 @dynamic operationQueue;
 @synthesize deserializer;
-@synthesize delegate;
 
 - (void)dealloc
 {
@@ -29,7 +35,6 @@ self.rootURL = NULL;
 self.connectionChannelName = NULL;
 self.operationQueue = NULL;
 self.deserializer = NULL;
-self.delegate = NULL;
 //	
 [super dealloc];
 }
@@ -108,9 +113,15 @@ NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:theURL];
 return(theRequest);
 }
 
-- (void)addQueryWithURLRequest:(NSURLRequest *)inRequest identifier:(NSString *)inIdentifier userInfo:(id)inUserInfo
+- (void)addQueryWithURLRequest:(NSURLRequest *)inRequest completionTicket:(CCompletionTicket *)inCompletionTicket
 {
-CManagedURLConnection *theURLConnection = [[[CManagedURLConnection alloc] initWithRequest:inRequest identifier:inIdentifier delegate:self userInfo:inUserInfo] autorelease];
+NSDictionary *theUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+	inCompletionTicket, @"completionTicket",
+	NULL];
+
+CCompletionTicket *theCompletionTicket = [[[CCompletionTicket alloc] initWithIdentifier:NULL delegate:self userInfo:theUserInfo] autorelease];
+
+CManagedURLConnection *theURLConnection = [[[CManagedURLConnection alloc] initWithRequest:inRequest completionTicket:theCompletionTicket] autorelease];
 
 [[CURLConnectionManager instance] addAutomaticURLConnection:theURLConnection toChannel:self.connectionChannelName];
 }
@@ -136,62 +147,46 @@ else
 
 if (theDictionary == NULL)
 	{
-	SEL theSelector = @selector(didFailWithConnection:error:);
-	NSInvocation *theInvocation = [NSInvocation invocationWithMethodSignature:[self methodSignatureForSelector:theSelector]];
-	theInvocation.selector = theSelector;
-	[theInvocation setArgument:&inConnection atIndex:2];
-	[theInvocation setArgument:&theError atIndex:3];
-	[theInvocation retainArguments];
-	//
-	[theInvocation performSelectorOnMainThread:@selector(invokeWithTarget:) withObject:self waitUntilDone:YES];
+	CCompletionTicket *theCompletionTicket = [inConnection.completionTicket.userInfo objectForKey:@"completionTicket"];
+	if (theCompletionTicket)
+		{
+		[[theCompletionTicket grabInvocationAndPerformOnMainThreadWaitUntilDone:NO] didFailForTarget:inConnection error:theError];
+		}
 	}
 else
 	{
-	SEL theSelector = @selector(didSucceedWithConnection:resultDictionary:);
-	NSInvocation *theInvocation = [NSInvocation invocationWithMethodSignature:[self methodSignatureForSelector:theSelector]];
-	theInvocation.selector = theSelector;
-	[theInvocation setArgument:&inConnection atIndex:2];
-	[theInvocation setArgument:&theDictionary atIndex:3];
-	[theInvocation retainArguments];
-	//
-	[theInvocation performSelectorOnMainThread:@selector(invokeWithTarget:) withObject:self waitUntilDone:YES];
+	CCompletionTicket *theCompletionTicket = [inConnection.completionTicket.userInfo objectForKey:@"completionTicket"];
+	if (theCompletionTicket)
+		{
+		[[theCompletionTicket grabInvocationAndPerformOnMainThreadWaitUntilDone:NO] didCompleteForTarget:inConnection result:theDictionary];
+		}
 	}
-}
-
-- (void)didSucceedWithConnection:(CManagedURLConnection *)inConnection resultDictionary:(NSDictionary *)inResultDictionary
-{
-[self.delegate remoteQueryServer:self didSucceedWithIdentifier:inConnection.identifier resultDictionary:inResultDictionary];
-}
-
-- (void)didFailWithConnection:(CManagedURLConnection *)inConnection error:(NSError *)inError
-{
-[self.delegate remoteQueryServer:self didFailWithIdentifier:inConnection.identifier error:inError];
 }
 
 #pragma mark -
 
-- (void)connection:(CManagedURLConnection *)inConnection didSucceedWithResponse:(NSURLResponse *)inResponse
+- (void)completionTicket:(CCompletionTicket *)inCompletionTicket didCompleteForTarget:(id)inTarget result:(id)inResult
 {
-NSInvocationOperation *theOperation = [[[NSInvocationOperation alloc] initWithTarget:self selector:@selector(deserializeQueryDataForConnection:) object:inConnection] autorelease];
+NSInvocationOperation *theOperation = [[[NSInvocationOperation alloc] initWithTarget:self selector:@selector(deserializeQueryDataForConnection:) object:inTarget] autorelease];
 [self.operationQueue addOperation:theOperation];
 }
 
-- (void)connection:(CManagedURLConnection *)inConnection didFailWithError:(NSError *)inError
+- (void)completionTicket:(CCompletionTicket *)inCompletionTicket didFailForTarget:(id)inTarget error:(NSError *)inError;
 {
-SEL theSelector = @selector(didFailWithConnection:error:);
-NSInvocation *theInvocation = [NSInvocation invocationWithMethodSignature:[self methodSignatureForSelector:theSelector]];
-theInvocation.selector = theSelector;
-theInvocation.target = self;
-[theInvocation setArgument:&inConnection atIndex:2];
-[theInvocation setArgument:&inError atIndex:3];
-[theInvocation retainArguments];
-//
-[theInvocation performSelectorOnMainThread:@selector(invoke) withObject:NULL waitUntilDone:NO];
+CCompletionTicket *theCompletionTicket = [inCompletionTicket.userInfo objectForKey:@"completionTicket"];
+if (theCompletionTicket)
+	{
+	[[theCompletionTicket grabInvocationAndPerformOnMainThreadWaitUntilDone:NO] didFailForTarget:inTarget error:inError];
+	}
 }
 
-- (void)connectionDidCancel:(CManagedURLConnection *)inConnection
+- (void)completionTicket:(CCompletionTicket *)inCompletionTicket didCancelForTarget:(id)inTarget;
 {
-// We just swallow cancellations. Any better ideas?
+CCompletionTicket *theCompletionTicket = [inCompletionTicket.userInfo objectForKey:@"completionTicket"];
+if (theCompletionTicket)
+	{
+	[[theCompletionTicket grabInvocationAndPerformOnMainThreadWaitUntilDone:NO] didCancelForTarget:inTarget];
+	}
 }
 
 @end
