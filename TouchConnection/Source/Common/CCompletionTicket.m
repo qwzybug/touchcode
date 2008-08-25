@@ -21,6 +21,11 @@
 @synthesize delegatePointers;
 @synthesize userInfo;
 
++ (CCompletionTicket *)completionTicketWithIdentifier:(NSString *)inIdentifier delegate:(id <CCompletionTicketDelegate>)inDelegate userInfo:(id)inUserInfo
+{
+return([[[self alloc] initWithIdentifier:inIdentifier delegate:inDelegate userInfo:inUserInfo] autorelease]);
+}
+
 - (id)initWithIdentifier:(NSString *)inIdentifier delegates:(NSArray *)inDelegates userInfo:(id)inUserInfo
 {
 if ((self = [super init]) != NULL)

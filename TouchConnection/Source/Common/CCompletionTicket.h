@@ -20,6 +20,8 @@
 @property (readonly, nonatomic, retain) NSArray *delegates;
 @property (readonly, nonatomic, retain) id userInfo;
 
++ (CCompletionTicket *)completionTicketWithIdentifier:(NSString *)inIdentifier delegate:(id <CCompletionTicketDelegate>)inDelegate userInfo:(id)inUserInfo;
+
 - (id)initWithIdentifier:(NSString *)inIdentifier delegates:(NSArray *)inDelegates userInfo:(id)inUserInfo;
 - (id)initWithIdentifier:(NSString *)inIdentifier delegate:(id <CCompletionTicketDelegate>)inDelegate userInfo:(id)inUserInfo;
 
