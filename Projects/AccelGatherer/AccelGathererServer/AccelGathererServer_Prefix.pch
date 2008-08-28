@@ -1,0 +1,9 @@
+//
+// Prefix header for all source files of the 'AccelGathererServer' target in the 'AccelGathererServer' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+    #import <Cocoa/Cocoa.h>
+#endif
