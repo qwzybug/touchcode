@@ -8,7 +8,6 @@
 
 #import "CBonjourBrowserViewController.h"
 
-#import "CLabelledValueTableViewCell.h"
 #import "CAccelBroadcasterViewController.h"
 
 @implementation CBonjourBrowserViewController
@@ -47,33 +46,18 @@ return(2);
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
 {
-if (section == 0)
-	return(1);
-else
-	return(self.services.count);
+return(self.services.count);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 UITableViewCell *theCell = NULL;
-if (indexPath.section == 0)
-	{
-	UIActivityIndicatorView *theActivityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
-	theActivityIndicator.hidesWhenStopped = NO;
-	[theActivityIndicator startAnimating];
-	
-	CLabelledValueTableViewCell *theLabelledCell = [CLabelledValueTableViewCell cell];
-	theLabelledCell.text = @"Looking for Services";
-	theLabelledCell.valueView = theActivityIndicator;
-	theCell = theLabelledCell;
-	}
-else if (indexPath.section == 1)
-	{
-	NSNetService *theService = [self.services objectAtIndex:indexPath.row];
-	theCell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:NULL] autorelease];
-	theCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	theCell.text = [theService name];
-	}
+
+NSNetService *theService = [self.services objectAtIndex:indexPath.row];
+theCell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:NULL] autorelease];
+theCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+theCell.text = [theService name];
+
 return(theCell);
 }
 

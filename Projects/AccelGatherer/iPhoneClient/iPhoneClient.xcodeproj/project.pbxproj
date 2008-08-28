@@ -15,9 +15,6 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* CBonjourBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* CBonjourBrowserViewController.m */; };
 		4502F91F0E64C44F002D59DC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4502F91E0E64C44F002D59DC /* CoreGraphics.framework */; };
-		4502FA230E64D049002D59DC /* Geometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4502FA220E64D049002D59DC /* Geometry.m */; };
-		4502FA340E64D08E002D59DC /* LabelledValueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4502FA330E64D08E002D59DC /* LabelledValueTableViewCell.xib */; };
-		4502FA400E64D34B002D59DC /* CLabelledValueTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4502FA3F0E64D34B002D59DC /* CLabelledValueTableViewCell.m */; };
 		4502FBB70E64EA3F002D59DC /* CAccelBroadcasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4502FBB60E64EA3F002D59DC /* CAccelBroadcasterViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -34,11 +31,6 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Test_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test_Prefix.pch; sourceTree = "<group>"; };
 		4502F91E0E64C44F002D59DC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		4502FA210E64D049002D59DC /* Geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Geometry.h; path = ../../Development/Mercurial/Repositories/touchcode_private/touchcode/Common/Geometry.h; sourceTree = SOURCE_ROOT; };
-		4502FA220E64D049002D59DC /* Geometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Geometry.m; path = ../../Development/Mercurial/Repositories/touchcode_private/touchcode/Common/Geometry.m; sourceTree = SOURCE_ROOT; };
-		4502FA330E64D08E002D59DC /* LabelledValueTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = LabelledValueTableViewCell.xib; path = ../../Development/Mercurial/Repositories/touchcode_private/touchcode/iPhone/TableCells/LabelledValueTableViewCell.xib; sourceTree = SOURCE_ROOT; };
-		4502FA3E0E64D34B002D59DC /* CLabelledValueTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLabelledValueTableViewCell.h; path = ../../Development/Mercurial/Repositories/touchcode_private/touchcode/iPhone/TableCells/CLabelledValueTableViewCell.h; sourceTree = SOURCE_ROOT; };
-		4502FA3F0E64D34B002D59DC /* CLabelledValueTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLabelledValueTableViewCell.m; path = ../../Development/Mercurial/Repositories/touchcode_private/touchcode/iPhone/TableCells/CLabelledValueTableViewCell.m; sourceTree = SOURCE_ROOT; };
 		4502FBB50E64EA3F002D59DC /* CAccelBroadcasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAccelBroadcasterViewController.h; sourceTree = "<group>"; };
 		4502FBB60E64EA3F002D59DC /* CAccelBroadcasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAccelBroadcasterViewController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -67,11 +59,6 @@
 				28D7ACF70DDB3853001CB0EB /* CBonjourBrowserViewController.m */,
 				4502FBB50E64EA3F002D59DC /* CAccelBroadcasterViewController.h */,
 				4502FBB60E64EA3F002D59DC /* CAccelBroadcasterViewController.m */,
-				4502FA330E64D08E002D59DC /* LabelledValueTableViewCell.xib */,
-				4502FA3E0E64D34B002D59DC /* CLabelledValueTableViewCell.h */,
-				4502FA3F0E64D34B002D59DC /* CLabelledValueTableViewCell.m */,
-				4502FA210E64D049002D59DC /* Geometry.h */,
-				4502FA220E64D049002D59DC /* Geometry.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -150,7 +137,7 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Test" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "iPhoneClient" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
@@ -169,7 +156,6 @@
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				2899E5220DE3E06400AC0155 /* TestViewController.xib in Resources */,
-				4502FA340E64D08E002D59DC /* LabelledValueTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,8 +169,6 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* TestAppDelegate.m in Sources */,
 				28D7ACF80DDB3853001CB0EB /* CBonjourBrowserViewController.m in Sources */,
-				4502FA230E64D049002D59DC /* Geometry.m in Sources */,
-				4502FA400E64D34B002D59DC /* CLabelledValueTableViewCell.m in Sources */,
 				4502FBB70E64EA3F002D59DC /* CAccelBroadcasterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,7 +241,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Test" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "iPhoneClient" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
