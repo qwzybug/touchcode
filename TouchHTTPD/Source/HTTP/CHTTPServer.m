@@ -54,7 +54,8 @@ if (self.socketListener == NULL)
 
 - (CTCPConnection *)TCPSocketListener:(CTCPSocketListener *)inSocketListener createTCPConnectionWithAddress:(NSData *)inAddress inputStream:(NSInputStream *)inInputStream outputStream:(NSOutputStream *)inOutputStream;
 {
-CTCPConnection *theTCPConnection = [[[CBufferedTCPConnection alloc] initWithTCPSocketListener:inSocketListener address:inAddress inputStream:inInputStream outputStream:inOutputStream] autorelease];
+CTCPConnection *theTCPConnection = [[[CBufferedTCPConnection alloc] initWithAddress:inAddress inputStream:inInputStream outputStream:inOutputStream] autorelease];
+theTCPConnection.delegate = inSocketListener;
 
 CProtocol *theLowerLink = theTCPConnection;
 

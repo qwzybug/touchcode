@@ -260,7 +260,8 @@ if (self.delegate && [(id)self.delegate respondsToSelector:@selector(TCPSocketLi
 
 if (theConnection == NULL)
 	{
-	theConnection = [[[self.connectionClass alloc] initWithTCPSocketListener:self address:inAddress inputStream:inInputStream outputStream:inOutputStream] autorelease];
+	theConnection = [[[self.connectionClass alloc] initWithAddress:inAddress inputStream:inInputStream outputStream:inOutputStream] autorelease];
+	theConnection.delegate = self;
 	}
 return(theConnection);
 }

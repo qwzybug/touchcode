@@ -8,10 +8,7 @@
 
 #import "CTCPConnection.h"
 
-#import "CTCPSocketListener.h"
-
 @interface CTCPConnection ()
-@property (readwrite, assign) CTCPSocketListener *socketListener;
 @property (readwrite, retain) NSData *address;
 @property (readwrite, retain) NSInputStream *inputStream;
 @property (readwrite, retain) NSOutputStream *outputStream;
@@ -19,16 +16,15 @@
 
 @implementation CTCPConnection
 
-@synthesize socketListener;
+@synthesize delegate;
 @synthesize address;
 @synthesize inputStream;
 @synthesize outputStream;
 
-- (id)initWithTCPSocketListener:(CTCPSocketListener *)inSocketListener address:(NSData *)inAddress inputStream:(NSInputStream *)inInputStream outputStream:(NSOutputStream *)inOutputStream
+- (id)initWithAddress:(NSData *)inAddress inputStream:(NSInputStream *)inInputStream outputStream:(NSOutputStream *)inOutputStream
 {
 if ((self = [self init]) != NULL)
 	{
-	self.socketListener = inSocketListener;
 	self.address = inAddress;
 	self.inputStream = inInputStream;
 	self.outputStream = inOutputStream;
@@ -41,7 +37,7 @@ return(self);
 
 - (void)dealloc
 {
-self.socketListener = NULL;
+self.delegate = NULL;
 self.address = NULL;
 self.inputStream = NULL;
 self.outputStream = NULL;
@@ -53,7 +49,7 @@ self.outputStream = NULL;
 {
 #pragma unused (outError)
 
-[self.socketListener connectionWillOpen:self];
+[self.delegate connectionWillOpen:self];
 
 [self.inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:(id)kCFRunLoopCommonModes];
 [self.outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:(id)kCFRunLoopCommonModes];
@@ -61,14 +57,14 @@ self.outputStream = NULL;
 [self.inputStream open];
 [self.outputStream open];
 
-[self.socketListener connectionDidOpen:self];
+[self.delegate connectionDidOpen:self];
 
 return(YES);
 }
 
 - (void)close
 {
-[self.socketListener connectionWillClose:self];
+[self.delegate connectionWillClose:self];
 
 [self.inputStream close];
 [self.outputStream close];
@@ -79,7 +75,7 @@ return(YES);
 self.inputStream.delegate = NULL;
 self.outputStream.delegate = NULL;
 
-[self.socketListener connectionDidClose:self];
+[self.delegate connectionDidClose:self];
 }
 
 #pragma mark -

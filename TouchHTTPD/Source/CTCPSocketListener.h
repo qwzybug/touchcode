@@ -13,10 +13,12 @@
 #import <CFNetwork/CFNetwork.h>
 #endif
 
+#import "CTCPConnection.h"
+
 @class CTCPConnection;
 @protocol CTCPSocketListenerDelegate;
 
-@interface CTCPSocketListener : NSObject {
+@interface CTCPSocketListener : NSObject <CTCPConnectionDelegate> {
     id <CTCPSocketListenerDelegate> delegate;
     uint16_t port;
     NSString *domain;
