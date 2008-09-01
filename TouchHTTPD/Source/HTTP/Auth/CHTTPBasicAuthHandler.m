@@ -17,7 +17,7 @@
 @synthesize delegate;
 @synthesize realm;
 
-- (id) init
+- (id)init
 {
 if ((self = [super init]) != nil)
 	{
@@ -26,7 +26,7 @@ if ((self = [super init]) != nil)
 return(self);
 }
 
-- (void) dealloc
+- (void)dealloc
 {
 self.childHandler = NULL;
 self.delegate = NULL;
