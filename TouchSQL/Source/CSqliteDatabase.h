@@ -32,6 +32,7 @@ extern NSString *TouchSQLErrorDomain /* = @"TouchSQLErrorDomain" */;
 
 - (BOOL)begin;
 - (BOOL)commit;
+- (BOOL)rollback;
 
 @end
 

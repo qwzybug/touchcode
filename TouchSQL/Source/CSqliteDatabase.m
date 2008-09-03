@@ -309,12 +309,17 @@ return(theRowsArray);
 
 - (BOOL)begin
 {
-    return [[self valueForExpression:@"BEGIN TRANSACTION" error:NULL] boolValue];
+    return [self executeExpression:@"BEGIN TRANSACTION" error:NULL];
 }
 
 - (BOOL)commit
 {
-    return [[self valueForExpression:@"COMMIT" error:NULL] boolValue];
+    return [self executeExpression:@"COMMIT" error:NULL];
+}
+
+- (BOOL)rollback
+{
+    return [self executeExpression:@"ROLLBACK" error:NULL];
 }
 
 @end
