@@ -1,0 +1,316 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		45932FB50E75A91900E0AAAC /* CXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 45932FA90E75A91900E0AAAC /* CXMLDocument.m */; };
+		45932FB60E75A91900E0AAAC /* CXMLDocument_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45932FAB0E75A91900E0AAAC /* CXMLDocument_PrivateExtensions.m */; };
+		45932FB70E75A91900E0AAAC /* CXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 45932FAD0E75A91900E0AAAC /* CXMLElement.m */; };
+		45932FB80E75A91900E0AAAC /* CXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 45932FAF0E75A91900E0AAAC /* CXMLNode.m */; };
+		45932FB90E75A91900E0AAAC /* CXMLNode_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45932FB10E75A91900E0AAAC /* CXMLNode_PrivateExtensions.m */; };
+		45932FBA0E75A91900E0AAAC /* CXMLNode_XPathExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45932FB30E75A91900E0AAAC /* CXMLNode_XPathExtensions.m */; };
+		4593304C0E75AB2B00E0AAAC /* CRSSFeedDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4593304B0E75AB2B00E0AAAC /* CRSSFeedDeserializer.m */; };
+		459331670E75B95100E0AAAC /* words.m in Sources */ = {isa = PBXBuildFile; fileRef = 4593313C0E75B6A100E0AAAC /* words.m */; };
+		459333E50E75EDAA00E0AAAC /* CRSSFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 459333E40E75EDAA00E0AAAC /* CRSSFeed.m */; };
+		459333E80E75EDB500E0AAAC /* CRSSChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 459333E70E75EDB500E0AAAC /* CRSSChannel.m */; };
+		459333EB0E75EDBC00E0AAAC /* CRSSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 459333EA0E75EDBC00E0AAAC /* CRSSItem.m */; };
+		459333EE0E75EDF300E0AAAC /* CRSSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 459333ED0E75EDF300E0AAAC /* CRSSObject.m */; };
+		459335080E75F76A00E0AAAC /* NSDate_InternetDateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 459335070E75F76A00E0AAAC /* NSDate_InternetDateExtensions.m */; };
+		8DD76F9A0486AA7600D96B5E /* TouchRSS.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* TouchRSS.m */; settings = {ATTRIBUTES = (); }; };
+		8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
+		8DD76F9F0486AA7600D96B5E /* TouchRSS.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6859EA3029092ED04C91782 /* TouchRSS.1 */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8DD76F9E0486AA7600D96B5E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 8;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				8DD76F9F0486AA7600D96B5E /* TouchRSS.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		08FB7796FE84155DC02AAC07 /* TouchRSS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchRSS.m; sourceTree = "<group>"; };
+		08FB779EFE84155DC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		32A70AAB03705E1F00C91783 /* TouchRSS_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchRSS_Prefix.pch; sourceTree = "<group>"; };
+		45932FA80E75A91900E0AAAC /* CXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument.h; sourceTree = "<group>"; };
+		45932FA90E75A91900E0AAAC /* CXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument.m; sourceTree = "<group>"; };
+		45932FAA0E75A91900E0AAAC /* CXMLDocument_PrivateExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument_PrivateExtensions.h; sourceTree = "<group>"; };
+		45932FAB0E75A91900E0AAAC /* CXMLDocument_PrivateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument_PrivateExtensions.m; sourceTree = "<group>"; };
+		45932FAC0E75A91900E0AAAC /* CXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLElement.h; sourceTree = "<group>"; };
+		45932FAD0E75A91900E0AAAC /* CXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLElement.m; sourceTree = "<group>"; };
+		45932FAE0E75A91900E0AAAC /* CXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode.h; sourceTree = "<group>"; };
+		45932FAF0E75A91900E0AAAC /* CXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLNode.m; sourceTree = "<group>"; };
+		45932FB00E75A91900E0AAAC /* CXMLNode_PrivateExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode_PrivateExtensions.h; sourceTree = "<group>"; };
+		45932FB10E75A91900E0AAAC /* CXMLNode_PrivateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLNode_PrivateExtensions.m; sourceTree = "<group>"; };
+		45932FB20E75A91900E0AAAC /* CXMLNode_XPathExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode_XPathExtensions.h; sourceTree = "<group>"; };
+		45932FB30E75A91900E0AAAC /* CXMLNode_XPathExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLNode_XPathExtensions.m; sourceTree = "<group>"; };
+		45932FB40E75A91900E0AAAC /* TouchXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchXML.h; sourceTree = "<group>"; };
+		4593304A0E75AB2B00E0AAAC /* CRSSFeedDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRSSFeedDeserializer.h; sourceTree = "<group>"; };
+		4593304B0E75AB2B00E0AAAC /* CRSSFeedDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRSSFeedDeserializer.m; sourceTree = "<group>"; };
+		459330C20E75B14C00E0AAAC /* words.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = words.h; sourceTree = "<group>"; };
+		4593312C0E75B66C00E0AAAC /* words.gperf.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = words.gperf.txt; sourceTree = "<group>"; };
+		4593313C0E75B6A100E0AAAC /* words.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = words.m; sourceTree = "<group>"; };
+		459333E30E75EDAA00E0AAAC /* CRSSFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRSSFeed.h; sourceTree = "<group>"; };
+		459333E40E75EDAA00E0AAAC /* CRSSFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRSSFeed.m; sourceTree = "<group>"; };
+		459333E60E75EDB500E0AAAC /* CRSSChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRSSChannel.h; sourceTree = "<group>"; };
+		459333E70E75EDB500E0AAAC /* CRSSChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRSSChannel.m; sourceTree = "<group>"; };
+		459333E90E75EDBC00E0AAAC /* CRSSItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRSSItem.h; sourceTree = "<group>"; };
+		459333EA0E75EDBC00E0AAAC /* CRSSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRSSItem.m; sourceTree = "<group>"; };
+		459333EC0E75EDF300E0AAAC /* CRSSObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRSSObject.h; sourceTree = "<group>"; };
+		459333ED0E75EDF300E0AAAC /* CRSSObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRSSObject.m; sourceTree = "<group>"; };
+		459335060E75F76A00E0AAAC /* NSDate_InternetDateExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDate_InternetDateExtensions.h; sourceTree = "<group>"; };
+		459335070E75F76A00E0AAAC /* NSDate_InternetDateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDate_InternetDateExtensions.m; sourceTree = "<group>"; };
+		8DD76FA10486AA7600D96B5E /* TouchRSS */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TouchRSS; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6859EA3029092ED04C91782 /* TouchRSS.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = TouchRSS.1; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8DD76F9B0486AA7600D96B5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08FB7794FE84155DC02AAC07 /* TouchRSS */ = {
+			isa = PBXGroup;
+			children = (
+				08FB7795FE84155DC02AAC07 /* Source */,
+				45932FA70E75A91900E0AAAC /* Source */,
+				C6859EA2029092E104C91782 /* Documentation */,
+				08FB779DFE84155DC02AAC07 /* External Frameworks and Libraries */,
+				1AB674ADFE9D54B511CA2CBB /* Products */,
+			);
+			name = TouchRSS;
+			sourceTree = "<group>";
+		};
+		08FB7795FE84155DC02AAC07 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				32A70AAB03705E1F00C91783 /* TouchRSS_Prefix.pch */,
+				08FB7796FE84155DC02AAC07 /* TouchRSS.m */,
+				4593304A0E75AB2B00E0AAAC /* CRSSFeedDeserializer.h */,
+				4593304B0E75AB2B00E0AAAC /* CRSSFeedDeserializer.m */,
+				459333EC0E75EDF300E0AAAC /* CRSSObject.h */,
+				459333ED0E75EDF300E0AAAC /* CRSSObject.m */,
+				459333E30E75EDAA00E0AAAC /* CRSSFeed.h */,
+				459333E40E75EDAA00E0AAAC /* CRSSFeed.m */,
+				459333E60E75EDB500E0AAAC /* CRSSChannel.h */,
+				459333E70E75EDB500E0AAAC /* CRSSChannel.m */,
+				459333E90E75EDBC00E0AAAC /* CRSSItem.h */,
+				459333EA0E75EDBC00E0AAAC /* CRSSItem.m */,
+				459335060E75F76A00E0AAAC /* NSDate_InternetDateExtensions.h */,
+				459335070E75F76A00E0AAAC /* NSDate_InternetDateExtensions.m */,
+				459330C20E75B14C00E0AAAC /* words.h */,
+				4593313C0E75B6A100E0AAAC /* words.m */,
+				4593312C0E75B66C00E0AAAC /* words.gperf.txt */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		08FB779DFE84155DC02AAC07 /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				08FB779EFE84155DC02AAC07 /* Foundation.framework */,
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		1AB674ADFE9D54B511CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8DD76FA10486AA7600D96B5E /* TouchRSS */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		45932FA70E75A91900E0AAAC /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				45932FA80E75A91900E0AAAC /* CXMLDocument.h */,
+				45932FA90E75A91900E0AAAC /* CXMLDocument.m */,
+				45932FAA0E75A91900E0AAAC /* CXMLDocument_PrivateExtensions.h */,
+				45932FAB0E75A91900E0AAAC /* CXMLDocument_PrivateExtensions.m */,
+				45932FAC0E75A91900E0AAAC /* CXMLElement.h */,
+				45932FAD0E75A91900E0AAAC /* CXMLElement.m */,
+				45932FAE0E75A91900E0AAAC /* CXMLNode.h */,
+				45932FAF0E75A91900E0AAAC /* CXMLNode.m */,
+				45932FB00E75A91900E0AAAC /* CXMLNode_PrivateExtensions.h */,
+				45932FB10E75A91900E0AAAC /* CXMLNode_PrivateExtensions.m */,
+				45932FB20E75A91900E0AAAC /* CXMLNode_XPathExtensions.h */,
+				45932FB30E75A91900E0AAAC /* CXMLNode_XPathExtensions.m */,
+				45932FB40E75A91900E0AAAC /* TouchXML.h */,
+			);
+			name = Source;
+			path = ../../Development/Mercurial/Repositories_Subversion/touchcode/TouchXML/Common/Source;
+			sourceTree = SOURCE_ROOT;
+		};
+		C6859EA2029092E104C91782 /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				C6859EA3029092ED04C91782 /* TouchRSS.1 */,
+			);
+			name = Documentation;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8DD76F960486AA7600D96B5E /* TouchRSS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB927408733DD40010E9CD /* Build configuration list for PBXNativeTarget "TouchRSS" */;
+			buildPhases = (
+				8DD76F990486AA7600D96B5E /* Sources */,
+				8DD76F9B0486AA7600D96B5E /* Frameworks */,
+				8DD76F9E0486AA7600D96B5E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TouchRSS;
+			productInstallPath = "$(HOME)/bin";
+			productName = TouchRSS;
+			productReference = 8DD76FA10486AA7600D96B5E /* TouchRSS */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB927808733DD40010E9CD /* Build configuration list for PBXProject "TouchRSS" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 08FB7794FE84155DC02AAC07 /* TouchRSS */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8DD76F960486AA7600D96B5E /* TouchRSS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8DD76F990486AA7600D96B5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DD76F9A0486AA7600D96B5E /* TouchRSS.m in Sources */,
+				45932FB50E75A91900E0AAAC /* CXMLDocument.m in Sources */,
+				45932FB60E75A91900E0AAAC /* CXMLDocument_PrivateExtensions.m in Sources */,
+				45932FB70E75A91900E0AAAC /* CXMLElement.m in Sources */,
+				45932FB80E75A91900E0AAAC /* CXMLNode.m in Sources */,
+				45932FB90E75A91900E0AAAC /* CXMLNode_PrivateExtensions.m in Sources */,
+				45932FBA0E75A91900E0AAAC /* CXMLNode_XPathExtensions.m in Sources */,
+				4593304C0E75AB2B00E0AAAC /* CRSSFeedDeserializer.m in Sources */,
+				459331670E75B95100E0AAAC /* words.m in Sources */,
+				459333E50E75EDAA00E0AAAC /* CRSSFeed.m in Sources */,
+				459333E80E75EDB500E0AAAC /* CRSSChannel.m in Sources */,
+				459333EB0E75EDBC00E0AAAC /* CRSSItem.m in Sources */,
+				459333EE0E75EDF300E0AAAC /* CRSSObject.m in Sources */,
+				459335080E75F76A00E0AAAC /* NSDate_InternetDateExtensions.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB927508733DD40010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = TouchRSS_Prefix.pch;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = "-lxml2";
+				PRODUCT_NAME = TouchRSS;
+			};
+			name = Debug;
+		};
+		1DEB927608733DD40010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = TouchRSS_Prefix.pch;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = TouchRSS;
+			};
+			name = Release;
+		};
+		1DEB927908733DD40010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = Debug;
+		};
+		1DEB927A08733DD40010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB927408733DD40010E9CD /* Build configuration list for PBXNativeTarget "TouchRSS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB927508733DD40010E9CD /* Debug */,
+				1DEB927608733DD40010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB927808733DD40010E9CD /* Build configuration list for PBXProject "TouchRSS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB927908733DD40010E9CD /* Debug */,
+				1DEB927A08733DD40010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}
