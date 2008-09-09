@@ -22,7 +22,9 @@
 	CRSSItem *currentItem;
 }
 
-@property (readwrite, nonatomic, assign) xmlTextReaderPtr reader;
-@property (readwrite, nonatomic, retain) NSError *error;
+@property (readonly, nonatomic, assign) xmlTextReaderPtr reader;
+@property (readonly, nonatomic, retain) NSError *error;
+
+- (id)initWithData:(NSData *)inData;
 
 @end

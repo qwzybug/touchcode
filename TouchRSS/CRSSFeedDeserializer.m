@@ -18,6 +18,8 @@
 
 @interface CRSSFeedDeserializer ()
 
+@property (readwrite, nonatomic, assign) xmlTextReaderPtr reader;
+@property (readwrite, nonatomic, retain) NSError *error;
 @property (readwrite, nonatomic, retain) CRSSFeed *currentFeed;
 @property (readwrite, nonatomic, retain) CRSSChannel *currentChannel;
 @property (readwrite, nonatomic, retain) CRSSItem *currentItem;
@@ -37,13 +39,12 @@
 @synthesize currentChannel;
 @synthesize currentItem;
 
-- (id)init
+- (id)initWithData:(NSData *)inData;
 {
-if ((self = [super init]) != NULL)
+if ((self = [self init]) != NULL)
 	{
-	NSString *thePath = @"/Users/schwa/Desktop/test.rss";
-
-	self.reader = xmlNewTextReaderFilename([thePath UTF8String]);
+	self.reader = xmlReaderForMemory([inData bytes], [inData length], NULL, NULL, 0);
+	NSAssert(self.reader != NULL, @"");
 
 	int theReturnCode = 0;
 
