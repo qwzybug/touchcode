@@ -192,7 +192,11 @@ int theResult = sqlite3_exec(self.sql, [inExpression UTF8String], NULL, NULL, &t
 if (theResult != SQLITE_OK) 
 	{
 	if (outError)
-		*outError = [NSError errorWithDomain:TouchSQLErrorDomain code:theResult userInfo:NULL];
+        {
+        NSString *sqlErr = [NSString stringWithUTF8String:sqlite3_errmsg(self.sql)];
+        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:sqlErr forKey:NSLocalizedDescriptionKey];
+		*outError = [NSError errorWithDomain:TouchSQLErrorDomain code:theResult userInfo:userInfo];
+        }
 	if (theMessage)
 		{
 		sqlite3_free(theMessage); // TODO: If this is set then we've already thrown an exception and this will leak.
@@ -244,10 +248,16 @@ int theResult = sqlite3_prepare_v2(self.sql, [inExpression UTF8String], -1,
 if (theResult != SQLITE_OK)
 	{
 	if (outError)
-		*outError = [NSError errorWithDomain:TouchSQLErrorDomain code:theResult userInfo:NULL];
+        {
+        NSString *errStr = [NSString stringWithUTF8String:sqlite3_errmsg(self.sql)];
+        *outError = [NSError errorWithDomain:TouchSQLErrorDomain 
+                                        code:theResult 
+                                    userInfo:[NSDictionary dictionaryWithObject:errStr forKey:NSLocalizedDescriptionKey]];
+        }
 	return(NULL);
 	}
 //
+
 NSMutableArray *theRowsArray = [NSMutableArray array];
 theColumnCount = sqlite3_column_count(pStmt);
 while ((theResult = sqlite3_step(pStmt)) == SQLITE_ROW)
