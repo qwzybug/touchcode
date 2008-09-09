@@ -8,7 +8,6 @@
 
 #import "CRSSFeed.h"
 
-
 @implementation CRSSFeed
 
 @end

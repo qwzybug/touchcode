@@ -27,4 +27,11 @@ if ((self = [self init]) != NULL)
 return(self);
 }
 
+- (void)dealloc
+{
+self.parent = NULL;
+//
+[super dealloc];
+}
+
 @end

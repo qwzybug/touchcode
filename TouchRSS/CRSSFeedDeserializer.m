@@ -17,12 +17,14 @@
 #import "CRSSItem.h"
 
 @interface CRSSFeedDeserializer ()
+
 @property (readwrite, nonatomic, retain) CRSSFeed *currentFeed;
 @property (readwrite, nonatomic, retain) CRSSChannel *currentChannel;
 @property (readwrite, nonatomic, retain) CRSSItem *currentItem;
 
 - (void)updateAttributesOfChannel:(CRSSChannel *)inChannel;
 - (void)updateAttributesOfItem:(CRSSItem *)inItem;
+
 @end
 
 #pragma mark -
@@ -39,7 +41,7 @@
 {
 if ((self = [super init]) != NULL)
 	{
-	NSString *thePath = @"/Users/schwa/Desktop/TouchRSS/test.rss";
+	NSString *thePath = @"/Users/schwa/Desktop/test.rss";
 
 	self.reader = xmlNewTextReaderFilename([thePath UTF8String]);
 
@@ -53,6 +55,21 @@ if ((self = [super init]) != NULL)
 	}
 return(self);
 }
+
+- (void)dealloc
+{
+xmlFreeTextReader(self.reader);
+self.reader = NULL;
+
+self.error = NULL;
+self.currentFeed = NULL;
+self.currentChannel = NULL;
+self.currentItem = NULL;
+//	
+[super dealloc];
+}
+
+#pragma mark -
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id *)stackbuf count:(NSUInteger)len
 {
@@ -200,84 +217,5 @@ while (theCurrentNode != NULL)
 int theReturnCode = xmlTextReaderNext(self.reader);
 NSAssert(theReturnCode == 1, @"");
 }
-
-//
-//- (id)processItem
-//{
-//NSLog(@"PROCESS ITEM");
-//
-//NSMutableDictionary *theItem = [NSMutableDictionary dictionary];
-//
-//xmlNodePtr theNode = xmlTextReaderExpand(self.reader);
-//xmlNodePtr theCurrentNode = theNode->children;
-//while (theCurrentNode != NULL)
-//	{
-//	if (theCurrentNode->type == XML_ELEMENT_NODE)
-//		{
-//		const xmlChar *theElementName = theCurrentNode->name;
-//		const ERSSElementNameCode theNameCode = CodeForElementName(theElementName);
-//		switch (theNameCode)
-//			{
-//			case RSSElementNameCode_Title:
-//				{
-//				NSString *theContent = [NSString stringWithUTF8String:(const char *)xmlNodeGetContent(theCurrentNode)];
-//				[theItem setObject:theContent forKey:@"title"];
-//				}
-//				break;
-//			case RSSElementNameCode_Link:
-//				{
-//				NSString *theContent = [NSString stringWithUTF8String:(const char *)xmlNodeGetContent(theCurrentNode)];
-//				[theItem setObject:theContent forKey:@"link"];
-//				}
-//				break;
-//			case RSSElementNameCode_Description:
-//				{
-//				NSString *theContent = [NSString stringWithUTF8String:(const char *)xmlNodeGetContent(theCurrentNode)];
-//				[theItem setObject:theContent forKey:@"description"];
-//				}
-//			case RSSElementNameCode_PubDate:
-//				{
-//				NSString *theContent = [NSString stringWithUTF8String:(const char *)xmlNodeGetContent(theCurrentNode)];
-//				[theItem setObject:theContent forKey:@"pubDate"];
-//				}
-//			case RSSElementNameCode_GUID:
-//				{
-//				NSString *theContent = [NSString stringWithUTF8String:(const char *)xmlNodeGetContent(theCurrentNode)];
-//				[theItem setObject:theContent forKey:@"guid"];
-//				}
-//			default:
-//				break;
-//			}
-//		}
-//	
-//	theCurrentNode = theCurrentNode->next;
-//	}
-//
-//return(theItem);
-//}
-//
-//void processNode(xmlTextReaderPtr inReader)
-//{
-//
-//
-//
-///*
-//xmlChar *name = xmlTextReaderName(inReader);
-//if (name == NULL)
-//	name = xmlStrdup(BAD_CAST "--");
-//
-//xmlChar *value = xmlTextReaderValue(inReader);
-//
-//printf("%d %d %s %d", xmlTextReaderDepth(inReader), xmlTextReaderNodeType(inReader), name, xmlTextReaderIsEmptyElement(inReader));
-//
-//xmlFree(name);
-//if (value == NULL)
-//	printf("\n");
-//else {
-//	printf(" %s\n", value);
-//	xmlFree(value);
-//	}
-//*/
-//}
 
 @end

@@ -12,4 +12,15 @@
 
 @synthesize identifier, title, link, description_, publicationDate;
 
+- (void)dealloc
+{
+self.identifier = NULL;
+self.title = NULL;
+self.link = NULL;
+self.description_ = NULL;
+self.publicationDate = NULL;
+//
+[super dealloc];
+}
+
 @end

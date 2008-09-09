@@ -12,4 +12,13 @@
 
 @synthesize title, link, description_;
 
+- (void)dealloc
+{
+self.title = NULL;
+self.link = NULL;
+self.description_ = NULL;
+//
+[super dealloc];
+}
+
 @end
