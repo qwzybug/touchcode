@@ -10,6 +10,6 @@
 
 @interface NSDate (NSDate_ISO8601Extensions)
 
-- (NSString *)IS08601StringValue;
+- (NSString *)ISO8601StringValue;
 
 @end

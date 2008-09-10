@@ -8,9 +8,11 @@
 
 #import "CCompletionTicket.h"
 
+#import "CPointerArray.h"
+
 @interface CCompletionTicket ()
 @property (readwrite, nonatomic, retain) NSString *identifier;
-@property (readwrite, nonatomic, retain) NSPointerArray *delegatePointers;
+@property (readwrite, nonatomic, retain) CPointerArray *delegatePointers;
 @property (readwrite, nonatomic, retain) id userInfo;
 @end
 
@@ -31,7 +33,7 @@ return([[[self alloc] initWithIdentifier:inIdentifier delegate:inDelegate userIn
 if ((self = [super init]) != NULL)
 	{
 	self.identifier = inIdentifier;
-	self.delegatePointers = [[[NSPointerArray alloc] initWithOptions:NSPointerFunctionsZeroingWeakMemory | NSPointerFunctionsObjectPersonality] autorelease];
+	self.delegatePointers = [[[CPointerArray alloc] init] autorelease];
 	for (id theDelegate in inDelegates)
 		{
 		NSAssert([theDelegate conformsToProtocol:@protocol(CCompletionTicketDelegate)], @"TODO");

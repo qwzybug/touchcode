@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @protocol CCompletionTicketDelegate;
+@class CPointerArray;
 
 @interface CCompletionTicket : NSObject {
 	NSString *identifier;
-	NSPointerArray *delegatePointers;
+	CPointerArray *delegatePointers;
 	id userInfo;
 }
 

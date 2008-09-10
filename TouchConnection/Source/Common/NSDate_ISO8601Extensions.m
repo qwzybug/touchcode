@@ -12,7 +12,7 @@
 
 static NSDateFormatter *gDateFormatter = NULL;
 
-- (NSString *)IS08601StringValue
+- (NSString *)ISO8601StringValue
 {
 @synchronized([self class])
 	{
