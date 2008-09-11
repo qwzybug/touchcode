@@ -48,10 +48,15 @@ for (int N = 0; N != theColumnCount; ++N)
 	{
 	const char *theColumnName = sqlite3_column_name(self.statement, N);
 	const unsigned char *theColumnData = sqlite3_column_text(self.statement, N);
-	if (theColumnName != NULL && theColumnData != NULL)
+	if (theColumnName != NULL)
 		{
 		NSString *theKey = [NSString stringWithUTF8String:theColumnName];
-		NSString *theValue = [NSString stringWithUTF8String:(const char *)theColumnData];
+		id theValue = NULL;
+		if (theColumnData == NULL)
+			theValue = [NSNull null];
+		else
+			theValue = [NSString stringWithUTF8String:(const char *)theColumnData];
+		
 		[theRow setObject:theValue forKey:theKey];
 		}
 	}
