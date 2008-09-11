@@ -12,7 +12,7 @@
 
 static NSDateFormatter *gDateFormatter = NULL;
 
-- (NSString *)sqlDate
+- (NSString *)sqlDateString
 {
 @synchronized([self class])
 	{

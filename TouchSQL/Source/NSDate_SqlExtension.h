@@ -10,6 +10,6 @@
 
 @interface NSDate (NSDate_SqlExtension)
 
-- (NSString *)sqlDate;
+- (NSString *)sqlDateString;
 
 @end
