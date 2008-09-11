@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class CFeed;
+@class CObjectTranscoder;
 
 @interface CFeedEntry : NSObject {
 	NSInteger rowID;
@@ -28,9 +29,10 @@
 @property (readwrite, nonatomic, retain) NSString *description_;
 @property (readwrite, nonatomic, retain) NSDate *publicationDate;
 
++ (CObjectTranscoder *)objectTranscoder;
+
 - (id)initWithFeed:(CFeed *)inFeed rowID:(NSInteger)inRowID;
 - (id)initWithFeed:(CFeed *)inFeed;
-- (id)initWithFeed:(CFeed *)inFeed dictionary:(NSDictionary *)inDictionary;
 
 - (BOOL)write:(NSError **)outError;
 

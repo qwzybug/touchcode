@@ -14,6 +14,7 @@
 #import "NSDate_SqlExtension.h"
 #import "CSqliteDatabase.h"
 #import "CSqliteDatabase_Extensions.h"
+#import "CObjectTranscoder.h"
 
 @interface CFeedEntry ()
 @property (readwrite, nonatomic, assign) int rowID;
@@ -25,6 +26,11 @@
 @implementation CFeedEntry
 
 @synthesize rowID, feed, identifier, title, link, description_, publicationDate;
+
++ (CObjectTranscoder *)objectTranscoder
+{
+return([[[CObjectTranscoder alloc] initWithTargetObjectClass:[self class]] autorelease]);
+}
 
 - (id)init
 {
@@ -53,24 +59,6 @@ if ((self = [self init]) != NULL)
 return(self);
 }
 
-- (id)initWithFeed:(CFeed *)inFeed dictionary:(NSDictionary *)inDictionary;
-{
-if ((self = [self initWithFeed:inFeed]) != NULL)
-	{
-	if ([inDictionary objectForKey:@"identifier"])
-		self.identifier = [inDictionary objectForKey:@"identifier"];
-	if ([inDictionary objectForKey:@"title"])
-		self.title = [inDictionary objectForKey:@"title"];
-	if ([inDictionary objectForKey:@"link"])
-		self.link = [inDictionary objectForKey:@"link"];
-	if ([inDictionary objectForKey:@"description_"])
-		self.description_ = [inDictionary objectForKey:@"description_"];
-	if ([inDictionary objectForKey:@"publicationDate"])
-		self.publicationDate = [inDictionary objectForKey:@"publicationDate"];
-	}
-return(self);
-}
-
 - (void)dealloc
 {
 self.feed = NULL;
@@ -89,24 +77,30 @@ self.publicationDate = NULL;
 {
 CSqliteDatabase *theDatabase = self.feed.feedStore.database;
 
-NSString *theExpression = [NSString stringWithFormat:@"INSERT INTO entry (feed_id, identifier, title, link, description, publicationDate) VALUES (%d, '%@', '%@', '%@', '%@', '%@')", self.feed.rowID, [self.identifier encodedForSql], [self.title encodedForSql], [[self.link absoluteString] encodedForSql], [self.description_ encodedForSql], [self.publicationDate sqlDate]];
-BOOL theResult = [theDatabase executeExpression:theExpression error:outError];
-if (theResult == NO)
+if (self.rowID == -1)
 	{
-	return(NO);
+	NSString *theExpression = [NSString stringWithFormat:@"INSERT INTO entry (feed_id, identifier, title, link, description, publicationDate) VALUES (%d, '%@', '%@', '%@', '%@', '%@')", self.feed.rowID, [self.identifier encodedForSql], [self.title encodedForSql], [[self.link absoluteString] encodedForSql], [self.description_ encodedForSql], [self.publicationDate sqlDateString]];
+	BOOL theResult = [theDatabase executeExpression:theExpression error:outError];
+	if (theResult == NO)
+		{
+		return(NO);
+		}
+
+	theExpression = [NSString stringWithFormat:@"SELECT id FROM entry WHERE (feed_id = %d AND identifier = '%@')", self.feed.rowID, [self.identifier encodedForSql]];
+	NSDictionary *theRow = [theDatabase rowForExpression:theExpression error:outError];
+	if (theResult == NO)
+		{
+		return(NO);
+		}
+
+	self.rowID = [[theRow objectForKey:@"id"] integerValue];
+	}
+else
+	{
+	// TODO
 	}
 
-theExpression = [NSString stringWithFormat:@"SELECT id FROM entry WHERE (feed_id = %d AND identifier = '%@')", self.feed.rowID, [self.identifier encodedForSql]];
-NSDictionary *theRow = [theDatabase rowForExpression:theExpression error:outError];
-if (theResult == NO)
-	{
-	return(NO);
-	}
-
-self.rowID = [[theRow objectForKey:@"id"] integerValue];
-NSLog(@"%d", self.rowID);
-
-return(theResult);
+return(YES);
 }
 
 

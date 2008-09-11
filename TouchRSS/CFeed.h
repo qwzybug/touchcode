@@ -10,6 +10,7 @@
 
 @class CFeedStore;
 @class CFeedEntry;
+@class CObjectTranscoder;
 
 @interface CFeed : NSObject {
 	NSInteger rowID;
@@ -17,6 +18,7 @@
 	NSString *title;
 	NSURL *link;
 	NSString *description_;
+	NSDate *lastChecked;
 }
 
 @property (readonly, nonatomic, assign)	NSInteger rowID;
@@ -24,12 +26,17 @@
 @property (readwrite, nonatomic, retain) NSString *title;
 @property (readwrite, nonatomic, retain) NSURL *link;
 @property (readwrite, nonatomic, retain) NSString *description_;
+@property (readwrite, nonatomic, retain) NSDate *lastChecked;
 
-- (id)initWithFeedStore:(CFeedStore *)inFeedStore dictionary:(NSDictionary *)inDictionary;
++ (CObjectTranscoder *)objectTranscoder;
+
+- (id)initWithFeedStore:(CFeedStore *)inFeedStore;
 - (id)initWithFeedStore:(CFeedStore *)inFeedStore rowID:(NSInteger)inRowID;
 
 - (CFeedEntry *)entryAtIndex:(NSInteger)inIndex;
+- (CFeedEntry *)entryForIdentifier:(NSString *)inIdentifier;
 
+- (BOOL)read:(NSError **)outError;
 - (BOOL)write:(NSError **)outError;
 
 @end
