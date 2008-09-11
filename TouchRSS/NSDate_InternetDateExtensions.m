@@ -13,7 +13,7 @@
 + (NSDate *)dateWithRFC1822String:(NSString *)inString
 {
 static NSArray *sFormatters = NULL;
-@synchronized(self)
+@synchronized([self class])
 	{
 	if (sFormatters == NULL)
 		{

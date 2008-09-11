@@ -12,20 +12,16 @@
 #include "words.h"
 
 #import "NSDate_InternetDateExtensions.h"
-#import "CRSSFeed.h"
-#import "CRSSChannel.h"
-#import "CRSSItem.h"
 
 @interface CRSSFeedDeserializer ()
 
 @property (readwrite, nonatomic, assign) xmlTextReaderPtr reader;
 @property (readwrite, nonatomic, retain) NSError *error;
-@property (readwrite, nonatomic, retain) CRSSFeed *currentFeed;
-@property (readwrite, nonatomic, retain) CRSSChannel *currentChannel;
-@property (readwrite, nonatomic, retain) CRSSItem *currentItem;
+@property (readwrite, nonatomic, retain) NSMutableDictionary *currentFeed;
+@property (readwrite, nonatomic, retain) NSMutableDictionary *currentItem;
 
-- (void)updateAttributesOfChannel:(CRSSChannel *)inChannel;
-- (void)updateAttributesOfItem:(CRSSItem *)inItem;
+- (void)updateAttributesOfChannel:(NSMutableDictionary *)inChannel;
+- (void)updateAttributesOfItem:(NSMutableDictionary *)inItem;
 
 @end
 
@@ -36,7 +32,6 @@
 @synthesize reader;
 @synthesize error;
 @synthesize currentFeed;
-@synthesize currentChannel;
 @synthesize currentItem;
 
 - (id)initWithData:(NSData *)inData;
@@ -64,7 +59,6 @@ self.reader = NULL;
 
 self.error = NULL;
 self.currentFeed = NULL;
-self.currentChannel = NULL;
 self.currentItem = NULL;
 //	
 [super dealloc];
@@ -90,20 +84,19 @@ while (theObjectCount != len && theReturnCode == 1 && self.error == NULL)
 		{
 //		NSLog(@"%s", xmlTextReaderConstNamespaceUri(self.reader));
 		
-		CRSSObject *theObject = NULL;
+		NSMutableDictionary *theObject = NULL;
 		const xmlChar *theNodeName = xmlTextReaderConstLocalName(self.reader);
 		int theCode = CodeForElementName(theNodeName);
 		switch (theCode)
 			{
 			case RSSElementNameCode_RSS:
-				theObject = self.currentFeed = [[[CRSSFeed alloc] init] autorelease];
+				theObject = self.currentFeed = [NSMutableDictionary dictionaryWithObject:@"feed" forKey:@"type"];
 				break;
 			case RSSElementNameCode_Channel:
-				theObject = self.currentChannel = [[[CRSSChannel alloc] initWithParent:self.currentFeed] autorelease];
-				[self updateAttributesOfChannel:self.currentChannel];
+				[self updateAttributesOfChannel:self.currentFeed];
 				break;
 			case RSSElementNameCode_Item:
-				theObject = self.currentItem = [[[CRSSItem alloc] initWithParent:self.currentChannel] autorelease];
+				theObject = self.currentItem = [NSMutableDictionary dictionaryWithObject:@"item" forKey:@"type"];
 				[self updateAttributesOfItem:self.currentItem];
 				break;
 			}
@@ -120,7 +113,7 @@ state->itemsPtr = stackbuf;
 return(theObjectCount);
 }
 
-- (void)updateAttributesOfChannel:(CRSSChannel *)inChannel
+- (void)updateAttributesOfChannel:(NSMutableDictionary *)inChannel
 {
 xmlNodePtr theNode = xmlTextReaderCurrentNode(self.reader);
 xmlNodePtr theCurrentNode = theNode->children;
@@ -135,20 +128,20 @@ while (theCurrentNode != NULL)
 			case RSSElementNameCode_Title:
 				{
 				NSString *theContent = [NSString stringWithUTF8String:(const char *)xmlNodeGetContent(theCurrentNode)];
-				inChannel.title = theContent;
+				[inChannel setObject:theContent forKey:@"title"];
 				}
 				break;
 			case RSSElementNameCode_Link:
 				{
 				NSString *theContent = [NSString stringWithUTF8String:(const char *)xmlNodeGetContent(theCurrentNode)];
 				NSURL *theLink = [NSURL URLWithString:theContent];
-				inChannel.link = theLink;
+				[inChannel setObject:theLink forKey:@"link"];
 				}
 				break;
 			case RSSElementNameCode_Description:
 				{
 				NSString *theContent = [NSString stringWithUTF8String:(const char *)xmlNodeGetContent(theCurrentNode)];
-				inChannel.description_ = theContent;
+				[inChannel setObject:theContent forKey:@"description_"];
 				}
 				break;
 			default:
@@ -162,7 +155,7 @@ while (theCurrentNode != NULL)
 	}
 }
 
-- (void)updateAttributesOfItem:(CRSSItem *)inItem
+- (void)updateAttributesOfItem:(NSMutableDictionary *)inItem
 {
 xmlNodePtr theNode = xmlTextReaderExpand(self.reader);
 xmlNodePtr theCurrentNode = theNode->children;
@@ -177,33 +170,33 @@ while (theCurrentNode != NULL)
 			case RSSElementNameCode_Title:
 				{
 				NSString *theContent = [NSString stringWithUTF8String:(const char *)xmlNodeGetContent(theCurrentNode)];
-				inItem.title = theContent;
+				[inItem setObject:theContent forKey:@"title"];
 				}
 				break;
 			case RSSElementNameCode_Link:
 				{
 				NSString *theContent = [NSString stringWithUTF8String:(const char *)xmlNodeGetContent(theCurrentNode)];
 				NSURL *theLink = [NSURL URLWithString:theContent];
-				inItem.link = theLink;
+				[inItem setObject:theLink forKey:@"link"];
 				}
 				break;
 			case RSSElementNameCode_Description:
 				{
 				NSString *theContent = [NSString stringWithUTF8String:(const char *)xmlNodeGetContent(theCurrentNode)];
-				inItem.description_ = theContent;
+				[inItem setObject:theContent forKey:@"description_"];
 				}
 				break;
 			case RSSElementNameCode_PubDate:
 				{
 				NSString *theContent = [NSString stringWithUTF8String:(const char *)xmlNodeGetContent(theCurrentNode)];
 				NSDate *theDate = [NSDate dateWithRFC1822String:theContent];
-				inItem.publicationDate = theDate;
+				[inItem setObject:theDate forKey:@"publicationDate"];
 				}
 				break;
 			case RSSElementNameCode_GUID:
 				{
 				NSString *theContent = [NSString stringWithUTF8String:(const char *)xmlNodeGetContent(theCurrentNode)];
-				inItem.identifier = theContent;
+				[inItem setObject:theContent forKey:@"identifier"];
 				}
 				break;
 			default:

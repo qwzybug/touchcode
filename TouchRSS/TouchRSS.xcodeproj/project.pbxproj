@@ -9,10 +9,8 @@
 /* Begin PBXBuildFile section */
 		4593304C0E75AB2B00E0AAAC /* CRSSFeedDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4593304B0E75AB2B00E0AAAC /* CRSSFeedDeserializer.m */; };
 		459331670E75B95100E0AAAC /* words.m in Sources */ = {isa = PBXBuildFile; fileRef = 4593313C0E75B6A100E0AAAC /* words.m */; };
-		459333E50E75EDAA00E0AAAC /* CRSSFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 459333E40E75EDAA00E0AAAC /* CRSSFeed.m */; };
-		459333E80E75EDB500E0AAAC /* CRSSChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 459333E70E75EDB500E0AAAC /* CRSSChannel.m */; };
-		459333EB0E75EDBC00E0AAAC /* CRSSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 459333EA0E75EDBC00E0AAAC /* CRSSItem.m */; };
-		459333EE0E75EDF300E0AAAC /* CRSSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 459333ED0E75EDF300E0AAAC /* CRSSObject.m */; };
+		459333E80E75EDB500E0AAAC /* CFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 459333E70E75EDB500E0AAAC /* CFeed.m */; };
+		459333EB0E75EDBC00E0AAAC /* CFeedEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 459333EA0E75EDBC00E0AAAC /* CFeedEntry.m */; };
 		459335080E75F76A00E0AAAC /* NSDate_InternetDateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 459335070E75F76A00E0AAAC /* NSDate_InternetDateExtensions.m */; };
 		8DD76F9A0486AA7600D96B5E /* TouchRSS.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* TouchRSS.m */; settings = {ATTRIBUTES = (); }; };
 		8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
@@ -39,14 +37,10 @@
 		459330C20E75B14C00E0AAAC /* words.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = words.h; sourceTree = "<group>"; };
 		4593312C0E75B66C00E0AAAC /* words.gperf.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = words.gperf.txt; sourceTree = "<group>"; };
 		4593313C0E75B6A100E0AAAC /* words.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = words.m; sourceTree = "<group>"; };
-		459333E30E75EDAA00E0AAAC /* CRSSFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRSSFeed.h; sourceTree = "<group>"; };
-		459333E40E75EDAA00E0AAAC /* CRSSFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRSSFeed.m; sourceTree = "<group>"; };
-		459333E60E75EDB500E0AAAC /* CRSSChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRSSChannel.h; sourceTree = "<group>"; };
-		459333E70E75EDB500E0AAAC /* CRSSChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRSSChannel.m; sourceTree = "<group>"; };
-		459333E90E75EDBC00E0AAAC /* CRSSItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRSSItem.h; sourceTree = "<group>"; };
-		459333EA0E75EDBC00E0AAAC /* CRSSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRSSItem.m; sourceTree = "<group>"; };
-		459333EC0E75EDF300E0AAAC /* CRSSObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRSSObject.h; sourceTree = "<group>"; };
-		459333ED0E75EDF300E0AAAC /* CRSSObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRSSObject.m; sourceTree = "<group>"; };
+		459333E60E75EDB500E0AAAC /* CFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFeed.h; sourceTree = "<group>"; };
+		459333E70E75EDB500E0AAAC /* CFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFeed.m; sourceTree = "<group>"; };
+		459333E90E75EDBC00E0AAAC /* CFeedEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFeedEntry.h; sourceTree = "<group>"; };
+		459333EA0E75EDBC00E0AAAC /* CFeedEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFeedEntry.m; sourceTree = "<group>"; };
 		459335060E75F76A00E0AAAC /* NSDate_InternetDateExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDate_InternetDateExtensions.h; sourceTree = "<group>"; };
 		459335070E75F76A00E0AAAC /* NSDate_InternetDateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDate_InternetDateExtensions.m; sourceTree = "<group>"; };
 		8DD76FA10486AA7600D96B5E /* TouchRSS */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TouchRSS; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,14 +75,10 @@
 				08FB7796FE84155DC02AAC07 /* TouchRSS.m */,
 				4593304A0E75AB2B00E0AAAC /* CRSSFeedDeserializer.h */,
 				4593304B0E75AB2B00E0AAAC /* CRSSFeedDeserializer.m */,
-				459333EC0E75EDF300E0AAAC /* CRSSObject.h */,
-				459333ED0E75EDF300E0AAAC /* CRSSObject.m */,
-				459333E30E75EDAA00E0AAAC /* CRSSFeed.h */,
-				459333E40E75EDAA00E0AAAC /* CRSSFeed.m */,
-				459333E60E75EDB500E0AAAC /* CRSSChannel.h */,
-				459333E70E75EDB500E0AAAC /* CRSSChannel.m */,
-				459333E90E75EDBC00E0AAAC /* CRSSItem.h */,
-				459333EA0E75EDBC00E0AAAC /* CRSSItem.m */,
+				459333E60E75EDB500E0AAAC /* CFeed.h */,
+				459333E70E75EDB500E0AAAC /* CFeed.m */,
+				459333E90E75EDBC00E0AAAC /* CFeedEntry.h */,
+				459333EA0E75EDBC00E0AAAC /* CFeedEntry.m */,
 				459335060E75F76A00E0AAAC /* NSDate_InternetDateExtensions.h */,
 				459335070E75F76A00E0AAAC /* NSDate_InternetDateExtensions.m */,
 				459330C20E75B14C00E0AAAC /* words.h */,
@@ -160,10 +150,8 @@
 				8DD76F9A0486AA7600D96B5E /* TouchRSS.m in Sources */,
 				4593304C0E75AB2B00E0AAAC /* CRSSFeedDeserializer.m in Sources */,
 				459331670E75B95100E0AAAC /* words.m in Sources */,
-				459333E50E75EDAA00E0AAAC /* CRSSFeed.m in Sources */,
-				459333E80E75EDB500E0AAAC /* CRSSChannel.m in Sources */,
-				459333EB0E75EDBC00E0AAAC /* CRSSItem.m in Sources */,
-				459333EE0E75EDF300E0AAAC /* CRSSObject.m in Sources */,
+				459333E80E75EDB500E0AAAC /* CFeed.m in Sources */,
+				459333EB0E75EDBC00E0AAAC /* CFeedEntry.m in Sources */,
 				459335080E75F76A00E0AAAC /* NSDate_InternetDateExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,14 +12,11 @@
 
 #define kTouchRSSErrorDomain @"kTouchRSSErrorDomain"
 
-@class CRSSFeed, CRSSChannel, CRSSItem;
-
 @interface CRSSFeedDeserializer : NSObject <NSFastEnumeration> {
 	xmlTextReaderPtr reader;
 	NSError *error;
-	CRSSFeed *currentFeed;
-	CRSSChannel *currentChannel;
-	CRSSItem *currentItem;
+	NSMutableDictionary *currentFeed;
+	NSMutableDictionary *currentItem;
 }
 
 @property (readonly, nonatomic, assign) xmlTextReaderPtr reader;
