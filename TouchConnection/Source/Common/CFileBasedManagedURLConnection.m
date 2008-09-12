@@ -3,10 +3,38 @@
 //  EverybodyVotes
 //
 //  Created by Jonathan Wight on 8/22/08.
-//  Copyright 2008 toxicsoftware.com. All rights reserved.
+//  Copyright (c) 2008 Jonathan Wight
+//
+//  Permission is hereby granted, free of charge, to any person
+//  obtaining a copy of this software and associated documentation
+//  files (the "Software"), to deal in the Software without
+//  restriction, including without limitation the rights to use,
+//  copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the
+//  Software is furnished to do so, subject to the following
+//  conditions:
+//
+//  The above copyright notice and this permission notice shall be
+//  included in all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+//  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+//  OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+//  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+//  HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+//  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+//  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+//  OTHER DEALINGS IN THE SOFTWARE.
 //
 
 #import "CFileBasedManagedURLConnection.h"
+
+//#define DEBUG 1
+#if URL_LOGGING
+#define _Log(...) NSLog
+#else
+#define _Log(...)
+#endif
 
 @interface CFileBasedManagedURLConnection ()
 @property (readwrite, nonatomic, retain) NSString *filePath;
@@ -45,7 +73,7 @@ return(data);
 {
 if (self.connection == NULL)
 	{
-	NSLog(@"Received event after connction has been reset. This is bad.");
+	_Log(@"Received event after connction has been reset. This is bad.");
 	return;
 	}
 NSAssert(self.connection == inConnection, NULL);
@@ -58,7 +86,7 @@ if (self.fileHandle == NULL)
 	BOOL theResult = [[NSFileManager defaultManager] createDirectoryAtPath:theTempRoot withIntermediateDirectories:YES attributes:NO error:&theError];
 	if (theResult == NO)
 		{
-		NSLog(@"Could not create temporary directory: %@.", theError);
+		_Log(@"Could not create temporary directory: %@.", theError);
 		return;
 		}
 
@@ -72,7 +100,7 @@ if (self.fileHandle == NULL)
 	theResult = [[NSFileManager defaultManager] createFileAtPath:self.filePath contents:inData attributes:NULL];
 	if (theResult == NO)
 		{
-		NSLog(@"createFileAtPath (%@) failed!");
+		_Log(@"createFileAtPath (%@) failed!");
 		}
 	
 	self.fileHandle = [NSFileHandle fileHandleForWritingAtPath:self.filePath];

@@ -3,7 +3,28 @@
 //  ProjectV
 //
 //  Created by Jonathan Wight on 9/8/08.
-//  Copyright 2008 toxicsoftware.com. All rights reserved.
+//  Copyright (c) 2008 Jonathan Wight
+//
+//  Permission is hereby granted, free of charge, to any person
+//  obtaining a copy of this software and associated documentation
+//  files (the "Software"), to deal in the Software without
+//  restriction, including without limitation the rights to use,
+//  copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the
+//  Software is furnished to do so, subject to the following
+//  conditions:
+//
+//  The above copyright notice and this permission notice shall be
+//  included in all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+//  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+//  OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+//  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+//  HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+//  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+//  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+//  OTHER DEALINGS IN THE SOFTWARE.
 //
 
 #import "CFeedStore.h"
@@ -29,13 +50,17 @@ static CFeedStore *gInstance = NULL;
 @implementation CFeedStore
 
 @synthesize delegate;
+@synthesize databasePath;
 @synthesize database;
 
 + (CFeedStore *)instance
 {
-if (gInstance == NULL)
+@synchronized(self)
 	{
-	gInstance = [[self alloc] init];
+	if (gInstance == NULL)
+		{
+		gInstance = [[self alloc] init];
+		}
 	}
 return(gInstance);
 }
@@ -44,29 +69,6 @@ return(gInstance);
 {
 if ((self = [super init]) != NULL)
 	{
-	NSString *theApplicationSupportFolder = [NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-	
-	NSString *thePath = [theApplicationSupportFolder stringByAppendingPathComponent:@"feedstore.db"];
-		
-	NSError *theError = NULL;
-
-	if (YES)
-		{
-		NSLog(@"REMOVING FEEDSTORE");
-		[[NSFileManager defaultManager] removeItemAtPath:thePath error:&theError];
-		}
-
-	if ([[NSFileManager defaultManager] fileExistsAtPath:thePath] == NO)
-		{
-		[[NSFileManager defaultManager] createDirectoryAtPath:theApplicationSupportFolder withIntermediateDirectories:YES attributes:NULL error:&theError];
-		NSString *theSourcePath = [[NSBundle mainBundle] pathForResource:@"feedstore" ofType:@"db"];
-		[[NSFileManager defaultManager] copyItemAtPath:theSourcePath toPath:thePath error:&theError];
-		}
-	
-	self.database = [[[CSqliteDatabase alloc] initWithPath:thePath] autorelease];
-	[self.database open:&theError];
-	if (theError)
-		NSLog(@"%@", theError);
 	}
 return(self);
 }
@@ -80,11 +82,69 @@ self.database = NULL;
 
 #pragma mark -
 
+- (CSqliteDatabase *)database
+{
+if (database == NULL)
+	{
+	NSError *theError = NULL;
+
+	if (self.databasePath == NULL)
+		{
+		NSString *theApplicationSupportFolder = [NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+		NSString *thePath = [theApplicationSupportFolder stringByAppendingPathComponent:@"feedstore.db"];
+		self.databasePath = thePath;
+		}
+
+	if (YES)
+		{
+		if ([[NSFileManager defaultManager] fileExistsAtPath:self.databasePath] == YES)
+			{
+			NSLog(@"REMOVING FEEDSTORE");
+			if ([[NSFileManager defaultManager] removeItemAtPath:self.databasePath error:&theError] == NO)
+				[NSException raise:NSGenericException format:@"%@", theError];
+			}
+		}
+
+	
+	if ([[NSFileManager defaultManager] fileExistsAtPath:self.databasePath] == NO)
+		{
+		NSLog(@"COPYING FEEDSTORE FROM BUNDLE");
+		if ([[NSFileManager defaultManager] createDirectoryAtPath:[self.databasePath stringByDeletingLastPathComponent] withIntermediateDirectories:YES attributes:NULL error:&theError] == NO)
+			[NSException raise:NSGenericException format:@"%@", theError];
+
+		NSString *theSourcePath = [[NSBundle mainBundle] pathForResource:@"feedstore" ofType:@"db"];
+		if ([[NSFileManager defaultManager] copyItemAtPath:theSourcePath toPath:self.databasePath error:&theError] == NO)
+			[NSException raise:NSGenericException format:@"%@", theError];
+		}
+	
+	CSqliteDatabase *theDatabase = [[[CSqliteDatabase alloc] initWithPath:self.databasePath] autorelease];
+	[theDatabase open:&theError];
+	if (theError)
+		[NSException raise:NSGenericException format:@"%@", theError];
+
+	database = [theDatabase retain];
+	}
+return(database); 
+}
+
+- (void)setDatabase:(CSqliteDatabase *)inDatabase
+{
+if (database != inDatabase)
+	{
+	[database autorelease];
+	database = [inDatabase retain];
+    }
+}
+
+#pragma mark -
+
 - (NSInteger)countOfFeeds
 {
 NSError *theError = NULL;
 NSString *theExpression = [NSString stringWithFormat:@"SELECT count() FROM feed"];
 NSDictionary *theRow = [self.database rowForExpression:theExpression error:&theError];
+if (theRow == NULL)
+	[NSException raise:NSGenericException format:@"%@", theError];
 return([[theRow objectForKey:@"count()"] integerValue]);
 }
 
@@ -95,8 +155,11 @@ return([[theRow objectForKey:@"count()"] integerValue]);
 NSError *theError = NULL;
 NSString *theExpression = [NSString stringWithFormat:@"SELECT * FROM feed LIMIT 1 OFFSET %d", inIndex];
 NSDictionary *theDictionary = [self.database rowForExpression:theExpression error:&theError];
+if (theDictionary == NULL)
+	[NSException raise:NSGenericException format:@"%@", theError];
 CFeed *theFeed = [[[CFeed alloc] initWithFeedStore:self] autorelease];
-[[CFeed objectTranscoder] updateObject:theFeed withPropertiesInDictionary:theDictionary error:&theError];
+if ([[CFeed objectTranscoder] updateObject:theFeed withPropertiesInDictionary:theDictionary error:&theError] == NO)
+	[NSException raise:NSGenericException format:@"%@", theError];
 return(theFeed);
 }
 
@@ -105,9 +168,12 @@ return(theFeed);
 NSError *theError = NULL;
 NSString *theExpression = [NSString stringWithFormat:@"SELECT * FROM feed WHERE link = '%@'", [[inLink absoluteString] encodedForSql]];
 NSDictionary *theDictionary = [self.database rowForExpression:theExpression error:&theError];
+if (theDictionary == NULL)
+	[NSException raise:NSGenericException format:@"%@", theError];
 CFeed *theFeed = [[[CFeed alloc] initWithFeedStore:self] autorelease];
 
-[[CFeed objectTranscoder] updateObject:theFeed withPropertiesInDictionary:theDictionary error:&theError];
+if ([[CFeed objectTranscoder] updateObject:theFeed withPropertiesInDictionary:theDictionary error:&theError] == NO)
+	[NSException raise:NSGenericException format:@"%@", theError];
 
 return(theFeed);
 }
@@ -116,6 +182,8 @@ return(theFeed);
 {
 NSError *theError = NULL;
 NSEnumerator *theEnumerator = [self.database enumeratorForExpression:@"SELECT link FROM feed" error:&theError];
+if (theEnumerator == NULL)
+	[NSException raise:NSGenericException format:@"%@", theError];
 for (id theRow in theEnumerator)
 	{
 	NSString *theURLString = [theRow objectForKey:@"link"];
@@ -172,6 +240,7 @@ for (id theDictionary in theDeserializer)
 		CFeedEntry *theEntry = [theFeed entryForIdentifier:[theDictionary objectForKey:@"identifier"]];
 		if (theEntry == NULL)
 			{
+			NSLog(@"CANNOT FIND ENTRY: CREATING NEW ONE");
 			theEntry = [[[CFeedEntry alloc] initWithFeed:theFeed] autorelease];
 			}
 		
