@@ -109,13 +109,13 @@ while (theObjectCount != len && theReturnCode == 1 && self.error == NULL)
 		switch (theCode)
 			{
 			case RSSElementNameCode_RSS:
-				theObject = self.currentFeed = [NSMutableDictionary dictionaryWithObject:@"feed" forKey:@"type"];
+				theObject = self.currentFeed = [NSMutableDictionary dictionaryWithObject:[NSNumber numberWithInt:RSSFeedDictinaryType_Feed] forKey:@"type"];
 				break;
 			case RSSElementNameCode_Channel:
 				[self updateAttributesOfChannel:self.currentFeed];
 				break;
 			case RSSElementNameCode_Item:
-				theObject = self.currentItem = [NSMutableDictionary dictionaryWithObject:@"item" forKey:@"type"];
+				theObject = self.currentItem = [NSMutableDictionary dictionaryWithObject:[NSNumber numberWithInt:RSSFeedDictinaryType_Entry] forKey:@"type"];
 				[self updateAttributesOfItem:self.currentItem];
 				break;
 			}

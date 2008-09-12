@@ -39,6 +39,8 @@
 #import "NSString_SqlExtensions.h"
 #import "CSqliteDatabase_Extensions.h"
 
+#define ALWAYS_RESET_DATABASE 1
+
 static CFeedStore *gInstance = NULL;
 
 @interface CFeedStore ()
@@ -50,8 +52,8 @@ static CFeedStore *gInstance = NULL;
 @implementation CFeedStore
 
 @synthesize delegate;
-@synthesize databasePath;
-@synthesize database;
+@dynamic databasePath;
+@dynamic database;
 
 + (CFeedStore *)instance
 {
@@ -75,6 +77,8 @@ return(self);
 
 - (void)dealloc
 {
+self.delegate = NULL;
+self.databasePath = NULL;
 self.database = NULL;
 //
 [super dealloc];
@@ -82,33 +86,43 @@ self.database = NULL;
 
 #pragma mark -
 
+- (NSString *)databasePath
+{
+if (databasePath == NULL)
+	{
+	NSString *theApplicationSupportFolder = [NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+	NSString *thePath = [theApplicationSupportFolder stringByAppendingPathComponent:@"feedstore.db"];
+	databasePath = [thePath retain];
+	}
+return(databasePath); 
+}
+
+- (void)setDatabasePath:(NSString *)inDatabasePath
+{
+if (databasePath != inDatabasePath)
+	{
+	[databasePath autorelease];
+	databasePath = [inDatabasePath retain];
+    }
+}
+
 - (CSqliteDatabase *)database
 {
 if (database == NULL)
 	{
 	NSError *theError = NULL;
 
-	if (self.databasePath == NULL)
+	#if ALWAYS_RESET_DATABASE == 1
+	if ([[NSFileManager defaultManager] fileExistsAtPath:self.databasePath] == YES)
 		{
-		NSString *theApplicationSupportFolder = [NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-		NSString *thePath = [theApplicationSupportFolder stringByAppendingPathComponent:@"feedstore.db"];
-		self.databasePath = thePath;
+		NSLog(@"REMOVING FEEDSTORE");
+		if ([[NSFileManager defaultManager] removeItemAtPath:self.databasePath error:&theError] == NO)
+			[NSException raise:NSGenericException format:@"%@", theError];
 		}
-
-	if (YES)
-		{
-		if ([[NSFileManager defaultManager] fileExistsAtPath:self.databasePath] == YES)
-			{
-			NSLog(@"REMOVING FEEDSTORE");
-			if ([[NSFileManager defaultManager] removeItemAtPath:self.databasePath error:&theError] == NO)
-				[NSException raise:NSGenericException format:@"%@", theError];
-			}
-		}
-
+	#endif /* ALWAYS_RESET_DATABASE == 1 */
 	
 	if ([[NSFileManager defaultManager] fileExistsAtPath:self.databasePath] == NO)
 		{
-		NSLog(@"COPYING FEEDSTORE FROM BUNDLE");
 		if ([[NSFileManager defaultManager] createDirectoryAtPath:[self.databasePath stringByDeletingLastPathComponent] withIntermediateDirectories:YES attributes:NULL error:&theError] == NO)
 			[NSException raise:NSGenericException format:@"%@", theError];
 
@@ -163,10 +177,10 @@ if ([[CFeed objectTranscoder] updateObject:theFeed withPropertiesInDictionary:th
 return(theFeed);
 }
 
-- (CFeed *)feedForLink:(NSURL *)inLink
+- (CFeed *)feedforURL:(NSURL *)inURL
 {
 NSError *theError = NULL;
-NSString *theExpression = [NSString stringWithFormat:@"SELECT * FROM feed WHERE link = '%@'", [[inLink absoluteString] encodedForSql]];
+NSString *theExpression = [NSString stringWithFormat:@"SELECT * FROM feed WHERE url = '%@'", [[inURL absoluteString] encodedForSql]];
 NSDictionary *theDictionary = [self.database rowForExpression:theExpression error:&theError];
 if (theDictionary == NULL)
 	[NSException raise:NSGenericException format:@"%@", theError];
@@ -178,15 +192,14 @@ if ([[CFeed objectTranscoder] updateObject:theFeed withPropertiesInDictionary:th
 return(theFeed);
 }
 
-- (void)update
+- (BOOL)update:(NSError **)outError
 {
-NSError *theError = NULL;
-NSEnumerator *theEnumerator = [self.database enumeratorForExpression:@"SELECT link FROM feed" error:&theError];
+NSEnumerator *theEnumerator = [self.database enumeratorForExpression:@"SELECT url FROM feed" error:outError];
 if (theEnumerator == NULL)
-	[NSException raise:NSGenericException format:@"%@", theError];
+	return(NO);
 for (id theRow in theEnumerator)
 	{
-	NSString *theURLString = [theRow objectForKey:@"link"];
+	NSString *theURLString = [theRow objectForKey:@"url"];
 	NSURL *theURL = [NSURL URLWithString:theURLString];
 
 	NSURLRequest *theRequest = [[[NSURLRequest alloc] initWithURL:theURL] autorelease];
@@ -194,6 +207,7 @@ for (id theRow in theEnumerator)
 	CManagedURLConnection *theConnection = [[[CManagedURLConnection alloc] initWithRequest:theRequest completionTicket:theCompletionTicket] autorelease];
 	[[CURLConnectionManager instance] addAutomaticURLConnection:theConnection toChannel:@"RSS"];
 	}
+return(YES);
 }
 
 #pragma mark -
@@ -210,52 +224,40 @@ CManagedURLConnection *theConnection = (CManagedURLConnection *)inTarget;
 CRSSFeedDeserializer *theDeserializer = [[[CRSSFeedDeserializer alloc] initWithData:theConnection.data] autorelease];
 for (id theDictionary in theDeserializer)
 	{
-	if ([[theDictionary objectForKey:@"type"] isEqualToString:@"feed"])
+	ERSSFeedDictinaryType theType = [[theDictionary objectForKey:@"type"] intValue];
+	switch (theType)
 		{
-		NSLog(@"FEED");
-		
-		theFeed = [self feedForLink:theConnection.request.URL];
-//		if (theFeed == NULL)
-//			{
-//			theFeed = [[[CFeed alloc] initWithFeedStore:self] autorelease];
-//			}
-
-		NSError *theError = NULL;
-		if ([[CFeed objectTranscoder] updateObject:theFeed withPropertiesInDictionary:theDictionary error:&theError] == NO)
+		case RSSFeedDictinaryType_Feed:
 			{
-			[NSException raise:NSGenericException format:@"%@", theError];
-			}
-		
-		theFeed.lastChecked = [NSDate date];
-//		if ([theFeed write:&theError] == NO)
-//			{
-//			[NSException raise:NSGenericException format:@"%@", theError];
-//			}
+			NSURL *theFeedURL = theConnection.request.URL;
+			theFeed = [self feedforURL:theFeedURL];
+			if (theFeed == NULL)
+				theFeed = [[[CFeed alloc] initWithFeedStore:self] autorelease];
 
-		NSLog(@"%@", theFeed.title);
-		}
-	else if ([[theDictionary objectForKey:@"type"] isEqualToString:@"item"])
-		{
-		NSLog(@"ENTRY");
-		CFeedEntry *theEntry = [theFeed entryForIdentifier:[theDictionary objectForKey:@"identifier"]];
-		if (theEntry == NULL)
-			{
-			NSLog(@"CANNOT FIND ENTRY: CREATING NEW ONE");
-			theEntry = [[[CFeedEntry alloc] initWithFeed:theFeed] autorelease];
+			NSError *theError = NULL;
+			if ([[CFeed objectTranscoder] updateObject:theFeed withPropertiesInDictionary:theDictionary error:&theError] == NO)
+				[NSException raise:NSGenericException format:@"%@", theError];
+			
+			theFeed.lastChecked = [NSDate date];
+	//		if ([theFeed write:&theError] == NO)
+	//			[NSException raise:NSGenericException format:@"%@", theError];
 			}
-		
-		NSError *theError = NULL;
-		[[CFeedEntry objectTranscoder] updateObject:theEntry withPropertiesInDictionary:theDictionary error:&theError];
+			break;
+		case RSSFeedDictinaryType_Entry:
+			{
+			CFeedEntry *theEntry = [theFeed entryForIdentifier:[theDictionary objectForKey:@"identifier"]];
+			if (theEntry == NULL)
+				theEntry = [[[CFeedEntry alloc] initWithFeed:theFeed] autorelease];
+			
+			NSError *theError = NULL;
+			[[CFeedEntry objectTranscoder] updateObject:theEntry withPropertiesInDictionary:theDictionary error:&theError];
 
-		NSLog(@"Entry: %d", theEntry.rowID);
-		if ([theEntry write:&theError] == NO)
-			{
-			[NSException raise:NSGenericException format:@"%@", theError];
+			if ([theEntry write:&theError] == NO)
+				[NSException raise:NSGenericException format:@"%@", theError];
 			}
-		NSLog(@"Entry: %d", theEntry.rowID);
+			break;
 		}
 	}
-	
 [self.database commit];
 
 NSLog(@"COUNT: %d", [self.database countRowsInTable:@"entry" error:NULL]);

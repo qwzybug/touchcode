@@ -50,9 +50,9 @@
 
 - (NSInteger)countOfFeeds;
 - (CFeed *)feedAtIndex:(NSInteger)inIndex;
-- (CFeed *)feedForLink:(NSURL *)inLink;
+- (CFeed *)feedforURL:(NSURL *)inURL;
 
-- (void)update;
+- (BOOL)update:(NSError **)outError;
 
 @end
 

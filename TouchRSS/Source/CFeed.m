@@ -47,7 +47,7 @@
 
 @implementation CFeed
 
-@synthesize rowID, feedStore, title, link, description_, lastChecked;
+@synthesize rowID, feedStore, url, title, link, description_, lastChecked;
 
 + (CObjectTranscoder *)objectTranscoder
 {
@@ -89,9 +89,11 @@ return(self);
 - (void)dealloc
 {
 self.feedStore = NULL;
+self.url = NULL;
 self.title = NULL;
 self.link = NULL;
 self.description_ = NULL;
+self.lastChecked = NULL;
 //
 [super dealloc];
 }
@@ -139,7 +141,7 @@ CSqliteDatabase *theDatabase = self.feedStore.database;
 
 if (self.rowID == -1)
 	{
-	NSString *theExpression = [NSString stringWithFormat:@"INSERT INTO feed (title, link, description, lastChecked) VALUES ('%@', '%@', '%@', '%@')", [self.title encodedForSql], [[self.link absoluteString] encodedForSql], [self.description_ encodedForSql], [self.lastChecked sqlDateString]];
+	NSString *theExpression = [NSString stringWithFormat:@"INSERT INTO feed (url, title, link, description, lastChecked) VALUES ('%@', '%@', '%@', '%@', '%@')", [[self.url absoluteString] encodedForSql], [self.title encodedForSql], [[self.link absoluteString] encodedForSql], [self.description_ encodedForSql], [self.lastChecked sqlDateString]];
 
 	BOOL theResult = [theDatabase executeExpression:theExpression error:outError];
 	if (theResult == NO)
@@ -147,7 +149,7 @@ if (self.rowID == -1)
 		return(NO);
 		}
 
-	theExpression = [NSString stringWithFormat:@"SELECT id FROM feed WHERE (link = %@)", [[self.link absoluteString] encodedForSql]];
+	theExpression = [NSString stringWithFormat:@"SELECT id FROM feed WHERE (url = %@)", [[self.url absoluteString] encodedForSql]];
 	NSDictionary *theRow = [theDatabase rowForExpression:theExpression error:outError];
 	if (theResult == NO)
 		{

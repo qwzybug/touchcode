@@ -118,7 +118,7 @@ if (self.rowID == -1)
 	}
 else
 	{
-	// TODO
+	// TODO -- This should be an update operation.
 	}
 
 return(YES);

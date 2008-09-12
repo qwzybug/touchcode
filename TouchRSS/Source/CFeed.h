@@ -36,6 +36,7 @@
 @interface CFeed : NSObject {
 	NSInteger rowID;
 	CFeedStore *feedStore;
+	NSURL *url;
 	NSString *title;
 	NSURL *link;
 	NSString *description_;
@@ -44,6 +45,7 @@
 
 @property (readonly, nonatomic, assign)	NSInteger rowID;
 @property (readonly, nonatomic, assign) CFeedStore *feedStore;
+@property (readwrite, nonatomic, assign) NSURL *url;
 @property (readwrite, nonatomic, retain) NSString *title;
 @property (readwrite, nonatomic, retain) NSURL *link;
 @property (readwrite, nonatomic, retain) NSString *description_;

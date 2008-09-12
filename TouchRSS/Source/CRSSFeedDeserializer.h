@@ -33,6 +33,11 @@
 
 #define kTouchRSSErrorDomain @"kTouchRSSErrorDomain"
 
+typedef enum {
+	RSSFeedDictinaryType_Feed,
+	RSSFeedDictinaryType_Entry,
+} ERSSFeedDictinaryType;
+
 @interface CRSSFeedDeserializer : NSObject <NSFastEnumeration> {
 	xmlTextReaderPtr reader;
 	NSError *error;
