@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4593304C0E75AB2B00E0AAAC /* CRSSFeedDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4593304B0E75AB2B00E0AAAC /* CRSSFeedDeserializer.m */; };
-		459331670E75B95100E0AAAC /* words.m in Sources */ = {isa = PBXBuildFile; fileRef = 4593313C0E75B6A100E0AAAC /* words.m */; };
-		459333E80E75EDB500E0AAAC /* CFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 459333E70E75EDB500E0AAAC /* CFeed.m */; };
-		459333EB0E75EDBC00E0AAAC /* CFeedEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 459333EA0E75EDBC00E0AAAC /* CFeedEntry.m */; };
-		459335080E75F76A00E0AAAC /* NSDate_InternetDateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 459335070E75F76A00E0AAAC /* NSDate_InternetDateExtensions.m */; };
-		8DD76F9A0486AA7600D96B5E /* TouchRSS.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* TouchRSS.m */; settings = {ATTRIBUTES = (); }; };
+		45EF34BD0E7ABE4400B21313 /* CFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EF34AE0E7ABE4400B21313 /* CFeed.m */; };
+		45EF34BE0E7ABE4400B21313 /* CFeedEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EF34B00E7ABE4400B21313 /* CFeedEntry.m */; };
+		45EF34BF0E7ABE4400B21313 /* CFeedStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EF34B20E7ABE4400B21313 /* CFeedStore.m */; };
+		45EF34C00E7ABE4400B21313 /* CRSSFeedDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EF34B40E7ABE4400B21313 /* CRSSFeedDeserializer.m */; };
+		45EF34C10E7ABE4400B21313 /* NSDate_InternetDateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EF34B60E7ABE4400B21313 /* NSDate_InternetDateExtensions.m */; };
+		45EF34C20E7ABE4400B21313 /* TouchRSS.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EF34B80E7ABE4400B21313 /* TouchRSS.m */; };
+		45EF34C30E7ABE4400B21313 /* words.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EF34BB0E7ABE4400B21313 /* words.m */; };
 		8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,20 +30,22 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		08FB7796FE84155DC02AAC07 /* TouchRSS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchRSS.m; sourceTree = "<group>"; };
 		08FB779EFE84155DC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		32A70AAB03705E1F00C91783 /* TouchRSS_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchRSS_Prefix.pch; sourceTree = "<group>"; };
-		4593304A0E75AB2B00E0AAAC /* CRSSFeedDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRSSFeedDeserializer.h; sourceTree = "<group>"; };
-		4593304B0E75AB2B00E0AAAC /* CRSSFeedDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRSSFeedDeserializer.m; sourceTree = "<group>"; };
-		459330C20E75B14C00E0AAAC /* words.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = words.h; sourceTree = "<group>"; };
-		4593312C0E75B66C00E0AAAC /* words.gperf.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = words.gperf.txt; sourceTree = "<group>"; };
-		4593313C0E75B6A100E0AAAC /* words.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = words.m; sourceTree = "<group>"; };
-		459333E60E75EDB500E0AAAC /* CFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFeed.h; sourceTree = "<group>"; };
-		459333E70E75EDB500E0AAAC /* CFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFeed.m; sourceTree = "<group>"; };
-		459333E90E75EDBC00E0AAAC /* CFeedEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFeedEntry.h; sourceTree = "<group>"; };
-		459333EA0E75EDBC00E0AAAC /* CFeedEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFeedEntry.m; sourceTree = "<group>"; };
-		459335060E75F76A00E0AAAC /* NSDate_InternetDateExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDate_InternetDateExtensions.h; sourceTree = "<group>"; };
-		459335070E75F76A00E0AAAC /* NSDate_InternetDateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDate_InternetDateExtensions.m; sourceTree = "<group>"; };
+		45EF34AD0E7ABE4400B21313 /* CFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFeed.h; sourceTree = "<group>"; };
+		45EF34AE0E7ABE4400B21313 /* CFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFeed.m; sourceTree = "<group>"; };
+		45EF34AF0E7ABE4400B21313 /* CFeedEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFeedEntry.h; sourceTree = "<group>"; };
+		45EF34B00E7ABE4400B21313 /* CFeedEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFeedEntry.m; sourceTree = "<group>"; };
+		45EF34B10E7ABE4400B21313 /* CFeedStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFeedStore.h; sourceTree = "<group>"; };
+		45EF34B20E7ABE4400B21313 /* CFeedStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFeedStore.m; sourceTree = "<group>"; };
+		45EF34B30E7ABE4400B21313 /* CRSSFeedDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRSSFeedDeserializer.h; sourceTree = "<group>"; };
+		45EF34B40E7ABE4400B21313 /* CRSSFeedDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRSSFeedDeserializer.m; sourceTree = "<group>"; };
+		45EF34B50E7ABE4400B21313 /* NSDate_InternetDateExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDate_InternetDateExtensions.h; sourceTree = "<group>"; };
+		45EF34B60E7ABE4400B21313 /* NSDate_InternetDateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDate_InternetDateExtensions.m; sourceTree = "<group>"; };
+		45EF34B70E7ABE4400B21313 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		45EF34B80E7ABE4400B21313 /* TouchRSS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchRSS.m; sourceTree = "<group>"; };
+		45EF34B90E7ABE4400B21313 /* words.gperf.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = words.gperf.txt; sourceTree = "<group>"; };
+		45EF34BA0E7ABE4400B21313 /* words.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = words.h; sourceTree = "<group>"; };
+		45EF34BB0E7ABE4400B21313 /* words.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = words.m; sourceTree = "<group>"; };
 		8DD76FA10486AA7600D96B5E /* TouchRSS */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TouchRSS; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -61,31 +64,12 @@
 		08FB7794FE84155DC02AAC07 /* TouchRSS */ = {
 			isa = PBXGroup;
 			children = (
-				08FB7795FE84155DC02AAC07 /* Source */,
+				45EF34AC0E7ABE4400B21313 /* Source */,
+				45EF34BC0E7ABE4400B21313 /* Resources */,
 				08FB779DFE84155DC02AAC07 /* External Frameworks and Libraries */,
 				1AB674ADFE9D54B511CA2CBB /* Products */,
 			);
 			name = TouchRSS;
-			sourceTree = "<group>";
-		};
-		08FB7795FE84155DC02AAC07 /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				32A70AAB03705E1F00C91783 /* TouchRSS_Prefix.pch */,
-				08FB7796FE84155DC02AAC07 /* TouchRSS.m */,
-				4593304A0E75AB2B00E0AAAC /* CRSSFeedDeserializer.h */,
-				4593304B0E75AB2B00E0AAAC /* CRSSFeedDeserializer.m */,
-				459333E60E75EDB500E0AAAC /* CFeed.h */,
-				459333E70E75EDB500E0AAAC /* CFeed.m */,
-				459333E90E75EDBC00E0AAAC /* CFeedEntry.h */,
-				459333EA0E75EDBC00E0AAAC /* CFeedEntry.m */,
-				459335060E75F76A00E0AAAC /* NSDate_InternetDateExtensions.h */,
-				459335070E75F76A00E0AAAC /* NSDate_InternetDateExtensions.m */,
-				459330C20E75B14C00E0AAAC /* words.h */,
-				4593313C0E75B6A100E0AAAC /* words.m */,
-				4593312C0E75B66C00E0AAAC /* words.gperf.txt */,
-			);
-			name = Source;
 			sourceTree = "<group>";
 		};
 		08FB779DFE84155DC02AAC07 /* External Frameworks and Libraries */ = {
@@ -102,6 +86,35 @@
 				8DD76FA10486AA7600D96B5E /* TouchRSS */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		45EF34AC0E7ABE4400B21313 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				45EF34AD0E7ABE4400B21313 /* CFeed.h */,
+				45EF34AE0E7ABE4400B21313 /* CFeed.m */,
+				45EF34AF0E7ABE4400B21313 /* CFeedEntry.h */,
+				45EF34B00E7ABE4400B21313 /* CFeedEntry.m */,
+				45EF34B10E7ABE4400B21313 /* CFeedStore.h */,
+				45EF34B20E7ABE4400B21313 /* CFeedStore.m */,
+				45EF34B30E7ABE4400B21313 /* CRSSFeedDeserializer.h */,
+				45EF34B40E7ABE4400B21313 /* CRSSFeedDeserializer.m */,
+				45EF34B50E7ABE4400B21313 /* NSDate_InternetDateExtensions.h */,
+				45EF34B60E7ABE4400B21313 /* NSDate_InternetDateExtensions.m */,
+				45EF34B70E7ABE4400B21313 /* Prefix.pch */,
+				45EF34B80E7ABE4400B21313 /* TouchRSS.m */,
+				45EF34B90E7ABE4400B21313 /* words.gperf.txt */,
+				45EF34BA0E7ABE4400B21313 /* words.h */,
+				45EF34BB0E7ABE4400B21313 /* words.m */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		45EF34BC0E7ABE4400B21313 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,12 +160,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DD76F9A0486AA7600D96B5E /* TouchRSS.m in Sources */,
-				4593304C0E75AB2B00E0AAAC /* CRSSFeedDeserializer.m in Sources */,
-				459331670E75B95100E0AAAC /* words.m in Sources */,
-				459333E80E75EDB500E0AAAC /* CFeed.m in Sources */,
-				459333EB0E75EDBC00E0AAAC /* CFeedEntry.m in Sources */,
-				459335080E75F76A00E0AAAC /* NSDate_InternetDateExtensions.m in Sources */,
+				45EF34BD0E7ABE4400B21313 /* CFeed.m in Sources */,
+				45EF34BE0E7ABE4400B21313 /* CFeedEntry.m in Sources */,
+				45EF34BF0E7ABE4400B21313 /* CFeedStore.m in Sources */,
+				45EF34C00E7ABE4400B21313 /* CRSSFeedDeserializer.m in Sources */,
+				45EF34C10E7ABE4400B21313 /* NSDate_InternetDateExtensions.m in Sources */,
+				45EF34C20E7ABE4400B21313 /* TouchRSS.m in Sources */,
+				45EF34C30E7ABE4400B21313 /* words.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,7 +184,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = TouchRSS_Prefix.pch;
+				GCC_PREFIX_HEADER = Source/Prefix.pch;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INSTALL_PATH = /usr/local/bin;
 				OTHER_LDFLAGS = "-lxml2";
@@ -186,7 +200,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = TouchRSS_Prefix.pch;
+				GCC_PREFIX_HEADER = Source/Prefix.pch;
 				INSTALL_PATH = /usr/local/bin;
 				PRODUCT_NAME = TouchRSS;
 			};

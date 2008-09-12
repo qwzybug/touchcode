@@ -82,8 +82,6 @@ while (theObjectCount != len && theReturnCode == 1 && self.error == NULL)
 
 	if (theNodeType == XML_READER_TYPE_ELEMENT)
 		{
-//		NSLog(@"%s", xmlTextReaderConstNamespaceUri(self.reader));
-		
 		NSMutableDictionary *theObject = NULL;
 		const xmlChar *theNodeName = xmlTextReaderConstLocalName(self.reader);
 		int theCode = CodeForElementName(theNodeName);
@@ -200,7 +198,6 @@ while (theCurrentNode != NULL)
 				}
 				break;
 			default:
-//				NSLog(@"Unhandled element: %s %d", theElementName, theNode->ns);
 				break;
 			}
 		}

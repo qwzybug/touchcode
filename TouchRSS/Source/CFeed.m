@@ -58,7 +58,9 @@ if ((self = [self initWithFeedStore:inFeedStore]) != NULL)
 	self.rowID = inRowID;
 	NSError *theError = NULL;
 	if ([self read:&theError] == NO)
+		{
 		NSLog(@"%@", theError);
+		}
 	}
 return(self);
 }
