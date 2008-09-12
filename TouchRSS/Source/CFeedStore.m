@@ -89,7 +89,7 @@ self.database = NULL;
 - (NSString *)databasePath
 {
 if (databasePath == NULL)
-	{
+	{ 
 	NSString *theApplicationSupportFolder = [NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 	NSString *thePath = [theApplicationSupportFolder stringByAppendingPathComponent:@"feedstore.db"];
 	databasePath = [thePath retain];
@@ -216,9 +216,9 @@ return(YES);
 {
 NSLog(@"completionTicket:didCompleteForTarget:result:");
 
-[self.database begin];
-
 CFeed *theFeed = NULL;
+
+[self.database begin];
 
 CManagedURLConnection *theConnection = (CManagedURLConnection *)inTarget;
 CRSSFeedDeserializer *theDeserializer = [[[CRSSFeedDeserializer alloc] initWithData:theConnection.data] autorelease];
@@ -239,8 +239,8 @@ for (id theDictionary in theDeserializer)
 				[NSException raise:NSGenericException format:@"%@", theError];
 			
 			theFeed.lastChecked = [NSDate date];
-	//		if ([theFeed write:&theError] == NO)
-	//			[NSException raise:NSGenericException format:@"%@", theError];
+			if ([theFeed write:&theError] == NO)
+				[NSException raise:NSGenericException format:@"%@", theError];
 			}
 			break;
 		case RSSFeedDictinaryType_Entry:
@@ -258,9 +258,8 @@ for (id theDictionary in theDeserializer)
 			break;
 		}
 	}
-[self.database commit];
 
-NSLog(@"COUNT: %d", [self.database countRowsInTable:@"entry" error:NULL]);
+[self.database commit];
 
 [self.delegate feedStore:self didUpdateFeed:theFeed];
 }

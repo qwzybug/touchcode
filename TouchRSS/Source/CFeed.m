@@ -47,7 +47,7 @@
 
 @implementation CFeed
 
-@synthesize rowID, feedStore, url, title, link, description_, lastChecked;
+@synthesize rowID, feedStore, updating, url, title, link, description_, lastChecked;
 
 + (CObjectTranscoder *)objectTranscoder
 {
@@ -98,14 +98,25 @@ self.lastChecked = NULL;
 [super dealloc];
 }
 
+#pragma mark -
+
+- (NSInteger)countOfEntries
+{
+NSError *theError = NULL;
+NSString *theExpression = [NSString stringWithFormat:@"SELECT count() FROM entry WHERE feed_id = %d", self.rowID];
+NSDictionary *theDictionary = [self.feedStore.database rowForExpression:theExpression error:&theError];
+return([[theDictionary objectForKey:@"count()"] intValue]);
+}
+
 - (CFeedEntry *)entryAtIndex:(NSInteger)inIndex
 {
 // TODO: DO NOT DO THIS: http://www.sqlite.org/cvstrac/wiki?p=ScrollingCursor
 
 NSError *theError = NULL;
-NSString *theExpression = [NSString stringWithFormat:@"SELECT * FROM entry LIMIT 1 OFFSET %d", inIndex];
-NSArray *theRows = [self.feedStore.database rowsForExpression:theExpression error:&theError];
-NSDictionary *theDictionary = [theRows objectAtIndex:0];
+NSString *theExpression = [NSString stringWithFormat:@"SELECT * FROM entry WHERE feed_id = %d ORDER BY publicationDate DESC LIMIT 1 OFFSET %d", self.rowID, inIndex];
+NSDictionary *theDictionary = [self.feedStore.database rowForExpression:theExpression error:&theError];
+if (theDictionary == NULL)
+	return(NULL);
 CFeedEntry *theFeedEntry = [[[CFeedEntry alloc] initWithFeed:self] autorelease];
 [[[theFeedEntry class] objectTranscoder] updateObject:theFeedEntry withPropertiesInDictionary:theDictionary error:&theError];
 

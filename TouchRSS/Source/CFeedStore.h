@@ -40,6 +40,7 @@
 	id <CFeedStoreDelegate> delegate;
 	NSString *databasePath;
 	CSqliteDatabase *database;
+	NSMutableSet *feeds;
 }
 
 @property (readwrite, nonatomic, assign) id <CFeedStoreDelegate> delegate;

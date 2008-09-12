@@ -36,6 +36,8 @@
 @interface CFeed : NSObject {
 	NSInteger rowID;
 	CFeedStore *feedStore;
+	BOOL updating;
+
 	NSURL *url;
 	NSString *title;
 	NSURL *link;
@@ -45,6 +47,7 @@
 
 @property (readonly, nonatomic, assign)	NSInteger rowID;
 @property (readonly, nonatomic, assign) CFeedStore *feedStore;
+@property (readonly, nonatomic, assign) BOOL updating;
 @property (readwrite, nonatomic, assign) NSURL *url;
 @property (readwrite, nonatomic, retain) NSString *title;
 @property (readwrite, nonatomic, retain) NSURL *link;
@@ -56,6 +59,7 @@
 - (id)initWithFeedStore:(CFeedStore *)inFeedStore;
 - (id)initWithFeedStore:(CFeedStore *)inFeedStore rowID:(NSInteger)inRowID;
 
+- (NSInteger)countOfEntries;
 - (CFeedEntry *)entryAtIndex:(NSInteger)inIndex;
 - (CFeedEntry *)entryForIdentifier:(NSString *)inIdentifier;
 
