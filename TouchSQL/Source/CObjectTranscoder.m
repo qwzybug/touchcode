@@ -42,17 +42,19 @@ self.propertyNameMappings = NULL;
 
 - (BOOL)updateObject:(id)inObject withPropertiesInDictionary:(NSDictionary *)inDictionary error:(NSError **)outError
 {
+NSMutableDictionary *theMappedValuesAndKeys = [NSMutableDictionary dictionaryWithCapacity:[inDictionary count]];
+
 Class theClass = [inObject class];
-// TODO we really want to do all validation and fail before modifying the object.
 for (NSString *theKey in inDictionary)
 	{
-	// TODO validate that keys are proper property names.
-	
-	if ([self.propertyNameMappings objectForKey:theKey])
-		theKey = [self.propertyNameMappings objectForKey:theKey];
-	
+	// Grab the value early before we change the key name.
 	id theValue = [inDictionary objectForKey:theKey];
-	
+
+	if ([self.propertyNameMappings objectForKey:theKey])
+		{
+		theKey = [self.propertyNameMappings objectForKey:theKey];
+		}
+		
 	objc_property_t theProperty = class_getProperty(theClass, [theKey UTF8String]);
 	if (theProperty == NULL)
 		continue;
@@ -73,6 +75,10 @@ for (NSString *theKey in inDictionary)
 				[inObject setValue:theValue forKey:theKey];	
 				}
 				break;
+			default:	
+				NSLog(@"#### NOT HANDLING TYPE: %s", thePropertyType);
+				NSAssert(NO, @"");
+				break;
 			}
 		}
 	else
@@ -84,8 +90,15 @@ for (NSString *theKey in inDictionary)
 		}
 		
 	if (theValue)
-		[inObject setValue:theValue forKey:theKey];
+		[theMappedValuesAndKeys setObject:theValue forKey:theKey];
 	}
+
+for (NSString *theKey in theMappedValuesAndKeys)
+	{
+	id theValue = [theMappedValuesAndKeys objectForKey:theKey];
+	[inObject setValue:theValue forKey:theKey];
+	}
+	
 return(YES);
 }
 
