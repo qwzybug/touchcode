@@ -143,7 +143,7 @@ in_word_set (register const char *str, register unsigned int len)
 
 
 #include <libxml/xmlreader.h>
-#include "words.h"
+#include "RSSKeywords.h"
 
 ERSSElementNameCode CodeForElementName(const xmlChar *inElementName)
 {

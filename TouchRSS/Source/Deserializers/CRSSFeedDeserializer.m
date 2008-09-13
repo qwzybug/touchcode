@@ -30,9 +30,11 @@
 #import "CRSSFeedDeserializer.h"
 
 #include <libxml/xmlreader.h>
-#include "words.h"
+#include "RSSKeywords.h"
 
 #import "NSDate_InternetDateExtensions.h"
+
+static void MyXMLTextReaderErrorFunc(void *arg, const char *msg, xmlParserSeverities severity, xmlTextReaderLocatorPtr locator);
 
 @interface CRSSFeedDeserializer ()
 
@@ -63,6 +65,8 @@ if ((self = [self init]) != NULL)
 	NSAssert(self.reader != NULL, @"");
 
 	int theReturnCode = 0;
+
+	xmlTextReaderSetErrorHandler(self.reader, MyXMLTextReaderErrorFunc, self);
 
 //	theReturnCode = xmlTextReaderSetParserProp(self.reader, XML_PARSER_VALIDATE, 1);
 //	NSAssert(theReturnCode == 0, @"");
@@ -109,13 +113,13 @@ while (theObjectCount != len && theReturnCode == 1 && self.error == NULL)
 		switch (theCode)
 			{
 			case RSSElementNameCode_RSS:
-				theObject = self.currentFeed = [NSMutableDictionary dictionaryWithObject:[NSNumber numberWithInt:RSSFeedDictinaryType_Feed] forKey:@"type"];
+				theObject = self.currentFeed = [NSMutableDictionary dictionaryWithObject:[NSNumber numberWithInt:FeedDictinaryType_Feed] forKey:@"type"];
 				break;
 			case RSSElementNameCode_Channel:
 				[self updateAttributesOfChannel:self.currentFeed];
 				break;
 			case RSSElementNameCode_Item:
-				theObject = self.currentItem = [NSMutableDictionary dictionaryWithObject:[NSNumber numberWithInt:RSSFeedDictinaryType_Entry] forKey:@"type"];
+				theObject = self.currentItem = [NSMutableDictionary dictionaryWithObject:[NSNumber numberWithInt:FeedDictinaryType_Entry] forKey:@"type"];
 				[self updateAttributesOfItem:self.currentItem];
 				break;
 			}
@@ -160,7 +164,7 @@ while (theCurrentNode != NULL)
 			case RSSElementNameCode_Description:
 				{
 				NSString *theContent = [NSString stringWithUTF8String:(const char *)xmlNodeGetContent(theCurrentNode)];
-				[inChannel setObject:theContent forKey:@"description_"];
+				[inChannel setObject:theContent forKey:@"subtitle"];
 				}
 				break;
 			default:
@@ -178,7 +182,7 @@ while (theCurrentNode != NULL)
 {
 xmlNodePtr theNode = xmlTextReaderExpand(self.reader);
 xmlNodePtr theCurrentNode = theNode->children;
-while (theCurrentNode != NULL)
+while (theCurrentNode != NULL && self.error == NULL)
 	{
 	if (theCurrentNode->type == XML_ELEMENT_NODE)
 		{
@@ -202,14 +206,14 @@ while (theCurrentNode != NULL)
 			case RSSElementNameCode_Description:
 				{
 				NSString *theContent = [NSString stringWithUTF8String:(const char *)xmlNodeGetContent(theCurrentNode)];
-				[inItem setObject:theContent forKey:@"description_"];
+				[inItem setObject:theContent forKey:@"subtitle"];
 				}
 				break;
 			case RSSElementNameCode_PubDate:
 				{
 				NSString *theContent = [NSString stringWithUTF8String:(const char *)xmlNodeGetContent(theCurrentNode)];
 				NSDate *theDate = [NSDate dateWithRFC1822String:theContent];
-				[inItem setObject:theDate forKey:@"publicationDate"];
+				[inItem setObject:theDate forKey:@"updated"];
 				}
 				break;
 			case RSSElementNameCode_GUID:
@@ -231,3 +235,20 @@ NSAssert(theReturnCode == 1, @"");
 }
 
 @end
+
+static void MyXMLTextReaderErrorFunc(void *arg, const char *msg, xmlParserSeverities severity, xmlTextReaderLocatorPtr locator)
+{
+NSLog(@"ERROR: %d", severity);
+if (severity >= XML_PARSER_SEVERITY_ERROR)
+	{
+	CRSSFeedDeserializer *theRSSFeedDeserializer = (CRSSFeedDeserializer *)arg;
+
+	NSDictionary *theUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+		[NSString stringWithUTF8String:msg], NSLocalizedDescriptionKey,
+		NULL
+		];
+
+	NSError *theError = [NSError errorWithDomain:kTouchRSSErrorDomain code:-1 userInfo:theUserInfo];
+	theRSSFeedDeserializer.error = theError;
+	}
+}

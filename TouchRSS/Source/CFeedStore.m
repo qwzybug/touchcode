@@ -38,13 +38,14 @@
 #import "NSDate_SqlExtension.h"
 #import "NSString_SqlExtensions.h"
 #import "CSqliteDatabase_Extensions.h"
+#import "CPersistentObjectManager.h"
 
 #define ALWAYS_RESET_DATABASE 1
 
 static CFeedStore *gInstance = NULL;
 
 @interface CFeedStore ()
-@property (readwrite, nonatomic, retain) CSqliteDatabase *database;
+@property (readwrite, nonatomic, retain) CPersistentObjectManager *persistentObjectManager;
 @end
 
 #pragma mark -
@@ -53,7 +54,7 @@ static CFeedStore *gInstance = NULL;
 
 @synthesize delegate;
 @dynamic databasePath;
-@dynamic database;
+@dynamic persistentObjectManager;
 
 + (CFeedStore *)instance
 {
@@ -79,7 +80,6 @@ return(self);
 {
 self.delegate = NULL;
 self.databasePath = NULL;
-self.database = NULL;
 //
 [super dealloc];
 }
@@ -106,9 +106,9 @@ if (databasePath != inDatabasePath)
     }
 }
 
-- (CSqliteDatabase *)database
+- (CPersistentObjectManager *)persistentObjectManager
 {
-if (database == NULL)
+if (persistentObjectManager == NULL)
 	{
 	NSError *theError = NULL;
 
@@ -136,17 +136,18 @@ if (database == NULL)
 	if (theError)
 		[NSException raise:NSGenericException format:@"%@", theError];
 
-	database = [theDatabase retain];
+	CPersistentObjectManager *theManager = [[[CPersistentObjectManager alloc] initWithDatabase:theDatabase] autorelease];
+	persistentObjectManager = [theManager retain];
 	}
-return(database); 
+return(persistentObjectManager);
 }
 
-- (void)setDatabase:(CSqliteDatabase *)inDatabase
+- (void)setPersistentObjectManager:(CPersistentObjectManager *)inPersistentObjectManager
 {
-if (database != inDatabase)
+if (persistentObjectManager != inPersistentObjectManager)
 	{
-	[database autorelease];
-	database = [inDatabase retain];
+	[persistentObjectManager autorelease];
+	persistentObjectManager = [inPersistentObjectManager retain];
     }
 }
 
@@ -156,7 +157,7 @@ if (database != inDatabase)
 {
 NSError *theError = NULL;
 NSString *theExpression = [NSString stringWithFormat:@"SELECT count() FROM feed"];
-NSDictionary *theRow = [self.database rowForExpression:theExpression error:&theError];
+NSDictionary *theRow = [self.persistentObjectManager.database rowForExpression:theExpression error:&theError];
 if (theRow == NULL)
 	[NSException raise:NSGenericException format:@"%@", theError];
 return([[theRow objectForKey:@"count()"] integerValue]);
@@ -167,34 +168,36 @@ return([[theRow objectForKey:@"count()"] integerValue]);
 // TODO: DO NOT DO THIS: http://www.sqlite.org/cvstrac/wiki?p=ScrollingCursor
 
 NSError *theError = NULL;
-NSString *theExpression = [NSString stringWithFormat:@"SELECT * FROM feed LIMIT 1 OFFSET %d", inIndex];
-NSDictionary *theDictionary = [self.database rowForExpression:theExpression error:&theError];
+NSString *theExpression = [NSString stringWithFormat:@"SELECT id FROM feed LIMIT 1 OFFSET %d", inIndex];
+NSDictionary *theDictionary = [self.persistentObjectManager.database rowForExpression:theExpression error:&theError];
 if (theDictionary == NULL)
 	[NSException raise:NSGenericException format:@"%@", theError];
-CFeed *theFeed = [[[CFeed alloc] initWithFeedStore:self] autorelease];
-if ([[CFeed objectTranscoder] updateObject:theFeed withPropertiesInDictionary:theDictionary error:&theError] == NO)
-	[NSException raise:NSGenericException format:@"%@", theError];
+	
+NSInteger theRowID = [[theDictionary objectForKey:@"id"] integerValue];
+
+CFeed *theFeed = [self.persistentObjectManager loadPersistentObjectOfClass:[CFeed class] rowID:theRowID error:&theError];
+
 return(theFeed);
 }
 
 - (CFeed *)feedforURL:(NSURL *)inURL
 {
 NSError *theError = NULL;
-NSString *theExpression = [NSString stringWithFormat:@"SELECT * FROM feed WHERE url = '%@'", [[inURL absoluteString] encodedForSql]];
-NSDictionary *theDictionary = [self.database rowForExpression:theExpression error:&theError];
+NSString *theExpression = [NSString stringWithFormat:@"SELECT id FROM feed WHERE url = '%@'", [[inURL absoluteString] encodedForSql]];
+NSDictionary *theDictionary = [self.persistentObjectManager.database rowForExpression:theExpression error:&theError];
 if (theDictionary == NULL)
 	[NSException raise:NSGenericException format:@"%@", theError];
-CFeed *theFeed = [[[CFeed alloc] initWithFeedStore:self] autorelease];
 
-if ([[CFeed objectTranscoder] updateObject:theFeed withPropertiesInDictionary:theDictionary error:&theError] == NO)
-	[NSException raise:NSGenericException format:@"%@", theError];
+NSInteger theRowID = [[theDictionary objectForKey:@"id"] integerValue];
+
+CFeed *theFeed = [self.persistentObjectManager loadPersistentObjectOfClass:[CFeed class] rowID:theRowID error:&theError];
 
 return(theFeed);
 }
 
 - (BOOL)update:(NSError **)outError
 {
-NSEnumerator *theEnumerator = [self.database enumeratorForExpression:@"SELECT url FROM feed" error:outError];
+NSEnumerator *theEnumerator = [self.persistentObjectManager.database enumeratorForExpression:@"SELECT url FROM feed" error:outError];
 if (theEnumerator == NULL)
 	return(NO);
 for (id theRow in theEnumerator)
@@ -202,7 +205,7 @@ for (id theRow in theEnumerator)
 	NSString *theURLString = [theRow objectForKey:@"url"];
 	NSURL *theURL = [NSURL URLWithString:theURLString];
 
-	NSURLRequest *theRequest = [[[NSURLRequest alloc] initWithURL:theURL] autorelease];
+	NSURLRequest *theRequest = [[[NSURLRequest alloc] initWithURL:theURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20.0] autorelease];
 	CCompletionTicket *theCompletionTicket = [CCompletionTicket completionTicketWithIdentifier:@"FOO" delegate:self userInfo:NULL];
 	CManagedURLConnection *theConnection = [[[CManagedURLConnection alloc] initWithRequest:theRequest completionTicket:theCompletionTicket] autorelease];
 	[[CURLConnectionManager instance] addAutomaticURLConnection:theConnection toChannel:@"RSS"];
@@ -218,21 +221,32 @@ NSLog(@"completionTicket:didCompleteForTarget:result:");
 
 CFeed *theFeed = NULL;
 
-[self.database begin];
+[self.persistentObjectManager.database begin];
 
 CManagedURLConnection *theConnection = (CManagedURLConnection *)inTarget;
 CRSSFeedDeserializer *theDeserializer = [[[CRSSFeedDeserializer alloc] initWithData:theConnection.data] autorelease];
 for (id theDictionary in theDeserializer)
 	{
+	if (theDeserializer.error != NULL)
+		{
+		NSLog(@"ERROR: bailing.");
+		break;
+		}
+		
 	ERSSFeedDictinaryType theType = [[theDictionary objectForKey:@"type"] intValue];
 	switch (theType)
 		{
-		case RSSFeedDictinaryType_Feed:
+		case FeedDictinaryType_Feed:
 			{
 			NSURL *theFeedURL = theConnection.request.URL;
 			theFeed = [self feedforURL:theFeedURL];
+			// TODO - in theory this will never be null.
 			if (theFeed == NULL)
-				theFeed = [[[CFeed alloc] initWithFeedStore:self] autorelease];
+				{
+				NSError *theError = NULL;
+				theFeed = [self.persistentObjectManager makePersistentObjectOfClass:[CFeed class] error:&theError];
+				theFeed.feedStore = self;
+				}
 
 			NSError *theError = NULL;
 			if ([[CFeed objectTranscoder] updateObject:theFeed withPropertiesInDictionary:theDictionary error:&theError] == NO)
@@ -243,11 +257,15 @@ for (id theDictionary in theDeserializer)
 				[NSException raise:NSGenericException format:@"%@", theError];
 			}
 			break;
-		case RSSFeedDictinaryType_Entry:
+		case FeedDictinaryType_Entry:
 			{
 			CFeedEntry *theEntry = [theFeed entryForIdentifier:[theDictionary objectForKey:@"identifier"]];
 			if (theEntry == NULL)
-				theEntry = [[[CFeedEntry alloc] initWithFeed:theFeed] autorelease];
+				{
+				NSError *theError = NULL;
+				theEntry = [self.persistentObjectManager makePersistentObjectOfClass:[CFeedEntry class] error:&theError];
+				theEntry.feed = theFeed;
+				}
 			
 			NSError *theError = NULL;
 			[[CFeedEntry objectTranscoder] updateObject:theEntry withPropertiesInDictionary:theDictionary error:&theError];
@@ -259,9 +277,18 @@ for (id theDictionary in theDeserializer)
 		}
 	}
 
-[self.database commit];
-
-[self.delegate feedStore:self didUpdateFeed:theFeed];
+if (theDeserializer.error != NULL)
+	{
+	NSLog(@"%@", theDeserializer.error);
+//	NSLog(@"%@", [[[NSString alloc] initWithData:theConnection.data encoding:NSUTF8StringEncoding] autorelease]);
+	
+	[self.persistentObjectManager.database rollback];
+	}
+else
+	{
+	[self.persistentObjectManager.database commit];
+	[self.delegate feedStore:self didUpdateFeed:theFeed];
+	}
 }
 
 - (void)completionTicket:(CCompletionTicket *)inCompletionTicket didFailForTarget:(id)inTarget error:(NSError *)inError

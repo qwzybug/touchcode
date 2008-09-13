@@ -36,48 +36,20 @@
 #import "CSqliteDatabase.h"
 #import "CSqliteDatabase_Extensions.h"
 #import "CObjectTranscoder.h"
+#import "CPersistentObjectManager.h"
 
 @interface CFeedEntry ()
-@property (readwrite, nonatomic, assign) int rowID;
-@property (readwrite, nonatomic, assign) CFeed *feed;
 @end
 
 #pragma mark -
 
 @implementation CFeedEntry
 
-@synthesize rowID, feed, identifier, title, link, description_, publicationDate;
+@synthesize feed, identifier, title, link, subtitle, updated;
 
-+ (CObjectTranscoder *)objectTranscoder
++ (NSString *)tableName
 {
-return([[[CObjectTranscoder alloc] initWithTargetObjectClass:[self class]] autorelease]);
-}
-
-- (id)init
-{
-if ((self = [super init]) != NULL)
-	{
-	self.rowID = -1;
-	}
-return(self);
-}
-
-- (id)initWithFeed:(CFeed *)inFeed rowID:(NSInteger)inRowID
-{
-if ((self = [self initWithFeed:inFeed]) != NULL)
-	{
-	self.rowID = inRowID;
-	}
-return(self);
-}
-
-- (id)initWithFeed:(CFeed *)inFeed
-{
-if ((self = [self init]) != NULL)
-	{
-	self.feed = inFeed;
-	}
-return(self);
+return(@"entry");
 }
 
 - (void)dealloc
@@ -86,8 +58,8 @@ self.feed = NULL;
 self.identifier = NULL;
 self.title = NULL;
 self.link = NULL;
-self.description_ = NULL;
-self.publicationDate = NULL;
+self.subtitle = NULL;
+self.updated = NULL;
 //
 [super dealloc];
 }
@@ -96,11 +68,11 @@ self.publicationDate = NULL;
 
 - (BOOL)write:(NSError **)outError
 {
-CSqliteDatabase *theDatabase = self.feed.feedStore.database;
+CSqliteDatabase *theDatabase = self.persistentObjectManager.database;
 
 if (self.rowID == -1)
 	{
-	NSString *theExpression = [NSString stringWithFormat:@"INSERT INTO entry (feed_id, identifier, title, link, description, publicationDate) VALUES (%d, '%@', '%@', '%@', '%@', '%@')", self.feed.rowID, [self.identifier encodedForSql], [self.title encodedForSql], [[self.link absoluteString] encodedForSql], [self.description_ encodedForSql], [self.publicationDate sqlDateString]];
+	NSString *theExpression = [NSString stringWithFormat:@"INSERT INTO entry (feed_id, identifier, title, link, subtitle, updated) VALUES (%d, '%@', '%@', '%@', '%@', '%@')", self.feed.rowID, [self.identifier encodedForSql], [self.title encodedForSql], [[self.link absoluteString] encodedForSql], [self.subtitle encodedForSql], [self.updated sqlDateString]];
 	BOOL theResult = [theDatabase executeExpression:theExpression error:outError];
 	if (theResult == NO)
 		{

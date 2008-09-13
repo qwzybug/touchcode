@@ -33,19 +33,20 @@
 
 @class CSqliteDatabase;
 @class CFeed;
+@class CPersistentObjectManager;
 
 @protocol CFeedStoreDelegate;
 
 @interface CFeedStore : NSObject <CCompletionTicketDelegate> {
 	id <CFeedStoreDelegate> delegate;
 	NSString *databasePath;
-	CSqliteDatabase *database;
+	CPersistentObjectManager *persistentObjectManager;
 	NSMutableSet *feeds;
 }
 
 @property (readwrite, nonatomic, assign) id <CFeedStoreDelegate> delegate;
 @property (readwrite, nonatomic, retain) NSString *databasePath;
-@property (readonly, nonatomic, retain) CSqliteDatabase *database;
+@property (readonly, nonatomic, retain) CPersistentObjectManager *persistentObjectManager;
 
 + (CFeedStore *)instance;
 

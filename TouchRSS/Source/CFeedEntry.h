@@ -27,33 +27,26 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import "CPersistentObject.h"
 
 @class CFeed;
 @class CObjectTranscoder;
 
-@interface CFeedEntry : NSObject {
-	NSInteger rowID;
+@interface CFeedEntry : CPersistentObject {
 	CFeed *feed;
 	NSString *identifier;
 	NSString *title;
+	NSString *subtitle;
 	NSURL *link;
-	NSString *description_;
-	NSDate *publicationDate;
+	NSDate *updated;
 }
 
-@property (readonly, nonatomic, assign)	NSInteger rowID;
-@property (readonly, nonatomic, assign)	CFeed *feed;
+@property (readwrite, nonatomic, assign) CFeed *feed;
 @property (readwrite, nonatomic, retain) NSString *identifier;
 @property (readwrite, nonatomic, retain) NSString *title;
+@property (readwrite, nonatomic, retain) NSString *subtitle;
 @property (readwrite, nonatomic, retain) NSURL *link;
-@property (readwrite, nonatomic, retain) NSString *description_;
-@property (readwrite, nonatomic, retain) NSDate *publicationDate;
-
-+ (CObjectTranscoder *)objectTranscoder;
-
-- (id)initWithFeed:(CFeed *)inFeed rowID:(NSInteger)inRowID;
-- (id)initWithFeed:(CFeed *)inFeed;
+@property (readwrite, nonatomic, retain) NSDate *updated;
 
 - (BOOL)write:(NSError **)outError;
 

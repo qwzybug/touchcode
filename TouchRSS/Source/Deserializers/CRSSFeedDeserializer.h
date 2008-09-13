@@ -27,18 +27,13 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import "CFeedDeserializer.h"
 
 #include <libxml/xmlreader.h>
 
 #define kTouchRSSErrorDomain @"kTouchRSSErrorDomain"
 
-typedef enum {
-	RSSFeedDictinaryType_Feed,
-	RSSFeedDictinaryType_Entry,
-} ERSSFeedDictinaryType;
-
-@interface CRSSFeedDeserializer : NSObject <NSFastEnumeration> {
+@interface CRSSFeedDeserializer : NSObject <CFeedDeserializer> {
 	xmlTextReaderPtr reader;
 	NSError *error;
 	NSMutableDictionary *currentFeed;

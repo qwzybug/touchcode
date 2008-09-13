@@ -27,37 +27,50 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import "CPersistentObject.h"
 
 @class CFeedStore;
 @class CFeedEntry;
 @class CObjectTranscoder;
 
-@interface CFeed : NSObject {
-	NSInteger rowID;
+@interface CFeed : CPersistentObject {
 	CFeedStore *feedStore;
 	BOOL updating;
-
+	NSDate *lastChecked;
 	NSURL *url;
+
+	NSString *identifier;
 	NSString *title;
 	NSURL *link;
-	NSString *description_;
-	NSDate *lastChecked;
+	NSString *subtitle;
 }
 
-@property (readonly, nonatomic, assign)	NSInteger rowID;
-@property (readonly, nonatomic, assign) CFeedStore *feedStore;
-@property (readonly, nonatomic, assign) BOOL updating;
-@property (readwrite, nonatomic, assign) NSURL *url;
-@property (readwrite, nonatomic, retain) NSString *title;
-@property (readwrite, nonatomic, retain) NSURL *link;
-@property (readwrite, nonatomic, retain) NSString *description_;
+/*
+atomAuthor*
+          & atomTitle
+          & atomSubtitle?
+
+          & atomCategory*
+          & atomContributor*
+          & atomGenerator?
+          & atomIcon?
+          & atomId
+          & atomLink*
+          & atomLogo?
+          & atomRights?
+          & atomUpdated
+          & extensionElement*
+*/
+
+@property (readwrite, nonatomic, assign) CFeedStore *feedStore;
+@property (readwrite, nonatomic, assign) BOOL updating;
 @property (readwrite, nonatomic, retain) NSDate *lastChecked;
+@property (readwrite, nonatomic, assign) NSURL *url;
 
-+ (CObjectTranscoder *)objectTranscoder;
-
-- (id)initWithFeedStore:(CFeedStore *)inFeedStore;
-- (id)initWithFeedStore:(CFeedStore *)inFeedStore rowID:(NSInteger)inRowID;
+@property (readwrite, nonatomic, retain) NSString *identifier;
+@property (readwrite, nonatomic, retain) NSString *title;
+@property (readwrite, nonatomic, retain) NSString *subtitle;
+@property (readwrite, nonatomic, retain) NSURL *link;
 
 - (NSInteger)countOfEntries;
 - (CFeedEntry *)entryAtIndex:(NSInteger)inIndex;

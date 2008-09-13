@@ -21,7 +21,7 @@ guid, 14,
 %%
 
 #include <libxml/xmlreader.h>
-#include "words.h"
+#include "RSSKeywords.h"
 
 ERSSElementNameCode CodeForElementName(const xmlChar *inElementName)
 {
@@ -30,24 +30,4 @@ if (!theElement)
 	return(0);
 else
 	return(theElement->code);
-}
-
-SEL SelectorForElementName(const char *inElementName, int inLength)
-{
-const struct element *theElement = in_word_set(inElementName, inLength);
-if (!theElement)
-	return(NULL);
-else
-	{
-	switch (theElement->code)
-		{
-		case 1:
-			return(@selector(processRSS));
-		case 2:
-			return(@selector(processChannel));
-		case 3:
-			return(@selector(processItem));
-		}
-	}
-return(NULL);
 }
