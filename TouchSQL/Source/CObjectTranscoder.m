@@ -151,7 +151,7 @@ else if ([inObject isKindOfClass:[NSURL class]] && inTargetClass == [NSString cl
 	}
 else if ([inObject isKindOfClass:[NSString class]] && inTargetClass == [NSDate class])
 	{
-//	return([NSDate dateWithSqlString:inObject]);
+	return([NSDate dateWithSqlDateString:inObject]);
 	}
 else if ([inObject isKindOfClass:[NSDate class]] && inTargetClass == [NSString class])
 	{

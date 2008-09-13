@@ -31,6 +31,9 @@
 
 @interface NSDate (NSDate_SqlExtension)
 
++ (NSDateFormatter *)sqlDateStringFormatter;
++ (id)dateWithSqlDateString:(NSString *)inString;
+
 - (NSString *)sqlDateString;
 
 @end

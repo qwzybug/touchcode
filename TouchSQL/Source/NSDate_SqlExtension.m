@@ -33,7 +33,7 @@
 
 static NSDateFormatter *gDateFormatter = NULL;
 
-- (NSString *)sqlDateString
++ (NSDateFormatter *)sqlDateStringFormatter
 {
 @synchronized([self class])
 	{
@@ -49,7 +49,17 @@ static NSDateFormatter *gDateFormatter = NULL;
 		gDateFormatter = [theFormatter retain];
 		}
 	}
-NSString *theDateString = [gDateFormatter stringFromDate:self];
+return(gDateFormatter);
+}
+
++ (id)dateWithSqlDateString:(NSString *)inString
+{
+return([[self sqlDateStringFormatter] dateFromString:inString]);
+}
+
+- (NSString *)sqlDateString
+{
+NSString *theDateString = [[[self class] sqlDateStringFormatter] stringFromDate:self];
 return(theDateString);
 }
 
