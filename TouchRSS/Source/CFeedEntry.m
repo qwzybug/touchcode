@@ -45,7 +45,7 @@
 
 @implementation CFeedEntry
 
-@synthesize feed, identifier, title, link, subtitle, updated;
+@synthesize feed, identifier, title, content, link, subtitle, updated;
 
 + (NSString *)tableName
 {
@@ -72,7 +72,7 @@ CSqliteDatabase *theDatabase = self.persistentObjectManager.database;
 
 if (self.rowID == -1)
 	{
-	NSString *theExpression = [NSString stringWithFormat:@"INSERT INTO entry (feed_id, identifier, title, link, subtitle, updated) VALUES (%d, '%@', '%@', '%@', '%@', '%@')", self.feed.rowID, [self.identifier encodedForSql], [self.title encodedForSql], [[self.link absoluteString] encodedForSql], [self.subtitle encodedForSql], [self.updated sqlDateString]];
+	NSString *theExpression = [NSString stringWithFormat:@"INSERT INTO entry (feed_id, identifier, title, link, subtitle, content, updated) VALUES (%d, '%@', '%@', '%@', '%@', '%@', '%@')", self.feed.rowID, [self.identifier encodedForSql], [self.title encodedForSql], [[self.link absoluteString] encodedForSql], [self.subtitle encodedForSql], [self.content encodedForSql], [self.updated sqlDateString]];
 	BOOL theResult = [theDatabase executeExpression:theExpression error:outError];
 	if (theResult == NO)
 		{

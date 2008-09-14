@@ -37,6 +37,7 @@
 	NSString *identifier;
 	NSString *title;
 	NSString *subtitle;
+	NSString *content;
 	NSURL *link;
 	NSDate *updated;
 }
@@ -45,6 +46,7 @@
 @property (readwrite, nonatomic, retain) NSString *identifier;
 @property (readwrite, nonatomic, retain) NSString *title;
 @property (readwrite, nonatomic, retain) NSString *subtitle;
+@property (readwrite, nonatomic, retain) NSString *content;
 @property (readwrite, nonatomic, retain) NSURL *link;
 @property (readwrite, nonatomic, retain) NSDate *updated;
 

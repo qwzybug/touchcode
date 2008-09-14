@@ -32,10 +32,12 @@
 @class CFeedStore;
 @class CFeedEntry;
 @class CObjectTranscoder;
+@class CRandomAccessTemporaryTable;
 
 @interface CFeed : CPersistentObject {
 	CFeedStore *feedStore;
 	BOOL updating;
+	CRandomAccessTemporaryTable *randomAccessTemporaryTable;
 	NSDate *lastChecked;
 	NSURL *url;
 
@@ -45,27 +47,10 @@
 	NSString *subtitle;
 }
 
-/*
-atomAuthor*
-          & atomTitle
-          & atomSubtitle?
-
-          & atomCategory*
-          & atomContributor*
-          & atomGenerator?
-          & atomIcon?
-          & atomId
-          & atomLink*
-          & atomLogo?
-          & atomRights?
-          & atomUpdated
-          & extensionElement*
-*/
-
 @property (readwrite, nonatomic, assign) CFeedStore *feedStore;
 @property (readwrite, nonatomic, assign) BOOL updating;
 @property (readwrite, nonatomic, retain) NSDate *lastChecked;
-@property (readwrite, nonatomic, assign) NSURL *url;
+@property (readwrite, nonatomic, retain) NSURL *url;
 
 @property (readwrite, nonatomic, retain) NSString *identifier;
 @property (readwrite, nonatomic, retain) NSString *title;
@@ -73,10 +58,12 @@ atomAuthor*
 @property (readwrite, nonatomic, retain) NSURL *link;
 
 - (NSInteger)countOfEntries;
+
+- (void)addEntry:(CFeedEntry *)inEntry;
+
 - (CFeedEntry *)entryAtIndex:(NSInteger)inIndex;
 - (CFeedEntry *)entryForIdentifier:(NSString *)inIdentifier;
 
-- (BOOL)read:(NSError **)outError;
 - (BOOL)write:(NSError **)outError;
 
 @end

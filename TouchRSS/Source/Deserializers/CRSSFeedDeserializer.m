@@ -206,7 +206,7 @@ while (theCurrentNode != NULL && self.error == NULL)
 			case RSSElementNameCode_Description:
 				{
 				NSString *theContent = [NSString stringWithUTF8String:(const char *)xmlNodeGetContent(theCurrentNode)];
-				[inItem setObject:theContent forKey:@"subtitle"];
+				[inItem setObject:theContent forKey:@"content"];
 				}
 				break;
 			case RSSElementNameCode_PubDate:

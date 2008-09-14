@@ -37,8 +37,10 @@
 #import "NSDate_SqlExtension.h"
 #import "NSString_SqlExtensions.h"
 #import "CPersistentObjectManager.h"
+#import "CRandomAccessTemporaryTable.h"
 
 @interface CFeed ()
+@property (readwrite, nonatomic, retain) CRandomAccessTemporaryTable *randomAccessTemporaryTable;
 @end
 
 #pragma mark -
@@ -47,6 +49,7 @@
 
 @synthesize feedStore, updating, lastChecked, url;
 @synthesize identifier, title, link, subtitle;
+@dynamic randomAccessTemporaryTable;
 
 + (NSString *)tableName
 {
@@ -56,6 +59,7 @@ return(@"feed");
 - (void)dealloc
 {
 self.feedStore = NULL;
+self.randomAccessTemporaryTable = NULL;
 self.url = NULL;
 self.title = NULL;
 self.link = NULL;
@@ -67,6 +71,41 @@ self.lastChecked = NULL;
 
 #pragma mark -
 
+- (CRandomAccessTemporaryTable *)randomAccessTemporaryTable
+{
+if (randomAccessTemporaryTable == NULL)
+	{
+	CRandomAccessTemporaryTable *theRandomAccessTemporaryTable = [[[CRandomAccessTemporaryTable alloc] initWithDatabase:self.persistentObjectManager.database dropOnDealloc:YES] autorelease];
+	
+	NSString *theStatement = [NSString stringWithFormat:@"SELECT id FROM entry WHERE feed_id = %d ORDER BY updated DESC", self.rowID];
+	NSError *theError = NULL;
+	if ([theRandomAccessTemporaryTable insertForeignIds:theStatement error:&theError] == NO)
+		{
+		[NSException raise:NSGenericException format:@"%@", theError];
+		}
+
+	randomAccessTemporaryTable = [theRandomAccessTemporaryTable retain];
+	}
+return(randomAccessTemporaryTable); 
+}
+
+- (void)setRandomAccessTemporaryTable:(CRandomAccessTemporaryTable *)inRandomAccessTemporaryTable
+{
+if (randomAccessTemporaryTable != inRandomAccessTemporaryTable)
+	{
+	[randomAccessTemporaryTable release];
+	randomAccessTemporaryTable = [inRandomAccessTemporaryTable retain];
+    }
+}
+
+#pragma mark -
+
+- (void)addEntry:(CFeedEntry *)inEntry
+{
+// TODO
+self.randomAccessTemporaryTable = NULL;
+}
+
 - (NSInteger)countOfEntries
 {
 NSError *theError = NULL;
@@ -77,16 +116,22 @@ return([[theDictionary objectForKey:@"count()"] intValue]);
 
 - (CFeedEntry *)entryAtIndex:(NSInteger)inIndex
 {
-// TODO: DO NOT DO THIS: http://www.sqlite.org/cvstrac/wiki?p=ScrollingCursor
+NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
 
 NSError *theError = NULL;
-NSString *theExpression = [NSString stringWithFormat:@"SELECT id FROM entry WHERE feed_id = %d ORDER BY updated DESC LIMIT 1 OFFSET %d", self.rowID, inIndex];
+NSString *theExpression = [NSString stringWithFormat:@"SELECT foreign_id FROM %@ WHERE id = %d LIMIT 1", self.randomAccessTemporaryTable.tableName, inIndex + 1];
 NSDictionary *theDictionary = [self.persistentObjectManager.database rowForExpression:theExpression error:&theError];
 if (theDictionary == NULL)
 	return(NULL);
-NSInteger theRowID = [[theDictionary objectForKey:@"id"] integerValue];
+
+NSInteger theRowID = [[theDictionary objectForKey:@"foreign_id"] integerValue];
 
 CFeedEntry *theFeedEntry = [self.persistentObjectManager loadPersistentObjectOfClass:[CFeedEntry class] rowID:theRowID error:&theError];
+[theFeedEntry retain];
+
+[thePool release];
+
+[theFeedEntry autorelease];
 
 return(theFeedEntry);
 }
@@ -103,17 +148,6 @@ NSInteger theRowID = [[theDictionary objectForKey:@"id"] integerValue];
 CFeedEntry *theFeedEntry = [self.persistentObjectManager loadPersistentObjectOfClass:[CFeedEntry class] rowID:theRowID error:&theError];
 
 return(theFeedEntry);
-}
-
-- (BOOL)read:(NSError **)outError
-{
-NSAssert(NO, @"read shoudl not be called");
-//CSqliteDatabase *theDatabase = self.persistentObjectManager.database;
-//
-//NSString *theExpression = [NSString stringWithFormat:@"SELECT * FROM feed WHERE id = %d", self.rowID];
-//NSDictionary *theDictionary = [theDatabase rowForExpression:theExpression error:outError];
-//[[[self class] objectTranscoder] updateObject:self withPropertiesInDictionary:theDictionary error:outError];
-return(YES);
 }
 
 - (BOOL)write:(NSError **)outError

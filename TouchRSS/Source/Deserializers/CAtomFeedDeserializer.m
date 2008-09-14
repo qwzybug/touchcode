@@ -180,6 +180,7 @@ while (theCurrentNode != NULL)
 	
 	theCurrentNode = theCurrentNode->next;
 	}
+return(theDictionary);
 }
 
 

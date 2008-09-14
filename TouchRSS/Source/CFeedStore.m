@@ -186,13 +186,53 @@ NSError *theError = NULL;
 NSString *theExpression = [NSString stringWithFormat:@"SELECT id FROM feed WHERE url = '%@'", [[inURL absoluteString] encodedForSql]];
 NSDictionary *theDictionary = [self.persistentObjectManager.database rowForExpression:theExpression error:&theError];
 if (theDictionary == NULL)
-	[NSException raise:NSGenericException format:@"%@", theError];
+	return(NULL);
 
 NSInteger theRowID = [[theDictionary objectForKey:@"id"] integerValue];
 
 CFeed *theFeed = [self.persistentObjectManager loadPersistentObjectOfClass:[CFeed class] rowID:theRowID error:&theError];
 
 return(theFeed);
+}
+
+- (CFeed *)subscribeToURL:(NSURL *)inURL error:(NSError **)outError
+{
+CFeed *theFeed = [self feedforURL:inURL];
+if (theFeed)
+	return(NULL);
+
+NSString *theExpression = [NSString stringWithFormat:@"INSERT INTO feed (url) VALUES('%@')", [inURL absoluteString]];
+BOOL theResult = [self.persistentObjectManager.database executeExpression:theExpression error:outError];
+if (theResult == NO)
+	{
+	// TODO
+	if (outError)
+		*outError = [NSError errorWithDomain:@"TODO" code:-1 userInfo:NULL]; 
+	return(NULL);
+	}
+
+theFeed = [self feedforURL:inURL];
+if (theFeed == NULL)
+	{
+	// TODO
+	if (outError)
+		*outError = [NSError errorWithDomain:@"TODO" code:-1 userInfo:NULL]; 
+	return(NULL);
+	}
+
+return(theFeed);
+}
+
+- (BOOL)updateFeed:(CFeed *)inFeed error:(NSError **)outError
+{
+NSURL *theURL = inFeed.url;
+
+NSURLRequest *theRequest = [[[NSURLRequest alloc] initWithURL:theURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20.0] autorelease];
+CCompletionTicket *theCompletionTicket = [CCompletionTicket completionTicketWithIdentifier:@"FOO" delegate:self userInfo:NULL];
+CManagedURLConnection *theConnection = [[[CManagedURLConnection alloc] initWithRequest:theRequest completionTicket:theCompletionTicket] autorelease];
+[[CURLConnectionManager instance] addAutomaticURLConnection:theConnection toChannel:@"RSS"];
+
+return(YES);
 }
 
 - (BOOL)update:(NSError **)outError
@@ -269,6 +309,8 @@ for (id theDictionary in theDeserializer)
 			
 			NSError *theError = NULL;
 			[[CFeedEntry objectTranscoder] updateObject:theEntry withPropertiesInDictionary:theDictionary error:&theError];
+
+			[theFeed addEntry:theEntry];
 
 			if ([theEntry write:&theError] == NO)
 				[NSException raise:NSGenericException format:@"%@", theError];
