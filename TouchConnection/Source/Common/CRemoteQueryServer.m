@@ -114,7 +114,7 @@ if (deserializer != inDeserializer)
 
 - (NSURLRequest *)requestWithRelativeURL:(NSURL *)inRelativeURL
 {
-NSURL *theURL = [NSURL URLWithString:[inRelativeURL relativePath] relativeToURL:self.rootURL];
+NSURL *theURL = [NSURL URLWithString:[inRelativeURL relativeString] relativeToURL:self.rootURL];
 
 // TODO cache policy and timeout policys?
 
@@ -125,7 +125,7 @@ return(theRequest);
 
 - (NSMutableURLRequest *)mutableRequestWithRelativeURL:(NSURL *)inRelativeURL
 {
-NSURL *theURL = [NSURL URLWithString:[inRelativeURL relativePath] relativeToURL:self.rootURL];
+NSURL *theURL = [NSURL URLWithString:[inRelativeURL relativeString] relativeToURL:self.rootURL];
 
 // TODO cache policy and timeout policys?
 
