@@ -40,7 +40,9 @@
 #import "CSqliteDatabase_Extensions.h"
 #import "CPersistentObjectManager.h"
 
-#define ALWAYS_RESET_DATABASE 1
+#if !defined(TOUCHRSS_ALWAYS_RESET_DATABASE)
+#define TOUCHRSS_ALWAYS_RESET_DATABASE 0
+#endif /* !defined(TOUCHRSS_ALWAYS_RESET_DATABASE) */
 
 static CFeedStore *gInstance = NULL;
 
@@ -112,21 +114,21 @@ if (persistentObjectManager == NULL)
 	{
 	NSError *theError = NULL;
 
-	#if ALWAYS_RESET_DATABASE == 1
+	#if TOUCHRSS_ALWAYS_RESET_DATABASE == 1
 	if ([[NSFileManager defaultManager] fileExistsAtPath:self.databasePath] == YES)
 		{
 		NSLog(@"REMOVING FEEDSTORE");
 		if ([[NSFileManager defaultManager] removeItemAtPath:self.databasePath error:&theError] == NO)
 			[NSException raise:NSGenericException format:@"%@", theError];
 		}
-	#endif /* ALWAYS_RESET_DATABASE == 1 */
+	#endif /* TOUCHRSS_ALWAYS_RESET_DATABASE == 1 */
 	
 	if ([[NSFileManager defaultManager] fileExistsAtPath:self.databasePath] == NO)
 		{
 		if ([[NSFileManager defaultManager] createDirectoryAtPath:[self.databasePath stringByDeletingLastPathComponent] withIntermediateDirectories:YES attributes:NULL error:&theError] == NO)
 			[NSException raise:NSGenericException format:@"%@", theError];
 
-		NSString *theSourcePath = [[NSBundle mainBundle] pathForResource:@"feedstore" ofType:@"db"];
+		NSString *theSourcePath = [[NSBundle mainBundle] pathForResource:@"FeedStore" ofType:@"db"];
 		if ([[NSFileManager defaultManager] copyItemAtPath:theSourcePath toPath:self.databasePath error:&theError] == NO)
 			[NSException raise:NSGenericException format:@"%@", theError];
 		}
@@ -335,13 +337,7 @@ else
 
 - (void)completionTicket:(CCompletionTicket *)inCompletionTicket didFailForTarget:(id)inTarget error:(NSError *)inError
 {
-NSLog(@"ERROR: %@", inError);
+NSLog(@"CFeedstore got an error: %@", inError);
 }
-
-- (void)completionTicket:(CCompletionTicket *)inCompletionTicket didCancelForTarget:(id)inTarget
-{
-NSLog(@"CANCEL");
-}
-
 
 @end
