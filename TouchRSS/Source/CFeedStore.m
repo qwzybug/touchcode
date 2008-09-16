@@ -202,15 +202,15 @@ return(theFeed);
 NSMutableArray *theEntries = [NSMutableArray array];
 
 NSError *theError = NULL;
-NSString *theExpression = [NSString stringWithFormat:@"SELECT * FROM entry WHERE feed_id IN (%@) ORDER BY updated", [[inFeeds valueForKey:@"rowID"] componentsJoinedByString:@","]];
-NSLog(@"%@", theExpression);
+NSString *theExpression = [NSString stringWithFormat:@"SELECT * FROM entry WHERE feed_id IN (%@) ORDER BY updated DESC", [[inFeeds valueForKey:@"rowID"] componentsJoinedByString:@","]];
+//NSLog(@"%@", theExpression);
 NSEnumerator *theEnumerator = [self.persistentObjectManager.database enumeratorForExpression:theExpression error:&theError];
 for (NSDictionary *theDictionary in theEnumerator)
 	{
 	// TODO we have the whole entry at this point and we're just using the row id. ARE WE INSANE???
 	NSInteger theRowID = [[theDictionary objectForKey:@"id"] integerValue];
 	CFeedEntry *theEntry = [self.persistentObjectManager loadPersistentObjectOfClass:[CFeedEntry class] rowID:theRowID error:&theError];
-	
+//	NSLog(@"%d, %@, %d %@", theRowID, [theDictionary objectForKey:@"updated"], theEntry.rowID, [theEntry.updated sqlDateString]);
 	[theEntries addObject:theEntry];
 	}
 
