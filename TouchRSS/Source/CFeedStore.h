@@ -53,7 +53,10 @@
 - (NSInteger)countOfFeeds;
 - (CFeed *)feedAtIndex:(NSInteger)inIndex;
 - (CFeed *)feedforURL:(NSURL *)inURL;
+- (NSArray *)entriesForFeeds:(NSArray *)inFeeds;
+
 - (CFeed *)subscribeToURL:(NSURL *)inURL error:(NSError **)outError;
+
 
 - (BOOL)updateFeed:(CFeed *)inFeed error:(NSError **)outError;
 - (BOOL)update:(NSError **)outError;
