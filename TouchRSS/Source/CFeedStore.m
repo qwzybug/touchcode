@@ -71,6 +71,16 @@ static CFeedStore *gInstance = NULL;
 return(gInstance);
 }
 
++ (Class)feedClass
+{
+return([CFeed class]);
+}
+
++ (Class)feedEntryClass
+{
+return([CFeedEntry class]);
+}
+
 - (id)init
 {
 if ((self = [super init]) != NULL)
@@ -186,7 +196,7 @@ if (theDictionary == NULL)
 	
 NSInteger theRowID = [[theDictionary objectForKey:@"id"] integerValue];
 
-CFeed *theFeed = [self.persistentObjectManager loadPersistentObjectOfClass:[CFeed class] rowID:theRowID error:&theError];
+CFeed *theFeed = [self.persistentObjectManager loadPersistentObjectOfClass:[[self class] feedClass] rowID:theRowID error:&theError];
 
 return(theFeed);
 }
@@ -201,7 +211,7 @@ if (theDictionary == NULL)
 
 NSInteger theRowID = [[theDictionary objectForKey:@"id"] integerValue];
 
-CFeed *theFeed = [self.persistentObjectManager loadPersistentObjectOfClass:[CFeed class] rowID:theRowID error:&theError];
+CFeed *theFeed = [self.persistentObjectManager loadPersistentObjectOfClass:[[self class] feedClass] rowID:theRowID error:&theError];
 
 return(theFeed);
 }
@@ -218,7 +228,7 @@ for (NSDictionary *theDictionary in theEnumerator)
 	{
 	// TODO we have the whole entry at this point and we're just using the row id. ARE WE INSANE???
 	NSInteger theRowID = [[theDictionary objectForKey:@"id"] integerValue];
-	CFeedEntry *theEntry = [self.persistentObjectManager loadPersistentObjectOfClass:[CFeedEntry class] rowID:theRowID error:&theError];
+	CFeedEntry *theEntry = [self.persistentObjectManager loadPersistentObjectOfClass:[[self class] feedEntryClass] rowID:theRowID error:&theError];
 //	NSLog(@"%d, %@, %d %@", theRowID, [theDictionary objectForKey:@"updated"], theEntry.rowID, [theEntry.updated sqlDateString]);
 	[theEntries addObject:theEntry];
 	}
@@ -307,7 +317,7 @@ for (id theDictionary in theDeserializer)
 			if (theFeed == NULL)
 				{
 				NSError *theError = NULL;
-				theFeed = [self.persistentObjectManager makePersistentObjectOfClass:[CFeed class] error:&theError];
+				theFeed = [self.persistentObjectManager makePersistentObjectOfClass:[[self class] feedClass] error:&theError];
 				theFeed.feedStore = self;
 				}
 
@@ -326,7 +336,7 @@ for (id theDictionary in theDeserializer)
 			if (theEntry == NULL)
 				{
 				NSError *theError = NULL;
-				theEntry = [self.persistentObjectManager makePersistentObjectOfClass:[CFeedEntry class] error:&theError];
+				theEntry = [self.persistentObjectManager makePersistentObjectOfClass:[[self class] feedEntryClass] error:&theError];
 				theEntry.feed = theFeed;
 				}
 			

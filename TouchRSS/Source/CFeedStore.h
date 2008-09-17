@@ -48,6 +48,9 @@
 
 + (id)instance;
 
++ (Class)feedClass;
++ (Class)feedEntryClass;
+
 - (CRSSFeedDeserializer *)deserializerForData:(NSData *)inData;
 
 - (NSInteger)countOfFeeds;

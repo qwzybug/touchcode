@@ -229,7 +229,10 @@ while (theCurrentNode != NULL && self.error == NULL)
 				{
 				CXMLElement *theElement = [CXMLElement nodeWithLibXMLNode:theCurrentNode];
 				if (self.delegate && [self.delegate respondsToSelector:@selector(feedDeserializer:handleElement:)])
-					[self.delegate feedDeserializer:self handleElement:theElement];
+					{
+					NSDictionary *theExtraDictionary = [self.delegate feedDeserializer:self handleElement:theElement];
+					[inItem addEntriesFromDictionary:theExtraDictionary];
+					}
 				}
 				break;
 			}
@@ -246,7 +249,7 @@ NSAssert(theReturnCode == 1, @"");
 
 static void MyXMLTextReaderErrorFunc(void *arg, const char *msg, xmlParserSeverities severity, xmlTextReaderLocatorPtr locator)
 {
-NSLog(@"ERROR: %d", severity);
+NSLog(@"ERROR: %d (TODO)", severity);
 if (severity >= XML_PARSER_SEVERITY_ERROR)
 	{
 	CRSSFeedDeserializer *theRSSFeedDeserializer = (CRSSFeedDeserializer *)arg;
