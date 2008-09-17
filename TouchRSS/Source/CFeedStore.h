@@ -65,9 +65,10 @@
 
 #pragma mark -
 
-@protocol CFeedStoreDelegate
+@protocol CFeedStoreDelegate <NSObject>
 
 @optional
-- (void)feedStore:(CFeedStore *)inFeedStore didUpdateFeed:(CFeed *)inFeed;
+- (void)feedStore:(CFeedStore *)inFeedStore didBeginUpdatingFeed:(CFeed *)inFeed;
+- (void)feedStore:(CFeedStore *)inFeedStore didCompleteUpdatingFeed:(CFeed *)inFeed;
 
 @end

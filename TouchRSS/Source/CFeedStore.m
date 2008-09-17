@@ -249,6 +249,11 @@ return(theFeed);
 {
 NSURL *theURL = inFeed.url;
 
+if (self.delegate && [self.delegate respondsToSelector:@selector(feedStore:didBeginUpdatingFeed:)])
+	{
+	[self.delegate feedStore:self didBeginUpdatingFeed:inFeed];
+	}
+
 NSURLRequest *theRequest = [[[NSURLRequest alloc] initWithURL:theURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20.0] autorelease];
 CCompletionTicket *theCompletionTicket = [CCompletionTicket completionTicketWithIdentifier:@"FOO" delegate:self userInfo:NULL];
 CManagedURLConnection *theConnection = [[[CManagedURLConnection alloc] initWithRequest:theRequest completionTicket:theCompletionTicket] autorelease];
@@ -279,8 +284,6 @@ return(YES);
 
 - (void)completionTicket:(CCompletionTicket *)inCompletionTicket didCompleteForTarget:(id)inTarget result:(id)inResult
 {
-NSLog(@"completionTicket:didCompleteForTarget:result:");
-
 CFeed *theFeed = NULL;
 
 [self.persistentObjectManager.database begin];
@@ -351,7 +354,7 @@ if (theDeserializer.error != NULL)
 else
 	{
 	[self.persistentObjectManager.database commit];
-	[self.delegate feedStore:self didUpdateFeed:theFeed];
+	[self.delegate feedStore:self didCompleteUpdatingFeed:theFeed];
 	}
 }
 
