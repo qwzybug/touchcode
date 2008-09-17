@@ -35,16 +35,13 @@
 @class CFeed;
 @class CPersistentObjectManager;
 
-@protocol CFeedStoreDelegate;
-
 @interface CFeedStore : NSObject <CCompletionTicketDelegate> {
-	id <CFeedStoreDelegate> delegate;
 	NSString *databasePath;
 	CPersistentObjectManager *persistentObjectManager;
 	NSMutableSet *feeds;
+	NSMutableSet *currentURLs;
 }
 
-@property (readwrite, nonatomic, assign) id <CFeedStoreDelegate> delegate;
 @property (readwrite, nonatomic, retain) NSString *databasePath;
 @property (readonly, nonatomic, retain) CPersistentObjectManager *persistentObjectManager;
 
@@ -57,18 +54,6 @@
 
 - (CFeed *)subscribeToURL:(NSURL *)inURL error:(NSError **)outError;
 
-
-- (BOOL)updateFeed:(CFeed *)inFeed error:(NSError **)outError;
-- (BOOL)update:(NSError **)outError;
-
-@end
-
-#pragma mark -
-
-@protocol CFeedStoreDelegate <NSObject>
-
-@optional
-- (void)feedStore:(CFeedStore *)inFeedStore didBeginUpdatingFeed:(CFeed *)inFeed;
-- (void)feedStore:(CFeedStore *)inFeedStore didCompleteUpdatingFeed:(CFeed *)inFeed;
+- (BOOL)updateFeed:(CFeed *)inFeed completionTicket:(CCompletionTicket *)inCompletionTicket;
 
 @end

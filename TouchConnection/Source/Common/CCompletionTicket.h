@@ -36,19 +36,23 @@
 	NSString *identifier;
 	CPointerArray *delegatePointers;
 	id userInfo;
+	CCompletionTicket *subTicket;
 }
 
 @property (readonly, nonatomic, retain) NSString *identifier;
 @property (readonly, nonatomic, retain) NSArray *delegates;
 @property (readonly, nonatomic, retain) id userInfo;
+@property (readonly, nonatomic, retain) CCompletionTicket *subTicket;
 
 + (CCompletionTicket *)completionTicketWithIdentifier:(NSString *)inIdentifier delegate:(id <CCompletionTicketDelegate>)inDelegate userInfo:(id)inUserInfo;
++ (CCompletionTicket *)completionTicketWithIdentifier:(NSString *)inIdentifier delegate:(id <CCompletionTicketDelegate>)inDelegate userInfo:(id)inUserInfo subTicket:(CCompletionTicket *)inSubTicket;
 
-- (id)initWithIdentifier:(NSString *)inIdentifier delegates:(NSArray *)inDelegates userInfo:(id)inUserInfo;
-- (id)initWithIdentifier:(NSString *)inIdentifier delegate:(id <CCompletionTicketDelegate>)inDelegate userInfo:(id)inUserInfo;
+- (id)initWithIdentifier:(NSString *)inIdentifier delegates:(NSArray *)inDelegates userInfo:(id)inUserInfo subTicket:(CCompletionTicket *)inSubTicket;
+- (id)initWithIdentifier:(NSString *)inIdentifier delegate:(id <CCompletionTicketDelegate>)inDelegate userInfo:(id)inUserInfo subTicket:(CCompletionTicket *)inSubTicket;
 
 - (void)addDelegate:(id <CCompletionTicketDelegate>)inDelegate;
 
+- (void)didBeginForTarget:(id)inTarget;
 - (void)didCompleteForTarget:(id)inTarget result:(id)inResult;
 - (void)didFailForTarget:(id)inTarget error:(NSError *)inError;
 - (void)didCancelForTarget:(id)inTarget;
@@ -63,6 +67,7 @@
 - (void)completionTicket:(CCompletionTicket *)inCompletionTicket didCompleteForTarget:(id)inTarget result:(id)inResult;
 
 @optional
+- (void)completionTicket:(CCompletionTicket *)inCompletionTicket didBeginForTarget:(id)inTarget;
 - (void)completionTicket:(CCompletionTicket *)inCompletionTicket didFailForTarget:(id)inTarget error:(NSError *)inError;
 - (void)completionTicket:(CCompletionTicket *)inCompletionTicket didCancelForTarget:(id)inTarget;
 

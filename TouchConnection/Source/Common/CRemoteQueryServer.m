@@ -140,7 +140,7 @@ NSDictionary *theUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:
 	inCompletionTicket, @"completionTicket",
 	NULL];
 
-CCompletionTicket *theCompletionTicket = [[[CCompletionTicket alloc] initWithIdentifier:NULL delegate:self userInfo:theUserInfo] autorelease];
+CCompletionTicket *theCompletionTicket = [CCompletionTicket completionTicketWithIdentifier:NULL delegate:self userInfo:theUserInfo];
 
 CManagedURLConnection *theURLConnection = [[[CManagedURLConnection alloc] initWithRequest:inRequest completionTicket:theCompletionTicket] autorelease];
 

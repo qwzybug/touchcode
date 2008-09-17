@@ -48,15 +48,16 @@ static CFeedStore *gInstance = NULL;
 
 @interface CFeedStore ()
 @property (readwrite, nonatomic, retain) CPersistentObjectManager *persistentObjectManager;
+@property (readwrite, nonatomic, retain) NSMutableSet *currentURLs;
 @end
 
 #pragma mark -
 
 @implementation CFeedStore
 
-@synthesize delegate;
 @dynamic databasePath;
 @dynamic persistentObjectManager;
+@synthesize currentURLs;
 
 + (CFeedStore *)instance
 {
@@ -74,14 +75,15 @@ return(gInstance);
 {
 if ((self = [super init]) != NULL)
 	{
+	self.currentURLs = [NSMutableSet set];
 	}
 return(self);
 }
 
 - (void)dealloc
 {
-self.delegate = NULL;
 self.databasePath = NULL;
+self.currentURLs = NULL;
 //
 [super dealloc];
 }
@@ -245,38 +247,26 @@ if (theFeed == NULL)
 return(theFeed);
 }
 
-- (BOOL)updateFeed:(CFeed *)inFeed error:(NSError **)outError
+- (BOOL)updateFeed:(CFeed *)inFeed completionTicket:(CCompletionTicket *)inCompletionTicket
 {
 NSURL *theURL = inFeed.url;
 
-if (self.delegate && [self.delegate respondsToSelector:@selector(feedStore:didBeginUpdatingFeed:)])
+if ([self.currentURLs containsObject:theURL] == YES)
 	{
-	[self.delegate feedStore:self didBeginUpdatingFeed:inFeed];
+	NSLog(@"Already fetching %@, ignoring this request to update.", theURL);
+	return(NO);
 	}
 
+[inCompletionTicket didBeginForTarget:self];
+
 NSURLRequest *theRequest = [[[NSURLRequest alloc] initWithURL:theURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20.0] autorelease];
-CCompletionTicket *theCompletionTicket = [CCompletionTicket completionTicketWithIdentifier:@"FOO" delegate:self userInfo:NULL];
+CCompletionTicket *theCompletionTicket = [CCompletionTicket completionTicketWithIdentifier:@"FOO" delegate:self userInfo:NULL subTicket:inCompletionTicket];
+
+[self.currentURLs addObject:theURL];
+
 CManagedURLConnection *theConnection = [[[CManagedURLConnection alloc] initWithRequest:theRequest completionTicket:theCompletionTicket] autorelease];
 [[CURLConnectionManager instance] addAutomaticURLConnection:theConnection toChannel:@"RSS"];
 
-return(YES);
-}
-
-- (BOOL)update:(NSError **)outError
-{
-NSEnumerator *theEnumerator = [self.persistentObjectManager.database enumeratorForExpression:@"SELECT url FROM feed" error:outError];
-if (theEnumerator == NULL)
-	return(NO);
-for (id theRow in theEnumerator)
-	{
-	NSString *theURLString = [theRow objectForKey:@"url"];
-	NSURL *theURL = [NSURL URLWithString:theURLString];
-
-	NSURLRequest *theRequest = [[[NSURLRequest alloc] initWithURL:theURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20.0] autorelease];
-	CCompletionTicket *theCompletionTicket = [CCompletionTicket completionTicketWithIdentifier:@"FOO" delegate:self userInfo:NULL];
-	CManagedURLConnection *theConnection = [[[CManagedURLConnection alloc] initWithRequest:theRequest completionTicket:theCompletionTicket] autorelease];
-	[[CURLConnectionManager instance] addAutomaticURLConnection:theConnection toChannel:@"RSS"];
-	}
 return(YES);
 }
 
@@ -289,6 +279,7 @@ CFeed *theFeed = NULL;
 [self.persistentObjectManager.database begin];
 
 CManagedURLConnection *theConnection = (CManagedURLConnection *)inTarget;
+[self.currentURLs removeObject:theConnection.request.URL];
 CRSSFeedDeserializer *theDeserializer = [[[CRSSFeedDeserializer alloc] initWithData:theConnection.data] autorelease];
 for (id theDictionary in theDeserializer)
 	{
@@ -347,20 +338,29 @@ for (id theDictionary in theDeserializer)
 if (theDeserializer.error != NULL)
 	{
 	NSLog(@"%@", theDeserializer.error);
-//	NSLog(@"%@", [[[NSString alloc] initWithData:theConnection.data encoding:NSUTF8StringEncoding] autorelease]);
 	
 	[self.persistentObjectManager.database rollback];
+
+	[inCompletionTicket.subTicket didFailForTarget:self error:theDeserializer.error];
 	}
 else
 	{
 	[self.persistentObjectManager.database commit];
-	[self.delegate feedStore:self didCompleteUpdatingFeed:theFeed];
+	
+	[inCompletionTicket.subTicket didCompleteForTarget:self result:theFeed];
 	}
+
 }
 
 - (void)completionTicket:(CCompletionTicket *)inCompletionTicket didFailForTarget:(id)inTarget error:(NSError *)inError
 {
 NSLog(@"CFeedstore got an error: %@", inError);
+
+CManagedURLConnection *theConnection = (CManagedURLConnection *)inTarget;
+[self.currentURLs removeObject:theConnection.request.URL];
+
+[inCompletionTicket.subTicket didFailForTarget:self error:inError];
+
 }
 
 @end

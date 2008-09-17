@@ -35,6 +35,7 @@
 @property (readwrite, nonatomic, retain) NSString *identifier;
 @property (readwrite, nonatomic, retain) CPointerArray *delegatePointers;
 @property (readwrite, nonatomic, retain) id userInfo;
+@property (readwrite, nonatomic, retain) CCompletionTicket *subTicket;
 @end
 
 @implementation CCompletionTicket
@@ -43,13 +44,19 @@
 @dynamic delegates;
 @synthesize delegatePointers;
 @synthesize userInfo;
+@synthesize subTicket;
 
 + (CCompletionTicket *)completionTicketWithIdentifier:(NSString *)inIdentifier delegate:(id <CCompletionTicketDelegate>)inDelegate userInfo:(id)inUserInfo
 {
-return([[[self alloc] initWithIdentifier:inIdentifier delegate:inDelegate userInfo:inUserInfo] autorelease]);
+return([[[self alloc] initWithIdentifier:inIdentifier delegate:inDelegate userInfo:inUserInfo subTicket:NULL] autorelease]);
 }
 
-- (id)initWithIdentifier:(NSString *)inIdentifier delegates:(NSArray *)inDelegates userInfo:(id)inUserInfo
++ (CCompletionTicket *)completionTicketWithIdentifier:(NSString *)inIdentifier delegate:(id <CCompletionTicketDelegate>)inDelegate userInfo:(id)inUserInfo subTicket:(CCompletionTicket *)inSubTicket;
+{
+return([[[self alloc] initWithIdentifier:inIdentifier delegate:inDelegate userInfo:inUserInfo subTicket:inSubTicket] autorelease]);
+}
+
+- (id)initWithIdentifier:(NSString *)inIdentifier delegates:(NSArray *)inDelegates userInfo:(id)inUserInfo subTicket:(CCompletionTicket *)inSubTicket
 {
 if ((self = [super init]) != NULL)
 	{
@@ -61,13 +68,14 @@ if ((self = [super init]) != NULL)
 		[self.delegatePointers addPointer:theDelegate];
 		}
 	self.userInfo = inUserInfo;
+	self.subTicket = inSubTicket;
 	}
 return(self);
 }
 
-- (id)initWithIdentifier:(NSString *)inIdentifier delegate:(id <CCompletionTicketDelegate>)inDelegate userInfo:(id)inUserInfo;
+- (id)initWithIdentifier:(NSString *)inIdentifier delegate:(id <CCompletionTicketDelegate>)inDelegate userInfo:(id)inUserInfo subTicket:(CCompletionTicket *)inSubTicket
 {
-if ((self = [self initWithIdentifier:inIdentifier delegates:[NSArray arrayWithObject:inDelegate] userInfo:inUserInfo]) != NULL)
+if ((self = [self initWithIdentifier:inIdentifier delegates:[NSArray arrayWithObject:inDelegate] userInfo:inUserInfo subTicket:inSubTicket]) != NULL)
 	{
 	
 	}
@@ -79,6 +87,7 @@ return(self);
 self.identifier = NULL;
 self.delegatePointers = NULL;
 self.userInfo = NULL;
+self.subTicket = NULL;
 //
 [super dealloc];
 }
@@ -100,6 +109,15 @@ return(theArray);
 - (void)addDelegate:(id <CCompletionTicketDelegate>)inDelegate;
 {
 [self.delegatePointers addPointer:inDelegate];
+}
+
+- (void)didBeginForTarget:(id)inTarget
+{
+for (id <CCompletionTicketDelegate> theDelegate in self.delegatePointers)
+	{
+	if ([theDelegate respondsToSelector:@selector(completionTicket:didBeginForTarget:)])
+		[theDelegate completionTicket:self didBeginForTarget:inTarget];
+	}
 }
 
 - (void)didCompleteForTarget:(id)inTarget result:(id)inResult

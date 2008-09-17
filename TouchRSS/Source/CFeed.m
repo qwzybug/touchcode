@@ -173,10 +173,6 @@ if (self.rowID == -1)
 
 	self.rowID = [[theRow objectForKey:@"id"] integerValue];
 	}
-else
-	{
-	NSLog(@"TODO: PASS");
-	}
 
 return(YES);
 }
