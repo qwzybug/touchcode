@@ -29,7 +29,6 @@
 
 #import "CFeed.h"
 
-#import "CFeedStore.h"
 #import "CSqliteDatabase.h"
 #import "CFeedEntry.h"
 #import "NSString_SqlExtensions.h"

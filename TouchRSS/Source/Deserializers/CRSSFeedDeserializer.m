@@ -33,6 +33,8 @@
 #include "RSSKeywords.h"
 
 #import "NSDate_InternetDateExtensions.h"
+#import "CXMLNode_PrivateExtensions.h"
+#import "CXMLElement.h"
 
 static void MyXMLTextReaderErrorFunc(void *arg, const char *msg, xmlParserSeverities severity, xmlTextReaderLocatorPtr locator);
 
@@ -52,6 +54,7 @@ static void MyXMLTextReaderErrorFunc(void *arg, const char *msg, xmlParserSeveri
 
 @implementation CRSSFeedDeserializer
 
+@synthesize delegate;
 @synthesize reader;
 @synthesize error;
 @synthesize currentFeed;
@@ -223,6 +226,11 @@ while (theCurrentNode != NULL && self.error == NULL)
 				}
 				break;
 			default:
+				{
+				CXMLElement *theElement = [CXMLElement nodeWithLibXMLNode:theCurrentNode];
+				if (self.delegate && [self.delegate respondsToSelector:@selector(feedDeserializer:handleElement:)])
+					[self.delegate feedDeserializer:self handleElement:theElement];
+				}
 				break;
 			}
 		}

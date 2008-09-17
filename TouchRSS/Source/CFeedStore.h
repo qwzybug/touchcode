@@ -34,6 +34,7 @@
 @class CSqliteDatabase;
 @class CFeed;
 @class CPersistentObjectManager;
+@class CRSSFeedDeserializer;
 
 @interface CFeedStore : NSObject <CCompletionTicketDelegate> {
 	NSString *databasePath;
@@ -45,7 +46,9 @@
 @property (readwrite, nonatomic, retain) NSString *databasePath;
 @property (readonly, nonatomic, retain) CPersistentObjectManager *persistentObjectManager;
 
-+ (CFeedStore *)instance;
++ (id)instance;
+
+- (CRSSFeedDeserializer *)deserializerForData:(NSData *)inData;
 
 - (NSInteger)countOfFeeds;
 - (CFeed *)feedAtIndex:(NSInteger)inIndex;

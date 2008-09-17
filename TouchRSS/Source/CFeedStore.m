@@ -59,7 +59,7 @@ static CFeedStore *gInstance = NULL;
 @dynamic persistentObjectManager;
 @synthesize currentURLs;
 
-+ (CFeedStore *)instance
++ (id)instance
 {
 @synchronized(self)
 	{
@@ -153,6 +153,13 @@ if (persistentObjectManager != inPersistentObjectManager)
 	[persistentObjectManager autorelease];
 	persistentObjectManager = [inPersistentObjectManager retain];
     }
+}
+
+#pragma mark -
+
+- (CRSSFeedDeserializer *)deserializerForData:(NSData *)inData
+{
+return([[[CRSSFeedDeserializer alloc] initWithData:inData] autorelease]);
 }
 
 #pragma mark -
@@ -280,7 +287,7 @@ CFeed *theFeed = NULL;
 
 CManagedURLConnection *theConnection = (CManagedURLConnection *)inTarget;
 [self.currentURLs removeObject:theConnection.request.URL];
-CRSSFeedDeserializer *theDeserializer = [[[CRSSFeedDeserializer alloc] initWithData:theConnection.data] autorelease];
+CRSSFeedDeserializer *theDeserializer = [self deserializerForData:theConnection.data];
 for (id theDictionary in theDeserializer)
 	{
 	if (theDeserializer.error != NULL)

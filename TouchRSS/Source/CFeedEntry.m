@@ -31,7 +31,6 @@
 
 #import "NSString_SqlExtensions.h"
 #import "CFeed.h"
-#import "CFeedStore.h"
 #import "NSDate_SqlExtension.h"
 #import "CSqliteDatabase.h"
 #import "CSqliteDatabase_Extensions.h"

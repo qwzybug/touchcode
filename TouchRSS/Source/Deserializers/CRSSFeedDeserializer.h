@@ -33,16 +33,29 @@
 
 #define kTouchRSSErrorDomain @"kTouchRSSErrorDomain"
 
+@class CXMLElement;
+@protocol CRSSFeedDeserializerDelegate;
+
 @interface CRSSFeedDeserializer : NSObject <CFeedDeserializer> {
+	id <CRSSFeedDeserializerDelegate> delegate;
 	xmlTextReaderPtr reader;
 	NSError *error;
 	NSMutableDictionary *currentFeed;
 	NSMutableDictionary *currentItem;
 }
 
+@property (readwrite, nonatomic, assign) id <CRSSFeedDeserializerDelegate> delegate;
 @property (readonly, nonatomic, assign) xmlTextReaderPtr reader;
 @property (readonly, nonatomic, retain) NSError *error;
 
 - (id)initWithData:(NSData *)inData;
+
+@end
+
+#pragma mark -
+
+@protocol CRSSFeedDeserializerDelegate <NSObject>
+
+- (NSDictionary *)feedDeserializer:(CRSSFeedDeserializer *)inDeserializer handleElement:(CXMLElement *)inElement;
 
 @end
