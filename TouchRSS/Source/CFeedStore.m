@@ -260,7 +260,7 @@ if ([self.currentURLs containsObject:theURL] == YES)
 [inCompletionTicket didBeginForTarget:self];
 
 NSURLRequest *theRequest = [[[NSURLRequest alloc] initWithURL:theURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20.0] autorelease];
-CCompletionTicket *theCompletionTicket = [CCompletionTicket completionTicketWithIdentifier:@"FOO" delegate:self userInfo:NULL subTicket:inCompletionTicket];
+CCompletionTicket *theCompletionTicket = [CCompletionTicket completionTicketWithIdentifier:@"TODO" delegate:self userInfo:NULL subTicket:inCompletionTicket];
 
 [self.currentURLs addObject:theURL];
 
