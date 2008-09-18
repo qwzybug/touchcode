@@ -55,6 +55,8 @@ extern NSString *TouchSQLErrorDomain /* = @"TouchSQLErrorDomain" */;
 - (BOOL)commit;
 - (BOOL)rollback;
 
+- (NSInteger)lastInsertRowID;
+
 @end
 
 #pragma mark -

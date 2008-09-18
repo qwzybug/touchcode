@@ -10,6 +10,7 @@
 
 #import "CObjectTranscoder.h"
 #import "CPersistentObjectManager.h"
+#import "CSqliteDatabase.h"
 
 @interface CPersistentObject ()
 @property (readwrite, nonatomic, assign) CPersistentObjectManager *persistentObjectManager;
@@ -31,6 +32,12 @@ return([[[CObjectTranscoder alloc] initWithTargetObjectClass:[self class]] autor
 + (NSString *)tableName
 {
 NSAssert(NO, @"Implement tableName in subclass");
+return(NULL);
+}
+
++ (NSArray *)columns;
+{
+NSAssert(NO, @"Implement columns in subclass");
 return(NULL);
 }
 
@@ -85,5 +92,38 @@ if (rowID != inRowID)
 	[self.persistentObjectManager cachePersistentObject:self];
 	}
 }
+
+#pragma mark -
+
+//- (BOOL)write:(NSError **)outError
+//{
+//CSqliteDatabase *theDatabase = self.persistentObjectManager.database;
+//
+//[theDatabase begin];
+//
+//if (self.rowID == -1)
+//	{
+//	NSString *theExpression = NULL;
+//	BOOL theResult = NO;
+//
+//	theExpression = [NSString stringWithFormat:@"INSERT INTO entry (%@) VALUES (%@)", self.feed.rowID, [self.identifier encodedForSql], [self.title encodedForSql], [[self.link absoluteString] encodedForSql], [self.subtitle encodedForSql], [self.content encodedForSql], [self.updated sqlDateString]];
+////	BOOL theResult = [theDatabase executeExpression:theExpression error:outError];
+////	if (theResult == NO)
+////		{
+////		return(NO);
+////		}
+//
+//	self.rowID = [theDatabase lastInsertRowID];
+//	}
+//else
+//	{
+//	// TODO -- This should be an update operation.
+//	}
+//	
+//[theDatabase commit];
+//
+//return(YES);
+//}
+
 
 @end

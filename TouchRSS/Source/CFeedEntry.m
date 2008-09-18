@@ -44,11 +44,16 @@
 
 @implementation CFeedEntry
 
-@synthesize feed, identifier, title, content, link, subtitle, updated;
+@synthesize feed, identifier, title, subtitle, content, link, updated;
 
 + (NSString *)tableName
 {
 return(@"entry");
+}
+
++ (NSArray *)columns
+{
+return([NSArray arrayWithObjects:@"feed_id", @"identifier", @"title", @"subtitle", @"content", @"link", @"updated", NULL]);
 }
 
 - (void)dealloc
@@ -78,14 +83,7 @@ if (self.rowID == -1)
 		return(NO);
 		}
 
-	theExpression = [NSString stringWithFormat:@"SELECT id FROM entry WHERE (feed_id = %d AND identifier = '%@')", self.feed.rowID, [self.identifier encodedForSql]];
-	NSDictionary *theRow = [theDatabase rowForExpression:theExpression error:outError];
-	if (theResult == NO)
-		{
-		return(NO);
-		}
-
-	self.rowID = [[theRow objectForKey:@"id"] integerValue];
+	self.rowID = [theDatabase lastInsertRowID];
 	}
 else
 	{
@@ -94,6 +92,5 @@ else
 
 return(YES);
 }
-
 
 @end

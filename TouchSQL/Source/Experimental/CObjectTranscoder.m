@@ -98,6 +98,13 @@ for (NSString *theKey in inDictionary)
 				[inObject setValue:theValue forKey:theKey];	
 				}
 				break;
+			case 'd':
+				{
+				if ([theValue respondsToSelector:@selector(doubleValue)] == NO)
+					return(NO);
+				[inObject setValue:theValue forKey:theKey];	
+				}
+				break;
 			default:	
 				NSLog(@"#### NOT HANDLING TYPE: %s", thePropertyType);
 				NSAssert(NO, @"");

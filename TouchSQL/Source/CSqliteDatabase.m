@@ -353,6 +353,13 @@ return(theRowsArray);
     return [self executeExpression:@"ROLLBACK" error:NULL];
 }
 
+- (NSInteger)lastInsertRowID
+{
+// TODO 64 bit!??!?!?!
+sqlite_int64 theLastRowID = sqlite3_last_insert_rowid(self.sql);
+return(theLastRowID);
+}
+
 @end
 
 #pragma mark -

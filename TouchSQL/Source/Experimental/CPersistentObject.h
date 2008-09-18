@@ -22,6 +22,7 @@
 
 + (CObjectTranscoder *)objectTranscoder;
 + (NSString *)tableName;
++ (NSArray *)columns;
 
 - (id)initWithPersistenObjectManager:(CPersistentObjectManager *)inManager rowID:(NSInteger)inRowID;
 
