@@ -52,6 +52,8 @@
 
 - (void)addDelegate:(id <CCompletionTicketDelegate>)inDelegate;
 
+- (void)invalidate;
+
 - (void)didBeginForTarget:(id)inTarget;
 - (void)didCompleteForTarget:(id)inTarget result:(id)inResult;
 - (void)didFailForTarget:(id)inTarget error:(NSError *)inError;

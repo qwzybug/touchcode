@@ -52,4 +52,6 @@ extern NSString *const kHTTPStatusCodeErrorDomain /* = @"kHTTPStatusCodeErrorDom
 
 - (void)addQueryWithURLRequest:(NSURLRequest *)inRequest completionTicket:(CCompletionTicket *)inCompletionTicket;
 
+- (void)cancel;
+
 @end

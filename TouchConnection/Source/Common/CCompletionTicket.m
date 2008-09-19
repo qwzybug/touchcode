@@ -111,6 +111,11 @@ return(theArray);
 [self.delegatePointers addPointer:inDelegate];
 }
 
+- (void)invalidate
+{
+self.delegatePointers = NULL;
+}
+
 - (void)didBeginForTarget:(id)inTarget
 {
 for (id <CCompletionTicketDelegate> theDelegate in self.delegatePointers)

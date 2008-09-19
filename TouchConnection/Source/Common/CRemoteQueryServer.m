@@ -51,7 +51,7 @@ NSString *const kHTTPStatusCodeErrorDomain = @"kHTTPStatusCodeErrorDomain";
 
 - (void)dealloc
 {
-[[[CURLConnectionManager instance] channelForName:kRemoteQueryServerDefaultChannelName] cancelAll:YES];
+[self cancel];
 
 [self.operationQueue waitUntilAllOperationsAreFinished];
 //
@@ -148,6 +148,11 @@ CCompletionTicket *theCompletionTicket = [CCompletionTicket completionTicketWith
 CManagedURLConnection *theURLConnection = [[[CManagedURLConnection alloc] initWithRequest:inRequest completionTicket:theCompletionTicket] autorelease];
 
 [[CURLConnectionManager instance] addAutomaticURLConnection:theURLConnection toChannel:self.connectionChannelName];
+}
+
+- (void)cancel
+{
+[[[CURLConnectionManager instance] channelForName:kRemoteQueryServerDefaultChannelName] cancelAll:YES];
 }
 
 #pragma mark -
