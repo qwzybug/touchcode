@@ -54,6 +54,15 @@ static CNetworkActivityManager *gInstance = NULL;
 return(gInstance);
 }
 
++ (void)load
+{
+NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
+//
+[self instance];
+//
+[thePool release];
+}
+
 #pragma mark -
 
 - (id)init

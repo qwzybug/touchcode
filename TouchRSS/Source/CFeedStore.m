@@ -322,7 +322,7 @@ for (id theDictionary in theDeserializer)
 				}
 
 			NSError *theError = NULL;
-			if ([[CFeed objectTranscoder] updateObject:theFeed withPropertiesInDictionary:theDictionary error:&theError] == NO)
+			if ([[[theFeed class] objectTranscoder] updateObject:theFeed withPropertiesInDictionary:theDictionary error:&theError] == NO)
 				[NSException raise:NSGenericException format:@"%@", theError];
 			
 			theFeed.lastChecked = [NSDate date];
@@ -341,7 +341,7 @@ for (id theDictionary in theDeserializer)
 				}
 			
 			NSError *theError = NULL;
-			[[CFeedEntry objectTranscoder] updateObject:theEntry withPropertiesInDictionary:theDictionary error:&theError];
+			[[[theEntry class] objectTranscoder] updateObject:theEntry withPropertiesInDictionary:theDictionary error:&theError];
 
 			[theFeed addEntry:theEntry];
 
