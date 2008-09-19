@@ -32,6 +32,7 @@
 #import "CCompletionTicket.h"
 #import "CURLConnectionManager.h"
 #import "NSObject_InvocationGrabberExtensions.h"
+#import "CURLConnectionManagerChannel.h"
 
 NSString *const kRemoteQueryServerDefaultChannelName = @"kRemoteQueryServerDefaultChannelName";
 NSString *const kHTTPStatusCodeErrorDomain = @"kHTTPStatusCodeErrorDomain";
@@ -50,6 +51,8 @@ NSString *const kHTTPStatusCodeErrorDomain = @"kHTTPStatusCodeErrorDomain";
 
 - (void)dealloc
 {
+[[[CURLConnectionManager instance] channelForName:kRemoteQueryServerDefaultChannelName] cancelAll:YES];
+
 [self.operationQueue waitUntilAllOperationsAreFinished];
 //
 self.rootURL = NULL;
