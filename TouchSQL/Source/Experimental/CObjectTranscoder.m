@@ -30,6 +30,7 @@
 #import "CObjectTranscoder.h"
 
 #import "NSDate_SqlExtension.h"
+#import "NSDictionary_SqlExtensions.h"
 
 #import <objc/runtime.h>
 
@@ -164,6 +165,26 @@ else if ([inObject isKindOfClass:[NSDate class]] && inTargetClass == [NSString c
 	{
 	return([inObject sqlDateString]);
 	}
+else if ([inObject isKindOfClass:[NSData class]] && inTargetClass == [NSDictionary class])
+	{
+	return([NSDictionary dictionaryWithPropertyListData:inObject]);
+	}
+else if ([inObject isKindOfClass:[NSDictionary class]] && inTargetClass == [NSData class])
+	{
+	return([inObject propertyListData]);
+	}
+else if ([inObject isKindOfClass:[NSString class]] && inTargetClass == [NSDictionary class])
+	{
+	NSData *theData = [inObject dataUsingEncoding:NSUTF8StringEncoding];
+	return([NSDictionary dictionaryWithPropertyListData:theData]);
+	}
+else if ([inObject isKindOfClass:[NSDictionary class]] && inTargetClass == [NSString class])
+	{
+	NSData *theData = [inObject propertyListData];
+	NSString *theString = [[[NSString alloc] initWithData:theData encoding:NSUTF8StringEncoding] autorelease];
+	return(theString);
+	}
+
 return(NULL);
 }
 
