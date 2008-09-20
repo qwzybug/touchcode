@@ -184,6 +184,18 @@ else if ([inObject isKindOfClass:[NSDictionary class]] && inTargetClass == [NSSt
 	NSString *theString = [[[NSString alloc] initWithData:theData encoding:NSUTF8StringEncoding] autorelease];
 	return(theString);
 	}
+else if ([inObject isKindOfClass:[NSDictionary class]] && inTargetClass == [NSDictionary class])
+	{
+	return(inObject);
+	}
+else if ([inObject isKindOfClass:[NSNull class]])
+	{
+	return(NULL);
+	}
+else
+	{
+	NSLog(@"WARNING: cannot convert object of class %@ to %@", NSStringFromClass([inObject class]), NSStringFromClass(inTargetClass));
+	}
 
 return(NULL);
 }

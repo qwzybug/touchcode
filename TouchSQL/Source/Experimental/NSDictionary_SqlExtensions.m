@@ -19,7 +19,10 @@ return(thePropertyList);
 
 - (NSData *)propertyListData
 {
-return([NSPropertyListSerialization dataFromPropertyList:self format:NSPropertyListOpenStepFormat errorDescription:NULL]);
+NSString *theErrorDescription = NULL;
+NSData *theData = [NSPropertyListSerialization dataFromPropertyList:self format:NSPropertyListXMLFormat_v1_0 errorDescription:&theErrorDescription];
+NSLog(@"%@", theErrorDescription);
+return(theData);
 }
 
 @end
