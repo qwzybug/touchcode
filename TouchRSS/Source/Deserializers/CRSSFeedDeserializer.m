@@ -42,8 +42,6 @@ static void MyXMLTextReaderErrorFunc(void *arg, const char *msg, xmlParserSeveri
 
 @property (readwrite, nonatomic, assign) xmlTextReaderPtr reader;
 @property (readwrite, nonatomic, retain) NSError *error;
-@property (readwrite, nonatomic, retain) NSMutableDictionary *currentFeed;
-@property (readwrite, nonatomic, retain) NSMutableDictionary *currentItem;
 
 - (void)updateAttributesOfChannel:(NSMutableDictionary *)inChannel;
 - (void)updateAttributesOfItem:(NSMutableDictionary *)inItem;
@@ -57,8 +55,6 @@ static void MyXMLTextReaderErrorFunc(void *arg, const char *msg, xmlParserSeveri
 @synthesize delegate;
 @synthesize reader;
 @synthesize error;
-@synthesize currentFeed;
-@synthesize currentItem;
 
 - (id)initWithData:(NSData *)inData;
 {
@@ -86,8 +82,6 @@ xmlFreeTextReader(self.reader);
 self.reader = NULL;
 
 self.error = NULL;
-self.currentFeed = NULL;
-self.currentItem = NULL;
 //	
 [super dealloc];
 }
@@ -102,34 +96,41 @@ if (state->state == 0)
 	state->mutationsPtr = &state->state;
 	}
 
+NSMutableDictionary *theCurrentFeed = NULL;
+
 NSUInteger theObjectCount = 0;
 int theReturnCode = xmlTextReaderRead(self.reader);
-while (theObjectCount != len && theReturnCode == 1 && self.error == NULL)
+while (theObjectCount < len && theReturnCode == 1 && self.error == NULL)
 	{
 	const int theNodeType = xmlTextReaderNodeType(self.reader);
 
 	if (theNodeType == XML_READER_TYPE_ELEMENT)
 		{
-		NSMutableDictionary *theObject = NULL;
+		NSMutableDictionary *theDictionary = NULL;
 		const xmlChar *theNodeName = xmlTextReaderConstLocalName(self.reader);
 		int theCode = CodeForElementName(theNodeName);
 		switch (theCode)
 			{
 			case RSSElementNameCode_RSS:
-				theObject = self.currentFeed = [NSMutableDictionary dictionaryWithObject:[NSNumber numberWithInt:FeedDictinaryType_Feed] forKey:@"type"];
+				theDictionary = theCurrentFeed = [NSMutableDictionary dictionaryWithObject:[NSNumber numberWithInt:FeedDictinaryType_Feed] forKey:@"type"];
 				break;
 			case RSSElementNameCode_Channel:
-				[self updateAttributesOfChannel:self.currentFeed];
+				[self updateAttributesOfChannel:theCurrentFeed];
 				break;
 			case RSSElementNameCode_Item:
-				theObject = self.currentItem = [NSMutableDictionary dictionaryWithObject:[NSNumber numberWithInt:FeedDictinaryType_Entry] forKey:@"type"];
-				[self updateAttributesOfItem:self.currentItem];
+				theDictionary = [NSMutableDictionary dictionaryWithObject:[NSNumber numberWithInt:FeedDictinaryType_Entry] forKey:@"type"];
+				[self updateAttributesOfItem:theDictionary];
 				break;
 			}
 			
-		if (theObject)
-			stackbuf[theObjectCount++] = theObject;
+		if (theDictionary)
+			{
+			stackbuf[theObjectCount++] = theDictionary;
+			}
 		}
+
+	if (theObjectCount >= len)
+		break;
 
 	theReturnCode = xmlTextReaderRead(self.reader);
 	}

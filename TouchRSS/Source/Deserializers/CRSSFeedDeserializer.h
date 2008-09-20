@@ -40,8 +40,6 @@
 	id <CRSSFeedDeserializerDelegate> delegate;
 	xmlTextReaderPtr reader;
 	NSError *error;
-	NSMutableDictionary *currentFeed;
-	NSMutableDictionary *currentItem;
 }
 
 @property (readwrite, nonatomic, assign) id <CRSSFeedDeserializerDelegate> delegate;

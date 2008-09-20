@@ -239,7 +239,6 @@ for (NSDictionary *theDictionary in theEnumerator)
 	}
 
 return([[theEntries copy] autorelease]);
-
 }
 
 - (CFeed *)subscribeToURL:(NSURL *)inURL error:(NSError **)outError
