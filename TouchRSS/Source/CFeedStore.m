@@ -218,10 +218,15 @@ return(theFeed);
 
 - (NSArray *)entriesForFeeds:(NSArray *)inFeeds;
 {
+return([self entriesForFeeds:inFeeds sortByColumn:@"updated"]);
+}
+
+- (NSArray *)entriesForFeeds:(NSArray *)inFeeds sortByColumn:(NSString *)inColumn
+{
 NSMutableArray *theEntries = [NSMutableArray array];
 
 NSError *theError = NULL;
-NSString *theExpression = [NSString stringWithFormat:@"SELECT * FROM entry WHERE feed_id IN (%@) ORDER BY updated DESC", [[inFeeds valueForKey:@"rowID"] componentsJoinedByString:@","]];
+NSString *theExpression = [NSString stringWithFormat:@"SELECT * FROM entry WHERE feed_id IN (%@) ORDER BY %@ DESC", [[inFeeds valueForKey:@"rowID"] componentsJoinedByString:@","], inColumn];
 //NSLog(@"%@", theExpression);
 NSEnumerator *theEnumerator = [self.persistentObjectManager.database enumeratorForExpression:theExpression error:&theError];
 for (NSDictionary *theDictionary in theEnumerator)
@@ -234,6 +239,7 @@ for (NSDictionary *theDictionary in theEnumerator)
 	}
 
 return([[theEntries copy] autorelease]);
+
 }
 
 - (CFeed *)subscribeToURL:(NSURL *)inURL error:(NSError **)outError

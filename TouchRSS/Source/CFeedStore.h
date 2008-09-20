@@ -57,6 +57,7 @@
 - (CFeed *)feedAtIndex:(NSInteger)inIndex;
 - (CFeed *)feedforURL:(NSURL *)inURL;
 - (NSArray *)entriesForFeeds:(NSArray *)inFeeds;
+- (NSArray *)entriesForFeeds:(NSArray *)inFeeds sortByColumn:(NSString *)inColumn;
 
 - (CFeed *)subscribeToURL:(NSURL *)inURL error:(NSError **)outError;
 
