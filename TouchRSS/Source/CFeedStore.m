@@ -354,7 +354,7 @@ for (id theDictionary in theDeserializer)
 
 if (theDeserializer.error != NULL)
 	{
-	NSLog(@"%@", theDeserializer.error);
+	NSLog(@"CFeedStore got an error: %@", theDeserializer.error);
 	
 	[self.persistentObjectManager.database rollback];
 
