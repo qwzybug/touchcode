@@ -21,7 +21,6 @@ return(thePropertyList);
 {
 NSString *theErrorDescription = NULL;
 NSData *theData = [NSPropertyListSerialization dataFromPropertyList:self format:NSPropertyListXMLFormat_v1_0 errorDescription:&theErrorDescription];
-NSLog(@"%@", theErrorDescription);
 return(theData);
 }
 
