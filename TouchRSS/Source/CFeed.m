@@ -81,7 +81,7 @@ if (randomAccessTemporaryTable == NULL)
 	NSError *theError = NULL;
 	if ([theRandomAccessTemporaryTable insertForeignIds:theStatement error:&theError] == NO)
 		{
-		[NSException raise:NSGenericException format:@"%@", theError];
+		[NSException raise:NSGenericException format:@"RAT TABLE INSERT FAILED: %@", theError];
 		}
 
 	randomAccessTemporaryTable = [theRandomAccessTemporaryTable retain];

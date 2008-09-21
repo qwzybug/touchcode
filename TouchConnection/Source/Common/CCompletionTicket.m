@@ -64,7 +64,7 @@ if ((self = [super init]) != NULL)
 	self.delegatePointers = [[[CPointerArray alloc] init] autorelease];
 	for (id theDelegate in inDelegates)
 		{
-		NSAssert([theDelegate conformsToProtocol:@protocol(CCompletionTicketDelegate)], @"TODO");
+		NSAssert([theDelegate conformsToProtocol:@protocol(CCompletionTicketDelegate)], @"Delegate does not conform to CCompletionTicketDelegate protocol");
 		[self.delegatePointers addPointer:theDelegate];
 		}
 	self.userInfo = inUserInfo;

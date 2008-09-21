@@ -118,24 +118,24 @@ if (persistentObjectManager == NULL)
 		{
 		NSLog(@"REMOVING FEEDSTORE");
 		if ([[NSFileManager defaultManager] removeItemAtPath:self.databasePath error:&theError] == NO)
-			[NSException raise:NSGenericException format:@"%@", theError];
+			[NSException raise:NSGenericException format:@"Remove feed store failed: %@", theError];
 		}
 	#endif /* TOUCHRSS_ALWAYS_RESET_DATABASE == 1 */
 	
 	if ([[NSFileManager defaultManager] fileExistsAtPath:self.databasePath] == NO)
 		{
 		if ([[NSFileManager defaultManager] createDirectoryAtPath:[self.databasePath stringByDeletingLastPathComponent] withIntermediateDirectories:YES attributes:NULL error:&theError] == NO)
-			[NSException raise:NSGenericException format:@"%@", theError];
+			[NSException raise:NSGenericException format:@"Creating directory failed: @", theError];
 
 		NSString *theSourcePath = [[NSBundle mainBundle] pathForResource:@"FeedStore" ofType:@"db"];
 		if ([[NSFileManager defaultManager] copyItemAtPath:theSourcePath toPath:self.databasePath error:&theError] == NO)
-			[NSException raise:NSGenericException format:@"%@", theError];
+			[NSException raise:NSGenericException format:@"Copying template database failed: %@", theError];
 		}
 	
 	CSqliteDatabase *theDatabase = [[[CSqliteDatabase alloc] initWithPath:self.databasePath] autorelease];
 	[theDatabase open:&theError];
 	if (theError)
-		[NSException raise:NSGenericException format:@"%@", theError];
+		[NSException raise:NSGenericException format:@"Create database failed: %@", theError];
 
 	CPersistentObjectManager *theManager = [[[CPersistentObjectManager alloc] initWithDatabase:theDatabase] autorelease];
 	persistentObjectManager = [theManager retain];
@@ -167,7 +167,7 @@ NSError *theError = NULL;
 NSString *theExpression = [NSString stringWithFormat:@"SELECT count() FROM feed"];
 NSDictionary *theRow = [self.persistentObjectManager.database rowForExpression:theExpression error:&theError];
 if (theRow == NULL)
-	[NSException raise:NSGenericException format:@"%@", theError];
+	[NSException raise:NSGenericException format:@"Count of Feeds failed: %@", theError];
 return([[theRow objectForKey:@"count()"] integerValue]);
 }
 
@@ -179,7 +179,7 @@ NSError *theError = NULL;
 NSString *theExpression = [NSString stringWithFormat:@"SELECT id FROM feed LIMIT 1 OFFSET %d", inIndex];
 NSDictionary *theDictionary = [self.persistentObjectManager.database rowForExpression:theExpression error:&theError];
 if (theDictionary == NULL)
-	[NSException raise:NSGenericException format:@"%@", theError];
+	[NSException raise:NSGenericException format:@"Feed at Index failed: %@", theError];
 	
 NSInteger theRowID = [[theDictionary objectForKey:@"id"] integerValue];
 
@@ -234,22 +234,32 @@ CFeed *theFeed = [self feedforURL:inURL];
 if (theFeed)
 	return(NULL);
 
+NSError *theError = NULL;
 NSString *theExpression = [NSString stringWithFormat:@"INSERT INTO feed (url) VALUES('%@')", [inURL absoluteString]];
-BOOL theResult = [self.persistentObjectManager.database executeExpression:theExpression error:outError];
+BOOL theResult = [self.persistentObjectManager.database executeExpression:theExpression error:&theError];
 if (theResult == NO)
 	{
-	// TODO
 	if (outError)
-		*outError = [NSError errorWithDomain:@"TODO" code:-1 userInfo:NULL]; 
+		{
+		NSDictionary *theUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+			[NSString stringWithFormat:@"SQL expression '%@' failed", theExpression], NSLocalizedDescriptionKey,
+			*outError, NSUnderlyingErrorKey,
+			NULL];
+		*outError = [NSError errorWithDomain:@"TODO_DOMAIN" code:-1 userInfo:theUserInfo]; 
+		}
 	return(NULL);
 	}
 
 theFeed = [self feedforURL:inURL];
 if (theFeed == NULL)
 	{
-	// TODO
 	if (outError)
-		*outError = [NSError errorWithDomain:@"TODO" code:-1 userInfo:NULL]; 
+		{
+		NSDictionary *theUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+			@"feedforURL failed", NSLocalizedDescriptionKey,
+			NULL];
+		*outError = [NSError errorWithDomain:@"TODO_DOMAIN" code:-2 userInfo:theUserInfo]; 
+		}
 	return(NULL);
 	}
 
@@ -269,7 +279,7 @@ if ([self.currentURLs containsObject:theURL] == YES)
 [inCompletionTicket didBeginForTarget:self];
 
 NSURLRequest *theRequest = [[[NSURLRequest alloc] initWithURL:theURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20.0] autorelease];
-CCompletionTicket *theCompletionTicket = [CCompletionTicket completionTicketWithIdentifier:@"TODO" delegate:self userInfo:NULL subTicket:inCompletionTicket];
+CCompletionTicket *theCompletionTicket = [CCompletionTicket completionTicketWithIdentifier:@"Update Feed" delegate:self userInfo:NULL subTicket:inCompletionTicket];
 
 [self.currentURLs addObject:theURL];
 
@@ -315,11 +325,11 @@ for (id theDictionary in theDeserializer)
 
 			NSError *theError = NULL;
 			if ([[[theFeed class] objectTranscoder] updateObject:theFeed withPropertiesInDictionary:theDictionary error:&theError] == NO)
-				[NSException raise:NSGenericException format:@"%@", theError];
+				[NSException raise:NSGenericException format:@"Update Object failed: %@", theError];
 			
 			theFeed.lastChecked = [NSDate date];
 			if ([theFeed write:&theError] == NO)
-				[NSException raise:NSGenericException format:@"%@", theError];
+				[NSException raise:NSGenericException format:@"Write failed: %@", theError];
 			}
 			break;
 		case FeedDictinaryType_Entry:
@@ -338,7 +348,7 @@ for (id theDictionary in theDeserializer)
 			[theFeed addEntry:theEntry];
 
 			if ([theEntry write:&theError] == NO)
-				[NSException raise:NSGenericException format:@"%@", theError];
+				[NSException raise:NSGenericException format:@"FeedStore: Entry Write Failed: %@", theError];
 			}
 			break;
 		}

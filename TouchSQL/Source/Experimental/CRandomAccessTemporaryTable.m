@@ -30,7 +30,7 @@ if ((self = [super init]) != NULL)
 
 	NSError *theError = NULL;
 	if ([self createTable:&theError] == NO)
-		[NSException raise:NSGenericException format:@"%@", theError];
+		[NSException raise:NSGenericException format:@"CRandomAccessTemporaryTable initWithDatabase failed %@", theError];
 	}
 return(self);
 }

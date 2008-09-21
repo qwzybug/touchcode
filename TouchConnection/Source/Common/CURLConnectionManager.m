@@ -157,7 +157,7 @@ return([self.channels objectForKey:inName]);
 
 - (void)completionTicket:(CCompletionTicket *)inCompletionTicket didCompleteForTarget:(id)inTarget result:(id)inResult
 {
-NSAssert([inTarget isKindOfClass:[CManagedURLConnection class]], @"TODO");
+NSAssert([inTarget isKindOfClass:[CManagedURLConnection class]], @"Target is not CManagedURLConnection");
 CManagedURLConnection *theConnection = (CManagedURLConnection *)inTarget;
 CURLConnectionManagerChannel *theChannel = [self.channels objectForKey:theConnection.channel];
 [theChannel.activeConnections removeObject:theConnection];
@@ -167,7 +167,7 @@ CURLConnectionManagerChannel *theChannel = [self.channels objectForKey:theConnec
 
 - (void)completionTicket:(CCompletionTicket *)inCompletionTicket didFailForTarget:(id)inTarget error:(NSError *)inError
 {
-NSAssert([inTarget isKindOfClass:[CManagedURLConnection class]], @"TODO");
+NSAssert([inTarget isKindOfClass:[CManagedURLConnection class]], @"Target is not CManagedURLConnection");
 CManagedURLConnection *theConnection = (CManagedURLConnection *)inTarget;
 CURLConnectionManagerChannel *theChannel = [self.channels objectForKey:theConnection.channel];
 [theChannel.activeConnections removeObject:theConnection];
@@ -177,7 +177,7 @@ CURLConnectionManagerChannel *theChannel = [self.channels objectForKey:theConnec
 
 - (void)completionTicket:(CCompletionTicket *)inCompletionTicket didCancelForTarget:(id)inTarget
 {
-NSAssert([inTarget isKindOfClass:[CManagedURLConnection class]], @"TODO");
+NSAssert([inTarget isKindOfClass:[CManagedURLConnection class]], @"Target is not CManagedURLConnection");
 CManagedURLConnection *theConnection = (CManagedURLConnection *)inTarget;
 CURLConnectionManagerChannel *theChannel = [self.channels objectForKey:theConnection.channel];
 [theChannel.activeConnections removeObject:theConnection];

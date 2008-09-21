@@ -198,7 +198,7 @@ if (severity >= XML_PARSER_SEVERITY_ERROR)
 		NULL
 		];
 
-	NSError *theError = [NSError errorWithDomain:@"TODO" code:-1 userInfo:theUserInfo];
+	NSError *theError = [NSError errorWithDomain:@"TODO_DOMAIN" code:-1 userInfo:theUserInfo];
 	theFeedDeserializer.error = theError;
 	}
 }
