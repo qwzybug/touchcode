@@ -91,6 +91,39 @@ if ([[[theObject class] objectTranscoder] updateObject:theObject withPropertiesI
 return(theObject);
 }
 
+- (id)loadPersistentObjectOfClass:(Class)inClass rowID:(NSInteger)inRowID fromDictionary:(NSDictionary *)inValues error:(NSError **)outError
+{
+NSAssert(inClass != NULL, @"Class should not be NULL");
+NSString *theTableName = [inClass tableName];
+NSAssert(theTableName != NULL, @"tableName should not be NULL");
+
+id theObject = NULL;
+
+// Check the cache.
+theObject = [self.cachedObjects objectForKey:[NSString stringWithFormat:@"%@/%d", [[inClass class] tableName], inRowID]];
+if (theObject != NULL)
+	return(theObject);
+
+theObject = [[[inClass alloc] initWithPersistenObjectManager:self rowID:inRowID] autorelease];
+
+// Load object properties...
+CObjectTranscoder *theTranscoder = [[theObject class] objectTranscoder];
+NSError *theError = NULL;
+NSDictionary *theUpdateDictonary = [theTranscoder dictionaryForObjectUpdate:theObject withPropertiesInDictionary:inValues error:&theError];
+if (theUpdateDictonary == NULL)
+	{
+	[NSException raise:NSGenericException format:@"dictionaryForObjectUpdate failed: %@", theError];
+	}
+
+if ([[[theObject class] objectTranscoder] updateObject:theObject withPropertiesInDictionary:theUpdateDictonary error:&theError] == NO)
+	{
+	[NSException raise:NSGenericException format:@"Update Object failed: %@", theError];
+	}
+
+return(theObject);
+}
+
+
 - (void)cachePersistentObject:(CPersistentObject *)inPersistentObject
 {
 NSAssert(inPersistentObject.rowID != -1, @"Cannot cache an object with a rowID of -1");

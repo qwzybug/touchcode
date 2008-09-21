@@ -23,6 +23,7 @@
 
 - (id)makePersistentObjectOfClass:(Class)inClass error:(NSError **)outError;
 - (id)loadPersistentObjectOfClass:(Class)inClass rowID:(NSInteger)inRowID error:(NSError **)outError;
+- (id)loadPersistentObjectOfClass:(Class)inClass rowID:(NSInteger)inRowID fromDictionary:(NSDictionary *)inValues error:(NSError **)outError;
 
 // Mostly private APIs
 - (void)cachePersistentObject:(CPersistentObject *)inPersistentObject;

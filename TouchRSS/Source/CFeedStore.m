@@ -216,12 +216,12 @@ NSMutableArray *theEntries = [NSMutableArray array];
 Class theClass = [[self class] feedEntryClass];
 
 NSError *theError = NULL;
-NSString *theExpression = [NSString stringWithFormat:@"SELECT id FROM entry WHERE feed_id IN (%@) ORDER BY %@ %@", [[inFeeds valueForKey:@"rowID"] componentsJoinedByString:@","], inColumn, inDescending ? @"DESC" : @""];
+NSString *theExpression = [NSString stringWithFormat:@"SELECT * FROM entry WHERE feed_id IN (%@) ORDER BY %@ %@", [[inFeeds valueForKey:@"rowID"] componentsJoinedByString:@","], inColumn, inDescending ? @"DESC" : @""];
 NSEnumerator *theEnumerator = [self.persistentObjectManager.database enumeratorForExpression:theExpression error:&theError];
 for (NSDictionary *theDictionary in theEnumerator)
 	{
 	NSInteger theRowID = [[theDictionary objectForKey:@"id"] integerValue];
-	CFeedEntry *theEntry = [self.persistentObjectManager loadPersistentObjectOfClass:theClass rowID:theRowID error:&theError];
+	CFeedEntry *theEntry = [self.persistentObjectManager loadPersistentObjectOfClass:theClass rowID:theRowID fromDictionary:theDictionary error:&theError];
 	if (theEntry == NULL)
 		{
 		[NSException raise:NSGenericException format:@"Could not create entry: %@", theError];
