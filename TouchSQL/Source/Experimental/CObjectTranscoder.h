@@ -40,7 +40,9 @@
 
 - (id)initWithTargetObjectClass:(Class)inTargetObjectClass;
 
+- (NSDictionary *)dictionaryForObjectUpdate:(id)inObject withPropertiesInDictionary:(NSDictionary *)inDictionary error:(NSError **)outError;
 - (BOOL)updateObject:(id)inObject withPropertiesInDictionary:(NSDictionary *)inDictionary error:(NSError **)outError;
+
 - (id)transformObject:(id)inObject toObjectOfClass:(Class)inTargetClass error:(NSError **)outError;
 
 @end

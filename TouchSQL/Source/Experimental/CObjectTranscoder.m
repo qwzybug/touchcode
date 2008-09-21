@@ -59,7 +59,7 @@ self.propertyNameMappings = NULL;
 
 #pragma mark -
 
-- (BOOL)updateObject:(id)inObject withPropertiesInDictionary:(NSDictionary *)inDictionary error:(NSError **)outError
+- (NSDictionary *)dictionaryForObjectUpdate:(id)inObject withPropertiesInDictionary:(NSDictionary *)inDictionary error:(NSError **)outError
 {
 NSAssert([inObject isKindOfClass:self.targetObjectClass], @"");
 
@@ -79,7 +79,7 @@ for (NSString *theKey in inDictionary)
 	objc_property_t theProperty = class_getProperty(theClass, [theKey UTF8String]);
 	if (theProperty == NULL)
 		{
-		NSLog(@"WARNING: NO SUCH PROPERTY: %@", theKey);
+//		NSLog(@"WARNING: NO SUCH PROPERTY: %@", theKey);
 		continue;
 		}
 	
@@ -108,7 +108,7 @@ for (NSString *theKey in inDictionary)
 							];
 						*outError = [NSError errorWithDomain:@"TODO_DOMAIN" code:-1 userInfo:theUserInfo];
 						}
-					return(NO);
+					return(NULL);
 					}
 				[inObject setValue:theValue forKey:theKey];	
 				}
@@ -120,6 +120,7 @@ for (NSString *theKey in inDictionary)
 					continue;
 					}
 				else if ([theValue respondsToSelector:@selector(doubleValue)] == NO)
+					{
 					if (outError)
 						{
 						NSDictionary *theUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -128,7 +129,8 @@ for (NSString *theKey in inDictionary)
 							];
 						*outError = [NSError errorWithDomain:@"TODO_DOMAIN" code:-2 userInfo:theUserInfo];
 						}
-					return(NO);
+					return(NULL);
+					}
 				[inObject setValue:theValue forKey:theKey];	
 				}
 				break;
@@ -144,15 +146,20 @@ for (NSString *theKey in inDictionary)
 		strncpy(theBuffer, thePropertyType + 2, strlen(thePropertyType) - 3);
 		theBuffer[strlen(thePropertyType) - 3] = '\0';
 		theValue = [self transformObject:theValue toObjectOfClass:NSClassFromString([NSString stringWithUTF8String:theBuffer]) error:outError];
+
 		}
 		
 	if (theValue)
 		[theMappedValuesAndKeys setObject:theValue forKey:theKey];
 	}
+return(theMappedValuesAndKeys);
+}
 
-for (NSString *theKey in theMappedValuesAndKeys)
+- (BOOL)updateObject:(id)inObject withPropertiesInDictionary:(NSDictionary *)inDictionary error:(NSError **)outError;
+{
+for (NSString *theKey in inDictionary)
 	{
-	id theValue = [theMappedValuesAndKeys objectForKey:theKey];
+	id theValue = [inDictionary objectForKey:theKey];
 	[inObject setValue:theValue forKey:theKey];
 	}
 	

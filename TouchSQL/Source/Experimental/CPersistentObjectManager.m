@@ -75,10 +75,16 @@ if (theDictionary == NULL)
 theObject = [[[inClass alloc] initWithPersistenObjectManager:self rowID:inRowID] autorelease];
 
 // Load object properties...
-BOOL theResult = [[[theObject class] objectTranscoder] updateObject:theObject withPropertiesInDictionary:theDictionary error:&theError];
-if (theResult == NO)
+CObjectTranscoder *theTranscoder = [[theObject class] objectTranscoder];
+NSDictionary *theUpdateDictonary = [theTranscoder dictionaryForObjectUpdate:theObject withPropertiesInDictionary:theDictionary error:&theError];
+if (theUpdateDictonary == NULL)
 	{
-	[NSException raise:NSGenericException format:@"updateObject failed: %@", theError];
+	[NSException raise:NSGenericException format:@"dictionaryForObjectUpdate failed: %@", theError];
+	}
+
+if ([[[theObject class] objectTranscoder] updateObject:theObject withPropertiesInDictionary:theUpdateDictonary error:&theError] == NO)
+	{
+	[NSException raise:NSGenericException format:@"Update Object failed: %@", theError];
 	}
 
 

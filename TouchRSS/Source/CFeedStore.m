@@ -328,8 +328,19 @@ for (id theDictionary in theDeserializer)
 				}
 
 			NSError *theError = NULL;
-			if ([[[theFeed class] objectTranscoder] updateObject:theFeed withPropertiesInDictionary:theDictionary error:&theError] == NO)
+			
+			CObjectTranscoder *theTranscoder = [[theFeed class] objectTranscoder];
+			
+			NSDictionary *theUpdateDictonary = [theTranscoder dictionaryForObjectUpdate:theFeed withPropertiesInDictionary:theDictionary error:&theError];
+			if (theUpdateDictonary == NULL)
+				{
+				[NSException raise:NSGenericException format:@"dictionaryForObjectUpdate failed: %@", theError];
+				}
+			
+			if ([[[theFeed class] objectTranscoder] updateObject:theFeed withPropertiesInDictionary:theUpdateDictonary error:&theError] == NO)
+				{
 				[NSException raise:NSGenericException format:@"Update Object failed: %@", theError];
+				}
 			
 			theFeed.lastChecked = [NSDate date];
 			if ([theFeed write:&theError] == NO)
@@ -343,11 +354,25 @@ for (id theDictionary in theDeserializer)
 				{
 				NSError *theError = NULL;
 				theEntry = [self.persistentObjectManager makePersistentObjectOfClass:[[self class] feedEntryClass] error:&theError];
+				if (theEntry == NULL && theError != NULL)
+					{
+					[NSException raise:NSGenericException format:@"makePersistentObjectOfClass failed.: %@", theError];
+					}
 				theEntry.feed = theFeed;
 				}
 			
 			NSError *theError = NULL;
-			[[[theEntry class] objectTranscoder] updateObject:theEntry withPropertiesInDictionary:theDictionary error:&theError];
+			CObjectTranscoder *theTranscoder = [[theEntry class] objectTranscoder];
+			NSDictionary *theUpdateDictonary = [theTranscoder dictionaryForObjectUpdate:theEntry withPropertiesInDictionary:theDictionary error:&theError];
+			if (theUpdateDictonary == NULL)
+				{
+				[NSException raise:NSGenericException format:@"dictionaryForObjectUpdate failed: %@", theError];
+				}
+			
+			if ([theTranscoder updateObject:theEntry withPropertiesInDictionary:theUpdateDictonary error:&theError] == NO)
+				{
+				[NSException raise:NSGenericException format:@"Update Object failed: %@", theError];
+				}
 
 			[theFeed addEntry:theEntry];
 
