@@ -44,8 +44,6 @@
 #define TOUCHRSS_ALWAYS_RESET_DATABASE 0
 #endif /* !defined(TOUCHRSS_ALWAYS_RESET_DATABASE) */
 
-static CFeedStore *gInstance = NULL;
-
 @interface CFeedStore ()
 @property (readwrite, nonatomic, retain) CPersistentObjectManager *persistentObjectManager;
 @property (readwrite, nonatomic, retain) NSMutableSet *currentURLs;
@@ -59,18 +57,6 @@ static CFeedStore *gInstance = NULL;
 @dynamic persistentObjectManager;
 @synthesize currentURLs;
 
-+ (id)instance
-{
-@synchronized(self)
-	{
-	if (gInstance == NULL)
-		{
-		gInstance = [[self alloc] init];
-		}
-	}
-return(gInstance);
-}
-
 + (Class)feedClass
 {
 return([CFeed class]);
@@ -78,6 +64,7 @@ return([CFeed class]);
 
 + (Class)feedEntryClass
 {
+NSAssert(NO, @"WARNING: Someone called -[CFeedEntry feedEntryClass]. This is bad.");
 return([CFeedEntry class]);
 }
 
@@ -218,15 +205,15 @@ return(theFeed);
 
 - (NSArray *)entriesForFeeds:(NSArray *)inFeeds;
 {
-return([self entriesForFeeds:inFeeds sortByColumn:@"updated"]);
+return([self entriesForFeeds:inFeeds sortByColumn:@"updated" descending:YES]);
 }
 
-- (NSArray *)entriesForFeeds:(NSArray *)inFeeds sortByColumn:(NSString *)inColumn
+- (NSArray *)entriesForFeeds:(NSArray *)inFeeds sortByColumn:(NSString *)inColumn descending:(BOOL)inDescending
 {
 NSMutableArray *theEntries = [NSMutableArray array];
 
 NSError *theError = NULL;
-NSString *theExpression = [NSString stringWithFormat:@"SELECT * FROM entry WHERE feed_id IN (%@) ORDER BY %@ DESC", [[inFeeds valueForKey:@"rowID"] componentsJoinedByString:@","], inColumn];
+NSString *theExpression = [NSString stringWithFormat:@"SELECT * FROM entry WHERE feed_id IN (%@) ORDER BY %@%@", [[inFeeds valueForKey:@"rowID"] componentsJoinedByString:@","], inColumn, inDescending ? @" DESC" : @""];
 //NSLog(@"%@", theExpression);
 NSEnumerator *theEnumerator = [self.persistentObjectManager.database enumeratorForExpression:theExpression error:&theError];
 for (NSDictionary *theDictionary in theEnumerator)

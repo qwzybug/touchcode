@@ -46,8 +46,6 @@
 @property (readwrite, nonatomic, retain) NSString *databasePath;
 @property (readonly, nonatomic, retain) CPersistentObjectManager *persistentObjectManager;
 
-+ (id)instance;
-
 + (Class)feedClass;
 + (Class)feedEntryClass;
 
@@ -57,7 +55,7 @@
 - (CFeed *)feedAtIndex:(NSInteger)inIndex;
 - (CFeed *)feedforURL:(NSURL *)inURL;
 - (NSArray *)entriesForFeeds:(NSArray *)inFeeds;
-- (NSArray *)entriesForFeeds:(NSArray *)inFeeds sortByColumn:(NSString *)inColumn;
+- (NSArray *)entriesForFeeds:(NSArray *)inFeeds sortByColumn:(NSString *)inColumn descending:(BOOL)inDescending;
 
 - (CFeed *)subscribeToURL:(NSURL *)inURL error:(NSError **)outError;
 

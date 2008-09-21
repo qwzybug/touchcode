@@ -37,6 +37,7 @@
 #import "NSString_SqlExtensions.h"
 #import "CPersistentObjectManager.h"
 #import "CRandomAccessTemporaryTable.h"
+#import "CFeedStore.h"
 
 @interface CFeed ()
 @property (readwrite, nonatomic, retain) CRandomAccessTemporaryTable *randomAccessTemporaryTable;
@@ -125,7 +126,7 @@ if (theDictionary == NULL)
 
 NSInteger theRowID = [[theDictionary objectForKey:@"foreign_id"] integerValue];
 
-CFeedEntry *theFeedEntry = [self.persistentObjectManager loadPersistentObjectOfClass:[CFeedEntry class] rowID:theRowID error:&theError];
+CFeedEntry *theFeedEntry = [self.persistentObjectManager loadPersistentObjectOfClass:[[self.feedStore class] feedEntryClass] rowID:theRowID error:&theError];
 [theFeedEntry retain];
 
 [thePool release];
@@ -144,7 +145,7 @@ if (theDictionary == NULL)
 	return(NULL);
 NSInteger theRowID = [[theDictionary objectForKey:@"id"] integerValue];
 
-CFeedEntry *theFeedEntry = [self.persistentObjectManager loadPersistentObjectOfClass:[CFeedEntry class] rowID:theRowID error:&theError];
+CFeedEntry *theFeedEntry = [self.persistentObjectManager loadPersistentObjectOfClass:[[self.feedStore class] feedEntryClass] rowID:theRowID error:&theError];
 
 return(theFeedEntry);
 }
