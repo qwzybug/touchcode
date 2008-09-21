@@ -199,6 +199,7 @@ if (theDictionary == NULL)
 NSInteger theRowID = [[theDictionary objectForKey:@"id"] integerValue];
 
 CFeed *theFeed = [self.persistentObjectManager loadPersistentObjectOfClass:[[self class] feedClass] rowID:theRowID error:&theError];
+theFeed.feedStore = self;
 
 return(theFeed);
 }
@@ -212,16 +213,19 @@ return([self entriesForFeeds:inFeeds sortByColumn:@"updated" descending:YES]);
 {
 NSMutableArray *theEntries = [NSMutableArray array];
 
+Class theClass = [[self class] feedEntryClass];
+
 NSError *theError = NULL;
-NSString *theExpression = [NSString stringWithFormat:@"SELECT * FROM entry WHERE feed_id IN (%@) ORDER BY %@%@", [[inFeeds valueForKey:@"rowID"] componentsJoinedByString:@","], inColumn, inDescending ? @" DESC" : @""];
-//NSLog(@"%@", theExpression);
+NSString *theExpression = [NSString stringWithFormat:@"SELECT id FROM entry WHERE feed_id IN (%@) ORDER BY %@ %@", [[inFeeds valueForKey:@"rowID"] componentsJoinedByString:@","], inColumn, inDescending ? @"DESC" : @""];
 NSEnumerator *theEnumerator = [self.persistentObjectManager.database enumeratorForExpression:theExpression error:&theError];
 for (NSDictionary *theDictionary in theEnumerator)
 	{
-	// TODO we have the whole entry at this point and we're just using the row id. ARE WE INSANE???
 	NSInteger theRowID = [[theDictionary objectForKey:@"id"] integerValue];
-	CFeedEntry *theEntry = [self.persistentObjectManager loadPersistentObjectOfClass:[[self class] feedEntryClass] rowID:theRowID error:&theError];
-//	NSLog(@"%d, %@, %d %@", theRowID, [theDictionary objectForKey:@"updated"], theEntry.rowID, [theEntry.updated sqlDateString]);
+	CFeedEntry *theEntry = [self.persistentObjectManager loadPersistentObjectOfClass:theClass rowID:theRowID error:&theError];
+	if (theEntry == NULL)
+		{
+		[NSException raise:NSGenericException format:@"Could not create entry: %@", theError];
+		}
 	[theEntries addObject:theEntry];
 	}
 

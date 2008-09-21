@@ -14,15 +14,18 @@
 @interface CPersistentObject : NSObject {
 	CPersistentObjectManager *persistentObjectManager;
 	NSInteger rowID;
+	NSDate *created;
+	NSDate *modified;
 }
 
 @property (readonly, nonatomic, assign) CPersistentObjectManager *persistentObjectManager;
 @property (readonly, nonatomic, retain) NSString *persistentIdentifier;
 @property (readwrite, nonatomic, assign) NSInteger rowID;
+@property (readwrite, nonatomic, retain) NSDate *created;
+@property (readwrite, nonatomic, retain) NSDate *modified;
 
 + (CObjectTranscoder *)objectTranscoder;
 + (NSString *)tableName;
-+ (NSArray *)columns;
 
 - (id)initWithPersistenObjectManager:(CPersistentObjectManager *)inManager rowID:(NSInteger)inRowID;
 

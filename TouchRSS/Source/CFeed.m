@@ -38,6 +38,7 @@
 #import "CPersistentObjectManager.h"
 #import "CRandomAccessTemporaryTable.h"
 #import "CFeedStore.h"
+#import "CObjectTranscoder.h"
 
 @interface CFeed ()
 @property (readwrite, nonatomic, retain) CRandomAccessTemporaryTable *randomAccessTemporaryTable;
@@ -56,6 +57,15 @@
 return(@"feed");
 }
 
++ (CObjectTranscoder *)objectTranscoder
+{
+CObjectTranscoder *theTranscoder = [[[CObjectTranscoder alloc] initWithTargetObjectClass:[self class]] autorelease];
+theTranscoder.propertyNameMappings = [NSDictionary dictionaryWithObjectsAndKeys:
+	@"rowID", @"id",
+	NULL];
+return(theTranscoder);
+}
+
 - (void)dealloc
 {
 self.feedStore = NULL;
@@ -68,6 +78,12 @@ self.lastChecked = NULL;
 //
 [super dealloc];
 }
+
+- (NSString *)description
+{
+return([NSString stringWithFormat:@"%@ (row_id: %d, identifier: %@, title: %@)", [super description], self.rowID, self.identifier, self.title]);
+}
+
 
 #pragma mark -
 
@@ -146,6 +162,10 @@ if (theDictionary == NULL)
 NSInteger theRowID = [[theDictionary objectForKey:@"id"] integerValue];
 
 CFeedEntry *theFeedEntry = [self.persistentObjectManager loadPersistentObjectOfClass:[[self.feedStore class] feedEntryClass] rowID:theRowID error:&theError];
+if (theFeedEntry == NULL)
+	{
+	[NSException raise:NSGenericException format:@"loadPersistentObjectOfClass failed: %@", theError];
+	}
 
 return(theFeedEntry);
 }

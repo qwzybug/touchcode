@@ -51,9 +51,13 @@
 return(@"entry");
 }
 
-+ (NSArray *)columns
++ (CObjectTranscoder *)objectTranscoder
 {
-return([NSArray arrayWithObjects:@"feed_id", @"identifier", @"title", @"subtitle", @"content", @"link", @"updated", NULL]);
+CObjectTranscoder *theTranscoder = [[[CObjectTranscoder alloc] initWithTargetObjectClass:[self class]] autorelease];
+theTranscoder.propertyNameMappings = [NSDictionary dictionaryWithObjectsAndKeys:
+	@"rowID", @"id",
+	NULL];
+return(theTranscoder);
 }
 
 - (void)dealloc
@@ -66,6 +70,13 @@ self.subtitle = NULL;
 self.updated = NULL;
 //
 [super dealloc];
+}
+
+#pragma mark -
+
+- (NSString *)description
+{
+return([NSString stringWithFormat:@"%@ (row_id: %d, feed.row_id: %d, identifier: %@, title: %@)", [super description], self.rowID, self.feed.rowID, self.identifier, self.title]);
 }
 
 #pragma mark -

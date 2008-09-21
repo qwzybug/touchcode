@@ -46,9 +46,6 @@ static const char* getPropertyType(objc_property_t property);
 if ((self = [super init]) != NULL)
 	{
 	self.targetObjectClass = inTargetObjectClass;
-	self.propertyNameMappings = [NSDictionary dictionaryWithObjectsAndKeys:
-		@"rowID", @"id",
-		NULL];
 	}
 return(self);
 }
@@ -81,7 +78,10 @@ for (NSString *theKey in inDictionary)
 		
 	objc_property_t theProperty = class_getProperty(theClass, [theKey UTF8String]);
 	if (theProperty == NULL)
+		{
+		NSLog(@"WARNING: NO SUCH PROPERTY: %@", theKey);
 		continue;
+		}
 	
 	const char *thePropertyAttributes = property_getAttributes(theProperty);
 	BOOL theIsObjectFlag = NO;
@@ -94,14 +94,40 @@ for (NSString *theKey in inDictionary)
 			{
 			case 'i':
 				{
-				if ([theValue respondsToSelector:@selector(intValue)] == NO)
+				if (theValue == [NSNull null])
+					{
+					continue;
+					}
+				else if ([theValue respondsToSelector:@selector(intValue)] == NO)
+					{
+					if (outError)
+						{
+						NSDictionary *theUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+							[NSString stringWithFormat:@"Object of class %@ does not respond to intValue", NSStringFromClass([theValue class])], NSLocalizedDescriptionKey,
+							NULL
+							];
+						*outError = [NSError errorWithDomain:@"TODO_DOMAIN" code:-1 userInfo:theUserInfo];
+						}
 					return(NO);
+					}
 				[inObject setValue:theValue forKey:theKey];	
 				}
 				break;
 			case 'd':
 				{
-				if ([theValue respondsToSelector:@selector(doubleValue)] == NO)
+				if (theValue == [NSNull null])
+					{
+					continue;
+					}
+				else if ([theValue respondsToSelector:@selector(doubleValue)] == NO)
+					if (outError)
+						{
+						NSDictionary *theUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+							[NSString stringWithFormat:@"Object of class %@ does not respond to doubleValue", NSStringFromClass([theValue class])], NSLocalizedDescriptionKey,
+							NULL
+							];
+						*outError = [NSError errorWithDomain:@"TODO_DOMAIN" code:-2 userInfo:theUserInfo];
+						}
 					return(NO);
 				[inObject setValue:theValue forKey:theKey];	
 				}
@@ -197,6 +223,14 @@ else
 	NSLog(@"WARNING: cannot convert object of class %@ to %@", NSStringFromClass([inObject class]), NSStringFromClass(inTargetClass));
 	}
 
+if (outError)
+	{
+	NSDictionary *theUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+		[NSString stringWithFormat:@"cannot convert object of class %@ to %@", NSStringFromClass([inObject class]), NSStringFromClass(inTargetClass)], NSLocalizedDescriptionKey,
+		NULL
+		];
+	*outError = [NSError errorWithDomain:@"TODO_DOMAIN" code:-1 userInfo:theUserInfo];
+	}
 return(NULL);
 }
 

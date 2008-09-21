@@ -23,10 +23,13 @@
 @synthesize persistentObjectManager;
 @dynamic persistentIdentifier;
 @synthesize rowID;
+@synthesize created;
+@synthesize modified;
 
 + (CObjectTranscoder *)objectTranscoder
 {
-return([[[CObjectTranscoder alloc] initWithTargetObjectClass:[self class]] autorelease]);
+NSAssert(NO, @"Implement objectTranscoder in subclass");
+return(NULL);
 }
 
 + (NSString *)tableName
@@ -35,18 +38,12 @@ NSAssert(NO, @"Implement tableName in subclass");
 return(NULL);
 }
 
-+ (NSArray *)columns;
-{
-NSAssert(NO, @"Implement columns in subclass");
-return(NULL);
-}
-
 - (id)initWithPersistenObjectManager:(CPersistentObjectManager *)inManager rowID:(NSInteger)inRowID
 {
 if ((self = [super init]) != NULL)
 	{
 	self.persistentObjectManager = inManager;
-	rowID = -1;
+	rowID = inRowID;
 	}
 return(self);
 }
@@ -54,6 +51,8 @@ return(self);
 - (void)dealloc
 {
 self.persistentObjectManager = NULL;
+self.created = NULL;
+self.modified = NULL;
 //
 [super dealloc];
 }

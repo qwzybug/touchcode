@@ -34,7 +34,7 @@ if ((self = [super init]) != NULL)
 return(self);
 }
 
-- (void) dealloc
+- (void)dealloc
 {
 self.database = NULL;
 //
@@ -51,7 +51,9 @@ return(theObject);
 
 - (id)loadPersistentObjectOfClass:(Class)inClass rowID:(NSInteger)inRowID error:(NSError **)outError
 {
+NSAssert(inClass != NULL, @"Class should not be NULL");
 NSString *theTableName = [inClass tableName];
+NSAssert(theTableName != NULL, @"tableName should not be NULL");
 
 id theObject = NULL;
 
@@ -65,13 +67,20 @@ NSError *theError = NULL;
 NSString *theExpression = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE id = %d LIMIT 1", theTableName, inRowID];
 NSDictionary *theDictionary = [self.database rowForExpression:theExpression error:&theError];
 if (theDictionary == NULL)
+	{
 	return(NULL);
+	}
 
 // Create an object
 theObject = [[[inClass alloc] initWithPersistenObjectManager:self rowID:inRowID] autorelease];
 
 // Load object properties...
-[[[theObject class] objectTranscoder] updateObject:theObject withPropertiesInDictionary:theDictionary error:&theError];
+BOOL theResult = [[[theObject class] objectTranscoder] updateObject:theObject withPropertiesInDictionary:theDictionary error:&theError];
+if (theResult == NO)
+	{
+	[NSException raise:NSGenericException format:@"updateObject failed: %@", theError];
+	}
+
 
 return(theObject);
 }
