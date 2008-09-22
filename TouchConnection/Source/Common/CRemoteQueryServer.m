@@ -152,7 +152,7 @@ CManagedURLConnection *theURLConnection = [[[CManagedURLConnection alloc] initWi
 
 - (void)cancel
 {
-[[[CURLConnectionManager instance] channelForName:kRemoteQueryServerDefaultChannelName] cancelAll:YES];
+[[[CURLConnectionManager instance] channelForName:self.connectionChannelName] cancelAll:YES];
 }
 
 #pragma mark -
