@@ -81,27 +81,10 @@ return([NSString stringWithFormat:@"%@ (row_id: %d, feed.row_id: %d, identifier:
 
 #pragma mark -
 
-//- (BOOL)write:(NSError **)outError
-//{
-//CSqliteDatabase *theDatabase = self.persistentObjectManager.database;
-//
-//if (self.rowID == -1)
-//	{
-//	NSString *theExpression = [NSString stringWithFormat:@"INSERT INTO entry (feed_id, identifier, title, link, subtitle, content, updated) VALUES (%d, '%@', '%@', '%@', '%@', '%@', '%@')", self.feed.rowID, [self.identifier encodedForSql], [self.title encodedForSql], [[self.link absoluteString] encodedForSql], [self.subtitle encodedForSql], [self.content encodedForSql], [self.updated sqlDateString]];
-//	BOOL theResult = [theDatabase executeExpression:theExpression error:outError];
-//	if (theResult == NO)
-//		{
-//		return(NO);
-//		}
-//
-//	self.rowID = [theDatabase lastInsertRowID];
-//	}
-//else
-//	{
-//	// TODO -- This should be an update operation.
-//	}
-//
-//return(YES);
-//}
+- (BOOL)write:(NSError **)outError
+{
+NSAssert(NO, @"Use a subclass!");
+return(NO);
+}
 
 @end
