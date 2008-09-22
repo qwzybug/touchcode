@@ -61,4 +61,6 @@
 
 - (BOOL)updateFeed:(CFeed *)inFeed completionTicket:(CCompletionTicket *)inCompletionTicket;
 
+- (void)cancel;
+
 @end

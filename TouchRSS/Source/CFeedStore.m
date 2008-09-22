@@ -39,6 +39,7 @@
 #import "NSString_SqlExtensions.h"
 #import "CSqliteDatabase_Extensions.h"
 #import "CPersistentObjectManager.h"
+#import "CURLConnectionManagerChannel.h"
 
 #if !defined(TOUCHRSS_ALWAYS_RESET_DATABASE)
 #define TOUCHRSS_ALWAYS_RESET_DATABASE 0
@@ -291,6 +292,11 @@ CManagedURLConnection *theConnection = [[[CManagedURLConnection alloc] initWithR
 [[CURLConnectionManager instance] addAutomaticURLConnection:theConnection toChannel:@"RSS"];
 
 return(YES);
+}
+
+- (void)cancel
+{
+[[[CURLConnectionManager instance] channelForName:@"RSS"] cancelAll:YES];
 }
 
 #pragma mark -
