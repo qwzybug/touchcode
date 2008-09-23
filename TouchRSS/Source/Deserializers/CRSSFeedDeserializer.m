@@ -154,21 +154,27 @@ while (theCurrentNode != NULL)
 			{
 			case RSSElementNameCode_Title:
 				{
-				NSString *theContent = [NSString stringWithUTF8String:(const char *)xmlNodeGetContent(theCurrentNode)];
+				xmlChar *theContentBytes = xmlNodeGetContent(theCurrentNode);
+				NSString *theContent = [NSString stringWithUTF8String:(const char *)theContentBytes];
 				[inChannel setObject:theContent forKey:@"title"];
+				xmlFree(theContentBytes);
 				}
 				break;
 			case RSSElementNameCode_Link:
 				{
-				NSString *theContent = [NSString stringWithUTF8String:(const char *)xmlNodeGetContent(theCurrentNode)];
+				xmlChar *theContentBytes = xmlNodeGetContent(theCurrentNode);
+				NSString *theContent = [NSString stringWithUTF8String:(const char *)theContentBytes];
 				NSURL *theLink = [NSURL URLWithString:theContent];
 				[inChannel setObject:theLink forKey:@"link"];
+				xmlFree(theContentBytes);
 				}
 				break;
 			case RSSElementNameCode_Description:
 				{
-				NSString *theContent = [NSString stringWithUTF8String:(const char *)xmlNodeGetContent(theCurrentNode)];
+				xmlChar *theContentBytes = xmlNodeGetContent(theCurrentNode);
+				NSString *theContent = [NSString stringWithUTF8String:(const char *)theContentBytes];
 				[inChannel setObject:theContent forKey:@"subtitle"];
+				xmlFree(theContentBytes);
 				}
 				break;
 			default:
@@ -196,34 +202,44 @@ while (theCurrentNode != NULL && self.error == NULL)
 			{
 			case RSSElementNameCode_Title:
 				{
-				NSString *theContent = [NSString stringWithUTF8String:(const char *)xmlNodeGetContent(theCurrentNode)];
+				xmlChar *theContentBytes = xmlNodeGetContent(theCurrentNode);
+				NSString *theContent = [NSString stringWithUTF8String:(const char *)theContentBytes];
 				[inItem setObject:theContent forKey:@"title"];
+				xmlFree(theContentBytes);
 				}
 				break;
 			case RSSElementNameCode_Link:
 				{
-				NSString *theContent = [NSString stringWithUTF8String:(const char *)xmlNodeGetContent(theCurrentNode)];
+				xmlChar *theContentBytes = xmlNodeGetContent(theCurrentNode);
+				NSString *theContent = [NSString stringWithUTF8String:(const char *)theContentBytes];
 				NSURL *theLink = [NSURL URLWithString:theContent];
 				[inItem setObject:theLink forKey:@"link"];
+				xmlFree(theContentBytes);
 				}
 				break;
 			case RSSElementNameCode_Description:
 				{
-				NSString *theContent = [NSString stringWithUTF8String:(const char *)xmlNodeGetContent(theCurrentNode)];
+				xmlChar *theContentBytes = xmlNodeGetContent(theCurrentNode);
+				NSString *theContent = [NSString stringWithUTF8String:(const char *)theContentBytes];
 				[inItem setObject:theContent forKey:@"content"];
+				xmlFree(theContentBytes);
 				}
 				break;
 			case RSSElementNameCode_PubDate:
 				{
-				NSString *theContent = [NSString stringWithUTF8String:(const char *)xmlNodeGetContent(theCurrentNode)];
+				xmlChar *theContentBytes = xmlNodeGetContent(theCurrentNode);
+				NSString *theContent = [NSString stringWithUTF8String:(const char *)theContentBytes];
 				NSDate *theDate = [NSDate dateWithRFC1822String:theContent];
 				[inItem setObject:theDate forKey:@"updated"];
+				xmlFree(theContentBytes);
 				}
 				break;
 			case RSSElementNameCode_GUID:
 				{
-				NSString *theContent = [NSString stringWithUTF8String:(const char *)xmlNodeGetContent(theCurrentNode)];
+				xmlChar *theContentBytes = xmlNodeGetContent(theCurrentNode);
+				NSString *theContent = [NSString stringWithUTF8String:(const char *)theContentBytes];
 				[inItem setObject:theContent forKey:@"identifier"];
+				xmlFree(theContentBytes);
 				}
 				break;
 			default:
