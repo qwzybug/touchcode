@@ -207,17 +207,23 @@ return(theFeed);
 
 - (NSArray *)entriesForFeeds:(NSArray *)inFeeds;
 {
-return([self entriesForFeeds:inFeeds sortByColumn:@"updated" descending:YES]);
+return([self entriesForFeeds:inFeeds sortByColumn:@"updated" descending:YES limit:-1]);
 }
 
-- (NSArray *)entriesForFeeds:(NSArray *)inFeeds sortByColumn:(NSString *)inColumn descending:(BOOL)inDescending
+- (NSArray *)entriesForFeeds:(NSArray *)inFeeds sortByColumn:(NSString *)inColumn descending:(BOOL)inDescending limit:(NSInteger)inLimit
 {
 NSMutableArray *theEntries = [NSMutableArray array];
 
 Class theClass = [[self class] feedEntryClass];
 
 NSError *theError = NULL;
-NSString *theExpression = [NSString stringWithFormat:@"SELECT * FROM entry WHERE feed_id IN (%@) ORDER BY %@ %@", [[inFeeds valueForKey:@"rowID"] componentsJoinedByString:@","], inColumn, inDescending ? @"DESC" : @""];
+NSString *theExpression = [NSString stringWithFormat:@"SELECT * FROM entry WHERE feed_id IN (%@)", [[inFeeds valueForKey:@"rowID"]componentsJoinedByString:@","]];
+
+theExpression = [theExpression stringByAppendingFormat:@" ORDER BY %@ %@", inColumn, inDescending ? @"DESC" : @""];
+if (inLimit > 0)
+	theExpression = [theExpression stringByAppendingFormat:@" LIMIT %d", inLimit];
+
+
 NSEnumerator *theEnumerator = [self.persistentObjectManager.database enumeratorForExpression:theExpression error:&theError];
 for (NSDictionary *theDictionary in theEnumerator)
 	{
