@@ -132,23 +132,24 @@ return([[theDictionary objectForKey:@"count()"] intValue]);
 
 - (CFeedEntry *)entryAtIndex:(NSInteger)inIndex
 {
+CFeedEntry *theFeedEntry = NULL;
+
 NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
 
 NSError *theError = NULL;
 NSString *theExpression = [NSString stringWithFormat:@"SELECT foreign_id FROM %@ WHERE id = %d LIMIT 1", self.randomAccessTemporaryTable.tableName, inIndex + 1];
 NSDictionary *theDictionary = [self.persistentObjectManager.database rowForExpression:theExpression error:&theError];
-if (theDictionary == NULL)
-	return(NULL);
+if (theDictionary)
+	{
+	NSInteger theRowID = [[theDictionary objectForKey:@"foreign_id"] integerValue];
 
-NSInteger theRowID = [[theDictionary objectForKey:@"foreign_id"] integerValue];
+	theFeedEntry = [self.persistentObjectManager loadPersistentObjectOfClass:[[self.feedStore class] feedEntryClass] rowID:theRowID error:&theError];
+	[theFeedEntry retain];
 
-CFeedEntry *theFeedEntry = [self.persistentObjectManager loadPersistentObjectOfClass:[[self.feedStore class] feedEntryClass] rowID:theRowID error:&theError];
-[theFeedEntry retain];
+	[thePool release];
 
-[thePool release];
-
-[theFeedEntry autorelease];
-
+	[theFeedEntry autorelease];
+	}
 return(theFeedEntry);
 }
 
