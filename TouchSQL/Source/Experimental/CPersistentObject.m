@@ -38,12 +38,21 @@ NSAssert(NO, @"Implement tableName in subclass");
 return(NULL);
 }
 
-- (id)initWithPersistenObjectManager:(CPersistentObjectManager *)inManager rowID:(NSInteger)inRowID
+- (id)init
 {
 if ((self = [super init]) != NULL)
 	{
+	rowID = -1;
+	}
+return(self);
+}
+
+- (id)initWithPersistenObjectManager:(CPersistentObjectManager *)inManager rowID:(NSInteger)inRowID
+{
+if ((self = [self init]) != NULL)
+	{
 	self.persistentObjectManager = inManager;
-	rowID = inRowID;
+	self.rowID = inRowID;
 	}
 return(self);
 }

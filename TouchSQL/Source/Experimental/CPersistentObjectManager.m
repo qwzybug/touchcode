@@ -132,6 +132,10 @@ NSString *theKey = inPersistentObject.persistentIdentifier;
 
 NSAssert1([self.cachedObjects objectForKey:theKey] == NULL, @"Object with same persistentIdentifier (%@) is already in the cache. This is bad.", theKey);
 
+#if defined(DEBUG)
+NSLog(@"PO CACHE #: %d", self.cachedObjects.count);
+#endif /* defined(DEBUG) */
+
 [self.cachedObjects setObject:inPersistentObject forKey:theKey];
 }
 
@@ -143,6 +147,10 @@ NSString *theKey = inPersistentObject.persistentIdentifier;
 
 if ([self.cachedObjects objectForKey:theKey] != NULL)
 	[self.cachedObjects removeObjectForKey:theKey];
+
+#if defined(DEBUG)
+NSLog(@"PO UNCACHE #: %d", self.cachedObjects.count);
+#endif /* defined(DEBUG) */
 	
 [thePool release];
 }
