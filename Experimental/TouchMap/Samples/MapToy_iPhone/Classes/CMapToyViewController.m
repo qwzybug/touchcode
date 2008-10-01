@@ -64,7 +64,7 @@ self.map.tileType = 4;
 {
 CLLocationCoordinate2D theCoordinate = { .latitude = 51.508, .longitude = -0.126 };
 
-[self.mapView.mainlayer scrollToCenterCoordinate:theCoordinate];
+[self.mapView.mapLayer scrollToCenterCoordinate:theCoordinate];
 }
 
 @end

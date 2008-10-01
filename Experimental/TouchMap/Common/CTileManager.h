@@ -22,12 +22,14 @@
 	CURLConnectionManager *connectionManager;
 	id <CTileManagerDelegate> delegate;
 	CLazyCache *cache;
+	BOOL enableDownloads;
 }
 
 @property (readonly, nonatomic, assign) CMap *map;
 @property (readonly, nonatomic, retain) CURLConnectionManager *connectionManager;
 @property (readwrite, nonatomic, retain) id <CTileManagerDelegate> delegate;
 @property (readonly, nonatomic, retain) CLazyCache *cache;
+@property (readwrite, nonatomic, assign) BOOL enableDownloads;
 
 - (id)initWithMap:(CMap *)inMap;
 

@@ -19,7 +19,7 @@
 
 @dynamic map;
 @synthesize placeholderImage;
-@dynamic mainlayer;
+@dynamic mapLayer;
 @synthesize eventHandler;
 
 + (Class)layerClass
@@ -51,18 +51,18 @@ if (map != inMap)
 		{
 		[map release];
 		map = NULL;
-		self.mainlayer.map = NULL;
+		self.mapLayer.map = NULL;
 		}
 		
 	if (inMap)
 		{
 		map = [inMap retain];
-		self.mainlayer.map = map;
+		self.mapLayer.map = map;
 		}
     }
 }
 
-- (CMapLayer *)mainlayer
+- (CMapLayer *)mapLayer
 {
 return((CMapLayer *)self.layer);
 }
@@ -105,11 +105,13 @@ return(YES);
 - (void)eventHandlerDidReceiveDragBegan:(CEventHandler *)inEventHandler
 {
 dragging = YES;
+//self.map.tileManager.enableDownloads = NO;
 }
 
 - (void)eventHandlerDidReceiveDragEnded:(CEventHandler *)inEventHandler
 {
 dragging = NO;
+//self.map.tileManager.enableDownloads = YES;
 }
 
 - (void)eventHandlerDidReceiveDoubleTap:(CEventHandler *)inEventHandler
@@ -117,33 +119,33 @@ dragging = NO;
 UITouch *theTouch = inEventHandler.currentTouches.anyObject;
 CGPoint theTouchLocation = [theTouch locationInView:self];
 
-CLLocationCoordinate2D theCoordinate = [self.mainlayer coordinateForPoint:theTouchLocation];
+CLLocationCoordinate2D theCoordinate = [self.mapLayer coordinateForPoint:theTouchLocation];
 
 [CATransaction begin];
 [CATransaction setValue:[NSNumber numberWithBool:YES] forKey:kCATransactionDisableActions];
 
 self.map.levelOfDetail += 1;
-[self.mainlayer scrollToCenterCoordinate:theCoordinate];
+[self.mapLayer scrollToCenterCoordinate:theCoordinate];
 
 [CATransaction commit];
 }
 
 - (void)eventHandler:(CEventHandler *)inEventHandler didReceiveZoomBy:(CGFloat)inDelta center:(CGPoint)inCenter
 {
-CLLocationCoordinate2D theCenterCoordinate = [self.mainlayer centerCoordinate];
+CLLocationCoordinate2D theCenterCoordinate = [self.mapLayer centerCoordinate];
 
 [CATransaction begin];
 [CATransaction setValue:[NSNumber numberWithBool:YES] forKey:kCATransactionDisableActions];
 
 self.map.levelOfDetailFloat += (inDelta / 400.0);
-[self.mainlayer scrollToCenterCoordinate:theCenterCoordinate];
+[self.mapLayer scrollToCenterCoordinate:theCenterCoordinate];
 
 [CATransaction commit];
 }
 
 - (void)eventHandler:(CEventHandler *)inEventHandler didReceiveScrollBy:(CGPoint)inDelta
 {
-[self.mainlayer scrollBy:inDelta];
+[self.mapLayer scrollBy:inDelta];
 }
 
 @end

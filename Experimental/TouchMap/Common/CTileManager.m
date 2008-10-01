@@ -27,6 +27,7 @@
 @synthesize connectionManager;
 @synthesize delegate;
 @synthesize cache;
+@synthesize enableDownloads;
 
 - (id)initWithMap:(CMap *)inMap;
 {
@@ -35,6 +36,7 @@ if ((self = [super init]) != nil)
 	self.map = inMap;
 	self.connectionManager = [CURLConnectionManager instance];
 	self.cache = [[[CLazyCache alloc] initWithCapacity:100] autorelease];
+	self.enableDownloads = YES;
 	}
 return(self);
 }
@@ -53,7 +55,7 @@ self.cache = NULL;
 {
 NSURL *theURL = [self URLFromIdentifier:inTileIdentifier];
 UIImage *theImage = [self.cache cachedObjectForKey:theURL];
-if (theImage == NULL)
+if (theImage == NULL && self.enableDownloads == YES)
 	{
 	NSURLRequest *theRequest = [NSURLRequest requestWithURL:theURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
 	
@@ -70,7 +72,6 @@ return(theImage);
 
 - (NSURL *)URLFromIdentifier:(id)inTileIdentifier
 {
-// TODO - URLForTileIdentifier is quite expensive. We should cache this maybe?
 return([self.map URLForTileIdentifier:inTileIdentifier]);
 }
 
@@ -82,6 +83,9 @@ NSURL *theURL = [self URLFromIdentifier:theTileIdentifier];
 UIImage *theImage = [UIImage imageWithData:theManagedURLConnection.data];
 
 [self.cache cacheObject:theImage forKey:theURL];
+
+if (self.enableDownloads == NO)
+	return;
 
 NSDictionary *theUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:
 	theTileIdentifier, @"tileIdentifier",

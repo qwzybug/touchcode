@@ -22,7 +22,7 @@
 
 @property (readwrite, nonatomic, retain) CMap *map;
 @property (readwrite, nonatomic, retain) UIImage *placeholderImage;
-@property (readonly, nonatomic, retain) CMapLayer *mainlayer;
+@property (readonly, nonatomic, retain) CMapLayer *mapLayer;
 @property (readwrite, nonatomic, retain) CEventHandler *eventHandler;
 
 @end
