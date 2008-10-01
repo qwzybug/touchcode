@@ -21,7 +21,7 @@
 static const NSString *kMapLevelOfDetailModifiedContext = @"kMapLevelOfDetailModifiedContext";
 static const NSString *kMapTileOriginModifiedContext = @"kMapTileOriginModifiedContext";
 
-#define kRemoveOldLayers 1
+#define kRemoveOldLayers 0
 
 @interface CMapLayer ()
 - (NSSet *)tilesToBeDisplayed;
@@ -167,6 +167,7 @@ NSSet *theTileXYsByTileIdentifier = [self tilesToBeDisplayed];
 
 // #############################################################################
 
+// TODO this is NOT working.
 #if kRemoveOldLayers
 
 NSMutableSet *theNotNeededTiles = [NSMutableSet setWithArray:self.tileLayers.allKeys];

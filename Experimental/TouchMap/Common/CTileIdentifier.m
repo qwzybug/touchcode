@@ -29,22 +29,22 @@ theTileIdentifier->tileType = inTileType;
 return(theTileIdentifier);
 }
 
-- (NSUInteger)hash
-{
-if (_hash == 0)
-	{
-	NSString *theHashString = [NSString stringWithFormat:@"%d,(%d, %d),%d,%d", levelOfDetail, tilePoint.x, tilePoint.y, tileSize, tileType];
-	_hash = [theHashString hash];
-	}
-return(_hash);
-}
+//- (NSUInteger)hash
+//{
+//if (_hash == 0)
+//	{
+//	NSString *theHashString = [NSString stringWithFormat:@"%d,(%d, %d),%d,%d", levelOfDetail, tilePoint.x, tilePoint.y, tileSize, tileType];
+//	_hash = [theHashString hash];
+//	}
+//return(_hash);
+//}
 
-- (BOOL)isEqual:(id)inObject
-{
-if ([inObject isKindOfClass:[self class]] == NO)
-	return(NO);
-return([self hash] == [inObject hash]);
-}
+//- (BOOL)isEqual:(id)inObject
+//{
+//if ([inObject isKindOfClass:[self class]] == NO)
+//	return(NO);
+//return([self hash] == [inObject hash]);
+//}
 
 - (id)copyWithZone:(NSZone *)zone
 {
@@ -56,9 +56,14 @@ theCopy->tileType = tileType;
 return(theCopy);
 }
 
+//- (NSString *)description
+//{
+//return([NSString stringWithFormat:@"%@ (LOD: %d, XY: (%d, %d), SIZE: %d, HASH: 0x0%u)", [super description], self.levelOfDetail, self.tilePoint.x, self.tilePoint.y, self.tileSize, _hash]);
+//}
+
 - (NSString *)description
 {
-return([NSString stringWithFormat:@"%@ (LOD: %d, XY: (%d, %d), SIZE: %d, HASH: 0x0%u)", [super description], self.levelOfDetail, self.tilePoint.x, self.tilePoint.y, self.tileSize, _hash]);
+return([NSString stringWithFormat:@"%@ (LOD: %d, XY: (%d, %d), SIZE: %d, HASH: 0x0%u)", [super description], self.levelOfDetail, self.tilePoint.x, self.tilePoint.y, self.tileSize, [self hash]]);
 }
 
 #pragma mark -

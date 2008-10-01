@@ -10,10 +10,15 @@
 
 #import "CMap.h"
 #import "CTileIdentifier.h"
+#import "CLazyCache.h"
 
 @interface CTileManager ()
 @property (readwrite, nonatomic, assign) CMap *map;
 @property (readwrite, nonatomic, retain) CURLConnectionManager *connectionManager;
+@property (readwrite, nonatomic, retain) CLazyCache *cache;
+
+- (NSURL *)URLFromIdentifier:(id)inTileIdentifier;
+
 @end
 
 @implementation CTileManager
@@ -21,6 +26,7 @@
 @synthesize map;
 @synthesize connectionManager;
 @synthesize delegate;
+@synthesize cache;
 
 - (id)initWithMap:(CMap *)inMap;
 {
@@ -28,6 +34,7 @@ if ((self = [super init]) != nil)
 	{
 	self.map = inMap;
 	self.connectionManager = [CURLConnectionManager instance];
+	self.cache = [[[CLazyCache alloc] initWithCapacity:100] autorelease];
 	}
 return(self);
 }
@@ -37,37 +44,60 @@ return(self);
 self.map = NULL;
 self.connectionManager = NULL;
 self.delegate = NULL;
+self.cache = NULL;
 //
 [super dealloc];
 }
 
 - (UIImage *)tileImageForTileIdentifier:(CTileIdentifier *)inTileIdentifier
 {
-// TODO
-//return [self.cache objectForKey:inTileIdentifier];
-return(NULL);
+NSURL *theURL = [self URLFromIdentifier:inTileIdentifier];
+UIImage *theImage = [self.cache cachedObjectForKey:theURL];
+if (theImage == NULL)
+	{
+	NSURLRequest *theRequest = [NSURLRequest requestWithURL:theURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
+	
+	CCompletionTicket *theTicket = [CCompletionTicket completionTicketWithIdentifier:NULL delegate:self userInfo:inTileIdentifier];
+	
+	CManagedURLConnection *theConnection = [[[CManagedURLConnection alloc] initWithRequest:theRequest completionTicket:theTicket] autorelease];
+	
+	[self.connectionManager addAutomaticURLConnection:theConnection toChannel:@"tiles"];
+	}
+return(theImage);
 }
 
 #pragma mark -
 
-- (NSURL *) URLFromIdentifier:(id)inTileIdentifier {
-return [self.map URLForTileIdentifier:inTileIdentifier];
+- (NSURL *)URLFromIdentifier:(id)inTileIdentifier
+{
+// TODO - URLForTileIdentifier is quite expensive. We should cache this maybe?
+return([self.map URLForTileIdentifier:inTileIdentifier]);
 }
 
-//- (void) cacheDidUpdate:(id)cacheKey {
-//NSDictionary *theUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-//								 cacheKey, @"tileIdentifier",
-//								 NULL];
-//	
-//[[NSNotificationCenter defaultCenter] postNotificationName:@"CTileManagerReceivedData" object:self userInfo:theUserInfo];
-//}
+- (void)completionTicket:(CCompletionTicket *)inCompletionTicket didCompleteForTarget:(id)inTarget result:(id)inResult;
+{
+CManagedURLConnection *theManagedURLConnection = (CManagedURLConnection *)inTarget;
+CTileIdentifier *theTileIdentifier = inCompletionTicket.userInfo;
+NSURL *theURL = [self URLFromIdentifier:theTileIdentifier];
+UIImage *theImage = [UIImage imageWithData:theManagedURLConnection.data];
 
-//- (NSData *) cachedObjectSerialize:(id)object {
-//return UIImagePNGRepresentation(object);
-//}
-//
-//- (id) cachedObjectDeserialize:(NSData *)object {
-//return [UIImage imageWithData:object];
-//}
+[self.cache cacheObject:theImage forKey:theURL];
+
+NSDictionary *theUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+	theTileIdentifier, @"tileIdentifier",
+	NULL];
+
+[[NSNotificationCenter defaultCenter] postNotificationName:@"CTileManagerReceivedData" object:self userInfo:theUserInfo];
+}
+
+- (void)completionTicket:(CCompletionTicket *)inCompletionTicket didFailForTarget:(id)inTarget error:(NSError *)inError
+{
+NSLog(@"FAIL");
+}
+
+- (void)completionTicket:(CCompletionTicket *)inCompletionTicket didCancelForTarget:(id)inTarget
+{
+NSLog(@"CANCEL");
+}
 
 @end

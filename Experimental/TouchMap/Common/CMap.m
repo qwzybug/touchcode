@@ -128,8 +128,9 @@ return(VEPixelXYToLatLon(inPixelXY, inLevelOfDetail, self.tileSize));
 
 - (NSURL *)URLForTileIdentifier:(CTileIdentifier *)inTileIdentifier
 {
+// TODO -- cache all of this!
+// TODO - we need to make sure generation is updated!!!
 int theGeneration = 137;
-#warning TODO - we need to make sure generation is updated!!!
 NSInteger theTileSize = inTileIdentifier.tileSize;
 NSString *theQuadKey = inTileIdentifier.quadKey;
 
@@ -147,7 +148,7 @@ switch (self.tileType)
 		break;
 	case TileType_ShadingHill:
 		{
-//		theTileType = @"shading.hill";
+		theTileType = @"shading.hill";
 		theURLString = [NSString stringWithFormat:@"http://t%c.tiles.virtualearth.net/tiles/cmd/mobileTile?g=%d&a=%@&size=%d&base=r&baseatt=%@&fmt=png", theQuadFinalChar, theGeneration, theQuadKey, theTileSize, theTileType];
 		}
 		break;

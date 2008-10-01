@@ -7,7 +7,7 @@
 //
 
 #import "CImageTileView.h"
-#import "UIImage_ThumbnailExtensions.h"
+//#import "UIImage_ThumbnailExtensions.h"
 #import "CURLConnectionManager.h"
 #import "CURLConnectionManagerChannel.h"
 

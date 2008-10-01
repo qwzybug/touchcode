@@ -9,21 +9,25 @@
 #import <Foundation/Foundation.h>
 
 #import "CURLConnectionManager.h"
+#import "CCompletionTicket.h"
 
 @protocol CTileManagerDelegate;
 
 @class CMap;
 @class CTileIdentifier;
+@class CLazyCache;
 
-@interface CTileManager : NSObject {
+@interface CTileManager : NSObject <CCompletionTicketDelegate> {
 	CMap *map;
 	CURLConnectionManager *connectionManager;
 	id <CTileManagerDelegate> delegate;
+	CLazyCache *cache;
 }
 
 @property (readonly, nonatomic, assign) CMap *map;
 @property (readonly, nonatomic, retain) CURLConnectionManager *connectionManager;
 @property (readwrite, nonatomic, retain) id <CTileManagerDelegate> delegate;
+@property (readonly, nonatomic, retain) CLazyCache *cache;
 
 - (id)initWithMap:(CMap *)inMap;
 

@@ -44,7 +44,7 @@ self.spareObjects = NULL;
 
 - (id)createObject
 {
-NSLog(@"POOL SIZE: %d", self.spareObjects.count);
+//NSLog(@"POOL SIZE: %d", self.spareObjects.count);
 
 id theObject = NULL;
 if (self.spareObjects.count > 0)
@@ -67,7 +67,7 @@ return(theObject);
 
 - (void)returnObjectToPool:(id)inObject
 {
-NSLog(@"POOL SIZE: %d", self.spareObjects.count);
+//NSLog(@"POOL SIZE: %d", self.spareObjects.count);
 
 NSAssert(inObject != NULL, @"");
 

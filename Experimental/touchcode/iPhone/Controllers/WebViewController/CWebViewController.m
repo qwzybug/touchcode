@@ -7,9 +7,8 @@
 //
 
 #import "CWebViewController.h"
-#import "CLinkHandler.h"
-#import "CTrivialTemplate.h"
-#import "CJSONDeserializer.h"
+
+//#import "CLinkHandler.h"
 
 @interface CWebViewController ()
 @property (readwrite, nonatomic, retain) NSURL *currentURL;
@@ -108,7 +107,7 @@ if ([self.homeURL isEqual:self.currentURL] == YES)
 	theFrame.size.height = 416;
 	self.webView.frame = theFrame;
 	
-	self.navigationItem.hidden = NO;
+//	self.navigationController.navigationBar.hidden = NO;
 	}
 else
 	{
@@ -119,7 +118,7 @@ else
 	theFrame.size.height = 416;
 	self.webView.frame = theFrame;
 
-	self.navigationItem.hidden = YES;
+//	self.navigationController.navigationBar.visible = YES;
 	}
 }
 
@@ -157,12 +156,14 @@ UIActionSheet *theActionSheet = [[[UIActionSheet  alloc] initWithTitle:NULL dele
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType;
 {
+/*
 NSURL *theURL = [request URL];
 if ([[CLinkHandler instance] shouldHandleURL:theURL] == YES)
 	{
 	[[CLinkHandler instance] openURL:theURL];
 	return(NO);
 	}
+*/
 return(YES);
 }
 
@@ -185,8 +186,8 @@ if (buttonIndex == 0)
 else if (buttonIndex == 1)
 	{
 	NSString *theTitle = [self.webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-	NSURL *theLink = [[CLinkHandler instance] makeMailLink:[self.currentURL description] title:theTitle templateName:@"share_page_mail.txt"];
-	[[UIApplication sharedApplication] openURL:theLink];
+//	NSURL *theLink = [[CLinkHandler instance] makeMailLink:[self.currentURL description] title:theTitle templateName:@"share_page_mail.txt"];
+//	[[UIApplication sharedApplication] openURL:theLink];
 	}
 }
 
