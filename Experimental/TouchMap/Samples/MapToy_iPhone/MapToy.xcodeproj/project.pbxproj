@@ -76,6 +76,7 @@
 		4518F7BE0E93E84E0010F6CD /* CrossSwitchButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4518F7890E93E84E0010F6CD /* CrossSwitchButton.png */; };
 		4518F7BF0E93E84E0010F6CD /* CTapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4518F78B0E93E84E0010F6CD /* CTapView.m */; };
 		4518F7C00E93E84E0010F6CD /* UIView_LayoutExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4518F78D0E93E84E0010F6CD /* UIView_LayoutExtensions.m */; };
+		4518F9BE0E9405EF0010F6CD /* MSVELogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4518F9BD0E9405EF0010F6CD /* MSVELogo.png */; };
 		454F43E00E4F643B0078CEDD /* CObjectPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 454F43DF0E4F643B0078CEDD /* CObjectPool.m */; };
 		45638A640E1A99340001A247 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45638A610E1A99340001A247 /* CoreLocation.framework */; };
 		45638A650E1A99340001A247 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45638A620E1A99340001A247 /* CoreGraphics.framework */; };
@@ -226,6 +227,7 @@
 		4518F78B0E93E84E0010F6CD /* CTapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTapView.m; sourceTree = "<group>"; };
 		4518F78C0E93E84E0010F6CD /* UIView_LayoutExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIView_LayoutExtensions.h; sourceTree = "<group>"; };
 		4518F78D0E93E84E0010F6CD /* UIView_LayoutExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIView_LayoutExtensions.m; sourceTree = "<group>"; };
+		4518F9BD0E9405EF0010F6CD /* MSVELogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MSVELogo.png; sourceTree = "<group>"; };
 		454F43DE0E4F643B0078CEDD /* CObjectPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CObjectPool.h; sourceTree = "<group>"; };
 		454F43DF0E4F643B0078CEDD /* CObjectPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CObjectPool.m; sourceTree = "<group>"; };
 		45638A610E1A99340001A247 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -653,6 +655,7 @@
 				458ABDD50E1C14390084E7C5 /* VirtualEarthTileGeometry.m */,
 				454F43DE0E4F643B0078CEDD /* CObjectPool.h */,
 				454F43DF0E4F643B0078CEDD /* CObjectPool.m */,
+				4518F9BD0E9405EF0010F6CD /* MSVELogo.png */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -729,6 +732,7 @@
 				4518F7A70E93E84E0010F6CD /* CWebViewController.xib in Resources */,
 				4518F7B10E93E84E0010F6CD /* LabelledValueTableViewCell.xib in Resources */,
 				4518F7BE0E93E84E0010F6CD /* CrossSwitchButton.png in Resources */,
+				4518F9BE0E9405EF0010F6CD /* MSVELogo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,32 +10,61 @@
 
 #import "CMap.h"
 #import "CMapView.h"
+#import "CMapLayer.h"
 
 @implementation CMapToyViewController
 
-@dynamic scrollView;
+@synthesize map;
+@synthesize mapView = outletMapView;
+
+- (void) dealloc
+{
+self.map = NULL;
+self.mapView = NULL;
+//
+[super dealloc];
+}
+
+//
 
 - (void)loadView
 {
 [super loadView];
-/*
-self.scrollView.showsVerticalScrollIndicator = NO;
-self.scrollView.showsHorizontalScrollIndicator = NO;
-self.scrollView.contentSize = CGSizeMake(1000,1000);
-*/
 
-CMap *theMap = [[[CMap alloc] init] autorelease];
-outletMapView.map = theMap;
+self.map = [[[CMap alloc] init] autorelease];
+self.mapView.map = self.map;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-return(YES);
+return(NO);
 }
 
-- (UIScrollView *)scrollView
+- (IBAction)actionMapStyle1:(id)inSender
 {
-return((UIScrollView *)self.view);
+self.map.tileType = 1;
+}
+
+- (IBAction)actionMapStyle2:(id)inSender
+{
+self.map.tileType = 2;
+}
+
+- (IBAction)actionMapStyle3:(id)inSender
+{
+self.map.tileType = 3;
+}
+
+- (IBAction)actionMapStyle4:(id)inSender
+{
+self.map.tileType = 4;
+}
+
+- (IBAction)actionLocate:(id)inSender;
+{
+CLLocationCoordinate2D theCoordinate = { .latitude = 51.508, .longitude = -0.126 };
+
+[self.mapView.mainlayer scrollToCenterCoordinate:theCoordinate];
 }
 
 @end

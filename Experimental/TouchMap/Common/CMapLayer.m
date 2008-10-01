@@ -20,6 +20,7 @@
 
 static const NSString *kMapLevelOfDetailModifiedContext = @"kMapLevelOfDetailModifiedContext";
 static const NSString *kMapTileOriginModifiedContext = @"kMapTileOriginModifiedContext";
+static const NSString *kMapTileTypeModifiedContext = @"kMapTileTypeModifiedContext";
 
 #define kRemoveOldLayers 0
 
@@ -51,14 +52,14 @@ if ((self = [super init]) != nil)
 	self.tileLayers = [NSMutableDictionary dictionary];
 	self.mapObjectLayers = [NSMutableSet set];
 	
-	UIImage *theImage = [UIImage imageNamed:@"msVE.png"];
+	UIImage *theImage = [UIImage imageNamed:@"MSVELogo.png"];
 	CGSize theSize = theImage.size;
 	const CGRect theBounds = { .origin = CGPointZero, .size = theSize };
 	CALayer *theAttributionLayer = [CALayer layer];
 	theAttributionLayer.bounds = theBounds;
 	theAttributionLayer.anchorPoint = CGPointZero;
 	theAttributionLayer.contents = (id)theImage.CGImage;
-	theAttributionLayer.position = CGPointMake(0, 340);
+	theAttributionLayer.position = CGPointMake(0, 380);
 	[self addSublayer:theAttributionLayer];
 
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tileManagerDidReceiveData:) name:@"CTileManagerReceivedData" object:self.map.tileManager];
@@ -103,6 +104,7 @@ if (map != inMap)
 
 		[self.map addObserver:self forKeyPath:@"levelOfDetail" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld | NSKeyValueObservingOptionInitial context:(void *)kMapLevelOfDetailModifiedContext];
 		[self.map addObserver:self forKeyPath:@"tileOrigin" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld | NSKeyValueObservingOptionInitial context:(void *)kMapTileOriginModifiedContext];
+		[self.map addObserver:self forKeyPath:@"tileType" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld | NSKeyValueObservingOptionInitial context:(void *)kMapTileTypeModifiedContext];
 
 		CLLocationCoordinate2D theCoordinate = { 0, 0 };
 		[self scrollToCenterCoordinate:theCoordinate];
@@ -387,22 +389,9 @@ CTileIdentifier *theTileIdentifier = [theUserInfo objectForKey:@"tileIdentifier"
 CMapObjectLayer *theTileLayer = [self.tileLayers objectForKey:theTileIdentifier];
 if (theTileLayer)
 	{
-//	NSData *theData = [theUserInfo objectForKey:@"data"];
-
-
-//	BOOL oldCachePreflightMode = self.map.tileManager.cache.performExpensiveLoads;
-//	self.map.tileManager.cache.performExpensiveLoads = NO;
-
-
 	UIImage *theImage = [self.map.tileManager tileImageForTileIdentifier:theTileIdentifier];
-	if (theImage == NULL)
-		{
-//		theImage = self.placeholderImage;
-		}
-
-//	self.map.tileManager.cache.performExpensiveLoads = oldCachePreflightMode;
-
-	theTileLayer.contents = (id)theImage.CGImage;
+	if (theImage)
+		theTileLayer.contents = (id)theImage.CGImage;
 	}
 }
 
@@ -410,7 +399,7 @@ if (theTileLayer)
 
 - (void)observeValueForKeyPath:(NSString *)inKeyPath ofObject:(id)inObject change:(NSDictionary *)inChange context:(void *)ioContext
 {
-if (ioContext == kMapLevelOfDetailModifiedContext)
+if (ioContext == kMapLevelOfDetailModifiedContext || ioContext == kMapTileTypeModifiedContext)
 	{
 	[CATransaction begin];
 	[CATransaction setValue:[NSNumber numberWithBool:YES] forKey:kCATransactionDisableActions];

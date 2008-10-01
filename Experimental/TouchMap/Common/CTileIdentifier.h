@@ -17,7 +17,7 @@
 	CIntegerPoint tilePoint;
 	NSInteger tileSize;
 	ETileType tileType;
-//	NSUInteger _hash;
+	NSUInteger _hash;
 }
 
 @property (readonly, assign) NSInteger levelOfDetail;
