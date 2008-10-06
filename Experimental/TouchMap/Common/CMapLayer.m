@@ -10,10 +10,8 @@
 
 #import "CALayer_Extensions.h"
 #import "CTileManager.h"
-#import "QuartzUtilities.h"
 #import "CMap.h"
 #import "CMarkerLayer.h"
-#import "NSValue_Extensions.h"
 #import "CTileIdentifier.h"
 #import "VirtualEarthTileGeometry.h"
 #import "CObjectPool.h"
@@ -218,21 +216,6 @@ for (CTileIdentifier *theTileIdentifier in theTileXYsByTileIdentifier)
 
 		[theTileLayer setValue:theTileIdentifier forKey:@"tileIdentifier"];
 		
-//		#if 1 && TARGET_OS_IPHONE == 0
-//		theTileLayer.borderWidth = 1.0;
-//
-//		CIntegerPoint theTilePoint = theTileIdentifier.tilePoint;
-//
-//		CATextLayer *theTextLayer = [CATextLayer layer];
-//
-//		theTextLayer.string = [NSString stringWithFormat:@"%d, %d", theTilePoint.x, theTilePoint.y];
-//		theTextLayer.foregroundColor = CGColorCreateGenericGray(0.0, 1.0);
-//		theTextLayer.wrapped = YES;
-//		theTextLayer.fontSize = 18.0;
-//		theTextLayer.frame = theImageRect;
-//		[theTileLayer addSublayer:theTextLayer];
-//		#endif
-		
 		[theNewTiles addObject:theTileLayer];
 		}
 	}
@@ -261,6 +244,8 @@ for (CMapObjectLayer *theTileLayer in theNewTiles)
 	}
 
 [CATransaction commit];
+
+NSLog(@"Count: %d", self.tileLayers.count);
 }
 
 - (void)repositionLayers
