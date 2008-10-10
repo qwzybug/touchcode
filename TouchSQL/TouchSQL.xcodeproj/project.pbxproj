@@ -27,8 +27,6 @@
 		45552E450856C7DE006456A2 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45552E440856C7DE006456A2 /* SenTestingKit.framework */; };
 		4593A183066D2D2E007B6932 /* CSqliteDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 4593A167066D2D2E007B6932 /* CSqliteDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4593A184066D2D2E007B6932 /* CSqliteDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4593A168066D2D2E007B6932 /* CSqliteDatabase.m */; };
-		4593A185066D2D2E007B6932 /* CSqliteDatabase_ConvenienceExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 4593A169066D2D2E007B6932 /* CSqliteDatabase_ConvenienceExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4593A186066D2D2E007B6932 /* CSqliteDatabase_ConvenienceExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4593A16A066D2D2E007B6932 /* CSqliteDatabase_ConvenienceExtensions.m */; };
 		4593A187066D2D2E007B6932 /* CSqliteDatabase_Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 4593A16B066D2D2E007B6932 /* CSqliteDatabase_Extensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4593A188066D2D2E007B6932 /* CSqliteDatabase_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4593A16C066D2D2E007B6932 /* CSqliteDatabase_Extensions.m */; };
 		4593A189066D2D2E007B6932 /* CSqliteEnumerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 4593A16D066D2D2E007B6932 /* CSqliteEnumerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -74,8 +72,6 @@
 		45552E440856C7DE006456A2 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = /System/Library/Frameworks/SenTestingKit.framework; sourceTree = "<absolute>"; };
 		4593A167066D2D2E007B6932 /* CSqliteDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSqliteDatabase.h; sourceTree = "<group>"; };
 		4593A168066D2D2E007B6932 /* CSqliteDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSqliteDatabase.m; sourceTree = "<group>"; };
-		4593A169066D2D2E007B6932 /* CSqliteDatabase_ConvenienceExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSqliteDatabase_ConvenienceExtensions.h; sourceTree = "<group>"; };
-		4593A16A066D2D2E007B6932 /* CSqliteDatabase_ConvenienceExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSqliteDatabase_ConvenienceExtensions.m; sourceTree = "<group>"; };
 		4593A16B066D2D2E007B6932 /* CSqliteDatabase_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSqliteDatabase_Extensions.h; sourceTree = "<group>"; };
 		4593A16C066D2D2E007B6932 /* CSqliteDatabase_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSqliteDatabase_Extensions.m; sourceTree = "<group>"; };
 		4593A16D066D2D2E007B6932 /* CSqliteEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSqliteEnumerator.h; sourceTree = "<group>"; };
@@ -187,8 +183,6 @@
 				45E92DE10856B4CC00B7327A /* ToxicSQL.h */,
 				4593A167066D2D2E007B6932 /* CSqliteDatabase.h */,
 				4593A168066D2D2E007B6932 /* CSqliteDatabase.m */,
-				4593A169066D2D2E007B6932 /* CSqliteDatabase_ConvenienceExtensions.h */,
-				4593A16A066D2D2E007B6932 /* CSqliteDatabase_ConvenienceExtensions.m */,
 				4593A16B066D2D2E007B6932 /* CSqliteDatabase_Extensions.h */,
 				4593A16C066D2D2E007B6932 /* CSqliteDatabase_Extensions.m */,
 				4593A16D066D2D2E007B6932 /* CSqliteEnumerator.h */,
@@ -229,7 +223,6 @@
 			files = (
 				8DC2EF510486A6940098B216 /* Prefix.pch in Headers */,
 				4593A183066D2D2E007B6932 /* CSqliteDatabase.h in Headers */,
-				4593A185066D2D2E007B6932 /* CSqliteDatabase_ConvenienceExtensions.h in Headers */,
 				4593A187066D2D2E007B6932 /* CSqliteDatabase_Extensions.h in Headers */,
 				4593A189066D2D2E007B6932 /* CSqliteEnumerator.h in Headers */,
 				4593A18B066D2D2E007B6932 /* NSArray_SqlExtensions.h in Headers */,
@@ -363,7 +356,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4593A184066D2D2E007B6932 /* CSqliteDatabase.m in Sources */,
-				4593A186066D2D2E007B6932 /* CSqliteDatabase_ConvenienceExtensions.m in Sources */,
 				4593A188066D2D2E007B6932 /* CSqliteDatabase_Extensions.m in Sources */,
 				4593A18A066D2D2E007B6932 /* CSqliteEnumerator.m in Sources */,
 				4593A18C066D2D2E007B6932 /* NSArray_SqlExtensions.m in Sources */,
