@@ -35,32 +35,26 @@
 @class CFeed;
 @class CPersistentObjectManager;
 @class CRSSFeedDeserializer;
+@class CFeedFetcher;
 
-@interface CFeedStore : NSObject <CCompletionTicketDelegate> {
+@interface CFeedStore : NSObject {
 	NSString *databasePath;
 	CPersistentObjectManager *persistentObjectManager;
 	NSMutableSet *feeds;
-	NSMutableSet *currentURLs;
+	CFeedFetcher *feedFetcher;
 }
 
 @property (readwrite, nonatomic, retain) NSString *databasePath;
 @property (readonly, nonatomic, retain) CPersistentObjectManager *persistentObjectManager;
+@property (readonly, nonatomic, retain) CFeedFetcher *feedFetcher;
 
 + (Class)feedClass;
 + (Class)feedEntryClass;
-
-- (CRSSFeedDeserializer *)deserializerForData:(NSData *)inData;
 
 - (NSInteger)countOfFeeds;
 - (CFeed *)feedAtIndex:(NSInteger)inIndex;
 - (CFeed *)feedforURL:(NSURL *)inURL;
 - (NSArray *)entriesForFeeds:(NSArray *)inFeeds;
 - (NSArray *)entriesForFeeds:(NSArray *)inFeeds sortByColumn:(NSString *)inColumn descending:(BOOL)inDescending limit:(NSInteger)inLimit;
-
-- (CFeed *)subscribeToURL:(NSURL *)inURL error:(NSError **)outError;
-
-- (BOOL)updateFeed:(CFeed *)inFeed completionTicket:(CCompletionTicket *)inCompletionTicket;
-
-- (void)cancel;
 
 @end
