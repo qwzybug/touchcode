@@ -39,14 +39,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 45FFD66A0E999852003FFB32 /* TouchSQL.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 8DC2EF5B0486A6940098B216 /* TouchSQL.framework */;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
 			remoteInfo = TouchSQL;
 		};
 		45FFD6890E999852003FFB32 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 45FFD66A0E999852003FFB32 /* TouchSQL.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 45E931A50856C12500B7327A /* UnitTests.octest */;
+			remoteGlobalIDString = 45E931A50856C12500B7327A;
 			remoteInfo = UnitTests;
 		};
 /* End PBXContainerItemProxy section */
