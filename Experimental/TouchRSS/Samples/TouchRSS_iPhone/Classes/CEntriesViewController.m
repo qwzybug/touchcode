@@ -29,7 +29,7 @@ static CLazyCache *gTimestampCache = NULL;
 
 @implementation CEntriesViewController
 
-@dynamic feedStore;
+@synthesize feedStore;
 @synthesize entries;
 @dynamic feeds;
 @dynamic feed;
@@ -63,24 +63,6 @@ self.view = NULL;
 }
 
 #pragma mark -
-
-- (CFeedStore *)feedStore
-{
-if (feedStore == NULL)
-	{
-	self.feedStore = [[[CFeedStore alloc] init] autorelease];
-	}
-return(feedStore); 
-}
-
-- (void)setFeedStore:(CFeedStore *)inFeedStore
-{
-if (feedStore != inFeedStore)
-	{
-	[feedStore autorelease];
-	feedStore = [inFeedStore retain];
-    }
-}
 
 - (NSArray *)feeds
 {
@@ -227,6 +209,7 @@ if (self.progressOverlayView)
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+NSLog(@"ENTRIES: %d", self.entries.count);
 return(self.entries.count);
 }
 
@@ -263,8 +246,8 @@ return(theCell);
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIViewController <CEntriesDetailViewController> *theViewController = [self detailViewControllerWithEntries:self.entries currentEntryIndex:indexPath.row];
-    [self.navigationController pushViewController:theViewController animated:YES];
+UIViewController <CEntriesDetailViewController> *theViewController = [self detailViewControllerWithEntries:self.entries currentEntryIndex:indexPath.row];
+[self.navigationController pushViewController:theViewController animated:YES];
 }
 
 #pragma mark -

@@ -40,13 +40,13 @@ self.nextPreviousEntrySegmentedControl = NULL;
 
 #pragma mark -
 
-//- (void)viewDidLoad;
-//{
-//    [super viewDidLoad];
-//
-//    if (self.navigationItem.title == NULL)
-//        self.navigationItem.title = @"News";
-//
+- (void)viewDidLoad;
+{
+[super viewDidLoad];
+
+if (self.navigationItem.title == NULL)
+	self.navigationItem.title = @"News";
+
 //    NSArray *theImages = [NSArray arrayWithObjects:
 //        [UIImage imageNamed:@"up.png"],
 //        [UIImage imageNamed:@"down.png"],
@@ -64,13 +64,15 @@ self.nextPreviousEntrySegmentedControl = NULL;
 //    self.nextPreviousEntrySegmentedControl.frame = segmentedFrame;
 //    [headerView addSubview:(headerView.segmentedControl = self.nextPreviousEntrySegmentedControl)];
 //    [self.nextPreviousEntrySegmentedControl release];
-//
-//    [self updateUI];
-//}
+
+[self updateUI];
+}
 
 - (void)loadHTMLForEntry:(CFeedEntry *)inEntry
 {
 [CBundleResourceURLProtocol load];
+
+NSLog(@"loadHTMLForEntry: %@", inEntry);
 
 NSDateFormatter *theDateFormatter = [[[NSDateFormatter alloc] init] autorelease];
 [theDateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
@@ -104,12 +106,14 @@ NSError *theError = NULL;
 //[theReplacementDictionary setObject:theShareNewsLink forKey:@"share_news_mail_link"];
 //
 NSString *theHTML = [self.template transform:theReplacementDictionary error:&theError];
-	
+
 [self loadHTMLString:theHTML baseURL:inEntry.link];
 }
 
 - (void)updateUI
 {
+NSLog(@"UpdateUI");
+
 [outletNextPreviousEntrySegmentedControl setEnabled:self.currentEntryIndex > 0 forSegmentAtIndex:0];
 [outletNextPreviousEntrySegmentedControl setEnabled:self.currentEntryIndex < self.entries.count - 1 forSegmentAtIndex:1];
 //

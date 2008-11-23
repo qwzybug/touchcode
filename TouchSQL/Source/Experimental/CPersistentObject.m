@@ -11,9 +11,12 @@
 #import "CObjectTranscoder.h"
 #import "CPersistentObjectManager.h"
 #import "CSqliteDatabase.h"
+#import "NSString_SqlExtensions.h"
 
 @interface CPersistentObject ()
 @property (readwrite, nonatomic, assign) CPersistentObjectManager *persistentObjectManager;
+
+- (BOOL)columnNames:(NSArray **)outColumnNames values:(NSArray **)outValues includeRowID:(BOOL)inIncludeRowID error:(NSError **)outError;
 @end
 
 #pragma mark -
@@ -36,6 +39,11 @@ return(NULL);
 {
 NSAssert(NO, @"Implement tableName in subclass");
 return(NULL);
+}
+
++ (NSArray *)persistentPropertyNames
+{
+return([NSArray arrayWithObjects:@"rowID", @"created", @"modified", NULL]);
 }
 
 - (id)init
@@ -103,35 +111,105 @@ if (rowID != inRowID)
 
 #pragma mark -
 
-//- (BOOL)write:(NSError **)outError
-//{
-//CSqliteDatabase *theDatabase = self.persistentObjectManager.database;
-//
-//[theDatabase begin];
-//
-//if (self.rowID == -1)
-//	{
-//	NSString *theExpression = NULL;
-//	BOOL theResult = NO;
-//
-//	theExpression = [NSString stringWithFormat:@"INSERT INTO entry (%@) VALUES (%@)", self.feed.rowID, [self.identifier encodedForSql], [self.title encodedForSql], [[self.link absoluteString] encodedForSql], [self.subtitle encodedForSql], [self.content encodedForSql], [self.updated sqlDateString]];
-////	BOOL theResult = [theDatabase executeExpression:theExpression error:outError];
-////	if (theResult == NO)
-////		{
-////		return(NO);
-////		}
-//
-//	self.rowID = [theDatabase lastInsertRowID];
-//	}
-//else
-//	{
-//	// TODO -- This should be an update operation.
-//	}
-//	
-//[theDatabase commit];
-//
-//return(YES);
-//}
+- (BOOL)write:(NSError **)outError
+{
+BOOL theResult = NO;
+if (self.rowID == -1)
+	{
+	NSLog(@"INSERT");
+	
+	NSArray *theColumnNames = NULL;
+	NSArray *theValues = NULL;
+	theResult = [self columnNames:&theColumnNames values:&theValues includeRowID:NO error:outError];
+	if (theResult == YES)
+		{
+		NSString *theExpression = [NSString stringWithFormat:@"INSERT INTO entry (%@) VALUES (%@)", [theColumnNames componentsJoinedByString:@","], [theValues componentsJoinedByString:@","]];		
+		CSqliteDatabase *theDatabase = self.persistentObjectManager.database;
+		BOOL theResult = [theDatabase executeExpression:theExpression error:outError];
+		if (theResult == YES)
+			self.rowID = [theDatabase lastInsertRowID];
+		}
+	}
+else
+	{
+	NSArray *theColumnNames = NULL;
+	NSArray *theValues = NULL;
+	theResult = [self columnNames:&theColumnNames values:&theValues includeRowID:YES error:outError];
+	if (theResult == YES)
+		{
+		NSMutableArray *theSetClauses = [NSMutableArray arrayWithCapacity:theColumnNames.count];
+		NSEnumerator *theValueEnumerator = [theValues objectEnumerator];
+		for (NSString *theColumnName in theColumnNames)
+			{
+			[theSetClauses addObject:[NSString stringWithFormat:@"%@ = %@", theColumnName, [theValueEnumerator nextObject]]];
+			}
+
+		NSString *theExpression = [NSString stringWithFormat:@"UPDATE entry SET %@ WHERE id = %d", [theSetClauses componentsJoinedByString:@","], self.rowID];		
+		CSqliteDatabase *theDatabase = self.persistentObjectManager.database;
+		theResult = [theDatabase executeExpression:theExpression error:outError];
+		}
+	}
+return(theResult);
+}
+
+#pragma mark -
+
+- (BOOL)columnNames:(NSArray **)outColumnNames values:(NSArray **)outValues includeRowID:(BOOL)inIncludeRowID error:(NSError **)outError
+{
+CObjectTranscoder *theTranscoder = [[self class] objectTranscoder];
+
+NSArray *thePropertyNames = [[self class] persistentPropertyNames];
+NSMutableArray *theColumnNames = [NSMutableArray arrayWithCapacity:thePropertyNames.count];
+NSMutableArray *theValueStrings = [NSMutableArray arrayWithCapacity:thePropertyNames.count];
+
+for (NSString *thePropertyName in thePropertyNames)
+	{
+	if (inIncludeRowID == NO && [thePropertyName isEqualToString:@"rowID"])
+		continue;
+
+	id theValue = [self valueForKey:thePropertyName];
+	if (theValue == NULL)
+		theValue = [NSNull null];
+
+	NSString *theValueString = NULL;
+
+	if ([theValue respondsToSelector:@selector(encodedForSql)])
+		{
+		theValueString = [theValue encodedForSql];
+		theValueString = [NSString stringWithFormat:@"'%@'", theValueString];
+		}
+	else if ([theValue isKindOfClass:[NSNumber class]])
+		{
+		theValueString = [theValue stringValue];
+		}
+	else if ([theValue isKindOfClass:[CPersistentObject class]])
+		{
+		theValueString = [NSString stringWithFormat:@"%d", [theValue rowID]];
+		}
+	else
+		{
+		theValueString = [theTranscoder transformObject:theValue toObjectOfClass:[NSString class] error:outError];
+		if (theValueString == NULL)
+			continue;
+		theValueString = [theValueString encodedForSql];
+		theValueString = [NSString stringWithFormat:@"'%@'", theValueString];
+		}
+
+
+	NSString *theColumnName = [theTranscoder.invertedPropertyNameMappings objectForKey:thePropertyName];
+	if (theColumnName == NULL)
+		theColumnName = thePropertyName;
+	[theColumnNames addObject:theColumnName]; // TODO property name != column name
+	[theValueStrings addObject:theValueString];
+	}
+
+if (outColumnNames)
+	*outColumnNames = theColumnNames;
+if (outValues)
+	*outValues = theValueStrings;
+
+return(YES);
+}
 
 
 @end

@@ -50,6 +50,4 @@
 @property (readwrite, nonatomic, retain) NSURL *link;
 @property (readwrite, nonatomic, retain) NSDate *updated;
 
-- (BOOL)write:(NSError **)outError;
-
 @end

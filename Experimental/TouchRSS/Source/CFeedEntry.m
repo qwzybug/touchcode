@@ -51,11 +51,17 @@
 return(@"entry");
 }
 
++ (NSArray *)persistentPropertyNames
+{
+return([[super persistentPropertyNames] arrayByAddingObjectsFromArray:[NSArray arrayWithObjects:@"feed", @"identifier", @"title", @"subtitle", @"content", @"link", @"updated", NULL]]);
+}
+
 + (CObjectTranscoder *)objectTranscoder
 {
 CObjectTranscoder *theTranscoder = [[[CObjectTranscoder alloc] initWithTargetObjectClass:[self class]] autorelease];
 theTranscoder.propertyNameMappings = [NSDictionary dictionaryWithObjectsAndKeys:
 	@"rowID", @"id",
+	@"feed", @"feed_id",
 	NULL];
 return(theTranscoder);
 }
@@ -77,14 +83,6 @@ self.updated = NULL;
 - (NSString *)description
 {
 return([NSString stringWithFormat:@"%@ (row_id: %d, feed.row_id: %d, identifier: %@, title: %@)", [super description], self.rowID, self.feed.rowID, self.identifier, self.title]);
-}
-
-#pragma mark -
-
-- (BOOL)write:(NSError **)outError
-{
-NSAssert(NO, @"Use a subclass!");
-return(NO);
 }
 
 @end

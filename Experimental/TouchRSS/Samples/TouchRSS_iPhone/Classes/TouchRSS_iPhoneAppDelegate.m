@@ -7,7 +7,6 @@
 //
 
 #import "TouchRSS_iPhoneAppDelegate.h"
-#import "RootViewController.h"
 
 
 @implementation TouchRSS_iPhoneAppDelegate

@@ -46,6 +46,7 @@
 @interface CFeedStore ()
 @property (readwrite, nonatomic, retain) CPersistentObjectManager *persistentObjectManager;
 @property (readwrite, nonatomic, retain) CFeedFetcher *feedFetcher;
+@property (readwrite, nonatomic, retain) NSArray *feeds;
 @end
 
 #pragma mark -
@@ -55,6 +56,7 @@
 @dynamic databasePath;
 @dynamic persistentObjectManager;
 @synthesize feedFetcher;
+@dynamic feeds;
 
 + (Class)feedClass
 {
@@ -63,7 +65,6 @@ return([CFeed class]);
 
 + (Class)feedEntryClass
 {
-NSAssert(NO, @"WARNING: Someone called -[CFeedEntry feedEntryClass]. This is bad.");
 return([CFeedEntry class]);
 }
 
@@ -80,6 +81,7 @@ return(self);
 {
 self.databasePath = NULL;
 self.feedFetcher = NULL;
+self.feeds = NULL;
 //
 [super dealloc];
 }
@@ -153,7 +155,38 @@ if (persistentObjectManager != inPersistentObjectManager)
 
 #pragma mark -
 
-#pragma mark -
+- (NSArray *)feeds
+{
+if (mutableFeeds == NULL)
+	{
+	NSMutableArray *theFeeds = [NSMutableArray array];
+
+	NSError *theError = NULL;
+	NSString *theExpression = [NSString stringWithFormat:@"SELECT id FROM feed"];
+	NSArray *theRows = [self.persistentObjectManager.database rowsForExpression:theExpression error:&theError];
+
+	for (NSDictionary *theRow in theRows)
+		{
+		NSInteger theRowID = [[theRow objectForKey:@"id"] integerValue];
+
+		CFeed *theFeed = [self.persistentObjectManager loadPersistentObjectOfClass:[[self class] feedClass] rowID:theRowID error:&theError];
+		[theFeeds addObject:theFeed];
+		}
+		
+	self.feeds = theFeeds;
+	}
+
+return(mutableFeeds);
+}
+
+- (void)setFeeds:(NSArray *)inFeeds
+{
+if (mutableFeeds != inFeeds)
+	{
+	[mutableFeeds autorelease];
+	mutableFeeds = [inFeeds mutableCopy];
+    }
+}
 
 - (NSInteger)countOfFeeds
 {
@@ -232,8 +265,19 @@ for (NSDictionary *theDictionary in theEnumerator)
 return([[theEntries copy] autorelease]);
 }
 
-
 #pragma mark -
 
+- (void)updateFeed:(CFeed *)inFeed
+{
+[self.feedFetcher updateFeed:inFeed completionTicket:NULL];
+}
+
+- (void)updateAllFeeds
+{
+for (CFeed *theFeed in self.feeds)
+	{
+	[self updateFeed:theFeed];
+	}
+}
 
 @end

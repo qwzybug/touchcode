@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface TouchRSS_iPhoneAppDelegate : NSObject <UIApplicationDelegate> {
-    
     UIWindow *window;
     UINavigationController *navigationController;
 }

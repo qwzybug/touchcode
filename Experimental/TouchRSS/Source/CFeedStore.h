@@ -29,8 +29,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "CCompletionTicket.h"
-
 @class CSqliteDatabase;
 @class CFeed;
 @class CPersistentObjectManager;
@@ -40,13 +38,14 @@
 @interface CFeedStore : NSObject {
 	NSString *databasePath;
 	CPersistentObjectManager *persistentObjectManager;
-	NSMutableSet *feeds;
+	NSMutableArray *mutableFeeds;
 	CFeedFetcher *feedFetcher;
 }
 
 @property (readwrite, nonatomic, retain) NSString *databasePath;
 @property (readonly, nonatomic, retain) CPersistentObjectManager *persistentObjectManager;
 @property (readonly, nonatomic, retain) CFeedFetcher *feedFetcher;
+@property (readonly, nonatomic, retain) NSArray *feeds;
 
 + (Class)feedClass;
 + (Class)feedEntryClass;
@@ -56,5 +55,8 @@
 - (CFeed *)feedforURL:(NSURL *)inURL;
 - (NSArray *)entriesForFeeds:(NSArray *)inFeeds;
 - (NSArray *)entriesForFeeds:(NSArray *)inFeeds sortByColumn:(NSString *)inColumn descending:(BOOL)inDescending limit:(NSInteger)inLimit;
+
+- (void)updateFeed:(CFeed *)inFeed;
+- (void)updateAllFeeds;
 
 @end

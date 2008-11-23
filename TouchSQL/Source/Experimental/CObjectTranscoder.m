@@ -40,6 +40,7 @@ static const char* getPropertyType(objc_property_t property);
 
 @synthesize targetObjectClass;
 @synthesize propertyNameMappings;
+@dynamic invertedPropertyNameMappings;
 
 - (id)initWithTargetObjectClass:(Class)inTargetObjectClass
 {
@@ -58,6 +59,20 @@ self.propertyNameMappings = NULL;
 }
 
 #pragma mark -
+
+- (NSDictionary *)invertedPropertyNameMappings
+{
+if (invertedPropertyNameMappings == NULL)
+	{
+	NSMutableDictionary *theDictionary = [NSMutableDictionary dictionaryWithCapacity:self.propertyNameMappings.count];
+	for (id theKey in self.propertyNameMappings)
+		{
+		[theDictionary setObject:theKey forKey:[self.propertyNameMappings objectForKey:theKey]];
+		}
+	invertedPropertyNameMappings = [theDictionary copy];
+	}
+return(invertedPropertyNameMappings);
+}
 
 - (NSDictionary *)dictionaryForObjectUpdate:(id)inObject withPropertiesInDictionary:(NSDictionary *)inDictionary error:(NSError **)outError
 {
@@ -220,6 +235,10 @@ else if ([inObject isKindOfClass:[NSDictionary class]] && inTargetClass == [NSSt
 else if ([inObject isKindOfClass:[NSDictionary class]] && inTargetClass == [NSDictionary class])
 	{
 	return(inObject);
+	}
+else if ([inObject isKindOfClass:[NSNumber class]] && inTargetClass == [NSString class])
+	{
+	return([inObject stringValue]);
 	}
 else if ([inObject isKindOfClass:[NSNull class]])
 	{

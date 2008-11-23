@@ -33,7 +33,7 @@
 
 + (id)webViewController;
 {
-CWebViewController *theWebViewController = [[[self alloc] initWithNibName:NSStringFromClass([CWebViewController class]) bundle:NULL] autorelease];
+CWebViewController *theWebViewController = [[[self alloc] initWithNibName:@"CWebViewController" bundle:NULL] autorelease];
 return(theWebViewController);
 }
 

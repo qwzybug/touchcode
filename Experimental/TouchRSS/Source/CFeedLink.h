@@ -6,7 +6,7 @@
 //  Copyright 2008 toxicsoftware.com. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 
 @interface CFeedLink : NSObject {

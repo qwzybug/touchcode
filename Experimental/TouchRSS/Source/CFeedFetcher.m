@@ -182,7 +182,7 @@ for (id theDictionary in theDeserializer)
 			if (theEntry == NULL)
 				{
 				NSError *theError = NULL;
-				theEntry = [self.feedStore.persistentObjectManager makePersistentObjectOfClass:[[self class] feedEntryClass] error:&theError];
+				theEntry = [self.feedStore.persistentObjectManager makePersistentObjectOfClass:[[self.feedStore class] feedEntryClass] error:&theError];
 				if (theEntry == NULL && theError != NULL)
 					{
 					[NSException raise:NSGenericException format:@"makePersistentObjectOfClass failed.: %@", theError];

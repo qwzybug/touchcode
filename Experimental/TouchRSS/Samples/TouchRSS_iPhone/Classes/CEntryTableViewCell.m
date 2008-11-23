@@ -16,7 +16,7 @@
 + (CEntryTableViewCell *)cell
 {
 // TODO -- this is really silly.
-NSArray *theObjects = [[NSBundle mainBundle] loadNibNamed:@"EntryTableViewCell" owner:self options:NULL];
+NSArray *theObjects = [[NSBundle mainBundle] loadNibNamed:@"CEntryTableViewCell" owner:self options:NULL];
 for (id theObject in theObjects)
 	if ([theObject isKindOfClass:self])
 		return(theObject);

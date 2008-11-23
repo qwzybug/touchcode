@@ -1,0 +1,42 @@
+<html>
+	<head> 
+		<title>${title}</title>
+		<link rel="stylesheet" href="x-resource:///events.css"/>
+		<meta name="viewport" content="initial-scale = 1, user-scalable = yes, maximum-scale = 1" />
+		<script type="text/javascript" src="x-resource:///jquery-1.2.6.min.js"></script>
+		<script type="text/javascript" src="x-resource:///entry_view.js"></script>
+	</head>
+	<body>
+	<div class="rc">
+		<h2>${title}</h2>
+		<div class="inner">
+<!--			<p><em>TODO</em></p> -->
+			${content}
+			<table summary="event details">
+				<tr valign="top">
+					<td class="label">Type</td>
+					<td class="value">${entry.eventInfo.eventType}</td>
+				</tr>
+				<tr valign="top">
+					<td class="label">When</td>
+					<td class="value">${entry.eventInfo:TidyEvent}</td>
+				</tr>
+				<tr valign="top">
+					<td class="label">Host</td>
+					<td class="value">${entry.eventInfo.host}</td>
+				</tr>
+				<tr valign="top">
+					<td class="label">Address</td>
+					<td class="value">${entry.eventInfo.address.street}<br/>${entry.eventInfo.address.city}, ${entry.eventInfo.address.state}<br/>${entry.eventInfo.address.zipcode}</td>
+
+				</tr>
+			</table>
+		</div>	
+	</div>
+
+	<p><a href="x-obama-08:open_link/http://maps.google.com/maps?q=${entry.eventInfo.address.street:URLEncode}%20${entry.eventInfo.address.city:URLEncode}%20${entry.eventInfo.address.state:URLEncode}%20${entry.eventInfo.address.zipcode:URLEncode}" class="button">View Directions in Maps</a></p>
+
+	<p><a href="${share_events_mail_link}" class="button">Email this Info</a></p>
+
+	</body>
+</html>	 

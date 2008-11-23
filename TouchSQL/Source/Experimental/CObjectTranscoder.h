@@ -33,10 +33,12 @@
 @interface CObjectTranscoder : NSObject {
 	Class targetObjectClass;
 	NSDictionary *propertyNameMappings;
+	NSDictionary *invertedPropertyNameMappings;
 }
 
 @property (readwrite, assign) Class targetObjectClass;
 @property (readwrite, retain) NSDictionary *propertyNameMappings;
+@property (readwrite, retain) NSDictionary *invertedPropertyNameMappings;
 
 - (id)initWithTargetObjectClass:(Class)inTargetObjectClass;
 

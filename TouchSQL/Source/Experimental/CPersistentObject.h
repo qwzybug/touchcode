@@ -25,8 +25,11 @@
 @property (readwrite, nonatomic, retain) NSDate *modified;
 
 + (CObjectTranscoder *)objectTranscoder;
-+ (NSString *)tableName;
++ (NSString *)tableName; // This could be moved to objectTranscoder?
++ (NSArray *)persistentPropertyNames; // This could be moved to object transcoder?
 
 - (id)initWithPersistenObjectManager:(CPersistentObjectManager *)inManager rowID:(NSInteger)inRowID;
+
+- (BOOL)write:(NSError **)outError;
 
 @end
