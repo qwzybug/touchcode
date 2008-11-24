@@ -61,12 +61,6 @@ self.forwardsButton = NULL;
 [super viewDidLoad];
 
 self.webView.scalesPageToFit = YES;
-
-//    NSRange theRange = [[[UIDevice currentDevice].model uppercaseString] rangeOfString:@"PHONE"];
-//    if (theRange.length == 0)
-//        self.webView.detectsPhoneNumbers = NO;
-//    else
-//        self.webView.detectsPhoneNumbers = YES;
 self.webView.detectsPhoneNumbers = NO;
 
 if (self.initialHTMLString)
@@ -98,28 +92,28 @@ self.homeURL = inBaseURL;
 self.backButton.enabled = self.webView.canGoBack;
 self.forwardsButton.enabled = self.webView.canGoForward;
 
-if ([self.homeURL isEqual:self.currentURL] == YES)
-	{
-	self.toolbar.hidden = YES;
-
-	CGRect theFrame = self.webView.frame;
-	theFrame.origin.y = 44;
-	theFrame.size.height = 416;
-	self.webView.frame = theFrame;
-	
-//	self.navigationController.navigationBar.hidden = NO;
-	}
-else
-	{
-	self.toolbar.hidden = NO;
-
-	CGRect theFrame = self.webView.frame;
-	theFrame.origin.y = 0;
-	theFrame.size.height = 416;
-	self.webView.frame = theFrame;
-
-//	self.navigationController.navigationBar.visible = YES;
-	}
+//if ([self.homeURL isEqual:self.currentURL] == YES)
+//	{
+//	self.toolbar.hidden = YES;
+//
+//	CGRect theFrame = self.webView.frame;
+//	theFrame.origin.y = 44;
+//	theFrame.size.height = 416;
+//	self.webView.frame = theFrame;
+//	
+////	self.navigationController.navigationBar.hidden = NO;
+//	}
+//else
+//	{
+//	self.toolbar.hidden = NO;
+//
+//	CGRect theFrame = self.webView.frame;
+//	theFrame.origin.y = 0;
+//	theFrame.size.height = 416;
+//	self.webView.frame = theFrame;
+//
+////	self.navigationController.navigationBar.visible = YES;
+//	}
 }
 
 - (IBAction)back:(id)inSender
@@ -139,7 +133,6 @@ else
 
 - (IBAction)home:(id)inSender
 {
-NSLog(@"HOME");
 if (self.initialHTMLString)
 	[self loadHTMLString:self.initialHTMLString baseURL:self.homeURL];
 else if (self.homeURL)

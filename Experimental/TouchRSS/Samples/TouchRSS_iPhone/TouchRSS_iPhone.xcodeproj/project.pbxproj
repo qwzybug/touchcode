@@ -18,48 +18,18 @@
 		458CE9040ED7140300D77DCA /* CDemoFeedStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 458CE9030ED7140300D77DCA /* CDemoFeedStore.m */; };
 		458CE90E0ED7157B00D77DCA /* FeedsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 458CE90D0ED7157B00D77DCA /* FeedsViewController.xib */; };
 		458CEC280ED7385D00D77DCA /* snapback.png in Resources */ = {isa = PBXBuildFile; fileRef = 458CEC270ED7385D00D77DCA /* snapback.png */; };
-		458CED000ED7423400D77DCA /* additional.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 458CECD60ED7423400D77DCA /* additional.jpg */; };
 		458CED010ED7423400D77DCA /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 458CECD70ED7423400D77DCA /* bg.png */; };
-		458CED020ED7423400D77DCA /* civilrights.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 458CECD80ED7423400D77DCA /* civilrights.jpg */; };
-		458CED030ED7423400D77DCA /* defense.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 458CECD90ED7423400D77DCA /* defense.jpg */; };
-		458CED040ED7423400D77DCA /* disabilities.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 458CECDA0ED7423400D77DCA /* disabilities.jpg */; };
-		458CED050ED7423400D77DCA /* economy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 458CECDB0ED7423400D77DCA /* economy.jpg */; };
-		458CED060ED7423400D77DCA /* education.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 458CECDC0ED7423400D77DCA /* education.jpg */; };
-		458CED070ED7423400D77DCA /* energy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 458CECDD0ED7423400D77DCA /* energy.jpg */; };
 		458CED080ED7423400D77DCA /* entry.css in Resources */ = {isa = PBXBuildFile; fileRef = 458CECDE0ED7423400D77DCA /* entry.css */; };
 		458CED090ED7423400D77DCA /* entry_view.js in Sources */ = {isa = PBXBuildFile; fileRef = 458CECDF0ED7423400D77DCA /* entry_view.js */; };
-		458CED0A0ED7423400D77DCA /* ethics.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 458CECE00ED7423400D77DCA /* ethics.jpg */; };
 		458CED0B0ED7423400D77DCA /* event_buttonbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 458CECE10ED7423400D77DCA /* event_buttonbg.png */; };
 		458CED0C0ED7423400D77DCA /* events.css in Resources */ = {isa = PBXBuildFile; fileRef = 458CECE20ED7423400D77DCA /* events.css */; };
-		458CED0D0ED7423400D77DCA /* faith.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 458CECE30ED7423400D77DCA /* faith.jpg */; };
-		458CED0E0ED7423400D77DCA /* family.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 458CECE40ED7423400D77DCA /* family.jpg */; };
-		458CED0F0ED7423400D77DCA /* fiscal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 458CECE50ED7423400D77DCA /* fiscal.jpg */; };
-		458CED100ED7423400D77DCA /* foreignpolicy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 458CECE60ED7423400D77DCA /* foreignpolicy.jpg */; };
-		458CED110ED7423400D77DCA /* healthcare.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 458CECE70ED7423400D77DCA /* healthcare.jpg */; };
-		458CED120ED7423400D77DCA /* homeland.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 458CECE80ED7423400D77DCA /* homeland.jpg */; };
-		458CED130ED7423400D77DCA /* immigration.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 458CECE90ED7423400D77DCA /* immigration.jpg */; };
-		458CED140ED7423400D77DCA /* iraq.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 458CECEA0ED7423400D77DCA /* iraq.jpg */; };
 		458CED150ED7423400D77DCA /* issues_header.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 458CECEB0ED7423400D77DCA /* issues_header.jpg */; };
 		458CED160ED7423400D77DCA /* jquery-1.2.6.min.js in Sources */ = {isa = PBXBuildFile; fileRef = 458CECEC0ED7423400D77DCA /* jquery-1.2.6.min.js */; };
 		458CED170ED7423400D77DCA /* pdf_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 458CECED0ED7423400D77DCA /* pdf_icon.png */; };
-		458CED180ED7423400D77DCA /* poverty.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 458CECEE0ED7423400D77DCA /* poverty.jpg */; };
 		458CED190ED7423400D77DCA /* rcbgbottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 458CECEF0ED7423400D77DCA /* rcbgbottom.png */; };
 		458CED1A0ED7423400D77DCA /* rcbgtop.png in Resources */ = {isa = PBXBuildFile; fileRef = 458CECF00ED7423400D77DCA /* rcbgtop.png */; };
-		458CED1B0ED7423400D77DCA /* rural.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 458CECF10ED7423400D77DCA /* rural.jpg */; };
-		458CED1C0ED7423400D77DCA /* seniors.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 458CECF20ED7423400D77DCA /* seniors.jpg */; };
-		458CED1D0ED7423400D77DCA /* service.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 458CECF30ED7423400D77DCA /* service.jpg */; };
-		458CED1E0ED7423400D77DCA /* technology.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 458CECF40ED7423400D77DCA /* technology.jpg */; };
-		458CED1F0ED7423400D77DCA /* template_issues.html in Resources */ = {isa = PBXBuildFile; fileRef = 458CECF50ED7423400D77DCA /* template_issues.html */; };
-		458CED200ED7423400D77DCA /* template_localevents.html in Resources */ = {isa = PBXBuildFile; fileRef = 458CECF60ED7423400D77DCA /* template_localevents.html */; };
-		458CED210ED7423400D77DCA /* template_meta.html in Resources */ = {isa = PBXBuildFile; fileRef = 458CECF70ED7423400D77DCA /* template_meta.html */; };
 		458CED220ED7423400D77DCA /* template_news.html in Resources */ = {isa = PBXBuildFile; fileRef = 458CECF80ED7423400D77DCA /* template_news.html */; };
-		458CED230ED7423400D77DCA /* template_nometa.html in Resources */ = {isa = PBXBuildFile; fileRef = 458CECF90ED7423400D77DCA /* template_nometa.html */; };
-		458CED240ED7423400D77DCA /* template_photos.html in Resources */ = {isa = PBXBuildFile; fileRef = 458CECFA0ED7423400D77DCA /* template_photos.html */; };
-		458CED250ED7423400D77DCA /* template_video.html in Resources */ = {isa = PBXBuildFile; fileRef = 458CECFB0ED7423400D77DCA /* template_video.html */; };
-		458CED260ED7423400D77DCA /* urbanpolicy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 458CECFC0ED7423400D77DCA /* urbanpolicy.jpg */; };
-		458CED270ED7423400D77DCA /* veterans.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 458CECFD0ED7423400D77DCA /* veterans.jpg */; };
 		458CED280ED7423400D77DCA /* whiteclearbuttonlong.png in Resources */ = {isa = PBXBuildFile; fileRef = 458CECFE0ED7423400D77DCA /* whiteclearbuttonlong.png */; };
-		458CED290ED7423400D77DCA /* women.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 458CECFF0ED7423400D77DCA /* women.jpg */; };
 		45FFD6BD0E999890003FFB32 /* CFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FFD6A50E999890003FFB32 /* CFeed.m */; };
 		45FFD6BE0E999890003FFB32 /* CFeedEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FFD6A70E999890003FFB32 /* CFeedEntry.m */; };
 		45FFD6C00E999890003FFB32 /* CFeedStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FFD6AB0E999890003FFB32 /* CFeedStore.m */; };
@@ -149,48 +119,18 @@
 		458CE9030ED7140300D77DCA /* CDemoFeedStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDemoFeedStore.m; sourceTree = "<group>"; };
 		458CE90D0ED7157B00D77DCA /* FeedsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedsViewController.xib; sourceTree = "<group>"; };
 		458CEC270ED7385D00D77DCA /* snapback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snapback.png; sourceTree = "<group>"; };
-		458CECD60ED7423400D77DCA /* additional.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = additional.jpg; sourceTree = "<group>"; };
 		458CECD70ED7423400D77DCA /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
-		458CECD80ED7423400D77DCA /* civilrights.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = civilrights.jpg; sourceTree = "<group>"; };
-		458CECD90ED7423400D77DCA /* defense.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = defense.jpg; sourceTree = "<group>"; };
-		458CECDA0ED7423400D77DCA /* disabilities.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = disabilities.jpg; sourceTree = "<group>"; };
-		458CECDB0ED7423400D77DCA /* economy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = economy.jpg; sourceTree = "<group>"; };
-		458CECDC0ED7423400D77DCA /* education.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = education.jpg; sourceTree = "<group>"; };
-		458CECDD0ED7423400D77DCA /* energy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = energy.jpg; sourceTree = "<group>"; };
 		458CECDE0ED7423400D77DCA /* entry.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = entry.css; sourceTree = "<group>"; };
 		458CECDF0ED7423400D77DCA /* entry_view.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = entry_view.js; sourceTree = "<group>"; };
-		458CECE00ED7423400D77DCA /* ethics.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ethics.jpg; sourceTree = "<group>"; };
 		458CECE10ED7423400D77DCA /* event_buttonbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = event_buttonbg.png; sourceTree = "<group>"; };
 		458CECE20ED7423400D77DCA /* events.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = events.css; sourceTree = "<group>"; };
-		458CECE30ED7423400D77DCA /* faith.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = faith.jpg; sourceTree = "<group>"; };
-		458CECE40ED7423400D77DCA /* family.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = family.jpg; sourceTree = "<group>"; };
-		458CECE50ED7423400D77DCA /* fiscal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fiscal.jpg; sourceTree = "<group>"; };
-		458CECE60ED7423400D77DCA /* foreignpolicy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = foreignpolicy.jpg; sourceTree = "<group>"; };
-		458CECE70ED7423400D77DCA /* healthcare.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = healthcare.jpg; sourceTree = "<group>"; };
-		458CECE80ED7423400D77DCA /* homeland.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = homeland.jpg; sourceTree = "<group>"; };
-		458CECE90ED7423400D77DCA /* immigration.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = immigration.jpg; sourceTree = "<group>"; };
-		458CECEA0ED7423400D77DCA /* iraq.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = iraq.jpg; sourceTree = "<group>"; };
 		458CECEB0ED7423400D77DCA /* issues_header.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = issues_header.jpg; sourceTree = "<group>"; };
 		458CECEC0ED7423400D77DCA /* jquery-1.2.6.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "jquery-1.2.6.min.js"; sourceTree = "<group>"; };
 		458CECED0ED7423400D77DCA /* pdf_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pdf_icon.png; sourceTree = "<group>"; };
-		458CECEE0ED7423400D77DCA /* poverty.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = poverty.jpg; sourceTree = "<group>"; };
 		458CECEF0ED7423400D77DCA /* rcbgbottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rcbgbottom.png; sourceTree = "<group>"; };
 		458CECF00ED7423400D77DCA /* rcbgtop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rcbgtop.png; sourceTree = "<group>"; };
-		458CECF10ED7423400D77DCA /* rural.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = rural.jpg; sourceTree = "<group>"; };
-		458CECF20ED7423400D77DCA /* seniors.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = seniors.jpg; sourceTree = "<group>"; };
-		458CECF30ED7423400D77DCA /* service.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = service.jpg; sourceTree = "<group>"; };
-		458CECF40ED7423400D77DCA /* technology.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = technology.jpg; sourceTree = "<group>"; };
-		458CECF50ED7423400D77DCA /* template_issues.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = template_issues.html; sourceTree = "<group>"; };
-		458CECF60ED7423400D77DCA /* template_localevents.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = template_localevents.html; sourceTree = "<group>"; };
-		458CECF70ED7423400D77DCA /* template_meta.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = template_meta.html; sourceTree = "<group>"; };
 		458CECF80ED7423400D77DCA /* template_news.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = template_news.html; sourceTree = "<group>"; };
-		458CECF90ED7423400D77DCA /* template_nometa.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = template_nometa.html; sourceTree = "<group>"; };
-		458CECFA0ED7423400D77DCA /* template_photos.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = template_photos.html; sourceTree = "<group>"; };
-		458CECFB0ED7423400D77DCA /* template_video.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = template_video.html; sourceTree = "<group>"; };
-		458CECFC0ED7423400D77DCA /* urbanpolicy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = urbanpolicy.jpg; sourceTree = "<group>"; };
-		458CECFD0ED7423400D77DCA /* veterans.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = veterans.jpg; sourceTree = "<group>"; };
 		458CECFE0ED7423400D77DCA /* whiteclearbuttonlong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteclearbuttonlong.png; sourceTree = "<group>"; };
-		458CECFF0ED7423400D77DCA /* women.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = women.jpg; sourceTree = "<group>"; };
 		45FFD6A40E999890003FFB32 /* CFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFeed.h; sourceTree = "<group>"; };
 		45FFD6A50E999890003FFB32 /* CFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFeed.m; sourceTree = "<group>"; };
 		45FFD6A60E999890003FFB32 /* CFeedEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFeedEntry.h; sourceTree = "<group>"; };
@@ -386,48 +326,18 @@
 		458CECD50ED7423400D77DCA /* Web */ = {
 			isa = PBXGroup;
 			children = (
-				458CECD60ED7423400D77DCA /* additional.jpg */,
 				458CECD70ED7423400D77DCA /* bg.png */,
-				458CECD80ED7423400D77DCA /* civilrights.jpg */,
-				458CECD90ED7423400D77DCA /* defense.jpg */,
-				458CECDA0ED7423400D77DCA /* disabilities.jpg */,
-				458CECDB0ED7423400D77DCA /* economy.jpg */,
-				458CECDC0ED7423400D77DCA /* education.jpg */,
-				458CECDD0ED7423400D77DCA /* energy.jpg */,
 				458CECDE0ED7423400D77DCA /* entry.css */,
 				458CECDF0ED7423400D77DCA /* entry_view.js */,
-				458CECE00ED7423400D77DCA /* ethics.jpg */,
 				458CECE10ED7423400D77DCA /* event_buttonbg.png */,
 				458CECE20ED7423400D77DCA /* events.css */,
-				458CECE30ED7423400D77DCA /* faith.jpg */,
-				458CECE40ED7423400D77DCA /* family.jpg */,
-				458CECE50ED7423400D77DCA /* fiscal.jpg */,
-				458CECE60ED7423400D77DCA /* foreignpolicy.jpg */,
-				458CECE70ED7423400D77DCA /* healthcare.jpg */,
-				458CECE80ED7423400D77DCA /* homeland.jpg */,
-				458CECE90ED7423400D77DCA /* immigration.jpg */,
-				458CECEA0ED7423400D77DCA /* iraq.jpg */,
 				458CECEB0ED7423400D77DCA /* issues_header.jpg */,
 				458CECEC0ED7423400D77DCA /* jquery-1.2.6.min.js */,
 				458CECED0ED7423400D77DCA /* pdf_icon.png */,
-				458CECEE0ED7423400D77DCA /* poverty.jpg */,
 				458CECEF0ED7423400D77DCA /* rcbgbottom.png */,
 				458CECF00ED7423400D77DCA /* rcbgtop.png */,
-				458CECF10ED7423400D77DCA /* rural.jpg */,
-				458CECF20ED7423400D77DCA /* seniors.jpg */,
-				458CECF30ED7423400D77DCA /* service.jpg */,
-				458CECF40ED7423400D77DCA /* technology.jpg */,
-				458CECF50ED7423400D77DCA /* template_issues.html */,
-				458CECF60ED7423400D77DCA /* template_localevents.html */,
-				458CECF70ED7423400D77DCA /* template_meta.html */,
 				458CECF80ED7423400D77DCA /* template_news.html */,
-				458CECF90ED7423400D77DCA /* template_nometa.html */,
-				458CECFA0ED7423400D77DCA /* template_photos.html */,
-				458CECFB0ED7423400D77DCA /* template_video.html */,
-				458CECFC0ED7423400D77DCA /* urbanpolicy.jpg */,
-				458CECFD0ED7423400D77DCA /* veterans.jpg */,
 				458CECFE0ED7423400D77DCA /* whiteclearbuttonlong.png */,
-				458CECFF0ED7423400D77DCA /* women.jpg */,
 			);
 			path = Web;
 			sourceTree = "<group>";
@@ -729,46 +639,16 @@
 				45FFDD460E99A067003FFB32 /* CEntryTableViewCell.xib in Resources */,
 				458CE90E0ED7157B00D77DCA /* FeedsViewController.xib in Resources */,
 				458CEC280ED7385D00D77DCA /* snapback.png in Resources */,
-				458CED000ED7423400D77DCA /* additional.jpg in Resources */,
 				458CED010ED7423400D77DCA /* bg.png in Resources */,
-				458CED020ED7423400D77DCA /* civilrights.jpg in Resources */,
-				458CED030ED7423400D77DCA /* defense.jpg in Resources */,
-				458CED040ED7423400D77DCA /* disabilities.jpg in Resources */,
-				458CED050ED7423400D77DCA /* economy.jpg in Resources */,
-				458CED060ED7423400D77DCA /* education.jpg in Resources */,
-				458CED070ED7423400D77DCA /* energy.jpg in Resources */,
 				458CED080ED7423400D77DCA /* entry.css in Resources */,
-				458CED0A0ED7423400D77DCA /* ethics.jpg in Resources */,
 				458CED0B0ED7423400D77DCA /* event_buttonbg.png in Resources */,
 				458CED0C0ED7423400D77DCA /* events.css in Resources */,
-				458CED0D0ED7423400D77DCA /* faith.jpg in Resources */,
-				458CED0E0ED7423400D77DCA /* family.jpg in Resources */,
-				458CED0F0ED7423400D77DCA /* fiscal.jpg in Resources */,
-				458CED100ED7423400D77DCA /* foreignpolicy.jpg in Resources */,
-				458CED110ED7423400D77DCA /* healthcare.jpg in Resources */,
-				458CED120ED7423400D77DCA /* homeland.jpg in Resources */,
-				458CED130ED7423400D77DCA /* immigration.jpg in Resources */,
-				458CED140ED7423400D77DCA /* iraq.jpg in Resources */,
 				458CED150ED7423400D77DCA /* issues_header.jpg in Resources */,
 				458CED170ED7423400D77DCA /* pdf_icon.png in Resources */,
-				458CED180ED7423400D77DCA /* poverty.jpg in Resources */,
 				458CED190ED7423400D77DCA /* rcbgbottom.png in Resources */,
 				458CED1A0ED7423400D77DCA /* rcbgtop.png in Resources */,
-				458CED1B0ED7423400D77DCA /* rural.jpg in Resources */,
-				458CED1C0ED7423400D77DCA /* seniors.jpg in Resources */,
-				458CED1D0ED7423400D77DCA /* service.jpg in Resources */,
-				458CED1E0ED7423400D77DCA /* technology.jpg in Resources */,
-				458CED1F0ED7423400D77DCA /* template_issues.html in Resources */,
-				458CED200ED7423400D77DCA /* template_localevents.html in Resources */,
-				458CED210ED7423400D77DCA /* template_meta.html in Resources */,
 				458CED220ED7423400D77DCA /* template_news.html in Resources */,
-				458CED230ED7423400D77DCA /* template_nometa.html in Resources */,
-				458CED240ED7423400D77DCA /* template_photos.html in Resources */,
-				458CED250ED7423400D77DCA /* template_video.html in Resources */,
-				458CED260ED7423400D77DCA /* urbanpolicy.jpg in Resources */,
-				458CED270ED7423400D77DCA /* veterans.jpg in Resources */,
 				458CED280ED7423400D77DCA /* whiteclearbuttonlong.png in Resources */,
-				458CED290ED7423400D77DCA /* women.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
