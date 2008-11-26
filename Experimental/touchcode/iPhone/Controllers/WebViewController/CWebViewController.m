@@ -178,7 +178,7 @@ if (buttonIndex == 0)
 	}
 else if (buttonIndex == 1)
 	{
-	NSString *theTitle = [self.webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+//	NSString *theTitle = [self.webView stringByEvaluatingJavaScriptFromString:@"document.title"];
 //	NSURL *theLink = [[CLinkHandler instance] makeMailLink:[self.currentURL description] title:theTitle templateName:@"share_page_mail.txt"];
 //	[[UIApplication sharedApplication] openURL:theLink];
 	}

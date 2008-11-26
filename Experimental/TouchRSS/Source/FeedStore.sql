@@ -21,12 +21,8 @@ CREATE TABLE IF NOT EXISTS feed (
 	subtitle,
 	link
 	);
-	
-INSERT INTO feed (url) VALUES("http://www.barackobama.com/rss/press/news.xml");
-INSERT INTO feed (url) VALUES("http://www.barackobama.com/rss/press/press.xml");
 
 -- #####################################################################
-
 
 DROP TABLE IF EXISTS entry;
 
@@ -52,3 +48,16 @@ CREATE TABLE IF NOT EXISTS entry (
 DROP INDEX IF EXISTS entry_index_1;
 
 CREATE UNIQUE INDEX IF NOT EXISTS entry_index_1 ON entry (feed_id, identifier);
+
+-- #####################################################################
+
+DROP TABLE IF EXISTS bookmark;
+
+CREATE TABLE IF NOT EXISTS bookmark (
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	created DEFAULT CURRENT_TIMESTAMP,
+	modified DEFAULT CURRENT_TIMESTAMP,
+	title,
+	URL UNIQUE ON CONFLICT IGNORE
+	);
+	

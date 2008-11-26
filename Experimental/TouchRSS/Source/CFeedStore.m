@@ -217,16 +217,25 @@ return(theFeed);
 
 - (CFeed *)feedforURL:(NSURL *)inURL
 {
+CFeed *theFeed = NULL;
 NSError *theError = NULL;
 NSString *theExpression = [NSString stringWithFormat:@"SELECT id FROM feed WHERE url = '%@'", [[inURL absoluteString] encodedForSql]];
 NSDictionary *theDictionary = [self.persistentObjectManager.database rowForExpression:theExpression error:&theError];
-if (theDictionary == NULL)
-	return(NULL);
-
-NSInteger theRowID = [[theDictionary objectForKey:@"id"] integerValue];
-
-CFeed *theFeed = [self.persistentObjectManager loadPersistentObjectOfClass:[[self class] feedClass] rowID:theRowID error:&theError];
-theFeed.feedStore = self;
+if (theDictionary != NULL)
+	{
+	NSInteger theRowID = [[theDictionary objectForKey:@"id"] integerValue];
+	theFeed = [self.persistentObjectManager loadPersistentObjectOfClass:[[self class] feedClass] rowID:theRowID error:&theError];
+	theFeed.feedStore = self;
+	}
+else
+	{
+	theFeed = [self.persistentObjectManager makePersistentObjectOfClass:[[self class] feedClass] error:&theError];
+	theFeed.feedStore = self;
+	theFeed.link = inURL;
+	theFeed.url = inURL;
+	if ([theFeed write:&theError] == NO)
+		theFeed = NULL;
+	}
 
 return(theFeed);
 }

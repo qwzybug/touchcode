@@ -64,6 +64,4 @@
 - (CFeedEntry *)entryAtIndex:(NSInteger)inIndex;
 - (CFeedEntry *)entryForIdentifier:(NSString *)inIdentifier;
 
-- (BOOL)write:(NSError **)outError;
-
 @end

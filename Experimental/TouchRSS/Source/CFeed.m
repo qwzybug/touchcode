@@ -57,6 +57,11 @@
 return(@"feed");
 }
 
++ (NSArray *)persistentPropertyNames
+{
+return([[super persistentPropertyNames] arrayByAddingObjectsFromArray:[NSArray arrayWithObjects:@"identifier", @"title", @"link", @"subtitle", @"url", NULL]]);
+}
+
 + (CObjectTranscoder *)objectTranscoder
 {
 CObjectTranscoder *theTranscoder = [[[CObjectTranscoder alloc] initWithTargetObjectClass:[self class]] autorelease];
@@ -169,33 +174,6 @@ if (theFeedEntry == NULL)
 	}
 
 return(theFeedEntry);
-}
-
-- (BOOL)write:(NSError **)outError
-{
-CSqliteDatabase *theDatabase = self.persistentObjectManager.database;
-
-if (self.rowID == -1)
-	{
-	NSString *theExpression = [NSString stringWithFormat:@"INSERT INTO feed (url, title, link, subtitle, lastChecked) VALUES ('%@', '%@', '%@', '%@', '%@')", [[self.url absoluteString] encodedForSql], [self.title encodedForSql], [[self.link absoluteString] encodedForSql], [self.subtitle encodedForSql], [self.lastChecked sqlDateString]];
-
-	BOOL theResult = [theDatabase executeExpression:theExpression error:outError];
-	if (theResult == NO)
-		{
-		return(NO);
-		}
-
-	theExpression = [NSString stringWithFormat:@"SELECT id FROM feed WHERE (url = %@)", [[self.url absoluteString] encodedForSql]];
-	NSDictionary *theRow = [theDatabase rowForExpression:theExpression error:outError];
-	if (theResult == NO)
-		{
-		return(NO);
-		}
-
-	self.rowID = [[theRow objectForKey:@"id"] integerValue];
-	}
-
-return(YES);
 }
 
 @end
