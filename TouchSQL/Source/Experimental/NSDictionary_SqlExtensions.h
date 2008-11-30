@@ -6,6 +6,7 @@
 //  Copyright 2008 toxicsoftware.com. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import "NSDictionary_SqlExtensions.h"
 
 @interface NSDictionary (NSDictionary_SqlExtensions)

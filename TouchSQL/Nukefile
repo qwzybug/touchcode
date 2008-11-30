@@ -16,13 +16,14 @@
 
 ;; source files
 (set @m_files     (filelist "^Source/.*\.m$"))
+(@m_files         unionSet:(filelist "^Source/.*.m$"))
 
 ;; framework description
 (set @framework 	     "TouchSQL")
 (set @framework_identifier   "com.toxicsoftware.touchsql")
 (set @framework_creator_code "????")
 
-(set @cflags "-g -std=gnu99")
+(set @cflags "-g -std=gnu99 -I Source")
 (set @ldflags "-framework Foundation -lsqlite3")
 
 (compilation-tasks)
