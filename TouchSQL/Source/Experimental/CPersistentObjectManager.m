@@ -123,6 +123,24 @@ if ([[[theObject class] objectTranscoder] updateObject:theObject withPropertiesI
 return(theObject);
 }
 
+- (NSArray *)objectsOfClass:(Class)inClass forExpression:(NSString *)inExpression error:(NSError **)outError
+{
+NSArray *theRows = [self.database rowsForExpression:inExpression error:outError];
+if (theRows == NULL)
+	return(NULL);
+NSMutableArray *theObjects = [NSMutableArray arrayWithCapacity:theRows.count];
+for (NSDictionary *theRow in theRows)
+	{
+	NSInteger theID = [[theRow objectForKey:@"id"] integerValue];
+	id theObject = [self loadPersistentObjectOfClass:inClass rowID:theID error:outError];
+	if (theObject == NULL)
+		return(NULL);
+	[theObjects addObject:theObject];
+	}
+return(theObjects);
+}
+
+#pragma mark -
 
 - (void)cachePersistentObject:(CPersistentObject *)inPersistentObject
 {

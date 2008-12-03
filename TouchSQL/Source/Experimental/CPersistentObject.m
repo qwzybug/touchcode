@@ -84,6 +84,11 @@ if ([self retainCount] == 2) // 2 == one in cache, one about to be released.
 [super release];
 }
 
+- (NSString *)description
+{
+return([NSString stringWithFormat:@"%@ (rowID: %d)", [super description], self.rowID]);
+}
+
 #pragma mark -
 
 - (NSString *)persistentIdentifier
@@ -103,9 +108,10 @@ return(rowID);
 {
 if (rowID != inRowID)
 	{
-	NSAssert(rowID == -1, @"Should not change the rowID of an object that already has a valid rowID (I think)");
+	NSAssert(rowID == -1 || inRowID == -1, @"Should not change the rowID of an object that already has a valid rowID (I think)");
 	rowID = inRowID;
-	[self.persistentObjectManager cachePersistentObject:self];
+	if (rowID != -1)
+		[self.persistentObjectManager cachePersistentObject:self];
 	}
 }
 
@@ -150,6 +156,23 @@ else
 		theResult = [theDatabase executeExpression:theExpression error:outError];
 		}
 	}
+return(theResult);
+}
+
+- (BOOL)delete:(NSError **)outError
+{
+if (self.rowID == -1)
+	return(YES);
+
+[self.persistentObjectManager uncachePersistentObject:self];
+	
+NSString *theExpression = [NSString stringWithFormat:@"DELETE FROM %@ WHERE id == %d", [[self class] tableName], self.rowID];
+BOOL theResult = [self.persistentObjectManager.database executeExpression:theExpression error:outError];
+if (theResult)
+	{
+	self.rowID = -1;
+	}
+
 return(theResult);
 }
 

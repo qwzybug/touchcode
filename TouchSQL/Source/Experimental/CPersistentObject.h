@@ -32,4 +32,6 @@
 
 - (BOOL)write:(NSError **)outError;
 
+- (BOOL)delete:(NSError **)outError;
+
 @end

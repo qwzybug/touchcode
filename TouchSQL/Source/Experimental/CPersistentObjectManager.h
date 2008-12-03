@@ -25,6 +25,8 @@
 - (id)loadPersistentObjectOfClass:(Class)inClass rowID:(NSInteger)inRowID error:(NSError **)outError;
 - (id)loadPersistentObjectOfClass:(Class)inClass rowID:(NSInteger)inRowID fromDictionary:(NSDictionary *)inValues error:(NSError **)outError;
 
+- (NSArray *)objectsOfClass:(Class )inClass forExpression:(NSString *)inExpression error:(NSError **)outError;
+
 // Mostly private APIs
 - (void)cachePersistentObject:(CPersistentObject *)inPersistentObject;
 - (void)uncachePersistentObject:(CPersistentObject *)inPersistentObject;

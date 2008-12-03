@@ -54,7 +54,11 @@ self.database = NULL;
 {
 if (tableName == NULL)
 	{
-	tableName = [[NSString alloc] initWithFormat:@"TEMP_RAT_TABLE_%d", ((unsigned)rand()) % 10000000];
+	@synchronized([self class])
+		{
+		static int next = 0;
+		tableName = [[NSString alloc] initWithFormat:@"TEMP_RAT_TABLE_%d", next++];
+		}
 	}
 return(tableName); 
 }

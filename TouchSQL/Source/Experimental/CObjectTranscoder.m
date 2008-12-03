@@ -246,7 +246,7 @@ else if ([inObject isKindOfClass:[NSNull class]])
 	}
 else
 	{
-	NSLog(@"WARNING: cannot convert object of class %@ to %@", NSStringFromClass([inObject class]), NSStringFromClass(inTargetClass));
+//	NSLog(@"WARNING: cannot convert object of class %@ to %@", NSStringFromClass([inObject class]), NSStringFromClass(inTargetClass));
 	}
 
 if (outError)
