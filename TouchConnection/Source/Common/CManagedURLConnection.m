@@ -114,6 +114,11 @@ if (self.connection)
 
 #pragma mark -
 
+- (NSURLRequest *)connection:(NSURLConnection *)inConnection willSendRequest:(NSURLRequest *)inRequest redirectResponse:(NSURLResponse *)inResponse
+{
+return(inRequest);
+}
+
 - (void)connection:(NSURLConnection *)inConnection didReceiveResponse:(NSURLResponse *)inResponse
 {
 if (self.connection == NULL)
@@ -198,7 +203,10 @@ self.endTime = [[NSDate date] timeIntervalSinceReferenceDate];
 [self.completionTicket didFailForTarget:self error:inError];
 
 self.connection = NULL;
-
 }
+
+//- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge;
+//{
+//}
 
 @end
