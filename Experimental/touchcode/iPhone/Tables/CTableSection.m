@@ -16,6 +16,8 @@
 @synthesize rows;
 @synthesize headerTitle;
 @synthesize footerTitle;
+@synthesize headerView;
+@synthesize footerView;
 
 - (id)init;
 {
@@ -41,14 +43,24 @@ self.table = NULL;
 self.rows = NULL;
 self.headerTitle = NULL;
 self.footerTitle = NULL;
+self.headerView = NULL;
+self.footerView = NULL;
 //
 [super dealloc];
 }
 
-- (void)addRow:(CTableRow *)inRow
+- (CTableRow *)addRow:(CTableRow *)inRow
 {
 inRow.section = self;
 [self.rows addObject:inRow];
+return(inRow);
+}
+
+- (CTableRow *)addCell:(UITableViewCell *)inCell;
+{
+CTableRow *theRow = [[[CTableRow alloc] initWithTag:NULL cell:inCell] autorelease];
+[self addRow:theRow];
+return(theRow);
 }
 
 - (NSArray *)visibleRows

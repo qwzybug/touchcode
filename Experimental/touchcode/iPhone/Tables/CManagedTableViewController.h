@@ -19,8 +19,8 @@
 @property (readonly, nonatomic, retain) NSMutableArray *sections;
 @property (readwrite, nonatomic, assign) id target;
 
-- (void)addSection;
-- (void)addSection:(CTableSection *)inSection;
+- (CTableSection *)addSection;
+- (CTableSection *)addSection:(CTableSection *)inSection;
 - (void)addRow:(CTableRow *)inRow;
 
 - (CTableRow *)rowWithTag:(NSString *)inTag;

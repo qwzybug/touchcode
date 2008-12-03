@@ -274,19 +274,4 @@ for (NSDictionary *theDictionary in theEnumerator)
 return([[theEntries copy] autorelease]);
 }
 
-#pragma mark -
-
-- (void)updateFeed:(CFeed *)inFeed
-{
-[self.feedFetcher updateFeed:inFeed completionTicket:NULL];
-}
-
-- (void)updateAllFeeds
-{
-for (CFeed *theFeed in self.feeds)
-	{
-	[self updateFeed:theFeed];
-	}
-}
-
 @end

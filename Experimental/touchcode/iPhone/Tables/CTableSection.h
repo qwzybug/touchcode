@@ -15,17 +15,22 @@
 	NSMutableArray *rows;
 	NSString *headerTitle;
 	NSString *footerTitle;
+	UIView *headerView;
+	UIView *footerView;
 }
 
 @property (readwrite, nonatomic, assign) UITableView *table;
 @property (readwrite, nonatomic, retain) NSMutableArray *rows;
 @property (readwrite, nonatomic, assign) NSString *headerTitle;
 @property (readwrite, nonatomic, assign) NSString *footerTitle;
+@property (readwrite, nonatomic, assign) UIView *headerView;
+@property (readwrite, nonatomic, assign) UIView *footerView;
 
 - (id)init;
 - (id)initWithTable:(UITableView *)inTable;
 
-- (void)addRow:(CTableRow *)inRow;
+- (CTableRow *)addRow:(CTableRow *)inRow;
+- (CTableRow *)addCell:(UITableViewCell *)inCell;
 
 - (NSArray *)visibleRows;
 

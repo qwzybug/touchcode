@@ -33,7 +33,7 @@
 
 + (id)webViewController;
 {
-CWebViewController *theWebViewController = [[[self alloc] initWithNibName:@"CWebViewController" bundle:NULL] autorelease];
+CWebViewController *theWebViewController = [[[self alloc] initWithNibName:NULL bundle:NULL] autorelease];
 return(theWebViewController);
 }
 
@@ -91,47 +91,26 @@ self.homeURL = inBaseURL;
 {
 self.backButton.enabled = self.webView.canGoBack;
 self.forwardsButton.enabled = self.webView.canGoForward;
-
-//if ([self.homeURL isEqual:self.currentURL] == YES)
-//	{
-//	self.toolbar.hidden = YES;
-//
-//	CGRect theFrame = self.webView.frame;
-//	theFrame.origin.y = 44;
-//	theFrame.size.height = 416;
-//	self.webView.frame = theFrame;
-//	
-////	self.navigationController.navigationBar.hidden = NO;
-//	}
-//else
-//	{
-//	self.toolbar.hidden = NO;
-//
-//	CGRect theFrame = self.webView.frame;
-//	theFrame.origin.y = 0;
-//	theFrame.size.height = 416;
-//	self.webView.frame = theFrame;
-//
-////	self.navigationController.navigationBar.visible = YES;
-//	}
 }
 
-- (IBAction)back:(id)inSender
+#pragma mark -
+
+- (IBAction)actionBack:(id)inSender
 {
 [self.webView goBack];
 }
 
-- (IBAction)forwards:(id)inSender
+- (IBAction)actionForwards:(id)inSender
 {
 [self.webView goForward];
 }
 
-- (IBAction)reload:(id)inSender
+- (IBAction)actionReload:(id)inSender
 {
 [self.webView reload];
 }
 
-- (IBAction)home:(id)inSender
+- (IBAction)actionHome:(id)inSender
 {
 if (self.initialHTMLString)
 	[self loadHTMLString:self.initialHTMLString baseURL:self.homeURL];
@@ -139,7 +118,7 @@ else if (self.homeURL)
 	[self loadURL:self.homeURL];
 }
 
-- (IBAction)action:(id)inSender
+- (IBAction)actionUtilityPopup:(id)inSender
 {
 UIActionSheet *theActionSheet = [[[UIActionSheet  alloc] initWithTitle:NULL delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:NULL otherButtonTitles:@"Open in Safari", @"E-mail Link", NULL] autorelease];
 [theActionSheet showFromToolbar:self.toolbar];

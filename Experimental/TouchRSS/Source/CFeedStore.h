@@ -56,7 +56,4 @@
 - (NSArray *)entriesForFeeds:(NSArray *)inFeeds;
 - (NSArray *)entriesForFeeds:(NSArray *)inFeeds sortByColumn:(NSString *)inColumn descending:(BOOL)inDescending limit:(NSInteger)inLimit;
 
-- (void)updateFeed:(CFeed *)inFeed;
-- (void)updateAllFeeds;
-
 @end

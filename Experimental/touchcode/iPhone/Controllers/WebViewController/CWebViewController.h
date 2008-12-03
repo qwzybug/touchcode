@@ -36,11 +36,11 @@
 - (void)loadURL:(NSURL *)inURL;
 - (void)loadHTMLString:(NSString *)inHTML baseURL:(NSURL *)inBaseURL;
 
-- (IBAction)back:(id)inSender;
-- (IBAction)forwards:(id)inSender;
-- (IBAction)reload:(id)inSender;
-- (IBAction)home:(id)inSender;
-- (IBAction)action:(id)inSender;
+- (IBAction)actionBack:(id)inSender;
+- (IBAction)actionForwards:(id)inSender;
+- (IBAction)actionReload:(id)inSender;
+- (IBAction)actionHome:(id)inSender;
+- (IBAction)actionUtilityPopup:(id)inSender;
 
 
 @end

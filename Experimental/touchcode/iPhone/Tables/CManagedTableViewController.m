@@ -40,14 +40,17 @@ return(sections);
 
 #pragma mark -
 
-- (void)addSection;
+- (CTableSection *)addSection;
 {
-[self addSection:[[[CTableSection alloc] initWithTable:self.tableView] autorelease]];
+CTableSection *theSection = [[[CTableSection alloc] initWithTable:self.tableView] autorelease];
+[self addSection:theSection];
+return(theSection);
 }
 
-- (void)addSection:(CTableSection *)inSection
+- (CTableSection *)addSection:(CTableSection *)inSection
 {
 [self.sections addObject:inSection];
+return(inSection);
 }
 
 - (void)addRow:(CTableRow *)inRow
@@ -89,11 +92,6 @@ return(theSection);
 
 #pragma mark -
 
-- (void)loadView
-{
-[super loadView];
-}
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)inTableView
 {
 return(MAX(self.sections.count, 1));
@@ -116,6 +114,36 @@ return(theRowCell);
 {
 CTableSection *theSection = [self.sections objectAtIndex:inSection];
 return(theSection.headerTitle);
+}
+
+- (CGFloat)tableView:(UITableView *)inTableView heightForHeaderInSection:(NSInteger)inSection
+{
+CTableSection *theSection = [self.sections objectAtIndex:inSection];
+if (theSection.headerView)
+	return(theSection.headerView.frame.size.height);
+else
+	return(24.0f);
+}
+
+- (CGFloat)tableView:(UITableView *)inTableView heightForFooterInSection:(NSInteger)inSection
+{
+CTableSection *theSection = [self.sections objectAtIndex:inSection];
+if (theSection.footerView)
+	return(theSection.footerView.frame.size.height);
+else
+	return(24.0f);
+}
+
+- (UIView *)tableView:(UITableView *)inTableView viewForHeaderInSection:(NSInteger)inSection
+{
+CTableSection *theSection = [self.sections objectAtIndex:inSection];
+return(theSection.headerView);
+}
+
+- (UIView *)tableView:(UITableView *)inTableView viewForFooterInSection:(NSInteger)inSection
+{
+CTableSection *theSection = [self.sections objectAtIndex:inSection];
+return(theSection.footerView);
 }
 
 - (CGFloat)tableView:(UITableView *)inTableView heightForRowAtIndexPath:(NSIndexPath *)inIndexPath

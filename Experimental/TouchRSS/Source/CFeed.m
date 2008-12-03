@@ -59,7 +59,7 @@ return(@"feed");
 
 + (NSArray *)persistentPropertyNames
 {
-return([[super persistentPropertyNames] arrayByAddingObjectsFromArray:[NSArray arrayWithObjects:@"identifier", @"title", @"link", @"subtitle", @"url", NULL]]);
+return([[super persistentPropertyNames] arrayByAddingObjectsFromArray:[NSArray arrayWithObjects:@"identifier", @"title", @"link", @"subtitle", @"url", @"lastChecked", NULL]]);
 }
 
 + (CObjectTranscoder *)objectTranscoder

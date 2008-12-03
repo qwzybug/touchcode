@@ -21,6 +21,7 @@
 
 @interface CFeedFetcher ()
 @property (readwrite, nonatomic, assign) CFeedStore *feedStore;
+@property (readwrite, nonatomic, assign) NSTimer *fetchTimer;
 @property (readwrite, nonatomic, retain) NSMutableSet *currentURLs;
 @end
 
@@ -29,6 +30,9 @@
 @implementation CFeedFetcher
 
 @synthesize feedStore;
+@synthesize delegate;
+@synthesize fetchInterval;
+@synthesize fetchTimer;
 @synthesize currentURLs;
 
 - (id)initWithFeedStore:(CFeedStore *)inFeedStore;
@@ -36,6 +40,7 @@
 if ((self = [super init]) != NULL)
 	{
 	self.feedStore = inFeedStore;
+	self.fetchInterval = 2 * 60;
 	self.currentURLs = [NSMutableSet set];
 	}
 return(self);
@@ -43,7 +48,10 @@ return(self);
 
 - (void)dealloc
 {
+[self cancel];
+
 self.feedStore = NULL;
+self.delegate = NULL;
 self.currentURLs = NULL;
 //
 [super dealloc];
@@ -94,8 +102,23 @@ if (theFeed == NULL)
 return(theFeed);
 }
 
+- (BOOL)updateFeed:(CFeed *)inFeed
+{
+return([self updateFeed:inFeed completionTicket:NULL]);
+}
+
 - (BOOL)updateFeed:(CFeed *)inFeed completionTicket:(CCompletionTicket *)inCompletionTicket
 {
+NSDate *theLastChecked = inFeed.lastChecked;
+if (theLastChecked != NULL)
+	{
+	NSDate *theDate = [NSDate date];
+	
+	NSTimeInterval theInterval = [theDate timeIntervalSinceDate:theLastChecked];
+	if (theInterval <= self.fetchInterval)
+		return(NO);
+	}
+
 NSURL *theURL = inFeed.url;
 
 if ([self.currentURLs containsObject:theURL] == YES)
@@ -218,15 +241,22 @@ if (theDeserializer.error != NULL)
 	
 	[self.feedStore.persistentObjectManager.database rollback];
 
-	[inCompletionTicket.subTicket didFailForTarget:self error:theDeserializer.error];
+	if (self.delegate && [self.delegate respondsToSelector:@selector(feedFetcher:didFail:)])
+		[self.delegate feedFetcher:self didFailFetchingFeed:theFeed withError:theDeserializer.error];
+
+	if (inCompletionTicket.subTicket)
+		[inCompletionTicket.subTicket didFailForTarget:self error:theDeserializer.error];
 	}
 else
 	{
 	[self.feedStore.persistentObjectManager.database commit];
 	
-	[inCompletionTicket.subTicket didCompleteForTarget:self result:theFeed];
+	if (self.delegate && [self.delegate respondsToSelector:@selector(feedFetcher:didFetchFeed:)])
+		[self.delegate feedFetcher:self didFetchFeed:theFeed];
+	
+	if (inCompletionTicket.subTicket)
+		[inCompletionTicket.subTicket didCompleteForTarget:self result:theFeed];
 	}
-
 }
 
 - (void)completionTicket:(CCompletionTicket *)inCompletionTicket didFailForTarget:(id)inTarget error:(NSError *)inError
@@ -236,8 +266,8 @@ NSLog(@"CFeedstore got an error: %@", inError);
 CManagedURLConnection *theConnection = (CManagedURLConnection *)inTarget;
 [self.currentURLs removeObject:theConnection.request.URL];
 
-[inCompletionTicket.subTicket didFailForTarget:self error:inError];
-
+if (inCompletionTicket.subTicket)
+	[inCompletionTicket.subTicket didFailForTarget:self error:inError];
 }
 
 
