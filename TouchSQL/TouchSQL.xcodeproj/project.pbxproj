@@ -52,7 +52,7 @@
 		45E260330EEF24220014A071 /* NSDate_SqlExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260180EEF24220014A071 /* NSDate_SqlExtension.m */; };
 		45E260340EEF24220014A071 /* NSString_SqlExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E260190EEF24220014A071 /* NSString_SqlExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45E260350EEF24220014A071 /* NSString_SqlExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E2601A0EEF24220014A071 /* NSString_SqlExtensions.m */; };
-		45E260360EEF24220014A071 /* ToxicSQL.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E2601B0EEF24220014A071 /* ToxicSQL.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		45E260360EEF24220014A071 /* TouchSQL.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E2601B0EEF24220014A071 /* TouchSQL.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45E260370EEF24220014A071 /* CSqliteDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260010EEF24220014A071 /* CSqliteDatabase.m */; };
 		45E260380EEF24220014A071 /* CSqliteDatabase_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260030EEF24220014A071 /* CSqliteDatabase_Extensions.m */; };
 		45E260390EEF24220014A071 /* CSqliteEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260050EEF24220014A071 /* CSqliteEnumerator.m */; };
@@ -72,7 +72,7 @@
 		45FA852D0DEC78880071DD28 /* ToxicFrameworks_Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 45FA852B0DEC78880071DD28 /* ToxicFrameworks_Release.xcconfig */; };
 		45FA852E0DEC78880071DD28 /* ToxicFrameworks_Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 45FA852A0DEC78880071DD28 /* ToxicFrameworks_Debug.xcconfig */; };
 		45FA852F0DEC78880071DD28 /* ToxicFrameworks_Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 45FA852B0DEC78880071DD28 /* ToxicFrameworks_Release.xcconfig */; };
-		8DC2EF510486A6940098B216 /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF5E0370ADEE00C91783 /* Prefix.pch */; settings = {ATTRIBUTES = (Public, ); }; };
+		8DC2EF510486A6940098B216 /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF5E0370ADEE00C91783 /* Prefix.pch */; settings = {ATTRIBUTES = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,7 +125,7 @@
 		45E260180EEF24220014A071 /* NSDate_SqlExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDate_SqlExtension.m; sourceTree = "<group>"; };
 		45E260190EEF24220014A071 /* NSString_SqlExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSString_SqlExtensions.h; sourceTree = "<group>"; };
 		45E2601A0EEF24220014A071 /* NSString_SqlExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_SqlExtensions.m; sourceTree = "<group>"; };
-		45E2601B0EEF24220014A071 /* ToxicSQL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToxicSQL.h; sourceTree = "<group>"; };
+		45E2601B0EEF24220014A071 /* TouchSQL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchSQL.h; sourceTree = "<group>"; };
 		45E92DEE0856B4EF00B7327A /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		45E92DF10856B4EF00B7327A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45E931A50856C12500B7327A /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -240,7 +240,7 @@
 				45E260180EEF24220014A071 /* NSDate_SqlExtension.m */,
 				45E260190EEF24220014A071 /* NSString_SqlExtensions.h */,
 				45E2601A0EEF24220014A071 /* NSString_SqlExtensions.m */,
-				45E2601B0EEF24220014A071 /* ToxicSQL.h */,
+				45E2601B0EEF24220014A071 /* TouchSQL.h */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -304,7 +304,7 @@
 				45E260300EEF24220014A071 /* NSData_SqlExtensions.h in Headers */,
 				45E260320EEF24220014A071 /* NSDate_SqlExtension.h in Headers */,
 				45E260340EEF24220014A071 /* NSString_SqlExtensions.h in Headers */,
-				45E260360EEF24220014A071 /* ToxicSQL.h in Headers */,
+				45E260360EEF24220014A071 /* TouchSQL.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
