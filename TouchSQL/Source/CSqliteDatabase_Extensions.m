@@ -93,4 +93,11 @@ NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
 return dateFormatter;
 }
 
+- (NSError *)currentError
+{
+NSString *theErrorString = [NSString stringWithUTF8String:sqlite3_errmsg(self.sql)];
+NSError *theError = [NSError errorWithDomain:TouchSQLErrorDomain code:sqlite3_errcode(self.sql) userInfo:[NSDictionary dictionaryWithObject:theErrorString forKey:NSLocalizedDescriptionKey]];
+return(theError);
+}
+
 @end

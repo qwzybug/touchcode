@@ -25,18 +25,47 @@
 		45552D5B0856C5B7006456A2 /* UnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 45552D590856C5B7006456A2 /* UnitTests.m */; };
 		45552D650856C5D5006456A2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
 		45552E450856C7DE006456A2 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45552E440856C7DE006456A2 /* SenTestingKit.framework */; };
-		4593A183066D2D2E007B6932 /* CSqliteDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 4593A167066D2D2E007B6932 /* CSqliteDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4593A184066D2D2E007B6932 /* CSqliteDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4593A168066D2D2E007B6932 /* CSqliteDatabase.m */; };
-		4593A187066D2D2E007B6932 /* CSqliteDatabase_Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 4593A16B066D2D2E007B6932 /* CSqliteDatabase_Extensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4593A188066D2D2E007B6932 /* CSqliteDatabase_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4593A16C066D2D2E007B6932 /* CSqliteDatabase_Extensions.m */; };
-		4593A189066D2D2E007B6932 /* CSqliteEnumerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 4593A16D066D2D2E007B6932 /* CSqliteEnumerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4593A18A066D2D2E007B6932 /* CSqliteEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4593A16E066D2D2E007B6932 /* CSqliteEnumerator.m */; };
-		4593A18B066D2D2E007B6932 /* NSArray_SqlExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 4593A16F066D2D2E007B6932 /* NSArray_SqlExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4593A18C066D2D2E007B6932 /* NSArray_SqlExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4593A170066D2D2E007B6932 /* NSArray_SqlExtensions.m */; };
-		4593A18D066D2D2E007B6932 /* NSString_SqlExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 4593A171066D2D2E007B6932 /* NSString_SqlExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4593A18E066D2D2E007B6932 /* NSString_SqlExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4593A172066D2D2E007B6932 /* NSString_SqlExtensions.m */; };
 		4593A3BB066D2D47007B6932 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
-		45E92DE20856B4CC00B7327A /* ToxicSQL.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E92DE10856B4CC00B7327A /* ToxicSQL.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		45E2601C0EEF24220014A071 /* CSqliteDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E260000EEF24220014A071 /* CSqliteDatabase.h */; };
+		45E2601D0EEF24220014A071 /* CSqliteDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260010EEF24220014A071 /* CSqliteDatabase.m */; };
+		45E2601E0EEF24220014A071 /* CSqliteDatabase_Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E260020EEF24220014A071 /* CSqliteDatabase_Extensions.h */; };
+		45E2601F0EEF24220014A071 /* CSqliteDatabase_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260030EEF24220014A071 /* CSqliteDatabase_Extensions.m */; };
+		45E260200EEF24220014A071 /* CSqliteEnumerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E260040EEF24220014A071 /* CSqliteEnumerator.h */; };
+		45E260210EEF24220014A071 /* CSqliteEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260050EEF24220014A071 /* CSqliteEnumerator.m */; };
+		45E260220EEF24220014A071 /* CObjectTranscoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E260070EEF24220014A071 /* CObjectTranscoder.h */; };
+		45E260230EEF24220014A071 /* CObjectTranscoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260080EEF24220014A071 /* CObjectTranscoder.m */; };
+		45E260240EEF24220014A071 /* CPersistentObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E260090EEF24220014A071 /* CPersistentObject.h */; };
+		45E260250EEF24220014A071 /* CPersistentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E2600A0EEF24220014A071 /* CPersistentObject.m */; };
+		45E260260EEF24220014A071 /* CPersistentObjectManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E2600B0EEF24220014A071 /* CPersistentObjectManager.h */; };
+		45E260270EEF24220014A071 /* CPersistentObjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E2600C0EEF24220014A071 /* CPersistentObjectManager.m */; };
+		45E260280EEF24220014A071 /* CRandomAccessTemporaryTable.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E2600D0EEF24220014A071 /* CRandomAccessTemporaryTable.h */; };
+		45E260290EEF24220014A071 /* CRandomAccessTemporaryTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E2600E0EEF24220014A071 /* CRandomAccessTemporaryTable.m */; };
+		45E2602A0EEF24220014A071 /* CSqliteStatement.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E2600F0EEF24220014A071 /* CSqliteStatement.h */; };
+		45E2602B0EEF24220014A071 /* CSqliteStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260100EEF24220014A071 /* CSqliteStatement.m */; };
+		45E2602C0EEF24220014A071 /* NSDictionary_SqlExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E260110EEF24220014A071 /* NSDictionary_SqlExtensions.h */; };
+		45E2602D0EEF24220014A071 /* NSDictionary_SqlExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260120EEF24220014A071 /* NSDictionary_SqlExtensions.m */; };
+		45E2602E0EEF24220014A071 /* NSArray_SqlExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E260130EEF24220014A071 /* NSArray_SqlExtensions.h */; };
+		45E2602F0EEF24220014A071 /* NSArray_SqlExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260140EEF24220014A071 /* NSArray_SqlExtensions.m */; };
+		45E260300EEF24220014A071 /* NSData_SqlExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E260150EEF24220014A071 /* NSData_SqlExtensions.h */; };
+		45E260310EEF24220014A071 /* NSData_SqlExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260160EEF24220014A071 /* NSData_SqlExtensions.m */; };
+		45E260320EEF24220014A071 /* NSDate_SqlExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E260170EEF24220014A071 /* NSDate_SqlExtension.h */; };
+		45E260330EEF24220014A071 /* NSDate_SqlExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260180EEF24220014A071 /* NSDate_SqlExtension.m */; };
+		45E260340EEF24220014A071 /* NSString_SqlExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E260190EEF24220014A071 /* NSString_SqlExtensions.h */; };
+		45E260350EEF24220014A071 /* NSString_SqlExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E2601A0EEF24220014A071 /* NSString_SqlExtensions.m */; };
+		45E260360EEF24220014A071 /* ToxicSQL.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E2601B0EEF24220014A071 /* ToxicSQL.h */; };
+		45E260370EEF24220014A071 /* CSqliteDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260010EEF24220014A071 /* CSqliteDatabase.m */; };
+		45E260380EEF24220014A071 /* CSqliteDatabase_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260030EEF24220014A071 /* CSqliteDatabase_Extensions.m */; };
+		45E260390EEF24220014A071 /* CSqliteEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260050EEF24220014A071 /* CSqliteEnumerator.m */; };
+		45E2603A0EEF24220014A071 /* CObjectTranscoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260080EEF24220014A071 /* CObjectTranscoder.m */; };
+		45E2603B0EEF24220014A071 /* CPersistentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E2600A0EEF24220014A071 /* CPersistentObject.m */; };
+		45E2603C0EEF24220014A071 /* CPersistentObjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E2600C0EEF24220014A071 /* CPersistentObjectManager.m */; };
+		45E2603D0EEF24220014A071 /* CRandomAccessTemporaryTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E2600E0EEF24220014A071 /* CRandomAccessTemporaryTable.m */; };
+		45E2603E0EEF24220014A071 /* CSqliteStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260100EEF24220014A071 /* CSqliteStatement.m */; };
+		45E2603F0EEF24220014A071 /* NSDictionary_SqlExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260120EEF24220014A071 /* NSDictionary_SqlExtensions.m */; };
+		45E260400EEF24220014A071 /* NSArray_SqlExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260140EEF24220014A071 /* NSArray_SqlExtensions.m */; };
+		45E260410EEF24220014A071 /* NSData_SqlExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260160EEF24220014A071 /* NSData_SqlExtensions.m */; };
+		45E260420EEF24220014A071 /* NSDate_SqlExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260180EEF24220014A071 /* NSDate_SqlExtension.m */; };
+		45E260430EEF24220014A071 /* NSString_SqlExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E2601A0EEF24220014A071 /* NSString_SqlExtensions.m */; };
 		45E92DF20856B4EF00B7327A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 45E92DED0856B4EF00B7327A /* InfoPlist.strings */; };
 		45E931B90856C14300B7327A /* TouchSQL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TouchSQL.framework */; };
 		45FA852C0DEC78880071DD28 /* ToxicFrameworks_Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 45FA852A0DEC78880071DD28 /* ToxicFrameworks_Debug.xcconfig */; };
@@ -70,17 +99,33 @@
 		45552D580856C5B7006456A2 /* UnitTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitTests.h; sourceTree = "<group>"; };
 		45552D590856C5B7006456A2 /* UnitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitTests.m; sourceTree = "<group>"; };
 		45552E440856C7DE006456A2 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = /System/Library/Frameworks/SenTestingKit.framework; sourceTree = "<absolute>"; };
-		4593A167066D2D2E007B6932 /* CSqliteDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSqliteDatabase.h; sourceTree = "<group>"; };
-		4593A168066D2D2E007B6932 /* CSqliteDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSqliteDatabase.m; sourceTree = "<group>"; };
-		4593A16B066D2D2E007B6932 /* CSqliteDatabase_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSqliteDatabase_Extensions.h; sourceTree = "<group>"; };
-		4593A16C066D2D2E007B6932 /* CSqliteDatabase_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSqliteDatabase_Extensions.m; sourceTree = "<group>"; };
-		4593A16D066D2D2E007B6932 /* CSqliteEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSqliteEnumerator.h; sourceTree = "<group>"; };
-		4593A16E066D2D2E007B6932 /* CSqliteEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSqliteEnumerator.m; sourceTree = "<group>"; };
-		4593A16F066D2D2E007B6932 /* NSArray_SqlExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArray_SqlExtensions.h; sourceTree = "<group>"; };
-		4593A170066D2D2E007B6932 /* NSArray_SqlExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArray_SqlExtensions.m; sourceTree = "<group>"; };
-		4593A171066D2D2E007B6932 /* NSString_SqlExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSString_SqlExtensions.h; sourceTree = "<group>"; };
-		4593A172066D2D2E007B6932 /* NSString_SqlExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_SqlExtensions.m; sourceTree = "<group>"; };
-		45E92DE10856B4CC00B7327A /* ToxicSQL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToxicSQL.h; sourceTree = "<group>"; };
+		45E260000EEF24220014A071 /* CSqliteDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSqliteDatabase.h; sourceTree = "<group>"; };
+		45E260010EEF24220014A071 /* CSqliteDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSqliteDatabase.m; sourceTree = "<group>"; };
+		45E260020EEF24220014A071 /* CSqliteDatabase_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSqliteDatabase_Extensions.h; sourceTree = "<group>"; };
+		45E260030EEF24220014A071 /* CSqliteDatabase_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSqliteDatabase_Extensions.m; sourceTree = "<group>"; };
+		45E260040EEF24220014A071 /* CSqliteEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSqliteEnumerator.h; sourceTree = "<group>"; };
+		45E260050EEF24220014A071 /* CSqliteEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSqliteEnumerator.m; sourceTree = "<group>"; };
+		45E260070EEF24220014A071 /* CObjectTranscoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CObjectTranscoder.h; sourceTree = "<group>"; };
+		45E260080EEF24220014A071 /* CObjectTranscoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CObjectTranscoder.m; sourceTree = "<group>"; };
+		45E260090EEF24220014A071 /* CPersistentObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPersistentObject.h; sourceTree = "<group>"; };
+		45E2600A0EEF24220014A071 /* CPersistentObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPersistentObject.m; sourceTree = "<group>"; };
+		45E2600B0EEF24220014A071 /* CPersistentObjectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPersistentObjectManager.h; sourceTree = "<group>"; };
+		45E2600C0EEF24220014A071 /* CPersistentObjectManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPersistentObjectManager.m; sourceTree = "<group>"; };
+		45E2600D0EEF24220014A071 /* CRandomAccessTemporaryTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRandomAccessTemporaryTable.h; sourceTree = "<group>"; };
+		45E2600E0EEF24220014A071 /* CRandomAccessTemporaryTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRandomAccessTemporaryTable.m; sourceTree = "<group>"; };
+		45E2600F0EEF24220014A071 /* CSqliteStatement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSqliteStatement.h; sourceTree = "<group>"; };
+		45E260100EEF24220014A071 /* CSqliteStatement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSqliteStatement.m; sourceTree = "<group>"; };
+		45E260110EEF24220014A071 /* NSDictionary_SqlExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionary_SqlExtensions.h; sourceTree = "<group>"; };
+		45E260120EEF24220014A071 /* NSDictionary_SqlExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_SqlExtensions.m; sourceTree = "<group>"; };
+		45E260130EEF24220014A071 /* NSArray_SqlExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArray_SqlExtensions.h; sourceTree = "<group>"; };
+		45E260140EEF24220014A071 /* NSArray_SqlExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArray_SqlExtensions.m; sourceTree = "<group>"; };
+		45E260150EEF24220014A071 /* NSData_SqlExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSData_SqlExtensions.h; sourceTree = "<group>"; };
+		45E260160EEF24220014A071 /* NSData_SqlExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSData_SqlExtensions.m; sourceTree = "<group>"; };
+		45E260170EEF24220014A071 /* NSDate_SqlExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDate_SqlExtension.h; sourceTree = "<group>"; };
+		45E260180EEF24220014A071 /* NSDate_SqlExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDate_SqlExtension.m; sourceTree = "<group>"; };
+		45E260190EEF24220014A071 /* NSString_SqlExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSString_SqlExtensions.h; sourceTree = "<group>"; };
+		45E2601A0EEF24220014A071 /* NSString_SqlExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_SqlExtensions.m; sourceTree = "<group>"; };
+		45E2601B0EEF24220014A071 /* ToxicSQL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToxicSQL.h; sourceTree = "<group>"; };
 		45E92DEE0856B4EF00B7327A /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		45E92DF10856B4EF00B7327A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45E931A50856C12500B7327A /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,7 +170,7 @@
 			children = (
 				32DBCF5E0370ADEE00C91783 /* Prefix.pch */,
 				45FA85290DEC78880071DD28 /* Configurations */,
-				4593A14C066D2D2D007B6932 /* Source */,
+				45E25FFF0EEF24220014A071 /* Source */,
 				45E92DEC0856B4EF00B7327A /* Resources */,
 				45552D540856C5B7006456A2 /* UnitTests */,
 				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
@@ -177,22 +222,46 @@
 			path = Source;
 			sourceTree = "<group>";
 		};
-		4593A14C066D2D2D007B6932 /* Source */ = {
+		45E25FFF0EEF24220014A071 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				45E92DE10856B4CC00B7327A /* ToxicSQL.h */,
-				4593A167066D2D2E007B6932 /* CSqliteDatabase.h */,
-				4593A168066D2D2E007B6932 /* CSqliteDatabase.m */,
-				4593A16B066D2D2E007B6932 /* CSqliteDatabase_Extensions.h */,
-				4593A16C066D2D2E007B6932 /* CSqliteDatabase_Extensions.m */,
-				4593A16D066D2D2E007B6932 /* CSqliteEnumerator.h */,
-				4593A16E066D2D2E007B6932 /* CSqliteEnumerator.m */,
-				4593A16F066D2D2E007B6932 /* NSArray_SqlExtensions.h */,
-				4593A170066D2D2E007B6932 /* NSArray_SqlExtensions.m */,
-				4593A171066D2D2E007B6932 /* NSString_SqlExtensions.h */,
-				4593A172066D2D2E007B6932 /* NSString_SqlExtensions.m */,
+				45E260000EEF24220014A071 /* CSqliteDatabase.h */,
+				45E260010EEF24220014A071 /* CSqliteDatabase.m */,
+				45E260020EEF24220014A071 /* CSqliteDatabase_Extensions.h */,
+				45E260030EEF24220014A071 /* CSqliteDatabase_Extensions.m */,
+				45E260040EEF24220014A071 /* CSqliteEnumerator.h */,
+				45E260050EEF24220014A071 /* CSqliteEnumerator.m */,
+				45E260060EEF24220014A071 /* Experimental */,
+				45E260130EEF24220014A071 /* NSArray_SqlExtensions.h */,
+				45E260140EEF24220014A071 /* NSArray_SqlExtensions.m */,
+				45E260150EEF24220014A071 /* NSData_SqlExtensions.h */,
+				45E260160EEF24220014A071 /* NSData_SqlExtensions.m */,
+				45E260170EEF24220014A071 /* NSDate_SqlExtension.h */,
+				45E260180EEF24220014A071 /* NSDate_SqlExtension.m */,
+				45E260190EEF24220014A071 /* NSString_SqlExtensions.h */,
+				45E2601A0EEF24220014A071 /* NSString_SqlExtensions.m */,
+				45E2601B0EEF24220014A071 /* ToxicSQL.h */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		45E260060EEF24220014A071 /* Experimental */ = {
+			isa = PBXGroup;
+			children = (
+				45E260070EEF24220014A071 /* CObjectTranscoder.h */,
+				45E260080EEF24220014A071 /* CObjectTranscoder.m */,
+				45E260090EEF24220014A071 /* CPersistentObject.h */,
+				45E2600A0EEF24220014A071 /* CPersistentObject.m */,
+				45E2600B0EEF24220014A071 /* CPersistentObjectManager.h */,
+				45E2600C0EEF24220014A071 /* CPersistentObjectManager.m */,
+				45E2600D0EEF24220014A071 /* CRandomAccessTemporaryTable.h */,
+				45E2600E0EEF24220014A071 /* CRandomAccessTemporaryTable.m */,
+				45E2600F0EEF24220014A071 /* CSqliteStatement.h */,
+				45E260100EEF24220014A071 /* CSqliteStatement.m */,
+				45E260110EEF24220014A071 /* NSDictionary_SqlExtensions.h */,
+				45E260120EEF24220014A071 /* NSDictionary_SqlExtensions.m */,
+			);
+			path = Experimental;
 			sourceTree = "<group>";
 		};
 		45E92DEC0856B4EF00B7327A /* Resources */ = {
@@ -222,12 +291,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DC2EF510486A6940098B216 /* Prefix.pch in Headers */,
-				4593A183066D2D2E007B6932 /* CSqliteDatabase.h in Headers */,
-				4593A187066D2D2E007B6932 /* CSqliteDatabase_Extensions.h in Headers */,
-				4593A189066D2D2E007B6932 /* CSqliteEnumerator.h in Headers */,
-				4593A18B066D2D2E007B6932 /* NSArray_SqlExtensions.h in Headers */,
-				4593A18D066D2D2E007B6932 /* NSString_SqlExtensions.h in Headers */,
-				45E92DE20856B4CC00B7327A /* ToxicSQL.h in Headers */,
+				45E2601C0EEF24220014A071 /* CSqliteDatabase.h in Headers */,
+				45E2601E0EEF24220014A071 /* CSqliteDatabase_Extensions.h in Headers */,
+				45E260200EEF24220014A071 /* CSqliteEnumerator.h in Headers */,
+				45E260220EEF24220014A071 /* CObjectTranscoder.h in Headers */,
+				45E260240EEF24220014A071 /* CPersistentObject.h in Headers */,
+				45E260260EEF24220014A071 /* CPersistentObjectManager.h in Headers */,
+				45E260280EEF24220014A071 /* CRandomAccessTemporaryTable.h in Headers */,
+				45E2602A0EEF24220014A071 /* CSqliteStatement.h in Headers */,
+				45E2602C0EEF24220014A071 /* NSDictionary_SqlExtensions.h in Headers */,
+				45E2602E0EEF24220014A071 /* NSArray_SqlExtensions.h in Headers */,
+				45E260300EEF24220014A071 /* NSData_SqlExtensions.h in Headers */,
+				45E260320EEF24220014A071 /* NSDate_SqlExtension.h in Headers */,
+				45E260340EEF24220014A071 /* NSString_SqlExtensions.h in Headers */,
+				45E260360EEF24220014A071 /* ToxicSQL.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +425,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				45552D5B0856C5B7006456A2 /* UnitTests.m in Sources */,
+				45E260370EEF24220014A071 /* CSqliteDatabase.m in Sources */,
+				45E260380EEF24220014A071 /* CSqliteDatabase_Extensions.m in Sources */,
+				45E260390EEF24220014A071 /* CSqliteEnumerator.m in Sources */,
+				45E2603A0EEF24220014A071 /* CObjectTranscoder.m in Sources */,
+				45E2603B0EEF24220014A071 /* CPersistentObject.m in Sources */,
+				45E2603C0EEF24220014A071 /* CPersistentObjectManager.m in Sources */,
+				45E2603D0EEF24220014A071 /* CRandomAccessTemporaryTable.m in Sources */,
+				45E2603E0EEF24220014A071 /* CSqliteStatement.m in Sources */,
+				45E2603F0EEF24220014A071 /* NSDictionary_SqlExtensions.m in Sources */,
+				45E260400EEF24220014A071 /* NSArray_SqlExtensions.m in Sources */,
+				45E260410EEF24220014A071 /* NSData_SqlExtensions.m in Sources */,
+				45E260420EEF24220014A071 /* NSDate_SqlExtension.m in Sources */,
+				45E260430EEF24220014A071 /* NSString_SqlExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,11 +445,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4593A184066D2D2E007B6932 /* CSqliteDatabase.m in Sources */,
-				4593A188066D2D2E007B6932 /* CSqliteDatabase_Extensions.m in Sources */,
-				4593A18A066D2D2E007B6932 /* CSqliteEnumerator.m in Sources */,
-				4593A18C066D2D2E007B6932 /* NSArray_SqlExtensions.m in Sources */,
-				4593A18E066D2D2E007B6932 /* NSString_SqlExtensions.m in Sources */,
+				45E2601D0EEF24220014A071 /* CSqliteDatabase.m in Sources */,
+				45E2601F0EEF24220014A071 /* CSqliteDatabase_Extensions.m in Sources */,
+				45E260210EEF24220014A071 /* CSqliteEnumerator.m in Sources */,
+				45E260230EEF24220014A071 /* CObjectTranscoder.m in Sources */,
+				45E260250EEF24220014A071 /* CPersistentObject.m in Sources */,
+				45E260270EEF24220014A071 /* CPersistentObjectManager.m in Sources */,
+				45E260290EEF24220014A071 /* CRandomAccessTemporaryTable.m in Sources */,
+				45E2602B0EEF24220014A071 /* CSqliteStatement.m in Sources */,
+				45E2602D0EEF24220014A071 /* NSDictionary_SqlExtensions.m in Sources */,
+				45E2602F0EEF24220014A071 /* NSArray_SqlExtensions.m in Sources */,
+				45E260310EEF24220014A071 /* NSData_SqlExtensions.m in Sources */,
+				45E260330EEF24220014A071 /* NSDate_SqlExtension.m in Sources */,
+				45E260350EEF24220014A071 /* NSString_SqlExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

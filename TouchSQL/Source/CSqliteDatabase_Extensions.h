@@ -45,4 +45,6 @@
 
 + (NSDateFormatter *)dbDateFormatter;
 
+- (NSError *)currentError;
+
 @end
