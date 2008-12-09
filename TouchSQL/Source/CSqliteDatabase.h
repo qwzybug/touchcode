@@ -58,15 +58,3 @@ extern NSString *TouchSQLErrorDomain /* = @"TouchSQLErrorDomain" */;
 - (NSInteger)lastInsertRowID;
 
 @end
-
-#pragma mark -
-
-@interface CSqliteDatabase (CSqliteDatabase_Configuration)
-
-- (NSString *)integrityCheck;
-
-@property (readwrite, assign) int cacheSize;
-@property (readwrite, assign) int synchronous;
-@property (readwrite, assign) int tempStore;
-
-@end

@@ -31,20 +31,25 @@
 
 @interface CSqliteDatabase (CSqliteDatabase_Extensions)
 
-- (NSUInteger)countRowsInTable:(NSString *)inTableName error:(NSError **)outError;
-
 - (NSDictionary *)rowForExpression:(NSString *)inExpression error:(NSError **)outError;
 
 - (NSArray *)valuesForExpression:(NSString *)inExpression error:(NSError **)outError;
 
 - (id)valueForExpression:(NSString *)inExpression error:(NSError **)outError;
 
-- (BOOL)objectExistsOfType:(NSString *)inType name:(NSString *)inTableName temporary:(BOOL)inTemporary;
-- (BOOL)tableExists:(NSString *)inTableName;
-- (BOOL)temporaryTableExists:(NSString *)inTableName;
-
-+ (NSDateFormatter *)dbDateFormatter;
-
 - (NSError *)currentError;
 
 @end
+
+#pragma mark -
+
+@interface CSqliteDatabase (CSqliteDatabase_Configuration)
+
+- (NSString *)integrityCheck;
+
+@property (readwrite, assign) int cacheSize;
+@property (readwrite, assign) int synchronous;
+@property (readwrite, assign) int tempStore;
+
+@end
+

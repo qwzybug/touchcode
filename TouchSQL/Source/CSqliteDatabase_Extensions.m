@@ -33,17 +33,6 @@
 
 // TODO -- most of these methods can be heavily optimised and more error checking added (search for NULL)
 
-- (NSUInteger)countRowsInTable:(NSString *)inTableName error:(NSError **)outError
-{
-id theEnumerator = [self enumeratorForExpression:[NSString stringWithFormat:@"select count(*) from %@;", inTableName] error:outError];
-NSArray *theObjects = [theEnumerator allObjects];
-// TODO make sure only 1 object is returned.
-NSArray *theValues = [[theObjects lastObject] allValues];
-// TODO make sure only 1 object is returned.
-NSString *theString = [theValues lastObject];
-return([theString intValue]);
-}
-
 - (NSDictionary *)rowForExpression:(NSString *)inExpression error:(NSError **)outError
 {
 NSArray *theRows = [self rowsForExpression:inExpression error:outError];
@@ -66,38 +55,56 @@ NSArray *theValues = [self valuesForExpression:inExpression error:outError];
 return([theValues lastObject]);
 }
 
-- (BOOL)objectExistsOfType:(NSString *)inType name:(NSString *)inTableName temporary:(BOOL)inTemporary
-{
-NSString *theSQL = [NSString stringWithFormat:@"select count(*) from %@ where TYPE = '%@' and NAME = '%@'", inTemporary == YES ? @"SQLITE_TEMP_MASTER" : @"SQLITE_MASTER", inType, inTableName];
-NSString *theValue = [self valueForExpression:theSQL error:NULL];
-return([theValue intValue] == 1);
-}
-
-- (BOOL)tableExists:(NSString *)inTableName
-{
-return([self objectExistsOfType:@"table" name:inTableName temporary:NO]);
-}
-
-- (BOOL)temporaryTableExists:(NSString *)inTableName
-{
-return([self objectExistsOfType:@"table" name:inTableName temporary:YES]);
-}
-
-+ (NSDateFormatter *)dbDateFormatter
-{
-NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
-[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-[dateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-[dateFormatter setGeneratesCalendarDates:NO];
-
-return dateFormatter;
-}
-
 - (NSError *)currentError
 {
 NSString *theErrorString = [NSString stringWithUTF8String:sqlite3_errmsg(self.sql)];
 NSError *theError = [NSError errorWithDomain:TouchSQLErrorDomain code:sqlite3_errcode(self.sql) userInfo:[NSDictionary dictionaryWithObject:theErrorString forKey:NSLocalizedDescriptionKey]];
 return(theError);
+}
+
+@end
+
+#pragma mark -
+
+@implementation CSqliteDatabase (CSqliteDatabase_Configuration)
+
+@dynamic cacheSize;
+@dynamic synchronous;
+@dynamic tempStore;
+
+- (NSString *)integrityCheck
+{
+return([self valueForExpression:@"pragma integrity_check;" error:NULL]);
+}
+
+- (int)cacheSize
+{
+return([[self valueForExpression:@"pragma cache_size;" error:NULL] intValue]);
+}
+
+- (void)setCacheSize:(int)inCacheSize
+{
+[self executeExpression:[NSString stringWithFormat:@"pragma cache_size=%d;", inCacheSize] error:NULL];
+}
+
+- (int)synchronous
+{
+return([[self valueForExpression:@"pragma synchronous;" error:NULL] intValue]);
+}
+
+- (void)setSynchronous:(int)inSynchronous
+{
+[self executeExpression:[NSString stringWithFormat:@"pragma synchronous=%d;", inSynchronous] error:NULL];
+}
+
+- (int)tempStore
+{
+return([[self valueForExpression:@"pragma temp_store;" error:NULL] intValue]);
+}
+
+- (void)setTempStore:(int)inTempStore
+{
+[self executeExpression:[NSString stringWithFormat:@"pragma temp_store=%d;", inTempStore] error:NULL];
 }
 
 @end

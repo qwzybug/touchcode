@@ -2,6 +2,7 @@
 #import <TouchSQL/CPersistentObject.h>
 #import <TouchSQL/CPersistentObjectManager.h>
 #import <TouchSQL/CRandomAccessTemporaryTable.h>
+#import <TouchSQL/CSqliteDatabase_Deprecated.h>
 #import <TouchSQL/CSqliteDatabase_Extensions.h>
 #import <TouchSQL/CSqliteDatabase.h>
 #import <TouchSQL/CSqliteStatement.h>
