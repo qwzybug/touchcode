@@ -26,33 +26,33 @@
 		45552D650856C5D5006456A2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
 		45552E450856C7DE006456A2 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45552E440856C7DE006456A2 /* SenTestingKit.framework */; };
 		4593A3BB066D2D47007B6932 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
-		45E2601C0EEF24220014A071 /* CSqliteDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E260000EEF24220014A071 /* CSqliteDatabase.h */; };
+		45E2601C0EEF24220014A071 /* CSqliteDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E260000EEF24220014A071 /* CSqliteDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45E2601D0EEF24220014A071 /* CSqliteDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260010EEF24220014A071 /* CSqliteDatabase.m */; };
-		45E2601E0EEF24220014A071 /* CSqliteDatabase_Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E260020EEF24220014A071 /* CSqliteDatabase_Extensions.h */; };
+		45E2601E0EEF24220014A071 /* CSqliteDatabase_Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E260020EEF24220014A071 /* CSqliteDatabase_Extensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45E2601F0EEF24220014A071 /* CSqliteDatabase_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260030EEF24220014A071 /* CSqliteDatabase_Extensions.m */; };
 		45E260200EEF24220014A071 /* CSqliteEnumerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E260040EEF24220014A071 /* CSqliteEnumerator.h */; };
 		45E260210EEF24220014A071 /* CSqliteEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260050EEF24220014A071 /* CSqliteEnumerator.m */; };
-		45E260220EEF24220014A071 /* CObjectTranscoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E260070EEF24220014A071 /* CObjectTranscoder.h */; };
+		45E260220EEF24220014A071 /* CObjectTranscoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E260070EEF24220014A071 /* CObjectTranscoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45E260230EEF24220014A071 /* CObjectTranscoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260080EEF24220014A071 /* CObjectTranscoder.m */; };
-		45E260240EEF24220014A071 /* CPersistentObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E260090EEF24220014A071 /* CPersistentObject.h */; };
+		45E260240EEF24220014A071 /* CPersistentObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E260090EEF24220014A071 /* CPersistentObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45E260250EEF24220014A071 /* CPersistentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E2600A0EEF24220014A071 /* CPersistentObject.m */; };
-		45E260260EEF24220014A071 /* CPersistentObjectManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E2600B0EEF24220014A071 /* CPersistentObjectManager.h */; };
+		45E260260EEF24220014A071 /* CPersistentObjectManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E2600B0EEF24220014A071 /* CPersistentObjectManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45E260270EEF24220014A071 /* CPersistentObjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E2600C0EEF24220014A071 /* CPersistentObjectManager.m */; };
-		45E260280EEF24220014A071 /* CRandomAccessTemporaryTable.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E2600D0EEF24220014A071 /* CRandomAccessTemporaryTable.h */; };
+		45E260280EEF24220014A071 /* CRandomAccessTemporaryTable.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E2600D0EEF24220014A071 /* CRandomAccessTemporaryTable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45E260290EEF24220014A071 /* CRandomAccessTemporaryTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E2600E0EEF24220014A071 /* CRandomAccessTemporaryTable.m */; };
-		45E2602A0EEF24220014A071 /* CSqliteStatement.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E2600F0EEF24220014A071 /* CSqliteStatement.h */; };
+		45E2602A0EEF24220014A071 /* CSqliteStatement.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E2600F0EEF24220014A071 /* CSqliteStatement.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45E2602B0EEF24220014A071 /* CSqliteStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260100EEF24220014A071 /* CSqliteStatement.m */; };
-		45E2602C0EEF24220014A071 /* NSDictionary_SqlExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E260110EEF24220014A071 /* NSDictionary_SqlExtensions.h */; };
+		45E2602C0EEF24220014A071 /* NSDictionary_SqlExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E260110EEF24220014A071 /* NSDictionary_SqlExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45E2602D0EEF24220014A071 /* NSDictionary_SqlExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260120EEF24220014A071 /* NSDictionary_SqlExtensions.m */; };
-		45E2602E0EEF24220014A071 /* NSArray_SqlExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E260130EEF24220014A071 /* NSArray_SqlExtensions.h */; };
+		45E2602E0EEF24220014A071 /* NSArray_SqlExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E260130EEF24220014A071 /* NSArray_SqlExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45E2602F0EEF24220014A071 /* NSArray_SqlExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260140EEF24220014A071 /* NSArray_SqlExtensions.m */; };
-		45E260300EEF24220014A071 /* NSData_SqlExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E260150EEF24220014A071 /* NSData_SqlExtensions.h */; };
+		45E260300EEF24220014A071 /* NSData_SqlExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E260150EEF24220014A071 /* NSData_SqlExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45E260310EEF24220014A071 /* NSData_SqlExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260160EEF24220014A071 /* NSData_SqlExtensions.m */; };
-		45E260320EEF24220014A071 /* NSDate_SqlExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E260170EEF24220014A071 /* NSDate_SqlExtension.h */; };
+		45E260320EEF24220014A071 /* NSDate_SqlExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E260170EEF24220014A071 /* NSDate_SqlExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45E260330EEF24220014A071 /* NSDate_SqlExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260180EEF24220014A071 /* NSDate_SqlExtension.m */; };
-		45E260340EEF24220014A071 /* NSString_SqlExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E260190EEF24220014A071 /* NSString_SqlExtensions.h */; };
+		45E260340EEF24220014A071 /* NSString_SqlExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E260190EEF24220014A071 /* NSString_SqlExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45E260350EEF24220014A071 /* NSString_SqlExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E2601A0EEF24220014A071 /* NSString_SqlExtensions.m */; };
-		45E260360EEF24220014A071 /* ToxicSQL.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E2601B0EEF24220014A071 /* ToxicSQL.h */; };
+		45E260360EEF24220014A071 /* ToxicSQL.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E2601B0EEF24220014A071 /* ToxicSQL.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45E260370EEF24220014A071 /* CSqliteDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260010EEF24220014A071 /* CSqliteDatabase.m */; };
 		45E260380EEF24220014A071 /* CSqliteDatabase_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260030EEF24220014A071 /* CSqliteDatabase_Extensions.m */; };
 		45E260390EEF24220014A071 /* CSqliteEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E260050EEF24220014A071 /* CSqliteEnumerator.m */; };
@@ -72,7 +72,7 @@
 		45FA852D0DEC78880071DD28 /* ToxicFrameworks_Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 45FA852B0DEC78880071DD28 /* ToxicFrameworks_Release.xcconfig */; };
 		45FA852E0DEC78880071DD28 /* ToxicFrameworks_Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 45FA852A0DEC78880071DD28 /* ToxicFrameworks_Debug.xcconfig */; };
 		45FA852F0DEC78880071DD28 /* ToxicFrameworks_Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 45FA852B0DEC78880071DD28 /* ToxicFrameworks_Release.xcconfig */; };
-		8DC2EF510486A6940098B216 /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF5E0370ADEE00C91783 /* Prefix.pch */; };
+		8DC2EF510486A6940098B216 /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF5E0370ADEE00C91783 /* Prefix.pch */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
