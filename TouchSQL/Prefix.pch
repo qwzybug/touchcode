@@ -1,9 +1,9 @@
 //
-// Prefix header for all source files of the 'ToxicSQL' target in the 'ToxicSQL' project.
+// Prefix header for all source files of the 'TouchSQL' target in the 'TouchSQL' project.
 //
 
 #ifdef __OBJC__
-	#define TXComponentID @"ToxicSQL"
+	#define TXComponentID @"TouchSQL"
 
     #import <Foundation/Foundation.h>
 #endif

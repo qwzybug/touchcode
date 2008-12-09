@@ -1,6 +1,6 @@
 //
 //  UnitTests.m
-//  ToxicSQL
+//  TouchSQL
 //
 //  Created by Jonathan Wight on 06/07/2005.
 //  Copyright (c) 2005 Jonathan Wight
@@ -29,7 +29,7 @@
 
 #import "UnitTests.h"
 
-//#import <ToxicSQL/ToxicSQL.h>
+//#import <TouchSQL/TouchSQL.h>
 
 @implementation UnitTests
 

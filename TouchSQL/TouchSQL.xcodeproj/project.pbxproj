@@ -339,6 +339,7 @@
 				8DC2EF540486A6940098B216 /* Sources */,
 				8DC2EF560486A6940098B216 /* Frameworks */,
 				8DC2EF580486A6940098B216 /* Rez */,
+				45E2606E0EEF28840014A071 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -404,6 +405,19 @@
 /* End PBXRezBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		45E2606E0EEF28840014A071 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "BRIDGE_SUPPORT_DIR=$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME/Resources/BridgeSupport\n\necho \"##### $BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME\"\n\nmkdir -p \"$BRIDGE_SUPPORT_DIR\"\n\ngen_bridge_metadata --framework \"$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME\" --output \"$BRIDGE_SUPPORT_DIR/$PRODUCT_NAME.bridgesupport\" || exit 1\n";
+		};
 		45E931A30856C12500B7327A /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -518,6 +532,7 @@
 				GCC_PREFIX_HEADER = Prefix.pch;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Resources/Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LIBRARY_SEARCH_PATHS = /usr/lib;
 				OTHER_LDFLAGS = "-lsqlite3";
 				PRODUCT_NAME = TouchSQL;
@@ -533,6 +548,7 @@
 				GCC_PREFIX_HEADER = Prefix.pch;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Resources/Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LIBRARY_SEARCH_PATHS = /usr/lib;
 				OTHER_LDFLAGS = "-lsqlite3";
 				PRODUCT_NAME = TouchSQL;

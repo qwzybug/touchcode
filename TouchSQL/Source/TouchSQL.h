@@ -1,0 +1,12 @@
+#import <TouchSQL/CObjectTranscoder.h>
+#import <TouchSQL/CPersistentObject.h>
+#import <TouchSQL/CPersistentObjectManager.h>
+#import <TouchSQL/CRandomAccessTemporaryTable.h>
+#import <TouchSQL/CSqliteDatabase_Extensions.h>
+#import <TouchSQL/CSqliteDatabase.h>
+#import <TouchSQL/CSqliteStatement.h>
+#import <TouchSQL/NSArray_SqlExtensions.h>
+#import <TouchSQL/NSData_SqlExtensions.h>
+#import <TouchSQL/NSDate_SqlExtension.h>
+#import <TouchSQL/NSDictionary_SqlExtensions.h>
+#import <TouchSQL/NSString_SqlExtensions.h>
