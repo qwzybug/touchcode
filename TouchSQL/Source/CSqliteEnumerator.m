@@ -65,7 +65,7 @@ self.statement = NULL;
 
 - (id)nextObject
 {
-int theResult = [self.statement step:NULL];
+[self.statement step:NULL];
 if (self.resultsAsDictionary)
 	return([self.statement rowDictionary:NULL]);
 else

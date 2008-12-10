@@ -8,18 +8,31 @@
 
 #import "CSqliteDatabase_Functions.h"
 
-void group_concat_step(sqlite3_context *ctx, int ncols, sqlite3_value **values);
-void group_concat_finalize(sqlite3_context *ctx);
-void word_search_func(sqlite3_context* ctx, int argc, sqlite3_value** argv);
+static void group_concat_step(sqlite3_context *ctx, int ncols, sqlite3_value **values);
+static void group_concat_finalize(sqlite3_context *ctx);
+static void word_search_func(sqlite3_context* ctx, int argc, sqlite3_value** argv);
 
 @implementation CSqliteDatabase (CSqliteDatabase_Functions)
 
 - (BOOL)loadFunctions:(NSError **)outError
 {
-int res = sqlite3_create_function(self.sql, "group_concat", 1, SQLITE_UTF8, self.sql, NULL, group_concat_step, group_concat_finalize);    
-NSAssert(res == SQLITE_OK, @"Unable to register group_concat function!");
-res = sqlite3_create_function(self.sql, "word_search", 2, SQLITE_UTF8, NULL, word_search_func, NULL, NULL);
-NSAssert(res == SQLITE_OK, @"Unable to register CADI collation!");    
+int theResult = sqlite3_create_function(self.sql, "group_concat", 1, SQLITE_UTF8, self.sql, NULL, group_concat_step, group_concat_finalize);    
+if (theResult != SQLITE_OK)
+	{
+	if (outError)
+		*outError = [self currentError];
+	return(NO);
+	}
+
+
+theResult = sqlite3_create_function(self.sql, "word_search", 2, SQLITE_UTF8, NULL, word_search_func, NULL, NULL);
+if (theResult != SQLITE_OK)
+	{
+	if (outError)
+		*outError = [self currentError];
+	return(NO);
+	}
+return(YES);
 }
 
 // sqlite group_concat functionality
@@ -28,7 +41,7 @@ typedef struct {
     NSMutableArray *values;
 } group_concat_ctxt;
 
-void group_concat_step(sqlite3_context *ctx, int ncols, sqlite3_value **values)
+static void group_concat_step(sqlite3_context *ctx, int ncols, sqlite3_value **values)
 {
     group_concat_ctxt *g;
     const unsigned char *bytes;
@@ -44,7 +57,7 @@ void group_concat_step(sqlite3_context *ctx, int ncols, sqlite3_value **values)
     [g->values addObject:[NSString stringWithCString:(const char *)bytes encoding:NSUTF8StringEncoding]];
 }
 
-void group_concat_finalize(sqlite3_context *ctx)
+static void group_concat_finalize(sqlite3_context *ctx)
 {
     group_concat_ctxt *g;
     
@@ -57,7 +70,7 @@ void group_concat_finalize(sqlite3_context *ctx)
 
 // sqlite word search function
 
-void word_search_func(sqlite3_context* ctx, int argc, sqlite3_value** argv)
+static void word_search_func(sqlite3_context* ctx, int argc, sqlite3_value** argv)
 {    
     int wasFound = 0;
     static NSCharacterSet *charSet = nil;

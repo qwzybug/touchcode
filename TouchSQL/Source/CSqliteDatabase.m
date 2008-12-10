@@ -41,12 +41,18 @@ NSString *TouchSQLErrorDomain = @"TouchSQLErrorDomain";
 @interface CSqliteDatabase ()
 @property (readwrite, retain) NSString *path;
 @property (readwrite, assign) sqlite3 *sql;
+@property (readwrite, retain) CSqliteStatement *beginStatement;
+@property (readwrite, retain) CSqliteStatement *commitStatement;
+@property (readwrite, retain) CSqliteStatement *rollbackStatement;
 @end
 
 @implementation CSqliteDatabase
 
 @synthesize path;
 @dynamic sql;
+@synthesize beginStatement;
+@synthesize commitStatement;
+@synthesize rollbackStatement;
 
 - (id)initWithPath:(NSString *)inPath
 {
@@ -64,8 +70,12 @@ return([self initWithPath:@":memory:"]);
 
 - (void)dealloc
 {
+self.beginStatement = NULL;
+self.commitStatement = NULL;
+self.rollbackStatement = NULL;
+//
 self.path = NULL;
-[self close];
+self.sql = NULL;
 //
 [super dealloc];
 }
@@ -116,24 +126,29 @@ if (sql != inSql)
 
 - (BOOL)begin
 {
-return [self executeExpression:@"BEGIN TRANSACTION" error:NULL];
+if (self.beginStatement == NULL)
+	self.beginStatement = [[[CSqliteStatement alloc] initWithDatabase:self string:@"BEGIN TRANSACTION"] autorelease];
+return([self.beginStatement execute:NULL]);
 }
 
 - (BOOL)commit
 {
-return [self executeExpression:@"COMMIT" error:NULL];
+if (self.commitStatement == NULL)
+	self.commitStatement = [[[CSqliteStatement alloc] initWithDatabase:self string:@"COMMIT"] autorelease];
+return([self.commitStatement execute:NULL]);
 }
 
 - (BOOL)rollback
 {
-return [self executeExpression:@"ROLLBACK" error:NULL];
+if (self.rollbackStatement == NULL)
+	self.rollbackStatement = [[[CSqliteStatement alloc] initWithDatabase:self string:@"ROLLBACK"] autorelease];
+return([self.rollbackStatement execute:NULL]);
 }
 
 - (BOOL)executeExpression:(NSString *)inExpression error:(NSError **)outError
 {
 NSAssert(self.sql != NULL, @"Database not open.");
 
-char *theMessage = NULL;
 int theResult = sqlite3_exec(self.sql, [inExpression UTF8String], NULL, NULL, NULL);
 if (theResult != SQLITE_OK) 
 	{
@@ -148,6 +163,7 @@ return(theResult == SQLITE_OK ? YES : NO);
 
 - (NSEnumerator *)enumeratorForExpression:(NSString *)inExpression error:(NSError **)outError
 {
+#pragma unused (outError)
 CSqliteStatement *theStatement = [[[CSqliteStatement alloc] initWithDatabase:self string:inExpression] autorelease];
 return([theStatement enumerator]);
 }
@@ -168,17 +184,13 @@ const char* cColumnName;
 sqlite3_stmt *pStmt = NULL;
 const char *tail = NULL;
 
-int theResult = sqlite3_prepare_v2(self.sql, [inExpression UTF8String], -1, 
-                                   &pStmt, &tail);    
+int theResult = sqlite3_prepare_v2(self.sql, [inExpression UTF8String], -1, &pStmt, &tail);    
 
 if (theResult != SQLITE_OK)
 	{
 	if (outError)
         {
-        NSString *errStr = [NSString stringWithUTF8String:sqlite3_errmsg(self.sql)];
-        *outError = [NSError errorWithDomain:TouchSQLErrorDomain 
-                                        code:theResult 
-                                    userInfo:[NSDictionary dictionaryWithObject:errStr forKey:NSLocalizedDescriptionKey]];
+		*outError = [self currentError];
         }
 	return(NULL);
 	}
@@ -230,10 +242,7 @@ if ( (theResult != SQLITE_OK) && (theResult != SQLITE_DONE) )
     {
     if (outError)
         {
-        NSString *errStr = [NSString stringWithUTF8String:sqlite3_errmsg(self.sql)];
-        *outError = [NSError errorWithDomain:TouchSQLErrorDomain 
-                                        code:theResult 
-                                    userInfo:[NSDictionary dictionaryWithObject:errStr forKey:NSLocalizedDescriptionKey]];
+		*outError = [self currentError];
         }
     }
     
@@ -243,12 +252,18 @@ pStmt = NULL;
 return(theRowsArray);
 }
 
-
 - (NSInteger)lastInsertRowID
 {
 // TODO 64 bit!??!?!?!
 sqlite_int64 theLastRowID = sqlite3_last_insert_rowid(self.sql);
 return(theLastRowID);
+}
+
+- (NSError *)currentError
+{
+NSString *theErrorString = [NSString stringWithUTF8String:sqlite3_errmsg(self.sql)];
+NSError *theError = [NSError errorWithDomain:TouchSQLErrorDomain code:sqlite3_errcode(self.sql) userInfo:[NSDictionary dictionaryWithObject:theErrorString forKey:NSLocalizedDescriptionKey]];
+return(theError);
 }
 
 @end

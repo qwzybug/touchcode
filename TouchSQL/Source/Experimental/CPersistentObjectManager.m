@@ -45,12 +45,15 @@ self.database = NULL;
 
 - (id)makePersistentObjectOfClass:(Class)inClass error:(NSError **)outError
 {
+#pragma unused (outError)
 id theObject = [[[inClass alloc] initWithPersistenObjectManager:self rowID:-1] autorelease];
 return(theObject);
 }
 
 - (id)loadPersistentObjectOfClass:(Class)inClass rowID:(NSInteger)inRowID error:(NSError **)outError
 {
+#pragma unused (outError)
+
 NSAssert(inClass != NULL, @"Class should not be NULL");
 NSString *theTableName = [inClass tableName];
 NSAssert(theTableName != NULL, @"tableName should not be NULL");
@@ -93,6 +96,8 @@ return(theObject);
 
 - (id)loadPersistentObjectOfClass:(Class)inClass rowID:(NSInteger)inRowID fromDictionary:(NSDictionary *)inValues error:(NSError **)outError
 {
+#pragma unused (outError)
+
 NSAssert(inClass != NULL, @"Class should not be NULL");
 NSString *theTableName = [inClass tableName];
 NSAssert(theTableName != NULL, @"tableName should not be NULL");

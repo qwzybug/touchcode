@@ -33,9 +33,14 @@
 
 extern NSString *TouchSQLErrorDomain /* = @"TouchSQLErrorDomain" */;
 
+@class CSqliteStatement;
+
 @interface CSqliteDatabase : NSObject {
 	NSString *path;
 	sqlite3 *sql;
+	CSqliteStatement *beginStatement;
+	CSqliteStatement *commitStatement;
+	CSqliteStatement *rollbackStatement;
 }
 
 @property (readonly, retain) NSString *path;
@@ -56,5 +61,6 @@ extern NSString *TouchSQLErrorDomain /* = @"TouchSQLErrorDomain" */;
 - (NSArray *)rowsForExpression:(NSString *)inExpression error:(NSError **)outError;
 
 - (NSInteger)lastInsertRowID;
+- (NSError *)currentError;
 
 @end

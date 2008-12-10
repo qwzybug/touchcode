@@ -16,13 +16,11 @@
 	CSqliteDatabase *database;
 	NSString *statementString;
 	sqlite3_stmt *statement;
-	NSError *error;
 }
 
 @property (readonly, nonatomic, assign) CSqliteDatabase *database;
 @property (readonly, nonatomic, copy) NSString *statementString;
 @property (readonly, nonatomic, assign) sqlite3_stmt *statement;
-@property (readonly, nonatomic, retain)	NSError *error;
 
 + (CSqliteStatement *)statementWithDatabase:(CSqliteDatabase *)inDatabase format:(NSString *)inFormat, ...;
 
@@ -33,8 +31,9 @@
 - (BOOL)reset:(NSError **)outError;
 
 - (BOOL)clearBindings:(NSError **)outError;
-
 - (BOOL)bindValues:(NSDictionary *)inValues transientValues:(BOOL)inTransientValues error:(NSError **)outError;
+
+- (BOOL)execute:(NSError **)outError;
 
 - (BOOL)step:(NSError **)outError;
 

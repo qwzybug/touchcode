@@ -29,6 +29,8 @@
 
 #import "CSqliteDatabase_Extensions.h"
 
+#import "CSqliteStatement.h"
+
 @implementation CSqliteDatabase (CSqliteDatabase_Extensions)
 
 // TODO -- most of these methods can be heavily optimised and more error checking added (search for NULL)
@@ -53,58 +55,6 @@ return([theRow allValues]);
 NSArray *theValues = [self valuesForExpression:inExpression error:outError];
 // TODO -- check only 1 object is returned?
 return([theValues lastObject]);
-}
-
-- (NSError *)currentError
-{
-NSString *theErrorString = [NSString stringWithUTF8String:sqlite3_errmsg(self.sql)];
-NSError *theError = [NSError errorWithDomain:TouchSQLErrorDomain code:sqlite3_errcode(self.sql) userInfo:[NSDictionary dictionaryWithObject:theErrorString forKey:NSLocalizedDescriptionKey]];
-return(theError);
-}
-
-@end
-
-#pragma mark -
-
-@implementation CSqliteDatabase (CSqliteDatabase_Configuration)
-
-@dynamic cacheSize;
-@dynamic synchronous;
-@dynamic tempStore;
-
-- (NSString *)integrityCheck
-{
-return([self valueForExpression:@"pragma integrity_check" error:NULL]);
-}
-
-- (int)cacheSize
-{
-return([[self valueForExpression:@"pragma cache_size" error:NULL] intValue]);
-}
-
-- (void)setCacheSize:(int)inCacheSize
-{
-[self executeExpression:[NSString stringWithFormat:@"pragma cache_size=%d", inCacheSize] error:NULL];
-}
-
-- (int)synchronous
-{
-return([[self valueForExpression:@"pragma synchronous" error:NULL] intValue]);
-}
-
-- (void)setSynchronous:(int)inSynchronous
-{
-[self executeExpression:[NSString stringWithFormat:@"pragma synchronous=%d", inSynchronous] error:NULL];
-}
-
-- (int)tempStore
-{
-return([[self valueForExpression:@"pragma temp_store" error:NULL] intValue]);
-}
-
-- (void)setTempStore:(int)inTempStore
-{
-[self executeExpression:[NSString stringWithFormat:@"pragma temp_store=%d", inTempStore] error:NULL];
 }
 
 @end
