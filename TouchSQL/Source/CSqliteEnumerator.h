@@ -33,8 +33,10 @@
 
 @interface CSqliteEnumerator : NSEnumerator {
 	CSqliteStatement *statement;
+	BOOL resultsAsDictionary;
 }
 
+- (id)initWithStatement:(CSqliteStatement *)inStatement resultsAsDictionary:(BOOL)inResultsAsDictionary;
 - (id)initWithStatement:(CSqliteStatement *)inStatement;
 
 @end

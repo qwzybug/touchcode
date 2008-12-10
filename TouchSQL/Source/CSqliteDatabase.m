@@ -134,20 +134,15 @@ return [self executeExpression:@"ROLLBACK" error:NULL];
 NSAssert(self.sql != NULL, @"Database not open.");
 
 char *theMessage = NULL;
-int theResult = sqlite3_exec(self.sql, [inExpression UTF8String], NULL, NULL, &theMessage);
+int theResult = sqlite3_exec(self.sql, [inExpression UTF8String], NULL, NULL, NULL);
 if (theResult != SQLITE_OK) 
 	{
 	if (outError)
         {
-        NSString *sqlErr = [NSString stringWithUTF8String:sqlite3_errmsg(self.sql)];
-        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:sqlErr forKey:NSLocalizedDescriptionKey];
-		*outError = [NSError errorWithDomain:TouchSQLErrorDomain code:theResult userInfo:userInfo];
+		*outError = [self currentError];
         }
-	if (theMessage)
-		{
-		sqlite3_free(theMessage); // TODO: If this is set then we've already thrown an exception and this will leak.
-		}
 	}
+
 return(theResult == SQLITE_OK ? YES : NO);
 }
 

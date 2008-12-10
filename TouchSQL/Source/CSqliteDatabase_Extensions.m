@@ -74,37 +74,37 @@ return(theError);
 
 - (NSString *)integrityCheck
 {
-return([self valueForExpression:@"pragma integrity_check;" error:NULL]);
+return([self valueForExpression:@"pragma integrity_check" error:NULL]);
 }
 
 - (int)cacheSize
 {
-return([[self valueForExpression:@"pragma cache_size;" error:NULL] intValue]);
+return([[self valueForExpression:@"pragma cache_size" error:NULL] intValue]);
 }
 
 - (void)setCacheSize:(int)inCacheSize
 {
-[self executeExpression:[NSString stringWithFormat:@"pragma cache_size=%d;", inCacheSize] error:NULL];
+[self executeExpression:[NSString stringWithFormat:@"pragma cache_size=%d", inCacheSize] error:NULL];
 }
 
 - (int)synchronous
 {
-return([[self valueForExpression:@"pragma synchronous;" error:NULL] intValue]);
+return([[self valueForExpression:@"pragma synchronous" error:NULL] intValue]);
 }
 
 - (void)setSynchronous:(int)inSynchronous
 {
-[self executeExpression:[NSString stringWithFormat:@"pragma synchronous=%d;", inSynchronous] error:NULL];
+[self executeExpression:[NSString stringWithFormat:@"pragma synchronous=%d", inSynchronous] error:NULL];
 }
 
 - (int)tempStore
 {
-return([[self valueForExpression:@"pragma temp_store;" error:NULL] intValue]);
+return([[self valueForExpression:@"pragma temp_store" error:NULL] intValue]);
 }
 
 - (void)setTempStore:(int)inTempStore
 {
-[self executeExpression:[NSString stringWithFormat:@"pragma temp_store=%d;", inTempStore] error:NULL];
+[self executeExpression:[NSString stringWithFormat:@"pragma temp_store=%d", inTempStore] error:NULL];
 }
 
 @end

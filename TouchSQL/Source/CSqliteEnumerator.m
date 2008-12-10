@@ -31,19 +31,27 @@
 
 @interface CSqliteEnumerator ()
 @property (readwrite, retain) CSqliteStatement *statement;
+@property (readwrite, assign) BOOL resultsAsDictionary;
 @end
 
 @implementation CSqliteEnumerator
 
 @synthesize statement;
+@synthesize resultsAsDictionary;
+
+- (id)initWithStatement:(CSqliteStatement *)inStatement resultsAsDictionary:(BOOL)inResultsAsDictionary;
+{
+if ((self = [self init]) != NULL)
+	{
+	self.statement = inStatement;
+	self.resultsAsDictionary = inResultsAsDictionary;
+	}
+return(self);
+}
 
 - (id)initWithStatement:(CSqliteStatement *)inStatement
 {
-if (self = ([self init]))
-	{
-	self.statement = inStatement;
-	}
-return(self);
+return([self initWithStatement:inStatement resultsAsDictionary:YES]);
 }
 
 - (void)dealloc
@@ -53,10 +61,15 @@ self.statement = NULL;
 [super dealloc];
 }
 
+#pragma mark -
+
 - (id)nextObject
 {
 int theResult = [self.statement step:NULL];
-return([self.statement rowDictionary:NULL]);
+if (self.resultsAsDictionary)
+	return([self.statement rowDictionary:NULL]);
+else
+	return([self.statement row:NULL]);
 }
 
 @end
