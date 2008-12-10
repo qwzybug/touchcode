@@ -10,6 +10,7 @@
 
 #import "CSqliteDatabase.h"
 #import "CSqliteDatabase_Extensions.h"
+#import "CSqliteEnumerator.h"
 
 @interface CSqliteStatement ()
 @property (readwrite, nonatomic, assign) CSqliteDatabase *database;
@@ -384,6 +385,11 @@ while (theObjectCount < len && [self step:&theError] == YES)
 state->itemsPtr = stackbuf;
 
 return(theObjectCount);
+}
+
+- (NSEnumerator *)enumerator
+{
+return([[[CSqliteEnumerator alloc] initWithStatement:self] autorelease]);
 }
 
 @end

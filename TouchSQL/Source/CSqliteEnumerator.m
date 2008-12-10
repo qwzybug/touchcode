@@ -30,16 +30,16 @@
 #import "CSqliteEnumerator.h"
 
 @interface CSqliteEnumerator ()
-@property (readwrite, assign) sqlite3_stmt *statement;
+@property (readwrite, retain) CSqliteStatement *statement;
 @end
 
 @implementation CSqliteEnumerator
 
 @synthesize statement;
 
-- (id)initWithStatement:(sqlite3_stmt *)inStatement
+- (id)initWithStatement:(CSqliteStatement *)inStatement
 {
-if (self = ([super init]))
+if (self = ([self init]))
 	{
 	self.statement = inStatement;
 	}
@@ -48,40 +48,15 @@ return(self);
 
 - (void)dealloc
 {
-int theResult = sqlite3_finalize(statement);
 self.statement = NULL;
 //
 [super dealloc];
-//
-if (theResult != SQLITE_OK) [NSException raise:NSGenericException format:@"sqlite3_finalize() failed with %d", theResult];
 }
 
 - (id)nextObject
 {
-int theResult = sqlite3_step(self.statement);
-
-if (theResult != SQLITE_ROW)
-	return(NULL);
-
-NSMutableDictionary *theRow = [NSMutableDictionary dictionary];
-int theColumnCount = sqlite3_column_count(self.statement);
-for (int N = 0; N != theColumnCount; ++N)
-	{
-	const char *theColumnName = sqlite3_column_name(self.statement, N);
-	const unsigned char *theColumnData = sqlite3_column_text(self.statement, N);
-	if (theColumnName != NULL)
-		{
-		NSString *theKey = [NSString stringWithUTF8String:theColumnName];
-		id theValue = NULL;
-		if (theColumnData == NULL)
-			theValue = [NSNull null];
-		else
-			theValue = [NSString stringWithUTF8String:(const char *)theColumnData];
-		
-		[theRow setObject:theValue forKey:theKey];
-		}
-	}
-return(theRow);
+int theResult = [self.statement step:NULL];
+return([self.statement rowDictionary:NULL]);
 }
 
 @end

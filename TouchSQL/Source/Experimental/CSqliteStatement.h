@@ -50,4 +50,6 @@
 - (NSArray *)rows:(NSError **)outError;
 - (NSArray *)rowDictionaries:(NSError **)outError;
 
+- (NSEnumerator *)enumerator;
+
 @end

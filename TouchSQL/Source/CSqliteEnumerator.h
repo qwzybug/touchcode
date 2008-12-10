@@ -29,12 +29,12 @@
 
 #import <Foundation/Foundation.h>
 
-#include <sqlite3.h>
+#include "CSqliteStatement.h"
 
 @interface CSqliteEnumerator : NSEnumerator {
-	sqlite3_stmt *statement;
+	CSqliteStatement *statement;
 }
 
-- (id)initWithStatement:(sqlite3_stmt *)inStatement;
+- (id)initWithStatement:(CSqliteStatement *)inStatement;
 
 @end

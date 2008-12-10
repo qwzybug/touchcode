@@ -47,13 +47,13 @@ extern NSString *TouchSQLErrorDomain /* = @"TouchSQLErrorDomain" */;
 - (BOOL)open:(NSError **)outError;
 - (void)close;
 
-- (BOOL)executeExpression:(NSString *)inExpression error:(NSError **)outError;
-- (NSEnumerator *)enumeratorForExpression:(NSString *)inExpression error:(NSError **)outError;
-- (NSArray *)rowsForExpression:(NSString *)inExpression error:(NSError **)outError;
-
 - (BOOL)begin;
 - (BOOL)commit;
 - (BOOL)rollback;
+
+- (BOOL)executeExpression:(NSString *)inExpression error:(NSError **)outError;
+- (NSEnumerator *)enumeratorForExpression:(NSString *)inExpression error:(NSError **)outError;
+- (NSArray *)rowsForExpression:(NSString *)inExpression error:(NSError **)outError;
 
 - (NSInteger)lastInsertRowID;
 
