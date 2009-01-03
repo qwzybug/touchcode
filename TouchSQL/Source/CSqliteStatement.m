@@ -140,89 +140,82 @@ if (theResult != SQLITE_OK)
 return(YES);
 }
 
-- (BOOL)bindValues:(NSDictionary *)inValues transientValues:(BOOL)inTransientValues error:(NSError **)outError;
+- (BOOL)bindValue:(id)inValue toBinding:(NSString *)inBinding transientValue:(BOOL)inTransientValues error:(NSError **)outError
 {
-int theResult = sqlite3_reset(self.statement);
-if (theResult != SQLITE_OK)
-	{
-	if (outError)
-		*outError = [self.database currentError];
-	return(NO);
-	}
-
-theResult = sqlite3_clear_bindings(self.statement);
-if (theResult != SQLITE_OK)
-	{
-	if (outError)
-		*outError = [self.database currentError];
-	return(NO);
-	}
-
 sqlite3_destructor_type theDestructorType = inTransientValues ? SQLITE_TRANSIENT : SQLITE_STATIC;
 
+int theParameterIndex = sqlite3_bind_parameter_index(self.statement, [inBinding UTF8String]);
+BOOL theResult;
+
+if ([inValue isKindOfClass:[NSData class]])
+	{
+	NSData *theData = (NSData *)inValue;
+	theResult = sqlite3_bind_blob(self.statement, theParameterIndex, theData.bytes, theData.length, theDestructorType);
+	}
+else if ([inValue isKindOfClass:[NSNumber class]])
+	{
+	CFNumberType theType = CFNumberGetType((CFNumberRef)inValue);
+	switch (theType)
+		{
+		case kCFNumberFloat32Type:
+		case kCFNumberFloat64Type:
+		case kCFNumberFloatType:
+		case kCFNumberDoubleType:
+			{
+			const double theDouble = [inValue doubleValue];
+			theResult = sqlite3_bind_double(self.statement, theParameterIndex, theDouble);
+			}
+			break;
+		case kCFNumberSInt64Type:
+			{
+			sqlite_int64 theInt64;
+			CFNumberGetValue((CFNumberRef)inValue, kCFNumberSInt64Type, &theInt64);
+			theResult = sqlite3_bind_int64(self.statement, theParameterIndex, theInt64);
+			}
+			break;
+		default:
+			{
+			int theInteger = [inValue intValue];
+			theResult = sqlite3_bind_int(self.statement, theParameterIndex, theInteger);
+			}
+		}
+	}
+else if (inValue == [NSNull null])
+	{
+	theResult = sqlite3_bind_null(self.statement, theParameterIndex);
+	}
+else if ([inValue isKindOfClass:[NSString class]])
+	{
+	NSString *theString = (NSString *)inValue;
+	theResult = sqlite3_bind_text(self.statement, theParameterIndex, [theString UTF8String], theString.length, theDestructorType);
+	}
+else
+	{
+	if (*outError)
+		{
+		*outError = [NSError errorWithDomain:TouchSQLErrorDomain code:-1 userInfo:[NSDictionary dictionaryWithObject:@"Cannot convert object of that type." forKey:NSLocalizedDescriptionKey]];
+		}
+	return(NO);
+	}
+
+if (theResult != SQLITE_OK)
+	{
+	if (outError)
+		*outError = [self.database currentError];
+	return(NO);
+	}
+
+return(YES);
+}
+
+- (BOOL)bindValues:(NSDictionary *)inValues transientValues:(BOOL)inTransientValues error:(NSError **)outError
+{
 for (NSString *theKey in inValues)
 	{
-	int theParameterIndex = sqlite3_bind_parameter_index(self.statement, [theKey UTF8String]);
-
 	id theValue = [inValues objectForKey:theKey];
 	
-	if ([theValue isKindOfClass:[NSData class]])
-		{
-		NSData *theData = (NSData *)theValue;
-		theResult = sqlite3_bind_blob(self.statement, theParameterIndex, theData.bytes, theData.length, theDestructorType);
-		}
-	else if ([theValue isKindOfClass:[NSNumber class]])
-		{
-		CFNumberType theType = CFNumberGetType((CFNumberRef)theValue);
-		switch (theType)
-			{
-			case kCFNumberFloat32Type:
-			case kCFNumberFloat64Type:
-			case kCFNumberFloatType:
-			case kCFNumberDoubleType:
-				{
-				const double theDouble = [theValue doubleValue];
-				theResult = sqlite3_bind_double(self.statement, theParameterIndex, theDouble);
-				}
-				break;
-			case kCFNumberSInt64Type:
-				{
-				sqlite_int64 theInt64;
-				CFNumberGetValue((CFNumberRef)theValue, kCFNumberSInt64Type, &theInt64);
-				theResult = sqlite3_bind_int64(self.statement, theParameterIndex, theInt64);
-				}
-				break;
-			default:
-				{
-				int theInteger = [theValue intValue];
-				theResult = sqlite3_bind_int(self.statement, theParameterIndex, theInteger);
-				}
-			}
-		}
-	else if (theValue == [NSNull null])
-		{
-		theResult = sqlite3_bind_null(self.statement, theParameterIndex);
-		}
-	else if ([theValue isKindOfClass:[NSString class]])
-		{
-		NSString *theString = (NSString *)theValue;
-		theResult = sqlite3_bind_text(self.statement, theParameterIndex, [theString UTF8String], theString.length, theDestructorType);
-		}
-	else
-		{
-		if (*outError)
-			{
-			*outError = [NSError errorWithDomain:TouchSQLErrorDomain code:-1 userInfo:[NSDictionary dictionaryWithObject:@"Cannot convert object of that type." forKey:NSLocalizedDescriptionKey]];
-			}
+	if ([self bindValue:theValue toBinding:theKey transientValue:inTransientValues error:outError] == NO)
 		return(NO);
-		}
-
-	if (theResult != SQLITE_OK)
-		{
-		if (outError)
-			*outError = [self.database currentError];
-		return(NO);
-		}
 	}
 
 return(YES);
@@ -329,6 +322,9 @@ return(theColumnNames);
 
 - (NSArray *)row:(NSError **)outError;
 {
+if ([self step:outError] == NO)
+	return(NULL);
+
 int theColumnCount = [self columnCount:outError];
 if (theColumnCount < 0)
 	return(NULL);
@@ -343,6 +339,9 @@ return(theRow);
 
 - (NSDictionary *)rowDictionary:(NSError **)outError
 {
+if ([self step:outError] == NO)
+	return(NULL);
+
 int theColumnCount = [self columnCount:outError];
 if (theColumnCount < 0)
 	return(NULL);

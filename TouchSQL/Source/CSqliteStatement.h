@@ -31,6 +31,7 @@
 - (BOOL)reset:(NSError **)outError;
 
 - (BOOL)clearBindings:(NSError **)outError;
+- (BOOL)bindValue:(id)inValue toBinding:(NSString *)inBinding transientValue:(BOOL)inTransientValues error:(NSError **)outError;
 - (BOOL)bindValues:(NSDictionary *)inValues transientValues:(BOOL)inTransientValues error:(NSError **)outError;
 
 - (BOOL)execute:(NSError **)outError;

@@ -41,22 +41,18 @@ NSString *TouchSQLErrorDomain = @"TouchSQLErrorDomain";
 @interface CSqliteDatabase ()
 @property (readwrite, retain) NSString *path;
 @property (readwrite, assign) sqlite3 *sql;
-@property (readwrite, retain) CSqliteStatement *beginStatement;
-@property (readwrite, retain) CSqliteStatement *commitStatement;
-@property (readwrite, retain) CSqliteStatement *rollbackStatement;
+@property (readwrite, retain) NSMutableDictionary *userDictionary;
 @end
 
 @implementation CSqliteDatabase
 
 @synthesize path;
 @dynamic sql;
-@synthesize beginStatement;
-@synthesize commitStatement;
-@synthesize rollbackStatement;
+@dynamic userDictionary;
 
 - (id)initWithPath:(NSString *)inPath
 {
-if (self = ([super init]))
+if (self = ([self init]))
 	{
 	self.path = inPath;
 	}
@@ -70,12 +66,9 @@ return([self initWithPath:@":memory:"]);
 
 - (void)dealloc
 {
-self.beginStatement = NULL;
-self.commitStatement = NULL;
-self.rollbackStatement = NULL;
-//
 self.path = NULL;
 self.sql = NULL;
+self.userDictionary = NULL;
 //
 [super dealloc];
 }
@@ -122,27 +115,57 @@ if (sql != inSql)
 	}
 }
 
+
+
+- (NSMutableDictionary *)userDictionary
+{
+if (userDictionary == NULL)
+	userDictionary = [[NSMutableDictionary alloc] init];
+return(userDictionary); 
+}
+
+- (void)setUserDictionary:(NSMutableDictionary *)inUserDictionary
+{
+if (userDictionary != inUserDictionary)
+	{
+	[userDictionary autorelease];
+	userDictionary = [inUserDictionary retain];
+    }
+}
+
 #pragma mark -
 
 - (BOOL)begin
 {
-if (self.beginStatement == NULL)
-	self.beginStatement = [[[CSqliteStatement alloc] initWithDatabase:self string:@"BEGIN TRANSACTION"] autorelease];
-return([self.beginStatement execute:NULL]);
+CSqliteStatement *theStatement = [self.userDictionary objectForKey:@"BEGIN TRANSACTION"];
+if (theStatement == NULL)
+	{
+	theStatement = [[[CSqliteStatement alloc] initWithDatabase:self string:@"BEGIN TRANSACTION"] autorelease];
+	[self.userDictionary setObject:theStatement forKey:@"BEGIN TRANSACTION"];
+	}
+return([theStatement execute:NULL]);
 }
 
 - (BOOL)commit
 {
-if (self.commitStatement == NULL)
-	self.commitStatement = [[[CSqliteStatement alloc] initWithDatabase:self string:@"COMMIT"] autorelease];
-return([self.commitStatement execute:NULL]);
+CSqliteStatement *theStatement = [self.userDictionary objectForKey:@"COMMIT"];
+if (theStatement == NULL)
+	{
+	theStatement = [[[CSqliteStatement alloc] initWithDatabase:self string:@"COMMIT"] autorelease];
+	[self.userDictionary setObject:theStatement forKey:@"COMMIT"];
+	}
+return([theStatement execute:NULL]);
 }
 
 - (BOOL)rollback
 {
-if (self.rollbackStatement == NULL)
-	self.rollbackStatement = [[[CSqliteStatement alloc] initWithDatabase:self string:@"ROLLBACK"] autorelease];
-return([self.rollbackStatement execute:NULL]);
+CSqliteStatement *theStatement = [self.userDictionary objectForKey:@"ROLLBACK"];
+if (theStatement == NULL)
+	{
+	theStatement = [[[CSqliteStatement alloc] initWithDatabase:self string:@"ROLLBACK"] autorelease];
+	[self.userDictionary setObject:theStatement forKey:@"ROLLBACK"];
+	}
+return([theStatement execute:NULL]);
 }
 
 - (BOOL)executeExpression:(NSString *)inExpression error:(NSError **)outError
