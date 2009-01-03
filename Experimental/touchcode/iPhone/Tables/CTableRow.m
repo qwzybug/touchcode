@@ -9,7 +9,7 @@
 #import "CTableRow.h"
 
 #import "CTableSection.h"
-#import "CLabelledValueTableViewCell.h"
+#import "CLabelledTextFieldCell.h"
 
 @implementation CTableRow
 
@@ -108,8 +108,9 @@ if (inValue == NULL)
 	}
 else
 	{
-	CLabelledValueTableViewCell *theLabelledValueTableViewCell = [CLabelledValueTableViewCell cell];
-	theLabelledValueTableViewCell.valueLabel.text = inValue;
+	CLabelledTextFieldCell *theLabelledValueTableViewCell = [CLabelledTextFieldCell cell];
+	theLabelledValueTableViewCell.valueView.text = inValue;
+	theCell = theLabelledValueTableViewCell;
 	}
 
 theCell.text = inTitle;
