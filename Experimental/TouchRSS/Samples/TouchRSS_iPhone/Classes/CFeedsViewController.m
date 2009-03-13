@@ -11,12 +11,16 @@
 #import "CFeed.h"
 #import "CDemoFeedStore.h"
 #import "CEntriesViewController.h"
+#import "CFeedFetcher.h"
 
 @implementation CFeedsViewController
 
 - (void)viewDidLoad
 {
-[[CDemoFeedStore instance] updateAllFeeds];
+[super viewDidLoad];
+//
+CFeed *theFeed = [[CDemoFeedStore instance] feedforURL:[NSURL URLWithString:@"http://toxicsoftware.com/feed/"]];
+[[CDemoFeedStore instance].feedFetcher updateFeed:theFeed];
 }
 
 - (void)didReceiveMemoryWarning {
