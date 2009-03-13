@@ -41,14 +41,14 @@ CGRect theViewFrame = [UIScreen mainScreen].applicationFrame;
 
 theViewFrame = CGRectInset(theViewFrame, 0, 40);
 
-
 if ((self = [super initWithFrame:theViewFrame]) != NULL)
 	{
-	self.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.9];
-	self.textColor = [UIColor whiteColor]; 
-	self.labelText = inLabelText;	
+	self.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.0];
+	self.opaque = NO;
+	self.textColor = [UIColor whiteColor];
+	self.labelText = inLabelText;
 	self.miniumDisplayTime = 1.0;
-	
+
 	self.mode = ProgressOverlayViewMode_Indeterminate;
 	}
 return(self);
@@ -101,7 +101,7 @@ if (self.label == NULL)
 	[self.contentView addSubview:self.label];
 	self.label.text = self.labelText;
 	}
-	
+
 if (self.mode == ProgressOverlayViewMode_Determinate)
 	{
 	CGRect theContentViewFrame = CGRectMake(0, 0, 280, 49);
@@ -185,7 +185,8 @@ if (self.superview != NULL)
 			{
 			[theRunLoop runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.05]];
 			}
-		while ((theDelta = -[self.displayTime timeIntervalSinceNow]) < self.miniumDisplayTime);
+		while ((-[self.displayTime timeIntervalSinceNow]) < self.miniumDisplayTime)
+			;
 		[self autorelease];
 		}
 

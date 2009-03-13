@@ -1,6 +1,6 @@
 //
 //  CBookmark.h
-//  Freerange
+//  TouchCode
 //
 //  Created by Jonathan Wight on 11/26/08.
 //  Copyright 2008 toxicsoftware.com. All rights reserved.

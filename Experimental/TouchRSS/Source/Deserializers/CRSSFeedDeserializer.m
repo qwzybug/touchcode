@@ -67,9 +67,6 @@ if ((self = [self init]) != NULL)
 
 	xmlTextReaderSetErrorHandler(self.reader, MyXMLTextReaderErrorFunc, self);
 
-//	theReturnCode = xmlTextReaderSetParserProp(self.reader, XML_PARSER_VALIDATE, 1);
-//	NSAssert(theReturnCode == 0, @"");
-
 	theReturnCode = xmlTextReaderSetParserProp(self.reader, XML_PARSER_SUBST_ENTITIES, 1);
 	NSAssert(theReturnCode == 0, @"");
 	}
@@ -82,7 +79,7 @@ xmlFreeTextReader(self.reader);
 self.reader = NULL;
 
 self.error = NULL;
-//	
+//
 [super dealloc];
 }
 
@@ -122,7 +119,7 @@ while (theObjectCount < len && theReturnCode == 1 && self.error == NULL)
 				[self updateAttributesOfItem:theDictionary];
 				break;
 			}
-			
+
 		if (theDictionary)
 			{
 			stackbuf[theObjectCount++] = theDictionary;
@@ -134,7 +131,7 @@ while (theObjectCount < len && theReturnCode == 1 && self.error == NULL)
 
 	theReturnCode = xmlTextReaderRead(self.reader);
 	}
-	
+
 state->itemsPtr = stackbuf;
 
 return(theObjectCount);
@@ -156,6 +153,7 @@ while (theCurrentNode != NULL)
 				{
 				xmlChar *theContentBytes = xmlNodeGetContent(theCurrentNode);
 				NSString *theContent = [NSString stringWithUTF8String:(const char *)theContentBytes];
+				theContent = [theContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 				[inChannel setObject:theContent forKey:@"title"];
 				xmlFree(theContentBytes);
 				}
@@ -164,6 +162,7 @@ while (theCurrentNode != NULL)
 				{
 				xmlChar *theContentBytes = xmlNodeGetContent(theCurrentNode);
 				NSString *theContent = [NSString stringWithUTF8String:(const char *)theContentBytes];
+				theContent = [theContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 				NSURL *theLink = [NSURL URLWithString:theContent];
 				[inChannel setObject:theLink forKey:@"link"];
 				xmlFree(theContentBytes);
@@ -173,6 +172,7 @@ while (theCurrentNode != NULL)
 				{
 				xmlChar *theContentBytes = xmlNodeGetContent(theCurrentNode);
 				NSString *theContent = [NSString stringWithUTF8String:(const char *)theContentBytes];
+				theContent = [theContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 				[inChannel setObject:theContent forKey:@"subtitle"];
 				xmlFree(theContentBytes);
 				}
@@ -183,7 +183,7 @@ while (theCurrentNode != NULL)
 				break;
 			}
 		}
-	
+
 	theCurrentNode = theCurrentNode->next;
 	}
 }
@@ -204,6 +204,8 @@ while (theCurrentNode != NULL && self.error == NULL)
 				{
 				xmlChar *theContentBytes = xmlNodeGetContent(theCurrentNode);
 				NSString *theContent = [NSString stringWithUTF8String:(const char *)theContentBytes];
+				theContent = [theContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+				if (theContent)
 				[inItem setObject:theContent forKey:@"title"];
 				xmlFree(theContentBytes);
 				}
@@ -212,7 +214,13 @@ while (theCurrentNode != NULL && self.error == NULL)
 				{
 				xmlChar *theContentBytes = xmlNodeGetContent(theCurrentNode);
 				NSString *theContent = [NSString stringWithUTF8String:(const char *)theContentBytes];
+
+				// TODO Fix link
+				theContent = [theContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+//				theContent = [theContent stringByReplacingOccurrencesOfString:@":" withString:@"%3A" options:0 range:NSMakeRange(6, theContent.length - 6)];
+
 				NSURL *theLink = [NSURL URLWithString:theContent];
+				if (theLink)
 				[inItem setObject:theLink forKey:@"link"];
 				xmlFree(theContentBytes);
 				}
@@ -221,6 +229,8 @@ while (theCurrentNode != NULL && self.error == NULL)
 				{
 				xmlChar *theContentBytes = xmlNodeGetContent(theCurrentNode);
 				NSString *theContent = [NSString stringWithUTF8String:(const char *)theContentBytes];
+				theContent = [theContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+				if (theContent)
 				[inItem setObject:theContent forKey:@"content"];
 				xmlFree(theContentBytes);
 				}
@@ -229,7 +239,9 @@ while (theCurrentNode != NULL && self.error == NULL)
 				{
 				xmlChar *theContentBytes = xmlNodeGetContent(theCurrentNode);
 				NSString *theContent = [NSString stringWithUTF8String:(const char *)theContentBytes];
+				theContent = [theContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 				NSDate *theDate = [NSDate dateWithRFC1822String:theContent];
+				if (theDate)
 				[inItem setObject:theDate forKey:@"updated"];
 				xmlFree(theContentBytes);
 				}
@@ -238,12 +250,26 @@ while (theCurrentNode != NULL && self.error == NULL)
 				{
 				xmlChar *theContentBytes = xmlNodeGetContent(theCurrentNode);
 				NSString *theContent = [NSString stringWithUTF8String:(const char *)theContentBytes];
+				theContent = [theContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+				if (theContent)
 				[inItem setObject:theContent forKey:@"identifier"];
 				xmlFree(theContentBytes);
 				}
 				break;
 			default:
 				{
+				if (strcmp((const char *)theElementName, "updated") == 0 && [inItem objectForKey:@"updated"] == NULL)
+					{
+					xmlChar *theContentBytes = xmlNodeGetContent(theCurrentNode);
+					NSString *theContent = [NSString stringWithUTF8String:(const char *)theContentBytes];
+					theContent = [theContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+					NSDate *theDate = [NSDate dateWithRFC1822String:theContent];
+					if (theDate)
+						[inItem setObject:theDate forKey:@"updated"];
+					xmlFree(theContentBytes);
+					}
+				else
+					{
 				CXMLElement *theElement = [CXMLElement nodeWithLibXMLNode:theCurrentNode];
 				if (self.delegate && [self.delegate respondsToSelector:@selector(feedDeserializer:handleElement:)])
 					{
@@ -251,10 +277,11 @@ while (theCurrentNode != NULL && self.error == NULL)
 					[inItem addEntriesFromDictionary:theExtraDictionary];
 					}
 				}
+				}
 				break;
 			}
 		}
-	
+
 	theCurrentNode = theCurrentNode->next;
 	}
 

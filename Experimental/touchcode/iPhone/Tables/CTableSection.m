@@ -12,6 +12,7 @@
 
 @implementation CTableSection
 
+@synthesize tag;
 @synthesize table;
 @synthesize rows;
 @synthesize headerTitle;
@@ -28,11 +29,20 @@ if ((self = [super init]) != NULL)
 return(self);
 }
 
-- (id)initWithTable:(UITableView *)inTable
+- (id)initWithTag:(NSString *)inTag
 {
 if ((self = [self init]) != NULL)
 	{
-	self.table = inTable;
+	self.tag = inTag;
+	}
+return(self);
+}
+
+- (id)initWithTag:(NSString *)inTag title:(NSString *)inTitle
+{
+if ((self = [self initWithTag:inTag]) != NULL)
+	{
+	self.headerTitle = inTitle;
 	}
 return(self);
 }
@@ -40,6 +50,7 @@ return(self);
 - (void)dealloc
 {
 self.table = NULL;
+self.tag = NULL;
 self.rows = NULL;
 self.headerTitle = NULL;
 self.footerTitle = NULL;

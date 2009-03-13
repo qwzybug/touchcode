@@ -91,12 +91,12 @@ self.feeds = NULL;
 - (NSString *)databasePath
 {
 if (databasePath == NULL)
-	{ 
+	{
 	NSString *theApplicationSupportFolder = [NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 	NSString *thePath = [theApplicationSupportFolder stringByAppendingPathComponent:@"feedstore.db"];
 	databasePath = [thePath retain];
 	}
-return(databasePath); 
+return(databasePath);
 }
 
 - (void)setDatabasePath:(NSString *)inDatabasePath
@@ -122,7 +122,7 @@ if (persistentObjectManager == NULL)
 			[NSException raise:NSGenericException format:@"Remove feed store failed: %@", theError];
 		}
 	#endif /* TOUCHRSS_ALWAYS_RESET_DATABASE == 1 */
-	
+
 	if ([[NSFileManager defaultManager] fileExistsAtPath:self.databasePath] == NO)
 		{
 		if ([[NSFileManager defaultManager] createDirectoryAtPath:[self.databasePath stringByDeletingLastPathComponent] withIntermediateDirectories:YES attributes:NULL error:&theError] == NO)
@@ -132,7 +132,7 @@ if (persistentObjectManager == NULL)
 		if ([[NSFileManager defaultManager] copyItemAtPath:theSourcePath toPath:self.databasePath error:&theError] == NO)
 			[NSException raise:NSGenericException format:@"Copying template database failed: %@", theError];
 		}
-	
+
 	CSqliteDatabase *theDatabase = [[[CSqliteDatabase alloc] initWithPath:self.databasePath] autorelease];
 	[theDatabase open:&theError];
 	if (theError)
@@ -172,7 +172,7 @@ if (mutableFeeds == NULL)
 		CFeed *theFeed = [self.persistentObjectManager loadPersistentObjectOfClass:[[self class] feedClass] rowID:theRowID error:&theError];
 		[theFeeds addObject:theFeed];
 		}
-		
+
 	self.feeds = theFeeds;
 	}
 
@@ -207,7 +207,7 @@ NSString *theExpression = [NSString stringWithFormat:@"SELECT id FROM feed LIMIT
 NSDictionary *theDictionary = [self.persistentObjectManager.database rowForExpression:theExpression error:&theError];
 if (theDictionary == NULL)
 	[NSException raise:NSGenericException format:@"Feed at Index failed: %@", theError];
-	
+
 NSInteger theRowID = [[theDictionary objectForKey:@"id"] integerValue];
 
 CFeed *theFeed = [self.persistentObjectManager loadPersistentObjectOfClass:[[self class] feedClass] rowID:theRowID error:&theError];
@@ -258,9 +258,7 @@ theExpression = [theExpression stringByAppendingFormat:@" ORDER BY %@ %@", inCol
 if (inLimit > 0)
 	theExpression = [theExpression stringByAppendingFormat:@" LIMIT %d", inLimit];
 
-
-NSEnumerator *theEnumerator = [self.persistentObjectManager.database enumeratorForExpression:theExpression error:&theError];
-for (NSDictionary *theDictionary in theEnumerator)
+for (NSDictionary *theDictionary in [self.persistentObjectManager.database rowsForExpression:theExpression error:&theError])
 	{
 	NSInteger theRowID = [[theDictionary objectForKey:@"id"] integerValue];
 	CFeedEntry *theEntry = [self.persistentObjectManager loadPersistentObjectOfClass:theClass rowID:theRowID fromDictionary:theDictionary error:&theError];

@@ -1,6 +1,6 @@
 //
 //  CTrivialTemplate.m
-//  Obama
+//  TouchCode
 //
 //  Created by Jonathan Wight on 9/19/08.
 //  Copyright 2008 toxicsoftware.com. All rights reserved.
@@ -62,7 +62,7 @@ while ([theScanner isAtEnd] == NO)
 		{
 		[theOutputString appendString:theString];
 		}
-		
+
 	if ([theScanner scanString:@"${" intoString:&theString] == YES)
 		{
 		if ([theScanner scanUpToString:@"}" intoString:&theString] == NO)
@@ -77,7 +77,7 @@ while ([theScanner isAtEnd] == NO)
 			theTransformerName = [theComponents objectAtIndex:1];
 
 		id theValue = [inReplacementDictionary valueForKeyPath:theKeyValuePath];
-		
+
 		if (theTransformerName)
 			{
 			CValueTransformer *theTransformer = [CValueTransformer valueTransformerForName:theTransformerName];
@@ -87,7 +87,7 @@ while ([theScanner isAtEnd] == NO)
 				}
 			theValue = [theTransformer transformedValue:theValue];
 			}
-		
+
 		if (theValue)
 			{
 			NSString *theReplacementString = [theValue description];
@@ -99,12 +99,12 @@ while ([theScanner isAtEnd] == NO)
 			return(NULL);
 			}
 		}
-		
+
 	if ([theScanner scanLocation] == theLastScanLocation)
 		{
 		NSAssert(NO, @"NSScanner infinite loop detected!");
 		}
-	
+
 	theLastScanLocation = [theScanner scanLocation];
 	}
 

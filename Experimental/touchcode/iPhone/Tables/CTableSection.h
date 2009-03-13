@@ -12,6 +12,7 @@
 
 @interface CTableSection : NSObject {
 	UITableView *table; // Never retained
+	NSString *tag;
 	NSMutableArray *rows;
 	NSString *headerTitle;
 	NSString *footerTitle;
@@ -20,14 +21,15 @@
 }
 
 @property (readwrite, nonatomic, assign) UITableView *table;
+@property (readwrite, nonatomic, retain) NSString *tag;
 @property (readwrite, nonatomic, retain) NSMutableArray *rows;
-@property (readwrite, nonatomic, assign) NSString *headerTitle;
-@property (readwrite, nonatomic, assign) NSString *footerTitle;
-@property (readwrite, nonatomic, assign) UIView *headerView;
-@property (readwrite, nonatomic, assign) UIView *footerView;
+@property (readwrite, nonatomic, retain) NSString *headerTitle;
+@property (readwrite, nonatomic, retain) NSString *footerTitle;
+@property (readwrite, nonatomic, retain) UIView *headerView;
+@property (readwrite, nonatomic, retain) UIView *footerView;
 
-- (id)init;
-- (id)initWithTable:(UITableView *)inTable;
+- (id)initWithTag:(NSString *)inTag;
+- (id)initWithTag:(NSString *)inTag title:(NSString *)inTitle;
 
 - (CTableRow *)addRow:(CTableRow *)inRow;
 - (CTableRow *)addCell:(UITableViewCell *)inCell;

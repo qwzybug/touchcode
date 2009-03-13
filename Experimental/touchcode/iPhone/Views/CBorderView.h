@@ -10,7 +10,19 @@
 
 
 @interface CBorderView : UIView {
-
+	CGFloat frameInset;
+	CGFloat cornerRadius;
+	CGFloat frameWidth;
+	UIColor *frameColor;
+	UIColor *fillColor;
 }
+
+@property (readwrite, nonatomic, assign) CGFloat frameInset;
+@property (readwrite, nonatomic, assign) CGFloat cornerRadius;
+@property (readwrite, nonatomic, assign) CGFloat frameWidth;
+@property (readwrite, nonatomic, retain) UIColor *frameColor;
+@property (readwrite, nonatomic, retain) UIColor *fillColor;
+
+- (void)setup;
 
 @end

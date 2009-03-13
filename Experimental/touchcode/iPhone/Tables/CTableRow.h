@@ -18,6 +18,7 @@
 	BOOL selectable;
 	SEL selectionAction;
 	BOOL editable;
+	CGFloat height;
 	UITableViewCellEditingStyle editingStyle;
 }
 
@@ -28,6 +29,7 @@
 @property (readwrite, nonatomic, assign) BOOL selectable;
 @property (readwrite, nonatomic, assign) SEL selectionAction;
 @property (readwrite, nonatomic, assign) BOOL editable;
+@property (readwrite, nonatomic, assign) CGFloat height;
 @property (readwrite, nonatomic, assign) UITableViewCellEditingStyle editingStyle;
 
 - (id)initWithTag:(NSString *)inTag;
@@ -42,5 +44,8 @@
 - (id)initWithTag:(NSString *)inTag title:(NSString *)inTitle;
 - (id)initWithTag:(NSString *)inTag title:(NSString *)inTitle value:(NSString *)inValue;
 - (id)initWithTag:(NSString *)inTag title:(NSString *)inTitle value:(NSString *)inValue accessoryType:(UITableViewCellAccessoryType)inAccessoryType;
+
+- (id)initWithTag:(NSString *)inTag title:(NSString *)inTitle buttonImage:(UIImage *)inImage target:(id)inTarget action:(SEL)inAction;
+
 
 @end

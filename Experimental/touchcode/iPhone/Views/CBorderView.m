@@ -8,14 +8,19 @@
 
 #import "CBorderView.h"
 
-
 @implementation CBorderView
+
+@synthesize frameInset;
+@synthesize cornerRadius;
+@synthesize frameWidth;
+@synthesize frameColor;
+@synthesize fillColor;
 
 - (id)initWithFrame:(CGRect)frame
 {
 if (self = [super initWithFrame:frame])
 	{
-	self.backgroundColor = [UIColor clearColor];
+	[self setup];
     }
 return self;
 }
@@ -24,29 +29,31 @@ return self;
 {
 if (self = [super initWithCoder:inCoder])
 	{
-	self.backgroundColor = [UIColor clearColor];
+	[self setup];
     }
 return self;
 }
 
 - (void)dealloc
 {
-self.backgroundColor = NULL;
+self.frameColor = NULL;
+self.fillColor = NULL;
 //
 [super dealloc];
 }
 
 - (void)drawRect:(CGRect)rect
 {
-const CGFloat R = 10.0;
+CGContextRef theContext = UIGraphicsGetCurrentContext();
 
-const CGRect theBounds = self.bounds;
+const CGFloat R = self.cornerRadius;
+
+const CGRect theBounds = CGRectInset(self.bounds, self.frameInset, self.frameInset);
 const CGFloat theMinX = CGRectGetMinX(theBounds);
 const CGFloat theMaxX = CGRectGetMaxX(theBounds);
 const CGFloat theMinY = CGRectGetMinY(theBounds);
 const CGFloat theMaxY = CGRectGetMaxY(theBounds);
 
-CGContextRef theContext = UIGraphicsGetCurrentContext();
 
 CGContextBeginPath(theContext);
 CGContextMoveToPoint(theContext, theMinX + R, theMinY);
@@ -65,10 +72,47 @@ CGContextAddCurveToPoint(theContext, theMinX, theMinY, theMinX + R, theMinY, the
 
 CGContextClosePath(theContext);
 
-CGContextSetStrokeColorWithColor(theContext, [UIColor lightGrayColor].CGColor);
-CGContextSetFillColorWithColor(theContext, [UIColor whiteColor].CGColor);
+CGContextSetLineWidth(theContext, self.frameWidth);
+
+CGContextSetStrokeColorWithColor(theContext, self.frameColor.CGColor);
+CGContextSetFillColorWithColor(theContext, self.fillColor.CGColor);
 
 CGContextDrawPath(theContext, kCGPathFillStroke);
+}
+
+- (void)setup
+{
+self.backgroundColor = [UIColor clearColor];
+//
+self.frameInset = 1.5;
+self.cornerRadius = 10.0;
+self.frameWidth = 1.5;
+self.frameColor = [UIColor lightGrayColor];
+self.fillColor = [UIColor whiteColor];
+}
+
+- (CGSize)sizeThatFits:(CGSize)size
+{
+if (self.subviews.count == 0)
+	{
+	return(self.frame.size);
+	}
+else
+	{
+	CGRect theContentsFrame = CGRectZero;
+	for (UIView *theView in self.subviews)
+		{
+		theContentsFrame = CGRectUnion(theContentsFrame, theView.frame);
+		}
+	theContentsFrame = CGRectInset(theContentsFrame, - 5, - 5);
+
+	theContentsFrame.size.width = MAX(theContentsFrame.size.width, self.cornerRadius + self.frameInset * 2);
+	theContentsFrame.size.height = MAX(theContentsFrame.size.height, self.cornerRadius + self.frameInset * 2);
+
+	theContentsFrame.size.width = MIN(theContentsFrame.size.width, size.width);
+
+	return(theContentsFrame.size);
+	}
 }
 
 @end

@@ -6,12 +6,12 @@
 //  Copyright 2008 Toxic Software. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "CTableViewController.h"
 
 #import "CTableSection.h"
 #import "CTableRow.h"
 
-@interface CManagedTableViewController : UITableViewController {
+@interface CManagedTableViewController : CTableViewController {
 	NSMutableArray *sections;
 	id target;
 }
@@ -21,7 +21,9 @@
 
 - (CTableSection *)addSection;
 - (CTableSection *)addSection:(CTableSection *)inSection;
-- (void)addRow:(CTableRow *)inRow;
+- (CTableRow *)addRow:(CTableRow *)inRow;
+
+- (CTableSection *)sectionWithTag:(NSString *)inTag;
 
 - (CTableRow *)rowWithTag:(NSString *)inTag;
 - (CTableRow *)rowWithIndexPath:(NSIndexPath *)inIndexPath;

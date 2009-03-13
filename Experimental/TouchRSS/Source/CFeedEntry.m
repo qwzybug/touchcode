@@ -71,6 +71,7 @@ return(theTranscoder);
 self.feed = NULL;
 self.identifier = NULL;
 self.title = NULL;
+self.content = NULL;
 self.link = NULL;
 self.subtitle = NULL;
 self.updated = NULL;

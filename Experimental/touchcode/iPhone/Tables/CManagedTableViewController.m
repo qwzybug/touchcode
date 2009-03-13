@@ -32,8 +32,6 @@ self.target = NULL;
 if (sections == NULL)
 	{
 	sections = [[NSMutableArray alloc] init];
-	
-	[self addSection];
 	}
 return(sections);
 }
@@ -42,26 +40,41 @@ return(sections);
 
 - (CTableSection *)addSection;
 {
-CTableSection *theSection = [[[CTableSection alloc] initWithTable:self.tableView] autorelease];
+CTableSection *theSection = [[[CTableSection alloc] initWithTag:NULL] autorelease];
 [self addSection:theSection];
 return(theSection);
 }
 
 - (CTableSection *)addSection:(CTableSection *)inSection
 {
+inSection.table = self.tableView;
 [self.sections addObject:inSection];
 return(inSection);
 }
 
-- (void)addRow:(CTableRow *)inRow
+- (CTableRow *)addRow:(CTableRow *)inRow
 {
 if (self.sections.count == 0)
 	[self addSection];
 
 CTableSection *theTableSection = self.sections.lastObject;
-	
+
 inRow.section = theTableSection;
 [theTableSection.rows addObject:inRow];
+
+return(inRow);
+}
+
+#pragma mark -
+
+- (CTableSection *)sectionWithTag:(NSString *)inTag
+{
+for (CTableSection *theSection in self.sections)
+	{
+	if ([theSection.tag isEqualToString:inTag])
+		return(theSection);
+	}
+return(NULL);
 }
 
 - (CTableRow *)rowWithTag:(NSString *)inTag
@@ -80,6 +93,8 @@ return(NULL);
 - (CTableRow *)rowWithIndexPath:(NSIndexPath *)inIndexPath
 {
 CTableSection *theSection = [self.sections objectAtIndex:inIndexPath.section];
+if (theSection.rows == NULL)
+	return(NULL);
 CTableRow *theRow = [theSection.visibleRows objectAtIndex:inIndexPath.row];
 return(theRow);
 }
@@ -99,6 +114,8 @@ return(MAX(self.sections.count, 1));
 
 - (NSInteger)tableView:(UITableView *)inTableView numberOfRowsInSection:(NSInteger)inSection
 {
+if (inSection >= self.sections.count)
+	return(0);
 CTableSection *theSection = [self.sections objectAtIndex:inSection];
 return(theSection.visibleRows.count);
 }
@@ -112,12 +129,16 @@ return(theRowCell);
 
 - (NSString *)tableView:(UITableView *)inTableView titleForHeaderInSection:(NSInteger)inSection
 {
+if (inSection >= self.sections.count)
+	return(NULL);
 CTableSection *theSection = [self.sections objectAtIndex:inSection];
 return(theSection.headerTitle);
 }
 
 - (CGFloat)tableView:(UITableView *)inTableView heightForHeaderInSection:(NSInteger)inSection
 {
+if (inSection >= self.sections.count)
+	return(24.0f);
 CTableSection *theSection = [self.sections objectAtIndex:inSection];
 if (theSection.headerView)
 	return(theSection.headerView.frame.size.height);
@@ -127,6 +148,8 @@ else
 
 - (CGFloat)tableView:(UITableView *)inTableView heightForFooterInSection:(NSInteger)inSection
 {
+if (inSection >= self.sections.count)
+	return(24.0f);
 CTableSection *theSection = [self.sections objectAtIndex:inSection];
 if (theSection.footerView)
 	return(theSection.footerView.frame.size.height);
@@ -136,24 +159,41 @@ else
 
 - (UIView *)tableView:(UITableView *)inTableView viewForHeaderInSection:(NSInteger)inSection
 {
+if (inSection >= self.sections.count)
+	return(NULL);
 CTableSection *theSection = [self.sections objectAtIndex:inSection];
 return(theSection.headerView);
 }
 
 - (UIView *)tableView:(UITableView *)inTableView viewForFooterInSection:(NSInteger)inSection
 {
+if (inSection >= self.sections.count)
+	return(NULL);
 CTableSection *theSection = [self.sections objectAtIndex:inSection];
 return(theSection.footerView);
 }
 
 - (CGFloat)tableView:(UITableView *)inTableView heightForRowAtIndexPath:(NSIndexPath *)inIndexPath
 {
-return([[self tableView:inTableView cellForRowAtIndexPath:inIndexPath] bounds].size.height);
+CTableRow *theRow = [self rowWithIndexPath:inIndexPath];
+if (theRow)
+	{
+	if (theRow.height <= 0.0)
+		theRow.height = theRow.cell.frame.size.height;
+	return(theRow.height);
+	}
+return(44);
 }
 
 - (NSIndexPath *)tableView:(UITableView *)inTableView willSelectRowAtIndexPath:(NSIndexPath *)inIndexPath
 {
+if (inIndexPath.section >= self.sections.count)
+	return(NULL);
 CTableSection *theSection = [self.sections objectAtIndex:inIndexPath.section];
+if (inIndexPath.row >= theSection.rows.count)
+	return(NULL);
+
+
 CTableRow *theRow = [theSection.rows objectAtIndex:inIndexPath.row];
 if (theRow.selectable == YES)
 	return(inIndexPath);

@@ -81,7 +81,7 @@ if (theResult == NO)
 			[NSString stringWithFormat:@"SQL expression '%@' failed", theExpression], NSLocalizedDescriptionKey,
 			*outError, NSUnderlyingErrorKey,
 			NULL];
-		*outError = [NSError errorWithDomain:@"TODO_DOMAIN" code:-1 userInfo:theUserInfo]; 
+		*outError = [NSError errorWithDomain:@"TODO_DOMAIN" code:-1 userInfo:theUserInfo];
 		}
 	return(NULL);
 	}
@@ -94,7 +94,7 @@ if (theFeed == NULL)
 		NSDictionary *theUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:
 			@"feedforURL failed", NSLocalizedDescriptionKey,
 			NULL];
-		*outError = [NSError errorWithDomain:@"TODO_DOMAIN" code:-2 userInfo:theUserInfo]; 
+		*outError = [NSError errorWithDomain:@"TODO_DOMAIN" code:-2 userInfo:theUserInfo];
 		}
 	return(NULL);
 	}
@@ -113,7 +113,7 @@ NSDate *theLastChecked = inFeed.lastChecked;
 if (theLastChecked != NULL)
 	{
 	NSDate *theDate = [NSDate date];
-	
+
 	NSTimeInterval theInterval = [theDate timeIntervalSinceDate:theLastChecked];
 	if (theInterval <= self.fetchInterval)
 		return(NO);
@@ -163,12 +163,14 @@ for (id theDictionary in theDeserializer)
 		NSLog(@"ERROR: bailing.");
 		break;
 		}
-		
+
 	ERSSFeedDictinaryType theType = [[theDictionary objectForKey:@"type"] intValue];
 	switch (theType)
 		{
 		case FeedDictinaryType_Feed:
 			{
+			NSLog(@"FEED");
+
 			NSURL *theFeedURL = theConnection.request.URL;
 			theFeed = [self.feedStore feedforURL:theFeedURL];
 			// TODO - in theory this will never be null.
@@ -180,20 +182,20 @@ for (id theDictionary in theDeserializer)
 				}
 
 			NSError *theError = NULL;
-			
+
 			CObjectTranscoder *theTranscoder = [[theFeed class] objectTranscoder];
-			
+
 			NSDictionary *theUpdateDictonary = [theTranscoder dictionaryForObjectUpdate:theFeed withPropertiesInDictionary:theDictionary error:&theError];
 			if (theUpdateDictonary == NULL)
 				{
 				[NSException raise:NSGenericException format:@"dictionaryForObjectUpdate failed: %@", theError];
 				}
-			
+
 			if ([[[theFeed class] objectTranscoder] updateObject:theFeed withPropertiesInDictionary:theUpdateDictonary error:&theError] == NO)
 				{
 				[NSException raise:NSGenericException format:@"Update Object failed: %@", theError];
 				}
-			
+
 			theFeed.lastChecked = [NSDate date];
 			if ([theFeed write:&theError] == NO)
 				[NSException raise:NSGenericException format:@"Write failed: %@", theError];
@@ -201,6 +203,8 @@ for (id theDictionary in theDeserializer)
 			break;
 		case FeedDictinaryType_Entry:
 			{
+			NSLog(@"ENTRY");
+//			NSLog(@"%@", theDictionary);
 			CFeedEntry *theEntry = [theFeed entryForIdentifier:[theDictionary objectForKey:@"identifier"]];
 			if (theEntry == NULL)
 				{
@@ -212,7 +216,7 @@ for (id theDictionary in theDeserializer)
 					}
 				theEntry.feed = theFeed;
 				}
-			
+
 			NSError *theError = NULL;
 			CObjectTranscoder *theTranscoder = [[theEntry class] objectTranscoder];
 			NSDictionary *theUpdateDictonary = [theTranscoder dictionaryForObjectUpdate:theEntry withPropertiesInDictionary:theDictionary error:&theError];
@@ -220,7 +224,7 @@ for (id theDictionary in theDeserializer)
 				{
 				[NSException raise:NSGenericException format:@"dictionaryForObjectUpdate failed: %@", theError];
 				}
-			
+
 			if ([theTranscoder updateObject:theEntry withPropertiesInDictionary:theUpdateDictonary error:&theError] == NO)
 				{
 				[NSException raise:NSGenericException format:@"Update Object failed: %@", theError];
@@ -238,7 +242,7 @@ for (id theDictionary in theDeserializer)
 if (theDeserializer.error != NULL)
 	{
 	NSLog(@"CFeedStore got an error: %@", theDeserializer.error);
-	
+
 	[self.feedStore.persistentObjectManager.database rollback];
 
 	if (self.delegate && [self.delegate respondsToSelector:@selector(feedFetcher:didFail:)])
@@ -250,10 +254,10 @@ if (theDeserializer.error != NULL)
 else
 	{
 	[self.feedStore.persistentObjectManager.database commit];
-	
+
 	if (self.delegate && [self.delegate respondsToSelector:@selector(feedFetcher:didFetchFeed:)])
 		[self.delegate feedFetcher:self didFetchFeed:theFeed];
-	
+
 	if (inCompletionTicket.subTicket)
 		[inCompletionTicket.subTicket didCompleteForTarget:self result:theFeed];
 	}
@@ -270,5 +274,8 @@ if (inCompletionTicket.subTicket)
 	[inCompletionTicket.subTicket didFailForTarget:self error:inError];
 }
 
+- (void)completionTicket:(CCompletionTicket *)inCompletionTicket didCancelForTarget:(id)inTarget
+{
+}
 
 @end

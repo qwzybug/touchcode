@@ -80,6 +80,7 @@ self.title = NULL;
 self.link = NULL;
 self.subtitle = NULL;
 self.lastChecked = NULL;
+self.identifier = NULL;
 //
 [super dealloc];
 }
@@ -97,7 +98,7 @@ return([NSString stringWithFormat:@"%@ (row_id: %d, identifier: %@, title: %@)",
 if (randomAccessTemporaryTable == NULL)
 	{
 	CRandomAccessTemporaryTable *theRandomAccessTemporaryTable = [[[CRandomAccessTemporaryTable alloc] initWithDatabase:self.persistentObjectManager.database dropOnDealloc:YES] autorelease];
-	
+
 	NSString *theStatement = [NSString stringWithFormat:@"SELECT id FROM entry WHERE feed_id = %d ORDER BY updated DESC", self.rowID];
 	NSError *theError = NULL;
 	if ([theRandomAccessTemporaryTable insertForeignIds:theStatement error:&theError] == NO)
@@ -107,7 +108,7 @@ if (randomAccessTemporaryTable == NULL)
 
 	randomAccessTemporaryTable = [theRandomAccessTemporaryTable retain];
 	}
-return(randomAccessTemporaryTable); 
+return(randomAccessTemporaryTable);
 }
 
 - (void)setRandomAccessTemporaryTable:(CRandomAccessTemporaryTable *)inRandomAccessTemporaryTable

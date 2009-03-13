@@ -44,7 +44,8 @@ static NSArray *sFormatters = NULL;
 		NSDateFormatter *theFormatter = NULL;
 
 // 2008-09-23 18:00:00
-		
+// "Thu, 05 Feb 2009 02:59:00 Z"
+
 		theFormatter = [[[NSDateFormatter alloc] init] autorelease];
 		[theFormatter setDateFormat:@"EEE, d MMM yy HH:mm:ss zzz"];
 		[theFormatters addObject:theFormatter];
@@ -57,8 +58,16 @@ static NSArray *sFormatters = NULL;
 		[theFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
 		[theFormatters addObject:theFormatter];
 
+		theFormatter = [[[NSDateFormatter alloc] init] autorelease];
+		[theFormatter setDateFormat:@"EEE, d MMM yy HH:mm:ss 'Z'"];
+		[theFormatters addObject:theFormatter];
+
+		theFormatter = [[[NSDateFormatter alloc] init] autorelease];
+		[theFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
+		[theFormatters addObject:theFormatter];
+
 		[NSDateFormatter setDefaultFormatterBehavior:theOldDateFormatterBehavior];
-		
+
 		sFormatters = [theFormatters copy];
 		}
 	}

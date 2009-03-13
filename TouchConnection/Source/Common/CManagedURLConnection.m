@@ -76,6 +76,7 @@ return(self);
 {
 [self.connection cancel];
 
+[self.completionTicket invalidate];
 self.completionTicket = NULL;
 self.request = NULL;
 self.channel = NULL;
@@ -84,7 +85,7 @@ self.response = NULL;
 self.data = NULL;
 //
 [super dealloc];
-} 
+}
 
 #pragma mark -
 
@@ -204,9 +205,5 @@ self.endTime = [[NSDate date] timeIntervalSinceReferenceDate];
 
 self.connection = NULL;
 }
-
-//- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge;
-//{
-//}
 
 @end

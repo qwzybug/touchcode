@@ -20,6 +20,7 @@
 @synthesize selectable;
 @synthesize selectionAction;
 @synthesize editable;
+@synthesize height;
 @synthesize editingStyle;
 
 - (id)init
@@ -70,7 +71,7 @@ if (cell == NULL)
 	UITableViewCell *theCell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
 	cell = [theCell retain];
 	}
-return(cell); 
+return(cell);
 }
 
 - (void)setCell:(UITableViewCell *)inCell
@@ -118,6 +119,28 @@ theCell.accessoryType = inAccessoryType;
 
 return([self initWithTag:inTag cell:theCell]);
 }
+
+- (id)initWithTag:(NSString *)inTag title:(NSString *)inTitle buttonImage:(UIImage *)inImage target:(id)inTarget action:(SEL)inAction;
+{
+const CGRect theDefaultCellBounds = { .origin = CGPointZero, .size = { .width = 300.0, .height = 44 } };
+
+UIButton *theButton = [UIButton buttonWithType:UIButtonTypeCustom];
+theButton.frame = theDefaultCellBounds;
+[theButton setTitle:inTitle forState:UIControlStateNormal];
+[theButton setBackgroundImage:inImage forState:UIControlStateNormal];
+[theButton addTarget:inTarget action:inAction forControlEvents:UIControlEventTouchDown];
+[theButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+[theButton setFont:[UIFont boldSystemFontOfSize:[UIFont buttonFontSize]]];
+
+UITableViewCell *theCell = [[[UITableViewCell alloc] initWithFrame:theDefaultCellBounds] autorelease];
+[theCell.contentView addSubview:theButton];
+
+theCell.backgroundView = [[[UIView alloc] initWithFrame:theButton.frame] autorelease];
+
+return([self initWithTag:inTag cell:theCell]);
+}
+
+#pragma mark -
 
 - (CGRect)frameForCellContentView
 {

@@ -126,17 +126,13 @@ UIActionSheet *theActionSheet = [[[UIActionSheet  alloc] initWithTitle:NULL dele
 
 #pragma mark -
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType;
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-/*
-NSURL *theURL = [request URL];
-if ([[CLinkHandler instance] shouldHandleURL:theURL] == YES)
-	{
-	[[CLinkHandler instance] openURL:theURL];
-	return(NO);
-	}
-*/
 return(YES);
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
@@ -147,6 +143,10 @@ if (!self.dontChangeTitle)
 self.currentURL = [[NSURL URLWithString:[self.webView stringByEvaluatingJavaScriptFromString:@"window.location.href"]] standardizedURL];
 
 [self updateToolbar];
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
