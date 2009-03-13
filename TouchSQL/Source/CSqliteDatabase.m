@@ -108,7 +108,8 @@ if (sql != inSql)
 	{
 	if (sql != NULL)
 		{
-		sqlite3_close(sql);
+		if (sqlite3_close(sql) == SQLITE_BUSY)
+			NSLog(@"sqlite3_close() failed with SQLITE_BUSY!");
 		sql = NULL;
 		}
 	sql = inSql;
@@ -121,7 +122,7 @@ if (sql != inSql)
 {
 if (userDictionary == NULL)
 	userDictionary = [[NSMutableDictionary alloc] init];
-return(userDictionary); 
+return(userDictionary);
 }
 
 - (void)setUserDictionary:(NSMutableDictionary *)inUserDictionary
@@ -173,7 +174,7 @@ return([theStatement execute:NULL]);
 NSAssert(self.sql != NULL, @"Database not open.");
 
 int theResult = sqlite3_exec(self.sql, [inExpression UTF8String], NULL, NULL, NULL);
-if (theResult != SQLITE_OK) 
+if (theResult != SQLITE_OK)
 	{
 	if (outError)
         {
@@ -207,7 +208,7 @@ const char* cColumnName;
 sqlite3_stmt *pStmt = NULL;
 const char *tail = NULL;
 
-int theResult = sqlite3_prepare_v2(self.sql, [inExpression UTF8String], -1, &pStmt, &tail);    
+int theResult = sqlite3_prepare_v2(self.sql, [inExpression UTF8String], -1, &pStmt, &tail);
 
 if (theResult != SQLITE_OK)
 	{
@@ -222,15 +223,15 @@ if (theResult != SQLITE_OK)
 NSMutableArray *theRowsArray = [NSMutableArray array];
 theColumnCount = sqlite3_column_count(pStmt);
 while ((theResult = sqlite3_step(pStmt)) == SQLITE_ROW)
-    {        
+    {
     // Read the next row
     cRowDict = [NSMutableDictionary dictionaryWithCapacity:theColumnCount];
-    
+
     for (int theColumn = 0; theColumn < theColumnCount; ++theColumn)
         {
             cColumnType = sqlite3_column_type(pStmt, theColumn);
             cColumnName = sqlite3_column_name(pStmt, theColumn);
-            
+
             switch(cColumnType)
                 {
                 case SQLITE_INTEGER:
@@ -254,10 +255,10 @@ while ((theResult = sqlite3_step(pStmt)) == SQLITE_ROW)
                     cBoxedColumnValue = [NSString stringWithUTF8String:(const char *)cColumnCStrVal];
                     break;
                 }
-            
+
             [cRowDict setObject:cBoxedColumnValue forKey:[NSString stringWithUTF8String:cColumnName]];
         }
-    
+
     [theRowsArray addObject:cRowDict];
     }
 
@@ -268,10 +269,10 @@ if ( (theResult != SQLITE_OK) && (theResult != SQLITE_DONE) )
 		*outError = [self currentError];
         }
     }
-    
+
 sqlite3_finalize(pStmt);
 pStmt = NULL;
-    
+
 return(theRowsArray);
 }
 

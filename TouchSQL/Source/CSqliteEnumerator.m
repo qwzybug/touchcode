@@ -67,7 +67,10 @@ self.statement = NULL;
 {
 [self.statement step:NULL];
 if (self.resultsAsDictionary)
-	return([self.statement rowDictionary:NULL]);
+	{
+	NSDictionary *theDictionary = [self.statement rowDictionary:NULL];
+	return(theDictionary);
+	}
 else
 	return([self.statement row:NULL]);
 }

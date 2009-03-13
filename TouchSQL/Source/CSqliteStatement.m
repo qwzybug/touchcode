@@ -49,7 +49,6 @@ return(self);
 self.database = NULL;
 self.statementString = NULL;
 self.statement = NULL;
-
 //
 [super dealloc];
 }
@@ -62,7 +61,7 @@ if (statement == NULL && self.statementString != NULL)
 	{
 	[self prepare:NULL];
 	}
-return(statement); 
+return(statement);
 }
 
 - (void)setStatement:(sqlite3_stmt *)inStatement
@@ -74,7 +73,7 @@ if (statement != inStatement)
 		sqlite3_finalize(statement);
 		statement = NULL;
 		}
-	
+
 	statement = inStatement;
     }
 }
@@ -99,7 +98,7 @@ const char *theTail = NULL;
 
 int theResult = sqlite3_prepare_v2(self.database.sql, [self.statementString UTF8String], [self.statementString length], &theStatement, &theTail);
 if (theResult != SQLITE_OK)
-	{	
+	{
 	if (outError)
         {
 		*outError = [self.database currentError];
@@ -191,7 +190,7 @@ else if ([inValue isKindOfClass:[NSString class]])
 	}
 else
 	{
-	if (*outError)
+	if (outError)
 		{
 		*outError = [NSError errorWithDomain:TouchSQLErrorDomain code:-1 userInfo:[NSDictionary dictionaryWithObject:@"Cannot convert object of that type." forKey:NSLocalizedDescriptionKey]];
 		}
@@ -213,7 +212,7 @@ return(YES);
 for (NSString *theKey in inValues)
 	{
 	id theValue = [inValues objectForKey:theKey];
-	
+
 	if ([self bindValue:theValue toBinding:theKey transientValue:inTransientValues error:outError] == NO)
 		return(NO);
 	}
@@ -234,7 +233,7 @@ if (theResult == SQLITE_ROW)
 else if (theResult == SQLITE_DONE)
 	return(NO);
 else
-	{	
+	{
 	if (outError)
         {
 		*outError = [self.database currentError];
@@ -350,7 +349,7 @@ for (int N = 0; N != theColumnCount; ++N)
 	{
 	NSString *theColumnName = [self columnNameAtIndex:N error:outError];
 	id theValue = [self columnValueAtIndex:N error:outError];
-	
+
 	[theRow setObject:theValue forKey:theColumnName];
 	}
 return(theRow);
@@ -376,7 +375,7 @@ NSArray *theColumnNames = [self columnNames:outError];
 NSMutableArray *theRowDictionaries = [NSMutableArray array];
 for (NSArray *theRow in self)
 	{
-	NSDictionary *theDictionary = [NSDictionary dictionaryWithObjects:theRow forKeys:theColumnNames];	
+	NSDictionary *theDictionary = [NSDictionary dictionaryWithObjects:theRow forKeys:theColumnNames];
 	[theRowDictionaries addObject:theDictionary];
 	}
 return(theRowDictionaries);
@@ -401,7 +400,7 @@ while (theObjectCount < len && [self step:&theError] == YES)
 	NSArray *theRow = [self row:&theError];
 	stackbuf[theObjectCount++] = theRow;
 	}
-	
+
 state->itemsPtr = stackbuf;
 
 return(theObjectCount);

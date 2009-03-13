@@ -127,13 +127,13 @@ if (self.rowID == -1)
 	theResult = [self columnNames:&theColumnNames values:&theValues includeRowID:NO error:outError];
 	if (theResult == YES)
 		{
-		NSString *theExpression = [NSString stringWithFormat:@"INSERT INTO %@ (%@) VALUES (%@)", [[self class] tableName], [theColumnNames componentsJoinedByString:@","], [theValues componentsJoinedByString:@","]];		
+		NSString *theExpression = [NSString stringWithFormat:@"INSERT INTO %@ (%@) VALUES (%@)", [[self class] tableName], [theColumnNames componentsJoinedByString:@","], [theValues componentsJoinedByString:@","]];
 		CSqliteDatabase *theDatabase = self.persistentObjectManager.database;
 		theResult = [theDatabase executeExpression:theExpression error:outError];
 		if (theResult == YES)
 			self.rowID = [theDatabase lastInsertRowID];
-		
-		if (*outError)
+
+		if (outError)
 			NSLog(@"%@", *outError);
 		}
 	}
@@ -151,7 +151,7 @@ else
 			[theSetClauses addObject:[NSString stringWithFormat:@"%@ = %@", theColumnName, [theValueEnumerator nextObject]]];
 			}
 
-		NSString *theExpression = [NSString stringWithFormat:@"UPDATE %@ SET %@ WHERE id = %d", [[self class] tableName], [theSetClauses componentsJoinedByString:@","], self.rowID];		
+		NSString *theExpression = [NSString stringWithFormat:@"UPDATE %@ SET %@ WHERE id = %d", [[self class] tableName], [theSetClauses componentsJoinedByString:@","], self.rowID];
 		CSqliteDatabase *theDatabase = self.persistentObjectManager.database;
 		theResult = [theDatabase executeExpression:theExpression error:outError];
 		}
@@ -165,7 +165,7 @@ if (self.rowID == -1)
 	return(YES);
 
 [self.persistentObjectManager uncachePersistentObject:self];
-	
+
 NSString *theExpression = [NSString stringWithFormat:@"DELETE FROM %@ WHERE id == %d", [[self class] tableName], self.rowID];
 BOOL theResult = [self.persistentObjectManager.database executeExpression:theExpression error:outError];
 if (theResult)
