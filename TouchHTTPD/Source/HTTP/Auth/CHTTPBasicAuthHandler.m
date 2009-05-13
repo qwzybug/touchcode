@@ -31,10 +31,10 @@
 
 #import "CHTTPMessage_ConvenienceExtensions.h"
 #import "Base64Transcoder.h"
+#import "TouchHTTPDConstants.h"
 
 @implementation CHTTPBasicAuthHandler
 
-@synthesize childHandler;
 @synthesize delegate;
 @synthesize realm;
 
@@ -49,16 +49,17 @@ return(self);
 
 - (void)dealloc
 {
-self.childHandler = NULL;
 self.delegate = NULL;
 self.realm = NULL;
 //
 [super dealloc];
 }
 
+#pragma mark -
 
-- (BOOL)handleRequest:(CHTTPMessage *)inRequest forConnection:(CHTTPConnection *)inConnection response:(CHTTPMessage **)outResponse error:(NSError **)outError
+- (BOOL)handleRequest:(CHTTPMessage *)inRequest forConnection:(CHTTPConnection *)inConnection response:(CHTTPMessage **)ioResponse error:(NSError **)outError
 {
+#pragma unused (inConnection)
 NSString *theAuthorizationHeader = [inRequest headerForKey:@"Authorization"];
 if (theAuthorizationHeader)
 	{
@@ -76,20 +77,24 @@ if (theAuthorizationHeader)
 				{
 				[theBuffer setLength:theBufferSize];
 				
+				NSAssert(self.delegate != NULL, @"CHTTPBasicAuthHandler needs a delegate!");
+				
 				if ([self.delegate HTTPAuthHandler:self shouldAuthenticateCredentials:theBuffer] == YES)
 					{
-					return([self.childHandler handleRequest:inRequest forConnection:inConnection response:outResponse error:outError]);
+					return(YES);
 					}
 				}
 			}
 		}
 	}
 	
-CHTTPMessage *theResponse = [CHTTPMessage HTTPMessageResponseWithStatusCode:401 bodyString:@"Unauthorized"];
+CHTTPMessage *theResponse = [CHTTPMessage HTTPMessageResponseWithStatusCode:kHTTPStatusCode_Unauthorized];
 [theResponse setHeader:[NSString stringWithFormat:@"Basic realm=\"%@\"", self.realm] forKey:@"WWW-Authenticate"];
 
-*outResponse = theResponse;
-*outError = NULL;
+if (ioResponse)
+	*ioResponse = theResponse;
+if (outError)
+	*outError = NULL;
 return(YES);
 }
 

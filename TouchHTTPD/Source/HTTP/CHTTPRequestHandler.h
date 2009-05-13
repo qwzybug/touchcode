@@ -32,10 +32,9 @@
 @class CHTTPMessage;
 @class CHTTPConnection;
 
-@interface CHTTPRequestHandler : NSObject {
+@protocol CHTTPRequestHandler
 
-}
-
-- (BOOL)handleRequest:(CHTTPMessage *)inRequest forConnection:(CHTTPConnection *)inConnection response:(CHTTPMessage **)outResponse error:(NSError **)outError;
+@required
+- (BOOL)handleRequest:(CHTTPMessage *)inRequest forConnection:(CHTTPConnection *)inConnection response:(CHTTPMessage **)ioResponse error:(NSError **)outError;
 
 @end

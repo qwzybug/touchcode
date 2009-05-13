@@ -31,19 +31,17 @@
 
 @protocol CHTTPBasicAuthHandlerDelegate;
 
-@interface CHTTPBasicAuthHandler : CHTTPRequestHandler {
-	CHTTPRequestHandler *childHandler;
+@interface CHTTPBasicAuthHandler : NSObject <CHTTPRequestHandler> {
 	id <CHTTPBasicAuthHandlerDelegate> delegate;
 	NSString *realm;
 }
 
-@property (readwrite, retain) CHTTPRequestHandler *childHandler;
 @property (readwrite, assign) id <CHTTPBasicAuthHandlerDelegate> delegate;
 @property (readwrite, copy) NSString *realm;
 
 @end
 
-@protocol CHTTPBasicAuthHandlerDelegate 
+@protocol CHTTPBasicAuthHandlerDelegate <NSObject>
 
 - (BOOL)HTTPAuthHandler:(CHTTPBasicAuthHandler *)inHandler shouldAuthenticateCredentials:(NSData *)inData;
 

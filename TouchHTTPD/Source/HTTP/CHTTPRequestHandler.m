@@ -29,12 +29,3 @@
 
 #import "CHTTPRequestHandler.h"
 
-@implementation CHTTPRequestHandler
-
-- (BOOL)handleRequest:(CHTTPMessage *)inRequest forConnection:(CHTTPConnection *)inConnection response:(CHTTPMessage **)outResponse error:(NSError **)outError
-{
-#pragma unused (inRequest, inConnection, outResponse, outError)
-return(NO);
-}
-
-@end

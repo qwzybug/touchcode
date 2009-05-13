@@ -31,13 +31,15 @@
 
 #import "CTCPSocketListener.h"
 
-@interface CHTTPServer : NSObject <CTCPSocketListenerDelegate> {
+@interface CHTTPServer : NSObject <CTCPConnectionCreationDelegate> {
+	NSString *URLScheme;
 	CTCPSocketListener *socketListener;
 	NSMutableArray *defaultRequestHandlers;
 	BOOL useHTTPS;
 	NSArray *SSLCertificates;
 }
 
+@property (readwrite, retain) NSString *URLScheme;
 @property (readwrite, retain) CTCPSocketListener *socketListener;
 @property (readwrite, retain) NSMutableArray *defaultRequestHandlers;
 @property (readwrite, assign) BOOL useHTTPS;

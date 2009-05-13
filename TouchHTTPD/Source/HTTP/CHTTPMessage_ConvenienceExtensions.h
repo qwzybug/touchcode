@@ -31,6 +31,19 @@
 
 @interface CHTTPMessage (CHTTPMessage_ConvenienceExtensions)
 
+@property (readwrite, retain) NSString *contentType;
+@property (readwrite, assign) NSInteger contentLength;
+
++ (NSString *)statusDescriptionForStatusCode:(NSInteger)inStatusCode;
+
++ (CHTTPMessage *)HTTPMessageResponseWithStatusCode:(NSInteger)inStatusCode;
 + (CHTTPMessage *)HTTPMessageResponseWithStatusCode:(NSInteger)inStatusCode bodyString:(NSString *)inBodyString;
++ (CHTTPMessage *)HTTPMessageResponseWithError:(NSError *)inError;
+
+- (NSArray *)headerComponentsForKey:(NSString *)inKey;
+- (NSString *)mainHeaderComponentForKey:(NSString *)inKey;
+
+- (void)setContentType:(NSString *)inContentType bodyData:(NSData *)inBodyData;
+- (NSString *)bodyString;
 
 @end

@@ -36,8 +36,14 @@
 #import "CSecureTransportConnection.h"
 #endif
 
+@interface CHTTPServer ()
+@end
+
+#pragma mark -
+
 @implementation CHTTPServer
 
+@synthesize URLScheme;
 @synthesize socketListener;
 @synthesize defaultRequestHandlers;
 @synthesize useHTTPS;
@@ -47,6 +53,7 @@
 {
 if ((self = [super init]) != NULL)
 	{
+	self.URLScheme = @"http";
 	self.defaultRequestHandlers = [NSMutableArray array];
 	}
 return(self);
@@ -54,11 +61,15 @@ return(self);
 
 - (void)dealloc
 {
+self.URLScheme = NULL;
 self.socketListener = NULL;
 self.defaultRequestHandlers = NULL;
-
+self.SSLCertificates = NULL;
+//
 [super dealloc];
 }
+
+#pragma mark -
 
 - (void)createDefaultSocketListener
 {
@@ -67,19 +78,21 @@ if (self.socketListener == NULL)
 	CTCPSocketListener *theSocketListener = [[[CTCPSocketListener alloc] init] autorelease];
 	theSocketListener.type = @"_http._tcp.";
 	theSocketListener.port = 8080;
-	theSocketListener.delegate = self;
+	theSocketListener.connectionCreationDelegate = self;
 	
 	self.socketListener = theSocketListener;
 	}
 }
 
-- (CTCPConnection *)TCPSocketListener:(CTCPSocketListener *)inSocketListener createTCPConnectionWithAddress:(NSData *)inAddress inputStream:(NSInputStream *)inInputStream outputStream:(NSOutputStream *)inOutputStream;
+- (CTCPConnection *)TCPSocketListener:(CTCPSocketListener *)inSocketListener createTCPConnectionWithAddress:(NSData *)inAddress inputStream:(CFReadStreamRef)inInputStream outputStream:(CFWriteStreamRef)inOutputStream;
 {
-CTCPConnection *theTCPConnection = [[[CBufferedTCPConnection alloc] initWithAddress:inAddress inputStream:inInputStream outputStream:inOutputStream] autorelease];
+// XYZZY
+Class theConnectionClass = [CTCPConnection class];
+
+CTCPConnection *theTCPConnection = [[[theConnectionClass alloc] initWithAddress:inAddress inputStream:inInputStream outputStream:inOutputStream] autorelease];
 theTCPConnection.delegate = inSocketListener;
 
-CProtocol *theLowerLink = theTCPConnection;
-
+CWireProtocol *theLowerLink = theTCPConnection;
 
 if (self.useHTTPS)
 	{
@@ -87,24 +100,18 @@ if (self.useHTTPS)
 	CSecureTransportConnection *theSecureTransportConnection = [[[CSecureTransportConnection alloc] init] autorelease];
 	theSecureTransportConnection.certificates = self.SSLCertificates;
 	theLowerLink.upperLink = theSecureTransportConnection;
-	theSecureTransportConnection.lowerLink = theLowerLink;
-	
 	theLowerLink = theSecureTransportConnection;
 #else
 	NSAssert(NO, @"HTTPS turned on but disabled by compiler.");
 #endif
 	}
 
-
-CHTTPConnection *theHTTPConnection = [[[CHTTPConnection alloc] init] autorelease];
-theHTTPConnection.lowerLink = theLowerLink;
+CHTTPConnection *theHTTPConnection = [[[CHTTPConnection alloc] initWithServer:self] autorelease];
 theLowerLink.upperLink = theHTTPConnection;
-
 
 theHTTPConnection.requestHandlers = defaultRequestHandlers;
 
 return(theTCPConnection);
 }
-
 
 @end

@@ -88,9 +88,9 @@ while (YES)
 		return(NO);
 	else if(theResult!=NATPMP_TRYAGAIN)
 		{
-		NSLog(@"mapped public port: %d", theResponse.newportmapping.mappedpublicport);
-		NSLog(@" private port: %d", theResponse.newportmapping.privateport);
-		NSLog(@"mapped lifetime: %d", theResponse.newportmapping.lifetime);
+//		NSLog(@"mapped public port: %d", theResponse.newportmapping.mappedpublicport);
+//		NSLog(@" private port: %d", theResponse.newportmapping.privateport);
+//		NSLog(@"mapped lifetime: %d", theResponse.newportmapping.lifetime);
 //				copy(publicport, response.newportmapping.mappedpublicport);
 //				copy(privateport, response.newportmapping.privateport);
 //				copy(mappinglifetime, response.newportmapping.lifetime);
