@@ -15,5 +15,6 @@
 @property (nonatomic, readwrite, retain) NSURL *URL;
 
 - (id)initWithLink:(NSURL *)inURL;
+- (id)initWithLink:(NSURL *)inURL defaultApplicationName:(NSString *)inDefaultApplicationName; // Designated constructor.
 
 @end

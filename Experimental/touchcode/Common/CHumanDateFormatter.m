@@ -21,9 +21,26 @@ static NSDateFormatter *gSubDateFormatter4 = NULL;
 
 + (id)humanDateFormatter:(BOOL)inSingleLine
 {
-CHumanDateFormatter *theFormatter = [[[self alloc] init] autorelease];
-theFormatter.singleLine = inSingleLine;
-return(theFormatter);
+static CHumanDateFormatter *theSingleLineFormatter = NULL;
+static CHumanDateFormatter *theMultiLineFormatter = NULL;
+if (inSingleLine == YES)
+	{
+	if (theSingleLineFormatter == NULL)
+		{
+		theSingleLineFormatter = [[self alloc] init];
+		theSingleLineFormatter.singleLine = inSingleLine;
+		}
+	return(theSingleLineFormatter);
+	}
+else
+	{
+	if (theMultiLineFormatter == NULL)
+		{
+		theMultiLineFormatter = [[self alloc] init];
+		theMultiLineFormatter.singleLine = inSingleLine;
+		}
+	return(theMultiLineFormatter);
+	}
 }
 
 - (id)init

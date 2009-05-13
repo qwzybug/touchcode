@@ -15,6 +15,7 @@
 	CGFloat frameWidth;
 	UIColor *frameColor;
 	UIColor *fillColor;
+	UIImage *cachedImage;
 }
 
 @property (readwrite, nonatomic, assign) CGFloat frameInset;

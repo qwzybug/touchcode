@@ -14,15 +14,27 @@
 
 - (id)initWithLink:(NSURL *)inURL
 {
+return([self initWithLink:inURL defaultApplicationName:NULL]);
+}
+
+- (id)initWithLink:(NSURL *)inURL defaultApplicationName:(NSString *)inDefaultApplicationName
+{
 NSString *theButtonTitle = NULL;
-if ([inURL.scheme isEqualToString:@"http"] || [inURL.scheme isEqualToString:@"http"])
+
+if (inDefaultApplicationName == NULL)
 	{
-	theButtonTitle = @"Open in Safari";
+	if ([inURL.scheme isEqualToString:@"http"] || [inURL.scheme isEqualToString:@"http"])
+		{
+		inDefaultApplicationName = @"Safari";
+		}
+	else if ([inURL.scheme isEqualToString:@"mailto"])
+		{
+		inDefaultApplicationName = @"Mail";
+		}
 	}
-else if ([inURL.scheme isEqualToString:@"mailto"])
-	{
-	theButtonTitle = @"Open in Mail";
-	}
+
+if (inDefaultApplicationName != NULL)
+	theButtonTitle = [NSString stringWithFormat:@"Open in %@", inDefaultApplicationName];
 else
 	theButtonTitle = @"Open external link.";
 

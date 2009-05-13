@@ -38,7 +38,7 @@ static CLazyCache *sCache = NULL;
 	{
 	if (sCache == NULL)
 		{
-		sCache = [[CLazyCache alloc] initWithCapacity:64];
+		sCache = [[CLazyCache alloc] initWithCapacity:128];
 		}
 	}
 return(sCache);
@@ -156,16 +156,24 @@ if (placeholderImageName && self.image == NULL)
 
 - (void)loadContentFromImageAtURL:(NSURL *)inURL
 {
-if (self.image == NULL && self.placeholderImageName != NULL)
-	self.image = [UIImage imageNamed:self.placeholderImageName];
+UIImage *cachedImage = [[[self class] cache] cachedObjectForKey:inURL];
+if(cachedImage == NULL) 
+	{
+	if (self.image == NULL && self.placeholderImageName != NULL)
+		self.image = [UIImage imageNamed:self.placeholderImageName];
 
-NSURLRequest *theRequest = [[[NSURLRequest alloc] initWithURL:inURL] autorelease];
-
-CCompletionTicket *theTicket = [CCompletionTicket completionTicketWithIdentifier:@"Load Image" delegate:self userInfo:NULL];
-
-self.connection = [[[CManagedURLConnection alloc] initWithRequest:theRequest completionTicket:theTicket] autorelease];
-
-[[CURLConnectionManager instance] addAutomaticURLConnection:self.connection toChannel:@"images"];
+	NSURLRequest *theRequest = [[[NSURLRequest alloc] initWithURL:inURL] autorelease];
+	
+	CCompletionTicket *theTicket = [CCompletionTicket completionTicketWithIdentifier:@"Load Image" delegate:self userInfo:NULL];
+	
+	self.connection = [[[CManagedURLConnection alloc] initWithRequest:theRequest completionTicket:theTicket] autorelease];
+	
+	[[CURLConnectionManager instance] addAutomaticURLConnection:self.connection toChannel:@"images"];
+	} 
+else 
+	{
+	self.image = cachedImage;
+	}	
 }
 
 #pragma mark -

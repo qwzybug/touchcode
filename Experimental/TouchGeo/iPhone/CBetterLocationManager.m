@@ -13,7 +13,6 @@
 static CBetterLocationManager *gInstance = NULL;
 
 @interface CBetterLocationManager ()
-@property (readwrite, nonatomic, retain) CLLocationManager *locationManager;
 @property (readwrite, nonatomic, retain) CLLocation *location;
 @property (readwrite, nonatomic, assign) BOOL updating;
 @property (readwrite, nonatomic, retain) NSDate *startedUpdatingAtTime;

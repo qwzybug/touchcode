@@ -37,4 +37,6 @@
 + (NSURL *)URLWithRoot:(NSURL *)inRoot queryDictionary:(NSDictionary *)inQueryDictionary;
 + (NSString *)queryStringForDictionary:(NSDictionary *)inQueryDictionary;
 
+- (NSDictionary *)queryDictionary;
+
 @end

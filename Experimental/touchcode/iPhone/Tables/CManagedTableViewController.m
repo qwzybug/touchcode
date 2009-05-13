@@ -52,6 +52,11 @@ inSection.table = self.tableView;
 return(inSection);
 }
 
+- (void) removeSection:(CTableSection *)inSection
+{
+[self.sections removeObject:inSection];
+}
+
 - (CTableRow *)addRow:(CTableRow *)inRow
 {
 if (self.sections.count == 0)
@@ -95,13 +100,21 @@ return(NULL);
 CTableSection *theSection = [self.sections objectAtIndex:inIndexPath.section];
 if (theSection.rows == NULL)
 	return(NULL);
-CTableRow *theRow = [theSection.visibleRows objectAtIndex:inIndexPath.row];
+CTableRow *theRow = NULL;
+if (inIndexPath.row < theSection.visibleRows.count)
+	theRow = [theSection.visibleRows objectAtIndex:inIndexPath.row];
 return(theRow);
 }
 
 - (CTableSection *)sectionWithIndexPath:(NSIndexPath *)inIndexPath;
 {
 CTableSection *theSection = [self.sections objectAtIndex:inIndexPath.section];
+return(theSection);
+}
+
+- (CTableSection *)sectionWithIndex:(NSInteger)inIndex;
+{
+CTableSection *theSection = [self.sections objectAtIndex:inIndex];
 return(theSection);
 }
 

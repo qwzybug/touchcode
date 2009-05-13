@@ -115,18 +115,18 @@ if (database == NULL)
 	if ([theDatabase tableExists:@"schema_version"] == NO)
 		{
 		[theDatabase executeExpression:@"BEGIN TRANSACTION; CREATE TABLE schema_version (version INTEGER); INSERT INTO schema_version (version) VALUES (1); COMMIT TRANSACTION;" error:&theError];
-		NSLog(@"%@", theError);
+		NSLog(@"CKeyValueStore error: %@", theError);
 		}
 
 	NSDictionary *theRow = [theDatabase rowForExpression:@"SELECT version FROM schema_version" error:&theError];
 	NSInteger theVersion = [[theRow objectForKey:@"version"] integerValue];
-
-	NSLog(@"RESULT: %d", theVersion);
+	if (theVersion != 1)
+		NSLog(@"CKeyValueStore version mismatch");
 
 	if ([theDatabase tableExists:@"key_values"] == NO)
 		{
 		[theDatabase executeExpression:@"CREATE TABLE key_values (key TEXT PRIMARY KEY UNIQUE, class TEXT NOT NULL, encoded INTEGER, value NOT NULL);" error:&theError];
-		NSLog(@"%@", theError);
+		NSLog(@"CKeyValueStore error: %@", theError);
 		}
 
 	self.database = theDatabase;

@@ -31,6 +31,7 @@
 
 @interface NSDate (NSDate_ISO8601Extensions)
 
++ (NSDate *)dateWithISO8601String:(NSString *)inString;
 - (NSString *)ISO8601StringValue;
 
 @end

@@ -67,6 +67,11 @@ inRow.section = self;
 return(inRow);
 }
 
+- (void)removeRow:(CTableRow *)inRow
+{
+	[self.rows removeObject:inRow];
+}
+
 - (CTableRow *)addCell:(UITableViewCell *)inCell;
 {
 CTableRow *theRow = [[[CTableRow alloc] initWithTag:NULL cell:inCell] autorelease];

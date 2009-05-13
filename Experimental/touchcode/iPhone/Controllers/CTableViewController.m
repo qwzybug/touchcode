@@ -27,6 +27,11 @@ self.tableView = NULL;
 
 #pragma mark -
 
+- (void)didReceiveMemoryWarning
+{
+NSLog(@"MEMORY WARNING!");
+}
+
 - (void)loadView
 {
 [super loadView];
@@ -48,9 +53,10 @@ if (self.view == NULL)
 //
 if (self.tableView == NULL && [self.view isKindOfClass:[UITableView class]])
 	self.tableView = (UITableView *)self.view;
-}
 
-#pragma mark -
+self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+}
 
 - (void)viewWillAppear:(BOOL)inAnimated
 {
@@ -64,7 +70,7 @@ if (self.tableView == NULL && [self.view isKindOfClass:[UITableView class]])
 - (void)viewDidAppear:(BOOL)inAnimated
 {
 [super viewDidAppear:inAnimated];
-
+//
 [self.tableView flashScrollIndicators];
 }
 

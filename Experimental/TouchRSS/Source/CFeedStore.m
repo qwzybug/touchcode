@@ -68,11 +68,15 @@ return([CFeed class]);
 return([CFeedEntry class]);
 }
 
++ (Class)feedFetcherClass {
+return([CFeedFetcher class]);
+}
+
 - (id)init
 {
 if ((self = [super init]) != NULL)
 	{
-	self.feedFetcher = [[[CFeedFetcher alloc] initWithFeedStore:self] autorelease];
+	self.feedFetcher = [[[[[self class] feedFetcherClass] alloc] initWithFeedStore:self] autorelease];
 	}
 return(self);
 }

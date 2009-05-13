@@ -54,7 +54,6 @@ const CGFloat theMaxX = CGRectGetMaxX(theBounds);
 const CGFloat theMinY = CGRectGetMinY(theBounds);
 const CGFloat theMaxY = CGRectGetMaxY(theBounds);
 
-
 CGContextBeginPath(theContext);
 CGContextMoveToPoint(theContext, theMinX + R, theMinY);
 
@@ -93,17 +92,27 @@ self.fillColor = [UIColor whiteColor];
 
 - (CGSize)sizeThatFits:(CGSize)size
 {
-if (self.subviews.count == 0)
+NSInteger theCount = self.subviews.count;
+if (theCount == 0)
 	{
 	return(self.frame.size);
 	}
 else
 	{
 	CGRect theContentsFrame = CGRectZero;
-	for (UIView *theView in self.subviews)
+	if (theCount == 1)
 		{
-		theContentsFrame = CGRectUnion(theContentsFrame, theView.frame);
+		theContentsFrame = ((UIView *)[self.subviews lastObject]).frame;
 		}
+	else
+		{
+		theContentsFrame = CGRectZero;
+		for (UIView *theView in self.subviews)
+			{
+			theContentsFrame = CGRectUnion(theContentsFrame, theView.frame);
+			}
+		}
+
 	theContentsFrame = CGRectInset(theContentsFrame, - 5, - 5);
 
 	theContentsFrame.size.width = MAX(theContentsFrame.size.width, self.cornerRadius + self.frameInset * 2);
@@ -113,6 +122,29 @@ else
 
 	return(theContentsFrame.size);
 	}
+}
+
+- (void)sizeToFit
+{
+[super sizeToFit];
+
+[self setNeedsLayout];
+}
+
+- (void)layoutSubviews
+{
+NSInteger theCount = self.subviews.count;
+if (theCount == 1)
+	{
+	UIView *theChildView = [self.subviews lastObject];
+	CGRect theBounds = self.bounds;
+	theChildView.frame = CGRectInset(theBounds, 10, 10);
+	}
+else
+	{
+	// No clue what to do here. Layout in UIKit SUCKS.
+	}
+
 }
 
 @end

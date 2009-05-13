@@ -33,6 +33,26 @@
 
 static NSDateFormatter *gDateFormatter = NULL;
 
++ (NSDate *)dateWithISO8601String:(NSString *)inString
+{
+@synchronized([self class])
+	{
+	if (gDateFormatter == NULL)
+		{
+		const NSDateFormatterBehavior theOldBehavior = [NSDateFormatter defaultFormatterBehavior];
+		[NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
+		NSDateFormatter *theFormatter = [[[NSDateFormatter alloc] init] autorelease];
+		[theFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+		[theFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
+		[NSDateFormatter setDefaultFormatterBehavior:theOldBehavior];
+		
+		gDateFormatter = [theFormatter retain];
+		}
+	}
+NSDate *theDate = [gDateFormatter dateFromString:inString];
+return(theDate);
+}
+
 - (NSString *)ISO8601StringValue
 {
 @synchronized([self class])
@@ -43,7 +63,7 @@ static NSDateFormatter *gDateFormatter = NULL;
 		[NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
 		NSDateFormatter *theFormatter = [[[NSDateFormatter alloc] init] autorelease];
 		[theFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
-		[theFormatter setDateFormat:@"yyyyy-MM-dd'T'hh:mm'Z'"];
+		[theFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm'Z'"];
 		[NSDateFormatter setDefaultFormatterBehavior:theOldBehavior];
 		
 		gDateFormatter = [theFormatter retain];

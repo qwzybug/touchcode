@@ -32,6 +32,7 @@
 - (id)initWithTag:(NSString *)inTag title:(NSString *)inTitle;
 
 - (CTableRow *)addRow:(CTableRow *)inRow;
+- (void)removeRow:(CTableRow *)inRow;
 - (CTableRow *)addCell:(UITableViewCell *)inCell;
 
 - (NSArray *)visibleRows;

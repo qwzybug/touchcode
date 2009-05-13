@@ -54,4 +54,27 @@ for (NSString *theKey in inQueryDictionary)
 return([theQueryComponents componentsJoinedByString:@"&"]);
 }
 
+- (NSDictionary *)queryDictionary
+{
+NSString *theQuery = [self query];
+
+NSMutableDictionary *theQueryDictionary = [NSMutableDictionary dictionary];
+
+for (NSString *theComponent in [theQuery componentsSeparatedByString:@"&"])
+	{
+	if ([theComponent rangeOfString:@"="].location != NSNotFound)
+		{
+		NSArray *theComponents = [theComponent componentsSeparatedByString:@"="];
+		if ([theComponents count] != 2)
+			return(NULL);
+		[theQueryDictionary setObject:[theComponents objectAtIndex:1] forKey:[theComponents objectAtIndex:0]];
+		}
+	else
+		{
+		[theQueryDictionary setObject:[NSNull null] forKey:theComponent];
+		}
+	}
+return(theQueryDictionary);
+}
+
 @end

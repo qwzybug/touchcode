@@ -22,6 +22,7 @@
 	NSTimer *timer;
 }
 
+@property (readwrite, nonatomic, retain) CLLocationManager *locationManager;
 @property(readwrite, nonatomic, assign) CLLocationDistance distanceFilter;
 @property(readwrite, nonatomic, assign) CLLocationAccuracy desiredAccuracy;
 @property(readonly, nonatomic, retain) CLLocation *location;
