@@ -40,7 +40,7 @@
 	NSString *channel;
 	NSURLConnection *connection;
 	NSURLResponse *response;
-	id data;
+	id privateData;
 	BOOL dataIsMutable;
 	
 	NSTimeInterval startTime;

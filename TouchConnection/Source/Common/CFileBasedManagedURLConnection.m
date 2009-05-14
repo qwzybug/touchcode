@@ -64,9 +64,9 @@ self.fileHandle = NULL;
 
 - (NSData *)data
 {
-if (data == NULL)
+if (super.data == NULL)
 	return([NSData dataWithContentsOfFile:self.filePath options:0 error:NULL]);
-return(data); 
+return(super.data); 
 }
 
 - (void)connection:(NSURLConnection *)inConnection didReceiveData:(NSData *)inData
@@ -123,7 +123,5 @@ if (self.fileHandle != NULL)
 
 [super connectionDidFinishLoading:inConnection];
 }
-
-
 
 @end

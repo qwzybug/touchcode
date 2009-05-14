@@ -42,7 +42,7 @@
 @property (readwrite, nonatomic, retain) NSURLRequest *request;
 @property (readwrite, nonatomic, retain) NSURLConnection *connection;
 @property (readwrite, nonatomic, retain) NSURLResponse *response;
-@property (readwrite, nonatomic, retain) NSData *data;
+@property (readwrite, nonatomic, retain) id privateData;
 @property (readwrite, nonatomic, assign) NSTimeInterval startTime;
 @property (readwrite, nonatomic, assign) NSTimeInterval endTime;
 
@@ -58,7 +58,8 @@
 @synthesize channel;
 @synthesize connection;
 @synthesize response;
-@synthesize data;
+@synthesize privateData;
+@dynamic data;
 @synthesize startTime;
 @synthesize endTime;
 
@@ -82,12 +83,17 @@ self.request = NULL;
 self.channel = NULL;
 self.connection = NULL;
 self.response = NULL;
-self.data = NULL;
+self.privateData = NULL;
 //
 [super dealloc];
 }
 
 #pragma mark -
+
+- (NSData *)data
+{
+return(privateData); 
+}
 
 - (void)start
 {
@@ -148,7 +154,7 @@ _Log(@"DID RECEIVE DATA");
 if (self.data == NULL)
 	{
 	// Let's just store this data!
-	data = [inData retain];
+	privateData = [inData retain];
 	dataIsMutable = NO;
 	}
 else
@@ -156,15 +162,15 @@ else
 	if (dataIsMutable == YES)
 		{
 		// self.data is already NSMutableData. We just need to append.
-		[data appendData:inData];
+		[privateData appendData:inData];
 		}
 	else
 		{
 		// We have some data, but it is NSData. We need to make a mutable copy first then append.
 		NSMutableData *theCopy = [self.data mutableCopy];
-		[data release];
-		data = theCopy;
-		[data appendData:inData];
+		[privateData release];
+		privateData = theCopy;
+		[privateData appendData:inData];
 		dataIsMutable = YES;
 		}
 	}
