@@ -132,9 +132,6 @@ if (self.rowID == -1)
 		theResult = [theDatabase executeExpression:theExpression error:outError];
 		if (theResult == YES)
 			self.rowID = [theDatabase lastInsertRowID];
-
-		if (outError)
-			NSLog(@"%@", *outError);
 		}
 	}
 else
