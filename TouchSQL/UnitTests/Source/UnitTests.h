@@ -30,7 +30,9 @@
 #import <Foundation/Foundation.h>
 #import <SenTestingKit/SenTestingKit.h>
 
-@interface UnitTests : NSObject {
+@class CSqliteDatabase;
+
+@interface UnitTests : SenTestCase {
 
 }
 

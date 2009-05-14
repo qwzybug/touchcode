@@ -35,5 +35,6 @@
 + (id)dateWithSqlDateString:(NSString *)inString;
 
 - (NSString *)sqlDateString;
+- (NSString *)sqlDateOnlyString;
 
 @end

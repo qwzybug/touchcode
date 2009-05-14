@@ -52,6 +52,25 @@ static NSDateFormatter *gDateFormatter = NULL;
 return(gDateFormatter);
 }
 
++ (NSDateFormatter *)sqlDateOnlyStringFormatter
+{
+	@synchronized([self class])
+	{
+		if (gDateFormatter == NULL)
+		{
+			NSDateFormatter *theFormatter = [[[NSDateFormatter alloc] init] autorelease];
+			[theFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+			[theFormatter setGeneratesCalendarDates:NO];
+			[theFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+			[theFormatter setDateFormat:@"yyyy-MM-dd"];
+			
+			gDateFormatter = [theFormatter retain];
+		}
+	}
+	return(gDateFormatter);
+}
+
+
 + (id)dateWithSqlDateString:(NSString *)inString
 {
 NSDate *theDate = [[self sqlDateStringFormatter] dateFromString:inString];
@@ -64,6 +83,10 @@ return(theDate);
 NSString *theDateString = [[[self class] sqlDateStringFormatter] stringFromDate:self];
 //NSLog(@"%@ -> %@", self, theDateString);
 return(theDateString);
+}
+
+- (NSString *)sqlDateOnlyString {
+	return [[[self class] sqlDateOnlyStringFormatter] stringFromDate:self];
 }
 
 

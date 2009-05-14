@@ -1,3 +1,4 @@
+
 //
 //  CSqliteEnumerator.m
 //  sqllitetest
@@ -65,7 +66,6 @@ self.statement = NULL;
 
 - (id)nextObject
 {
-[self.statement step:NULL];
 if (self.resultsAsDictionary)
 	{
 	NSDictionary *theDictionary = [self.statement rowDictionary:NULL];

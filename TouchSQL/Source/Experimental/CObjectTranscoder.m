@@ -107,6 +107,7 @@ for (NSString *theKey in inDictionary)
 		{
 		switch (thePropertyType[0])
 			{
+			case 'c':
 			case 'i':
 				{
 				if (theValue == [NSNull null])

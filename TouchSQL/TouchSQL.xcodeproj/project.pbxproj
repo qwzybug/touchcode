@@ -21,7 +21,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		45552D5A0856C5B7006456A2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 45552D560856C5B7006456A2 /* Info.plist */; };
 		45552D5B0856C5B7006456A2 /* UnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 45552D590856C5B7006456A2 /* UnitTests.m */; };
 		45552D650856C5D5006456A2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
 		45552E450856C7DE006456A2 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45552E440856C7DE006456A2 /* SenTestingKit.framework */; };
@@ -408,7 +407,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45552D5A0856C5B7006456A2 /* Info.plist in Resources */,
 				45FA852E0DEC78880071DD28 /* ToxicFrameworks_Debug.xcconfig in Resources */,
 				45FA852F0DEC78880071DD28 /* ToxicFrameworks_Release.xcconfig in Resources */,
 			);
@@ -661,6 +659,7 @@
 					/System/Library/Frameworks,
 					"$(DEVELOPER_FRAMEWORKS_DIR_QUOTED)",
 				);
+				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
