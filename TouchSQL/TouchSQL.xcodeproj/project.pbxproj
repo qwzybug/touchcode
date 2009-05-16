@@ -73,6 +73,24 @@
 		45E262040EEF4A870014A071 /* CSqliteDatabase_Deprecated.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E262010EEF4A870014A071 /* CSqliteDatabase_Deprecated.m */; };
 		45E92DF20856B4EF00B7327A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 45E92DED0856B4EF00B7327A /* InfoPlist.strings */; };
 		45E931B90856C14300B7327A /* TouchSQL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TouchSQL.framework */; };
+		45F5DFB30FBF49E2004029AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F5DFB10FBF49E2004029AE /* main.m */; };
+		45F5DFB70FBF4A30004029AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F5DFB10FBF49E2004029AE /* main.m */; };
+		45F5DFB90FBF4A3D004029AE /* CSqliteDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E261AE0EEF49030014A071 /* CSqliteDatabase.m */; };
+		45F5DFBA0FBF4A3D004029AE /* CSqliteDatabase_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E261B20EEF49030014A071 /* CSqliteDatabase_Extensions.m */; };
+		45F5DFBB0FBF4A3E004029AE /* CSqliteDatabase_Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E261B40EEF49030014A071 /* CSqliteDatabase_Functions.m */; };
+		45F5DFBC0FBF4A3F004029AE /* CSqliteEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E261B60EEF49030014A071 /* CSqliteEnumerator.m */; };
+		45F5DFBD0FBF4A40004029AE /* CSqliteStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E261B80EEF49030014A071 /* CSqliteStatement.m */; };
+		45F5DFBE0FBF4A43004029AE /* CSqliteDatabase_Deprecated.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E262010EEF4A870014A071 /* CSqliteDatabase_Deprecated.m */; };
+		45F5DFBF0FBF4A45004029AE /* NSArray_SqlExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E261C40EEF49030014A071 /* NSArray_SqlExtensions.m */; };
+		45F5DFC00FBF4A45004029AE /* NSData_SqlExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E261C60EEF49030014A071 /* NSData_SqlExtensions.m */; };
+		45F5DFC10FBF4A46004029AE /* NSDate_SqlExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E261C80EEF49030014A071 /* NSDate_SqlExtension.m */; };
+		45F5DFC20FBF4A47004029AE /* NSDictionary_SqlExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E261CA0EEF49030014A071 /* NSDictionary_SqlExtensions.m */; };
+		45F5DFC30FBF4A48004029AE /* NSString_SqlExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E261CC0EEF49030014A071 /* NSString_SqlExtensions.m */; };
+		45F5DFC40FBF4A4B004029AE /* CObjectTranscoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E261BB0EEF49030014A071 /* CObjectTranscoder.m */; };
+		45F5DFC50FBF4A4B004029AE /* CPersistentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E261BD0EEF49030014A071 /* CPersistentObject.m */; };
+		45F5DFC60FBF4A4C004029AE /* CPersistentObjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E261BF0EEF49030014A071 /* CPersistentObjectManager.m */; };
+		45F5DFC70FBF4A4D004029AE /* CRandomAccessTemporaryTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E261C10EEF49030014A071 /* CRandomAccessTemporaryTable.m */; };
+		45F5DFCA0FBF4A99004029AE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
 		45FA852C0DEC78880071DD28 /* ToxicFrameworks_Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 45FA852A0DEC78880071DD28 /* ToxicFrameworks_Debug.xcconfig */; };
 		45FA852D0DEC78880071DD28 /* ToxicFrameworks_Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 45FA852B0DEC78880071DD28 /* ToxicFrameworks_Release.xcconfig */; };
 		45FA852E0DEC78880071DD28 /* ToxicFrameworks_Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 45FA852A0DEC78880071DD28 /* ToxicFrameworks_Debug.xcconfig */; };
@@ -138,6 +156,8 @@
 		45E92DEE0856B4EF00B7327A /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		45E92DF10856B4EF00B7327A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45E931A50856C12500B7327A /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		45F5DFA70FBF49C7004029AE /* Demo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Demo; sourceTree = BUILT_PRODUCTS_DIR; };
+		45F5DFB10FBF49E2004029AE /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		45FA852A0DEC78880071DD28 /* ToxicFrameworks_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = ToxicFrameworks_Debug.xcconfig; sourceTree = "<group>"; };
 		45FA852B0DEC78880071DD28 /* ToxicFrameworks_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = ToxicFrameworks_Release.xcconfig; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* TouchSQL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TouchSQL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,6 +171,14 @@
 				45E931B90856C14300B7327A /* TouchSQL.framework in Frameworks */,
 				45552D650856C5D5006456A2 /* Foundation.framework in Frameworks */,
 				45552E450856C7DE006456A2 /* SenTestingKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		45F5DFA50FBF49C7004029AE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45F5DFCA0FBF4A99004029AE /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,6 +198,7 @@
 			children = (
 				8DC2EF5B0486A6940098B216 /* TouchSQL.framework */,
 				45E931A50856C12500B7327A /* UnitTests.octest */,
+				45F5DFA70FBF49C7004029AE /* Demo */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -182,6 +211,7 @@
 				45E261AC0EEF49030014A071 /* Source */,
 				45E92DEC0856B4EF00B7327A /* Resources */,
 				45552D540856C5B7006456A2 /* UnitTests */,
+				45F5DFAF0FBF49DA004029AE /* Demo */,
 				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
 				034768DFFF38A50411DB9C8B /* Products */,
 			);
@@ -302,6 +332,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		45F5DFAF0FBF49DA004029AE /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				45F5DFB10FBF49E2004029AE /* main.m */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
 		45FA85290DEC78880071DD28 /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
@@ -361,6 +399,22 @@
 			productReference = 45E931A50856C12500B7327A /* UnitTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
+		45F5DFA60FBF49C7004029AE /* Demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 45F5DFAE0FBF49D0004029AE /* Build configuration list for PBXNativeTarget "Demo" */;
+			buildPhases = (
+				45F5DFA40FBF49C7004029AE /* Sources */,
+				45F5DFA50FBF49C7004029AE /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Demo;
+			productName = Demo;
+			productReference = 45F5DFA70FBF49C7004029AE /* Demo */;
+			productType = "com.apple.product-type.tool";
+		};
 		8DC2EF4F0486A6940098B216 /* TouchSQL */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 45E92DA40856B35600B7327A /* Build configuration list for PBXNativeTarget "TouchSQL" */;
@@ -396,6 +450,7 @@
 			projectRoot = "";
 			targets = (
 				45603B4C0D838D48005B99BF /* All */,
+				45F5DFA60FBF49C7004029AE /* Demo */,
 				8DC2EF4F0486A6940098B216 /* TouchSQL */,
 				45E931A40856C12500B7327A /* UnitTests */,
 			);
@@ -487,6 +542,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		45F5DFA40FBF49C7004029AE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45F5DFB70FBF4A30004029AE /* main.m in Sources */,
+				45F5DFB90FBF4A3D004029AE /* CSqliteDatabase.m in Sources */,
+				45F5DFBA0FBF4A3D004029AE /* CSqliteDatabase_Extensions.m in Sources */,
+				45F5DFBB0FBF4A3E004029AE /* CSqliteDatabase_Functions.m in Sources */,
+				45F5DFBC0FBF4A3F004029AE /* CSqliteEnumerator.m in Sources */,
+				45F5DFBD0FBF4A40004029AE /* CSqliteStatement.m in Sources */,
+				45F5DFBE0FBF4A43004029AE /* CSqliteDatabase_Deprecated.m in Sources */,
+				45F5DFBF0FBF4A45004029AE /* NSArray_SqlExtensions.m in Sources */,
+				45F5DFC00FBF4A45004029AE /* NSData_SqlExtensions.m in Sources */,
+				45F5DFC10FBF4A46004029AE /* NSDate_SqlExtension.m in Sources */,
+				45F5DFC20FBF4A47004029AE /* NSDictionary_SqlExtensions.m in Sources */,
+				45F5DFC30FBF4A48004029AE /* NSString_SqlExtensions.m in Sources */,
+				45F5DFC40FBF4A4B004029AE /* CObjectTranscoder.m in Sources */,
+				45F5DFC50FBF4A4B004029AE /* CPersistentObject.m in Sources */,
+				45F5DFC60FBF4A4C004029AE /* CPersistentObjectManager.m in Sources */,
+				45F5DFC70FBF4A4D004029AE /* CRandomAccessTemporaryTable.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DC2EF540486A6940098B216 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -506,6 +584,7 @@
 				45E261F80EEF49030014A071 /* NSDictionary_SqlExtensions.m in Sources */,
 				45E261FA0EEF49030014A071 /* NSString_SqlExtensions.m in Sources */,
 				45E262040EEF4A870014A071 /* CSqliteDatabase_Deprecated.m in Sources */,
+				45F5DFB30FBF49E2004029AE /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -702,6 +781,49 @@
 			};
 			name = Release;
 		};
+		45F5DFA90FBF49CA004029AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-lsqlite3";
+				PREBINDING = NO;
+				PRODUCT_NAME = Demo;
+			};
+			name = Debug;
+		};
+		45F5DFAA0FBF49CA004029AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Demo;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -737,6 +859,15 @@
 			buildConfigurations = (
 				45E931AB0856C12600B7327A /* Debug */,
 				45E931AC0856C12600B7327A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		45F5DFAE0FBF49D0004029AE /* Build configuration list for PBXNativeTarget "Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				45F5DFA90FBF49CA004029AE /* Debug */,
+				45F5DFAA0FBF49CA004029AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

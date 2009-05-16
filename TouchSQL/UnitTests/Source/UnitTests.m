@@ -61,7 +61,7 @@
 	result = [db executeExpression:@"INSERT INTO foo VALUES ('testname')" error:NULL];
 	STAssertTrue(result, @"Inserts should work");
 	
-	NSError *err;
+	NSError *err = NULL;
 	NSArray *rows = [db rowsForExpression:@"SELECT * FROM foo WHERE 1" error:&err];
 	STAssertNil(err, @"Should be able to select from database");
 	
