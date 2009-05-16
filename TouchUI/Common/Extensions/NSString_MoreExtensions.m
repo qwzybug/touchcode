@@ -8,7 +8,7 @@
 
 #import "NSString_MoreExtensions.h"
 
-#import "NSScanner_Extensions.h"
+#import "NSScanner_MoreExtensions.h"
 
 @implementation NSString (NSString_MoreExtensions)
  
