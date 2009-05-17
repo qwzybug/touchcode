@@ -12,9 +12,6 @@
 
 - (NSString *)mimeTypeForPath:(NSString *)inPath
 {
-if ([inPath pathIsAppleDouble])
-	return(@"application/octet-stream");
-
 NSString *thePathExtension = [inPath pathExtension];
 if ([thePathExtension isEqualToString:@"html"])
 	{
