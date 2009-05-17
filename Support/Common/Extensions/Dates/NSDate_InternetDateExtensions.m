@@ -1,8 +1,8 @@
 //
-//  NSDate_ISO8601Extensions.h
-//  TouchCode
+//  NSDate_InternetDateExtensions.m
+//  TouchRSS
 //
-//  Created by Jonathan Wight on 06/05/08.
+//  Created by Jonathan Wight on 9/8/08.
 //  Copyright (c) 2008 Jonathan Wight
 //
 //  Permission is hereby granted, free of charge, to any person
@@ -27,10 +27,35 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import "NSDate_InternetDateExtensions.h"
 
-@interface NSDate (NSDate_ISO8601Extensions)
+#import "NSDateFormatter_InternetDateExtensions.h"
 
-- (NSString *)ISO8601StringValue;
+@implementation NSDate (NSDate_InternetDateExtensions)
+
++ (NSDate *)dateWithRFC2822String:(NSString *)inString
+{
+NSDate *theDate = [[NSDateFormatter RFC2822Formatter] dateFromString:inString];
+return(theDate);
+}
+
+- (NSString *)RFC822String
+{
+NSString *theDateString = [[NSDateFormatter RFC2822Formatter] stringFromDate:self];
+return(theDateString);
+}
+
++ (NSDate *)dateWithISO8601String:(NSString *)inString
+{
+NSDate *theDate = [[NSDateFormatter ISO8601Formatter] dateFromString:inString];
+return(theDate);
+}
+
+- (NSString *)ISO8601String
+{
+NSString *theDateString = [[NSDateFormatter ISO8601Formatter] stringFromDate:self];
+return(theDateString);
+}
+
 
 @end

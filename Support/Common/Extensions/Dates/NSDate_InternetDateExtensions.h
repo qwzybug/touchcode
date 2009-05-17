@@ -1,8 +1,8 @@
 //
-//  NSDate_ISO8601Extensions.m
-//  TouchCode
+//  NSDate_InternetDateExtensions.h
+//  TouchRSS
 //
-//  Created by Jonathan Wight on 06/05/08.
+//  Created by Jonathan Wight on 9/8/08.
 //  Copyright (c) 2008 Jonathan Wight
 //
 //  Permission is hereby granted, free of charge, to any person
@@ -27,30 +27,14 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import "NSDate_ISO8601Extensions.h"
+#import <Foundation/Foundation.h>
 
-@implementation NSDate (NSDate_ISO8601Extensions)
+@interface NSDate (NSDate_InternetDateExtensions)
 
-static NSDateFormatter *gDateFormatter = NULL;
++ (NSDate *)dateWithRFC2822String:(NSString *)inString;
+- (NSString *)RFC822String;
 
-- (NSString *)ISO8601StringValue
-{
-@synchronized([self class])
-	{
-	if (gDateFormatter == NULL)
-		{
-		const NSDateFormatterBehavior theOldBehavior = [NSDateFormatter defaultFormatterBehavior];
-		[NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
-		NSDateFormatter *theFormatter = [[[NSDateFormatter alloc] init] autorelease];
-		[theFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
-		[theFormatter setDateFormat:@"yyyyy-MM-dd'T'hh:mm'Z'"];
-		[NSDateFormatter setDefaultFormatterBehavior:theOldBehavior];
-		
-		gDateFormatter = [theFormatter retain];
-		}
-	}
-NSString *theDateString = [gDateFormatter stringFromDate:self];
-return(theDateString);
-}
++ (NSDate *)dateWithISO8601String:(NSString *)inString;
+- (NSString *)ISO8601String;
 
 @end

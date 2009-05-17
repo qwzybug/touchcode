@@ -1,8 +1,8 @@
 //
-//  NSDate_ISO8601Extensions.h
-//  TouchCode
+//  NSString_Extensions.h
+//  TouchHTTPD
 //
-//  Created by Jonathan Wight on 06/05/08.
+//  Created by Jonathan Wight on 04/05/08.
 //  Copyright (c) 2008 Jonathan Wight
 //
 //  Permission is hereby granted, free of charge, to any person
@@ -29,9 +29,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSDate (NSDate_ISO8601Extensions)
+@interface NSString (NSString_Extensions)
 
-+ (NSDate *)dateWithISO8601String:(NSString *)inString;
-- (NSString *)ISO8601StringValue;
+- (BOOL)pathIsAppleDouble;
+- (NSString *)pathByRemovingAppleDoublePrefix;
 
 @end
