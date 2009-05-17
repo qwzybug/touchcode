@@ -8,6 +8,10 @@
 
 #import "CLazyCache.h"
 
+#if TARGET_OS_IPHONE
+#import <UIKit/UIKit.h>
+#endif
+
 @interface CLazyCache ()
 @property (readwrite, nonatomic, assign) NSUInteger capacity;
 @property (readwrite, nonatomic, retain) NSMutableDictionary *cachedObjectsByKey;
