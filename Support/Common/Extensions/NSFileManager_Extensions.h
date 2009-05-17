@@ -12,7 +12,4 @@
 
 - (NSString *)mimeTypeForPath:(NSString *)inPath;
 
-- (NSData *)appleDoubleDataForPath:(NSString *)inPath error:(NSError **)outError;
-- (BOOL)setAppleDoubleData:(NSData *)inData forPath:(NSString *)inPath error:(NSError **)outError;
-
 @end

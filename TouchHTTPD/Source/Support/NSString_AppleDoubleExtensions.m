@@ -1,8 +1,8 @@
 //
-//  NSDate_InternetDateExtensions.h
-//  TouchRSS
+//  NSString_Extensions.m
+//  TouchHTTPD
 //
-//  Created by Jonathan Wight on 9/8/08.
+//  Created by Jonathan Wight on 04/05/08.
 //  Copyright (c) 2008 Jonathan Wight
 //
 //  Permission is hereby granted, free of charge, to any person
@@ -27,11 +27,24 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import "NSString_Extensions.h"
 
-@interface NSDate (NSDate_InternetDateExtensions)
+@implementation NSString (NSString_Extensions)
 
-+ (NSDate *)dateWithRFC1822String:(NSString *)inString;
-- (NSString *)RFC1822StringValue;
+- (BOOL)pathIsAppleDouble
+{
+NSString *theFilename = [self lastPathComponent];
+return(theFilename.length >= 2 && [@"._" isEqualToString:[theFilename substringToIndex:2]]);
+}
+
+- (NSString *)pathByRemovingAppleDoublePrefix
+{
+NSString *theFilename = [self lastPathComponent];
+if (theFilename.length < 2 || [@"._" isEqualToString:[theFilename substringToIndex:2]] == NO)
+	return(self);
+theFilename = [theFilename substringFromIndex:2];
+NSString *thePath = [[self stringByDeletingLastPathComponent] stringByAppendingPathComponent:theFilename];
+return(thePath);
+}
 
 @end

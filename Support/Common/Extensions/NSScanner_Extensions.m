@@ -6,7 +6,7 @@
 //  Copyright (c) 2004 Toxic Software. All rights reserved.
 //
 
-#import "NSScanner_MoreExtensions.h"
+#import "NSScanner_Extensions.h"
 
 @implementation NSScanner (NSScanner_MoreExtensions)
 

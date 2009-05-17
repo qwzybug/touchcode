@@ -1,8 +1,8 @@
 //
-//  TestViewController.h
-//  Test
+//  NSDate_InternetDateExtensions.m
+//  TouchRSS
 //
-//  Created by Jonathan Wight on 8/26/08.
+//  Created by Jonathan Wight on 9/8/08.
 //  Copyright (c) 2008 Jonathan Wight
 //
 //  Permission is hereby granted, free of charge, to any person
@@ -27,21 +27,35 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
+#import "NSDate_InternetDateExtensions.h"
 
-@interface CBonjourBrowserViewController : UITableViewController {
-	NSString *type;
-	NSString *domain;
-	NSNetServiceBrowser *browser;
-	NSMutableArray *services;
+#import "NSDateFormatter_InternetDateExtensions.h"
+
+@implementation NSDate (NSDate_InternetDateExtensions)
+
++ (NSDate *)dateWithRFC2822String:(NSString *)inString
+{
+NSDate *theDate = [[NSDateFormatter RFC2822Formatter] dateFromString:inString];
+return(theDate);
 }
 
-@property (readwrite, nonatomic, retain) NSString *type;
-@property (readwrite, nonatomic, retain) NSString *domain;
-@property (readwrite, nonatomic, retain) NSNetServiceBrowser *browser;
+- (NSString *)RFC822String
+{
+NSString *theDateString = [[NSDateFormatter RFC2822Formatter] stringFromDate:self];
+return(theDateString);
+}
 
-@property (readwrite, nonatomic, retain) NSMutableArray *services;
++ (NSDate *)dateWithISO8601String:(NSString *)inString
+{
+NSDate *theDate = [[NSDateFormatter ISO8601Formatter] dateFromString:inString];
+return(theDate);
+}
+
+- (NSString *)ISO8601String
+{
+NSString *theDateString = [[NSDateFormatter ISO8601Formatter] stringFromDate:self];
+return(theDateString);
+}
 
 
 @end
-

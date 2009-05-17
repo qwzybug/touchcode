@@ -19,8 +19,7 @@
 {
 [super viewDidLoad];
 //
-//CFeed *theFeed = [[CDemoFeedStore instance] feedforURL:[NSURL URLWithString:@"http://toxicsoftware.com/feed/"]];
-CFeed *theFeed = [[CDemoFeedStore instance] feedforURL:[NSURL URLWithString:@"file://localhost/Users/schwa/Downloads/iphone_feed.xml"]];
+CFeed *theFeed = [[CDemoFeedStore instance] feedforURL:[NSURL URLWithString:@"http://toxicsoftware.com/feed/"]];
 [[CDemoFeedStore instance].feedFetcher updateFeed:theFeed];
 }
 

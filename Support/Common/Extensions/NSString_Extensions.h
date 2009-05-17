@@ -12,4 +12,12 @@
 
 - (NSString *)stringByTidyingHTMLEntities;
 
+- (NSArray *)componentsSeperatedByWhitespaceRunsOrComma;
+
+- (long)asLongFromHex;
+
+- (NSString *)stringByAddingPercentEscapesWithCharactersToLeaveUnescaped:(NSString *)inCharactersToLeaveUnescaped legalURLCharactersToBeEscaped:(NSString *)inLegalURLCharactersToBeEscaped usingEncoding:(NSStringEncoding)inEncoding;
+
+- (NSString *)stringByObsessivelyAddingPercentEscapesUsingEncoding:(NSStringEncoding)inEncoding;
+
 @end

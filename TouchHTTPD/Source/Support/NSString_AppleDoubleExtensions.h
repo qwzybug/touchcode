@@ -1,8 +1,8 @@
 //
-//  TestAppDelegate.h
-//  Test
+//  NSString_Extensions.h
+//  TouchHTTPD
 //
-//  Created by Jonathan Wight on 8/26/08.
+//  Created by Jonathan Wight on 04/05/08.
 //  Copyright (c) 2008 Jonathan Wight
 //
 //  Permission is hereby granted, free of charge, to any person
@@ -27,17 +27,11 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@class CBonjourBrowserViewController;
+@interface NSString (NSString_Extensions)
 
-@interface TestAppDelegate : NSObject <UIApplicationDelegate> {
-	IBOutlet UIWindow *window;
-	IBOutlet UIViewController *viewController;
-}
-
-@property (nonatomic, retain) UIWindow *window;
-@property (nonatomic, retain) UIViewController *viewController;
+- (BOOL)pathIsAppleDouble;
+- (NSString *)pathByRemovingAppleDoublePrefix;
 
 @end
-

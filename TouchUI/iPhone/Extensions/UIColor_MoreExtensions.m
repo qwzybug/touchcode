@@ -8,8 +8,8 @@
 
 #import "UIColor_MoreExtensions.h"
 
-#import "NSString_MoreExtensions.h"
-#import "NSScanner_MoreExtensions.h"
+#import "NSString_Extensions.h"
+#import "NSScanner_Extensions.h"
 
 @implementation UIColor (NSColor_MoreExtensions)
 
