@@ -13,12 +13,14 @@
 @synthesize viewOne;
 @synthesize viewTwo;
 @synthesize transition;
+@synthesize animationDuration;
 
 - (id)init
 {
 if ((self = [super init]) != NULL)
 	{
 	self.transition = UIViewAnimationTransitionFlipFromLeft;
+	self.animationDuration = 0.5;
 	}
 return(self);
 }
@@ -46,7 +48,7 @@ self.viewTwo = inViewTwo;
 UIView *theSuperView = self.viewOne.superview;
 
 [UIView beginAnimations:NULL context:NULL];
-[UIView setAnimationDuration:0.5];
+[UIView setAnimationDuration:animationDuration];
 [UIView setAnimationTransition:self.transition forView:theSuperView cache:YES];
 
 [self.viewOne removeFromSuperview];
