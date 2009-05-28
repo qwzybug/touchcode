@@ -1,9 +1,30 @@
 //
-//  UIProgressOverlayView.m
-//  EverybodyVotes
+//  CProgressOverlayView.m
+//  TouchCode
 //
 //  Created by Jonathan Wight on 8/21/08.
 //  Copyright 2008 toxicsoftware.com. All rights reserved.
+//
+//  Permission is hereby granted, free of charge, to any person
+//  obtaining a copy of this software and associated documentation
+//  files (the "Software"), to deal in the Software without
+//  restriction, including without limitation the rights to use,
+//  copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the
+//  Software is furnished to do so, subject to the following
+//  conditions:
+//
+//  The above copyright notice and this permission notice shall be
+//  included in all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+//  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+//  OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+//  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+//  HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+//  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+//  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+//  OTHER DEALINGS IN THE SOFTWARE.
 //
 
 #import "CProgressOverlayView.h"
@@ -13,6 +34,11 @@
 
 @interface CProgressOverlayView ()
 
+@property (readwrite, nonatomic, retain) UIView *contentView;
+@property (readwrite, nonatomic, retain) UIProgressView *progressView;
+@property (readwrite, nonatomic, retain) UIActivityIndicatorView *activityIndicatorView;
+@property (readwrite, nonatomic, retain) UILabel *label;
+
 @property (readwrite, nonatomic, assign) NSTimer *timer;
 
 @end
@@ -21,11 +47,11 @@
 
 @implementation CProgressOverlayView
 
+static CProgressOverlayView *gInstance = NULL;
 // UIAlertView
 
 @synthesize labelText;
 @synthesize mode;
-@synthesize textColor;
 @synthesize miniumDisplayTime;
 @synthesize displayTime;
 @dynamic progress;
@@ -35,18 +61,21 @@
 @synthesize label;
 @synthesize timer;
 
-- (id)initWithLabel:(NSString *)inLabelText;
++ (CProgressOverlayView *)instance
 {
-CGRect theViewFrame = [UIScreen mainScreen].applicationFrame;
-
-theViewFrame = CGRectInset(theViewFrame, 0, 40);
-
-if ((self = [super initWithFrame:theViewFrame]) != NULL)
+if (gInstance == NULL)
 	{
-	self.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.0];
-	self.opaque = NO;
-	self.textColor = [UIColor whiteColor];
-	self.labelText = inLabelText;
+	gInstance = [[self alloc] init];
+	}
+return(gInstance);
+}
+
+- (id)init
+{
+if ((self = [super initWithFrame:CGRectZero]) != NULL)
+	{
+	self.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.8];
+//	self.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:1.0 alpha:0.8];
 	self.miniumDisplayTime = 1.0;
 
 	self.mode = ProgressOverlayViewMode_Indeterminate;
@@ -61,7 +90,6 @@ self.timer = NULL;
 
 self.displayTime = NULL;
 self.labelText = NULL;
-self.textColor = NULL;
 self.contentView = NULL;
 self.progressView = NULL;
 self.activityIndicatorView = NULL;
@@ -96,7 +124,10 @@ if (self.label == NULL)
 	{
 	self.label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
 	self.label.textAlignment = UITextAlignmentCenter;
-	self.label.textColor = self.textColor;
+	self.label.font = [UIFont boldSystemFontOfSize:[UIFont labelFontSize]];
+	self.label.textColor = [UIColor whiteColor];
+	self.label.shadowColor = [UIColor blackColor];
+	self.label.shadowOffset = CGSizeMake(0, 1);
 	self.label.backgroundColor = [UIColor clearColor];
 	[self.contentView addSubview:self.label];
 	self.label.text = self.labelText;
@@ -129,6 +160,23 @@ CGContextStrokeRect(UIGraphicsGetCurrentContext(), self.bounds);
 
 #pragma mark -
 
+- (NSString *)labelText
+{
+return(labelText); 
+}
+
+- (void)setLabelText:(NSString *)inLabelText
+{
+if (labelText != inLabelText)
+	{
+	[labelText release];
+	labelText = [inLabelText retain];
+
+	if (self.label)
+		self.label.text = labelText;
+    }
+}
+
 - (float)progress
 {
 return(self.progressView.progress);
@@ -141,16 +189,32 @@ self.progressView.progress = inProgress;
 
 #pragma mark -
 
-- (void)showWithDelay:(NSTimeInterval)inTimeInterval
+- (void)update
+{
+[self.contentView removeFromSuperview];
+
+[self.timer invalidate];
+self.timer = NULL;
+
+self.displayTime = NULL;
+self.contentView = NULL;
+self.progressView = NULL;
+self.activityIndicatorView = NULL;
+self.label = NULL;
+
+[self layoutSubviews];
+}
+
+- (void)showInView:(UIView *)inView withDelay:(NSTimeInterval)inTimeInterval;
 {
 NSInvocation *theInvocation = NULL;
-[[self grabInvocation:&theInvocation] show];
+[[self grabInvocation:&theInvocation] showInView:inView];
 [theInvocation retainArguments];
 
 self.timer = [NSTimer scheduledTimerWithTimeInterval:inTimeInterval invocation:theInvocation repeats:NO];
 }
 
-- (void)show
+- (void)showInView:(UIView *)inView
 {
 if (self.timer)
 	{
@@ -158,10 +222,22 @@ if (self.timer)
 	self.timer = NULL;
 	}
 
+UIView *theView = NULL;
+
+if (inView)
+	{
+	theView = inView.window;
+	self.frame = [inView convertRect:inView.bounds toView:theView];
+	}
+else
+	{
+	theView = [UIApplication sharedApplication].keyWindow;
+	self.frame = [UIScreen mainScreen].applicationFrame;
+	}
+
 [self setNeedsLayout];
 
-UIWindow *theWindow = [UIApplication sharedApplication].keyWindow;
-[theWindow addSubview:self];
+[theView addSubview:self];
 
 self.displayTime = [NSDate date];
 }
@@ -180,10 +256,9 @@ if (self.superview != NULL)
 	if (theDelta < self.miniumDisplayTime)
 		{
 		[self retain];
-		NSRunLoop *theRunLoop = [NSRunLoop currentRunLoop];
 		do
 			{
-			[theRunLoop runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.05]];
+			[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.05]];
 			}
 		while ((-[self.displayTime timeIntervalSinceNow]) < self.miniumDisplayTime)
 			;

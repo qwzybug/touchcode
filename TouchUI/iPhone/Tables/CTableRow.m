@@ -3,7 +3,28 @@
 //  TouchCode
 //
 //  Created by Jonathan Wight on 03/26/08.
-//  Copyright 2008 Toxic Software. All rights reserved.
+//  Copyright 2008 toxicsoftware.com. All rights reserved.
+//
+//  Permission is hereby granted, free of charge, to any person
+//  obtaining a copy of this software and associated documentation
+//  files (the "Software"), to deal in the Software without
+//  restriction, including without limitation the rights to use,
+//  copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the
+//  Software is furnished to do so, subject to the following
+//  conditions:
+//
+//  The above copyright notice and this permission notice shall be
+//  included in all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+//  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+//  OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+//  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+//  HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+//  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+//  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+//  OTHER DEALINGS IN THE SOFTWARE.
 //
 
 #import "CTableRow.h"
@@ -114,7 +135,12 @@ else
 	theCell = theLabelledValueTableViewCell;
 	}
 
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_3_0
+theCell.textLabel.text = inTitle;
+#else
 theCell.text = inTitle;
+#endif
+
 theCell.accessoryType = inAccessoryType;
 
 return([self initWithTag:inTag cell:theCell]);
@@ -130,7 +156,11 @@ theButton.frame = theDefaultCellBounds;
 [theButton setBackgroundImage:inImage forState:UIControlStateNormal];
 [theButton addTarget:inTarget action:inAction forControlEvents:UIControlEventTouchDown];
 [theButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_3_0
+theButton.titleLabel.font = [UIFont boldSystemFontOfSize:[UIFont buttonFontSize]];
+#else
 [theButton setFont:[UIFont boldSystemFontOfSize:[UIFont buttonFontSize]]];
+#endif
 
 UITableViewCell *theCell = [[[UITableViewCell alloc] initWithFrame:theDefaultCellBounds] autorelease];
 [theCell.contentView addSubview:theButton];

@@ -3,7 +3,7 @@
 //  TouchCode
 //
 //  Created by Jonathan Wight on 04/16/08.
-//  Copyright (c) 2008 Jonathan Wight
+//  Copyright 2008 toxicsoftware.com. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person
 //  obtaining a copy of this software and associated documentation
@@ -42,6 +42,7 @@
 	NSURLResponse *response;
 	id privateData;
 	BOOL dataIsMutable;
+	NSURLCredential *credential;
 	
 	NSTimeInterval startTime;
 	NSTimeInterval endTime;
@@ -55,6 +56,7 @@
 
 @property (readonly, nonatomic, retain) NSURLConnection *connection;
 @property (readonly, nonatomic, retain) NSURLResponse *response;
+@property (retain, nonatomic) NSURLCredential *credential;
  
 @property (readonly, nonatomic, retain) NSData *data;
 

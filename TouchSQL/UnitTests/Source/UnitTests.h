@@ -1,9 +1,9 @@
 //
 //  UnitTests.h
-//  TouchSQL
+//  TouchCode
 //
 //  Created by Jonathan Wight on 06/07/2005.
-//  Copyright (c) 2005 Jonathan Wight
+//  Copyright 2005 toxicsoftware.com. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person
 //  obtaining a copy of this software and associated documentation

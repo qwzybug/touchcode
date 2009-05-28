@@ -3,7 +3,7 @@
 //  TouchCode
 //
 //  Created by Jonathan Wight on 04/16/08.
-//  Copyright (c) 2008 Jonathan Wight
+//  Copyright 2008 toxicsoftware.com. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person
 //  obtaining a copy of this software and associated documentation
@@ -62,6 +62,7 @@
 @dynamic data;
 @synthesize startTime;
 @synthesize endTime;
+@synthesize credential;
 
 - (id)initWithRequest:(NSURLRequest *)inRequest completionTicket:(CCompletionTicket *)inCompletionTicket
 {
@@ -117,6 +118,13 @@ if (self.connection)
 	}
 
 [self.completionTicket didCancelForTarget:self];
+}
+
+#pragma mark Auth delegates
+
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+	[[challenge sender] useCredential:self.credential forAuthenticationChallenge:challenge];
 }
 
 #pragma mark -
@@ -189,7 +197,7 @@ _Log(@"DID FINISH LOADING");
 
 self.endTime = [[NSDate date] timeIntervalSinceReferenceDate];
 
-[self.completionTicket didCompleteForTarget:self result:NULL];
+[self.completionTicket didCompleteForTarget:self result:self.data];
 
 self.connection = NULL;
 }

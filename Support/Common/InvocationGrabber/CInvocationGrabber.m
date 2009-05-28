@@ -1,8 +1,9 @@
 //
 //  CInvocationGrabber.m
+//  TouchCode
 //
-//  Created by Jonathan Wight on 03/16/2006.
-//  Copyright (c) 2006 Jonathan Wight
+//  Created by  on 20090528.
+//  Copyright 2009 toxicsoftware.com. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person
 //  obtaining a copy of this software and associated documentation

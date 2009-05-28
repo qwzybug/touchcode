@@ -3,7 +3,7 @@
 //  TouchCode
 //
 //  Created by Jonathan Wight on 04/16/08.
-//  Copyright (c) 2008 Jonathan Wight
+//  Copyright 2008 toxicsoftware.com. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person
 //  obtaining a copy of this software and associated documentation
@@ -33,6 +33,8 @@
 
 + (NSURL *)URLWithRoot:(NSURL *)inRoot query:(NSString *)inQuery
 {
+if (inQuery == NULL || [inQuery length] == 0)
+	return(inRoot);
 NSString *theURLString = [NSString stringWithFormat:@"%@?%@", inRoot, inQuery];
 return([self URLWithString:theURLString]);
 }

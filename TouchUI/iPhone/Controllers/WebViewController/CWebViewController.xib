@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.03">
 	<data>
 		<int key="IBDocument.SystemTarget">528</int>
-		<string key="IBDocument.SystemVersion">9F33</string>
+		<string key="IBDocument.SystemVersion">9J61</string>
 		<string key="IBDocument.InterfaceBuilderVersion">677</string>
-		<string key="IBDocument.AppKitVersion">949.34</string>
-		<string key="IBDocument.HIToolboxVersion">352.00</string>
+		<string key="IBDocument.AppKitVersion">949.46</string>
+		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="35"/>
@@ -48,6 +48,8 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<bool key="IBUIScalesPageToFit">YES</bool>
+						<int key="IBUIDataDetectorTypes">1</int>
+						<bool key="IBUIDetectsPhoneNumbers">YES</bool>
 					</object>
 					<object class="IBUIToolbar" id="679485142">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -84,18 +86,18 @@
 								<reference key="IBUIToolbar" ref="679485142"/>
 							</object>
 							<object class="IBUIBarButtonItem" id="981612531">
-								<int key="IBUISystemItemIdentifier">5</int>
 								<reference key="IBUIToolbar" ref="679485142"/>
+								<int key="IBUISystemItemIdentifier">5</int>
 							</object>
 							<object class="IBUIBarButtonItem" id="376049618">
 								<int key="IBUIStyle">1</int>
-								<int key="IBUISystemItemIdentifier">13</int>
 								<reference key="IBUIToolbar" ref="679485142"/>
+								<int key="IBUISystemItemIdentifier">13</int>
 							</object>
 							<object class="IBUIBarButtonItem" id="33154265">
 								<int key="IBUIStyle">1</int>
-								<int key="IBUISystemItemIdentifier">9</int>
 								<reference key="IBUIToolbar" ref="679485142"/>
+								<int key="IBUISystemItemIdentifier">9</int>
 							</object>
 						</object>
 					</object>
@@ -316,7 +318,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>CWebViewController</string>
 					<string>UIResponder</string>
-					<string>{{766, 314}, {320, 480}}</string>
+					<string>{{487, 314}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -396,27 +398,49 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Externals/touchcode/Experimental/touchcode/iPhone/Controllers/WebViewController/CWebViewController.h</string>
+						<string key="minorKey">Externals/touchcode/TouchUI/iPhone/Controllers/WebViewController/CWebViewController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">NSObject</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Externals/touchcode/TouchConnection/Source/Common/NSObject_InvocationGrabberExtensions.h</string>
+						<string key="minorKey">Externals/touchcode/Support/Common/InvocationGrabber/NSObject_InvocationGrabberExtensions.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UIBarButtonItem</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Source/Support/UIBarButtonItem_Extensions.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">UIView</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Externals/touchcode/Experimental/touchcode/iPhone/Views/UIView_LayoutExtensions.h</string>
+						<string key="minorKey">Externals/touchcode/TouchUI/iPhone/Extensions/UIView_Extensions.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Externals/touchcode/TouchUI/iPhone/Views/UIView_LayoutExtensions.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Externals/touchcode/TouchUI/iPhone/Extensions/UIViewController_ErrorExtensions.h</string>
 					</object>
 				</object>
 			</object>
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
-		<string key="IBDocument.LastKnownRelativeProjectPath">../../../../../../../Freerange.xcodeproj</string>
+		<string key="IBDocument.LastKnownRelativeProjectPath">../../../../../../Zipcar.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
+		<string key="IBCocoaTouchPluginVersion">3.0</string>
 	</data>
 </archive>

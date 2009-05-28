@@ -1,9 +1,9 @@
 //
 //  CSqliteDatabase_Extensions.m
-//  DBTest
+//  TouchCode
 //
 //  Created by Jonathan Wight on Tue Apr 27 2004.
-//  Copyright (c) 2004 Jonathan Wight
+//  Copyright 2004 toxicsoftware.com. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person
 //  obtaining a copy of this software and associated documentation
