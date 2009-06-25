@@ -36,14 +36,15 @@
 @interface CLazyCache ()
 @property (readwrite, nonatomic, assign) NSUInteger capacity;
 @property (readwrite, nonatomic, retain) NSMutableDictionary *cachedObjectsByKey;
-@property (readwrite, nonatomic, retain) NSMutableArray *cachedObjects;
+@property (readwrite, nonatomic, retain) NSMutableArray *cachedKeys;
 @end
 
 @implementation CLazyCache
 
 @synthesize capacity;
+@dynamic count;
 @synthesize cachedObjectsByKey;
-@synthesize cachedObjects;
+@synthesize cachedKeys;
 
 - (id)initWithCapacity:(NSInteger)inCapacity
 {
@@ -51,7 +52,7 @@ if ((self = [self init]) != NULL)
 	{
 	self.capacity = inCapacity;
 	self.cachedObjectsByKey = [NSMutableDictionary dictionaryWithCapacity:self.capacity];
-	self.cachedObjects = [NSMutableArray arrayWithCapacity:self.capacity];
+	self.cachedKeys = [NSMutableArray arrayWithCapacity:self.capacity];
 	//
 	#if TARGET_OS_IPHONE
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidReceiveMemoryWarningNotification:) name:UIApplicationDidReceiveMemoryWarningNotification object:[UIApplication sharedApplication]];
@@ -67,12 +68,18 @@ return(self);
 #endif /* TARGET_OS_IPHONE */
 //
 self.cachedObjectsByKey = NULL;
-self.cachedObjects = NULL;
+self.cachedKeys = NULL;
 //
 [super dealloc];
 }
 
 #pragma mark -
+
+- (NSUInteger)count
+{
+NSAssert(self.cachedKeys.count == self.cachedObjectsByKey.count, @"-[CLazyCache count] count mismatch. Cache is broken!");
+return(self.cachedKeys.count);
+}
 
 - (NSMutableDictionary *)cachedObjectsByKey
 {
@@ -92,21 +99,21 @@ if (cachedObjectsByKey != inCachedObjectsByKey)
     }
 }
 
-- (NSMutableArray *)cachedObjects
+- (NSMutableArray *)cachedKeys
 {
-if (cachedObjects == NULL)
+if (cachedKeys == NULL)
 	{
-	self.cachedObjects = [NSMutableArray arrayWithCapacity:self.capacity];
+	self.cachedKeys = [NSMutableArray arrayWithCapacity:self.capacity];
 	}
-return(cachedObjects); 
+return(cachedKeys); 
 }
 
-- (void)setCachedObjects:(NSMutableArray *)inCachedObjects
+- (void)setCachedKeys:(NSMutableArray *)inCachedKeys
 {
-if (cachedObjects != inCachedObjects)
+if (cachedKeys != inCachedKeys)
 	{
-	[cachedObjects autorelease];
-	cachedObjects = [inCachedObjects retain];
+	[cachedKeys autorelease];
+	cachedKeys = [inCachedKeys retain];
     }
 }
 
@@ -123,16 +130,16 @@ id theCurrentObject = [self.cachedObjectsByKey objectForKey:inKey];
 if (theCurrentObject == inObject)
 	return;
 
-if (self.cachedObjects.count >= self.capacity)
+if (self.cachedKeys.count >= self.capacity)
 	{
-	id theRemovedObject = [self.cachedObjects objectAtIndex:0];
-	[theRemovedObject retain];
-	[self.cachedObjects removeObjectAtIndex:0];
-	[self.cachedObjectsByKey removeObjectForKey:inKey];
-	[theRemovedObject release];
+	id theRemovedKey = [self.cachedKeys objectAtIndex:0];
+	[theRemovedKey retain];
+	[self.cachedKeys removeObjectAtIndex:0];
+	[self.cachedObjectsByKey removeObjectForKey:theRemovedKey];
+	[theRemovedKey release];
 	}
 
-[self.cachedObjects addObject:inObject];
+[self.cachedKeys addObject:inKey];
 [self.cachedObjectsByKey setObject:inObject forKey:inKey];
 }
 

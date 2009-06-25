@@ -33,10 +33,11 @@
 @interface CLazyCache : NSDateFormatter {
 	NSUInteger capacity;
 	NSMutableDictionary *cachedObjectsByKey;
-	NSMutableArray *cachedObjects;
+	NSMutableArray *cachedKeys;
 }
 
 @property (readonly, nonatomic, assign) NSUInteger capacity;
+@property (readonly, nonatomic, assign) NSUInteger count;
 
 - (id)initWithCapacity:(NSInteger)inCapacity;
 

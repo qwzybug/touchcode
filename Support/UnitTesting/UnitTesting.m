@@ -29,27 +29,24 @@
 
 #import <Foundation/Foundation.h>
 
-#import "NSDate_InternetDateExtensions.h"
-#import "NSDateFormatter_InternetDateExtensions.h"
-#import "CMultiPickerDateFormatter.h"
+#import "CLazyCache.h"
+
+@interface CLazyCache ()
+@property (readonly, retain, nonatomic) NSMutableDictionary *cachedObjectsByKey;
+@property (readonly, retain, nonatomic) NSMutableArray *cachedKeys;
+@end
 
 int main (int argc, const char * argv[])
 {
 NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 
-NSDate *theDate = [NSDate date];
+CLazyCache *theCache = [[[CLazyCache alloc] initWithCapacity:1] autorelease];
+NSLog(@"%d/%d/%d", theCache.capacity, theCache.cachedObjectsByKey.count, theCache.cachedKeys.count);
+[theCache cacheObject:@"1" forKey:@"1"];
+NSLog(@"%d/%d/%d", theCache.capacity, theCache.cachedObjectsByKey.count, theCache.cachedKeys.count);
+[theCache cacheObject:@"2" forKey:@"2"];
+NSLog(@"%d/%d/%d", theCache.capacity, theCache.cachedObjectsByKey.count, theCache.cachedKeys.count);
 
-
-for (NSDateFormatter *theFormatter in [NSDateFormatter allISO8601DateFormatters])
-	{
-	NSLog(@"%@", [theFormatter stringFromDate:theDate]);
-	}
-
-
-CMultiPickerDateFormatter *theFormatter = [[[CMultiPickerDateFormatter alloc] initWithFormatters:[NSDateFormatter allISO8601DateFormatters]] autorelease];
-
-NSLog(@"%@", [theFormatter dateFromString:@"20010517T134339-0400"]);
-NSLog(@"%@", [theFormatter.formatters valueForKey:@"dateFormat"]);
 
 [pool drain];
 return 0;
