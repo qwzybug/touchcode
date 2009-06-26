@@ -44,16 +44,6 @@
 @synthesize end;
 @dynamic duration;
 
-//+ (void)load
-//{
-//NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
-////
-//CDateRange *theDateRange = [[[CDateRange alloc] initWithStart:[NSDate date] end:[NSDate dateWithTimeIntervalSinceNow:3600]] autorelease];
-//NSLog(@"%@", [theDateRange formattedString]);
-////
-//[thePool release];
-//}
-
 - (id)initWithStart:(NSDate *)inStart end:(NSDate *)inEnd; 
 {
 if ((self = [super init]) != NULL)

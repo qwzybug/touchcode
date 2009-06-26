@@ -29,7 +29,7 @@
 
 #import <Foundation/Foundation.h>
 
-#if MAC_OS_X_VERSION_10_3 <= MAC_OS_X_VERSION_MAX_ALLOWED || __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_3_0
+#if (((MAC_OS_X_VERSION_10_3 <= MAC_OS_X_VERSION_MAX_ALLOWED) && !TARGET_OS_IPHONE) || (__IPHONE_3_0 && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_3_0))
 
 #define CValueTransformer NSValueTransformer
 

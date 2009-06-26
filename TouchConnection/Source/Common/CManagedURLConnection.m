@@ -83,6 +83,7 @@ self.completionTicket = NULL;
 self.request = NULL;
 self.channel = NULL;
 self.connection = NULL;
+self.credential = NULL;
 self.response = NULL;
 self.privateData = NULL;
 //

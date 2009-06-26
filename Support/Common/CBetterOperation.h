@@ -40,7 +40,7 @@
 
 @property (readwrite, nonatomic, assign) id userInfo;
 @property (readwrite, nonatomic, assign) id <CBetterOperationDelegate> delegate;
-@property (readwrite, nonatomic, retain) id result;
+@property (readwrite, retain) id result;
 @property (readwrite, nonatomic, retain) NSError *error;
 
 - (void)attainResult:(id)inResult;

@@ -232,6 +232,10 @@ if (self.timer == inTimer)
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
 NSLog(@"[CBetterLocationManager locationManaged:didFailWithError: %@", error);
+NSDictionary *theUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+							 error, @"Error",
+							 NULL];
+[[NSNotificationCenter defaultCenter] postNotificationName:CBetterLocationManagerDidFailWithErrorNotification object:self userInfo:theUserInfo];
 }
 
 @end

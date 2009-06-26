@@ -34,6 +34,8 @@
 #define CBetterLocationManagerDidUpdateToLocationNotification @"CBetterLocationManagerDidUpdateToLocationNotification"
 #define CBetterLocationManagerDidStartUpdatingLocationNotification @"CBetterLocationManagerDidStartUpdatingLocationNotification"
 #define CBetterLocationManagerDidStopUpdatingLocationNotification @"CBetterLocationManagerDidStopUpdatingLocationNotification"
+#define CBetterLocationManagerDidFailWithErrorNotification @"CBetterLocationManagerDidFailWithErrorNotification"
+
 
 @interface CBetterLocationManager : NSObject <CLLocationManagerDelegate> {
 	CLLocationManager *locationManager;
