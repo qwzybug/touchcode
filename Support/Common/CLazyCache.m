@@ -151,7 +151,7 @@ if (self.cachedKeys.count >= self.capacity)
 NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
 //
 self.cachedObjectsByKey = NULL;
-self.cachedObjects = NULL;
+self.cachedKeys = NULL;
 //
 [thePool release];
 }
