@@ -46,7 +46,9 @@ return(self);
 
 - (id)initWithPath:(NSString *)inPath;
 {
-NSString *theTemplate = [NSString stringWithContentsOfFile:inPath];
+//NSString *theTemplate = [NSString stringWithContentsOfFile:inPath];
+NSStringEncoding encoding;
+NSString *theTemplate = [NSString stringWithContentsOfFile:inPath usedEncoding:&encoding error:NULL];
 return([self initWithTemplate:theTemplate]);
 }
 
