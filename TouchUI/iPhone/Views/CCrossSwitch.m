@@ -117,6 +117,4 @@ self.on = !self.on;
 {
 }
 
-
-@synthesize imageLayer;
 @end
