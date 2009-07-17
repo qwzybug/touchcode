@@ -44,7 +44,7 @@ while ((currentView = [currentView superview]));
 {
 char theSpaces[] = "..........";
 
-printf("%.*s%s %s (bgColor:%s, hidden:%d, opaque:%d, alpha:%g, clipsToBounds:%d)\n", MIN(inDepth, strlen(theSpaces)), theSpaces, [[self description] UTF8String], [NSStringFromCGRect(self.frame) UTF8String], [[self.backgroundColor description] UTF8String], self.hidden, self.opaque, self.alpha, self.clipsToBounds);
+printf("%.*s%s %s (bgColor:%s, hidden:%d, opaque:%d, alpha:%g, clipsToBounds:%d)\n", (int)MIN(inDepth, strlen(theSpaces)), theSpaces, [[self description] UTF8String], [NSStringFromCGRect(self.frame) UTF8String], [[self.backgroundColor description] UTF8String], self.hidden, self.opaque, self.alpha, self.clipsToBounds);
 for (UIView *theView in self.subviews)
 	{
 	[theView dump:inDepth + 1];
