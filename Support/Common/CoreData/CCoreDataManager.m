@@ -160,7 +160,8 @@ return(managedObjectModel);
 		
 		NSPersistentStoreCoordinator *thePersistentStoreCoordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel] autorelease];
 		
- 		if ([thePersistentStoreCoordinator addPersistentStoreWithType:self.storeType configuration:NULL URL:self.persistentStoreURL options:self.storeOptions error:&theError] == NULL)
+		NSPersistentStore *thePersistentStore = [thePersistentStoreCoordinator addPersistentStoreWithType:self.storeType configuration:NULL URL:self.persistentStoreURL options:self.storeOptions error:&theError];
+ 		if (thePersistentStore == NULL)
 			{
 			#if TARGET_OS_IPHONE == 1
 			NSLog(@"WARNING: %@ (%@)", theError, theError.userInfo);
