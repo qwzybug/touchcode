@@ -44,6 +44,12 @@ else
 	}
 }
 
++ (NSString *)formatDate:(NSDate *)inDate singleLine:(BOOL)inSingleLine;
+{
+CHumanDateFormatter *theDateFormatter = [self humanDateFormatter:inSingleLine];
+return([theDateFormatter stringFromDate:inDate]);
+}
+
 - (id)init
 {
 if ((self = [super init]) != NULL)
