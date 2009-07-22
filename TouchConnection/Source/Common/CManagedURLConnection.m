@@ -137,10 +137,7 @@ if (self.connection)
 
 - (void)connection:(NSURLConnection *)connection didCancelAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 {
-	NSLog(@"didCancelAuthenticationChallenge");
-	
-//	[self.completionTicket didFailForTarget:self error:inError];
-
+_Log(@"didCancelAuthenticationChallenge");
 }
 
 #pragma mark -
