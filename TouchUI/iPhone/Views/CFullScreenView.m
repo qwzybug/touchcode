@@ -69,7 +69,6 @@ self.autoHideTimer = NULL;
 
 - (void)willMoveToWindow:(UIWindow *)newWindow
 {
-//NSLog(@"* WILL MOVE TO WINDOW (%@)", newWindow);
 [super willMoveToWindow:newWindow];
 
 if (newWindow != NULL)
@@ -78,8 +77,6 @@ if (newWindow != NULL)
 	}
 else
 	{
-	//NSLog(@"SHOWING UI AGAIN");
-	
 	[self.autoHideTimer invalidate];
 	self.autoHideTimer = NULL;
 	//
@@ -93,13 +90,11 @@ else
 
 - (void)didMoveToWindow
 {
-//NSLog(@"* DID MOVE TO WINDOW (%@)", self.window);
 [super didMoveToWindow];
 
 [self setClipsToBoundsRecursively:NO];
 if (self.window && self.autoHideTimer == NULL)
 	{
-	//NSLog(@"#### STARTING TIMER (A)");
 	self.autoHideTimer = [NSTimer scheduledTimerWithTimeInterval:self.autoHideDelay target:self selector:@selector(autoHideTimer:) userInfo:NULL repeats:NO];
 	}
 }
@@ -131,7 +126,6 @@ if (self.autoHideViews != NULL)
 
 if (self.autoHideTimer == NULL)
 	{
-	//NSLog(@"#### STARTING TIMER (B)");
 	self.autoHideTimer = [NSTimer scheduledTimerWithTimeInterval:self.autoHideDelay target:self selector:@selector(autoHideTimer:) userInfo:NULL repeats:NO];
 	}
 }

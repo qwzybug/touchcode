@@ -48,9 +48,7 @@ if ([theURL.scheme isEqualToString:@"x-resource"] == NO)
 	return(NO);
 
 NSString *thePath = theURL.resourceSpecifier;
-//NSLog(@"PATH: %@", thePath);
 thePath = [thePath stringByStandardizingPath];
-//NSLog(@"STANDARD PATH: %@", thePath);
 if ([self isPathWhitelisted:thePath] == NO)
 	{
 	return(NO);
@@ -94,8 +92,6 @@ if ([[self class] isPathWhitelisted:thePath] == NO)
 thePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:thePath];
 
 NSString *theMimeType = [[self class] MIMETypeForPath:thePath];
-
-//NSLog(@"%@ -> %@", thePath, theMimeType);
 
 NSData *theData = [NSData dataWithContentsOfFile:thePath];
 
