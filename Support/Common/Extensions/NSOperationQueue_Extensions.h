@@ -33,5 +33,6 @@
 
 + (NSOperationQueue *)defaultOperationQueue;
 - (void)addOperationRecursively:(NSOperation *)inOperation;
+- (void)addDependentOperations:(NSArray *)inOperations;
 
 @end

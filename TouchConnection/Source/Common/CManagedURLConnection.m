@@ -125,13 +125,27 @@ if (self.connection)
 
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 {
+	_Log(@"didReceiveAuthenticationChallenge");
+	
+	if ([challenge previousFailureCount] > 1)
+		{
+		[[challenge sender] cancelAuthenticationChallenge:challenge];
+		}
+	
 	[[challenge sender] useCredential:self.credential forAuthenticationChallenge:challenge];
+}
+
+- (void)connection:(NSURLConnection *)connection didCancelAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+_Log(@"didCancelAuthenticationChallenge");
 }
 
 #pragma mark -
 
 - (NSURLRequest *)connection:(NSURLConnection *)inConnection willSendRequest:(NSURLRequest *)inRequest redirectResponse:(NSURLResponse *)inResponse
 {
+_Log(@"WILL SEND REQUEST");
+
 return(inRequest);
 }
 

@@ -55,4 +55,19 @@ for (NSOperation *theDependency in inOperation.dependencies)
 	}
 }
 
+- (void)addDependentOperations:(NSArray *)inOperations
+{
+NSOperation *thePreviousOperation = NULL;
+for (NSOperation *theOperation in [inOperations reverseObjectEnumerator])	
+	{
+	if (thePreviousOperation)
+		{
+		[thePreviousOperation addDependency:theOperation];
+		}
+	thePreviousOperation = theOperation;
+	}
+	
+[self addOperationRecursively:[inOperations lastObject]];
+}
+
 @end
