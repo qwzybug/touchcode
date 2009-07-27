@@ -38,6 +38,16 @@
 @implementation CTableViewController
 
 @synthesize tableView = outletTableView;
+@synthesize initialStyle;
+
+- (id)init
+{
+if ((self = [super initWithNibName:NULL bundle:NULL]) != NULL)
+	{
+	self.initialStyle = UITableViewStylePlain;
+	}
+return(self);
+}
 
 - (void)dealloc
 {
@@ -60,23 +70,23 @@ NSLog(@"MEMORY WARNING!");
 if (self.view == NULL)
 	{
 	CGRect theViewFrame = [[UIScreen mainScreen] applicationFrame];
-	UITableView *theTableView = [[[UITableView alloc] initWithFrame:theViewFrame style:UITableViewStylePlain] autorelease];
+	UIView *theView = [[[UITableView alloc] initWithFrame:theViewFrame] autorelease];
+	theView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+	//
+	self.view = theView;
+	}
+
+if (self.tableView == NULL)
+	{
+	CGRect theViewFrame = self.view.bounds;
+	UITableView *theTableView = [[[UITableView alloc] initWithFrame:theViewFrame style:self.initialStyle] autorelease];
 	theTableView.delegate = self;
 	theTableView.dataSource = self;
-
-	self.view = self.tableView = theTableView;
+	theTableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+	//
+	[self.view addSubview:theTableView];
+	self.tableView = theTableView;
 	}
-}
-
-- (void)viewDidLoad
-{
-[super viewDidLoad];
-//
-if (self.tableView == NULL && [self.view isKindOfClass:[UITableView class]])
-	self.tableView = (UITableView *)self.view;
-
-self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 }
 
 - (void)viewWillAppear:(BOOL)inAnimated

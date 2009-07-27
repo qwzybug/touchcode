@@ -31,8 +31,10 @@
 
 @interface CTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
 	IBOutlet UITableView *outletTableView;
+	UITableViewStyle initialStyle;
 }
 
 @property (readwrite, nonatomic, retain) UITableView *tableView;
+@property (readwrite, nonatomic, assign) UITableViewStyle initialStyle;
 
 @end
