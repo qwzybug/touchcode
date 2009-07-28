@@ -220,14 +220,25 @@ return(theError == NULL);
 
 - (BOOL)save:(NSError **)outError;
 {
+BOOL theResult = NO;
+
+[self.managedObjectContext lock];
+
 #if TARGET_OS_IPHONE == 0
 [self.managedObjectContext commitEditing];
 #endif
 
 if ([self.managedObjectContext hasChanges] == NO)
-	return(YES);
+	theResult = YES;
+else
+	{
+	[self.managedObjectContext processPendingChanges];
+	theResult = [self.managedObjectContext save:outError];
+	}
 
-return([self.managedObjectContext save:outError]);
+[self.managedObjectContext unlock];
+
+return(theResult);
 }
 
 - (void)save
