@@ -73,6 +73,7 @@ self.template = NULL;
 - (NSString *)transform:(NSDictionary *)inReplacementDictionary error:(NSError **)outError
 {
 NSMutableString *theOutputString = [NSMutableString stringWithCapacity:self.template.length];
+NSAssert(self.template != NULL, @"template is null");
 NSScanner *theScanner = [NSScanner scannerWithString:self.template];
 [theScanner setCharactersToBeSkipped:NULL];
 
