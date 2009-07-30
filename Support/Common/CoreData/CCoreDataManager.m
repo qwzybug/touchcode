@@ -29,7 +29,7 @@
 
 #import "CCoreDataManager.h"
 
-#if defined(TARGET_OS_IPHONE)
+#if TARGET_OS_IPHONE == 1
 #import <UIKit/UIKit.h>
 #else
 #import <Cocoa/Cocoa.h>
@@ -62,7 +62,7 @@
 {
 if ((self = [super init]) != NULL)
 	{
-	#if defined(TARGET_OS_IPHONE)
+	#if TARGET_OS_IPHONE == 1
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminate:) name:UIApplicationWillTerminateNotification object:[UIApplication sharedApplication]];
 	#else
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminate:) name:NSApplicationWillTerminateNotification object:[NSApplication sharedApplication]];
