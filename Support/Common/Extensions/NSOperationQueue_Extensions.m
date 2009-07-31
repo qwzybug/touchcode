@@ -70,4 +70,12 @@ for (NSOperation *theOperation in [inOperations reverseObjectEnumerator])
 [self addOperationRecursively:[inOperations lastObject]];
 }
 
+- (void)dump
+{
+for (NSOperation *theOperation in self.operations)
+	{
+	[theOperation dump];
+	}
+}
+
 @end
