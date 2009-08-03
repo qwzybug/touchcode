@@ -183,14 +183,20 @@ NSString *theThreadStorageKey = [self threadStorageKey];
 NSManagedObjectContext *theManagedObjectContext = [[[NSThread currentThread] threadDictionary] objectForKey:theThreadStorageKey];
 if (theManagedObjectContext == NULL)
 	{
-	theManagedObjectContext = [[[NSManagedObjectContext alloc] init] autorelease];
+	theManagedObjectContext = [[self newManagedObjectContext] autorelease];
 	[[[NSThread currentThread] threadDictionary] setObject:theManagedObjectContext forKey:theThreadStorageKey];
-	[theManagedObjectContext setPersistentStoreCoordinator:self.persistentStoreCoordinator];
 	}
 return(theManagedObjectContext);
 }
 
 #pragma mark -
+
+- (NSManagedObjectContext *)newManagedObjectContext
+{
+NSManagedObjectContext *theManagedObjectContext = [[NSManagedObjectContext alloc] init];
+[theManagedObjectContext setPersistentStoreCoordinator:self.persistentStoreCoordinator];
+return(theManagedObjectContext);
+}
 
 - (BOOL)migrate:(NSError **)outError;
 {

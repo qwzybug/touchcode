@@ -51,9 +51,13 @@
 @property (readonly, retain) NSManagedObjectModel *managedObjectModel;
 @property (readonly, retain) NSManagedObjectContext *managedObjectContext;
 
+/// You don't need to call this. Subclasses can override to change default behavior.
+- (NSManagedObjectContext *)newManagedObjectContext;
+
 - (BOOL)migrate:(NSError **)outError;
 
 - (BOOL)save:(NSError **)outError;
 - (void)save;
+
 
 @end
