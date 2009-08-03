@@ -81,7 +81,7 @@ return(self);
 [super dealloc];
 }
 
-#pragma mark 0
+#pragma mark -
 
 - (NSInteger)networkActivityCount
 {
@@ -90,9 +90,12 @@ return(networkActivityCount);
 
 - (void)setNetworkActivityCount:(NSInteger)inNetworkActivityCount
 {
-networkActivityCount = inNetworkActivityCount;
+if (networkActivityCount != inNetworkActivityCount)
+	{
+	networkActivityCount = inNetworkActivityCount;
 
-[UIApplication sharedApplication].networkActivityIndicatorVisible = (networkActivityCount > 0) ? YES : NO;
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = (networkActivityCount > 0) ? YES : NO;
+	} 
 }
 
 #pragma mark -

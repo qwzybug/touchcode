@@ -141,7 +141,6 @@ if (self.started == YES)
 			}
 
 		theTotalActiveConnections += theChannel.activeConnections.count;
-
 		}
 
 	self.activeConnectionCount = theTotalActiveConnections;

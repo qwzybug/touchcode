@@ -34,7 +34,8 @@
 
 - (UIImage *)sizedImage:(CGSize)inSize
 {
-CGImageRef theImage = self.CGImage;
+CGImageRef theImage = NULL;
+//theImage = self.CGImage;
 CGColorSpaceRef theColorSpace = CGColorSpaceCreateDeviceGray();
 size_t theComponentCount = CGColorSpaceGetNumberOfComponents(theColorSpace);
 size_t theBitsPerComponent = 8; // CGImageGetBitsPerComponent(theImage);
