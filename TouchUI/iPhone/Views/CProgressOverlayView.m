@@ -39,7 +39,8 @@
 @property (readwrite, nonatomic, retain) UIActivityIndicatorView *activityIndicatorView;
 @property (readwrite, nonatomic, retain) UILabel *label;
 
-@property (readwrite, nonatomic, assign) NSTimer *timer;
+@property (readwrite, nonatomic, assign) NSTimer *displayTimer;
+@property (readwrite, nonatomic, assign) NSTimer *fadeTimer;
 
 @end
 
@@ -47,11 +48,16 @@
 
 @implementation CProgressOverlayView
 
+#define HUD_SIZE 150.0f
+#define FADE_TIME 0.025f
+#define BACKGROUND_COLOR [UIColor colorWithWhite:0.0 alpha:0.8]
+
 static CProgressOverlayView *gInstance = NULL;
 // UIAlertView
 
 @synthesize labelText;
 @synthesize mode;
+@synthesize size;
 @synthesize miniumDisplayTime;
 @synthesize displayTime;
 @dynamic progress;
@@ -59,7 +65,8 @@ static CProgressOverlayView *gInstance = NULL;
 @synthesize progressView;
 @synthesize activityIndicatorView;
 @synthesize label;
-@synthesize timer;
+@synthesize displayTimer;
+@synthesize fadeTimer;
 
 + (CProgressOverlayView *)instance
 {
@@ -74,19 +81,22 @@ return(gInstance);
 {
 if ((self = [super initWithFrame:CGRectZero]) != NULL)
 	{
-	self.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.8];
-//	self.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:1.0 alpha:0.8];
-	self.miniumDisplayTime = 1.0;
+    self.backgroundColor = [UIColor clearColor];
+    self.miniumDisplayTime = 1.0;
 
 	self.mode = ProgressOverlayViewMode_Indeterminate;
+    self.size = ProgressOverlayViewSizeFull;
 	}
 return(self);
 }
 
 - (void)dealloc
 {
-[self.timer invalidate];
-self.timer = NULL;
+[self.displayTimer invalidate];
+self.displayTimer = NULL;
+
+[self.fadeTimer invalidate];
+self.fadeTimer = NULL;
 
 self.displayTime = NULL;
 self.labelText = NULL;
@@ -149,14 +159,45 @@ else if (self.mode == ProgressOverlayViewMode_Indeterminate)
 	}
 }
 
-#if 0
-// FOR DEBUGGING ONLY (and for people who like red outlines)
 - (void)drawRect:(CGRect)inRect
 {
+if (self.size == ProgressOverlayViewSizeHUD)
+    {
+    UIColor *color = [UIColor colorWithWhite:0.0 alpha:0.8];
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, color.CGColor);
+
+    CGRect rect = self.bounds;
+
+    CGFloat radius = 15.0;
+    
+    CGFloat minx = CGRectGetMinX(rect);
+    CGFloat midx = CGRectGetMidX(rect);
+    CGFloat maxx = CGRectGetMaxX(rect);
+    CGFloat miny = CGRectGetMinY(rect);
+    CGFloat midy = CGRectGetMidY(rect);
+    CGFloat maxy = CGRectGetMaxY(rect);
+    
+    CGContextMoveToPoint(context, minx, midy);
+    
+    CGContextAddArcToPoint(context, minx, miny, midx, miny, radius);
+    CGContextAddArcToPoint(context, maxx, miny, maxx, midy, radius);
+    CGContextAddArcToPoint(context, maxx, maxy, midx, maxy, radius);
+    CGContextAddArcToPoint(context, minx, maxy, minx, midy, radius);
+    
+    CGContextClosePath(context);
+    
+    CGContextDrawPath(context, kCGPathFillStroke);
+    }
+#if 0
+// FOR DEBUGGING ONLY (and for people who like red outlines)
+
 CGContextSetStrokeColorWithColor(UIGraphicsGetCurrentContext(), [UIColor redColor].CGColor);
 CGContextStrokeRect(UIGraphicsGetCurrentContext(), self.bounds);
-}
 #endif
+}
 
 #pragma mark -
 
@@ -193,9 +234,12 @@ self.progressView.progress = inProgress;
 {
 [self.contentView removeFromSuperview];
 
-[self.timer invalidate];
-self.timer = NULL;
+[self.displayTimer invalidate];
+self.displayTimer = NULL;
 
+[self.fadeTimer invalidate];
+self.fadeTimer = NULL;
+    
 self.displayTime = NULL;
 self.contentView = NULL;
 self.progressView = NULL;
@@ -211,45 +255,86 @@ NSInvocation *theInvocation = NULL;
 [[self grabInvocation:&theInvocation] showInView:inView];
 [theInvocation retainArguments];
 
-self.timer = [NSTimer scheduledTimerWithTimeInterval:inTimeInterval invocation:theInvocation repeats:NO];
+self.displayTimer = [NSTimer scheduledTimerWithTimeInterval:inTimeInterval invocation:theInvocation repeats:NO];
 }
 
 - (void)showInView:(UIView *)inView
 {
-if (self.timer)
+if (self.displayTimer)
 	{
-	[self.timer invalidate];
-	self.timer = NULL;
+	[self.displayTimer invalidate];
+	self.displayTimer = NULL;
 	}
+
+if (self.mode == ProgressOverlayViewMode_Determinate)
+    self.size = ProgressOverlayViewSizeFull;
+
+if (self.size == ProgressOverlayViewSizeFull)
+    self.backgroundColor = BACKGROUND_COLOR;
 
 UIView *theView = NULL;
 
 if (inView)
 	{
-	theView = inView.window;
-	self.frame = [inView convertRect:inView.bounds toView:theView];
+	theView = inView;
+        
+    if (self.size = ProgressOverlayViewSizeHUD)
+        {
+        // HUD placement
+        CGRect viewFrame = theView.bounds;
+		self.bounds = CGRectMake(0, 0, HUD_SIZE, HUD_SIZE);
+		self.center = CGPointMake(floorf(theView.bounds.size.width/2), floorf(theView.bounds.size.height/2));
+        // touch guard behind HUD
+        guardView = [[UIView alloc] initWithFrame:viewFrame];
+        guardView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+        [theView addSubview:guardView];
+        [guardView release];
+        }
+    else
+        self.frame = [inView convertRect:inView.bounds toView:theView];
 	}
 else
 	{
 	theView = [UIApplication sharedApplication].keyWindow;
-	self.frame = [UIScreen mainScreen].applicationFrame;
-	}
-
+        
+    if (self.size == ProgressOverlayViewSizeHUD)
+        {
+        // HUD placement
+        CGRect appFrame = [UIScreen mainScreen].applicationFrame;
+        self.frame = CGRectMake(((appFrame.size.width / 2) - (HUD_SIZE / 2)), ((appFrame.size.height / 2) - (HUD_SIZE / 2)), HUD_SIZE, HUD_SIZE);
+        // touch guard behind HUD
+        guardView = [[UIView alloc] initWithFrame:appFrame];
+        guardView.backgroundColor = [UIColor clearColor];
+        [theView addSubview:guardView];
+        [guardView release];
+        }
+    else
+        self.frame = [UIScreen mainScreen].applicationFrame;
+    }
 [self setNeedsLayout];
 
 [theView addSubview:self];
 
 self.displayTime = [NSDate date];
+
+self.alpha = 0.0;
+self.fadeTimer = [[NSTimer scheduledTimerWithTimeInterval:FADE_TIME target:self selector:@selector(fadeIn:) userInfo:nil repeats:YES] retain];
 }
 
 - (void)hide
 {
-if (self.timer)
+if (self.displayTimer)
 	{
-	[self.timer invalidate];
-	self.timer = NULL;
+	[self.displayTimer invalidate];
+	self.displayTimer = NULL;
 	}
 
+if (self.fadeTimer)
+    {
+    [self.fadeTimer invalidate];
+    self.fadeTimer = NULL;
+    }
+    
 if (self.superview != NULL)
 	{
 	NSTimeInterval theDelta = -[self.displayTime timeIntervalSinceNow];
@@ -264,9 +349,32 @@ if (self.superview != NULL)
 			;
 		[self autorelease];
 		}
-
-	[self removeFromSuperview];
+    self.fadeTimer = [[NSTimer scheduledTimerWithTimeInterval:FADE_TIME target:self selector:@selector(fadeOut:) userInfo:nil repeats:YES] retain];
 	}
+}
+
+- (void)fadeIn:(NSTimer *)theTimer
+{
+    if (self.alpha >= 1.0)
+        {
+        [theTimer invalidate];
+        theTimer = NULL;
+        }
+    else
+        self.alpha += 0.1;
+}
+
+- (void)fadeOut:(NSTimer *)theTimer
+{
+    if (self.alpha <= 0.1)
+        {
+        [theTimer invalidate];
+        theTimer = NULL;
+        [guardView removeFromSuperview];
+        [self removeFromSuperview];
+        }
+    else
+        self.alpha -= 0.1;
 }
 
 @end
