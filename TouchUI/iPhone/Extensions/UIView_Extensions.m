@@ -51,4 +51,27 @@ for (UIView *theView in self.subviews)
 	}
 }
 
+- (void)moveToRoot:(BOOL)inKeepBounds
+{
+UIWindow *theWindow = self.window;
+const CGRect theWindowBounds = theWindow.bounds;
+
+CGRect theFrame = self.frame;
+
+[theWindow convertRect:theFrame fromView:self.superview];
+
+[self retain];
+[self removeFromSuperview];
+[theWindow addSubview:self];
+
+
+
+
+[self release];
+
+
+
+
+}
+
 @end
