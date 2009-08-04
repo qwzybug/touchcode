@@ -36,4 +36,6 @@
 
 - (void)dump:(NSInteger)inDepth;
 
+- (void)moveToSuperview:(UIView *)inSuperview;
+
 @end
