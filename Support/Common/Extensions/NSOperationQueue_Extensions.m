@@ -28,6 +28,7 @@
 //
 
 #import "NSOperationQueue_Extensions.h"
+#import "NSOperation_DebugExtensions.h"
 
 static NSOperationQueue *gDefaultOperationQueue = NULL;
 
@@ -68,14 +69,6 @@ for (NSOperation *theOperation in [inOperations reverseObjectEnumerator])
 	}
 	
 [self addOperationRecursively:[inOperations lastObject]];
-}
-
-- (void)dump
-{
-for (NSOperation *theOperation in self.operations)
-	{
-	[theOperation dump];
-	}
 }
 
 @end
