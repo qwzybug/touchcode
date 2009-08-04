@@ -34,9 +34,15 @@ typedef enum {
 	ProgressOverlayViewMode_Indeterminate,
 	} EProgressOverlayViewMode;
 
+typedef enum {
+    ProgressOverlayViewSizeFull,
+    ProgressOverlayViewSizeHUD,
+    } EProgressOverlayViewSize;
+
 @interface CProgressOverlayView : UIView {
 	NSString *labelText;
 	EProgressOverlayViewMode mode;
+    EProgressOverlayViewSize size;
 	
 	NSTimeInterval miniumDisplayTime;
 	NSDate *displayTime;
@@ -46,11 +52,15 @@ typedef enum {
 	UIActivityIndicatorView *activityIndicatorView;
 	UILabel *label;
 
-	NSTimer *timer;	
+    UIView *guardView;
+    
+	NSTimer *displayTimer;	
+    NSTimer *fadeTimer;
 }
 
 @property (readwrite, nonatomic, retain) NSString *labelText;
 @property (readwrite, nonatomic, assign) EProgressOverlayViewMode mode;
+@property (readwrite, nonatomic, assign) EProgressOverlayViewSize size;
 @property (readwrite, nonatomic, assign) NSTimeInterval miniumDisplayTime;
 @property (readwrite, nonatomic, retain) NSDate *displayTime;
 @property (readwrite, nonatomic, assign) float progress;
