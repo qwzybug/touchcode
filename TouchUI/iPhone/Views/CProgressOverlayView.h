@@ -70,8 +70,12 @@ typedef enum {
 
 - (void)update;
 
+/// Pass in NULL in inView parameter to work full screen.
 - (void)showInView:(UIView *)inView withDelay:(NSTimeInterval)inTimeInterval;
+
+/// Pass in NULL in inView parameter to work full screen.
 - (void)showInView:(UIView *)inView;
+
 - (void)hide;
 
 @end
