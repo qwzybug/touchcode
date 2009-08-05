@@ -78,14 +78,21 @@ if (self.view == NULL)
 
 if (self.tableView == NULL)
 	{
-	CGRect theViewFrame = self.view.bounds;
-	UITableView *theTableView = [[[UITableView alloc] initWithFrame:theViewFrame style:self.initialStyle] autorelease];
-	theTableView.delegate = self;
-	theTableView.dataSource = self;
-	theTableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-	//
-	[self.view addSubview:theTableView];
-	self.tableView = theTableView;
+	if ([self.view isKindOfClass:[UITableView class]])
+		{
+		self.tableView = (UITableView *)self.view;
+		}
+	else
+		{
+		CGRect theViewFrame = self.view.bounds;
+		UITableView *theTableView = [[[UITableView alloc] initWithFrame:theViewFrame style:self.initialStyle] autorelease];
+		theTableView.delegate = self;
+		theTableView.dataSource = self;
+		theTableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+		//
+		[self.view addSubview:theTableView];
+		self.tableView = theTableView;
+		}
 	}
 }
 
