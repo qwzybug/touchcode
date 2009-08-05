@@ -67,6 +67,11 @@
 	return size.height;
 }
 
+- (CGSize)sizeThatFits:(CGSize)size {
+	size.height = [self heightForText:self.text];
+	return size;
+}
+
 - (void)setVariableHeightText:(BOOL)value
 {
 	variableHeightText = value;
