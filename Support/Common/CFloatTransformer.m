@@ -1,8 +1,8 @@
 //
-//  CCommaArrayTransformer.m
+//  CFloatTransformer.m
 //  TouchCode
 //
-//  Created by brandon on 5/5/09.
+//  Created by brandon on 8/6/09.
 //  Copyright 2009 Small Society. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person
@@ -27,10 +27,10 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import "CCommaArrayTransformer.h"
+#import "CFloatTransformer.h"
 
 
-@implementation CCommaArrayTransformer
+@implementation CFloatTransformer
 
 + (BOOL)allowsReverseTransformation
 {
@@ -39,18 +39,9 @@
 
 - (id)transformedValue:(id)value
 {
-	NSAssert([value isKindOfClass:[NSArray class]], @"CCommaArrayTransformer: value must be an NSArray!");
-		
-	NSMutableString *result = [[[NSMutableString alloc] init] autorelease];
-	NSArray *array = value;
-	for (NSObject *item in array)
-	{
-		if ([array objectAtIndex:0] == item)
-			[result appendString:[item description]];
-		else
-			[result appendFormat:@",%@", [item description]];
-	}
-	return(result);
+	NSAssert([value isKindOfClass:[NSNumber class]], @"CFloatTransformer: value must be an NSNumber!");
+	
+	return [NSString stringWithFormat:@"%4.2f", [value floatValue]];
 }
 
 @end

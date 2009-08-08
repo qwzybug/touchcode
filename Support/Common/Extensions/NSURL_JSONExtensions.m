@@ -3,7 +3,7 @@
 //  TouchCode
 //
 //  Created by Jonathan Wight on 04/16/08.
-//  Copyright 2008 toxicsoftware.com. All rights reserved.
+//  Copyright 2008 Small Society. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person
 //  obtaining a copy of this software and associated documentation
@@ -50,8 +50,9 @@ NSMutableArray *theQueryComponents = [NSMutableArray array];
 for (NSString *theKey in inQueryDictionary)
 	{
 	id theValue = [inQueryDictionary objectForKey:theKey];
-	
-	[theQueryComponents addObject:[NSString stringWithFormat:@"%@=%@", theKey, theValue]];
+	// this fixes the issue of spaces in values. %@ = [value description]
+	NSString *tempValue = [theValue description];
+	[theQueryComponents addObject:[NSString stringWithFormat:@"%@=%@", theKey, [tempValue stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
 	}
 return([theQueryComponents componentsJoinedByString:@"&"]);
 }

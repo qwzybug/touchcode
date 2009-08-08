@@ -1,8 +1,8 @@
 //
-//  CCommaArrayTransformer.m
+//  CFloatTransformer.h
 //  TouchCode
 //
-//  Created by brandon on 5/5/09.
+//  Created by brandon on 8/6/09.
 //  Copyright 2009 Small Society. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person
@@ -27,30 +27,12 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import "CCommaArrayTransformer.h"
+#import <Foundation/Foundation.h>
+#import "CValueTransformer.h"
 
-
-@implementation CCommaArrayTransformer
-
-+ (BOOL)allowsReverseTransformation
+@interface CFloatTransformer : CValueTransformer
 {
-	return(NO);
-}
 
-- (id)transformedValue:(id)value
-{
-	NSAssert([value isKindOfClass:[NSArray class]], @"CCommaArrayTransformer: value must be an NSArray!");
-		
-	NSMutableString *result = [[[NSMutableString alloc] init] autorelease];
-	NSArray *array = value;
-	for (NSObject *item in array)
-	{
-		if ([array objectAtIndex:0] == item)
-			[result appendString:[item description]];
-		else
-			[result appendFormat:@",%@", [item description]];
-	}
-	return(result);
 }
 
 @end
