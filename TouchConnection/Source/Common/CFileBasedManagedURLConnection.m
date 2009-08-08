@@ -29,13 +29,6 @@
 
 #import "CFileBasedManagedURLConnection.h"
 
-//#define DEBUG 1
-#if URL_LOGGING
-#define _Log(...) NSLog
-#else
-#define _Log(...)
-#endif
-
 @interface CFileBasedManagedURLConnection ()
 @property (readwrite, nonatomic, retain) NSString *filePath;
 @property (readwrite, nonatomic, retain) NSFileHandle *fileHandle;
@@ -73,7 +66,6 @@ return(super.data);
 {
 if (self.connection == NULL)
 	{
-	_Log(@"Received event after connction has been reset. This is bad.");
 	return;
 	}
 NSAssert(self.connection == inConnection, NULL);
@@ -86,7 +78,6 @@ if (self.fileHandle == NULL)
 	BOOL theResult = [[NSFileManager defaultManager] createDirectoryAtPath:theTempRoot withIntermediateDirectories:YES attributes:NO error:&theError];
 	if (theResult == NO)
 		{
-		_Log(@"Could not create temporary directory: %@.", theError);
 		return;
 		}
 
@@ -100,7 +91,6 @@ if (self.fileHandle == NULL)
 	theResult = [[NSFileManager defaultManager] createFileAtPath:self.filePath contents:inData attributes:NULL];
 	if (theResult == NO)
 		{
-		_Log(@"createFileAtPath (%@) failed!");
 		}
 	
 	self.fileHandle = [NSFileHandle fileHandleForWritingAtPath:self.filePath];

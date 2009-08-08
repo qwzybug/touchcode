@@ -60,7 +60,7 @@ self.tableView = NULL;
 
 - (void)didReceiveMemoryWarning
 {
-NSLog(@"MEMORY WARNING!");
+[super didReceiveMemoryWarning];
 }
 
 - (void)loadView
