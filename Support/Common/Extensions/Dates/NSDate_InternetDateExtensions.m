@@ -57,5 +57,11 @@ NSString *theDateString = [[NSDateFormatter ISO8601Formatter] stringFromDate:sel
 return(theDateString);
 }
 
+- (NSString *)ISO8601MinimalString
+{
+NSString *theDateString = [[NSDateFormatter ISO8601FormatterMinimal] stringFromDate:self];
+return(theDateString);
+}
+
 
 @end
