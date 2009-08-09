@@ -23,20 +23,7 @@ return(theObjects);
 
 - (id)fetchObjectOfEntityForName:(NSString *)inEntityName predicate:(NSPredicate *)inPredicate error:(NSError **)outError;
 {
-id theObject = NULL;
-NSArray *theObjects = [self fetchObjectsOfEntityForName:inEntityName predicate:inPredicate error:outError];
-if (theObjects)
-	{
-	if ([theObjects count] != 1)
-		{
-		if (outError)
-			*outError = [NSError errorWithDomain:@"TODO_DOMAIN" code:-1 userInfo:NULL];
-		}
-	else
-		{
-		theObject = [theObjects lastObject];
-		}
-	}
+id theObject = [self fetchObjectOfEntityForName:inEntityName predicate:inPredicate createIfNotFound:NO wasCreated:NULL error:outError];
 return(theObject);
 }
 
@@ -46,7 +33,7 @@ id theObject = NULL;
 NSArray *theObjects = [self fetchObjectsOfEntityForName:inEntityName predicate:inPredicate error:outError];
 if (theObjects)
 	{
-	NSUInteger theCount = [theObjects count];
+	const NSUInteger theCount = theObjects.count;
 	if (theCount == 0)
 		{
 		theObject = [NSEntityDescription insertNewObjectForEntityForName:inEntityName inManagedObjectContext:self];
@@ -62,7 +49,13 @@ if (theObjects)
 	else
 		{
 		if (outError)
-			*outError = [NSError errorWithDomain:@"TODO_DOMAIN" code:-1 userInfo:NULL];
+			{
+			NSDictionary *theUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+				[NSString stringWithFormat:@"Expected 1 object but got %d instead.", theObjects.count], NSLocalizedDescriptionKey,
+				NULL];
+			
+			*outError = [NSError errorWithDomain:@"TODO_DOMAIN" code:-1 userInfo:theUserInfo];
+			}
 		}
 	}
 return(theObject);
