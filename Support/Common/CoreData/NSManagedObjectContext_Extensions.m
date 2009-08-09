@@ -31,20 +31,22 @@ return(theObject);
 {
 id theObject = NULL;
 NSArray *theObjects = [self fetchObjectsOfEntityForName:inEntityName predicate:inPredicate error:outError];
+BOOL theWasCreatedFlag = NO;
 if (theObjects)
 	{
 	const NSUInteger theCount = theObjects.count;
 	if (theCount == 0)
 		{
-		theObject = [NSEntityDescription insertNewObjectForEntityForName:inEntityName inManagedObjectContext:self];
-		if (theObject && outWasCreated)
-			*outWasCreated = YES;
+		if (inCreateIfNotFound == YES)
+			{
+			theObject = [NSEntityDescription insertNewObjectForEntityForName:inEntityName inManagedObjectContext:self];
+			if (theObject)
+				theWasCreatedFlag = YES;
+			}
 		}
 	else if (theCount == 1)
 		{
 		theObject = [theObjects lastObject];
-		if (theObject && outWasCreated)
-			*outWasCreated = NO;
 		}
 	else
 		{
@@ -58,6 +60,9 @@ if (theObjects)
 			}
 		}
 	}
+if (theObject && outWasCreated)
+	*outWasCreated = theWasCreatedFlag;
+	
 return(theObject);
 }
 
