@@ -54,8 +54,7 @@ for (NSString *theKey in inQueryDictionary)
 	NSString *tempValue = [theValue description];
 	[theQueryComponents addObject:[NSString stringWithFormat:@"%@=%@", theKey, [tempValue stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
 	}
-NSString *components = [theQueryComponents componentsJoinedByString:@"&"];
-return([components stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
+return([theQueryComponents componentsJoinedByString:@"&"]);
 }
 
 - (NSDictionary *)queryDictionary
