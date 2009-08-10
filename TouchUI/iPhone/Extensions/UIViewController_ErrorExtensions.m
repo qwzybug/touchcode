@@ -37,9 +37,9 @@
 //NSInteger code = [inError code];
 //NSDictionary *ufdict = [inError userInfo];
 //for (id key in ufdict) {
-//    NSLog([NSString stringWithFormat:@"%@",key]);
+
 //    NSString *value = (NSString *)[ufdict objectForKey:key];
-//    NSLog([NSString stringWithFormat:@"%@",value]);
+
 //}
 NSString *theMessage = inError.localizedDescription;
 if (theMessage == NULL)

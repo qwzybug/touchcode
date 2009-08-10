@@ -29,16 +29,34 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum { 
-	ProgressOverlayViewMode_Determinate,
-	ProgressOverlayViewMode_Indeterminate,
-	} EProgressOverlayViewMode;
+#define PROGRESS_OVERLAY_VIEW_HUD_SIZE         150.0f
+#define PROGRESS_OVERLAY_VIEW_FADE_TIME        0.025f
+#define PROGRESS_OVERLAY_VIEW_BACKGROUND_COLOR [UIColor colorWithWhite:0.0 alpha:0.8]
+
+typedef enum {
+	ProgressOverlayViewProgressModeDeterminate,
+	ProgressOverlayViewProgressModeIndeterminate,
+	} ProgressOverlayViewProgressMode;
+
+typedef enum {
+    ProgressOverlayViewSizeFull,
+    ProgressOverlayViewSizeHUD,
+    } ProgressOverlayViewSize;
+
+typedef enum {
+    ProgressOverlayViewFadeModeIn,
+    ProgressOverlayViewFadeModeOut,
+    ProgressOverlayViewFadeModeInOut,
+    ProgressOverlayViewFadeModeNone,
+    } ProgressOverlayViewFadeMode;
 
 @interface CProgressOverlayView : UIView {
-	NSString *labelText;
-	EProgressOverlayViewMode mode;
-	
-	NSTimeInterval miniumDisplayTime;
+	NSString *labelText;                            // label text
+	ProgressOverlayViewProgressMode progressMode;   // determinate or indeterminate style (can't use determinate with HUD)
+    ProgressOverlayViewSize size;                   // full screen/view or rounded rectangle HUD
+    ProgressOverlayViewFadeMode fadeMode;           // fade in, out, both, or none
+    
+	NSTimeInterval minimumDisplayTime;              // show for at least this long
 	NSDate *displayTime;
 	
 	UIView *contentView;
@@ -46,22 +64,28 @@ typedef enum {
 	UIActivityIndicatorView *activityIndicatorView;
 	UILabel *label;
 
-	NSTimer *timer;	
+    UIView *guardView;
+    UIColor *guardColor;                            // for HUD, touch guard underlay color (defaults to clear)
+    
+	NSTimer *displayTimer;
+    NSTimer *fadeTimer;
 }
 
 @property (readwrite, nonatomic, retain) NSString *labelText;
-@property (readwrite, nonatomic, assign) EProgressOverlayViewMode mode;
-@property (readwrite, nonatomic, assign) NSTimeInterval miniumDisplayTime;
+@property (readwrite, nonatomic, assign) ProgressOverlayViewProgressMode progressMode;
+@property (readwrite, nonatomic, assign) ProgressOverlayViewSize size;
+@property (readwrite, nonatomic, assign) ProgressOverlayViewFadeMode fadeMode;
+@property (readwrite, nonatomic, retain) UIColor *guardColor;
+@property (readwrite, nonatomic, assign) NSTimeInterval minimumDisplayTime;
 @property (readwrite, nonatomic, retain) NSDate *displayTime;
 @property (readwrite, nonatomic, assign) float progress;
-
 
 + (CProgressOverlayView *)instance;
 
 - (void)update;
 
-- (void)showInView:(UIView *)inView withDelay:(NSTimeInterval)inTimeInterval;
-- (void)showInView:(UIView *)inView;
-- (void)hide;
+- (void)showInView:(UIView *)inView withDelay:(NSTimeInterval)inTimeInterval; // activation after a delay (recommended to turn off fading)
+- (void)showInView:(UIView *)inView;                                          // activation
+- (void)hide;                                                                 // deactivation
 
 @end

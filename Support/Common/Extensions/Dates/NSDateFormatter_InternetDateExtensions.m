@@ -53,9 +53,19 @@ return(theFormatter);
 NSDateFormatter *theFormatter = [[[NSDateFormatter alloc] init] autorelease];
 [theFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
 [theFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
-[theFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
+[theFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
 return(theFormatter);
 }
+
++ (NSDateFormatter *)ISO8601FormatterMinimal
+{
+NSDateFormatter *theFormatter = [[[NSDateFormatter alloc] init] autorelease];
+[theFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+[theFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+[theFormatter setDateFormat:@"yyyyMMdd'T'HHmmss'Z'"];
+return(theFormatter);
+}
+
 
 + (NSArray *)allRFC2822DateFormatters
 {

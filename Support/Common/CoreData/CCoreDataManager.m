@@ -29,7 +29,7 @@
 
 #import "CCoreDataManager.h"
 
-#if defined(TARGET_OS_IPHONE)
+#if TARGET_OS_IPHONE == 1
 #import <UIKit/UIKit.h>
 #else
 #import <Cocoa/Cocoa.h>
@@ -62,7 +62,7 @@
 {
 if ((self = [super init]) != NULL)
 	{
-	#if defined(TARGET_OS_IPHONE)
+	#if TARGET_OS_IPHONE == 1
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminate:) name:UIApplicationWillTerminateNotification object:[UIApplication sharedApplication]];
 	#else
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminate:) name:NSApplicationWillTerminateNotification object:[NSApplication sharedApplication]];
@@ -91,14 +91,18 @@ else if ([inStoreType isEqualToString:NSBinaryStoreType])
 
 NSString *theStorePath = [[self applicationSupportFolder] stringByAppendingPathComponent:[inName stringByAppendingPathExtension:thePathExtension]];
 
-if (inForceReplace == YES || [[NSFileManager defaultManager] fileExistsAtPath:theStorePath] == NO)
+if (inForceReplace == YES)
 	{
 	NSError *theError = NULL;
 	if ([[NSFileManager defaultManager] fileExistsAtPath:theStorePath] == YES)
 		{
 		[[NSFileManager defaultManager] removeItemAtPath:theStorePath error:&theError];
 		}
-
+	}
+	
+if ([[NSFileManager defaultManager] fileExistsAtPath:theStorePath] == NO)
+	{
+	NSError *theError = NULL;
 	NSString *theSourceFile = [[NSBundle mainBundle] pathForResource:inName ofType:thePathExtension];
 	if ([[NSFileManager defaultManager] fileExistsAtPath:theSourceFile] == YES)
 		{
@@ -160,7 +164,8 @@ return(managedObjectModel);
 		
 		NSPersistentStoreCoordinator *thePersistentStoreCoordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel] autorelease];
 		
- 		if ([thePersistentStoreCoordinator addPersistentStoreWithType:self.storeType configuration:NULL URL:self.persistentStoreURL options:self.storeOptions error:&theError] == NULL)
+		NSPersistentStore *thePersistentStore = [thePersistentStoreCoordinator addPersistentStoreWithType:self.storeType configuration:NULL URL:self.persistentStoreURL options:self.storeOptions error:&theError];
+ 		if (thePersistentStore == NULL)
 			{
 			#if TARGET_OS_IPHONE == 1
 			NSLog(@"WARNING: %@ (%@)", theError, theError.userInfo);
@@ -182,14 +187,20 @@ NSString *theThreadStorageKey = [self threadStorageKey];
 NSManagedObjectContext *theManagedObjectContext = [[[NSThread currentThread] threadDictionary] objectForKey:theThreadStorageKey];
 if (theManagedObjectContext == NULL)
 	{
-	theManagedObjectContext = [[[NSManagedObjectContext alloc] init] autorelease];
+	theManagedObjectContext = [[self newManagedObjectContext] autorelease];
 	[[[NSThread currentThread] threadDictionary] setObject:theManagedObjectContext forKey:theThreadStorageKey];
-	[theManagedObjectContext setPersistentStoreCoordinator:self.persistentStoreCoordinator];
 	}
 return(theManagedObjectContext);
 }
 
 #pragma mark -
+
+- (NSManagedObjectContext *)newManagedObjectContext
+{
+NSManagedObjectContext *theManagedObjectContext = [[NSManagedObjectContext alloc] init];
+[theManagedObjectContext setPersistentStoreCoordinator:self.persistentStoreCoordinator];
+return(theManagedObjectContext);
+}
 
 - (BOOL)migrate:(NSError **)outError;
 {
@@ -219,14 +230,25 @@ return(theError == NULL);
 
 - (BOOL)save:(NSError **)outError;
 {
+BOOL theResult = NO;
+
+[self.managedObjectContext lock];
+
 #if TARGET_OS_IPHONE == 0
 [self.managedObjectContext commitEditing];
 #endif
 
 if ([self.managedObjectContext hasChanges] == NO)
-	return(YES);
+	theResult = YES;
+else
+	{
+	[self.managedObjectContext processPendingChanges];
+	theResult = [self.managedObjectContext save:outError];
+	}
 
-return([self.managedObjectContext save:outError]);
+[self.managedObjectContext unlock];
+
+return(theResult);
 }
 
 - (void)save

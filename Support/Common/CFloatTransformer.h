@@ -1,9 +1,9 @@
 //
-//  UIView_Extensions.h
+//  CFloatTransformer.h
 //  TouchCode
 //
-//  Created by Jonathan Wight on 1/13/09.
-//  Copyright 2009 toxicsoftware.com. All rights reserved.
+//  Created by brandon on 8/6/09.
+//  Copyright 2009 Small Society. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person
 //  obtaining a copy of this software and associated documentation
@@ -27,15 +27,12 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "CValueTransformer.h"
 
+@interface CFloatTransformer : CValueTransformer
+{
 
-@interface UIView (UIView_Extensions)
-
-- (void)setClipsToBoundsRecursively:(BOOL)clips;
-
-- (void)dump:(NSInteger)inDepth;
-
-- (void)moveToSuperview:(UIView *)inSuperview;
+}
 
 @end

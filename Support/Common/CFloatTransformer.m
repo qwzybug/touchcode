@@ -1,9 +1,9 @@
 //
-//  UIView_Extensions.h
+//  CFloatTransformer.m
 //  TouchCode
 //
-//  Created by Jonathan Wight on 1/13/09.
-//  Copyright 2009 toxicsoftware.com. All rights reserved.
+//  Created by brandon on 8/6/09.
+//  Copyright 2009 Small Society. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person
 //  obtaining a copy of this software and associated documentation
@@ -27,15 +27,21 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
+#import "CFloatTransformer.h"
 
 
-@interface UIView (UIView_Extensions)
+@implementation CFloatTransformer
 
-- (void)setClipsToBoundsRecursively:(BOOL)clips;
++ (BOOL)allowsReverseTransformation
+{
+	return(NO);
+}
 
-- (void)dump:(NSInteger)inDepth;
-
-- (void)moveToSuperview:(UIView *)inSuperview;
+- (id)transformedValue:(id)value
+{
+	NSAssert([value isKindOfClass:[NSNumber class]], @"CFloatTransformer: value must be an NSNumber!");
+	
+	return [NSString stringWithFormat:@"%4.2f", [value floatValue]];
+}
 
 @end

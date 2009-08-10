@@ -77,7 +77,6 @@ self.URL = NULL;
 {
 if (buttonIndex == 0)
 	{
-	NSLog(@"Opening: %@", self.URL);
 	BOOL theResult = [[UIApplication sharedApplication] openURL:self.URL];
 	if (theResult == NO)
 		{

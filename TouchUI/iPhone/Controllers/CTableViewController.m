@@ -38,6 +38,16 @@
 @implementation CTableViewController
 
 @synthesize tableView = outletTableView;
+@synthesize initialStyle;
+
+- (id)init
+{
+if ((self = [super initWithNibName:NULL bundle:NULL]) != NULL)
+	{
+	self.initialStyle = UITableViewStylePlain;
+	}
+return(self);
+}
 
 - (void)dealloc
 {
@@ -50,7 +60,7 @@ self.tableView = NULL;
 
 - (void)didReceiveMemoryWarning
 {
-NSLog(@"MEMORY WARNING!");
+[super didReceiveMemoryWarning];
 }
 
 - (void)loadView
@@ -60,23 +70,30 @@ NSLog(@"MEMORY WARNING!");
 if (self.view == NULL)
 	{
 	CGRect theViewFrame = [[UIScreen mainScreen] applicationFrame];
-	UITableView *theTableView = [[[UITableView alloc] initWithFrame:theViewFrame style:UITableViewStylePlain] autorelease];
-	theTableView.delegate = self;
-	theTableView.dataSource = self;
-
-	self.view = self.tableView = theTableView;
+	UIView *theView = [[[UITableView alloc] initWithFrame:theViewFrame] autorelease];
+	theView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+	//
+	self.view = theView;
 	}
-}
 
-- (void)viewDidLoad
-{
-[super viewDidLoad];
-//
-if (self.tableView == NULL && [self.view isKindOfClass:[UITableView class]])
-	self.tableView = (UITableView *)self.view;
-
-self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+if (self.tableView == NULL)
+	{
+	if ([self.view isKindOfClass:[UITableView class]])
+		{
+		self.tableView = (UITableView *)self.view;
+		}
+	else
+		{
+		CGRect theViewFrame = self.view.bounds;
+		UITableView *theTableView = [[[UITableView alloc] initWithFrame:theViewFrame style:self.initialStyle] autorelease];
+		theTableView.delegate = self;
+		theTableView.dataSource = self;
+		theTableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+		//
+		[self.view addSubview:theTableView];
+		self.tableView = theTableView;
+		}
+	}
 }
 
 - (void)viewWillAppear:(BOOL)inAnimated

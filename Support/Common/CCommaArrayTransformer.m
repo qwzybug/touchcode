@@ -39,7 +39,7 @@
 
 - (id)transformedValue:(id)value
 {
-	NSAssert([value isKindOfClass:[NSArray class]], @"CCommaArrayTransform: value must be an NSArray!");
+	NSAssert([value isKindOfClass:[NSArray class]], @"CCommaArrayTransformer: value must be an NSArray!");
 		
 	NSMutableString *result = [[[NSMutableString alloc] init] autorelease];
 	NSArray *array = value;

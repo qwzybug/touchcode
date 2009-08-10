@@ -187,13 +187,13 @@ if (timer != inTimer)
 
 - (void)postNewLocation:(CLLocation *)inNewLocation oldLocation:(CLLocation *)inOldLocation
 {
-#if FAKE
+#if ZIPCAR_OPTIONS_USE_FAKE_CORELOCATION == 1
 CLLocationCoordinate2D theCoordinate = {
 	.latitude = 37.418766,
 	.longitude = -122.209774,
 	};
 inNewLocation = [[[CLLocation alloc] initWithCoordinate:theCoordinate altitude:0 horizontalAccuracy:1000.0 verticalAccuracy:1.0 timestamp:inNewLocation.timestamp] autorelease];
-#endif
+#endif /* ZIPCAR_OPTIONS_USE_FAKE_CORELOCATION == 1 */
 
 self.location = inNewLocation;
 
@@ -231,7 +231,6 @@ if (self.timer == inTimer)
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
-NSLog(@"[CBetterLocationManager locationManaged:didFailWithError: %@", error);
 NSDictionary *theUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:
 							 error, @"Error",
 							 NULL];

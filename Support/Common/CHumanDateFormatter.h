@@ -18,4 +18,6 @@
 
 + (id)humanDateFormatter:(BOOL)inSingleLine;
 
++ (NSString *)formatDate:(NSDate *)inDate singleLine:(BOOL)inSingleLine;
+
 @end

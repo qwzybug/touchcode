@@ -31,13 +31,6 @@
 
 #import "CCompletionTicket.h"
 
-//#define DEBUG 1
-#if URL_LOGGING
-#define _Log(...) NSLog
-#else
-#define _Log(...)
-#endif
-
 @interface CManagedURLConnection ()
 @property (readwrite, nonatomic, retain) NSURLRequest *request;
 @property (readwrite, nonatomic, retain) NSURLConnection *connection;
@@ -99,8 +92,6 @@ return(privateData);
 
 - (void)start
 {
-_Log(@"START");
-
 self.startTime = [[NSDate date] timeIntervalSinceReferenceDate];
 
 self.connection = [[[NSURLConnection alloc] initWithRequest:self.request delegate:self startImmediately:NO] autorelease];
@@ -110,8 +101,6 @@ self.connection = [[[NSURLConnection alloc] initWithRequest:self.request delegat
 
 - (void)cancel
 {
-_Log(@"CANCEL");
-
 if (self.connection)
 	{
 	[self.connection cancel];
@@ -125,8 +114,6 @@ if (self.connection)
 
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 {
-	_Log(@"didReceiveAuthenticationChallenge");
-	
 	if ([challenge previousFailureCount] > 1)
 		{
 		[[challenge sender] cancelAuthenticationChallenge:challenge];
@@ -137,18 +124,12 @@ if (self.connection)
 
 - (void)connection:(NSURLConnection *)connection didCancelAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 {
-	NSLog(@"didCancelAuthenticationChallenge");
-	
-//	[self.completionTicket didFailForTarget:self error:inError];
-
 }
 
 #pragma mark -
 
 - (NSURLRequest *)connection:(NSURLConnection *)inConnection willSendRequest:(NSURLRequest *)inRequest redirectResponse:(NSURLResponse *)inResponse
 {
-_Log(@"WILL SEND REQUEST");
-
 return(inRequest);
 }
 
@@ -156,12 +137,9 @@ return(inRequest);
 {
 if (self.connection == NULL)
 	{
-	_Log(@"Received event after connction has been reset. This is bad.");
 	return;
 	}
 NSAssert(self.connection == inConnection, NULL);
-
-_Log(@"DID RECEIVE RESPONSE");
 
 self.response = inResponse;
 }
@@ -170,12 +148,9 @@ self.response = inResponse;
 {
 if (self.connection == NULL)
 	{
-	_Log(@"Received event after connction has been reset. This is bad.");
 	return;
 	}
 NSAssert(self.connection == inConnection, NULL);
-
-_Log(@"DID RECEIVE DATA");
 
 if (self.data == NULL)
 	{
@@ -206,12 +181,9 @@ else
 {
 if (self.connection == NULL)
 	{
-	_Log(@"Received event after connction has been reset. This is bad.");
 	return;
 	}
 NSAssert(self.connection == inConnection, NULL);
-
-_Log(@"DID FINISH LOADING");
 
 self.endTime = [[NSDate date] timeIntervalSinceReferenceDate];
 
@@ -224,12 +196,9 @@ self.connection = NULL;
 {
 if (self.connection == NULL)
 	{
-	_Log(@"Received event after connction has been reset. This is bad.");
 	return;
 	}
 NSAssert(self.connection == inConnection, NULL);
-
-_Log(@"DID FINISH LOADING");
 
 self.endTime = [[NSDate date] timeIntervalSinceReferenceDate];
 
