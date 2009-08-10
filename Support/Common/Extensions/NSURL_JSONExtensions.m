@@ -53,7 +53,8 @@ for (NSString *theKey in inQueryDictionary)
 	
 	[theQueryComponents addObject:[NSString stringWithFormat:@"%@=%@", theKey, theValue]];
 	}
-return([theQueryComponents componentsJoinedByString:@"&"]);
+NSString *components = [theQueryComponents componentsJoinedByString:@"&"];
+return([components stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
 }
 
 - (NSDictionary *)queryDictionary
