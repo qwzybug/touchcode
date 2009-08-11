@@ -87,7 +87,7 @@ if ((self = [super initWithFrame:CGRectZero]) != NULL)
 
 	self.progressMode = ProgressOverlayViewProgressModeIndeterminate;
     self.size = ProgressOverlayViewSizeFull;
-    self.fadeMode = ProgressOverlayViewFadeModeInOut;
+    self.fadeMode = ProgressOverlayViewFadeModeNone;
 	}
 return(self);
 }
