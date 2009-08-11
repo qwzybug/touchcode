@@ -3,6 +3,7 @@
 //  TouchCode
 //
 //  Created by Devin Chalmers on 8/10/09.
+//  Copyright 2009 Devin Chalmers. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person
 //  obtaining a copy of this software and associated documentation
