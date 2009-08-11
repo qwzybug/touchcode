@@ -23,20 +23,7 @@ return(theObjects);
 
 - (id)fetchObjectOfEntityForName:(NSString *)inEntityName predicate:(NSPredicate *)inPredicate error:(NSError **)outError;
 {
-id theObject = NULL;
-NSArray *theObjects = [self fetchObjectsOfEntityForName:inEntityName predicate:inPredicate error:outError];
-if (theObjects)
-	{
-	if ([theObjects count] != 1)
-		{
-		if (outError)
-			*outError = [NSError errorWithDomain:@"TODO_DOMAIN" code:-1 userInfo:NULL];
-		}
-	else
-		{
-		theObject = [theObjects lastObject];
-		}
-	}
+id theObject = [self fetchObjectOfEntityForName:inEntityName predicate:inPredicate createIfNotFound:NO wasCreated:NULL error:outError];
 return(theObject);
 }
 
@@ -44,27 +31,38 @@ return(theObject);
 {
 id theObject = NULL;
 NSArray *theObjects = [self fetchObjectsOfEntityForName:inEntityName predicate:inPredicate error:outError];
+BOOL theWasCreatedFlag = NO;
 if (theObjects)
 	{
-	NSUInteger theCount = [theObjects count];
+	const NSUInteger theCount = theObjects.count;
 	if (theCount == 0)
 		{
-		theObject = [NSEntityDescription insertNewObjectForEntityForName:inEntityName inManagedObjectContext:self];
-		if (theObject && outWasCreated)
-			*outWasCreated = YES;
+		if (inCreateIfNotFound == YES)
+			{
+			theObject = [NSEntityDescription insertNewObjectForEntityForName:inEntityName inManagedObjectContext:self];
+			if (theObject)
+				theWasCreatedFlag = YES;
+			}
 		}
 	else if (theCount == 1)
 		{
 		theObject = [theObjects lastObject];
-		if (theObject && outWasCreated)
-			*outWasCreated = NO;
 		}
 	else
 		{
 		if (outError)
-			*outError = [NSError errorWithDomain:@"TODO_DOMAIN" code:-1 userInfo:NULL];
+			{
+			NSDictionary *theUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+				[NSString stringWithFormat:@"Expected 1 object but got %d instead.", theObjects.count], NSLocalizedDescriptionKey,
+				NULL];
+			
+			*outError = [NSError errorWithDomain:@"TODO_DOMAIN" code:-1 userInfo:theUserInfo];
+			}
 		}
 	}
+if (theObject && outWasCreated)
+	*outWasCreated = theWasCreatedFlag;
+	
 return(theObject);
 }
 

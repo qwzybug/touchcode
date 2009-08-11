@@ -1,9 +1,8 @@
 //
-//  NSDateFormatter_InternetDateExtensions.h
+//  UIImage+Resizing.h
 //  TouchCode
 //
-//  Created by Jonathan Wight on 5/16/09.
-//  Copyright 2009 Small Society. All rights reserved.
+//  Created by Devin Chalmers on 8/10/09.
 //
 //  Permission is hereby granted, free of charge, to any person
 //  obtaining a copy of this software and associated documentation
@@ -29,15 +28,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSDateFormatter (NSDateFormatter_InternetDateExtensions)
+@interface UIImage (Resizing)
 
-+ (NSDateFormatter *)RFC2822Formatter;
-+ (NSDateFormatter *)ISO8601Formatter;
-+ (NSDateFormatter *)ISO8601FormatterMinimal;
-
-+ (NSArray *)allRFC2822DateFormatters;
-+ (NSArray *)allISO8601DateFormatters;
-
-+ (NSArray *)allInternetDateFormatters;
+- (UIImage *)resizedImageToFit:(CGSize)inSize;
 
 @end

@@ -91,14 +91,18 @@ else if ([inStoreType isEqualToString:NSBinaryStoreType])
 
 NSString *theStorePath = [[self applicationSupportFolder] stringByAppendingPathComponent:[inName stringByAppendingPathExtension:thePathExtension]];
 
-if (inForceReplace == YES || [[NSFileManager defaultManager] fileExistsAtPath:theStorePath] == NO)
+if (inForceReplace == YES)
 	{
 	NSError *theError = NULL;
 	if ([[NSFileManager defaultManager] fileExistsAtPath:theStorePath] == YES)
 		{
 		[[NSFileManager defaultManager] removeItemAtPath:theStorePath error:&theError];
 		}
-
+	}
+	
+if ([[NSFileManager defaultManager] fileExistsAtPath:theStorePath] == NO)
+	{
+	NSError *theError = NULL;
 	NSString *theSourceFile = [[NSBundle mainBundle] pathForResource:inName ofType:thePathExtension];
 	if ([[NSFileManager defaultManager] fileExistsAtPath:theSourceFile] == YES)
 		{
