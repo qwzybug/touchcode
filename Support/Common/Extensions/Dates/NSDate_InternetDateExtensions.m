@@ -47,7 +47,16 @@ return(theDateString);
 
 + (NSDate *)dateWithISO8601String:(NSString *)inString
 {
-NSDate *theDate = [[NSDateFormatter ISO8601Formatter] dateFromString:inString];
+NSDate *theDate = NULL;
+for (NSDateFormatter *theDateFormatter in [NSDateFormatter allISO8601DateFormatters])
+	{
+	theDate = [theDateFormatter dateFromString:inString];
+	if (theDate != NULL)
+		break;
+	}
+
+NSAssert1(theDate != NULL, @"Could not convert ISO8601 date string of \"%@\" to a NSDate", inString);
+
 return(theDate);
 }
 
