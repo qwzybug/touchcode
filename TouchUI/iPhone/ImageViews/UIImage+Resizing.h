@@ -1,9 +1,9 @@
 //
-//  CTrivialTemplate.h
+//  UIImage+Resizing.h
 //  TouchCode
 //
-//  Created by Jonathan Wight on 9/19/08.
-//  Copyright 2008 toxicsoftware.com. All rights reserved.
+//  Created by Devin Chalmers on 8/10/09.
+//  Copyright 2009 Devin Chalmers. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person
 //  obtaining a copy of this software and associated documentation
@@ -29,23 +29,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CTrivialTemplate : NSObject {
-	NSString *template;
-}
+@interface UIImage (Resizing)
 
-@property (readwrite, nonatomic, retain) NSString *template;
+- (UIImage *)resizedImageToFit:(CGSize)inSize;
 
-- (id)initWithTemplate:(NSString *)inTemplate; // Designated init.
-- (id)initWithPath:(NSString *)inPath;
-- (id)initWithTemplateName:(NSString *)inTemplateName;
-
-- (NSString *)transform:(NSDictionary *)inReplacementDictionary error:(NSError **)outError;
-- (NSString *)transform:(NSDictionary *)inReplacementDictionary error:(NSError **)outError usedKeys:(NSArray **)outKeys;
-
-@end
-
-#pragma mark -
-
-@interface CTrivialTemplate (CTrivialTemplate_Conveniences)
-+ (NSString *)transformTemplateNamed:(NSString *)inName replacementDictionary:(NSDictionary *)inDictionary error:(NSError **)outError;
 @end
