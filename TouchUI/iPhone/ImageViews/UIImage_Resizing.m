@@ -1,5 +1,5 @@
 //
-//  UIImage+Resizing.m
+//  UIImage_Resizing.m
 //  TouchCode
 //
 //  Created by Devin Chalmers on 8/10/09.
@@ -27,9 +27,9 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import "UIImage+Resizing.h"
+#import "UIImage_Resizing.h"
 
-@implementation UIImage (Resizing)
+@implementation UIImage (UIImage_Resizing)
 
 - (UIImage *)resizedImageToFit:(CGSize)inSize;
 {

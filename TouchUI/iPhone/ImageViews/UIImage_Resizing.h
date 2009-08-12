@@ -1,5 +1,5 @@
 //
-//  UIImage+Resizing.h
+//  UIImage_Resizing.h
 //  TouchCode
 //
 //  Created by Devin Chalmers on 8/10/09.
