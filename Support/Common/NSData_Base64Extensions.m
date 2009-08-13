@@ -43,7 +43,7 @@ theDecodedData = reallocf(theDecodedData, theDecodedDataSize);
 if (theDecodedData == NULL)
 	return(NULL);
 id theData = [self dataWithBytesNoCopy:theDecodedData length:theDecodedDataSize freeWhenDone:YES];
-return(theData);
+return([theData autorelease]);
 }
 
 - (NSString *)asBase64EncodedString;
