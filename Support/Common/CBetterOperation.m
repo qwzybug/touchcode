@@ -50,11 +50,13 @@ self.error = NULL;
 
 - (void)delegateProxyWithResult:(id)inResult
 {
+if (self.delegate && [self.delegate respondsToSelector:@selector(operation:didAttainResult:)])
 	[self.delegate operation:self didAttainResult:inResult];
 }
 
 - (void)delegateProxyWithError:(NSError*)inError
 {
+if (self.delegate && [self.delegate respondsToSelector:@selector(operation:didFailWithError:)])
 	[self.delegate operation:self didFailWithError:inError];	
 }
 
@@ -62,11 +64,7 @@ self.error = NULL;
 {
 	self.result = inResult;
 
-	// you could do this check in delegateProxyWithResult, but probably avoid a context switch by doing it here.
-	if (self.delegate && [self.delegate respondsToSelector:@selector(operation:didAttainResult:)])
-	{
-		[self performSelectorOnMainThread:@selector(delegateProxyWithResult:) withObject:inResult waitUntilDone:YES];
-	}
+	[self performSelectorOnMainThread:@selector(delegateProxyWithResult:) withObject:inResult waitUntilDone:YES];
 }
 
 - (void)failWithError:(NSError *)inError
@@ -75,10 +73,7 @@ self.error = NULL;
 
 	self.error = inError;
 
-	if (self.delegate && [self.delegate respondsToSelector:@selector(operation:didFailWithError:)])
-	{
-		[self performSelectorOnMainThread:@selector(delegateProxyWithError:) withObject:inError waitUntilDone:YES];
-	}
+	[self performSelectorOnMainThread:@selector(delegateProxyWithError:) withObject:inError waitUntilDone:YES];
 }
 
 @end
