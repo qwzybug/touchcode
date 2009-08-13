@@ -13,10 +13,15 @@
 
 - (BOOL)canDial
 {
+	const BOOL kSimulatorCanDial = YES;
+
 	NSString *model = [self model];
-	if ([model isEqualToString:@"iPhone"] || [model isEqualToString:@"iPhone Simulator"])
-		return YES;
-	return NO;
+	if ([model isEqualToString:@"iPhone Simulator"])
+		return(kSimulatorCanDial);
+	else if ([[model substringToIndex:6] isEqualToString:@"iPhone"])
+		return(YES);
+	else
+		return(NO);
 }
 
 @end
