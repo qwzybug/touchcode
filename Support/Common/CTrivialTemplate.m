@@ -72,7 +72,13 @@ self.template = NULL;
 
 - (NSString *)transform:(NSDictionary *)inReplacementDictionary error:(NSError **)outError
 {
+return [self transform:inReplacementDictionary error:outError usedKeys:NULL];
+}
+
+- (NSString *)transform:(NSDictionary *)inReplacementDictionary error:(NSError **)outError usedKeys:(NSArray **)outKeys
+{
 NSMutableString *theOutputString = [NSMutableString stringWithCapacity:self.template.length];
+NSMutableArray *theUsedKeyArray = [NSMutableArray array];
 NSAssert(self.template != NULL, @"template is null");
 NSScanner *theScanner = [NSScanner scannerWithString:self.template];
 [theScanner setCharactersToBeSkipped:NULL];
@@ -101,6 +107,7 @@ while ([theScanner isAtEnd] == NO)
 			theTransformerName = [theComponents objectAtIndex:1];
 
 		id theValue = [inReplacementDictionary valueForKeyPath:theKeyValuePath];
+		[theUsedKeyArray addObject:theKeyValuePath];
 
 		if (theTransformerName)
 			{
@@ -132,6 +139,7 @@ while ([theScanner isAtEnd] == NO)
 	theLastScanLocation = [theScanner scanLocation];
 	}
 
+if (outKeys) *outKeys = [NSArray arrayWithArray:theUsedKeyArray]; 
 return(theOutputString);
 }
 

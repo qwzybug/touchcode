@@ -40,6 +40,7 @@
 - (id)initWithTemplateName:(NSString *)inTemplateName;
 
 - (NSString *)transform:(NSDictionary *)inReplacementDictionary error:(NSError **)outError;
+- (NSString *)transform:(NSDictionary *)inReplacementDictionary error:(NSError **)outError usedKeys:(NSArray **)outKeys;
 
 @end
 

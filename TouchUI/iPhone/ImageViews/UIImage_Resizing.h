@@ -1,8 +1,9 @@
 //
-//  UIImage+Resizing.m
+//  UIImage_Resizing.h
 //  TouchCode
 //
 //  Created by Devin Chalmers on 8/10/09.
+//  Copyright 2009 Devin Chalmers. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person
 //  obtaining a copy of this software and associated documentation
@@ -26,39 +27,10 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import "UIImage+Resizing.h"
+#import <Foundation/Foundation.h>
 
-@implementation UIImage (Resizing)
+@interface UIImage (Resizing)
 
 - (UIImage *)resizedImageToFit:(CGSize)inSize;
-{
-	CGRect destRect = CGRectMake(0.0, 0.0, inSize.width, inSize.height);
-	
-	if (self.size.width > self.size.height)
-	{
-		// Scale height down
-		destRect.size.height = ceilf(self.size.height * (inSize.width / self.size.width));
-	}
-	else if (self.size.width < self.size.height)
-	{
-		// Scale width down
-		destRect.size.width = ceilf(self.size.width * (inSize.height / self.size.height));
-	}
-	
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGContextRef ctx = CGBitmapContextCreate(NULL, destRect.size.width, destRect.size.height, 8, (4 * destRect.size.width), colorSpace, kCGImageAlphaPremultipliedFirst);
-    CGColorSpaceRelease(colorSpace);
-	
-    CGContextSetInterpolationQuality(ctx, kCGInterpolationHigh);
-    CGContextDrawImage(ctx, destRect, self.CGImage);
-	
-    CGImageRef resizedImage = CGBitmapContextCreateImage(ctx);
-    CGContextRelease(ctx);
-    
-    UIImage *result = [UIImage imageWithCGImage:resizedImage];
-    CGImageRelease(resizedImage);
-    
-    return result;
-}
 
 @end

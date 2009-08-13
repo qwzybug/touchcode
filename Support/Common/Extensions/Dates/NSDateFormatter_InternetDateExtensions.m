@@ -118,10 +118,10 @@ NSArray *sFormatters = NULL;
 			{ .dateFormat = @"HHmmss'Z'", .timezone = @"UTC" },
 			{ .dateFormat = @"yyyy-MM-dd", .timezone = @"UTC" },
 			{ .dateFormat = @"yyyyMMdd", .timezone = @"UTC" },
-			{ .dateFormat = @"HH:mm:ssZZ" },
-			{ .dateFormat = @"HHmmssZZ" },
 			{ .dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZZ" },
 			{ .dateFormat = @"yyyyMMdd'T'HHmmssZZ" },
+			{ .dateFormat = @"HH:mm:ssZZ" },
+			{ .dateFormat = @"HHmmssZZ" },
 			{ NULL, NULL },
 			};
 		
