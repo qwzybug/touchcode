@@ -168,7 +168,7 @@ return(managedObjectModel);
  		if (thePersistentStore == NULL)
 			{
 			#if TARGET_OS_IPHONE == 1
-			fprintf(stderr, @"WARNING: %s (%s)\n", [[theError description] UTF8String], [[theError.userInfo description] UTF8String]);
+			fprintf(stderr, "WARNING: %s (%s)\n", [[theError description] UTF8String], [[theError.userInfo description] UTF8String]);
 			#else
 			[[NSApplication sharedApplication] presentError:theError];
 			#endif
@@ -257,7 +257,7 @@ NSError *theError = NULL;
 if ([self save:&theError] == NO)
 	{
 	#if TARGET_OS_IPHONE == 1
-	fprintf(stderr, @"WARNING: %s (%s)\n", [[theError description] UTF8String], [[theError.userInfo description] UTF8String]);
+	fprintf(stderr, "WARNING: %s (%s)\n", [[theError description] UTF8String], [[theError.userInfo description] UTF8String]);
 	#else
 	[[NSApplication sharedApplication] presentError:theError];
 	#endif
