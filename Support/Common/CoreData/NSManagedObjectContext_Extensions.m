@@ -53,7 +53,7 @@ if (theObjects)
 		if (outError)
 			{
 			NSDictionary *theUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-				[NSString stringWithFormat:@"Expected 1 object but got %d instead.", theObjects.count], NSLocalizedDescriptionKey,
+				[NSString stringWithFormat:@"Expected 1 object (of type %@) but got %d instead.", inEntityName, theObjects.count], NSLocalizedDescriptionKey,
 				NULL];
 			
 			*outError = [NSError errorWithDomain:@"TODO_DOMAIN" code:-1 userInfo:theUserInfo];

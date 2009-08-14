@@ -1,5 +1,6 @@
 //
 //  CBetterLabel.h
+//  Touchcode
 //
 //  Created by brandon on 7/13/09.
 //  Copyright 2009 Small Society. All rights reserved.
