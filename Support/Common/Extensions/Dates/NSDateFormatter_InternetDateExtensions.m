@@ -69,7 +69,7 @@ return(theFormatter);
 
 + (NSArray *)allRFC2822DateFormatters
 {
-NSArray *sFormatters = NULL;
+static NSArray *sFormatters = NULL;
 
 @synchronized(self)
 	{
@@ -103,7 +103,7 @@ return(sFormatters);
 
 + (NSArray *)allISO8601DateFormatters
 {
-NSArray *sFormatters = NULL;
+static NSArray *sFormatters = NULL;
 
 @synchronized(self)
 	{
@@ -149,7 +149,7 @@ return(sFormatters);
 
 + (NSArray *)allInternetDateFormatters;
 {
-NSArray *sFormatters = NULL;
+static NSArray *sFormatters = NULL;
 
 @synchronized(self)
 	{
