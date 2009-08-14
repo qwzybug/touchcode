@@ -96,12 +96,11 @@ return([self stringWithDateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatte
 return([self stringWithDateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterFullStyle]);
 }
 
-- (BOOL)isSameDayAsDate:(NSDate *)inDate
+- (BOOL)isSameCalendarDayAsDate:(NSDate *)inDate
 {
+NSDateComponents *theComponents = [[NSCalendar currentCalendar] components:NSEraCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:self toDate:inDate options:0];
 
-[[NSCalendar currentCalendar] components:NSMonthCalendarUnit | NSDayCalendarUnit fromDate:self toDate:inDate options:0];
-
-
+return(theComponents.era == 0 && theComponents.year == 0 && theComponents.month == 0 && theComponents.day == 0);
 }
 
 @end

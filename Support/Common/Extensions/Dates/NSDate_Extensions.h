@@ -31,31 +31,24 @@
 
 @interface NSDate (NSDate_Extensions)
 
-
 + (NSDate *)dateWithString:(NSString *)inString format:(NSString *)inFormat;
 
 - (NSString *)stringWithFormat:(NSString *)inFormat;
 
-//NSDateFormatterShortStyle
-//Specifies a short style, typically numeric only, such as “11/23/37” or “3:30pm”.
-
-//NSDateFormatterMediumStyle
-//Specifies a medium style, typically with abbreviated text, such as “Nov 23, 1937”.
-
-//NSDateFormatterLongStyle
-//Specifies a long style, typically with full text, such as “November 23, 1937” or “3:30:32pm”.
-
-//NSDateFormatterFullStyle
-//Specifies a full style with complete details, such as “Tuesday, April 12, 1952 AD” or “3:30:42pm PST”.
-
-- (NSString *)stringWithShortDateStyleFormat;
+/// Specifies a short style, typically numeric only, such as “11/23/37” or “3:30pm”.
+- (NSString *)stringWithShortDateStyleFormat; 
+/// Specifies a medium style, typically with abbreviated text, such as “Nov 23, 1937”.
 - (NSString *)stringWithMediumDateStyleFormat;
+///Specifies a long style, typically with full text, such as “November 23, 1937” or “3:30:32pm”.
 - (NSString *)stringWithLongDateStyleFormat;
+///Specifies a full style with complete details, such as “Tuesday, April 12, 1952 AD” or “3:30:42pm PST”.
 - (NSString *)stringWithFullDateStyleFormat;
 
 - (NSString *)stringWithShortTimeStyleFormat;
 - (NSString *)stringWithMediumTimeStyleFormat;
 - (NSString *)stringWithLongTimeStyleFormat;
 - (NSString *)stringWithFullTimeStyleFormat;
+
+- (BOOL)isSameCalendarDayAsDate:(NSDate *)inDate;
 
 @end
