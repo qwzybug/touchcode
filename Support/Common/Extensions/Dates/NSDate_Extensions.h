@@ -31,6 +31,7 @@
 
 @interface NSDate (NSDate_Extensions)
 
+
 + (NSDate *)dateWithString:(NSString *)inString format:(NSString *)inFormat;
 
 - (NSString *)stringWithFormat:(NSString *)inFormat;

@@ -96,4 +96,12 @@ return([self stringWithDateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatte
 return([self stringWithDateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterFullStyle]);
 }
 
+- (BOOL)isSameDayAsDate:(NSDate *)inDate
+{
+
+[[NSCalendar currentCalendar] components:NSMonthCalendarUnit | NSDayCalendarUnit fromDate:self toDate:inDate options:0];
+
+
+}
+
 @end
