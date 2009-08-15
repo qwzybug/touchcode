@@ -46,6 +46,7 @@
 	NSString *placeholderImageName;
 	NSString *failedImageName;
 	NSString *cancelledImageName;
+	NSString *cachedImagePath;
 }
 
 @property (readwrite, nonatomic, assign) id <CImageProviderDelegate> delegate;
@@ -55,8 +56,10 @@
 @property (readwrite, nonatomic, retain) NSString *placeholderImageName;
 @property (readwrite, nonatomic, retain) NSString *failedImageName;
 @property (readwrite, nonatomic, retain) NSString *cancelledImageName;
+@property (readwrite, nonatomic, retain) NSString *cachedImagePath;
 
 - (id)initWithImageURL:(NSURL *)inURL;
+- (id)initWithImageURL:(NSURL *)inURL cacheToPath:(NSString*)cachePath;
 
 - (void)loadContentFromImageAtURL:(NSURL *)inURL;
 
