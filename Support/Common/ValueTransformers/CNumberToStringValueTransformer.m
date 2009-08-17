@@ -32,15 +32,34 @@ return(NO);
 
 - (id)transformedValue:(id)value
 {
-double theDouble = [value doubleValue];
-return([NSString stringWithFormat:@"%f", theDouble]);
+if ([value isKindOfClass:[NSNumber class]])
+	{
+	CFNumberRef theNumber = (CFNumberRef)value;
+	CFNumberType theType = CFNumberGetType(theNumber);
+	switch (theType)
+		{
+		case kCFNumberFloat32Type:
+		case kCFNumberFloat64Type:
+		case kCFNumberFloatType:
+		case kCFNumberDoubleType:
+		case kCFNumberCGFloatType:
+			{
+			double theDouble = [value doubleValue];
+			return([NSString stringWithFormat:@"%f", theDouble]);
+			}
+			break;
+		default:
+			{
+			return([value stringValue]);
+			}
+			break;
+		}
+	}
+else
+	{
+	return(NULL);
+	}
 }
 
-/*
-- (id)reverseTransformedValue:(id)value
-{
-return(<#some value#>;
-}
-*/
 
 @end
