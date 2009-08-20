@@ -51,6 +51,7 @@
 @synthesize placeholderImageName;
 @synthesize failedImageName;
 @synthesize cancelledImageName;
+@synthesize cachedImagePath;
 
 + (CLazyCache *)cache
 {
@@ -74,6 +75,16 @@
 	return(self);
 }
 
+- (id)initWithImageURL:(NSURL *)inURL cacheToPath:(NSString*)cachePath
+{
+	if ((self = [super init]) != NULL)
+	{
+		self.cachedImagePath = cachePath;
+		self.imageURL = inURL;
+	}
+	return(self);
+}
+
 - (void)dealloc
 {
 	if (self.connection)
@@ -89,6 +100,7 @@
 	self.placeholderImageName = NULL;
 	self.failedImageName = NULL;
 	self.cancelledImageName = NULL;
+	self.cachedImagePath = NULL;
 	//
 	[super dealloc];
 }
@@ -194,6 +206,22 @@
 	if (self.image == NULL && self.placeholderImageName != NULL)
 		self.image = [UIImage imageNamed:self.placeholderImageName];
 	
+	if (cachedImagePath)
+	{
+		NSFileManager *fileManager = [NSFileManager defaultManager];
+		// create cache directory if it doesn't exist.
+		NSString *cachedDirectory = [cachedImagePath stringByDeletingLastPathComponent];
+		if (![fileManager fileExistsAtPath:cachedDirectory])
+			[fileManager createDirectoryAtPath:cachedDirectory attributes:nil];
+		
+		if ([fileManager fileExistsAtPath:cachedImagePath])
+		{
+			self.image = [UIImage imageWithContentsOfFile:cachedImagePath];
+			return;
+		}
+	}
+
+	// we don't have the image cached on disk already, so lets load it like normal..
 	NSURLRequest *theRequest = [[[NSURLRequest alloc] initWithURL:inURL] autorelease];
 	
 	CCompletionTicket *theTicket = [CCompletionTicket completionTicketWithIdentifier:@"Load Image" delegate:self userInfo:self.imageURL];
@@ -218,7 +246,13 @@
 	if (theConnection.request.URL == self.imageURL)
 	{
 		if (theImage)
+		{
 			self.image = theImage;
+			if (cachedImagePath)
+			{
+				[theConnection.data writeToFile:cachedImagePath atomically:YES];
+			}
+		}
 		else
 			[UIImage imageNamed:self.failedImageName];
 	}
