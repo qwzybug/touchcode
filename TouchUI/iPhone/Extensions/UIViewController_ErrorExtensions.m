@@ -41,6 +41,10 @@
 //    NSString *value = (NSString *)[ufdict objectForKey:key];
 
 //}
+
+NSString *theTitle = NULL;
+theTitle = [inError.userInfo objectForKey:@"error_title"];
+
 NSString *theMessage = inError.localizedDescription;
 if (theMessage == NULL)
 	{
@@ -48,7 +52,7 @@ if (theMessage == NULL)
 	}
 NSString *theCancelButtonTitle = @"OK";
 
-UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:NULL message:theMessage delegate:NULL cancelButtonTitle:theCancelButtonTitle otherButtonTitles:NULL] autorelease];
+UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:theTitle message:theMessage delegate:NULL cancelButtonTitle:theCancelButtonTitle otherButtonTitles:NULL] autorelease];
 [theAlert show];
 
 

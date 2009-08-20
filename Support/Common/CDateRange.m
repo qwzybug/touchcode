@@ -62,6 +62,16 @@ self.end = NULL;
 [super dealloc];
 }
 
+- (id)copyWithZone:(NSZone *)zone
+{
+return([[CDateRange alloc] initWithStart:self.start end:self.end]);
+}
+
+- (id)mutableCopyWithZone:(NSZone *)zone
+{
+return([[CMutableDateRange alloc] initWithStart:self.start end:self.end]);
+}
+
 #pragma mark -
 
 - (NSTimeInterval)duration;

@@ -29,7 +29,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CDateRange : NSObject {
+@interface CDateRange : NSObject <NSCopying, NSMutableCopying> {
 	NSDate *start;
 	NSDate *end;
 }
