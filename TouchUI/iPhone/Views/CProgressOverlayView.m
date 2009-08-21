@@ -106,6 +106,7 @@ self.contentView = NULL;
 self.progressView = NULL;
 self.activityIndicatorView = NULL;
 self.label = NULL;
+self.guardColor = NULL;
 //
 [super dealloc];
 }
