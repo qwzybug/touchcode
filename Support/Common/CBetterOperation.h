@@ -32,13 +32,15 @@
 @protocol CBetterOperationDelegate;
 
 @interface CBetterOperation : NSOperation {
+	id identifier;
 	id userInfo;
 	id <CBetterOperationDelegate> delegate;
 	id result;
 	NSError *error;
 }
 
-@property (readwrite, nonatomic, assign) id userInfo;
+@property (readwrite, nonatomic, copy) id identifier;
+@property (readwrite, nonatomic, retain) id userInfo;
 @property (readwrite, nonatomic, assign) id <CBetterOperationDelegate> delegate;
 @property (readwrite, retain) id result;
 @property (readwrite, nonatomic, retain) NSError *error;
