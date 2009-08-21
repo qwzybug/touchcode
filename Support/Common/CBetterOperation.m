@@ -31,6 +31,7 @@
 
 @implementation CBetterOperation
 
+@synthesize identifier;
 @synthesize userInfo;
 @synthesize delegate;
 @synthesize result;
@@ -38,6 +39,7 @@
 
 - (void)dealloc
 {
+self.identifier = NULL;
 self.userInfo = NULL;
 self.delegate = NULL;
 self.result = NULL;
