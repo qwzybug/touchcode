@@ -125,6 +125,7 @@ if (self.updating == NO)
 	{
 	self.startedUpdatingAtTime = [NSDate date];
 	self.updating = YES;
+	self.locationManager.delegate = self;
 	[self.locationManager startUpdatingLocation];
 	[[NSNotificationCenter defaultCenter] postNotificationName:CBetterLocationManagerDidStartUpdatingLocationNotification object:self userInfo:NULL];
 	if (self.stopUpdatingAfterInterval > 0.0)
@@ -139,6 +140,7 @@ if (self.updating == NO)
 if (self.updating == YES)
 	{
 	[self.locationManager stopUpdatingLocation];
+	self.locationManager.delegate = nil;
 	[[NSNotificationCenter defaultCenter] postNotificationName:CBetterLocationManagerDidStopUpdatingLocationNotification object:self userInfo:NULL];
 	self.updating = NO;
 	self.timer = NULL;
