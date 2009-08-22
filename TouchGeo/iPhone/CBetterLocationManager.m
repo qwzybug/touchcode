@@ -189,13 +189,13 @@ if (timer != inTimer)
 
 - (void)postNewLocation:(CLLocation *)inNewLocation oldLocation:(CLLocation *)inOldLocation
 {
-#if ZIPCAR_OPTIONS_USE_FAKE_CORELOCATION == 1
+#if ZIPCAR_DEBUG_USE_FAKE_CORELOCATION == 1
 CLLocationCoordinate2D theCoordinate = {
 	.latitude = 37.418766,
 	.longitude = -122.209774,
 	};
 inNewLocation = [[[CLLocation alloc] initWithCoordinate:theCoordinate altitude:0 horizontalAccuracy:1000.0 verticalAccuracy:1.0 timestamp:inNewLocation.timestamp] autorelease];
-#endif /* ZIPCAR_OPTIONS_USE_FAKE_CORELOCATION == 1 */
+#endif /* ZIPCAR_DEBUG_USE_FAKE_CORELOCATION == 1 */
 
 self.location = inNewLocation;
 
