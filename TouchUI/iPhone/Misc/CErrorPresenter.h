@@ -1,5 +1,5 @@
 //
-//  UIViewController_ErrorExtensions.h
+//  CErrorPresenter.h
 //  TouchCode
 //
 //  Created by Jonathan Wight on 3/2/09.
@@ -29,8 +29,30 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIViewController (UIViewController_ErrorExtensions)
+extern NSString *ErrorPresenter_ErrorTitleKey /* = @"error_title" */;
 
+@protocol CErrorPresenterDelegate;
+
+@interface CErrorPresenter : NSObject {
+	id <CErrorPresenterDelegate> delegate;
+}
+
+@property (readwrite, nonatomic, assign) id <CErrorPresenterDelegate> delegate;
+
++ (id)instance;
 - (void)presentError:(NSError *)inError;
 
+@end
+
+#pragma mark -
+
+@protocol CErrorPresenterDelegate <NSObject>
+@optional
+- (BOOL)errorPresenter:(CErrorPresenter *)inErrorPresenter shouldPresentError:(NSError *)inError;
+@end
+
+#pragma mark -
+
+@interface UIViewController (UIViewController_ErrorExtensions)
+- (void)presentError:(NSError *)inError;
 @end

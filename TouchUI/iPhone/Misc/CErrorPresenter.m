@@ -1,5 +1,5 @@
 //
-//  UIViewController_ErrorExtensions.m
+//  CErrorPresenter.m
 //  TouchCode
 //
 //  Created by Jonathan Wight on 3/2/09.
@@ -27,36 +27,57 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import "UIViewController_ErrorExtensions.h"
+#import "CErrorPresenter.h"
 
-@implementation UIViewController (UIViewController_ErrorExtensions)
+NSString *ErrorPresenter_ErrorTitleKey = @"error_title";
+
+#pragma mark -
+
+
+@implementation CErrorPresenter
+
+static CErrorPresenter *gInstance = NULL;
+
+@synthesize delegate;
+
++ (id)instance
+{
+if (gInstance == NULL)
+	{
+	gInstance = [[self alloc] init];
+	}
+return(gInstance);
+}
 
 - (void)presentError:(NSError *)inError
 {
-// Verifying error codes/msgs
-//NSInteger code = [inError code];
-//NSDictionary *ufdict = [inError userInfo];
-//for (id key in ufdict) {
-
-//    NSString *value = (NSString *)[ufdict objectForKey:key];
-
-//}
+if (self.delegate && [self.delegate respondsToSelector:@selector(errorPresenter:shouldPresentError:)] && [self.delegate errorPresenter:self shouldPresentError:inError] == NO)
+	return;
 
 NSString *theTitle = NULL;
-theTitle = [inError.userInfo objectForKey:@"error_title"];
+theTitle = [inError.userInfo objectForKey:ErrorPresenter_ErrorTitleKey];
 
-NSString *theMessage = inError.localizedDescription;
+NSString *theMessage = [inError.userInfo objectForKey:NSLocalizedDescriptionKey];
 if (theMessage == NULL)
 	{
 	theMessage = [NSString stringWithFormat:@"An error (domain: '%@', code: %d) has occured.", inError.domain, inError.code];
+	theMessage = inError.localizedDescription;
 	}
 NSString *theCancelButtonTitle = @"OK";
 
 UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:theTitle message:theMessage delegate:NULL cancelButtonTitle:theCancelButtonTitle otherButtonTitles:NULL] autorelease];
 [theAlert show];
+}
 
+@end
 
+#pragma mark -
 
+@implementation UIViewController (UIViewController_ErrorExtensions)
+
+- (void)presentError:(NSError *)inError
+{
+[[CErrorPresenter instance] presentError:inError];
 }
 
 @end

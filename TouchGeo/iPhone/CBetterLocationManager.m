@@ -125,6 +125,7 @@ if (self.updating == NO)
 	{
 	self.startedUpdatingAtTime = [NSDate date];
 	self.updating = YES;
+	self.locationManager.delegate = self;
 	[self.locationManager startUpdatingLocation];
 	[[NSNotificationCenter defaultCenter] postNotificationName:CBetterLocationManagerDidStartUpdatingLocationNotification object:self userInfo:NULL];
 	if (self.stopUpdatingAfterInterval > 0.0)
@@ -139,6 +140,7 @@ if (self.updating == NO)
 if (self.updating == YES)
 	{
 	[self.locationManager stopUpdatingLocation];
+	self.locationManager.delegate = nil;
 	[[NSNotificationCenter defaultCenter] postNotificationName:CBetterLocationManagerDidStopUpdatingLocationNotification object:self userInfo:NULL];
 	self.updating = NO;
 	self.timer = NULL;
@@ -187,14 +189,6 @@ if (timer != inTimer)
 
 - (void)postNewLocation:(CLLocation *)inNewLocation oldLocation:(CLLocation *)inOldLocation
 {
-#if ZIPCAR_OPTIONS_USE_FAKE_CORELOCATION == 1
-CLLocationCoordinate2D theCoordinate = {
-	.latitude = 37.418766,
-	.longitude = -122.209774,
-	};
-inNewLocation = [[[CLLocation alloc] initWithCoordinate:theCoordinate altitude:0 horizontalAccuracy:1000.0 verticalAccuracy:1.0 timestamp:inNewLocation.timestamp] autorelease];
-#endif /* ZIPCAR_OPTIONS_USE_FAKE_CORELOCATION == 1 */
-
 self.location = inNewLocation;
 
 NSDictionary *theUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:
