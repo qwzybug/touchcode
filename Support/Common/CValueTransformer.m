@@ -49,7 +49,7 @@ if (gTransformers == NULL)
 CValueTransformer *theTransformer = [gTransformers objectForKey:name];
 if (theTransformer == NULL)
 	{
-	NSLog(@"Could not find transformer for name '%@' in %@", name, [gTransformers allKeys]);
+	fprintf(stderr, (@"Could not find transformer for name '%s' in %s\n", [name UTF8String], [[[gTransformers allKeys] description] UTF8String]);
 	}
 return(theTransformer);
 }

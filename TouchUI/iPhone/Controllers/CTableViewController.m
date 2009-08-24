@@ -58,11 +58,6 @@ self.tableView = NULL;
 
 #pragma mark -
 
-- (void)didReceiveMemoryWarning
-{
-[super didReceiveMemoryWarning];
-}
-
 - (void)loadView
 {
 [super loadView];
