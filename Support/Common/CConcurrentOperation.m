@@ -61,23 +61,26 @@
 
 - (void)cancel
 {
-	[super cancel];
-	if (isExecuting) 
-	{
-		[self willChangeValueForKey: @"isExecuting"];
-		isExecuting = NO;
-		[self didChangeValueForKey: @"isExecuting"];
-	}
+[self willChangeValueForKey: @"isExecuting"];
+isExecuting = NO;
+[self didChangeValueForKey: @"isExecuting"];	
+
+[self willChangeValueForKey: @"isFinished"];
+isFinished = YES;
+[self didChangeValueForKey: @"isFinished"];
+
+[super cancel];
 }
 
 - (void)completeOperation
 {
-    [self willChangeValueForKey: @"isExecuting"];
-    [self willChangeValueForKey: @"isFinished"];
-    isExecuting = NO;
-    isFinished = YES;
-    [self didChangeValueForKey: @"isFinished"];
-    [self didChangeValueForKey: @"isExecuting"];	
+[self willChangeValueForKey: @"isExecuting"];
+isExecuting = NO;
+[self didChangeValueForKey: @"isExecuting"];	
+
+[self willChangeValueForKey: @"isFinished"];
+isFinished = YES;
+[self didChangeValueForKey: @"isFinished"];
 }
 
 @end

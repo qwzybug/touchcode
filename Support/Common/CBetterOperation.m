@@ -50,6 +50,25 @@ self.error = NULL;
 
 #pragma mark -
 
+- (NSString *)description
+{
+NSMutableArray *theFlags = [NSMutableArray array];
+if (self.isCancelled)
+	[theFlags addObject:@"cancelled"];
+if (self.isExecuting)
+	[theFlags addObject:@"executing"];
+if (self.isFinished)
+	[theFlags addObject:@"finished"];
+if (self.isConcurrent)
+	[theFlags addObject:@"concurrent"];
+if (self.isReady)
+	[theFlags addObject:@"ready"];
+
+return([NSString stringWithFormat:@"%@ (flags: [%@], \"%@\")", [super description], [theFlags componentsJoinedByString:@","], self.identifier]);
+}
+
+#pragma mark -
+
 - (void)delegateProxyWithResult:(id)inResult
 {
 if (self.delegate && [self.delegate respondsToSelector:@selector(operation:didAttainResult:)])
