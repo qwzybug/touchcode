@@ -64,7 +64,9 @@ if (self.isConcurrent)
 if (self.isReady)
 	[theFlags addObject:@"ready"];
 
-return([NSString stringWithFormat:@"%@ (flags: [%@], \"%@\")", [super description], [theFlags componentsJoinedByString:@","], self.identifier]);
+NSString *theFlagString = [NSString stringWithFormat:@"flags: (%@), ", [theFlags componentsJoinedByString:@","]];
+
+return([NSString stringWithFormat:@"%@ (%@identifier: \"%@\")", [super description], theFlagString, self.identifier]);
 }
 
 #pragma mark -

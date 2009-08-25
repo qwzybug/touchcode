@@ -54,9 +54,9 @@
 
 - (void)start
 {
-	[self willChangeValueForKey: @"isExecuting"];
-    isExecuting = YES;
-    [self didChangeValueForKey: @"isExecuting"];
+[self willChangeValueForKey: @"isExecuting"];
+isExecuting = YES;
+[self didChangeValueForKey: @"isExecuting"];
 }
 
 - (void)cancel
