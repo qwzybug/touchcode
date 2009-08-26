@@ -29,8 +29,6 @@
 
 #import "CTrivialTemplate.h"
 
-#import "CValueTransformer.h"
-
 @implementation CTrivialTemplate
 
 @synthesize template;
@@ -111,7 +109,7 @@ while ([theScanner isAtEnd] == NO)
 
 		if (theTransformerName)
 			{
-			CValueTransformer *theTransformer = [CValueTransformer valueTransformerForName:theTransformerName];
+			NSValueTransformer *theTransformer = [NSValueTransformer valueTransformerForName:theTransformerName];
 			if (theTransformer == NULL)
 				{
 				[NSException raise:NSGenericException format:@"Cannot find a value transform named: %@", theTransformerName];
