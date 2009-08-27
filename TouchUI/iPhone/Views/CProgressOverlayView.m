@@ -380,10 +380,7 @@ guardView.backgroundColor = (self.guardColor ? self.guardColor : [UIColor clearC
 - (void)fadeIn:(NSTimer *)theTimer
 {
 if (self.alpha >= 1.0)
-    {
     [theTimer invalidate];
-    theTimer = NULL;
-    }
 else
     self.alpha += 0.1;
 }
@@ -393,7 +390,6 @@ else
 if (self.alpha <= 0.1)
     {
     [theTimer invalidate];
-    theTimer = NULL;
     [guardView removeFromSuperview];
     [self removeFromSuperview];
     }
