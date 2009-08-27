@@ -28,9 +28,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CValueTransformer.h"
 
-@interface CFloatTransformer : CValueTransformer
+@interface CFloatTransformer : NSValueTransformer
 {
 
 }
