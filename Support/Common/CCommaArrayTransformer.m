@@ -29,7 +29,7 @@
 
 #import "CCommaArrayTransformer.h"
 
-@implementation NSCommaArrayTransformer
+@implementation CCommaArrayTransformer
 
 + (BOOL)allowsReverseTransformation
 {
