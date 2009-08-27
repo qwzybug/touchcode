@@ -71,9 +71,12 @@ static CProgressOverlayView *gInstance = NULL;
 
 + (CProgressOverlayView *)instance
 {
-if (gInstance == NULL)
+@synchronized(@"CProgressOverlayView")
 	{
-	gInstance = [[self alloc] init];
+	if (gInstance == NULL)
+		{
+		gInstance = [[self alloc] init];
+		}
 	}
 return(gInstance);
 }
@@ -254,6 +257,8 @@ self.label = NULL;
 
 - (void)showInView:(UIView *)inView withDelay:(NSTimeInterval)inTimeInterval;
 {
+NSAssert([NSThread isMainThread] == YES, @"Do not use CProgressOverlayView from background thread");
+
 NSInvocation *theInvocation = NULL;
 [[self grabInvocation:&theInvocation] showInView:inView];
 [theInvocation retainArguments];
@@ -263,6 +268,8 @@ self.displayTimer = [NSTimer scheduledTimerWithTimeInterval:inTimeInterval invoc
 
 - (void)showInView:(UIView *)inView
 {
+NSAssert([NSThread isMainThread] == YES, @"Do not use CProgressOverlayView from background thread");
+
 if (self.displayTimer)
 	{
 	[self.displayTimer invalidate];
@@ -316,6 +323,8 @@ else
 
 - (void)hide
 {
+NSAssert([NSThread isMainThread] == YES, @"Do not use CProgressOverlayView from background thread");
+
 if (self.displayTimer)
 	{
 	[self.displayTimer invalidate];
