@@ -49,6 +49,12 @@ if (gInstance == NULL)
 return(gInstance);
 }
 
+- (void)dealloc
+{
+[super dealloc];
+}
+
+
 - (void)presentError:(NSError *)inError
 {
 if (self.delegate && [self.delegate respondsToSelector:@selector(errorPresenter:shouldPresentError:)] && [self.delegate errorPresenter:self shouldPresentError:inError] == NO)
