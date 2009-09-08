@@ -161,11 +161,9 @@ return(managedObjectModel);
 	if (persistentStoreCoordinator == NULL)
 		{
 		NSError *theError = NULL;
-		
 		NSPersistentStoreCoordinator *thePersistentStoreCoordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel] autorelease];
-		
 		NSPersistentStore *thePersistentStore = [thePersistentStoreCoordinator addPersistentStoreWithType:self.storeType configuration:NULL URL:self.persistentStoreURL options:self.storeOptions error:&theError];
- 		if (thePersistentStore == NULL)
+        if (thePersistentStore == NULL)
 			{
 			#if TARGET_OS_IPHONE == 1
 			fprintf(stderr, "WARNING: %s (%s)\n", [[theError description] UTF8String], [[theError.userInfo description] UTF8String]);
@@ -213,10 +211,10 @@ NSPersistentStoreCoordinator *thePersistentStoreCoordinator = [[[NSPersistentSto
 NSDictionary *theOptions = [NSDictionary dictionaryWithObjectsAndKeys:
 	[NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, 
 	NULL];
-
+    persistentStoreCoordinator = [thePersistentStoreCoordinator retain];
 NSError *theError = NULL;
 [thePersistentStoreCoordinator addPersistentStoreWithType:self.storeType configuration:NULL URL:self.persistentStoreURL options:theOptions error:&theError];
-
+    
 if (theError)
 	[theError retain];
 
@@ -225,6 +223,8 @@ if (theError)
 if (theError)
 	[theError autorelease];
 
+*outError = theError;
+    
 return(theError == NULL);
 }
 
