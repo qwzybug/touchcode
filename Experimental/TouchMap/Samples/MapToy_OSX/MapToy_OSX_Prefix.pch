@@ -1,7 +1,0 @@
-//
-// Prefix header for all source files of the 'MapToy_OSX' target in the 'MapToy_OSX' project
-//
-
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-#endif

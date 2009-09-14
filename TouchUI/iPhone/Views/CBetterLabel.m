@@ -1,5 +1,6 @@
 //
 //  CBetterLabel.m
+//  Touchcode
 //
 //  Created by brandon on 7/13/09.
 //  Copyright 2009 Small Society. All rights reserved.
@@ -61,6 +62,7 @@
 
 - (CGFloat)heightForText:(NSString*)newText
 {
+	if (!newText) return 0;
 	CGSize line1Size = [newText sizeWithFont:self.font constrainedToSize:CGSizeMake(self.frame.size.width, 1) lineBreakMode:self.lineBreakMode];
 	CGSize size = [newText sizeWithFont:self.font constrainedToSize:CGSizeMake(self.frame.size.width, line1Size.height * self.numberOfLines) lineBreakMode:self.lineBreakMode];
 	return size.height;

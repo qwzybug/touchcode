@@ -1,9 +1,9 @@
 //
-//  CFloatTransformer.h
+//  CErrorPresenter.h
 //  TouchCode
 //
-//  Created by brandon on 8/6/09.
-//  Copyright 2009 Small Society. All rights reserved.
+//  Created by Jonathan Wight on 3/2/09.
+//  Copyright 2009 toxicsoftware.com. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person
 //  obtaining a copy of this software and associated documentation
@@ -27,11 +27,32 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface CFloatTransformer : NSValueTransformer
-{
+extern NSString *ErrorPresenter_ErrorTitleKey /* = @"error_title" */;
 
+@protocol CErrorPresenterDelegate;
+
+@interface CErrorPresenter : NSObject {
+	id <CErrorPresenterDelegate> delegate;
 }
 
+@property (readwrite, nonatomic, assign) id <CErrorPresenterDelegate> delegate;
+
++ (id)instance;
+- (void)presentError:(NSError *)inError;
+
+@end
+
+#pragma mark -
+
+@protocol CErrorPresenterDelegate <NSObject>
+@optional
+- (BOOL)errorPresenter:(CErrorPresenter *)inErrorPresenter shouldPresentError:(NSError *)inError;
+@end
+
+#pragma mark -
+
+@interface UIViewController (UIViewController_ErrorExtensions)
+- (void)presentError:(NSError *)inError;
 @end

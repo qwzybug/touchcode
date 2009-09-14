@@ -31,6 +31,7 @@
 
 @implementation CBetterOperation
 
+@synthesize identifier;
 @synthesize userInfo;
 @synthesize delegate;
 @synthesize result;
@@ -38,6 +39,7 @@
 
 - (void)dealloc
 {
+self.identifier = NULL;
 self.userInfo = NULL;
 self.delegate = NULL;
 self.result = NULL;
@@ -48,13 +50,36 @@ self.error = NULL;
 
 #pragma mark -
 
+- (NSString *)description
+{
+NSMutableArray *theFlags = [NSMutableArray array];
+if (self.isCancelled)
+	[theFlags addObject:@"cancelled"];
+if (self.isExecuting)
+	[theFlags addObject:@"executing"];
+if (self.isFinished)
+	[theFlags addObject:@"finished"];
+if (self.isConcurrent)
+	[theFlags addObject:@"concurrent"];
+if (self.isReady)
+	[theFlags addObject:@"ready"];
+
+NSString *theFlagString = [NSString stringWithFormat:@"flags: (%@), ", [theFlags componentsJoinedByString:@","]];
+
+return([NSString stringWithFormat:@"%@ (%@identifier: \"%@\")", [super description], theFlagString, self.identifier]);
+}
+
+#pragma mark -
+
 - (void)delegateProxyWithResult:(id)inResult
 {
+if (self.delegate && [self.delegate respondsToSelector:@selector(operation:didAttainResult:)])
 	[self.delegate operation:self didAttainResult:inResult];
 }
 
 - (void)delegateProxyWithError:(NSError*)inError
 {
+if (self.delegate && [self.delegate respondsToSelector:@selector(operation:didFailWithError:)])
 	[self.delegate operation:self didFailWithError:inError];	
 }
 
@@ -62,11 +87,7 @@ self.error = NULL;
 {
 	self.result = inResult;
 
-	// you could do this check in delegateProxyWithResult, but probably avoid a context switch by doing it here.
-	if (self.delegate && [self.delegate respondsToSelector:@selector(operation:didAttainResult:)])
-	{
-		[self performSelectorOnMainThread:@selector(delegateProxyWithResult:) withObject:inResult waitUntilDone:YES];
-	}
+	[self performSelectorOnMainThread:@selector(delegateProxyWithResult:) withObject:inResult waitUntilDone:YES];
 }
 
 - (void)failWithError:(NSError *)inError
@@ -75,10 +96,7 @@ self.error = NULL;
 
 	self.error = inError;
 
-	if (self.delegate && [self.delegate respondsToSelector:@selector(operation:didFailWithError:)])
-	{
-		[self performSelectorOnMainThread:@selector(delegateProxyWithError:) withObject:inError waitUntilDone:YES];
-	}
+	[self performSelectorOnMainThread:@selector(delegateProxyWithError:) withObject:inError waitUntilDone:YES];
 }
 
 @end

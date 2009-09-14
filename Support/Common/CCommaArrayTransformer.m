@@ -29,7 +29,6 @@
 
 #import "CCommaArrayTransformer.h"
 
-
 @implementation CCommaArrayTransformer
 
 + (BOOL)allowsReverseTransformation

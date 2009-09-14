@@ -10,6 +10,17 @@
 
 @implementation NSManagedObjectContext (NSManagedObjectContext_Extensions)
 
+- (NSUInteger)countOfObjectsOfEntityForName:(NSString *)inEntityName predicate:(NSPredicate *)inPredicate error:(NSError **)outError
+{
+NSEntityDescription *theEntityDescription = [NSEntityDescription entityForName:inEntityName inManagedObjectContext:self];
+NSFetchRequest *theFetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+[theFetchRequest setEntity:theEntityDescription];
+if (inPredicate)
+	[theFetchRequest setPredicate:inPredicate];
+NSUInteger theCount = [self countForFetchRequest:theFetchRequest error:outError];
+return(theCount);
+}
+
 - (NSArray *)fetchObjectsOfEntityForName:(NSString *)inEntityName predicate:(NSPredicate *)inPredicate error:(NSError **)outError
 {
 NSEntityDescription *theEntityDescription = [NSEntityDescription entityForName:inEntityName inManagedObjectContext:self];
@@ -53,7 +64,7 @@ if (theObjects)
 		if (outError)
 			{
 			NSDictionary *theUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-				[NSString stringWithFormat:@"Expected 1 object but got %d instead.", theObjects.count], NSLocalizedDescriptionKey,
+				[NSString stringWithFormat:@"Expected 1 object (of type %@) but got %d instead (%@).", inEntityName, theObjects.count, inPredicate], NSLocalizedDescriptionKey,
 				NULL];
 			
 			*outError = [NSError errorWithDomain:@"TODO_DOMAIN" code:-1 userInfo:theUserInfo];
