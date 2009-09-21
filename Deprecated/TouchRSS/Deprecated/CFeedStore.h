@@ -1,8 +1,8 @@
 //
-//  CTidy.h
+//  CFeedStore.h
 //  TouchCode
 //
-//  Created by Jonathan Wight on 9/15/08.
+//  Created by Jonathan Wight on 9/8/08.
 //  Copyright 2008 toxicsoftware.com. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person
@@ -27,19 +27,33 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-#include "tidy.h"
-#include "buffio.h"
+@class CSqliteDatabase;
+@class CFeed;
+@class CPersistentObjectManager;
+@class CRSSFeedDeserializer;
+@class CFeedFetcher;
 
-@interface CTidy : NSObject {
-	TidyDoc tidyDocument;
-	TidyBuffer errorBuffer;
+@interface CFeedStore : NSObject {
+	NSString *databasePath;
+	CPersistentObjectManager *persistentObjectManager;
+	NSMutableArray *mutableFeeds;
+	CFeedFetcher *feedFetcher;
 }
 
-- (BOOL)prepare:(NSError **)outError;
-- (BOOL)finalize:(NSError **)outError;
+@property (readwrite, nonatomic, retain) NSString *databasePath;
+@property (readonly, nonatomic, retain) CPersistentObjectManager *persistentObjectManager;
+@property (readonly, nonatomic, retain) CFeedFetcher *feedFetcher;
+@property (readonly, nonatomic, retain) NSArray *feeds;
 
-- (NSData *)convertXMLToXML:(NSData *)inXML error:(NSError **)outError;
++ (Class)feedClass;
++ (Class)feedEntryClass;
+
+- (NSInteger)countOfFeeds;
+- (CFeed *)feedAtIndex:(NSInteger)inIndex;
+- (CFeed *)feedforURL:(NSURL *)inURL;
+- (NSArray *)entriesForFeeds:(NSArray *)inFeeds;
+- (NSArray *)entriesForFeeds:(NSArray *)inFeeds sortByColumn:(NSString *)inColumn descending:(BOOL)inDescending limit:(NSInteger)inLimit;
 
 @end

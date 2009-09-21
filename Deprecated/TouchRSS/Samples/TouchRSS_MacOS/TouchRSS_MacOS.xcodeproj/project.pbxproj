@@ -1,0 +1,778 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2F7446990DB6B7EA00F9684A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F7446970DB6B7EA00F9684A /* MainMenu.xib */; };
+		45B52A6C106727EC00AC5FF1 /* CCompletionTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B527AC106727EB00AC5FF1 /* CCompletionTicket.m */; };
+		45B52A6D106727EC00AC5FF1 /* CFileBasedManagedURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B527AE106727EB00AC5FF1 /* CFileBasedManagedURLConnection.m */; };
+		45B52A6E106727EC00AC5FF1 /* CManagedURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B527B0106727EB00AC5FF1 /* CManagedURLConnection.m */; };
+		45B52A6F106727EC00AC5FF1 /* CURLConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B527B2106727EB00AC5FF1 /* CURLConnectionManager.m */; };
+		45B52A70106727EC00AC5FF1 /* CURLConnectionManagerChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B527B4106727EB00AC5FF1 /* CURLConnectionManagerChannel.m */; };
+		45B52A72106727EC00AC5FF1 /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B527BD106727EB00AC5FF1 /* CXMLDocument_CreationExtensions.m */; };
+		45B52A73106727EC00AC5FF1 /* CXMLNode_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B527BF106727EB00AC5FF1 /* CXMLNode_CreationExtensions.m */; };
+		45B52A74106727EC00AC5FF1 /* CXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B527C1106727EB00AC5FF1 /* CXMLDocument.m */; };
+		45B52A75106727EC00AC5FF1 /* CXMLDocument_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B527C3106727EB00AC5FF1 /* CXMLDocument_PrivateExtensions.m */; };
+		45B52A76106727EC00AC5FF1 /* CXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B527C5106727EB00AC5FF1 /* CXMLElement.m */; };
+		45B52A77106727EC00AC5FF1 /* CXMLElement_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B527C7106727EB00AC5FF1 /* CXMLElement_CreationExtensions.m */; };
+		45B52A78106727EC00AC5FF1 /* CXMLElement_ElementTreeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B527C9106727EB00AC5FF1 /* CXMLElement_ElementTreeExtensions.m */; };
+		45B52A79106727EC00AC5FF1 /* CXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B527CB106727EB00AC5FF1 /* CXMLNode.m */; };
+		45B52A7A106727EC00AC5FF1 /* CXMLNode_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B527CD106727EB00AC5FF1 /* CXMLNode_PrivateExtensions.m */; };
+		45B52A7B106727EC00AC5FF1 /* CXMLNode_XPathExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B527CF106727EB00AC5FF1 /* CXMLNode_XPathExtensions.m */; };
+		45B52A7C106727EC00AC5FF1 /* CTidy.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B527D2106727EB00AC5FF1 /* CTidy.m */; };
+		45B52D011067288500AC5FF1 /* CPointerArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B52D001067288500AC5FF1 /* CPointerArray.m */; };
+		45B52D251067289E00AC5FF1 /* CAtomFeedDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B52D151067289E00AC5FF1 /* CAtomFeedDeserializer.m */; };
+		45B52D261067289E00AC5FF1 /* CRSSFeedDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B52D181067289E00AC5FF1 /* CRSSFeedDeserializer.m */; };
+		45B52D281067289E00AC5FF1 /* RSSKeywords.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B52D1B1067289E00AC5FF1 /* RSSKeywords.m */; };
+		45B52FC0106728EE00AC5FF1 /* access.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B52D63106728ED00AC5FF1 /* access.c */; };
+		45B52FC1106728EE00AC5FF1 /* alloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B52D65106728ED00AC5FF1 /* alloc.c */; };
+		45B52FC2106728EE00AC5FF1 /* attrask.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B52D66106728ED00AC5FF1 /* attrask.c */; };
+		45B52FC3106728EE00AC5FF1 /* attrdict.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B52D67106728ED00AC5FF1 /* attrdict.c */; };
+		45B52FC4106728EE00AC5FF1 /* attrget.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B52D69106728ED00AC5FF1 /* attrget.c */; };
+		45B52FC5106728EE00AC5FF1 /* attrs.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B52D6A106728ED00AC5FF1 /* attrs.c */; };
+		45B52FC6106728EE00AC5FF1 /* buffio.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B52D6C106728ED00AC5FF1 /* buffio.c */; };
+		45B52FC7106728EE00AC5FF1 /* charsets.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B52D6D106728ED00AC5FF1 /* charsets.c */; };
+		45B52FC8106728EE00AC5FF1 /* clean.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B52D6F106728ED00AC5FF1 /* clean.c */; };
+		45B52FC9106728EE00AC5FF1 /* config.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B52D71106728ED00AC5FF1 /* config.c */; };
+		45B52FCA106728EE00AC5FF1 /* entities.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B52D73106728ED00AC5FF1 /* entities.c */; };
+		45B52FCB106728EE00AC5FF1 /* fileio.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B52D75106728ED00AC5FF1 /* fileio.c */; };
+		45B52FCC106728EE00AC5FF1 /* iconvtc.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B52D78106728ED00AC5FF1 /* iconvtc.c */; };
+		45B52FCD106728EE00AC5FF1 /* istack.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B52D7A106728ED00AC5FF1 /* istack.c */; };
+		45B52FCE106728EE00AC5FF1 /* lexer.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B52D7B106728ED00AC5FF1 /* lexer.c */; };
+		45B52FCF106728EE00AC5FF1 /* localize.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B52D7D106728ED00AC5FF1 /* localize.c */; };
+		45B52FD0106728EE00AC5FF1 /* mappedio.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B52D7E106728ED00AC5FF1 /* mappedio.c */; };
+		45B52FD1106728EE00AC5FF1 /* parser.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B52D81106728ED00AC5FF1 /* parser.c */; };
+		45B52FD2106728EE00AC5FF1 /* pprint.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B52D83106728ED00AC5FF1 /* pprint.c */; };
+		45B52FD3106728EE00AC5FF1 /* streamio.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B52D85106728ED00AC5FF1 /* streamio.c */; };
+		45B52FD4106728EE00AC5FF1 /* tagask.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B52D87106728ED00AC5FF1 /* tagask.c */; };
+		45B52FD5106728EE00AC5FF1 /* tags.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B52D88106728ED00AC5FF1 /* tags.c */; };
+		45B52FD6106728EE00AC5FF1 /* tidylib.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B52D8B106728ED00AC5FF1 /* tidylib.c */; };
+		45B52FD7106728EE00AC5FF1 /* tmbstr.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B52D8C106728ED00AC5FF1 /* tmbstr.c */; };
+		45B52FD8106728EE00AC5FF1 /* utf8.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B52D8E106728ED00AC5FF1 /* utf8.c */; };
+		45B52FD9106728EE00AC5FF1 /* win32tc.c in Sources */ = {isa = PBXBuildFile; fileRef = 45B52D91106728ED00AC5FF1 /* win32tc.c */; };
+		45B531EB1067292300AC5FF1 /* NSDate_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B531E61067292300AC5FF1 /* NSDate_Extensions.m */; };
+		45B531EC1067292300AC5FF1 /* NSDate_InternetDateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B531E81067292300AC5FF1 /* NSDate_InternetDateExtensions.m */; };
+		45B531ED1067292300AC5FF1 /* NSDateFormatter_InternetDateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B531EA1067292300AC5FF1 /* NSDateFormatter_InternetDateExtensions.m */; };
+		45B532021067298D00AC5FF1 /* CFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B531FE1067298D00AC5FF1 /* CFeed.m */; };
+		45B532031067298D00AC5FF1 /* CFeedEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B532001067298D00AC5FF1 /* CFeedEntry.m */; };
+		45B532041067298D00AC5FF1 /* TouchRSS_MacOS_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 45B532011067298D00AC5FF1 /* TouchRSS_MacOS_DataModel.xcdatamodel */; };
+		45B5321E106729BA00AC5FF1 /* CCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B53219106729BA00AC5FF1 /* CCoreDataManager.m */; };
+		45B5321F106729BA00AC5FF1 /* CEntityDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B5321B106729BA00AC5FF1 /* CEntityDataSource.m */; };
+		45B53220106729BA00AC5FF1 /* NSManagedObjectContext_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B5321D106729BA00AC5FF1 /* NSManagedObjectContext_Extensions.m */; };
+		45B5322910672A0200AC5FF1 /* CFeedStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B5322810672A0200AC5FF1 /* CFeedStore.m */; };
+		45B5323410672A4100AC5FF1 /* CObjectTranscoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B5323310672A4100AC5FF1 /* CObjectTranscoder.m */; };
+		45B5324310672B9F00AC5FF1 /* CFeedFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B52D0C1067289E00AC5FF1 /* CFeedFetcher.m */; };
+		77C8280E06725ACE000B614F /* TouchRSS_MacOS_AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C8280C06725ACE000B614F /* TouchRSS_MacOS_AppDelegate.m */; };
+		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
+		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		2F7446980DB6B7EA00F9684A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* TouchRSS_MacOS_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchRSS_MacOS_Prefix.pch; sourceTree = "<group>"; };
+		45B527AB106727EB00AC5FF1 /* CCompletionTicket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCompletionTicket.h; sourceTree = "<group>"; };
+		45B527AC106727EB00AC5FF1 /* CCompletionTicket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCompletionTicket.m; sourceTree = "<group>"; };
+		45B527AD106727EB00AC5FF1 /* CFileBasedManagedURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFileBasedManagedURLConnection.h; sourceTree = "<group>"; };
+		45B527AE106727EB00AC5FF1 /* CFileBasedManagedURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFileBasedManagedURLConnection.m; sourceTree = "<group>"; };
+		45B527AF106727EB00AC5FF1 /* CManagedURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CManagedURLConnection.h; sourceTree = "<group>"; };
+		45B527B0106727EB00AC5FF1 /* CManagedURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CManagedURLConnection.m; sourceTree = "<group>"; };
+		45B527B1106727EB00AC5FF1 /* CURLConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CURLConnectionManager.h; sourceTree = "<group>"; };
+		45B527B2106727EB00AC5FF1 /* CURLConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CURLConnectionManager.m; sourceTree = "<group>"; };
+		45B527B3106727EB00AC5FF1 /* CURLConnectionManagerChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CURLConnectionManagerChannel.h; sourceTree = "<group>"; };
+		45B527B4106727EB00AC5FF1 /* CURLConnectionManagerChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CURLConnectionManagerChannel.m; sourceTree = "<group>"; };
+		45B527BC106727EB00AC5FF1 /* CXMLDocument_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument_CreationExtensions.h; sourceTree = "<group>"; };
+		45B527BD106727EB00AC5FF1 /* CXMLDocument_CreationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument_CreationExtensions.m; sourceTree = "<group>"; };
+		45B527BE106727EB00AC5FF1 /* CXMLNode_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode_CreationExtensions.h; sourceTree = "<group>"; };
+		45B527BF106727EB00AC5FF1 /* CXMLNode_CreationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLNode_CreationExtensions.m; sourceTree = "<group>"; };
+		45B527C0106727EB00AC5FF1 /* CXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument.h; sourceTree = "<group>"; };
+		45B527C1106727EB00AC5FF1 /* CXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument.m; sourceTree = "<group>"; };
+		45B527C2106727EB00AC5FF1 /* CXMLDocument_PrivateExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument_PrivateExtensions.h; sourceTree = "<group>"; };
+		45B527C3106727EB00AC5FF1 /* CXMLDocument_PrivateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument_PrivateExtensions.m; sourceTree = "<group>"; };
+		45B527C4106727EB00AC5FF1 /* CXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLElement.h; sourceTree = "<group>"; };
+		45B527C5106727EB00AC5FF1 /* CXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLElement.m; sourceTree = "<group>"; };
+		45B527C6106727EB00AC5FF1 /* CXMLElement_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLElement_CreationExtensions.h; sourceTree = "<group>"; };
+		45B527C7106727EB00AC5FF1 /* CXMLElement_CreationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLElement_CreationExtensions.m; sourceTree = "<group>"; };
+		45B527C8106727EB00AC5FF1 /* CXMLElement_ElementTreeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLElement_ElementTreeExtensions.h; sourceTree = "<group>"; };
+		45B527C9106727EB00AC5FF1 /* CXMLElement_ElementTreeExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLElement_ElementTreeExtensions.m; sourceTree = "<group>"; };
+		45B527CA106727EB00AC5FF1 /* CXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode.h; sourceTree = "<group>"; };
+		45B527CB106727EB00AC5FF1 /* CXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLNode.m; sourceTree = "<group>"; };
+		45B527CC106727EB00AC5FF1 /* CXMLNode_PrivateExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode_PrivateExtensions.h; sourceTree = "<group>"; };
+		45B527CD106727EB00AC5FF1 /* CXMLNode_PrivateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLNode_PrivateExtensions.m; sourceTree = "<group>"; };
+		45B527CE106727EB00AC5FF1 /* CXMLNode_XPathExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode_XPathExtensions.h; sourceTree = "<group>"; };
+		45B527CF106727EB00AC5FF1 /* CXMLNode_XPathExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLNode_XPathExtensions.m; sourceTree = "<group>"; };
+		45B527D1106727EB00AC5FF1 /* CTidy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTidy.h; sourceTree = "<group>"; };
+		45B527D2106727EB00AC5FF1 /* CTidy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTidy.m; sourceTree = "<group>"; };
+		45B527D3106727EB00AC5FF1 /* TouchXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchXML.h; sourceTree = "<group>"; };
+		45B52CFF1067288500AC5FF1 /* CPointerArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPointerArray.h; path = ../../../../Support/Common/CPointerArray.h; sourceTree = SOURCE_ROOT; };
+		45B52D001067288500AC5FF1 /* CPointerArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CPointerArray.m; path = ../../../../Support/Common/CPointerArray.m; sourceTree = SOURCE_ROOT; };
+		45B52D0B1067289E00AC5FF1 /* CFeedFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFeedFetcher.h; sourceTree = "<group>"; };
+		45B52D0C1067289E00AC5FF1 /* CFeedFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFeedFetcher.m; sourceTree = "<group>"; };
+		45B52D121067289E00AC5FF1 /* AtomKeywords.gperf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AtomKeywords.gperf; sourceTree = "<group>"; };
+		45B52D131067289E00AC5FF1 /* AtomKeywords.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtomKeywords.h; sourceTree = "<group>"; };
+		45B52D141067289E00AC5FF1 /* CAtomFeedDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAtomFeedDeserializer.h; sourceTree = "<group>"; };
+		45B52D151067289E00AC5FF1 /* CAtomFeedDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAtomFeedDeserializer.m; sourceTree = "<group>"; };
+		45B52D161067289E00AC5FF1 /* CFeedDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFeedDeserializer.h; sourceTree = "<group>"; };
+		45B52D171067289E00AC5FF1 /* CRSSFeedDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRSSFeedDeserializer.h; sourceTree = "<group>"; };
+		45B52D181067289E00AC5FF1 /* CRSSFeedDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRSSFeedDeserializer.m; sourceTree = "<group>"; };
+		45B52D191067289E00AC5FF1 /* RSSKeywords.gperf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RSSKeywords.gperf; sourceTree = "<group>"; };
+		45B52D1A1067289E00AC5FF1 /* RSSKeywords.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSKeywords.h; sourceTree = "<group>"; };
+		45B52D1B1067289E00AC5FF1 /* RSSKeywords.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSKeywords.m; sourceTree = "<group>"; };
+		45B52D1D1067289E00AC5FF1 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		45B52D5E106728ED00AC5FF1 /* buffio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffio.h; sourceTree = "<group>"; };
+		45B52D5F106728ED00AC5FF1 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
+		45B52D60106728ED00AC5FF1 /* tidy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tidy.h; sourceTree = "<group>"; };
+		45B52D61106728ED00AC5FF1 /* tidyenum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tidyenum.h; sourceTree = "<group>"; };
+		45B52D63106728ED00AC5FF1 /* access.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = access.c; sourceTree = "<group>"; };
+		45B52D64106728ED00AC5FF1 /* access.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = access.h; sourceTree = "<group>"; };
+		45B52D65106728ED00AC5FF1 /* alloc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = alloc.c; sourceTree = "<group>"; };
+		45B52D66106728ED00AC5FF1 /* attrask.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = attrask.c; sourceTree = "<group>"; };
+		45B52D67106728ED00AC5FF1 /* attrdict.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = attrdict.c; sourceTree = "<group>"; };
+		45B52D68106728ED00AC5FF1 /* attrdict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = attrdict.h; sourceTree = "<group>"; };
+		45B52D69106728ED00AC5FF1 /* attrget.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = attrget.c; sourceTree = "<group>"; };
+		45B52D6A106728ED00AC5FF1 /* attrs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = attrs.c; sourceTree = "<group>"; };
+		45B52D6B106728ED00AC5FF1 /* attrs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = attrs.h; sourceTree = "<group>"; };
+		45B52D6C106728ED00AC5FF1 /* buffio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = buffio.c; sourceTree = "<group>"; };
+		45B52D6D106728ED00AC5FF1 /* charsets.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = charsets.c; sourceTree = "<group>"; };
+		45B52D6E106728ED00AC5FF1 /* charsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = charsets.h; sourceTree = "<group>"; };
+		45B52D6F106728ED00AC5FF1 /* clean.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = clean.c; sourceTree = "<group>"; };
+		45B52D70106728ED00AC5FF1 /* clean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clean.h; sourceTree = "<group>"; };
+		45B52D71106728ED00AC5FF1 /* config.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = config.c; sourceTree = "<group>"; };
+		45B52D72106728ED00AC5FF1 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		45B52D73106728ED00AC5FF1 /* entities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = entities.c; sourceTree = "<group>"; };
+		45B52D74106728ED00AC5FF1 /* entities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = entities.h; sourceTree = "<group>"; };
+		45B52D75106728ED00AC5FF1 /* fileio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fileio.c; sourceTree = "<group>"; };
+		45B52D76106728ED00AC5FF1 /* fileio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fileio.h; sourceTree = "<group>"; };
+		45B52D77106728ED00AC5FF1 /* forward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = forward.h; sourceTree = "<group>"; };
+		45B52D78106728ED00AC5FF1 /* iconvtc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iconvtc.c; sourceTree = "<group>"; };
+		45B52D79106728ED00AC5FF1 /* iconvtc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iconvtc.h; sourceTree = "<group>"; };
+		45B52D7A106728ED00AC5FF1 /* istack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = istack.c; sourceTree = "<group>"; };
+		45B52D7B106728ED00AC5FF1 /* lexer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lexer.c; sourceTree = "<group>"; };
+		45B52D7C106728ED00AC5FF1 /* lexer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lexer.h; sourceTree = "<group>"; };
+		45B52D7D106728ED00AC5FF1 /* localize.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = localize.c; sourceTree = "<group>"; };
+		45B52D7E106728ED00AC5FF1 /* mappedio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mappedio.c; sourceTree = "<group>"; };
+		45B52D7F106728ED00AC5FF1 /* mappedio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mappedio.h; sourceTree = "<group>"; };
+		45B52D80106728ED00AC5FF1 /* message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = message.h; sourceTree = "<group>"; };
+		45B52D81106728ED00AC5FF1 /* parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = parser.c; sourceTree = "<group>"; };
+		45B52D82106728ED00AC5FF1 /* parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parser.h; sourceTree = "<group>"; };
+		45B52D83106728ED00AC5FF1 /* pprint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pprint.c; sourceTree = "<group>"; };
+		45B52D84106728ED00AC5FF1 /* pprint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pprint.h; sourceTree = "<group>"; };
+		45B52D85106728ED00AC5FF1 /* streamio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = streamio.c; sourceTree = "<group>"; };
+		45B52D86106728ED00AC5FF1 /* streamio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = streamio.h; sourceTree = "<group>"; };
+		45B52D87106728ED00AC5FF1 /* tagask.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tagask.c; sourceTree = "<group>"; };
+		45B52D88106728ED00AC5FF1 /* tags.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tags.c; sourceTree = "<group>"; };
+		45B52D89106728ED00AC5FF1 /* tags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tags.h; sourceTree = "<group>"; };
+		45B52D8A106728ED00AC5FF1 /* tidy-int.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "tidy-int.h"; sourceTree = "<group>"; };
+		45B52D8B106728ED00AC5FF1 /* tidylib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tidylib.c; sourceTree = "<group>"; };
+		45B52D8C106728ED00AC5FF1 /* tmbstr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tmbstr.c; sourceTree = "<group>"; };
+		45B52D8D106728ED00AC5FF1 /* tmbstr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tmbstr.h; sourceTree = "<group>"; };
+		45B52D8E106728ED00AC5FF1 /* utf8.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = utf8.c; sourceTree = "<group>"; };
+		45B52D8F106728ED00AC5FF1 /* utf8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utf8.h; sourceTree = "<group>"; };
+		45B52D90106728ED00AC5FF1 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		45B52D91106728ED00AC5FF1 /* win32tc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = win32tc.c; sourceTree = "<group>"; };
+		45B52D92106728ED00AC5FF1 /* win32tc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = win32tc.h; sourceTree = "<group>"; };
+		45B531E51067292300AC5FF1 /* NSDate_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDate_Extensions.h; sourceTree = "<group>"; };
+		45B531E61067292300AC5FF1 /* NSDate_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDate_Extensions.m; sourceTree = "<group>"; };
+		45B531E71067292300AC5FF1 /* NSDate_InternetDateExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDate_InternetDateExtensions.h; sourceTree = "<group>"; };
+		45B531E81067292300AC5FF1 /* NSDate_InternetDateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDate_InternetDateExtensions.m; sourceTree = "<group>"; };
+		45B531E91067292300AC5FF1 /* NSDateFormatter_InternetDateExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDateFormatter_InternetDateExtensions.h; sourceTree = "<group>"; };
+		45B531EA1067292300AC5FF1 /* NSDateFormatter_InternetDateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateFormatter_InternetDateExtensions.m; sourceTree = "<group>"; };
+		45B531FD1067298D00AC5FF1 /* CFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFeed.h; sourceTree = "<group>"; };
+		45B531FE1067298D00AC5FF1 /* CFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFeed.m; sourceTree = "<group>"; };
+		45B531FF1067298D00AC5FF1 /* CFeedEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFeedEntry.h; sourceTree = "<group>"; };
+		45B532001067298D00AC5FF1 /* CFeedEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFeedEntry.m; sourceTree = "<group>"; };
+		45B532011067298D00AC5FF1 /* TouchRSS_MacOS_DataModel.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = TouchRSS_MacOS_DataModel.xcdatamodel; sourceTree = "<group>"; };
+		45B53218106729BA00AC5FF1 /* CCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCoreDataManager.h; sourceTree = "<group>"; };
+		45B53219106729BA00AC5FF1 /* CCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCoreDataManager.m; sourceTree = "<group>"; };
+		45B5321A106729BA00AC5FF1 /* CEntityDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEntityDataSource.h; sourceTree = "<group>"; };
+		45B5321B106729BA00AC5FF1 /* CEntityDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEntityDataSource.m; sourceTree = "<group>"; };
+		45B5321C106729BA00AC5FF1 /* NSManagedObjectContext_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSManagedObjectContext_Extensions.h; sourceTree = "<group>"; };
+		45B5321D106729BA00AC5FF1 /* NSManagedObjectContext_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSManagedObjectContext_Extensions.m; sourceTree = "<group>"; };
+		45B5322710672A0200AC5FF1 /* CFeedStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFeedStore.h; sourceTree = "<group>"; };
+		45B5322810672A0200AC5FF1 /* CFeedStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFeedStore.m; sourceTree = "<group>"; };
+		45B5323210672A4100AC5FF1 /* CObjectTranscoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CObjectTranscoder.h; path = ../../../TouchSQL/Source/Experimental/CObjectTranscoder.h; sourceTree = SOURCE_ROOT; };
+		45B5323310672A4100AC5FF1 /* CObjectTranscoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CObjectTranscoder.m; path = ../../../TouchSQL/Source/Experimental/CObjectTranscoder.m; sourceTree = SOURCE_ROOT; };
+		77C82804067257F0000B614F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		77C8280B06725ACE000B614F /* TouchRSS_MacOS_AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchRSS_MacOS_AppDelegate.h; sourceTree = "<group>"; };
+		77C8280C06725ACE000B614F /* TouchRSS_MacOS_AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchRSS_MacOS_AppDelegate.m; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* TouchRSS_MacOS-Info.plist */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; fileEncoding = 4; path = "TouchRSS_MacOS-Info.plist"; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* TouchRSS_MacOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TouchRSS_MacOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				77C8280B06725ACE000B614F /* TouchRSS_MacOS_AppDelegate.h */,
+				77C8280C06725ACE000B614F /* TouchRSS_MacOS_AppDelegate.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				77C82804067257F0000B614F /* CoreData.framework */,
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* TouchRSS_MacOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* TouchRSS_MacOS */ = {
+			isa = PBXGroup;
+			children = (
+				45B531FC1067298D00AC5FF1 /* Model */,
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = TouchRSS_MacOS;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				45B53217106729BA00AC5FF1 /* CoreData */,
+				45B52D041067289E00AC5FF1 /* Source */,
+				45B52CFF1067288500AC5FF1 /* CPointerArray.h */,
+				45B52D001067288500AC5FF1 /* CPointerArray.m */,
+				45B531E41067292300AC5FF1 /* Dates */,
+				45B52799106727EB00AC5FF1 /* TouchConnection */,
+				45B527B8106727EB00AC5FF1 /* TouchXML */,
+				45B52D2E106728ED00AC5FF1 /* tidy */,
+				32CA4F630368D1EE00C91783 /* TouchRSS_MacOS_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107310486CEB800E47090 /* TouchRSS_MacOS-Info.plist */,
+				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
+				2F7446970DB6B7EA00F9684A /* MainMenu.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		45B52799106727EB00AC5FF1 /* TouchConnection */ = {
+			isa = PBXGroup;
+			children = (
+				45B527A9106727EB00AC5FF1 /* Source */,
+			);
+			name = TouchConnection;
+			path = ../../../../TouchConnection;
+			sourceTree = SOURCE_ROOT;
+		};
+		45B527A9106727EB00AC5FF1 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				45B527AA106727EB00AC5FF1 /* Common */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		45B527AA106727EB00AC5FF1 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				45B527AB106727EB00AC5FF1 /* CCompletionTicket.h */,
+				45B527AC106727EB00AC5FF1 /* CCompletionTicket.m */,
+				45B527AD106727EB00AC5FF1 /* CFileBasedManagedURLConnection.h */,
+				45B527AE106727EB00AC5FF1 /* CFileBasedManagedURLConnection.m */,
+				45B527AF106727EB00AC5FF1 /* CManagedURLConnection.h */,
+				45B527B0106727EB00AC5FF1 /* CManagedURLConnection.m */,
+				45B527B1106727EB00AC5FF1 /* CURLConnectionManager.h */,
+				45B527B2106727EB00AC5FF1 /* CURLConnectionManager.m */,
+				45B527B3106727EB00AC5FF1 /* CURLConnectionManagerChannel.h */,
+				45B527B4106727EB00AC5FF1 /* CURLConnectionManagerChannel.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		45B527B8106727EB00AC5FF1 /* TouchXML */ = {
+			isa = PBXGroup;
+			children = (
+				45B527B9106727EB00AC5FF1 /* Common */,
+			);
+			name = TouchXML;
+			path = ../../../../TouchXML;
+			sourceTree = SOURCE_ROOT;
+		};
+		45B527B9106727EB00AC5FF1 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				45B527BA106727EB00AC5FF1 /* Source */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		45B527BA106727EB00AC5FF1 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				45B527BB106727EB00AC5FF1 /* Creation */,
+				45B527C0106727EB00AC5FF1 /* CXMLDocument.h */,
+				45B527C1106727EB00AC5FF1 /* CXMLDocument.m */,
+				45B527C2106727EB00AC5FF1 /* CXMLDocument_PrivateExtensions.h */,
+				45B527C3106727EB00AC5FF1 /* CXMLDocument_PrivateExtensions.m */,
+				45B527C4106727EB00AC5FF1 /* CXMLElement.h */,
+				45B527C5106727EB00AC5FF1 /* CXMLElement.m */,
+				45B527C6106727EB00AC5FF1 /* CXMLElement_CreationExtensions.h */,
+				45B527C7106727EB00AC5FF1 /* CXMLElement_CreationExtensions.m */,
+				45B527C8106727EB00AC5FF1 /* CXMLElement_ElementTreeExtensions.h */,
+				45B527C9106727EB00AC5FF1 /* CXMLElement_ElementTreeExtensions.m */,
+				45B527CA106727EB00AC5FF1 /* CXMLNode.h */,
+				45B527CB106727EB00AC5FF1 /* CXMLNode.m */,
+				45B527CC106727EB00AC5FF1 /* CXMLNode_PrivateExtensions.h */,
+				45B527CD106727EB00AC5FF1 /* CXMLNode_PrivateExtensions.m */,
+				45B527CE106727EB00AC5FF1 /* CXMLNode_XPathExtensions.h */,
+				45B527CF106727EB00AC5FF1 /* CXMLNode_XPathExtensions.m */,
+				45B527D0106727EB00AC5FF1 /* Tidy */,
+				45B527D3106727EB00AC5FF1 /* TouchXML.h */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		45B527BB106727EB00AC5FF1 /* Creation */ = {
+			isa = PBXGroup;
+			children = (
+				45B527BC106727EB00AC5FF1 /* CXMLDocument_CreationExtensions.h */,
+				45B527BD106727EB00AC5FF1 /* CXMLDocument_CreationExtensions.m */,
+				45B527BE106727EB00AC5FF1 /* CXMLNode_CreationExtensions.h */,
+				45B527BF106727EB00AC5FF1 /* CXMLNode_CreationExtensions.m */,
+			);
+			path = Creation;
+			sourceTree = "<group>";
+		};
+		45B527D0106727EB00AC5FF1 /* Tidy */ = {
+			isa = PBXGroup;
+			children = (
+				45B527D1106727EB00AC5FF1 /* CTidy.h */,
+				45B527D2106727EB00AC5FF1 /* CTidy.m */,
+			);
+			path = Tidy;
+			sourceTree = "<group>";
+		};
+		45B52D041067289E00AC5FF1 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				45B5323210672A4100AC5FF1 /* CObjectTranscoder.h */,
+				45B5323310672A4100AC5FF1 /* CObjectTranscoder.m */,
+				45B52D0B1067289E00AC5FF1 /* CFeedFetcher.h */,
+				45B52D0C1067289E00AC5FF1 /* CFeedFetcher.m */,
+				45B52D111067289E00AC5FF1 /* Deserializers */,
+				45B52D1D1067289E00AC5FF1 /* Prefix.pch */,
+				45B5322710672A0200AC5FF1 /* CFeedStore.h */,
+				45B5322810672A0200AC5FF1 /* CFeedStore.m */,
+			);
+			name = Source;
+			path = ../../Source;
+			sourceTree = SOURCE_ROOT;
+		};
+		45B52D111067289E00AC5FF1 /* Deserializers */ = {
+			isa = PBXGroup;
+			children = (
+				45B52D121067289E00AC5FF1 /* AtomKeywords.gperf */,
+				45B52D131067289E00AC5FF1 /* AtomKeywords.h */,
+				45B52D141067289E00AC5FF1 /* CAtomFeedDeserializer.h */,
+				45B52D151067289E00AC5FF1 /* CAtomFeedDeserializer.m */,
+				45B52D161067289E00AC5FF1 /* CFeedDeserializer.h */,
+				45B52D171067289E00AC5FF1 /* CRSSFeedDeserializer.h */,
+				45B52D181067289E00AC5FF1 /* CRSSFeedDeserializer.m */,
+				45B52D191067289E00AC5FF1 /* RSSKeywords.gperf */,
+				45B52D1A1067289E00AC5FF1 /* RSSKeywords.h */,
+				45B52D1B1067289E00AC5FF1 /* RSSKeywords.m */,
+			);
+			path = Deserializers;
+			sourceTree = "<group>";
+		};
+		45B52D2E106728ED00AC5FF1 /* tidy */ = {
+			isa = PBXGroup;
+			children = (
+				45B52D5D106728ED00AC5FF1 /* include */,
+				45B52D62106728ED00AC5FF1 /* src */,
+			);
+			name = tidy;
+			path = ../../../../TouchXML/Externals/tidy;
+			sourceTree = SOURCE_ROOT;
+		};
+		45B52D5D106728ED00AC5FF1 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				45B52D5E106728ED00AC5FF1 /* buffio.h */,
+				45B52D5F106728ED00AC5FF1 /* platform.h */,
+				45B52D60106728ED00AC5FF1 /* tidy.h */,
+				45B52D61106728ED00AC5FF1 /* tidyenum.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		45B52D62106728ED00AC5FF1 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				45B52D63106728ED00AC5FF1 /* access.c */,
+				45B52D64106728ED00AC5FF1 /* access.h */,
+				45B52D65106728ED00AC5FF1 /* alloc.c */,
+				45B52D66106728ED00AC5FF1 /* attrask.c */,
+				45B52D67106728ED00AC5FF1 /* attrdict.c */,
+				45B52D68106728ED00AC5FF1 /* attrdict.h */,
+				45B52D69106728ED00AC5FF1 /* attrget.c */,
+				45B52D6A106728ED00AC5FF1 /* attrs.c */,
+				45B52D6B106728ED00AC5FF1 /* attrs.h */,
+				45B52D6C106728ED00AC5FF1 /* buffio.c */,
+				45B52D6D106728ED00AC5FF1 /* charsets.c */,
+				45B52D6E106728ED00AC5FF1 /* charsets.h */,
+				45B52D6F106728ED00AC5FF1 /* clean.c */,
+				45B52D70106728ED00AC5FF1 /* clean.h */,
+				45B52D71106728ED00AC5FF1 /* config.c */,
+				45B52D72106728ED00AC5FF1 /* config.h */,
+				45B52D73106728ED00AC5FF1 /* entities.c */,
+				45B52D74106728ED00AC5FF1 /* entities.h */,
+				45B52D75106728ED00AC5FF1 /* fileio.c */,
+				45B52D76106728ED00AC5FF1 /* fileio.h */,
+				45B52D77106728ED00AC5FF1 /* forward.h */,
+				45B52D78106728ED00AC5FF1 /* iconvtc.c */,
+				45B52D79106728ED00AC5FF1 /* iconvtc.h */,
+				45B52D7A106728ED00AC5FF1 /* istack.c */,
+				45B52D7B106728ED00AC5FF1 /* lexer.c */,
+				45B52D7C106728ED00AC5FF1 /* lexer.h */,
+				45B52D7D106728ED00AC5FF1 /* localize.c */,
+				45B52D7E106728ED00AC5FF1 /* mappedio.c */,
+				45B52D7F106728ED00AC5FF1 /* mappedio.h */,
+				45B52D80106728ED00AC5FF1 /* message.h */,
+				45B52D81106728ED00AC5FF1 /* parser.c */,
+				45B52D82106728ED00AC5FF1 /* parser.h */,
+				45B52D83106728ED00AC5FF1 /* pprint.c */,
+				45B52D84106728ED00AC5FF1 /* pprint.h */,
+				45B52D85106728ED00AC5FF1 /* streamio.c */,
+				45B52D86106728ED00AC5FF1 /* streamio.h */,
+				45B52D87106728ED00AC5FF1 /* tagask.c */,
+				45B52D88106728ED00AC5FF1 /* tags.c */,
+				45B52D89106728ED00AC5FF1 /* tags.h */,
+				45B52D8A106728ED00AC5FF1 /* tidy-int.h */,
+				45B52D8B106728ED00AC5FF1 /* tidylib.c */,
+				45B52D8C106728ED00AC5FF1 /* tmbstr.c */,
+				45B52D8D106728ED00AC5FF1 /* tmbstr.h */,
+				45B52D8E106728ED00AC5FF1 /* utf8.c */,
+				45B52D8F106728ED00AC5FF1 /* utf8.h */,
+				45B52D90106728ED00AC5FF1 /* version.h */,
+				45B52D91106728ED00AC5FF1 /* win32tc.c */,
+				45B52D92106728ED00AC5FF1 /* win32tc.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		45B531E41067292300AC5FF1 /* Dates */ = {
+			isa = PBXGroup;
+			children = (
+				45B531E51067292300AC5FF1 /* NSDate_Extensions.h */,
+				45B531E61067292300AC5FF1 /* NSDate_Extensions.m */,
+				45B531E71067292300AC5FF1 /* NSDate_InternetDateExtensions.h */,
+				45B531E81067292300AC5FF1 /* NSDate_InternetDateExtensions.m */,
+				45B531E91067292300AC5FF1 /* NSDateFormatter_InternetDateExtensions.h */,
+				45B531EA1067292300AC5FF1 /* NSDateFormatter_InternetDateExtensions.m */,
+			);
+			name = Dates;
+			path = ../../../../Support/Common/Extensions/Dates;
+			sourceTree = SOURCE_ROOT;
+		};
+		45B531FC1067298D00AC5FF1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				45B531FD1067298D00AC5FF1 /* CFeed.h */,
+				45B531FE1067298D00AC5FF1 /* CFeed.m */,
+				45B531FF1067298D00AC5FF1 /* CFeedEntry.h */,
+				45B532001067298D00AC5FF1 /* CFeedEntry.m */,
+				45B532011067298D00AC5FF1 /* TouchRSS_MacOS_DataModel.xcdatamodel */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		45B53217106729BA00AC5FF1 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				45B53218106729BA00AC5FF1 /* CCoreDataManager.h */,
+				45B53219106729BA00AC5FF1 /* CCoreDataManager.m */,
+				45B5321A106729BA00AC5FF1 /* CEntityDataSource.h */,
+				45B5321B106729BA00AC5FF1 /* CEntityDataSource.m */,
+				45B5321C106729BA00AC5FF1 /* NSManagedObjectContext_Extensions.h */,
+				45B5321D106729BA00AC5FF1 /* NSManagedObjectContext_Extensions.m */,
+			);
+			name = CoreData;
+			path = ../../../../Support/Common/CoreData;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D1107260486CEB800E47090 /* TouchRSS_MacOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 26FC0A840875C7B200E6366F /* Build configuration list for PBXNativeTarget "TouchRSS_MacOS" */;
+			buildPhases = (
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TouchRSS_MacOS;
+			productInstallPath = "$(HOME)/Applications";
+			productName = TouchRSS_MacOS;
+			productReference = 8D1107320486CEB800E47090 /* TouchRSS_MacOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 26FC0A880875C7B200E6366F /* Build configuration list for PBXProject "TouchRSS_MacOS" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* TouchRSS_MacOS */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D1107260486CEB800E47090 /* TouchRSS_MacOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
+				2F7446990DB6B7EA00F9684A /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072D0486CEB800E47090 /* main.m in Sources */,
+				77C8280E06725ACE000B614F /* TouchRSS_MacOS_AppDelegate.m in Sources */,
+				45B52A6C106727EC00AC5FF1 /* CCompletionTicket.m in Sources */,
+				45B52A6D106727EC00AC5FF1 /* CFileBasedManagedURLConnection.m in Sources */,
+				45B52A6E106727EC00AC5FF1 /* CManagedURLConnection.m in Sources */,
+				45B52A6F106727EC00AC5FF1 /* CURLConnectionManager.m in Sources */,
+				45B52A70106727EC00AC5FF1 /* CURLConnectionManagerChannel.m in Sources */,
+				45B52A72106727EC00AC5FF1 /* CXMLDocument_CreationExtensions.m in Sources */,
+				45B52A73106727EC00AC5FF1 /* CXMLNode_CreationExtensions.m in Sources */,
+				45B52A74106727EC00AC5FF1 /* CXMLDocument.m in Sources */,
+				45B52A75106727EC00AC5FF1 /* CXMLDocument_PrivateExtensions.m in Sources */,
+				45B52A76106727EC00AC5FF1 /* CXMLElement.m in Sources */,
+				45B52A77106727EC00AC5FF1 /* CXMLElement_CreationExtensions.m in Sources */,
+				45B52A78106727EC00AC5FF1 /* CXMLElement_ElementTreeExtensions.m in Sources */,
+				45B52A79106727EC00AC5FF1 /* CXMLNode.m in Sources */,
+				45B52A7A106727EC00AC5FF1 /* CXMLNode_PrivateExtensions.m in Sources */,
+				45B52A7B106727EC00AC5FF1 /* CXMLNode_XPathExtensions.m in Sources */,
+				45B52A7C106727EC00AC5FF1 /* CTidy.m in Sources */,
+				45B52D011067288500AC5FF1 /* CPointerArray.m in Sources */,
+				45B52D251067289E00AC5FF1 /* CAtomFeedDeserializer.m in Sources */,
+				45B52D261067289E00AC5FF1 /* CRSSFeedDeserializer.m in Sources */,
+				45B52D281067289E00AC5FF1 /* RSSKeywords.m in Sources */,
+				45B52FC0106728EE00AC5FF1 /* access.c in Sources */,
+				45B52FC1106728EE00AC5FF1 /* alloc.c in Sources */,
+				45B52FC2106728EE00AC5FF1 /* attrask.c in Sources */,
+				45B52FC3106728EE00AC5FF1 /* attrdict.c in Sources */,
+				45B52FC4106728EE00AC5FF1 /* attrget.c in Sources */,
+				45B52FC5106728EE00AC5FF1 /* attrs.c in Sources */,
+				45B52FC6106728EE00AC5FF1 /* buffio.c in Sources */,
+				45B52FC7106728EE00AC5FF1 /* charsets.c in Sources */,
+				45B52FC8106728EE00AC5FF1 /* clean.c in Sources */,
+				45B52FC9106728EE00AC5FF1 /* config.c in Sources */,
+				45B52FCA106728EE00AC5FF1 /* entities.c in Sources */,
+				45B52FCB106728EE00AC5FF1 /* fileio.c in Sources */,
+				45B52FCC106728EE00AC5FF1 /* iconvtc.c in Sources */,
+				45B52FCD106728EE00AC5FF1 /* istack.c in Sources */,
+				45B52FCE106728EE00AC5FF1 /* lexer.c in Sources */,
+				45B52FCF106728EE00AC5FF1 /* localize.c in Sources */,
+				45B52FD0106728EE00AC5FF1 /* mappedio.c in Sources */,
+				45B52FD1106728EE00AC5FF1 /* parser.c in Sources */,
+				45B52FD2106728EE00AC5FF1 /* pprint.c in Sources */,
+				45B52FD3106728EE00AC5FF1 /* streamio.c in Sources */,
+				45B52FD4106728EE00AC5FF1 /* tagask.c in Sources */,
+				45B52FD5106728EE00AC5FF1 /* tags.c in Sources */,
+				45B52FD6106728EE00AC5FF1 /* tidylib.c in Sources */,
+				45B52FD7106728EE00AC5FF1 /* tmbstr.c in Sources */,
+				45B52FD8106728EE00AC5FF1 /* utf8.c in Sources */,
+				45B52FD9106728EE00AC5FF1 /* win32tc.c in Sources */,
+				45B531EB1067292300AC5FF1 /* NSDate_Extensions.m in Sources */,
+				45B531EC1067292300AC5FF1 /* NSDate_InternetDateExtensions.m in Sources */,
+				45B531ED1067292300AC5FF1 /* NSDateFormatter_InternetDateExtensions.m in Sources */,
+				45B532021067298D00AC5FF1 /* CFeed.m in Sources */,
+				45B532031067298D00AC5FF1 /* CFeedEntry.m in Sources */,
+				45B532041067298D00AC5FF1 /* TouchRSS_MacOS_DataModel.xcdatamodel in Sources */,
+				45B5321E106729BA00AC5FF1 /* CCoreDataManager.m in Sources */,
+				45B5321F106729BA00AC5FF1 /* CEntityDataSource.m in Sources */,
+				45B53220106729BA00AC5FF1 /* NSManagedObjectContext_Extensions.m in Sources */,
+				45B5322910672A0200AC5FF1 /* CFeedStore.m in Sources */,
+				45B5323410672A4100AC5FF1 /* CObjectTranscoder.m in Sources */,
+				45B5324310672B9F00AC5FF1 /* CFeedFetcher.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C165DFE840E0CC02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		2F7446970DB6B7EA00F9684A /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2F7446980DB6B7EA00F9684A /* English */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		26FC0A850875C7B200E6366F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = TouchRSS_MacOS_Prefix.pch;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				INFOPLIST_FILE = "TouchRSS_MacOS-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = "-lxml2";
+				PRODUCT_NAME = TouchRSS_MacOS;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		26FC0A860875C7B200E6366F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = TouchRSS_MacOS_Prefix.pch;
+				INFOPLIST_FILE = "TouchRSS_MacOS-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = TouchRSS_MacOS;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		26FC0A890875C7B200E6366F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+			};
+			name = Debug;
+		};
+		26FC0A8A0875C7B200E6366F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		26FC0A840875C7B200E6366F /* Build configuration list for PBXNativeTarget "TouchRSS_MacOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26FC0A850875C7B200E6366F /* Debug */,
+				26FC0A860875C7B200E6366F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		26FC0A880875C7B200E6366F /* Build configuration list for PBXProject "TouchRSS_MacOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26FC0A890875C7B200E6366F /* Debug */,
+				26FC0A8A0875C7B200E6366F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

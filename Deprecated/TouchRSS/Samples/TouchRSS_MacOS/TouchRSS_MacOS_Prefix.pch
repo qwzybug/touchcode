@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'TouchRSS_MacOS' target in the 'TouchRSS_MacOS' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
