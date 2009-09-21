@@ -81,12 +81,25 @@ return([self.end timeIntervalSinceDate:self.start]);
 
 - (NSString *)formattedString
 {
-// Dec 25, 10:30 AM - 11:00 AM
-return([NSString stringWithFormat:@"%@, %@ - %@",
-	[self.start stringWithFormat:@"MMM d"],
-	[self.start stringWithShortTimeStyleFormat],
-	[self.end stringWithShortTimeStyleFormat]
-	]);
+if ([self.start isSameCalendarDayAsDate:self.end] == YES)
+	{
+	// Dec 25, 10:30 AM - 11:00 AM
+	return([NSString stringWithFormat:@"%@, %@ - %@",
+		[self.start stringWithFormat:@"MMM d"],
+		[self.start stringWithShortTimeStyleFormat],
+		[self.end stringWithShortTimeStyleFormat]
+		]);
+	}
+else
+	{
+	// Dec 25, 10:30 AM - Dec 26, 11:00 AM
+	return([NSString stringWithFormat:@"%@, %@ - %@, %@",
+		[self.start stringWithFormat:@"MMM d"],
+		[self.start stringWithShortTimeStyleFormat],
+		[self.end stringWithFormat:@"MMM d"],
+		[self.end stringWithShortTimeStyleFormat]
+		]);
+	}
 }
 
 @end

@@ -71,14 +71,14 @@ typedef enum {
     NSTimer *fadeTimer;
 }
 
-@property (readwrite, nonatomic, retain) NSString *labelText;
-@property (readwrite, nonatomic, assign) ProgressOverlayViewProgressMode progressMode;
-@property (readwrite, nonatomic, assign) ProgressOverlayViewSize size;
-@property (readwrite, nonatomic, assign) ProgressOverlayViewFadeMode fadeMode;
-@property (readwrite, nonatomic, retain) UIColor *guardColor;
-@property (readwrite, nonatomic, assign) NSTimeInterval minimumDisplayTime;
-@property (readwrite, nonatomic, retain) NSDate *displayTime;
-@property (readwrite, nonatomic, assign) float progress;
+@property (readwrite, retain) NSString *labelText;
+@property (readwrite, assign) ProgressOverlayViewProgressMode progressMode;
+@property (readwrite, assign) ProgressOverlayViewSize size;
+@property (readwrite, assign) ProgressOverlayViewFadeMode fadeMode;
+@property (readwrite, retain) UIColor *guardColor;
+@property (readwrite, assign) NSTimeInterval minimumDisplayTime;
+@property (readwrite, retain) NSDate *displayTime;
+@property (readwrite, assign) float progress;
 
 + (CProgressOverlayView *)instance;
 

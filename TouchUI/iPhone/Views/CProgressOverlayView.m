@@ -71,9 +71,12 @@ static CProgressOverlayView *gInstance = NULL;
 
 + (CProgressOverlayView *)instance
 {
-if (gInstance == NULL)
+@synchronized(@"CProgressOverlayView")
 	{
-	gInstance = [[self alloc] init];
+	if (gInstance == NULL)
+		{
+		gInstance = [[self alloc] init];
+		}
 	}
 return(gInstance);
 }
@@ -164,6 +167,11 @@ else if (self.progressMode == ProgressOverlayViewProgressModeIndeterminate)
 
 - (void)drawRect:(CGRect)inRect
 {
+
+// we don't want to draw the rounded rect unless the guard bg is transparent, otherwise, it looks extremely dark.
+if (CGColorGetAlpha(self.guardColor.CGColor) != 0.0)
+	return;
+	
 if (self.size == ProgressOverlayViewSizeHUD)
     {
     UIColor *color = PROGRESS_OVERLAY_VIEW_BACKGROUND_COLOR;
@@ -254,6 +262,8 @@ self.label = NULL;
 
 - (void)showInView:(UIView *)inView withDelay:(NSTimeInterval)inTimeInterval;
 {
+NSAssert([NSThread isMainThread] == YES, @"Do not use CProgressOverlayView from background thread");
+
 NSInvocation *theInvocation = NULL;
 [[self grabInvocation:&theInvocation] showInView:inView];
 [theInvocation retainArguments];
@@ -263,6 +273,8 @@ self.displayTimer = [NSTimer scheduledTimerWithTimeInterval:inTimeInterval invoc
 
 - (void)showInView:(UIView *)inView
 {
+NSAssert([NSThread isMainThread] == YES, @"Do not use CProgressOverlayView from background thread");
+
 if (self.displayTimer)
 	{
 	[self.displayTimer invalidate];
@@ -316,6 +328,8 @@ else
 
 - (void)hide
 {
+NSAssert([NSThread isMainThread] == YES, @"Do not use CProgressOverlayView from background thread");
+
 if (self.displayTimer)
 	{
 	[self.displayTimer invalidate];
@@ -375,10 +389,7 @@ guardView.backgroundColor = (self.guardColor ? self.guardColor : [UIColor clearC
 - (void)fadeIn:(NSTimer *)theTimer
 {
 if (self.alpha >= 1.0)
-    {
     [theTimer invalidate];
-    theTimer = NULL;
-    }
 else
     self.alpha += 0.1;
 }
@@ -388,7 +399,6 @@ else
 if (self.alpha <= 0.1)
     {
     [theTimer invalidate];
-    theTimer = NULL;
     [guardView removeFromSuperview];
     [self removeFromSuperview];
     }
