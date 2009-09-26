@@ -79,11 +79,13 @@ typedef enum {
 @property (readwrite, assign) NSTimeInterval minimumDisplayTime;
 @property (readwrite, retain) NSDate *displayTime;
 @property (readwrite, assign) float progress;
+@property (readwrite, assign) BOOL showing;
 
 + (CProgressOverlayView *)instance;
 
 - (void)update;
 
+- (void)showInView:(UIView *)inView withDelay:(NSTimeInterval)inTimeInterval labelText:(NSString *)inLabelText;
 - (void)showInView:(UIView *)inView withDelay:(NSTimeInterval)inTimeInterval; // activation after a delay (recommended to turn off fading)
 - (void)showInView:(UIView *)inView;                                          // activation
 - (void)hide;                                                                 // deactivation
