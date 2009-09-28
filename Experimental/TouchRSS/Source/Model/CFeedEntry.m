@@ -8,11 +8,29 @@
 
 #import "CFeedEntry.h"
 
+#import "CObjectTranscoder.h"
+
 #pragma mark begin emogenerator forward declarations
 #import "CFeed.h"
 #pragma mark end emogenerator forward declarations
 
 @implementation CFeedEntry
+
++ (NSArray *)persistentPropertyNames
+{
+return([[super persistentPropertyNames] arrayByAddingObjectsFromArray:[NSArray arrayWithObjects:@"feed", @"identifier", @"title", @"subtitle", @"content", @"link", @"updated", NULL]]);
+}
+
++ (CObjectTranscoder *)objectTranscoder
+{
+CObjectTranscoder *theTranscoder = [[[CObjectTranscoder alloc] initWithTargetObjectClass:[self class]] autorelease];
+theTranscoder.propertyNameMappings = [NSDictionary dictionaryWithObjectsAndKeys:
+//	@"rowID", @"id",
+//	@"feed", @"feed_id",
+	NULL];
+return(theTranscoder);
+}
+
 
 #pragma mark begin emogenerator accessors
 

@@ -95,6 +95,8 @@ if (theWasCreatedFlag == YES)
 	theFeed.URL = inURL.absoluteString;
 	}
 
+[self updateFeed:theFeed];
+
 return(theFeed);
 }
 
@@ -115,7 +117,7 @@ if (theLastChecked != NULL)
 		return(NO);
 	}
 
-NSURL *theURL = inFeed.URL;
+NSURL *theURL = [NSURL URLWithString:inFeed.URL];
 
 if ([self.currentURLs containsObject:theURL] == YES)
 	{
@@ -184,43 +186,29 @@ for (id theDictionary in theDeserializer)
 				}
 
 			theFeed.lastChecked = [NSDate date];
-			if ([theFeed write:&theError] == NO)
-				[NSException raise:NSGenericException format:@"Write failed: %@", theError];
 			}
 			break;
 		case FeedDictinaryType_Entry:
 			{
-//			NSLog(@"ENTRY");
-////			NSLog(@"%@", theDictionary);
-//			CFeedEntry *theEntry = [theFeed entryForIdentifier:[theDictionary objectForKey:@"identifier"]];
-//			if (theEntry == NULL)
-//				{
-//				NSError *theError = NULL;
-//				theEntry = [self.feedStore.persistentObjectManager makePersistentObjectOfClass:[[self.feedStore class] feedEntryClass] error:&theError];
-//				if (theEntry == NULL && theError != NULL)
-//					{
-//					[NSException raise:NSGenericException format:@"makePersistentObjectOfClass failed.: %@", theError];
-//					}
-//				theEntry.feed = theFeed;
-//				}
-//
-//			NSError *theError = NULL;
-//			CObjectTranscoder *theTranscoder = [[theEntry class] objectTranscoder];
-//			NSDictionary *theUpdateDictonary = [theTranscoder dictionaryForObjectUpdate:theEntry withPropertiesInDictionary:theDictionary error:&theError];
-//			if (theUpdateDictonary == NULL)
-//				{
-//				[NSException raise:NSGenericException format:@"dictionaryForObjectUpdate failed: %@", theError];
-//				}
-//
-//			if ([theTranscoder updateObject:theEntry withPropertiesInDictionary:theUpdateDictonary error:&theError] == NO)
-//				{
-//				[NSException raise:NSGenericException format:@"Update Object failed: %@", theError];
-//				}
-//
-//			[theFeed addEntry:theEntry];
-//
-//			if ([theEntry write:&theError] == NO)
-//				[NSException raise:NSGenericException format:@"FeedStore: Entry Write Failed: %@", theError];
+			NSLog(@"ENTRY");
+			NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"identifier == %@", [theDictionary objectForKey:@"identifier"]];
+
+			CFeedEntry *theEntry = [self.feedStore.managedObjectContext fetchObjectOfEntityForName:[CFeedEntry entityName] predicate:thePredicate createIfNotFound:YES wasCreated:NULL error:&theError];
+
+			NSError *theError = NULL;
+			CObjectTranscoder *theTranscoder = [[theEntry class] objectTranscoder];
+			NSDictionary *theUpdateDictonary = [theTranscoder dictionaryForObjectUpdate:theEntry withPropertiesInDictionary:theDictionary error:&theError];
+			if (theUpdateDictonary == NULL)
+				{
+				[NSException raise:NSGenericException format:@"dictionaryForObjectUpdate failed: %@", theError];
+				}
+
+			if ([theTranscoder updateObject:theEntry withPropertiesInDictionary:theUpdateDictonary error:&theError] == NO)
+				{
+				[NSException raise:NSGenericException format:@"Update Object failed: %@", theError];
+				}
+
+			theEntry.feed = theFeed;
 			}
 			break;
 		}

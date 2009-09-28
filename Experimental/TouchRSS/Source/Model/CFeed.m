@@ -8,11 +8,21 @@
 
 #import "CFeed.h"
 
+#import "CObjectTranscoder.h"
+
 #pragma mark begin emogenerator forward declarations
 #import "CFeedEntry.h"
 #pragma mark end emogenerator forward declarations
 
 @implementation CFeed
+
++ (CObjectTranscoder *)objectTranscoder
+{
+CObjectTranscoder *theTranscoder = [[[CObjectTranscoder alloc] initWithTargetObjectClass:self] autorelease];
+theTranscoder.propertyNameMappings = [NSDictionary dictionaryWithObjectsAndKeys:
+	NULL];
+return(theTranscoder);
+}
 
 #pragma mark begin emogenerator accessors
 

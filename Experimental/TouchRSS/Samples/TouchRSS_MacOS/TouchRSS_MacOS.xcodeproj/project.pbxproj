@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2F7446990DB6B7EA00F9684A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F7446970DB6B7EA00F9684A /* MainMenu.xib */; };
+		4540CFB010712D7F004C66DD /* CObjectTranscoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4540CFAF10712D7F004C66DD /* CObjectTranscoder.m */; };
 		45B52A6C106727EC00AC5FF1 /* CCompletionTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B527AC106727EB00AC5FF1 /* CCompletionTicket.m */; };
 		45B52A6D106727EC00AC5FF1 /* CFileBasedManagedURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B527AE106727EB00AC5FF1 /* CFileBasedManagedURLConnection.m */; };
 		45B52A6E106727EC00AC5FF1 /* CManagedURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B527B0106727EB00AC5FF1 /* CManagedURLConnection.m */; };
@@ -59,12 +60,11 @@
 		45B531ED1067292300AC5FF1 /* NSDateFormatter_InternetDateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B531EA1067292300AC5FF1 /* NSDateFormatter_InternetDateExtensions.m */; };
 		45B532021067298D00AC5FF1 /* CFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B531FE1067298D00AC5FF1 /* CFeed.m */; };
 		45B532031067298D00AC5FF1 /* CFeedEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B532001067298D00AC5FF1 /* CFeedEntry.m */; };
-		45B532041067298D00AC5FF1 /* TouchRSS_MacOS_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 45B532011067298D00AC5FF1 /* TouchRSS_MacOS_DataModel.xcdatamodel */; };
+		45B532041067298D00AC5FF1 /* TouchRSS.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 45B532011067298D00AC5FF1 /* TouchRSS.xcdatamodel */; };
 		45B5321E106729BA00AC5FF1 /* CCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B53219106729BA00AC5FF1 /* CCoreDataManager.m */; };
 		45B5321F106729BA00AC5FF1 /* CEntityDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B5321B106729BA00AC5FF1 /* CEntityDataSource.m */; };
 		45B53220106729BA00AC5FF1 /* NSManagedObjectContext_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B5321D106729BA00AC5FF1 /* NSManagedObjectContext_Extensions.m */; };
 		45B5322910672A0200AC5FF1 /* CFeedStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B5322810672A0200AC5FF1 /* CFeedStore.m */; };
-		45B5323410672A4100AC5FF1 /* CObjectTranscoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B5323310672A4100AC5FF1 /* CObjectTranscoder.m */; };
 		45B5324310672B9F00AC5FF1 /* CFeedFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B52D0C1067289E00AC5FF1 /* CFeedFetcher.m */; };
 		77C8280E06725ACE000B614F /* TouchRSS_MacOS_AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C8280C06725ACE000B614F /* TouchRSS_MacOS_AppDelegate.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
@@ -80,6 +80,8 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		2F7446980DB6B7EA00F9684A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* TouchRSS_MacOS_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchRSS_MacOS_Prefix.pch; sourceTree = "<group>"; };
+		4540CFAE10712D7F004C66DD /* CObjectTranscoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CObjectTranscoder.h; sourceTree = "<group>"; };
+		4540CFAF10712D7F004C66DD /* CObjectTranscoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CObjectTranscoder.m; sourceTree = "<group>"; };
 		45B527AB106727EB00AC5FF1 /* CCompletionTicket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCompletionTicket.h; sourceTree = "<group>"; };
 		45B527AC106727EB00AC5FF1 /* CCompletionTicket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCompletionTicket.m; sourceTree = "<group>"; };
 		45B527AD106727EB00AC5FF1 /* CFileBasedManagedURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFileBasedManagedURLConnection.h; sourceTree = "<group>"; };
@@ -190,7 +192,7 @@
 		45B531FE1067298D00AC5FF1 /* CFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFeed.m; sourceTree = "<group>"; };
 		45B531FF1067298D00AC5FF1 /* CFeedEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFeedEntry.h; sourceTree = "<group>"; };
 		45B532001067298D00AC5FF1 /* CFeedEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFeedEntry.m; sourceTree = "<group>"; };
-		45B532011067298D00AC5FF1 /* TouchRSS_MacOS_DataModel.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = TouchRSS_MacOS_DataModel.xcdatamodel; sourceTree = "<group>"; };
+		45B532011067298D00AC5FF1 /* TouchRSS.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = TouchRSS.xcdatamodel; sourceTree = "<group>"; };
 		45B53218106729BA00AC5FF1 /* CCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCoreDataManager.h; sourceTree = "<group>"; };
 		45B53219106729BA00AC5FF1 /* CCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCoreDataManager.m; sourceTree = "<group>"; };
 		45B5321A106729BA00AC5FF1 /* CEntityDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEntityDataSource.h; sourceTree = "<group>"; };
@@ -199,8 +201,6 @@
 		45B5321D106729BA00AC5FF1 /* NSManagedObjectContext_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSManagedObjectContext_Extensions.m; sourceTree = "<group>"; };
 		45B5322710672A0200AC5FF1 /* CFeedStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFeedStore.h; sourceTree = "<group>"; };
 		45B5322810672A0200AC5FF1 /* CFeedStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFeedStore.m; sourceTree = "<group>"; };
-		45B5323210672A4100AC5FF1 /* CObjectTranscoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CObjectTranscoder.h; path = ../../../TouchSQL/Source/Experimental/CObjectTranscoder.h; sourceTree = SOURCE_ROOT; };
-		45B5323310672A4100AC5FF1 /* CObjectTranscoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CObjectTranscoder.m; path = ../../../TouchSQL/Source/Experimental/CObjectTranscoder.m; sourceTree = SOURCE_ROOT; };
 		77C82804067257F0000B614F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		77C8280B06725ACE000B614F /* TouchRSS_MacOS_AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchRSS_MacOS_AppDelegate.h; sourceTree = "<group>"; };
 		77C8280C06725ACE000B614F /* TouchRSS_MacOS_AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchRSS_MacOS_AppDelegate.m; sourceTree = "<group>"; };
@@ -404,8 +404,6 @@
 		45B52D041067289E00AC5FF1 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				45B5323210672A4100AC5FF1 /* CObjectTranscoder.h */,
-				45B5323310672A4100AC5FF1 /* CObjectTranscoder.m */,
 				45B52D0B1067289E00AC5FF1 /* CFeedFetcher.h */,
 				45B52D0C1067289E00AC5FF1 /* CFeedFetcher.m */,
 				45B52D111067289E00AC5FF1 /* Deserializers */,
@@ -531,7 +529,9 @@
 				45B531FE1067298D00AC5FF1 /* CFeed.m */,
 				45B531FF1067298D00AC5FF1 /* CFeedEntry.h */,
 				45B532001067298D00AC5FF1 /* CFeedEntry.m */,
-				45B532011067298D00AC5FF1 /* TouchRSS_MacOS_DataModel.xcdatamodel */,
+				4540CFAE10712D7F004C66DD /* CObjectTranscoder.h */,
+				4540CFAF10712D7F004C66DD /* CObjectTranscoder.m */,
+				45B532011067298D00AC5FF1 /* TouchRSS.xcdatamodel */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -658,13 +658,13 @@
 				45B531ED1067292300AC5FF1 /* NSDateFormatter_InternetDateExtensions.m in Sources */,
 				45B532021067298D00AC5FF1 /* CFeed.m in Sources */,
 				45B532031067298D00AC5FF1 /* CFeedEntry.m in Sources */,
-				45B532041067298D00AC5FF1 /* TouchRSS_MacOS_DataModel.xcdatamodel in Sources */,
+				45B532041067298D00AC5FF1 /* TouchRSS.xcdatamodel in Sources */,
 				45B5321E106729BA00AC5FF1 /* CCoreDataManager.m in Sources */,
 				45B5321F106729BA00AC5FF1 /* CEntityDataSource.m in Sources */,
 				45B53220106729BA00AC5FF1 /* NSManagedObjectContext_Extensions.m in Sources */,
 				45B5322910672A0200AC5FF1 /* CFeedStore.m in Sources */,
-				45B5323410672A4100AC5FF1 /* CObjectTranscoder.m in Sources */,
 				45B5324310672B9F00AC5FF1 /* CFeedFetcher.m in Sources */,
+				4540CFB010712D7F004C66DD /* CObjectTranscoder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

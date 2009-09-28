@@ -1,5 +1,5 @@
 //
-//  CFeedEntry.h
+//  CFeed.h
 //  <#ProjectName#>
 //
 //  Created by Jonathan Wight on 09/20/09
@@ -8,30 +8,33 @@
 
 #import <CoreData/CoreData.h>
 
+@class CObjectTranscoder;
+
 #pragma mark begin emogenerator forward declarations
-@class CFeed;
+@class CFeedEntry;
 #pragma mark end emogenerator forward declarations
 
-/** Entry */
-@interface CFeedEntry : NSManagedObject {
+/** Feed */
+@interface CFeed : NSManagedObject {
 }
+
++ (CObjectTranscoder *)objectTranscoder;
 
 #pragma mark begin emogenerator accessors
 
 + (NSString *)entityName;
 
 // Attributes
-@property (readwrite, retain) NSDate *updated;
-@property (readwrite, retain) NSString *content;
+@property (readwrite, retain) NSDate *lastChecked;
 @property (readwrite, retain) NSString *subtitle;
 @property (readwrite, retain) NSString *title;
-@property (readwrite, retain) NSString *link;
 @property (readwrite, retain) NSString *identifier;
+@property (readwrite, retain) NSString *link;
+@property (readwrite, retain) NSString *URL;
 
 // Relationships
-@property (readwrite, retain) CFeed *feed;
-- (CFeed *)feed;
-- (void)setFeed:(CFeed *)inFeed;
+@property (readonly, retain) NSMutableSet *entries;
+- (NSMutableSet *)entries;
 
 #pragma mark end emogenerator accessors
 
