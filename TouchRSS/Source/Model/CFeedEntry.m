@@ -18,7 +18,7 @@
 
 + (NSArray *)persistentPropertyNames
 {
-return([[super persistentPropertyNames] arrayByAddingObjectsFromArray:[NSArray arrayWithObjects:@"feed", @"identifier", @"title", @"subtitle", @"content", @"link", @"updated", NULL]]);
+return([NSArray arrayWithObjects:@"feed", @"identifier", @"title", @"subtitle", @"content", @"link", @"updated", NULL]);
 }
 
 + (CObjectTranscoder *)objectTranscoder
