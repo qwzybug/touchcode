@@ -206,33 +206,6 @@ else if ([inObject isKindOfClass:[NSURL class]] && inTargetClass == [NSString cl
 	{
 	return([inObject description]);
 	}
-else if ([inObject isKindOfClass:[NSString class]] && inTargetClass == [NSDate class])
-	{
-	return([NSDate dateWithSqlDateString:inObject]);
-	}
-else if ([inObject isKindOfClass:[NSDate class]] && inTargetClass == [NSString class])
-	{
-	return([inObject sqlDateString]);
-	}
-else if ([inObject isKindOfClass:[NSData class]] && inTargetClass == [NSDictionary class])
-	{
-	return([NSDictionary dictionaryWithPropertyListData:inObject]);
-	}
-else if ([inObject isKindOfClass:[NSDictionary class]] && inTargetClass == [NSData class])
-	{
-	return([inObject propertyListData]);
-	}
-else if ([inObject isKindOfClass:[NSString class]] && inTargetClass == [NSDictionary class])
-	{
-	NSData *theData = [inObject dataUsingEncoding:NSUTF8StringEncoding];
-	return([NSDictionary dictionaryWithPropertyListData:theData]);
-	}
-else if ([inObject isKindOfClass:[NSDictionary class]] && inTargetClass == [NSString class])
-	{
-	NSData *theData = [inObject propertyListData];
-	NSString *theString = [[[NSString alloc] initWithData:theData encoding:NSUTF8StringEncoding] autorelease];
-	return(theString);
-	}
 else if ([inObject isKindOfClass:[NSDictionary class]] && inTargetClass == [NSDictionary class])
 	{
 	return(inObject);
