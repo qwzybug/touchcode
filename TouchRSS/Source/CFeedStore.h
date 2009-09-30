@@ -1,8 +1,8 @@
 //
-//  CTidy.h
+//  CFeedStore.h
 //  TouchCode
 //
-//  Created by Jonathan Wight on 9/15/08.
+//  Created by Jonathan Wight on 9/8/08.
 //  Copyright 2008 toxicsoftware.com. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person
@@ -27,19 +27,17 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
+#import "CCoreDataManager.h"
 
-#include "tidy.h"
-#include "buffio.h"
+@class CFeedFetcher;
+@class CFeed;
 
-@interface CTidy : NSObject {
-	TidyDoc tidyDocument;
-	TidyBuffer errorBuffer;
+@interface CFeedStore : CCoreDataManager {
+	CFeedFetcher *feedFetcher;
 }
 
-- (BOOL)prepare:(NSError **)outError;
-- (BOOL)finalize:(NSError **)outError;
+@property (readonly, nonatomic, retain) CFeedFetcher *feedFetcher;
 
-- (NSData *)convertXMLToXML:(NSData *)inXML error:(NSError **)outError;
++ (CFeedStore *)instance;
 
 @end

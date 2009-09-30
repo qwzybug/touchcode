@@ -240,7 +240,7 @@ while (theCurrentNode != NULL && self.error == NULL)
 				xmlChar *theContentBytes = xmlNodeGetContent(theCurrentNode);
 				NSString *theContent = [NSString stringWithUTF8String:(const char *)theContentBytes];
 				theContent = [theContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-				NSDate *theDate = [NSDate dateWithRFC1822String:theContent];
+				NSDate *theDate = [NSDate dateWithRFC2822String:theContent];
 				if (theDate)
 				[inItem setObject:theDate forKey:@"updated"];
 				xmlFree(theContentBytes);
@@ -263,7 +263,7 @@ while (theCurrentNode != NULL && self.error == NULL)
 					xmlChar *theContentBytes = xmlNodeGetContent(theCurrentNode);
 					NSString *theContent = [NSString stringWithUTF8String:(const char *)theContentBytes];
 					theContent = [theContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-					NSDate *theDate = [NSDate dateWithRFC1822String:theContent];
+					NSDate *theDate = [NSDate dateWithRFC2822String:theContent];
 					if (theDate)
 						[inItem setObject:theDate forKey:@"updated"];
 					xmlFree(theContentBytes);

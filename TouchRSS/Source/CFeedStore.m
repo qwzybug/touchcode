@@ -1,5 +1,5 @@
 //
-//  CFeed.h
+//  CFeedStore.m
 //  TouchCode
 //
 //  Created by Jonathan Wight on 9/8/08.
@@ -27,41 +27,49 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import "CPersistentObject.h"
+#import "CFeedStore.h"
 
-@class CFeedStore;
-@class CFeedEntry;
-@class CObjectTranscoder;
-@class CRandomAccessTemporaryTable;
+#import "CFeedFetcher.h"
 
-@interface CFeed : CPersistentObject {
-	CFeedStore *feedStore;
-	BOOL updating;
-	CRandomAccessTemporaryTable *randomAccessTemporaryTable;
-	NSDate *lastChecked;
-	NSURL *url;
+static CFeedStore *gInstance = NULL;
 
-	NSString *identifier;
-	NSString *title;
-	NSURL *link;
-	NSString *subtitle;
+@interface CFeedStore ()
+@property (readwrite, nonatomic, retain) CFeedFetcher *feedFetcher;
+@end
+
+@implementation CFeedStore
+
+@synthesize feedFetcher;
+
++ (Class)feedFetcherClass
+{
+return([CFeedFetcher class]);
 }
 
-@property (readwrite, nonatomic, assign) CFeedStore *feedStore;
-@property (readwrite, nonatomic, assign) BOOL updating;
-@property (readwrite, nonatomic, retain) NSDate *lastChecked;
-@property (readwrite, nonatomic, retain) NSURL *url;
++ (CFeedStore *)instance
+{
+if (gInstance == NULL)
+	{
+	gInstance = [[self alloc] init];
+	}
+return(gInstance);
+}
 
-@property (readwrite, nonatomic, retain) NSString *identifier;
-@property (readwrite, nonatomic, retain) NSString *title;
-@property (readwrite, nonatomic, retain) NSString *subtitle;
-@property (readwrite, nonatomic, retain) NSURL *link;
+- (id)init
+{
+if ((self = [super initWithName:@"TouchRSS" forceReplace:NO storeType:NSSQLiteStoreType storeOptions:NULL]) != NULL)
+	{
+	self.feedFetcher = [[[[[self class] feedFetcherClass] alloc] initWithFeedStore:self] autorelease];
+	}
+return(self);
+}
 
-- (NSInteger)countOfEntries;
+- (void)dealloc
+{
+self.feedFetcher = NULL;
+//
+[super dealloc];
+}
 
-- (void)addEntry:(CFeedEntry *)inEntry;
-
-- (CFeedEntry *)entryAtIndex:(NSInteger)inIndex;
-- (CFeedEntry *)entryForIdentifier:(NSString *)inIdentifier;
 
 @end

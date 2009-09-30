@@ -30,8 +30,6 @@
 #import "CFeedFetcher.h"
 
 #import "CFeedStore.h"
-#import "CPersistentObjectManager.h"
-#import "CSqliteDatabase.h"
 #import "CManagedURLConnection.h"
 #import "CRSSFeedDeserializer.h"
 #import "CFeed.h"
@@ -39,6 +37,7 @@
 #import "CObjectTranscoder.h"
 #import "CURLConnectionManager.h"
 #import "CURLConnectionManagerChannel.h"
+#import "NSManagedObjectContext_Extensions.h"
 
 @interface CFeedFetcher ()
 @property (readwrite, nonatomic, assign) CFeedStore *feedStore;
@@ -87,38 +86,16 @@ return([[[CRSSFeedDeserializer alloc] initWithData:inData] autorelease]);
 
 - (CFeed *)subscribeToURL:(NSURL *)inURL error:(NSError **)outError
 {
-CFeed *theFeed = [self.feedStore feedforURL:inURL];
-if (theFeed)
-	return(NULL);
-
-NSError *theError = NULL;
-NSString *theExpression = [NSString stringWithFormat:@"INSERT INTO feed (url) VALUES('%@')", [inURL absoluteString]];
-BOOL theResult = [self.feedStore.persistentObjectManager.database executeExpression:theExpression error:&theError];
-if (theResult == NO)
+NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"URL == %@", inURL.absoluteString];
+NSError *theError = NULL;;
+BOOL theWasCreatedFlag = NO;
+CFeed *theFeed = [self.feedStore.managedObjectContext fetchObjectOfEntityForName:[CFeed entityName] predicate:thePredicate createIfNotFound:YES wasCreated:&theWasCreatedFlag error:&theError];
+if (theWasCreatedFlag == YES)
 	{
-	if (outError)
-		{
-		NSDictionary *theUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-			[NSString stringWithFormat:@"SQL expression '%@' failed", theExpression], NSLocalizedDescriptionKey,
-			*outError, NSUnderlyingErrorKey,
-			NULL];
-		*outError = [NSError errorWithDomain:@"TODO_DOMAIN" code:-1 userInfo:theUserInfo];
-		}
-	return(NULL);
+	theFeed.URL = inURL.absoluteString;
 	}
 
-theFeed = [self.feedStore feedforURL:inURL];
-if (theFeed == NULL)
-	{
-	if (outError)
-		{
-		NSDictionary *theUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-			@"feedforURL failed", NSLocalizedDescriptionKey,
-			NULL];
-		*outError = [NSError errorWithDomain:@"TODO_DOMAIN" code:-2 userInfo:theUserInfo];
-		}
-	return(NULL);
-	}
+[self updateFeed:theFeed];
 
 return(theFeed);
 }
@@ -140,7 +117,7 @@ if (theLastChecked != NULL)
 		return(NO);
 	}
 
-NSURL *theURL = inFeed.url;
+NSURL *theURL = [NSURL URLWithString:inFeed.URL];
 
 if ([self.currentURLs containsObject:theURL] == YES)
 	{
@@ -170,9 +147,8 @@ return(YES);
 
 - (void)completionTicket:(CCompletionTicket *)inCompletionTicket didCompleteForTarget:(id)inTarget result:(id)inResult
 {
+NSError *theError = NULL;
 CFeed *theFeed = NULL;
-
-[self.feedStore.persistentObjectManager.database begin];
 
 CManagedURLConnection *theConnection = (CManagedURLConnection *)inTarget;
 [self.currentURLs removeObject:theConnection.request.URL];
@@ -193,16 +169,8 @@ for (id theDictionary in theDeserializer)
 			NSLog(@"FEED");
 
 			NSURL *theFeedURL = theConnection.request.URL;
-			theFeed = [self.feedStore feedforURL:theFeedURL];
-			// TODO - in theory this will never be null.
-			if (theFeed == NULL)
-				{
-				NSError *theError = NULL;
-				theFeed = [self.feedStore.persistentObjectManager makePersistentObjectOfClass:[[self class] feedClass] error:&theError];
-				theFeed.feedStore = self.feedStore;
-				}
-
-			NSError *theError = NULL;
+			NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"URL == %@", theFeedURL.absoluteString];
+			theFeed = [self.feedStore.managedObjectContext fetchObjectOfEntityForName:[CFeed entityName] predicate:thePredicate createIfNotFound:YES wasCreated:NULL error:&theError];
 
 			CObjectTranscoder *theTranscoder = [[theFeed class] objectTranscoder];
 
@@ -218,25 +186,14 @@ for (id theDictionary in theDeserializer)
 				}
 
 			theFeed.lastChecked = [NSDate date];
-			if ([theFeed write:&theError] == NO)
-				[NSException raise:NSGenericException format:@"Write failed: %@", theError];
 			}
 			break;
 		case FeedDictinaryType_Entry:
 			{
 			NSLog(@"ENTRY");
-//			NSLog(@"%@", theDictionary);
-			CFeedEntry *theEntry = [theFeed entryForIdentifier:[theDictionary objectForKey:@"identifier"]];
-			if (theEntry == NULL)
-				{
-				NSError *theError = NULL;
-				theEntry = [self.feedStore.persistentObjectManager makePersistentObjectOfClass:[[self.feedStore class] feedEntryClass] error:&theError];
-				if (theEntry == NULL && theError != NULL)
-					{
-					[NSException raise:NSGenericException format:@"makePersistentObjectOfClass failed.: %@", theError];
-					}
-				theEntry.feed = theFeed;
-				}
+			NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"identifier == %@", [theDictionary objectForKey:@"identifier"]];
+
+			CFeedEntry *theEntry = [self.feedStore.managedObjectContext fetchObjectOfEntityForName:[CFeedEntry entityName] predicate:thePredicate createIfNotFound:YES wasCreated:NULL error:&theError];
 
 			NSError *theError = NULL;
 			CObjectTranscoder *theTranscoder = [[theEntry class] objectTranscoder];
@@ -251,10 +208,7 @@ for (id theDictionary in theDeserializer)
 				[NSException raise:NSGenericException format:@"Update Object failed: %@", theError];
 				}
 
-			[theFeed addEntry:theEntry];
-
-			if ([theEntry write:&theError] == NO)
-				[NSException raise:NSGenericException format:@"FeedStore: Entry Write Failed: %@", theError];
+			theEntry.feed = theFeed;
 			}
 			break;
 		}
@@ -264,8 +218,6 @@ if (theDeserializer.error != NULL)
 	{
 	NSLog(@"CFeedStore got an error: %@", theDeserializer.error);
 
-	[self.feedStore.persistentObjectManager.database rollback];
-
 	if (self.delegate && [self.delegate respondsToSelector:@selector(feedFetcher:didFail:)])
 		[self.delegate feedFetcher:self didFailFetchingFeed:theFeed withError:theDeserializer.error];
 
@@ -274,8 +226,6 @@ if (theDeserializer.error != NULL)
 	}
 else
 	{
-	[self.feedStore.persistentObjectManager.database commit];
-
 	if (self.delegate && [self.delegate respondsToSelector:@selector(feedFetcher:didFetchFeed:)])
 		[self.delegate feedFetcher:self didFetchFeed:theFeed];
 
