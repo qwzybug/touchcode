@@ -56,6 +56,8 @@ typedef enum {
     ProgressOverlayViewSize size;                   // full screen/view or rounded rectangle HUD
     ProgressOverlayViewFadeMode fadeMode;           // fade in, out, both, or none
     
+	NSTimeInterval showDelayTime;
+	NSTimeInterval hideDelayTime;
 	NSTimeInterval minimumDisplayTime;              // show for at least this long
 	NSDate *displayTime;
 	

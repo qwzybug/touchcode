@@ -87,11 +87,14 @@ return(gInstance);
 if ((self = [super initWithFrame:CGRectZero]) != NULL)
 	{
     self.backgroundColor = [UIColor clearColor];
-    self.minimumDisplayTime = 1.0;
 
+	self.labelText = NULL;
 	self.progressMode = ProgressOverlayViewProgressModeIndeterminate;
     self.size = ProgressOverlayViewSizeFull;
     self.fadeMode = ProgressOverlayViewFadeModeNone;
+//	self.showDelayTime = 1.0;
+//	self.hideDelayTime = 0.1;
+    self.minimumDisplayTime = 1.0;
 	}
 return(self);
 }
@@ -114,6 +117,42 @@ self.guardColor = NULL;
 //
 [super dealloc];
 }
+
+#pragma mark -
+
+- (NSString *)labelText
+{
+return(labelText); 
+}
+
+- (void)setLabelText:(NSString *)inLabelText
+{
+if (labelText != inLabelText)
+	{
+	[labelText release];
+	labelText = [inLabelText retain];
+
+	if (self.label)
+		self.label.text = labelText;
+    }
+}
+
+- (float)progress
+{
+return(self.progressView.progress);
+}
+
+- (void)setProgress:(float)inProgress
+{
+self.progressView.progress = inProgress;
+}
+
+- (BOOL)showing
+{
+return(self.superview != NULL);
+}
+
+#pragma mark -
 
 - (void)layoutSubviews
 {
@@ -208,40 +247,6 @@ CGContextStrokeRect(UIGraphicsGetCurrentContext(), self.bounds);
 
 #pragma mark -
 
-- (NSString *)labelText
-{
-return(labelText); 
-}
-
-- (void)setLabelText:(NSString *)inLabelText
-{
-if (labelText != inLabelText)
-	{
-	[labelText release];
-	labelText = [inLabelText retain];
-
-	if (self.label)
-		self.label.text = labelText;
-    }
-}
-
-- (float)progress
-{
-return(self.progressView.progress);
-}
-
-- (void)setProgress:(float)inProgress
-{
-self.progressView.progress = inProgress;
-}
-
-- (BOOL)showing
-{
-return(self.superview != NULL);
-}
-
-#pragma mark -
-
 - (void)update
 {
 [self.contentView removeFromSuperview];
@@ -326,11 +331,7 @@ self.displayTime = [NSDate date];
 if (self.fadeMode == ProgressOverlayViewFadeModeIn || self.fadeMode == ProgressOverlayViewFadeModeInOut)
     {
     self.alpha = 0.0;
-    self.fadeTimer = [[NSTimer scheduledTimerWithTimeInterval:PROGRESS_OVERLAY_VIEW_FADE_TIME 
-                                                       target:self
-                                                     selector:@selector(fadeIn:) 
-                                                     userInfo:nil 
-                                                      repeats:YES] retain];
+    self.fadeTimer = [[NSTimer scheduledTimerWithTimeInterval:PROGRESS_OVERLAY_VIEW_FADE_TIME target:self selector:@selector(fadeIn:) userInfo:nil repeats:YES] retain];
     }
 else
     self.alpha = 1.0;
@@ -396,23 +397,23 @@ guardView.backgroundColor = (self.guardColor ? self.guardColor : [UIColor clearC
 [guardView release];
 }
 
-- (void)fadeIn:(NSTimer *)theTimer
+- (void)fadeIn:(NSTimer *)inTimer
 {
 if (self.alpha >= 1.0)
     {
-    [theTimer invalidate];
-    theTimer = NULL;
+    [inTimer invalidate];
+    inTimer = NULL;
     }
 else
     self.alpha += 0.1;
 }
 
-- (void)fadeOut:(NSTimer *)theTimer
+- (void)fadeOut:(NSTimer *)inTimer
 {
 if (self.alpha <= 0.1)
     {
-    [theTimer invalidate];
-    theTimer = NULL;
+    [inTimer invalidate];
+    inTimer = NULL;
     [guardView removeFromSuperview];
     [self removeFromSuperview];
     }
