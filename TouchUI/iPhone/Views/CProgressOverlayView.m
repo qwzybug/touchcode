@@ -40,11 +40,9 @@
 @property (readwrite, nonatomic, retain) UILabel *label;
 
 @property (readwrite, nonatomic, assign) NSTimer *displayTimer;
-@property (readwrite, nonatomic, assign) NSTimer *fadeTimer;
+@property (readwrite, nonatomic, assign) NSTimer *hideTimer;
 
 - (void)positionHUDInView:(UIView *)theView;
-- (void)fadeIn:(NSTimer *)theTimer;
-- (void)fadeOut:(NSTimer *)theTimer;
 
 @end
 
@@ -57,7 +55,6 @@ static CProgressOverlayView *gInstance = NULL;
 @synthesize labelText;
 @synthesize progressMode;
 @synthesize size;
-@synthesize fadeMode;
 @synthesize guardColor;
 @synthesize minimumDisplayTime;
 @synthesize displayTime;
@@ -67,7 +64,7 @@ static CProgressOverlayView *gInstance = NULL;
 @synthesize activityIndicatorView;
 @synthesize label;
 @synthesize displayTimer;
-@synthesize fadeTimer;
+@synthesize hideTimer;
 @dynamic showing;
 
 + (CProgressOverlayView *)instance
@@ -91,7 +88,7 @@ if ((self = [super initWithFrame:CGRectZero]) != NULL)
 	self.labelText = NULL;
 	self.progressMode = ProgressOverlayViewProgressModeIndeterminate;
     self.size = ProgressOverlayViewSizeFull;
-    self.fadeMode = ProgressOverlayViewFadeModeNone;
+//    self.fadeMode = ProgressOverlayViewFadeModeNone;
 //	self.showDelayTime = 1.0;
 //	self.hideDelayTime = 0.1;
     self.minimumDisplayTime = 1.0;
@@ -103,9 +100,6 @@ return(self);
 {
 [self.displayTimer invalidate];
 self.displayTimer = NULL;
-
-[self.fadeTimer invalidate];
-self.fadeTimer = NULL;
 
 self.displayTime = NULL;
 self.labelText = NULL;
@@ -254,9 +248,6 @@ CGContextStrokeRect(UIGraphicsGetCurrentContext(), self.bounds);
 [self.displayTimer invalidate];
 self.displayTimer = NULL;
 
-[self.fadeTimer invalidate];
-self.fadeTimer = NULL;
-    
 self.displayTime = NULL;
 self.contentView = NULL;
 self.progressView = NULL;
@@ -268,6 +259,12 @@ self.label = NULL;
 
 - (void)showInView:(UIView *)inView withDelay:(NSTimeInterval)inTimeInterval labelText:(NSString *)inLabelText
 {
+if ([NSThread isMainThread] == NO)
+	{
+	[[self grabInvocationAndPerformOnMainThreadWaitUntilDone:YES] showInView:inView withDelay:inTimeInterval labelText:inLabelText];
+	return;
+	}
+
 if (self.showing && [inLabelText isEqualToString:self.labelText])
 	return;
 
@@ -277,7 +274,11 @@ self.labelText = inLabelText;
 
 - (void)showInView:(UIView *)inView withDelay:(NSTimeInterval)inTimeInterval;
 {
-NSAssert([NSThread isMainThread] == YES, @"Do not use CProgressOverlayView from background thread");
+if ([NSThread isMainThread] == NO)
+	{
+	[[self grabInvocationAndPerformOnMainThreadWaitUntilDone:YES] showInView:inView withDelay:inTimeInterval];
+	return;
+	}
 
 NSInvocation *theInvocation = NULL;
 [[self grabInvocation:&theInvocation] showInView:inView];
@@ -288,7 +289,11 @@ self.displayTimer = [NSTimer scheduledTimerWithTimeInterval:inTimeInterval invoc
 
 - (void)showInView:(UIView *)inView
 {
-NSAssert([NSThread isMainThread] == YES, @"Do not use CProgressOverlayView from background thread");
+if ([NSThread isMainThread] == NO)
+	{
+	[[self grabInvocationAndPerformOnMainThreadWaitUntilDone:YES] showInView:inView];
+	return;
+	}
 
 if (self.displayTimer)
 	{
@@ -327,60 +332,46 @@ else
 [theView addSubview:self];
 
 self.displayTime = [NSDate date];
-
-if (self.fadeMode == ProgressOverlayViewFadeModeIn || self.fadeMode == ProgressOverlayViewFadeModeInOut)
-    {
-    self.alpha = 0.0;
-    self.fadeTimer = [[NSTimer scheduledTimerWithTimeInterval:PROGRESS_OVERLAY_VIEW_FADE_TIME target:self selector:@selector(fadeIn:) userInfo:nil repeats:YES] retain];
-    }
-else
-    self.alpha = 1.0;
 }
 
 - (void)hide
 {
-NSAssert([NSThread isMainThread] == YES, @"Do not use CProgressOverlayView from background thread");
-
-if (self.displayTimer)
+if ([NSThread isMainThread] == NO)
 	{
-	[self.displayTimer invalidate];
-	self.displayTimer = NULL;
+	[[self grabInvocationAndPerformOnMainThreadWaitUntilDone:YES] hide];
+	return;
 	}
 
-if (self.fadeTimer)
-    {
-    [self.fadeTimer invalidate];
-    self.fadeTimer = NULL;
-    }
-    
 if (self.superview != NULL)
 	{
-	NSTimeInterval theDelta = -[self.displayTime timeIntervalSinceNow];
-	if (theDelta < self.minimumDisplayTime)
+	if (self.displayTimer)
 		{
-		[self retain];
-		do
-			{
-			[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.05]];
-			}
-		while ((-[self.displayTime timeIntervalSinceNow]) < self.minimumDisplayTime)
-			;
-		[self autorelease];
+		[self.displayTimer invalidate];
+		self.displayTimer = NULL;
 		}
-    if (self.fadeMode == ProgressOverlayViewFadeModeOut || self.fadeMode == ProgressOverlayViewFadeModeInOut)
-        {
-        self.fadeTimer = [[NSTimer scheduledTimerWithTimeInterval:PROGRESS_OVERLAY_VIEW_FADE_TIME
-                                                           target:self
-                                                         selector:@selector(fadeOut:) 
-                                                         userInfo:nil 
-                                                          repeats:YES] retain];
-        }
-    else
-        {
-        [guardView removeFromSuperview];
-        [self removeFromSuperview];
-        }
+
+	NSDate *theHideTime = [self.displayTime addTimeInterval:self.minimumDisplayTime];
+	NSTimeInterval theHideInterval = [theHideTime timeIntervalSinceDate:[NSDate date]];
+	if (theHideInterval > 0.0)
+		{
+		NSLog(@"%g", theHideInterval);
+		
+		NSInvocation *theInvocation = NULL;
+		[[self grabInvocation:&theInvocation] hide];
+		[theInvocation retainArguments];
+		[self.hideTimer invalidate];
+		self.hideTimer = [NSTimer scheduledTimerWithTimeInterval:theHideInterval invocation:theInvocation repeats:NO];
+		
+		return;
+		}
+
+	if (self.superview != NULL)
+		{
+		[guardView removeFromSuperview];
+		[self removeFromSuperview];
+		}
 	}
+
 }
 
 #pragma mark -
@@ -395,30 +386,6 @@ guardView = [[UIView alloc] initWithFrame:theView.frame];
 guardView.backgroundColor = (self.guardColor ? self.guardColor : [UIColor clearColor]);
 [theView addSubview:guardView];
 [guardView release];
-}
-
-- (void)fadeIn:(NSTimer *)inTimer
-{
-if (self.alpha >= 1.0)
-    {
-    [inTimer invalidate];
-    inTimer = NULL;
-    }
-else
-    self.alpha += 0.1;
-}
-
-- (void)fadeOut:(NSTimer *)inTimer
-{
-if (self.alpha <= 0.1)
-    {
-    [inTimer invalidate];
-    inTimer = NULL;
-    [guardView removeFromSuperview];
-    [self removeFromSuperview];
-    }
-else
-    self.alpha -= 0.1;
 }
 
 @end
