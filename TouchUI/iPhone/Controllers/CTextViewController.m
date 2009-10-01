@@ -23,7 +23,7 @@
 {
 if ((self = [self initWithNibName:NSStringFromClass([self class]) bundle:NULL]) != NULL)
 	{
-	self.title = LOC_(@"MEMO_TITLE", @"Memo");
+	self.title = @"Memo";
 	self.initialText = inText;
 	}
 return(self);

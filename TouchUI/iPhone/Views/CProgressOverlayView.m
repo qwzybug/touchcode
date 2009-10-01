@@ -31,6 +31,7 @@
 
 #import "Geometry.h"
 #import "NSObject_InvocationGrabberExtensions.h"
+#import "UIViewDebugging.h"
 
 @interface CProgressOverlayView ()
 
@@ -42,6 +43,7 @@
 @property (readwrite, nonatomic, assign) NSTimer *displayTimer;
 @property (readwrite, nonatomic, assign) NSTimer *hideTimer;
 
+- (void)layoutInView:(UIView *)inView;
 - (void)positionHUDInView:(UIView *)theView;
 
 @end
@@ -56,6 +58,7 @@ static CProgressOverlayView *gInstance = NULL;
 @synthesize progressMode;
 @synthesize size;
 @synthesize guardColor;
+@synthesize displayDelayTime;
 @synthesize minimumDisplayTime;
 @synthesize displayTime;
 @dynamic progress;
@@ -148,8 +151,61 @@ return(self.superview != NULL);
 
 #pragma mark -
 
-- (void)layoutSubviews
+- (void)drawRect:(CGRect)inRect
 {
+if (self.size == ProgressOverlayViewSizeHUD)
+    {
+    UIColor *color = PROGRESS_OVERLAY_VIEW_BACKGROUND_COLOR;
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, color.CGColor);
+
+    CGRect rect = self.bounds;
+
+    CGFloat radius = 15.0;
+    
+    CGFloat minx = CGRectGetMinX(rect);
+    CGFloat midx = CGRectGetMidX(rect);
+    CGFloat maxx = CGRectGetMaxX(rect);
+    CGFloat miny = CGRectGetMinY(rect);
+    CGFloat midy = CGRectGetMidY(rect);
+    CGFloat maxy = CGRectGetMaxY(rect);
+    
+    CGContextMoveToPoint(context, minx, midy);
+    
+    CGContextAddArcToPoint(context, minx, miny, midx, miny, radius);
+    CGContextAddArcToPoint(context, maxx, miny, maxx, midy, radius);
+    CGContextAddArcToPoint(context, maxx, maxy, midx, maxy, radius);
+    CGContextAddArcToPoint(context, minx, maxy, minx, midy, radius);
+    
+    CGContextClosePath(context);
+    
+    CGContextDrawPath(context, kCGPathFillStroke);
+    }
+#if 0
+// FOR DEBUGGING ONLY (and for people who like red outlines)
+
+CGContextSetStrokeColorWithColor(UIGraphicsGetCurrentContext(), [UIColor redColor].CGColor);
+CGContextStrokeRect(UIGraphicsGetCurrentContext(), self.bounds);
+#endif
+}
+
+#pragma mark -
+
+- (void)layoutInView:(UIView *)inView
+{
+if (self.size == ProgressOverlayViewSizeHUD)
+	[self positionHUDInView:inView];
+else
+	self.frame = inView.bounds;
+
+if (self.progressMode == ProgressOverlayViewProgressModeDeterminate)
+    self.size = ProgressOverlayViewSizeFull;
+
+if (self.size == ProgressOverlayViewSizeFull)
+    self.backgroundColor = PROGRESS_OVERLAY_VIEW_BACKGROUND_COLOR;
+
 if (self.contentView == NULL)
 	{
 	self.contentView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
@@ -199,48 +255,6 @@ else if (self.progressMode == ProgressOverlayViewProgressModeIndeterminate)
 	}
 }
 
-- (void)drawRect:(CGRect)inRect
-{
-if (self.size == ProgressOverlayViewSizeHUD)
-    {
-    UIColor *color = PROGRESS_OVERLAY_VIEW_BACKGROUND_COLOR;
-    
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    CGContextSetFillColorWithColor(context, color.CGColor);
-
-    CGRect rect = self.bounds;
-
-    CGFloat radius = 15.0;
-    
-    CGFloat minx = CGRectGetMinX(rect);
-    CGFloat midx = CGRectGetMidX(rect);
-    CGFloat maxx = CGRectGetMaxX(rect);
-    CGFloat miny = CGRectGetMinY(rect);
-    CGFloat midy = CGRectGetMidY(rect);
-    CGFloat maxy = CGRectGetMaxY(rect);
-    
-    CGContextMoveToPoint(context, minx, midy);
-    
-    CGContextAddArcToPoint(context, minx, miny, midx, miny, radius);
-    CGContextAddArcToPoint(context, maxx, miny, maxx, midy, radius);
-    CGContextAddArcToPoint(context, maxx, maxy, midx, maxy, radius);
-    CGContextAddArcToPoint(context, minx, maxy, minx, midy, radius);
-    
-    CGContextClosePath(context);
-    
-    CGContextDrawPath(context, kCGPathFillStroke);
-    }
-#if 0
-// FOR DEBUGGING ONLY (and for people who like red outlines)
-
-CGContextSetStrokeColorWithColor(UIGraphicsGetCurrentContext(), [UIColor redColor].CGColor);
-CGContextStrokeRect(UIGraphicsGetCurrentContext(), self.bounds);
-#endif
-}
-
-#pragma mark -
-
 - (void)update
 {
 [self.contentView removeFromSuperview];
@@ -254,7 +268,7 @@ self.progressView = NULL;
 self.activityIndicatorView = NULL;
 self.label = NULL;
 
-[self layoutSubviews];
+[self layoutInView:NULL];
 }
 
 - (void)showInView:(UIView *)inView withDelay:(NSTimeInterval)inTimeInterval labelText:(NSString *)inLabelText
@@ -268,8 +282,9 @@ if ([NSThread isMainThread] == NO)
 if (self.showing && [inLabelText isEqualToString:self.labelText])
 	return;
 
+self.displayDelayTime = inTimeInterval;
 self.labelText = inLabelText;
-[self showInView:inView withDelay:inTimeInterval];
+[self showInView:inView withDelay:self.displayDelayTime];
 }
 
 - (void)showInView:(UIView *)inView withDelay:(NSTimeInterval)inTimeInterval;
@@ -284,7 +299,8 @@ NSInvocation *theInvocation = NULL;
 [[self grabInvocation:&theInvocation] showInView:inView];
 [theInvocation retainArguments];
 
-self.displayTimer = [NSTimer scheduledTimerWithTimeInterval:inTimeInterval invocation:theInvocation repeats:NO];
+self.displayDelayTime = inTimeInterval;
+self.displayTimer = [NSTimer scheduledTimerWithTimeInterval:self.displayDelayTime invocation:theInvocation repeats:NO];
 }
 
 - (void)showInView:(UIView *)inView
@@ -301,33 +317,18 @@ if (self.displayTimer)
 	self.displayTimer = NULL;
 	}
 
-if (self.progressMode == ProgressOverlayViewProgressModeDeterminate)
-    self.size = ProgressOverlayViewSizeFull;
-
-if (self.size == ProgressOverlayViewSizeFull)
-    self.backgroundColor = PROGRESS_OVERLAY_VIEW_BACKGROUND_COLOR;
-
 UIView *theView = NULL;
 
 if (inView)
 	{
 	theView = inView;
-        
-    if (self.size == ProgressOverlayViewSizeHUD)
-        [self positionHUDInView:theView];
-    else
-        self.frame = [inView convertRect:inView.bounds toView:theView];
 	}
 else
 	{
 	theView = [UIApplication sharedApplication].keyWindow;
-        
-    if (self.size == ProgressOverlayViewSizeHUD)
-        [self positionHUDInView:theView];
-    else
-        self.frame = [UIScreen mainScreen].applicationFrame;
     }
-[self setNeedsLayout];
+	
+[self layoutInView:theView];
 
 [theView addSubview:self];
 
@@ -371,7 +372,6 @@ if (self.superview != NULL)
 		[self removeFromSuperview];
 		}
 	}
-
 }
 
 #pragma mark -

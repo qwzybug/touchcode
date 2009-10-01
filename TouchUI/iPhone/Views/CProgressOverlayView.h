@@ -56,6 +56,7 @@ typedef enum {
     ProgressOverlayViewSize size;                   // full screen/view or rounded rectangle HUD
 //    ProgressOverlayViewFadeMode fadeMode;           // fade in, out, both, or none
     
+	NSTimeInterval displayDelayTime;				// maxmum delay before showing view
 	NSTimeInterval minimumDisplayTime;              // show for at least this long
 	NSDate *displayTime;
 	
@@ -76,6 +77,7 @@ typedef enum {
 @property (readwrite, assign) ProgressOverlayViewSize size;
 //@property (readwrite, assign) ProgressOverlayViewFadeMode fadeMode;
 @property (readwrite, retain) UIColor *guardColor;
+@property (readwrite, assign) NSTimeInterval displayDelayTime;
 @property (readwrite, assign) NSTimeInterval minimumDisplayTime;
 @property (readwrite, retain) NSDate *displayTime;
 @property (readwrite, assign) float progress;
@@ -85,8 +87,8 @@ typedef enum {
 
 - (void)update;
 
-- (void)showInView:(UIView *)inView withDelay:(NSTimeInterval)inTimeInterval labelText:(NSString *)inLabelText;
-- (void)showInView:(UIView *)inView withDelay:(NSTimeInterval)inTimeInterval; // activation after a delay (recommended to turn off fading)
+//- (void)showInView:(UIView *)inView withDelay:(NSTimeInterval)inTimeInterval labelText:(NSString *)inLabelText;
+//- (void)showInView:(UIView *)inView withDelay:(NSTimeInterval)inTimeInterval; // activation after a delay (recommended to turn off fading)
 - (void)showInView:(UIView *)inView;                                          // activation
 - (void)hide;                                                                 // deactivation
 
