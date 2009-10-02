@@ -101,8 +101,17 @@ return(self);
 
 - (void)dealloc
 {
-[self.displayTimer invalidate];
-self.displayTimer = NULL;
+if (displayTimer)
+	{
+	[displayTimer invalidate];
+	displayTimer = NULL;
+	}
+if (hideTimer)
+	{
+	[hideTimer invalidate];
+	hideTimer = NULL;
+	}
+
 
 self.displayTime = NULL;
 self.labelText = NULL;
@@ -259,8 +268,16 @@ else if (self.progressMode == ProgressOverlayViewProgressModeIndeterminate)
 {
 [self.contentView removeFromSuperview];
 
-[self.displayTimer invalidate];
-self.displayTimer = NULL;
+if (displayTimer)
+	{
+	[displayTimer invalidate];
+	displayTimer = NULL;
+	}
+if (hideTimer)
+	{
+	[hideTimer invalidate];
+	hideTimer = NULL;
+	}
 
 self.displayTime = NULL;
 self.contentView = NULL;
@@ -271,37 +288,37 @@ self.label = NULL;
 [self layoutInView:NULL];
 }
 
-- (void)showInView:(UIView *)inView withDelay:(NSTimeInterval)inTimeInterval labelText:(NSString *)inLabelText
-{
-if ([NSThread isMainThread] == NO)
-	{
-	[[self grabInvocationAndPerformOnMainThreadWaitUntilDone:YES] showInView:inView withDelay:inTimeInterval labelText:inLabelText];
-	return;
-	}
-
-if (self.showing && [inLabelText isEqualToString:self.labelText])
-	return;
-
-self.displayDelayTime = inTimeInterval;
-self.labelText = inLabelText;
-[self showInView:inView withDelay:self.displayDelayTime];
-}
-
-- (void)showInView:(UIView *)inView withDelay:(NSTimeInterval)inTimeInterval;
-{
-if ([NSThread isMainThread] == NO)
-	{
-	[[self grabInvocationAndPerformOnMainThreadWaitUntilDone:YES] showInView:inView withDelay:inTimeInterval];
-	return;
-	}
-
-NSInvocation *theInvocation = NULL;
-[[self grabInvocation:&theInvocation] showInView:inView];
-[theInvocation retainArguments];
-
-self.displayDelayTime = inTimeInterval;
-self.displayTimer = [NSTimer scheduledTimerWithTimeInterval:self.displayDelayTime invocation:theInvocation repeats:NO];
-}
+//- (void)showInView:(UIView *)inView withDelay:(NSTimeInterval)inTimeInterval labelText:(NSString *)inLabelText
+//{
+//if ([NSThread isMainThread] == NO)
+//	{
+//	[[self grabInvocationAndPerformOnMainThreadWaitUntilDone:YES] showInView:inView withDelay:inTimeInterval labelText:inLabelText];
+//	return;
+//	}
+//
+//if (self.showing && [inLabelText isEqualToString:self.labelText])
+//	return;
+//
+//self.displayDelayTime = inTimeInterval;
+//self.labelText = inLabelText;
+//[self showInView:inView withDelay:self.displayDelayTime];
+//}
+//
+//- (void)showInView:(UIView *)inView withDelay:(NSTimeInterval)inTimeInterval;
+//{
+//if ([NSThread isMainThread] == NO)
+//	{
+//	[[self grabInvocationAndPerformOnMainThreadWaitUntilDone:YES] showInView:inView withDelay:inTimeInterval];
+//	return;
+//	}
+//
+//NSInvocation *theInvocation = NULL;
+//[[self grabInvocation:&theInvocation] showInView:inView];
+//[theInvocation retainArguments];
+//
+//self.displayDelayTime = inTimeInterval;
+//self.displayTimer = [NSTimer scheduledTimerWithTimeInterval:self.displayDelayTime invocation:theInvocation repeats:NO];
+//}
 
 - (void)showInView:(UIView *)inView
 {
@@ -355,13 +372,8 @@ if (self.superview != NULL)
 	NSTimeInterval theHideInterval = [theHideTime timeIntervalSinceDate:[NSDate date]];
 	if (theHideInterval > 0.0)
 		{
-		NSLog(@"%g", theHideInterval);
-		
-		NSInvocation *theInvocation = NULL;
-		[[self grabInvocation:&theInvocation] hide];
-		[theInvocation retainArguments];
 		[self.hideTimer invalidate];
-		self.hideTimer = [NSTimer scheduledTimerWithTimeInterval:theHideInterval invocation:theInvocation repeats:NO];
+		self.hideTimer = [NSTimer scheduledTimerWithTimeInterval:theHideInterval target:self selector:@selector(hideTimer:) userInfo:NULL repeats:NO];
 		
 		return;
 		}
@@ -386,6 +398,23 @@ guardView = [[UIView alloc] initWithFrame:theView.frame];
 guardView.backgroundColor = (self.guardColor ? self.guardColor : [UIColor clearColor]);
 [theView addSubview:guardView];
 [guardView release];
+}
+
+#pragma mark -
+
+- (void)displayTimer:(id)inParameter
+{
+displayTimer = NULL;
+
+}
+
+- (void)hideTimer:(id)inParameter
+{
+NSLog(@"HIDE TIMER FIRE");
+
+hideTimer = NULL;
+//
+[self hide];
 }
 
 @end
