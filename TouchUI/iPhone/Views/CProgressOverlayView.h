@@ -43,21 +43,14 @@ typedef enum {
     ProgressOverlayViewSizeHUD,
     } ProgressOverlayViewSize;
 
-//typedef enum {
-//    ProgressOverlayViewFadeModeIn,
-//    ProgressOverlayViewFadeModeOut,
-//    ProgressOverlayViewFadeModeInOut,
-//    ProgressOverlayViewFadeModeNone,
-//    } ProgressOverlayViewFadeMode;
-
 @interface CProgressOverlayView : UIView {
 	NSString *labelText;                            // label text
 	ProgressOverlayViewProgressMode progressMode;   // determinate or indeterminate style (can't use determinate with HUD)
     ProgressOverlayViewSize size;                   // full screen/view or rounded rectangle HUD
-//    ProgressOverlayViewFadeMode fadeMode;           // fade in, out, both, or none
     
 	NSTimeInterval displayDelayTime;				// maxmum delay before showing view
 	NSTimeInterval minimumDisplayTime;              // show for at least this long
+	NSTimeInterval hideDelayTime;					// 
 	NSDate *displayTime;
 	
 	UIView *contentView;
@@ -75,10 +68,10 @@ typedef enum {
 @property (readwrite, retain) NSString *labelText;
 @property (readwrite, assign) ProgressOverlayViewProgressMode progressMode;
 @property (readwrite, assign) ProgressOverlayViewSize size;
-//@property (readwrite, assign) ProgressOverlayViewFadeMode fadeMode;
 @property (readwrite, retain) UIColor *guardColor;
 @property (readwrite, assign) NSTimeInterval displayDelayTime;
 @property (readwrite, assign) NSTimeInterval minimumDisplayTime;
+@property (readwrite, assign) NSTimeInterval hideDelayTime;
 @property (readwrite, retain) NSDate *displayTime;
 @property (readwrite, assign) float progress;
 @property (readwrite, assign) BOOL showing;

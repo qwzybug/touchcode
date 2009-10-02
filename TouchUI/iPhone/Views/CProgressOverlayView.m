@@ -61,6 +61,7 @@ static CProgressOverlayView *gInstance = NULL;
 @synthesize displayDelayTime;
 @synthesize minimumDisplayTime;
 @synthesize displayTime;
+@synthesize hideDelayTime;
 @dynamic progress;
 @synthesize contentView;
 @synthesize progressView;
@@ -91,10 +92,9 @@ if ((self = [super initWithFrame:CGRectZero]) != NULL)
 	self.labelText = NULL;
 	self.progressMode = ProgressOverlayViewProgressModeIndeterminate;
     self.size = ProgressOverlayViewSizeFull;
-//    self.fadeMode = ProgressOverlayViewFadeModeNone;
-//	self.showDelayTime = 1.0;
-//	self.hideDelayTime = 0.1;
+	self.displayDelayTime = 0.5;
     self.minimumDisplayTime = 1.0;
+	self.hideDelayTime = 0.1;
 	}
 return(self);
 }
