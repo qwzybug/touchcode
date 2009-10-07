@@ -232,6 +232,8 @@ else
 	if (inCompletionTicket.subTicket)
 		[inCompletionTicket.subTicket didCompleteForTarget:self result:theFeed];
 	}
+	
+[self.feedStore save];
 }
 
 - (void)completionTicket:(CCompletionTicket *)inCompletionTicket didFailForTarget:(id)inTarget error:(NSError *)inError
