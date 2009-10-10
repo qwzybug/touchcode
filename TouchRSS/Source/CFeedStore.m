@@ -30,6 +30,7 @@
 #import "CFeedStore.h"
 
 #import "CFeedFetcher.h"
+#import "CFeed.h"
 
 static CFeedStore *gInstance = NULL;
 
@@ -71,5 +72,21 @@ self.feedFetcher = NULL;
 [super dealloc];
 }
 
+#pragma mark -
+
+- (CFeed *)feedForURL:(NSURL *)inURL fetch:(BOOL)inFetchFlag
+{
+NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"URL == %@", inURL.absoluteString];
+NSError *theError = NULL;;
+BOOL theWasCreatedFlag = NO;
+CFeed *theFeed = [self.managedObjectContext fetchObjectOfEntityForName:[CFeed entityName] predicate:thePredicate createIfNotFound:YES wasCreated:&theWasCreatedFlag error:&theError];
+if (theWasCreatedFlag == YES && inFetchFlag == YES)
+	{
+	theFeed.URL = inURL.absoluteString;
+	[self.feedFetcher updateFeed:theFeed];
+	}
+
+return(theFeed);
+}
 
 @end

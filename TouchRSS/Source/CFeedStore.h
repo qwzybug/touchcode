@@ -40,4 +40,6 @@
 
 + (CFeedStore *)instance;
 
+- (CFeed *)feedForURL:(NSURL *)inURL fetch:(BOOL)inFetchFlag;
+
 @end
