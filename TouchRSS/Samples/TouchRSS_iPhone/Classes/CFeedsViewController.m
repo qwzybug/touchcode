@@ -21,7 +21,7 @@
 //
 self.placeholderLabel.text = @"No feeds";
 
-NSEntityDescription *theEntityDescription = [NSEntityDescription entityForName:@"Feed" inManagedObjectContext:[CFeedStore instance].managedObjectContext];
+NSEntityDescription *theEntityDescription = [NSEntityDescription entityForName:[CFeed entityName] inManagedObjectContext:[CFeedStore instance].managedObjectContext];
 NSAssert(theEntityDescription != NULL, @"No entity description.");
 NSFetchRequest *theFetchRequest = [[[NSFetchRequest alloc] init] autorelease];
 [theFetchRequest setEntity:theEntityDescription];
@@ -70,7 +70,7 @@ return(theCell);
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 {
 CFeed *theFeed = [self.fetchedResultsController objectAtIndexPath:indexPath];
-CFeedEntriesViewController *theViewController = [[[CFeedEntriesViewController alloc] initWithFeed:theFeed] autorelease];
+CFeedEntriesViewController *theViewController = [[[CFeedEntriesViewController alloc] initWithFeedStore:[CFeedStore instance] feed:theFeed] autorelease];
 [self.navigationController pushViewController:theViewController animated:YES];
 
 }

@@ -32,6 +32,8 @@
 #import "CFeedFetcher.h"
 #import "CFeed.h"
 
+#import "NSManagedObjectContext_Extensions.h"
+
 static CFeedStore *gInstance = NULL;
 
 @interface CFeedStore ()

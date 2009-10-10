@@ -14,14 +14,16 @@
 
 @implementation CFeedEntriesViewController
 
+@synthesize feedStore;
 @synthesize feed;
 
-- (id)initWithFeed:(CFeed *)inFeed;
+- (id)initWithFeedStore:(CFeedStore *)inFeedStore feed:(CFeed *)inFeed;
 {
 if ((self = [super initWithNibName:NSStringFromClass([self class]) bundle:NULL]) != NULL)
 	{
 	self.title = inFeed.title;
 	//
+	self.feedStore = inFeedStore;
 	self.feed = inFeed;
 	}
 return(self);
@@ -29,6 +31,7 @@ return(self);
 
 - (void)dealloc
 {
+self.feedStore = NULL;
 self.feed = NULL;
 //
 [super dealloc];
@@ -67,7 +70,7 @@ if (feed != inFeed)
 		{
 		feed = [inFeed retain];
 		
-		NSEntityDescription *theEntityDescription = [NSEntityDescription entityForName:@"Entry" inManagedObjectContext:[CFeedStore instance].managedObjectContext];
+		NSEntityDescription *theEntityDescription = [NSEntityDescription entityForName:[CFeedEntry entityName] inManagedObjectContext:self.feedStore.managedObjectContext];
 		NSAssert(theEntityDescription != NULL, @"No entity description.");
 		NSFetchRequest *theFetchRequest = [[[NSFetchRequest alloc] init] autorelease];
 		theFetchRequest.entity = theEntityDescription;
@@ -78,7 +81,7 @@ if (feed != inFeed)
 			NULL];
 		theFetchRequest.sortDescriptors = theSortDescriptors;
 
-		self.fetchedResultsController = [[[NSFetchedResultsController alloc] initWithFetchRequest:theFetchRequest managedObjectContext:[CFeedStore instance].managedObjectContext sectionNameKeyPath:NULL cacheName:NULL] autorelease];
+		self.fetchedResultsController = [[[NSFetchedResultsController alloc] initWithFetchRequest:theFetchRequest managedObjectContext:self.feedStore.managedObjectContext sectionNameKeyPath:NULL cacheName:NULL] autorelease];
 		self.fetchedResultsController.delegate = self;
 		}
 	}
