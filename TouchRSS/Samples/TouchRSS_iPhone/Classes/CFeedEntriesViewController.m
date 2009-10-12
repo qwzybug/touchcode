@@ -20,10 +20,18 @@
 {
 if ((self = [super initWithNibName:NSStringFromClass([self class]) bundle:NULL]) != NULL)
 	{
-	self.feed = inFeed;
 	self.title = inFeed.title;
+	//
+	self.feed = inFeed;
 	}
 return(self);
+}
+
+- (void)dealloc
+{
+self.feed = NULL;
+//
+[super dealloc];
 }
 
 - (void)viewDidLoad
@@ -31,21 +39,49 @@ return(self);
 [super viewDidLoad];
 //
 self.placeholderLabel.text = @"No entries";
-
-NSEntityDescription *theEntityDescription = [NSEntityDescription entityForName:@"Entry" inManagedObjectContext:[CFeedStore instance].managedObjectContext];
-NSAssert(theEntityDescription != NULL, @"No entity description.");
-NSFetchRequest *theFetchRequest = [[[NSFetchRequest alloc] init] autorelease];
-[theFetchRequest setEntity:theEntityDescription];
-
-NSArray *theSortDescriptors = [NSArray arrayWithObjects:
-	[[[NSSortDescriptor alloc] initWithKey:@"updated" ascending:NO] autorelease],
-	NULL];
-theFetchRequest.sortDescriptors = theSortDescriptors;
-
-self.fetchedResultsController = [[[NSFetchedResultsController alloc] initWithFetchRequest:theFetchRequest managedObjectContext:[CFeedStore instance].managedObjectContext sectionNameKeyPath:NULL cacheName:NULL] autorelease];
-self.fetchedResultsController.delegate = self;
-
+//
 [self update];
+}
+
+#pragma mark -
+
+- (CFeed *)feed
+{
+return(feed);
+}
+
+- (void)setFeed:(CFeed *)inFeed
+{
+if (feed != inFeed)
+	{
+	if (feed)
+		{
+		[feed release];
+		feed = NULL;
+		
+		self.fetchedResultsController.delegate = NULL;
+		self.fetchedResultsController = NULL;
+		}
+	
+	if (inFeed)
+		{
+		feed = [inFeed retain];
+		
+		NSEntityDescription *theEntityDescription = [NSEntityDescription entityForName:@"Entry" inManagedObjectContext:[CFeedStore instance].managedObjectContext];
+		NSAssert(theEntityDescription != NULL, @"No entity description.");
+		NSFetchRequest *theFetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+		theFetchRequest.entity = theEntityDescription;
+		theFetchRequest.predicate = [NSPredicate predicateWithFormat:@"feed = %@", inFeed];
+
+		NSArray *theSortDescriptors = [NSArray arrayWithObjects:
+			[[[NSSortDescriptor alloc] initWithKey:@"updated" ascending:NO] autorelease],
+			NULL];
+		theFetchRequest.sortDescriptors = theSortDescriptors;
+
+		self.fetchedResultsController = [[[NSFetchedResultsController alloc] initWithFetchRequest:theFetchRequest managedObjectContext:[CFeedStore instance].managedObjectContext sectionNameKeyPath:NULL cacheName:NULL] autorelease];
+		self.fetchedResultsController.delegate = self;
+		}
+	}
 }
 
 #pragma mark Table view methods
