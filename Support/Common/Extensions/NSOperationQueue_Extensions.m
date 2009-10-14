@@ -45,15 +45,23 @@ static NSOperationQueue *gDefaultOperationQueue = NULL;
 return(gDefaultOperationQueue);
 }
 
-- (void)addOperationRecursively:(NSOperation *)inOperation
-{
-[self addOperation:inOperation];
-
-for (NSOperation *theDependency in inOperation.dependencies)
+- (void)addOperationRecursively:(NSOperation *)inOperation withAlreadyEnqueuedOperations:(NSMutableSet *)ioAlreadyEnqueued {
+	if (![ioAlreadyEnqueued containsObject:inOperation]) [self addOperation:inOperation];
+	[ioAlreadyEnqueued addObject:inOperation];
+	
+	for (NSOperation *theDependency in inOperation.dependencies)
 	{
-	[self addOperationRecursively:theDependency];
+		[self addOperationRecursively:theDependency];
 	}
 }
+
+- (void)addOperationRecursively:(NSOperation *)inOperation
+{
+	NSMutableSet *alreadyEnqueued = [NSMutableSet setWithArray:[self operations]];
+	[self addOperationRecursively:inOperation withAlreadyEnqueuedOperations:alreadyEnqueued];
+}
+
+
 
 - (void)addDependentOperations:(NSArray *)inOperations
 {
