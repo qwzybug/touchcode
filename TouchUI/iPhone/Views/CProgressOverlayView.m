@@ -68,6 +68,7 @@ static CProgressOverlayView *gInstance = NULL;
 @synthesize label;
 @synthesize displayTimer;
 @synthesize fadeTimer;
+@dynamic showing;
 
 + (CProgressOverlayView *)instance
 {
@@ -239,6 +240,11 @@ return(self.progressView.progress);
 self.progressView.progress = inProgress;
 }
 
+- (BOOL)showing
+{
+return(self.superview != NULL);
+}
+
 #pragma mark -
 
 - (void)update
@@ -258,6 +264,15 @@ self.activityIndicatorView = NULL;
 self.label = NULL;
 
 [self layoutSubviews];
+}
+
+- (void)showInView:(UIView *)inView withDelay:(NSTimeInterval)inTimeInterval labelText:(NSString *)inLabelText
+{
+if (self.showing && [inLabelText isEqualToString:self.labelText])
+	return;
+
+self.labelText = inLabelText;
+[self showInView:inView withDelay:inTimeInterval];
 }
 
 - (void)showInView:(UIView *)inView withDelay:(NSTimeInterval)inTimeInterval;

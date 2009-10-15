@@ -66,7 +66,7 @@ theTitle = [inError.userInfo objectForKey:ErrorPresenter_ErrorTitleKey];
 NSString *theMessage = [inError.userInfo objectForKey:NSLocalizedDescriptionKey];
 if (theMessage == NULL)
 	{
-	theMessage = [NSString stringWithFormat:@"An error (domain: '%@', code: %d) has occured.", inError.domain, inError.code];
+//	theMessage = [NSString stringWithFormat:@"An error (domain: '%@', code: %d) has occured.", inError.domain, inError.code];
 	theMessage = inError.localizedDescription;
 	}
 NSString *theCancelButtonTitle = @"OK";

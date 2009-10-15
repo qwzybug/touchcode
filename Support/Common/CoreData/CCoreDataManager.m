@@ -223,7 +223,8 @@ if (theError)
 if (theError)
 	[theError autorelease];
 
-*outError = theError;
+if (outError)
+	*outError = theError;
     
 return(theError == NULL);
 }
