@@ -155,7 +155,6 @@ if (self.updating == NO)
 	{
 	if (self.userDenied == YES)
 		{
-		NSLog(@"CANNOT START UPDATING - USER DENIED");
 		if (outError)
 			*outError = [NSError errorWithDomain:kCLErrorDomain code:kCLErrorDenied userInfo:NULL];
 		return(NO);
@@ -271,7 +270,6 @@ if (self.timer == inTimer)
 {
 if ([inError.domain isEqualToString:kCLErrorDomain] && inError.code == kCLErrorDenied)
 	{
-	NSLog(@"USER DENIED!");
 	self.userDenied = YES;
 	[self stopUpdatingLocation:NULL];
 	self.locationManager = NULL;
