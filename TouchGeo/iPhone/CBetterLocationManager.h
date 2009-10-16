@@ -52,28 +52,28 @@
 @property (readwrite, nonatomic, retain) CLLocationManager *locationManager;
 
 /// This is just a proxy for the CLLocationManager distanceFilter property.
-@property(readwrite, nonatomic, assign) CLLocationDistance distanceFilter;
+@property (readwrite, nonatomic, assign) CLLocationDistance distanceFilter;
 
 /// This is just a proxy for the CLLocationManager desiredAccuracy property.
-@property(readwrite, nonatomic, assign) CLLocationAccuracy desiredAccuracy;
+@property (readwrite, nonatomic, assign) CLLocationAccuracy desiredAccuracy;
 
 /// This is the location manager's location. It is a little bit more reliable than CLLocationManager.location.
-@property(readonly, nonatomic, retain) CLLocation *location;
+@property (readonly, nonatomic, retain) CLLocation *location;
 
 /// YES if CoreLocation is currenly updating location (i.e. trying to get a fix)
-@property(readonly, nonatomic, assign) BOOL updating;
+@property (readonly, nonatomic, assign) BOOL updating;
 
 /// YES if CoreLocation has reported the kCLErrorDenied error. This means the user has hit the "No" button in the "This app wants to locate you" dialog box. Once this flag is set the startUpdatingLocation method will always fail with a kCLErrorDenied error.
-@property(readonly, nonatomic, assign) BOOL userDenied;
+@property (readonly, nonatomic, assign) BOOL userDenied;
 
 /// This is the date that the last startUpdatingLocation: message was received (i.e. how long has it been since we started updating the location). This is useful to help us decide when to time out update requests.
-@property(readonly, nonatomic, retain) NSDate *startedUpdatingAtTime;
+@property (readonly, nonatomic, retain) NSDate *startedUpdatingAtTime;
 
 /// This is similar to desiredAccuracy except it is used to explicity stop CoreLocation updates when accuracy hits threshold.
-@property(readwrite, nonatomic, assign) CLLocationDistance stopUpdatingAccuracy;
+@property (readwrite, nonatomic, assign) CLLocationDistance stopUpdatingAccuracy;
 
 /// This property specifies how long to wait while updating location before giving up.
-@property(readwrite, nonatomic, assign) NSTimeInterval stopUpdatingAfterInterval;
+@property (readwrite, nonatomic, assign) NSTimeInterval stopUpdatingAfterInterval;
 
 + (CBetterLocationManager *)instance;
 

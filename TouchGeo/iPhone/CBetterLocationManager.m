@@ -54,7 +54,7 @@ static CBetterLocationManager *gInstance = NULL;
 @synthesize startedUpdatingAtTime;
 @synthesize stopUpdatingAccuracy;
 @dynamic stopUpdatingAfterInterval;
-@dynamic timer;
+@synthesize timer;
 
 // [[[CLLocation alloc] initWithLatitude:34.5249 longitude:-82.6683] autorelease];
 
@@ -98,6 +98,8 @@ self.startedUpdatingAtTime = NULL;
 {
 if (locationManager == NULL)
 	{
+	NSLog(@"CREATING LOCATION MANAGER");
+	
 	locationManager = [[CLLocationManager alloc] init];
 	locationManager.delegate = self;
 	
@@ -110,6 +112,7 @@ return(locationManager);
 {
 if (locationManager != inLocationManager)
 	{
+	NSLog(@"SET LOCATION MANAGER: %@", inLocationManager);
 	if (locationManager)
 		{
 		locationManager.delegate = NULL;
@@ -164,6 +167,12 @@ if (self.updating == NO)
 	[[NSNotificationCenter defaultCenter] postNotificationName:CBetterLocationManagerDidStartUpdatingLocationNotification object:self userInfo:NULL];
 	if (self.stopUpdatingAfterInterval > 0.0)
 		{
+		if (self.timer)
+			{
+			[self.timer invalidate];
+			self.timer = NULL;
+			}
+		
 		self.timer = [NSTimer scheduledTimerWithTimeInterval:self.stopUpdatingAfterInterval target:self selector:@selector(stopUpdatingTimerDidFire:) userInfo:NULL repeats:NO];	
 		}
 	}
@@ -176,12 +185,15 @@ if (self.updating == YES)
 	{
 	[[NSNotificationCenter defaultCenter] postNotificationName:CBetterLocationManagerDidStopUpdatingLocationNotification object:self userInfo:NULL];
 	self.updating = NO;
-	self.timer = NULL;
+	if (self.timer)
+		{
+		[self.timer invalidate];
+		self.timer = NULL;
+		}
 
 	if (locationManager)
 		{
 		[self.locationManager stopUpdatingLocation];
-		self.locationManager = NULL;
 		}
 	}
 return(YES);
@@ -197,32 +209,13 @@ return(stopUpdatingAfterInterval);
 stopUpdatingAfterInterval = inStopUpdatingAfterInterval;
 if (updating == YES && stopUpdatingAfterInterval > 0.0)
 	{
+	if (self.timer)
+		{
+		[self.timer invalidate];
+		self.timer = NULL;
+		}
 	self.timer = [NSTimer scheduledTimerWithTimeInterval:self.stopUpdatingAfterInterval target:self selector:@selector(stopUpdatingTimerDidFire:) userInfo:NULL repeats:NO];	
 	}
-}
-
-#pragma mark -
-
-- (NSTimer *)timer
-{
-return timer; 
-}
-
-- (void)setTimer:(NSTimer *)inTimer
-{
-if (timer != inTimer)
-	{
-	if (timer != NULL)
-		{
-		[timer invalidate];
-		timer = NULL;
-		}
-
-	if (inTimer != NULL)
-		{
-		timer = inTimer;
-		}
-    }
 }
 
 #pragma mark -
@@ -250,11 +243,10 @@ if (self.location.horizontalAccuracy <= self.stopUpdatingAccuracy)
 
 - (void)stopUpdatingTimerDidFire:(NSTimer *)inTimer
 {
-if (self.timer == inTimer)
-	{
-	[self stopUpdatingLocation:NULL];
-	self.timer = NULL;
-	}
+[self.timer invalidate];
+self.timer = NULL;
+
+[self stopUpdatingLocation:NULL];
 }
 
 #pragma mark -
