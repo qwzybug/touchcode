@@ -34,6 +34,7 @@
 static CBetterLocationManager *gInstance = NULL;
 
 @interface CBetterLocationManager ()
+@property (readwrite, nonatomic, retain) CLLocation *location;
 @property (readwrite, nonatomic, assign) BOOL updating;
 @property (readwrite, nonatomic, assign) BOOL userDenied;
 @property (readwrite, nonatomic, retain) NSDate *startedUpdatingAtTime;
@@ -47,7 +48,7 @@ static CBetterLocationManager *gInstance = NULL;
 @dynamic locationManager;
 @dynamic distanceFilter;
 @dynamic desiredAccuracy;
-@dynamic location;
+@synthesize location;
 @synthesize updating;
 @synthesize userDenied;
 @synthesize startedUpdatingAtTime;
@@ -99,6 +100,8 @@ if (locationManager == NULL)
 	{
 	locationManager = [[CLLocationManager alloc] init];
 	locationManager.delegate = self;
+	
+	self.location = locationManager.location;
 	}
 return(locationManager);
 }
@@ -140,11 +143,6 @@ return(self.locationManager.desiredAccuracy);
 - (void)setDesiredAccuracy:(CLLocationAccuracy)inDesiredAccuracy
 {
 self.locationManager.desiredAccuracy = inDesiredAccuracy;
-}
-
-- (CLLocation *)location
-{
-return(self.locationManager.location);
 }
 
 #pragma mark -
@@ -263,6 +261,8 @@ if (self.timer == inTimer)
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)inNewLocation fromLocation:(CLLocation *)inOldLocation
 {
+self.location = inNewLocation;
+
 [self postNewLocation:inNewLocation oldLocation:inOldLocation];
 }
 

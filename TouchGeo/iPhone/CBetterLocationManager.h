@@ -39,6 +39,7 @@
 
 @interface CBetterLocationManager : NSObject <CLLocationManagerDelegate> {
 	CLLocationManager *locationManager;
+	CLLocation *location;
 	BOOL updating;
 	BOOL userDenied;
 	NSDate *startedUpdatingAtTime;
@@ -56,7 +57,7 @@
 /// This is just a proxy for the CLLocationManager desiredAccuracy property.
 @property(readwrite, nonatomic, assign) CLLocationAccuracy desiredAccuracy;
 
-/// This is just a proxy for the CLLocationManager location property.
+/// This is the location manager's location. It is a little bit more reliable than CLLocationManager.location.
 @property(readonly, nonatomic, retain) CLLocation *location;
 
 /// YES if CoreLocation is currenly updating location (i.e. trying to get a fix)
