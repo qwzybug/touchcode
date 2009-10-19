@@ -31,11 +31,15 @@
 
 #import <CoreLocation/CoreLocation.h>
 
-#define CBetterLocationManagerDidUpdateToLocationNotification @"CBetterLocationManagerDidUpdateToLocationNotification"
-#define CBetterLocationManagerDidStartUpdatingLocationNotification @"CBetterLocationManagerDidStartUpdatingLocationNotification"
-#define CBetterLocationManagerDidStopUpdatingLocationNotification @"CBetterLocationManagerDidStopUpdatingLocationNotification"
-#define CBetterLocationManagerDidFailWithErrorNotification @"CBetterLocationManagerDidFailWithErrorNotification"
-#define CBetterLocationManagerDidFailWithUserDeniedErrorNotification @"CBetterLocationManagerDidFailWithUserDeniedErrorNotification"
+extern NSString *kBetterLocationManagerDidUpdateToLocationNotification /* = @"CBetterLocationManagerDidUpdateToLocationNotification" */;
+extern NSString *kBetterLocationManagerDidReceiveStaleLocationNotification /* = @"CBetterLocationManagerDidReceiveStaleLocationNotification" */;
+extern NSString *kBetterLocationManagerDidStartUpdatingLocationNotification /* = @"CBetterLocationManagerDidStartUpdatingLocationNotification" */;
+extern NSString *kBetterLocationManagerDidStopUpdatingLocationNotification /* = @"CBetterLocationManagerDidStopUpdatingLocationNotification" */;
+extern NSString *kBetterLocationManagerDidFailWithErrorNotification /* = @"CBetterLocationManagerDidFailWithErrorNotification" */;
+extern NSString *kBetterLocationManagerDidFailWithUserDeniedErrorNotification /* = @"CBetterLocationManagerDidFailWithUserDeniedErrorNotification" */;
+
+extern NSString *kBetterLocationManagerNewLocationKey /* = @"NewLocation" */;
+extern NSString *kBetterLocationManagerOldLocationKey /* = @"OldLocation" */;
 
 @interface CBetterLocationManager : NSObject <CLLocationManagerDelegate> {
 	CLLocationManager *locationManager;
@@ -44,6 +48,7 @@
 	BOOL userDenied;
 	NSDate *startedUpdatingAtTime;
 	CLLocationDistance stopUpdatingAccuracy;
+	NSTimeInterval staleLocationThreshold;
 	NSTimeInterval stopUpdatingAfterInterval;
 	NSTimer *timer;
 }
@@ -71,6 +76,9 @@
 
 /// This is similar to desiredAccuracy except it is used to explicity stop CoreLocation updates when accuracy hits threshold.
 @property (readwrite, nonatomic, assign) CLLocationDistance stopUpdatingAccuracy;
+
+/// Location data that is older than the threshold (in seconds) will be considered stale and ignored (although you will get a kBetterLocationManagerDidReceiveStaleLocationNotification notification)
+@property (readwrite, nonatomic, assign) NSTimeInterval staleLocationThreshold;
 
 /// This property specifies how long to wait while updating location before giving up.
 @property (readwrite, nonatomic, assign) NSTimeInterval stopUpdatingAfterInterval;
