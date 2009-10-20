@@ -190,9 +190,12 @@ return(YES);
 {
 if (self.updating == YES)
 	{
-	NSMutableDictionary *theUserInfo = [NSMutableDictionary dictionary];
-	[theUserInfo setObject:self.location forKey:kBetterLocationManagerNewLocationKey];
-	[[NSNotificationCenter defaultCenter] postNotificationName:kBetterLocationManagerDidStopUpdatingLocationNotification object:self userInfo:theUserInfo];
+	if (self.userDenied == NO && self.location != NULL)
+		{
+		NSMutableDictionary *theUserInfo = [NSMutableDictionary dictionary];
+		[theUserInfo setObject:self.location forKey:kBetterLocationManagerNewLocationKey];
+		[[NSNotificationCenter defaultCenter] postNotificationName:kBetterLocationManagerDidStopUpdatingLocationNotification object:self userInfo:theUserInfo];
+		}
 	self.updating = NO;
 	if (self.timer)
 		{
