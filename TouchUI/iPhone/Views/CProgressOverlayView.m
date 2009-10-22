@@ -168,6 +168,11 @@ else if (self.progressMode == ProgressOverlayViewProgressModeIndeterminate)
 
 - (void)drawRect:(CGRect)inRect
 {
+
+// we don't want to draw the rounded rect unless the guard bg is transparent, otherwise, it looks extremely dark.
+if (CGColorGetAlpha(self.guardColor.CGColor) != 0.0)
+	return;
+	
 if (self.size == ProgressOverlayViewSizeHUD)
     {
     UIColor *color = PROGRESS_OVERLAY_VIEW_BACKGROUND_COLOR;
@@ -399,10 +404,7 @@ guardView.backgroundColor = (self.guardColor ? self.guardColor : [UIColor clearC
 - (void)fadeIn:(NSTimer *)theTimer
 {
 if (self.alpha >= 1.0)
-    {
     [theTimer invalidate];
-    theTimer = NULL;
-    }
 else
     self.alpha += 0.1;
 }
@@ -412,7 +414,6 @@ else
 if (self.alpha <= 0.1)
     {
     [theTimer invalidate];
-    theTimer = NULL;
     [guardView removeFromSuperview];
     [self removeFromSuperview];
     }
