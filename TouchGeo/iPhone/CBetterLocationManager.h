@@ -35,30 +35,48 @@
 #define CBetterLocationManagerDidStartUpdatingLocationNotification @"CBetterLocationManagerDidStartUpdatingLocationNotification"
 #define CBetterLocationManagerDidStopUpdatingLocationNotification @"CBetterLocationManagerDidStopUpdatingLocationNotification"
 #define CBetterLocationManagerDidFailWithErrorNotification @"CBetterLocationManagerDidFailWithErrorNotification"
-
+#define CBetterLocationManagerDidFailWithUserDeniedErrorNotification @"CBetterLocationManagerDidFailWithUserDeniedErrorNotification"
 
 @interface CBetterLocationManager : NSObject <CLLocationManagerDelegate> {
 	CLLocationManager *locationManager;
-	CLLocation *location;
 	BOOL updating;
+	BOOL userDenied;
 	NSDate *startedUpdatingAtTime;
 	CLLocationDistance stopUpdatingAccuracy;
 	NSTimeInterval stopUpdatingAfterInterval;
 	NSTimer *timer;
 }
 
+/// This is the CoreLocation location manager object. Generally you should not interact with this directly but go through CBetterLocationManager properties and methods instead.
 @property (readwrite, nonatomic, retain) CLLocationManager *locationManager;
+
+/// This is just a proxy for the CLLocationManager distanceFilter property.
 @property(readwrite, nonatomic, assign) CLLocationDistance distanceFilter;
+
+/// This is just a proxy for the CLLocationManager desiredAccuracy property.
 @property(readwrite, nonatomic, assign) CLLocationAccuracy desiredAccuracy;
+
+/// This is just a proxy for the CLLocationManager location property.
 @property(readonly, nonatomic, retain) CLLocation *location;
+
+/// YES if CoreLocation is currenly updating location (i.e. trying to get a fix)
 @property(readonly, nonatomic, assign) BOOL updating;
+
+/// YES if CoreLocation has reported the kCLErrorDenied error. This means the user has hit the "No" button in the "This app wants to locate you" dialog box. Once this flag is set the startUpdatingLocation method will always fail with a kCLErrorDenied error.
+@property(readonly, nonatomic, assign) BOOL userDenied;
+
+/// This is the date that the last startUpdatingLocation: message was received (i.e. how long has it been since we started updating the location). This is useful to help us decide when to time out update requests.
 @property(readonly, nonatomic, retain) NSDate *startedUpdatingAtTime;
+
+/// This is similar to desiredAccuracy except it is used to explicity stop CoreLocation updates when accuracy hits threshold.
 @property(readwrite, nonatomic, assign) CLLocationDistance stopUpdatingAccuracy;
+
+/// This property specifies how long to wait while updating location before giving up.
 @property(readwrite, nonatomic, assign) NSTimeInterval stopUpdatingAfterInterval;
 
 + (CBetterLocationManager *)instance;
 
-- (void)startUpdatingLocation;
-- (void)stopUpdatingLocation;
+- (BOOL)startUpdatingLocation:(NSError **)outError;
+- (BOOL)stopUpdatingLocation:(NSError **)outError;
 
 @end
