@@ -8,14 +8,17 @@
 
 #import "CFetchedResultsTableViewController.h"
 
+@class CFeedStore;
 @class CFeed;
 
 @interface CFeedEntriesViewController : CFetchedResultsTableViewController <NSFetchedResultsControllerDelegate> {
+	CFeedStore *feedStore;
 	CFeed *feed;
 }
 
+@property (readwrite, nonatomic, retain) CFeedStore *feedStore;
 @property (readwrite, nonatomic, retain) CFeed *feed;
 
-- (id)initWithFeed:(CFeed *)inFeed;
+- (id)initWithFeedStore:(CFeedStore *)inFeedStore feed:(CFeed *)inFeed;
 
 @end
