@@ -29,6 +29,8 @@
 
 #import "TouchUI_DemoViewController.h"
 
+#import "CProgressOverlayView.h"
+
 @implementation TouchUI_DemoViewController
 
 
@@ -49,13 +51,16 @@
 }
 */
 
-
-/*
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewDidLoad
+{
+[super viewDidLoad];
+
+[CProgressOverlayView instance].labelText = @"Hello World ggggggg";
+[CProgressOverlayView instance].size = ProgressOverlayViewSizeHUD;
+[[CProgressOverlayView instance] showInView:self.view];
+
 }
-*/
 
 
 /*
