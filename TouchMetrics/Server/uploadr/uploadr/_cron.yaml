@@ -1,0 +1,5 @@
+#cron:
+#- description: daily summary job
+#  url: /tasks/service
+#  schedule: every 1 minutes
+

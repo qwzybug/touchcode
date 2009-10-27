@@ -1,0 +1,47 @@
+//
+//  TouchMetricsTestAppDelegate.m
+//  TouchMetricsTest
+//
+//  Created by Jonathan Wight on 10/21/09.
+//  Copyright toxicsoftware.com 2009. All rights reserved.
+//
+
+#import "TouchMetricsTestAppDelegate.h"
+#import "RootViewController.h"
+
+
+@implementation TouchMetricsTestAppDelegate
+
+@synthesize window;
+@synthesize navigationController;
+
+
+#pragma mark -
+#pragma mark Application lifecycle
+
+- (void)applicationDidFinishLaunching:(UIApplication *)application {    
+    
+    // Override point for customization after app launch    
+	
+	[window addSubview:[navigationController view]];
+    [window makeKeyAndVisible];
+}
+
+
+- (void)applicationWillTerminate:(UIApplication *)application {
+	// Save data if appropriate
+}
+
+
+#pragma mark -
+#pragma mark Memory management
+
+- (void)dealloc {
+	[navigationController release];
+	[window release];
+	[super dealloc];
+}
+
+
+@end
+

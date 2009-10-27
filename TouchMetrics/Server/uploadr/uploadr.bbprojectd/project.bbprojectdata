@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>HierarchyData</key>
+	<array>
+		<string>0A7F1BC3-0C58-4EB6-89D1-A047481A0414</string>
+	</array>
+	<key>ProjectItems</key>
+	<dict>
+		<key>0A7F1BC3-0C58-4EB6-89D1-A047481A0414</key>
+		<dict>
+			<key>ItemData</key>
+			<dict>
+				<key>AliasData</key>
+				<data>
+				AAAAAAGEAAIAAQVVc2VycwAAAAAAAAAAAAAAAAAAAAAA
+				AAAAAADG1P9ySCsAAAAJjR0HdXBsb2FkcgAAAAAAAAAA
+				AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+				AAAAAAAAAAAAAAAAAAAAAAmNH8aWTEgAAAAAAAAAAP//
+				//8AAAkAAAAAAAAAAAAAAAAAAAAAB3VwbG9hZHIAABAA
+				CAAAxtU3sgAAABEACAAAxpaEiAAAAAEAFAAJjR0AHPQI
+				ABzz5gAADEwAAAk6AAIAN1VzZXJzOnNjaHdhOkRlc2t0
+				b3A6VG91Y2hNZXRyaWNzOlNlcnZlcjp1cGxvYWRyOnVw
+				bG9hZHIAAA4AEAAHAHUAcABsAG8AYQBkAHIADwAMAAUA
+				VQBzAGUAcgBzABIAMi9zY2h3YS9EZXNrdG9wL1RvdWNo
+				TWV0cmljcy9TZXJ2ZXIvdXBsb2Fkci91cGxvYWRyABMA
+				Di9Wb2x1bWVzL1VzZXJzABUAAgAU//8AAA==
+				</data>
+				<key>FileURL</key>
+				<string>file://localhost/Volumes/Users/schwa/Desktop/TouchMetrics/Server/uploadr/uploadr/</string>
+				<key>RelativePath</key>
+				<string>./uploadr</string>
+				<key>TypeID</key>
+				<string>_CFileLocator</string>
+				<key>Version</key>
+				<integer>1</integer>
+			</dict>
+			<key>ItemName</key>
+			<string>filer</string>
+			<key>ItemType</key>
+			<string>FolderReference</string>
+		</dict>
+	</dict>
+	<key>com.barebones.DocumentFormatVersion</key>
+	<integer>5</integer>
+	<key>com.barebones.DocumentType</key>
+	<string>Project</string>
+</dict>
+</plist>
