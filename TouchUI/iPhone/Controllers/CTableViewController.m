@@ -109,6 +109,7 @@ if (self.tableView == NULL)
 
 - (void)setEditing:(BOOL)inEditing animated:(BOOL)inAnimated
 {
+[super setEditing:inEditing animated:inAnimated];
 [self.tableView setEditing:inEditing animated:inAnimated];
 }
 
