@@ -41,7 +41,9 @@
 @property (readwrite, retain) NSString *storeType;
 @property (readwrite, retain) NSDictionary *storeOptions;
 
-- (NSString *)applicationSupportFolder;
++ (NSURL *)modelURLForName:(NSString *)inName;
++ (NSURL *)persistentStoreURLForName:(NSString *)inName storeType:(NSString *)inStoreType forceReplace:(BOOL)inForceReplace;
++ (NSString *)applicationSupportFolder;
 - (NSString *)threadStorageKey;
 @end
 
@@ -58,10 +60,17 @@
 @dynamic managedObjectModel;
 @dynamic managedObjectContext;
 
+@synthesize delegate;
+
 - (id)initWithModelUrl:(NSURL *)inModelUrl persistentStoreUrl:(NSURL *)inPersistentStoreUrl storeType:(NSString *)inStoreType storeOptions:(NSDictionary *)inStoreOptions
 {
+NSAssert(inModelUrl != NULL, @"inModelURL should not be NULL.");
+NSAssert(inPersistentStoreUrl != NULL, @"inPersistentStoreURL should not be NULL.");
+
 if ((self = [super init]) != NULL)
 	{
+	NSLog(@"Creating new CDM");
+	
 	#if TARGET_OS_IPHONE == 1
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminate:) name:UIApplicationWillTerminateNotification object:[UIApplication sharedApplication]];
 	#else
@@ -70,53 +79,44 @@ if ((self = [super init]) != NULL)
 
 	self.modelURL = inModelUrl;
 	self.persistentStoreURL = inPersistentStoreUrl;
-	self.storeType = inStoreType;
+	self.storeType = inStoreType ? inStoreType : NSSQLiteStoreType;
 	self.storeOptions = inStoreOptions;
+	}
+return(self);
+}
+
+- (id)initWithModelUrl:(NSURL *)inModelUrl persistentStoreName:(NSString *)inPersistentName forceReplace:(BOOL)inForceReplace storeType:(NSString *)inStoreType storeOptions:(NSDictionary *)inStoreOptions;
+{
+NSURL *thePersistentStoreURL = [[self class] persistentStoreURLForName:inPersistentName storeType:inStoreType forceReplace:inForceReplace];
+NSAssert(thePersistentStoreURL != NULL, @"thePersistentStoreURL should not be NULL.");
+
+if ((self = [self initWithModelUrl:inModelUrl persistentStoreUrl:thePersistentStoreURL storeType:inStoreType storeOptions:inStoreOptions]) != NULL)
+	{
+	
+	}
+return(self);
+}
+
+- (id)initWithModelName:(NSString *)inModelName persistentStoreName:(NSString *)inPersistentName forceReplace:(BOOL)inForceReplace storeType:(NSString *)inStoreType storeOptions:(NSDictionary *)inStoreOptions;
+{
+NSURL *theModelURL = [[self class] modelURLForName:inModelName];
+NSAssert(theModelURL != NULL, @"theModelURL should not be NULL.");
+NSURL *thePersistentStoreURL = [[self class] persistentStoreURLForName:inPersistentName storeType:inStoreType forceReplace:inForceReplace];
+NSAssert(thePersistentStoreURL != NULL, @"thePersistentStoreURL should not be NULL.");
+
+if ((self = [self initWithModelUrl:theModelURL persistentStoreUrl:thePersistentStoreURL storeType:inStoreType storeOptions:inStoreOptions]) != NULL)
+	{
+	
 	}
 return(self);
 }
 
 - (id)initWithName:(NSString *)inName forceReplace:(BOOL)inForceReplace storeType:(NSString *)inStoreType storeOptions:(NSDictionary *)inStoreOptions;
 {
-NSString *theModelPath = [[NSBundle mainBundle] pathForResource:inName ofType:@"mom"];
-if (theModelPath == NULL)
-	theModelPath = [[NSBundle mainBundle] pathForResource:inName ofType:@"momd"];
-NSURL *theModelURL = [NSURL fileURLWithPath:theModelPath];
-
-NSString *thePathExtension = NULL;
-if ([inStoreType isEqualToString:NSSQLiteStoreType])
-	thePathExtension = @"sqlite";
-else if ([inStoreType isEqualToString:NSBinaryStoreType])
-	thePathExtension = @"db";
-
-NSString *theStorePath = [[self applicationSupportFolder] stringByAppendingPathComponent:[inName stringByAppendingPathExtension:thePathExtension]];
-
-if (inForceReplace == YES)
-	{
-	NSError *theError = NULL;
-	if ([[NSFileManager defaultManager] fileExistsAtPath:theStorePath] == YES)
-		{
-		[[NSFileManager defaultManager] removeItemAtPath:theStorePath error:&theError];
-		}
-	}
-	
-if ([[NSFileManager defaultManager] fileExistsAtPath:theStorePath] == NO)
-	{
-	NSError *theError = NULL;
-	NSString *theSourceFile = [[NSBundle mainBundle] pathForResource:inName ofType:thePathExtension];
-	if ([[NSFileManager defaultManager] fileExistsAtPath:theSourceFile] == YES)
-		{
-		BOOL theResult = [[NSFileManager defaultManager] copyItemAtPath:theSourceFile toPath:theStorePath error:&theError];
-		if (theResult == NO)
-			{
-			[self release];
-			self = NULL;
-			return(self);
-			}
-		}
-	}
-
-NSURL *thePersistentStoreURL = [NSURL fileURLWithPath:theStorePath];
+NSURL *theModelURL = [[self class] modelURLForName:inName];
+NSAssert(theModelURL != NULL, @"theModelURL should not be NULL.");
+NSURL *thePersistentStoreURL = [[self class] persistentStoreURLForName:inName storeType:inStoreType forceReplace:inForceReplace];
+NSAssert(thePersistentStoreURL != NULL, @"thePersistentStoreURL should not be NULL.");
 
 if ((self = [self initWithModelUrl:theModelURL persistentStoreUrl:thePersistentStoreURL storeType:inStoreType storeOptions:inStoreOptions]) != NULL)
 	{
@@ -127,6 +127,14 @@ return(self);
 
 - (void)dealloc
 {
+#if TARGET_OS_IPHONE == 1
+[[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillTerminateNotification object:[UIApplication sharedApplication]];
+#else
+[[NSNotificationCenter defaultCenter] removeObserver:self name:NSApplicationWillTerminateNotification object:[NSApplication sharedApplication]];
+#endif
+
+[self save];
+
 self.modelURL = NULL;
 self.persistentStoreURL = NULL;
 self.storeType = NULL;
@@ -148,6 +156,7 @@ managedObjectModel = NULL;
 	{
 	if (managedObjectModel == NULL)
 		{
+		NSLog(@"CREATING NEW MOM");
 		managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:self.modelURL];
 		}
 	}
@@ -161,15 +170,14 @@ return(managedObjectModel);
 	if (persistentStoreCoordinator == NULL)
 		{
 		NSError *theError = NULL;
-		NSPersistentStoreCoordinator *thePersistentStoreCoordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel] autorelease];
+		NSManagedObjectModel *theManagedObjectModel = self.managedObjectModel;
+		if (theManagedObjectModel == NULL)
+			return(NULL);
+		NSPersistentStoreCoordinator *thePersistentStoreCoordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:theManagedObjectModel] autorelease];
 		NSPersistentStore *thePersistentStore = [thePersistentStoreCoordinator addPersistentStoreWithType:self.storeType configuration:NULL URL:self.persistentStoreURL options:self.storeOptions error:&theError];
         if (thePersistentStore == NULL)
 			{
-			#if TARGET_OS_IPHONE == 1
-			fprintf(stderr, "WARNING: %s (%s)\n", [[theError description] UTF8String], [[theError.userInfo description] UTF8String]);
-			#else
-			[[NSApplication sharedApplication] presentError:theError];
-			#endif
+			[self presentError:theError];
 			}
 		
 		persistentStoreCoordinator = [thePersistentStoreCoordinator retain];
@@ -186,6 +194,8 @@ NSManagedObjectContext *theManagedObjectContext = [[[NSThread currentThread] thr
 if (theManagedObjectContext == NULL)
 	{
 	theManagedObjectContext = [[self newManagedObjectContext] autorelease];
+	if (theManagedObjectContext == NULL)
+		return(NULL);
 	[[[NSThread currentThread] threadDictionary] setObject:theManagedObjectContext forKey:theThreadStorageKey];
 	}
 return(theManagedObjectContext);
@@ -195,8 +205,16 @@ return(theManagedObjectContext);
 
 - (NSManagedObjectContext *)newManagedObjectContext
 {
+NSLog(@"MAKING NEW MOC: %x", self.managedObjectModel);
+
+NSPersistentStoreCoordinator *thePersistentStoreCoordinator = self.persistentStoreCoordinator;
+if (thePersistentStoreCoordinator == NULL)
+	return(NULL);
 NSManagedObjectContext *theManagedObjectContext = [[NSManagedObjectContext alloc] init];
-[theManagedObjectContext setPersistentStoreCoordinator:self.persistentStoreCoordinator];
+[theManagedObjectContext setPersistentStoreCoordinator:thePersistentStoreCoordinator];
+
+[self.delegate coreDataManager:self didCreateNewManagedObjectContext:theManagedObjectContext];
+
 return(theManagedObjectContext);
 }
 
@@ -257,15 +275,20 @@ return(theResult);
 NSError *theError = NULL;
 if ([self save:&theError] == NO)
 	{
-	#if TARGET_OS_IPHONE == 1
-	fprintf(stderr, "WARNING: %s (%s)\n", [[theError description] UTF8String], [[theError.userInfo description] UTF8String]);
-	#else
-	[[NSApplication sharedApplication] presentError:theError];
-	#endif
+	[self presentError:theError];
 	}
 }
 
 #pragma mark -
+
+- (void)presentError:(NSError *)inError
+{
+#if TARGET_OS_IPHONE == 1
+fprintf(stderr, "ERROR: %s (%s)\n", [[inError description] UTF8String], [[inError.userInfo description] UTF8String]);
+#else
+[[NSApplication sharedApplication] presentError:inError];
+#endif
+}
 
 - (void)applicationWillTerminate:(NSNotification *)inNotification
 {
@@ -276,7 +299,58 @@ if ([self save:&theError] == NO)
 
 #pragma mark -
 
-- (NSString *)applicationSupportFolder
++ (NSURL *)modelURLForName:(NSString *)inName
+{
+NSString *theModelPath = [[NSBundle mainBundle] pathForResource:inName ofType:@"mom"];
+if (theModelPath == NULL)
+	theModelPath = [[NSBundle mainBundle] pathForResource:inName ofType:@"momd"];
+NSURL *theModelURL = [NSURL fileURLWithPath:theModelPath];
+return(theModelURL);
+}
+
++ (NSURL *)persistentStoreURLForName:(NSString *)inName storeType:(NSString *)inStoreType forceReplace:(BOOL)inForceReplace
+{
+inStoreType = inStoreType ? inStoreType : NSSQLiteStoreType;
+
+NSString *thePathExtension = NULL;
+if ([inStoreType isEqualToString:NSSQLiteStoreType])
+	thePathExtension = @"sqlite";
+else if ([inStoreType isEqualToString:NSBinaryStoreType])
+	thePathExtension = @"db";
+
+NSString *theStorePath = [[self applicationSupportFolder] stringByAppendingPathComponent:[inName stringByAppendingPathExtension:thePathExtension]];
+
+if (inForceReplace == YES)
+	{
+	NSError *theError = NULL;
+	if ([[NSFileManager defaultManager] fileExistsAtPath:theStorePath] == YES)
+		{
+		[[NSFileManager defaultManager] removeItemAtPath:theStorePath error:&theError];
+		}
+	}
+	
+if ([[NSFileManager defaultManager] fileExistsAtPath:theStorePath] == NO)
+	{
+	NSError *theError = NULL;
+	NSString *theSourceFile = [[NSBundle mainBundle] pathForResource:inName ofType:thePathExtension];
+	if ([[NSFileManager defaultManager] fileExistsAtPath:theSourceFile] == YES)
+		{
+		BOOL theResult = [[NSFileManager defaultManager] copyItemAtPath:theSourceFile toPath:theStorePath error:&theError];
+		if (theResult == NO)
+			{
+			[self release];
+			self = NULL;
+			return(self);
+			}
+		}
+	}
+
+NSURL *thePersistentStoreURL = [NSURL fileURLWithPath:theStorePath];
+
+return(thePersistentStoreURL);
+}
+
++ (NSString *)applicationSupportFolder
 {
 NSArray *thePaths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
 NSString *theBasePath = ([thePaths count] > 0) ? [thePaths objectAtIndex:0] : NSTemporaryDirectory();
