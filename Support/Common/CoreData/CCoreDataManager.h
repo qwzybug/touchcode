@@ -29,6 +29,8 @@
 
 #import <CoreData/CoreData.h>
 
+@protocol CCoreDataManagerDelegate;
+
 @interface CCoreDataManager : NSObject {
 	NSURL *modelURL;
 	NSURL *persistentStoreURL;
@@ -36,6 +38,7 @@
 	NSDictionary *storeOptions;
     NSPersistentStoreCoordinator *persistentStoreCoordinator;
     NSManagedObjectModel *managedObjectModel;
+	id <CCoreDataManagerDelegate> delegate;
 }
 
 - (id)initWithModelUrl:(NSURL *)inModelUrl persistentStoreUrl:(NSURL *)inPersistentStoreUrl storeType:(NSString *)inStoreType storeOptions:(NSDictionary *)inStoreOptions;
@@ -54,6 +57,8 @@
 @property (readonly, retain) NSManagedObjectModel *managedObjectModel;
 @property (readonly, retain) NSManagedObjectContext *managedObjectContext;
 
+@property (readwrite, assign) id <CCoreDataManagerDelegate> delegate;
+
 /// You don't need to call this. Subclasses can override to change default behavior.
 - (NSManagedObjectContext *)newManagedObjectContext;
 
@@ -62,5 +67,15 @@
 - (BOOL)save:(NSError **)outError;
 - (void)save;
 
+- (void)presentError:(NSError *)inError;
+
+@end
+
+#pragma mark -
+
+@protocol CCoreDataManagerDelegate <NSObject>
+
+@optional
+- (void)coreDataManager:(CCoreDataManager *)inCoreDataManager didCreateNewManagedObjectContext:(NSManagedObjectContext *)inManagedObjectContext;
 
 @end

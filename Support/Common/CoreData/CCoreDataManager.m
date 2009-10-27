@@ -60,6 +60,8 @@
 @dynamic managedObjectModel;
 @dynamic managedObjectContext;
 
+@synthesize delegate;
+
 - (id)initWithModelUrl:(NSURL *)inModelUrl persistentStoreUrl:(NSURL *)inPersistentStoreUrl storeType:(NSString *)inStoreType storeOptions:(NSDictionary *)inStoreOptions
 {
 NSAssert(inModelUrl != NULL, @"inModelURL should not be NULL.");
@@ -67,6 +69,8 @@ NSAssert(inPersistentStoreUrl != NULL, @"inPersistentStoreURL should not be NULL
 
 if ((self = [super init]) != NULL)
 	{
+	NSLog(@"Creating new CDM");
+	
 	#if TARGET_OS_IPHONE == 1
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminate:) name:UIApplicationWillTerminateNotification object:[UIApplication sharedApplication]];
 	#else
@@ -152,6 +156,7 @@ managedObjectModel = NULL;
 	{
 	if (managedObjectModel == NULL)
 		{
+		NSLog(@"CREATING NEW MOM");
 		managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:self.modelURL];
 		}
 	}
@@ -165,15 +170,14 @@ return(managedObjectModel);
 	if (persistentStoreCoordinator == NULL)
 		{
 		NSError *theError = NULL;
-		NSPersistentStoreCoordinator *thePersistentStoreCoordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel] autorelease];
+		NSManagedObjectModel *theManagedObjectModel = self.managedObjectModel;
+		if (theManagedObjectModel == NULL)
+			return(NULL);
+		NSPersistentStoreCoordinator *thePersistentStoreCoordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:theManagedObjectModel] autorelease];
 		NSPersistentStore *thePersistentStore = [thePersistentStoreCoordinator addPersistentStoreWithType:self.storeType configuration:NULL URL:self.persistentStoreURL options:self.storeOptions error:&theError];
         if (thePersistentStore == NULL)
 			{
-			#if TARGET_OS_IPHONE == 1
-			fprintf(stderr, "WARNING: %s (%s)\n", [[theError description] UTF8String], [[theError.userInfo description] UTF8String]);
-			#else
-			[[NSApplication sharedApplication] presentError:theError];
-			#endif
+			[self presentError:theError];
 			}
 		
 		persistentStoreCoordinator = [thePersistentStoreCoordinator retain];
@@ -190,6 +194,8 @@ NSManagedObjectContext *theManagedObjectContext = [[[NSThread currentThread] thr
 if (theManagedObjectContext == NULL)
 	{
 	theManagedObjectContext = [[self newManagedObjectContext] autorelease];
+	if (theManagedObjectContext == NULL)
+		return(NULL);
 	[[[NSThread currentThread] threadDictionary] setObject:theManagedObjectContext forKey:theThreadStorageKey];
 	}
 return(theManagedObjectContext);
@@ -199,8 +205,16 @@ return(theManagedObjectContext);
 
 - (NSManagedObjectContext *)newManagedObjectContext
 {
+NSLog(@"MAKING NEW MOC: %x", self.managedObjectModel);
+
+NSPersistentStoreCoordinator *thePersistentStoreCoordinator = self.persistentStoreCoordinator;
+if (thePersistentStoreCoordinator == NULL)
+	return(NULL);
 NSManagedObjectContext *theManagedObjectContext = [[NSManagedObjectContext alloc] init];
-[theManagedObjectContext setPersistentStoreCoordinator:self.persistentStoreCoordinator];
+[theManagedObjectContext setPersistentStoreCoordinator:thePersistentStoreCoordinator];
+
+[self.delegate coreDataManager:self didCreateNewManagedObjectContext:theManagedObjectContext];
+
 return(theManagedObjectContext);
 }
 
@@ -261,15 +275,20 @@ return(theResult);
 NSError *theError = NULL;
 if ([self save:&theError] == NO)
 	{
-	#if TARGET_OS_IPHONE == 1
-	fprintf(stderr, "WARNING: %s (%s)\n", [[theError description] UTF8String], [[theError.userInfo description] UTF8String]);
-	#else
-	[[NSApplication sharedApplication] presentError:theError];
-	#endif
+	[self presentError:theError];
 	}
 }
 
 #pragma mark -
+
+- (void)presentError:(NSError *)inError
+{
+#if TARGET_OS_IPHONE == 1
+fprintf(stderr, "ERROR: %s (%s)\n", [[inError description] UTF8String], [[inError.userInfo description] UTF8String]);
+#else
+[[NSApplication sharedApplication] presentError:inError];
+#endif
+}
 
 - (void)applicationWillTerminate:(NSNotification *)inNotification
 {
