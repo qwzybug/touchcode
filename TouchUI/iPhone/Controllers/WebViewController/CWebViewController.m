@@ -147,7 +147,7 @@ else if (self.homeURL)
 
 - (IBAction)actionUtilityPopup:(id)inSender
 {
-UIActionSheet *theActionSheet = [[[UIActionSheet  alloc] initWithTitle:NULL delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:NULL otherButtonTitles:@"Open in Safari", @"E-mail Link", NULL] autorelease];
+UIActionSheet *theActionSheet = [[[UIActionSheet  alloc] initWithTitle:NULL delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:NULL otherButtonTitles:@"Open in Safari"/*, @"E-mail Link"*/, NULL] autorelease];
 [theActionSheet showFromToolbar:self.toolbar];
 }
 
