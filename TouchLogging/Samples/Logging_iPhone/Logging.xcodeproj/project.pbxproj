@@ -16,7 +16,6 @@
 		456402E110991E9500F6DFEA /* NSDate_InternetDateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 456402E010991E9500F6DFEA /* NSDate_InternetDateExtensions.m */; };
 		456402ED10991EB400F6DFEA /* NSDateFormatter_InternetDateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 456402EC10991EB400F6DFEA /* NSDateFormatter_InternetDateExtensions.m */; };
 		457B5EC91097BFCD00B564BC /* CLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = 457B5EBA1097BFCD00B564BC /* CLogging.m */; };
-		457B5ECB1097BFCD00B564BC /* CUploaderLoggingHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 457B5EBE1097BFCD00B564BC /* CUploaderLoggingHandler.m */; };
 		457B5ECC1097BFCD00B564BC /* FileFunctionLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 457B5EC01097BFCD00B564BC /* FileFunctionLine.m */; };
 		457B5ED11097BFCD00B564BC /* Logging.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 457B5EC81097BFCD00B564BC /* Logging.xcdatamodel */; };
 		457B5F331097C28C00B564BC /* CCompletionTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = 457B5EF21097C28C00B564BC /* CCompletionTicket.m */; };
@@ -48,8 +47,9 @@
 		457B5F4E1097C28C00B564BC /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 457B5F301097C28C00B564BC /* CJSONScanner.m */; };
 		457B5F4F1097C28C00B564BC /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 457B5F321097C28C00B564BC /* CJSONSerializer.m */; };
 		457B5F751097C33F00B564BC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 457B5F741097C33F00B564BC /* CoreData.framework */; };
-		457B5FAC1097C6BA00B564BC /* CMailLoggingHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 457B5FAB1097C6BA00B564BC /* CMailLoggingHandler.m */; };
 		457B5FF71097C93500B564BC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 457B5FF61097C93500B564BC /* MessageUI.framework */; };
+		45D4BF7A109A2C5F00A04235 /* CMailLoggingHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 45D4BF77109A2C5F00A04235 /* CMailLoggingHandler.m */; };
+		45D4BF7B109A2C5F00A04235 /* CUploaderLoggingHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 45D4BF79109A2C5F00A04235 /* CUploaderLoggingHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,8 +68,6 @@
 		456402EC10991EB400F6DFEA /* NSDateFormatter_InternetDateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSDateFormatter_InternetDateExtensions.m; path = ../../../Support/Common/Extensions/Dates/NSDateFormatter_InternetDateExtensions.m; sourceTree = SOURCE_ROOT; };
 		457B5EB91097BFCD00B564BC /* CLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLogging.h; sourceTree = "<group>"; };
 		457B5EBA1097BFCD00B564BC /* CLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLogging.m; sourceTree = "<group>"; };
-		457B5EBD1097BFCD00B564BC /* CUploaderLoggingHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUploaderLoggingHandler.h; sourceTree = "<group>"; };
-		457B5EBE1097BFCD00B564BC /* CUploaderLoggingHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CUploaderLoggingHandler.m; sourceTree = "<group>"; };
 		457B5EBF1097BFCD00B564BC /* FileFunctionLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileFunctionLine.h; sourceTree = "<group>"; };
 		457B5EC01097BFCD00B564BC /* FileFunctionLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileFunctionLine.m; sourceTree = "<group>"; };
 		457B5EC81097BFCD00B564BC /* Logging.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Logging.xcdatamodel; sourceTree = "<group>"; };
@@ -132,9 +130,11 @@
 		457B5F311097C28C00B564BC /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializer.h; sourceTree = "<group>"; };
 		457B5F321097C28C00B564BC /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
 		457B5F741097C33F00B564BC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		457B5FAA1097C6BA00B564BC /* CMailLoggingHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMailLoggingHandler.h; sourceTree = "<group>"; };
-		457B5FAB1097C6BA00B564BC /* CMailLoggingHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMailLoggingHandler.m; sourceTree = "<group>"; };
 		457B5FF61097C93500B564BC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		45D4BF76109A2C5F00A04235 /* CMailLoggingHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMailLoggingHandler.h; sourceTree = "<group>"; };
+		45D4BF77109A2C5F00A04235 /* CMailLoggingHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMailLoggingHandler.m; sourceTree = "<group>"; };
+		45D4BF78109A2C5F00A04235 /* CUploaderLoggingHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUploaderLoggingHandler.h; sourceTree = "<group>"; };
+		45D4BF79109A2C5F00A04235 /* CUploaderLoggingHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CUploaderLoggingHandler.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Logging_iPhone-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Logging_iPhone-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -219,13 +219,10 @@
 			children = (
 				457B5EB91097BFCD00B564BC /* CLogging.h */,
 				457B5EBA1097BFCD00B564BC /* CLogging.m */,
-				457B5EBD1097BFCD00B564BC /* CUploaderLoggingHandler.h */,
-				457B5EBE1097BFCD00B564BC /* CUploaderLoggingHandler.m */,
 				457B5EBF1097BFCD00B564BC /* FileFunctionLine.h */,
 				457B5EC01097BFCD00B564BC /* FileFunctionLine.m */,
-				457B5FAA1097C6BA00B564BC /* CMailLoggingHandler.h */,
-				457B5FAB1097C6BA00B564BC /* CMailLoggingHandler.m */,
 				457B5EC81097BFCD00B564BC /* Logging.xcdatamodel */,
+				45D4BF75109A2C5F00A04235 /* Extras */,
 				457B5EED1097C28C00B564BC /* touchcode */,
 			);
 			name = Source;
@@ -390,6 +387,18 @@
 			path = JSON;
 			sourceTree = "<group>";
 		};
+		45D4BF75109A2C5F00A04235 /* Extras */ = {
+			isa = PBXGroup;
+			children = (
+				45D4BF76109A2C5F00A04235 /* CMailLoggingHandler.h */,
+				45D4BF77109A2C5F00A04235 /* CMailLoggingHandler.m */,
+				45D4BF78109A2C5F00A04235 /* CUploaderLoggingHandler.h */,
+				45D4BF79109A2C5F00A04235 /* CUploaderLoggingHandler.m */,
+			);
+			name = Extras;
+			path = ../../Extras;
+			sourceTree = SOURCE_ROOT;
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -453,7 +462,6 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* Logging_iPhoneAppDelegate.m in Sources */,
 				457B5EC91097BFCD00B564BC /* CLogging.m in Sources */,
-				457B5ECB1097BFCD00B564BC /* CUploaderLoggingHandler.m in Sources */,
 				457B5ECC1097BFCD00B564BC /* FileFunctionLine.m in Sources */,
 				457B5ED11097BFCD00B564BC /* Logging.xcdatamodel in Sources */,
 				457B5F331097C28C00B564BC /* CCompletionTicket.m in Sources */,
@@ -484,9 +492,10 @@
 				457B5F4D1097C28C00B564BC /* CJSONDeserializer.m in Sources */,
 				457B5F4E1097C28C00B564BC /* CJSONScanner.m in Sources */,
 				457B5F4F1097C28C00B564BC /* CJSONSerializer.m in Sources */,
-				457B5FAC1097C6BA00B564BC /* CMailLoggingHandler.m in Sources */,
 				456402E110991E9500F6DFEA /* NSDate_InternetDateExtensions.m in Sources */,
 				456402ED10991EB400F6DFEA /* NSDateFormatter_InternetDateExtensions.m in Sources */,
+				45D4BF7A109A2C5F00A04235 /* CMailLoggingHandler.m in Sources */,
+				45D4BF7B109A2C5F00A04235 /* CUploaderLoggingHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

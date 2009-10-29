@@ -32,22 +32,15 @@
 		4557404E1021355D00806D64 /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 455740271021355D00806D64 /* CJSONScanner.m */; };
 		4557404F1021355D00806D64 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 455740291021355D00806D64 /* CJSONSerializer.m */; };
 		455742231021475C00806D64 /* NSOperation_DebugExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 455742221021475C00806D64 /* NSOperation_DebugExtensions.m */; };
-		457B5D61109787CD00B564BC /* CLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = 457B5D54109787CD00B564BC /* CLogging.m */; };
-		457B5D65109787CD00B564BC /* FileFunctionLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 457B5D5E109787CD00B564BC /* FileFunctionLine.m */; };
-		457B5D66109787CD00B564BC /* Logging.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 457B5D5F109787CD00B564BC /* Logging.xcdatamodel */; };
 		457B5D6E109787DE00B564BC /* CCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 457B5D69109787DE00B564BC /* CCoreDataManager.m */; };
 		457B5D6F109787DE00B564BC /* CEntityDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 457B5D6B109787DE00B564BC /* CEntityDataSource.m */; };
 		457B5D70109787DE00B564BC /* NSManagedObjectContext_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 457B5D6D109787DE00B564BC /* NSManagedObjectContext_Extensions.m */; };
 		457B5D86109789D700B564BC /* NSOperationQueue_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 457B5D85109789D700B564BC /* NSOperationQueue_Extensions.m */; };
 		457B5D9810978ABE00B564BC /* CJSONDataSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 457B5D9510978ABE00B564BC /* CJSONDataSerializer.m */; };
 		457B5D9910978ABE00B564BC /* CSerializedJSONData.m in Sources */ = {isa = PBXBuildFile; fileRef = 457B5D9710978ABE00B564BC /* CSerializedJSONData.m */; };
-		457B5DF5109793AA00B564BC /* CPersistentRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 457B5DEB109793AA00B564BC /* CPersistentRequestManager.m */; };
-		457B5DF6109793AA00B564BC /* CTemporaryData.m in Sources */ = {isa = PBXBuildFile; fileRef = 457B5DED109793AA00B564BC /* CTemporaryData.m */; };
-		457B5DF7109793AA00B564BC /* CURLOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 457B5DEF109793AA00B564BC /* CURLOperation.m */; };
-		457B5DF8109793AA00B564BC /* NSData_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 457B5DF1109793AA00B564BC /* NSData_Extensions.m */; };
-		457B5DF9109793AA00B564BC /* NSData_HMACExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 457B5DF3109793AA00B564BC /* NSData_HMACExtensions.m */; };
-		457B5DFA109793AA00B564BC /* Request.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 457B5DF4109793AA00B564BC /* Request.xcdatamodel */; };
-		457B5E4E1097A61100B564BC /* CUploaderLoggingHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 457B5E4D1097A61100B564BC /* CUploaderLoggingHandler.m */; };
+		45D4BF58109A2BB800A04235 /* CLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = 45D4BF54109A2BB800A04235 /* CLogging.m */; };
+		45D4BF59109A2BB800A04235 /* FileFunctionLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 45D4BF56109A2BB800A04235 /* FileFunctionLine.m */; };
+		45D4BF5A109A2BB800A04235 /* Logging.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 45D4BF57109A2BB800A04235 /* Logging.xcdatamodel */; };
 		8DD76F9A0486AA7600D96B5E /* LoggingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* LoggingTest.m */; settings = {ATTRIBUTES = (); }; };
 		8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
 /* End PBXBuildFile section */
@@ -116,13 +109,6 @@
 		455740291021355D00806D64 /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
 		455742211021475C00806D64 /* NSOperation_DebugExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSOperation_DebugExtensions.h; sourceTree = "<group>"; };
 		455742221021475C00806D64 /* NSOperation_DebugExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSOperation_DebugExtensions.m; sourceTree = "<group>"; };
-		457B5D53109787CD00B564BC /* CLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLogging.h; sourceTree = "<group>"; };
-		457B5D54109787CD00B564BC /* CLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLogging.m; sourceTree = "<group>"; };
-		457B5D58109787CD00B564BC /* CLoggingUploaderOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLoggingUploaderOperation.h; sourceTree = "<group>"; };
-		457B5D59109787CD00B564BC /* CLoggingUploaderOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLoggingUploaderOperation.m; sourceTree = "<group>"; };
-		457B5D5D109787CD00B564BC /* FileFunctionLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileFunctionLine.h; sourceTree = "<group>"; };
-		457B5D5E109787CD00B564BC /* FileFunctionLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileFunctionLine.m; sourceTree = "<group>"; };
-		457B5D5F109787CD00B564BC /* Logging.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Logging.xcdatamodel; sourceTree = "<group>"; };
 		457B5D68109787DE00B564BC /* CCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCoreDataManager.h; sourceTree = "<group>"; };
 		457B5D69109787DE00B564BC /* CCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCoreDataManager.m; sourceTree = "<group>"; };
 		457B5D6A109787DE00B564BC /* CEntityDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEntityDataSource.h; sourceTree = "<group>"; };
@@ -135,19 +121,11 @@
 		457B5D9510978ABE00B564BC /* CJSONDataSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONDataSerializer.m; sourceTree = "<group>"; };
 		457B5D9610978ABE00B564BC /* CSerializedJSONData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSerializedJSONData.h; sourceTree = "<group>"; };
 		457B5D9710978ABE00B564BC /* CSerializedJSONData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSerializedJSONData.m; sourceTree = "<group>"; };
-		457B5DEA109793AA00B564BC /* CPersistentRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPersistentRequestManager.h; path = ../../TouchMetrics/Client/Source/CPersistentRequestManager.h; sourceTree = SOURCE_ROOT; };
-		457B5DEB109793AA00B564BC /* CPersistentRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CPersistentRequestManager.m; path = ../../TouchMetrics/Client/Source/CPersistentRequestManager.m; sourceTree = SOURCE_ROOT; };
-		457B5DEC109793AA00B564BC /* CTemporaryData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTemporaryData.h; path = ../../TouchMetrics/Client/Source/CTemporaryData.h; sourceTree = SOURCE_ROOT; };
-		457B5DED109793AA00B564BC /* CTemporaryData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTemporaryData.m; path = ../../TouchMetrics/Client/Source/CTemporaryData.m; sourceTree = SOURCE_ROOT; };
-		457B5DEE109793AA00B564BC /* CURLOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CURLOperation.h; path = ../../TouchMetrics/Client/Source/CURLOperation.h; sourceTree = SOURCE_ROOT; };
-		457B5DEF109793AA00B564BC /* CURLOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CURLOperation.m; path = ../../TouchMetrics/Client/Source/CURLOperation.m; sourceTree = SOURCE_ROOT; };
-		457B5DF0109793AA00B564BC /* NSData_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSData_Extensions.h; path = ../../TouchMetrics/Client/Source/NSData_Extensions.h; sourceTree = SOURCE_ROOT; };
-		457B5DF1109793AA00B564BC /* NSData_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSData_Extensions.m; path = ../../TouchMetrics/Client/Source/NSData_Extensions.m; sourceTree = SOURCE_ROOT; };
-		457B5DF2109793AA00B564BC /* NSData_HMACExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSData_HMACExtensions.h; path = ../../TouchMetrics/Client/Source/NSData_HMACExtensions.h; sourceTree = SOURCE_ROOT; };
-		457B5DF3109793AA00B564BC /* NSData_HMACExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSData_HMACExtensions.m; path = ../../TouchMetrics/Client/Source/NSData_HMACExtensions.m; sourceTree = SOURCE_ROOT; };
-		457B5DF4109793AA00B564BC /* Request.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; name = Request.xcdatamodel; path = ../../TouchMetrics/Client/Source/Request.xcdatamodel; sourceTree = SOURCE_ROOT; };
-		457B5E4C1097A61100B564BC /* CUploaderLoggingHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUploaderLoggingHandler.h; sourceTree = "<group>"; };
-		457B5E4D1097A61100B564BC /* CUploaderLoggingHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CUploaderLoggingHandler.m; sourceTree = "<group>"; };
+		45D4BF53109A2BB800A04235 /* CLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLogging.h; sourceTree = "<group>"; };
+		45D4BF54109A2BB800A04235 /* CLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLogging.m; sourceTree = "<group>"; };
+		45D4BF55109A2BB800A04235 /* FileFunctionLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileFunctionLine.h; sourceTree = "<group>"; };
+		45D4BF56109A2BB800A04235 /* FileFunctionLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileFunctionLine.m; sourceTree = "<group>"; };
+		45D4BF57109A2BB800A04235 /* Logging.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Logging.xcdatamodel; sourceTree = "<group>"; };
 		8DD76FA10486AA7600D96B5E /* LoggingTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LoggingTest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -180,18 +158,7 @@
 			children = (
 				32A70AAB03705E1F00C91783 /* LoggingTest_Prefix.pch */,
 				08FB7796FE84155DC02AAC07 /* LoggingTest.m */,
-				457B5D50109787CD00B564BC /* Source */,
-				457B5DEA109793AA00B564BC /* CPersistentRequestManager.h */,
-				457B5DEB109793AA00B564BC /* CPersistentRequestManager.m */,
-				457B5DEC109793AA00B564BC /* CTemporaryData.h */,
-				457B5DED109793AA00B564BC /* CTemporaryData.m */,
-				457B5DEE109793AA00B564BC /* CURLOperation.h */,
-				457B5DEF109793AA00B564BC /* CURLOperation.m */,
-				457B5DF0109793AA00B564BC /* NSData_Extensions.h */,
-				457B5DF1109793AA00B564BC /* NSData_Extensions.m */,
-				457B5DF2109793AA00B564BC /* NSData_HMACExtensions.h */,
-				457B5DF3109793AA00B564BC /* NSData_HMACExtensions.m */,
-				457B5DF4109793AA00B564BC /* Request.xcdatamodel */,
+				45D4BF52109A2BB800A04235 /* Source */,
 				45573FF11021355D00806D64 /* touchcode */,
 			);
 			name = Source;
@@ -356,23 +323,6 @@
 			path = JSON;
 			sourceTree = "<group>";
 		};
-		457B5D50109787CD00B564BC /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				457B5D53109787CD00B564BC /* CLogging.h */,
-				457B5D54109787CD00B564BC /* CLogging.m */,
-				457B5D58109787CD00B564BC /* CLoggingUploaderOperation.h */,
-				457B5D59109787CD00B564BC /* CLoggingUploaderOperation.m */,
-				457B5D5D109787CD00B564BC /* FileFunctionLine.h */,
-				457B5D5E109787CD00B564BC /* FileFunctionLine.m */,
-				457B5D5F109787CD00B564BC /* Logging.xcdatamodel */,
-				457B5E4C1097A61100B564BC /* CUploaderLoggingHandler.h */,
-				457B5E4D1097A61100B564BC /* CUploaderLoggingHandler.m */,
-			);
-			name = Source;
-			path = ../Source;
-			sourceTree = SOURCE_ROOT;
-		};
 		457B5D67109787DE00B564BC /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -385,6 +335,19 @@
 			);
 			path = CoreData;
 			sourceTree = "<group>";
+		};
+		45D4BF52109A2BB800A04235 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				45D4BF53109A2BB800A04235 /* CLogging.h */,
+				45D4BF54109A2BB800A04235 /* CLogging.m */,
+				45D4BF55109A2BB800A04235 /* FileFunctionLine.h */,
+				45D4BF56109A2BB800A04235 /* FileFunctionLine.m */,
+				45D4BF57109A2BB800A04235 /* Logging.xcdatamodel */,
+			);
+			name = Source;
+			path = ../../Source;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -453,22 +416,15 @@
 				4557404E1021355D00806D64 /* CJSONScanner.m in Sources */,
 				4557404F1021355D00806D64 /* CJSONSerializer.m in Sources */,
 				455742231021475C00806D64 /* NSOperation_DebugExtensions.m in Sources */,
-				457B5D61109787CD00B564BC /* CLogging.m in Sources */,
-				457B5D65109787CD00B564BC /* FileFunctionLine.m in Sources */,
-				457B5D66109787CD00B564BC /* Logging.xcdatamodel in Sources */,
 				457B5D6E109787DE00B564BC /* CCoreDataManager.m in Sources */,
 				457B5D6F109787DE00B564BC /* CEntityDataSource.m in Sources */,
 				457B5D70109787DE00B564BC /* NSManagedObjectContext_Extensions.m in Sources */,
 				457B5D86109789D700B564BC /* NSOperationQueue_Extensions.m in Sources */,
 				457B5D9810978ABE00B564BC /* CJSONDataSerializer.m in Sources */,
 				457B5D9910978ABE00B564BC /* CSerializedJSONData.m in Sources */,
-				457B5DF5109793AA00B564BC /* CPersistentRequestManager.m in Sources */,
-				457B5DF6109793AA00B564BC /* CTemporaryData.m in Sources */,
-				457B5DF7109793AA00B564BC /* CURLOperation.m in Sources */,
-				457B5DF8109793AA00B564BC /* NSData_Extensions.m in Sources */,
-				457B5DF9109793AA00B564BC /* NSData_HMACExtensions.m in Sources */,
-				457B5DFA109793AA00B564BC /* Request.xcdatamodel in Sources */,
-				457B5E4E1097A61100B564BC /* CUploaderLoggingHandler.m in Sources */,
+				45D4BF58109A2BB800A04235 /* CLogging.m in Sources */,
+				45D4BF59109A2BB800A04235 /* FileFunctionLine.m in Sources */,
+				45D4BF5A109A2BB800A04235 /* Logging.xcdatamodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
