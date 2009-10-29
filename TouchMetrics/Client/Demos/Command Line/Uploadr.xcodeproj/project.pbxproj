@@ -37,6 +37,7 @@
 		454D3DC8108FF76800C0AC1C /* Request.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 454D3DC7108FF76800C0AC1C /* Request.xcdatamodel */; };
 		456508311092A91E002AA14B /* CJSONDataSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 456508301092A91E002AA14B /* CJSONDataSerializer.m */; };
 		4571A40A1090AD7000BD1614 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4571A4091090AD7000BD1614 /* AppKit.framework */; };
+		457B5E221097989D00B564BC /* CUploadServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 457B5E211097989D00B564BC /* CUploadServiceManager.m */; };
 		45E4B818108F72E6008C1F17 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E4B817108F72E6008C1F17 /* Carbon.framework */; };
 		8DD76F9A0486AA7600D96B5E /* Uploadr.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* Uploadr.m */; settings = {ATTRIBUTES = (); }; };
 		8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
@@ -107,6 +108,8 @@
 		456508301092A91E002AA14B /* CJSONDataSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONDataSerializer.m; sourceTree = "<group>"; };
 		4571A4091090AD7000BD1614 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		4571A40D1090AD7400BD1614 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		457B5E201097989D00B564BC /* CUploadServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUploadServiceManager.h; sourceTree = "<group>"; };
+		457B5E211097989D00B564BC /* CUploadServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CUploadServiceManager.m; sourceTree = "<group>"; };
 		45E4B817108F72E6008C1F17 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		8DD76FA10486AA7600D96B5E /* Uploadr */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Uploadr; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -185,8 +188,8 @@
 				451509F710927B61006A67E6 /* Source */,
 			);
 			name = TouchJSON;
-			path = /Volumes/Users/schwa/Development/Source/Mercurial/public/touchcode/TouchJSON;
-			sourceTree = "<absolute>";
+			path = ../../../../TouchJSON;
+			sourceTree = "<group>";
 		};
 		451509F710927B61006A67E6 /* Source */ = {
 			isa = PBXGroup;
@@ -242,8 +245,8 @@
 				45185DBC10909B7C000A7F2B /* NSManagedObjectContext_Extensions.m */,
 			);
 			name = CoreData;
-			path = /Volumes/Users/schwa/Development/Source/Mercurial/public/touchcode/Support/Common/CoreData;
-			sourceTree = "<absolute>";
+			path = ../../../../Support/Common/CoreData;
+			sourceTree = "<group>";
 		};
 		454D3949108FA9B000C0AC1C /* Source */ = {
 			isa = PBXGroup;
@@ -262,6 +265,8 @@
 				454D3D8D108FF0EB00C0AC1C /* CPersistentRequestManager.m */,
 				451509CD109271F7006A67E6 /* Analytics.xcdatamodel */,
 				454D3DC7108FF76800C0AC1C /* Request.xcdatamodel */,
+				457B5E201097989D00B564BC /* CUploadServiceManager.h */,
+				457B5E211097989D00B564BC /* CUploadServiceManager.m */,
 				451509C610926F26006A67E6 /* CTouchAnalyticsManager.h */,
 				451509C710926F26006A67E6 /* CTouchAnalyticsManager.m */,
 			);
@@ -393,6 +398,7 @@
 				45150A5A10927B61006A67E6 /* CJSONSerializer.m in Sources */,
 				456508311092A91E002AA14B /* CJSONDataSerializer.m in Sources */,
 				4537D3BA1092AC54004025CB /* CSerializedJSONData.m in Sources */,
+				457B5E221097989D00B564BC /* CUploadServiceManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

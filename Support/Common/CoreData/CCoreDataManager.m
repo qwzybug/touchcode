@@ -69,8 +69,6 @@ NSAssert(inPersistentStoreUrl != NULL, @"inPersistentStoreURL should not be NULL
 
 if ((self = [super init]) != NULL)
 	{
-	NSLog(@"Creating new CDM");
-	
 	#if TARGET_OS_IPHONE == 1
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminate:) name:UIApplicationWillTerminateNotification object:[UIApplication sharedApplication]];
 	#else
@@ -156,7 +154,6 @@ managedObjectModel = NULL;
 	{
 	if (managedObjectModel == NULL)
 		{
-		NSLog(@"CREATING NEW MOM");
 		managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:self.modelURL];
 		}
 	}
@@ -205,8 +202,6 @@ return(theManagedObjectContext);
 
 - (NSManagedObjectContext *)newManagedObjectContext
 {
-NSLog(@"MAKING NEW MOC: %x", self.managedObjectModel);
-
 NSPersistentStoreCoordinator *thePersistentStoreCoordinator = self.persistentStoreCoordinator;
 if (thePersistentStoreCoordinator == NULL)
 	return(NULL);

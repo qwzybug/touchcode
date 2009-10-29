@@ -95,7 +95,8 @@ NSDictionary *theMessage = [NSDictionary dictionaryWithObjectsAndKeys:
 NSData *theContent = [[CJSONDataSerializer serializer] serializeObject:theMessage];
 
 NSData *theKey = [@"sekret" dataUsingEncoding:NSUTF8StringEncoding];
-NSURL *theURL = [NSURL URLWithString:@"http://localhost:8080/api/0/upload"];
+//NSURL *theURL = [NSURL URLWithString:@"http://localhost:8080/api/0/upload"];
+NSURL *theURL = [NSURL URLWithString:@"http://filer.appspot.com/api/0/upload"];
 NSString *theServiceIdentifier = @"test";
 NSString *theContentType = @"text/plain";
 NSData *theDigest = [theContent HMACDigestWithKey:theKey];
