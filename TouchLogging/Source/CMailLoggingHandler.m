@@ -124,7 +124,6 @@ self.logging = NULL;
 self.sessions = NULL;
 
 [self.viewController dismissModalViewControllerAnimated:YES];
-NSLog(@"%d", result);
 }
 
 @end

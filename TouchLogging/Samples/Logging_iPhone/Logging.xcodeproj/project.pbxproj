@@ -72,12 +72,6 @@
 		457B5EBE1097BFCD00B564BC /* CUploaderLoggingHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CUploaderLoggingHandler.m; sourceTree = "<group>"; };
 		457B5EBF1097BFCD00B564BC /* FileFunctionLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileFunctionLine.h; sourceTree = "<group>"; };
 		457B5EC01097BFCD00B564BC /* FileFunctionLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileFunctionLine.m; sourceTree = "<group>"; };
-		457B5EC21097BFCD00B564BC /* CLoggingMessageDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLoggingMessageDetailViewController.h; sourceTree = "<group>"; };
-		457B5EC31097BFCD00B564BC /* CLoggingMessageDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLoggingMessageDetailViewController.m; sourceTree = "<group>"; };
-		457B5EC41097BFCD00B564BC /* CLoggingMessageDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CLoggingMessageDetailViewController.xib; sourceTree = "<group>"; };
-		457B5EC51097BFCD00B564BC /* CLogTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLogTableViewController.h; sourceTree = "<group>"; };
-		457B5EC61097BFCD00B564BC /* CLogTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLogTableViewController.m; sourceTree = "<group>"; };
-		457B5EC71097BFCD00B564BC /* CLogTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CLogTableViewController.xib; sourceTree = "<group>"; };
 		457B5EC81097BFCD00B564BC /* Logging.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Logging.xcdatamodel; sourceTree = "<group>"; };
 		457B5EF11097C28C00B564BC /* CCompletionTicket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCompletionTicket.h; sourceTree = "<group>"; };
 		457B5EF21097C28C00B564BC /* CCompletionTicket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCompletionTicket.m; sourceTree = "<group>"; };
@@ -231,26 +225,12 @@
 				457B5EC01097BFCD00B564BC /* FileFunctionLine.m */,
 				457B5FAA1097C6BA00B564BC /* CMailLoggingHandler.h */,
 				457B5FAB1097C6BA00B564BC /* CMailLoggingHandler.m */,
-				457B5EC11097BFCD00B564BC /* iPhone */,
 				457B5EC81097BFCD00B564BC /* Logging.xcdatamodel */,
 				457B5EED1097C28C00B564BC /* touchcode */,
 			);
 			name = Source;
 			path = ../../Source;
 			sourceTree = SOURCE_ROOT;
-		};
-		457B5EC11097BFCD00B564BC /* iPhone */ = {
-			isa = PBXGroup;
-			children = (
-				457B5EC21097BFCD00B564BC /* CLoggingMessageDetailViewController.h */,
-				457B5EC31097BFCD00B564BC /* CLoggingMessageDetailViewController.m */,
-				457B5EC41097BFCD00B564BC /* CLoggingMessageDetailViewController.xib */,
-				457B5EC51097BFCD00B564BC /* CLogTableViewController.h */,
-				457B5EC61097BFCD00B564BC /* CLogTableViewController.m */,
-				457B5EC71097BFCD00B564BC /* CLogTableViewController.xib */,
-			);
-			path = iPhone;
-			sourceTree = "<group>";
 		};
 		457B5EED1097C28C00B564BC /* touchcode */ = {
 			isa = PBXGroup;
