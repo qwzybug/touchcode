@@ -10,12 +10,11 @@
 
 #import "CCoreDataManager.h"
 
-static NSMutableDictionary *gDefaults = NULL;
 static CLogging *gInstance = NULL;
 
 @interface CLogging ()
 @property (readwrite, retain) CCoreDataManager *coreDataManager;
-@property (readwrite, retain) NSManagedObjectID *sessionID;
+@property (readwrite, copy) NSManagedObjectID *sessionID;
 @property (readwrite, retain) NSMutableDictionary *handlers;
 @property (readwrite, assign) BOOL started;
 
@@ -27,6 +26,8 @@ static CLogging *gInstance = NULL;
 
 @implementation CLogging
 
+@synthesize sender;
+@synthesize facility;
 @dynamic coreDataManager;
 @synthesize sessionID;
 @synthesize handlers;
@@ -38,10 +39,6 @@ NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
 
 @synchronized(@"CLogging")
 	{
-	if (gDefaults == NULL)
-		{
-		gDefaults = [[NSMutableDictionary alloc] init];
-		}
 	if (gInstance == NULL)
 		{
 		gInstance = [[CLogging alloc] init];
@@ -78,42 +75,6 @@ switch (inLevel)
 	}
 }
 
-+ (NSString *)defaultSender
-{
-NSString *theValue = NULL;
-@synchronized(@"CLogging")
-	{
-	theValue = [gDefaults objectForKey:@"defaultSender"];
-	}
-return(theValue);
-}
-
-+ (void)setDefaultSender:(NSString *)inDefaultSender
-{
-@synchronized(@"CLogging")
-	{
-	[gDefaults setObject:inDefaultSender forKey:@"defaultSender"];
-	}
-}
-
-+ (NSString *)defaultFacility
-{
-NSString *theValue = NULL;
-@synchronized(@"CLogging")
-	{
-	theValue = [gDefaults objectForKey:@"defaultFacility"];
-	}
-return(theValue);
-}
-
-+ (void)setDefaultFacility:(NSString *)inDefaultFacility
-{
-@synchronized(@"CLogging")
-	{
-	[gDefaults setObject:inDefaultFacility forKey:@"defaultFacility"];
-	}
-}
-
 #pragma mark -
 
 - (id)init
@@ -147,38 +108,6 @@ handlers = NULL;
 - (NSManagedObject *)session
 {
 return([self.coreDataManager.managedObjectContext existingObjectWithID:self.sessionID error:NULL]);
-}
-
-- (NSString *)sender
-{
-if (sender == NULL)
-	sender = [[[self class] defaultSender] retain];
-return(sender);
-}
-
-- (void)setSender:(NSString *)inSender
-{
-if (sender != inSender)
-	{
-	[sender autorelease];
-	sender = [inSender retain];
-	}
-}
-
-- (NSString *)facility
-{
-if (facility == NULL)
-	facility = [[[self class] defaultFacility] retain];
-return(facility);
-}
-
-- (void)setFacility:(NSString *)inFacility
-{
-if (facility != inFacility)
-	{
-	[facility autorelease];
-	facility = [inFacility retain];
-	}
 }
 
 #pragma mark -

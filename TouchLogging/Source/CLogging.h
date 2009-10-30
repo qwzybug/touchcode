@@ -38,19 +38,17 @@ typedef enum {
 	BOOL started;
 }
 
+@property (readwrite, copy) NSString *sender;
+@property (readwrite, copy) NSString *facility;
 @property (readonly, retain) CCoreDataManager *coreDataManager;
-@property (readonly, retain) NSManagedObjectID *sessionID;
+
+@property (readonly, copy) NSManagedObjectID *sessionID;
 @property (readonly, retain) NSManagedObject *session;
 
 /** Returns the thread's logging isntance */
 + (CLogging *)instance;
 
 + (NSString *)stringForLevel:(NSInteger)inLevel;
-
-+ (NSString *)defaultSender;
-+ (void)setDefaultSender:(NSString *)inDefaultSender;
-+ (NSString *)defaultFacility;
-+ (void)setDefaultFacility:(NSString *)inDefaultFacility;
 
 /** accessor for controlling the sender of a logging object. The setSender message should be sent before the target receives a client message. */
 - (NSString *)sender;
@@ -98,7 +96,7 @@ typedef enum {
 #define LogDict_(level, dict, ...) \
 	do \
 		{ \
-		Log(__FILE__, __PRETTY_FUNCTION__, __LINE__, (level), (dict), __VA_ARGS__); \
+		Log((level), (dict), __VA_ARGS__); \
 		} \
 	while (0)
 
