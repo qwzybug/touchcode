@@ -1,8 +1,8 @@
 //
-//  CJSONDeserializer.h
+//  CJSONSerializer.h
 //  TouchCode
 //
-//  Created by Jonathan Wight on 12/15/2005.
+//  Created by Jonathan Wight on 12/07/2005.
 //  Copyright 2005 toxicsoftware.com. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person
@@ -29,17 +29,18 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString *const kJSONDeserializerErrorDomain /* = @"CJSONDeserializerErrorDomain" */;
-
-@interface CJSONDeserializer : NSObject {
-
+@interface CJSONDataSerializer : NSObject {
 }
 
-+ (id)deserializer;
++ (id)serializer;
 
-- (id)deserialize:(NSData *)inData error:(NSError **)outError;
+/// Take any JSON compatible object (generally NSNull, NSNumber, NSString, NSArray and NSDictionary) and produce an NSData containing the serialized JSON.
+- (NSData *)serializeObject:(id)inObject;
 
-- (id)deserializeAsDictionary:(NSData *)inData error:(NSError **)outError;
-- (id)deserializeAsArray:(NSData *)inData error:(NSError **)outError;
+- (NSData *)serializeNull:(NSNull *)inNull;
+- (NSData *)serializeNumber:(NSNumber *)inNumber;
+- (NSData *)serializeString:(NSString *)inString;
+- (NSData *)serializeArray:(NSArray *)inArray;
+- (NSData *)serializeDictionary:(NSDictionary *)inDictionary;
 
 @end

@@ -39,4 +39,6 @@
 
 - (NSDictionary *)queryDictionary;
 
+- (NSURL *)querylessURL;
+
 @end

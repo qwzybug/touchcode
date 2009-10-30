@@ -1,9 +1,9 @@
 //
-//  CJSONDeserializer.h
+//  CSerializedJSONData.m
 //  TouchCode
 //
-//  Created by Jonathan Wight on 12/15/2005.
-//  Copyright 2005 toxicsoftware.com. All rights reserved.
+//  Created by Jonathan Wight on 10/23/09.
+//  Copyright 2009 toxicsoftware.com. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person
 //  obtaining a copy of this software and associated documentation
@@ -27,19 +27,28 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import "CSerializedJSONData.h"
 
-extern NSString *const kJSONDeserializerErrorDomain /* = @"CJSONDeserializerErrorDomain" */;
+@implementation CSerializedJSONData
 
-@interface CJSONDeserializer : NSObject {
+@synthesize data;
 
+- (id)initWithData:(NSData *)inData;
+{
+if ((self = [self init]) != NULL)
+	{
+	data = inData;
+	}
+return(self);
 }
 
-+ (id)deserializer;
+- (void)dealloc
+{
+[data release];
+data = NULL;
+//
+[super dealloc];
+}
 
-- (id)deserialize:(NSData *)inData error:(NSError **)outError;
-
-- (id)deserializeAsDictionary:(NSData *)inData error:(NSError **)outError;
-- (id)deserializeAsArray:(NSData *)inData error:(NSError **)outError;
 
 @end
