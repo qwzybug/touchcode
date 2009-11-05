@@ -6,7 +6,7 @@
 //  Copyright 2009 toxicsoftware.com. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 
 @interface CUploadServiceManager : NSObject {

@@ -11,6 +11,7 @@
 #import "CCoreDataManager.h"
 #import "CURLOperation.h"
 
+#import "NSOperationQueue_Extensions.h"
 #import "NSManagedObjectContext_Extensions.h"
 
 @interface CPersistentRequestManager ()
@@ -33,11 +34,15 @@
 {
 if ((self = [super init]) != NULL)
 	{
+	#if 0
 	NSURL *theModelURL = [NSURL URLWithString:@"file://localhost/Volumes/Users/schwa/Development/Products/Debug/Request.mom"];
 	coreDataManager = [[CCoreDataManager alloc] initWithModelUrl:theModelURL persistentStoreName:@"Request" forceReplace:NO storeType:NULL storeOptions:NULL];
+	#else
+	coreDataManager = [[CCoreDataManager alloc] initWithModelName:@"Request" persistentStoreName:@"Request" forceReplace:NO storeType:NULL storeOptions:NULL];
+	#endif
 	coreDataManager.delegate = self;
 
-	operationQueue = [[NSOperationQueue currentQueue] retain];
+	operationQueue = [[NSOperationQueue defaultOperationQueue] retain];
 
 	[self cleanup];
 	}
@@ -101,6 +106,8 @@ NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"inProgress == NO"
 NSArray *theRequests = [self.coreDataManager.managedObjectContext fetchObjectsOfEntityForName:@"Request" predicate:thePredicate error:&theError];
 for (NSManagedObject *theRequestObject in theRequests)
 	{
+	NSLog(@"Creating a new CURLOperation...");
+	
 	[theRequestObject setValue:[NSNumber numberWithBool:YES] forKey:@"inProgress"];
 
 	NSURLRequest *theURLRequest = [theRequestObject valueForKey:@"request"];

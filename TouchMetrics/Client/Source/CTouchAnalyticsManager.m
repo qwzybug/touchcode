@@ -19,6 +19,7 @@
 #import "CTouchAnalyticsManager.h"
 #import "NSManagedObjectContext_Extensions.h"
 #import "CSerializedJSONData.h"
+#import "NSOperationQueue_Extensions.h"
 
 static CTouchAnalyticsManager *gInstance = NULL;
 
@@ -41,11 +42,15 @@ return(gInstance);
 {
 if ((self = [super init]) != NULL)
 	{
+#if 0
 	NSURL *theModelURL = [NSURL URLWithString:@"file://localhost/Volumes/Users/schwa/Development/Products/Debug/Analytics.mom"];
-	coreDataManager = [[CCoreDataManager alloc] initWithModelUrl:theModelURL persistentStoreName:@"Message" forceReplace:NO storeType:NULL storeOptions:NULL];
+	coreDataManager = [[CCoreDataManager alloc] initWithModelUrl:theModelURL persistentStoreName:@"Analytics" forceReplace:NO storeType:NULL storeOptions:NULL];
+#else
+	coreDataManager = [[CCoreDataManager alloc] initWithModelName:@"Analytics" persistentStoreName:@"Analytics" forceReplace:NO storeType:NULL storeOptions:NULL];
+#endif 
 	coreDataManager.delegate = self;
 	
-	operationQueue = [[NSOperationQueue currentQueue] retain];
+	operationQueue = [[NSOperationQueue defaultOperationQueue] retain];
 	
 	requestManager = [[CPersistentRequestManager alloc] init];
 	}
@@ -60,6 +65,8 @@ NSInvocationOperation *theOperation = [[[NSInvocationOperation alloc] initWithTa
 
 - (void)postMessage_:(NSDictionary *)inMessage
 {
+NSLog(@"POSTING MESSAGE");
+
 NSData *theSerializedMessage = [[CJSONDataSerializer serializer] serializeDictionary:inMessage];
 
 NSManagedObject *theObject = [NSEntityDescription insertNewObjectForEntityForName:@"Message" inManagedObjectContext:self.coreDataManager.managedObjectContext];
@@ -73,6 +80,8 @@ NSManagedObject *theObject = [NSEntityDescription insertNewObjectForEntityForNam
 
 - (void)processMessages
 {
+NSLog(@"PROCESSING MESSAGE");
+
 NSMutableArray *theMessagesArray = [NSMutableArray array];
 
 NSError *theError = NULL;

@@ -52,7 +52,7 @@ else if ([self.storage isKindOfClass:[NSFileHandle class]])
 	{
 	[self.storage synchronizeFile];
 	NSError *theError = NULL;
-	theData = [NSData dataWithContentsOfURL:self.tempFileURL options:NSDataReadingMapped error:&theError];
+	theData = [NSData dataWithContentsOfURL:self.tempFileURL options:NSMappedRead error:&theError];
 	if (theData == NULL || theError != NULL)
 		{
 		NSLog(@"ERROR: %@", theError);
@@ -87,7 +87,7 @@ else if ([self.storage length] + [inData length] > self.dataLimit)
 		return(NO);
 		}
 
-	NSFileHandle *theFileHandle = [NSFileHandle fileHandleForWritingToURL:self.tempFileURL error:&theError];
+	NSFileHandle *theFileHandle = [NSFileHandle fileHandleForWritingAtPath:self.tempFileURL.path];
 	if (theFileHandle == NULL || theError != NULL)
 		{
 		NSLog(@"ERROR: %@", theError);

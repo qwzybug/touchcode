@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4510D23410A340E10056C63A /* NSOperationQueue_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4510D23310A340E10056C63A /* NSOperationQueue_Extensions.m */; };
 		451509C810926F26006A67E6 /* CTouchAnalyticsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 451509C710926F26006A67E6 /* CTouchAnalyticsManager.m */; };
 		451509CE109271F7006A67E6 /* Analytics.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 451509CD109271F7006A67E6 /* Analytics.xcdatamodel */; };
 		45150A5310927B61006A67E6 /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 451509F910927B61006A67E6 /* CDataScanner.m */; };
@@ -59,6 +60,8 @@
 		08FB7796FE84155DC02AAC07 /* Uploadr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Uploadr.m; sourceTree = "<group>"; };
 		08FB779EFE84155DC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32A70AAB03705E1F00C91783 /* Uploadr_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Uploadr_Prefix.pch; sourceTree = "<group>"; };
+		4510D23210A340E10056C63A /* NSOperationQueue_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSOperationQueue_Extensions.h; path = ../../../../Support/Common/Extensions/NSOperationQueue_Extensions.h; sourceTree = SOURCE_ROOT; };
+		4510D23310A340E10056C63A /* NSOperationQueue_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSOperationQueue_Extensions.m; path = ../../../../Support/Common/Extensions/NSOperationQueue_Extensions.m; sourceTree = SOURCE_ROOT; };
 		451509C610926F26006A67E6 /* CTouchAnalyticsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTouchAnalyticsManager.h; sourceTree = "<group>"; };
 		451509C710926F26006A67E6 /* CTouchAnalyticsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTouchAnalyticsManager.m; sourceTree = "<group>"; };
 		451509CD109271F7006A67E6 /* Analytics.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Analytics.xcdatamodel; sourceTree = "<group>"; };
@@ -140,6 +143,8 @@
 			isa = PBXGroup;
 			children = (
 				08FB7795FE84155DC02AAC07 /* Source */,
+				4510D23210A340E10056C63A /* NSOperationQueue_Extensions.h */,
+				4510D23310A340E10056C63A /* NSOperationQueue_Extensions.m */,
 				454D3949108FA9B000C0AC1C /* Source */,
 				45185DB610909B7C000A7F2B /* CoreData */,
 				451509DD10927B61006A67E6 /* TouchJSON */,
@@ -399,6 +404,7 @@
 				456508311092A91E002AA14B /* CJSONDataSerializer.m in Sources */,
 				4537D3BA1092AC54004025CB /* CSerializedJSONData.m in Sources */,
 				457B5E221097989D00B564BC /* CUploadServiceManager.m in Sources */,
+				4510D23410A340E10056C63A /* NSOperationQueue_Extensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

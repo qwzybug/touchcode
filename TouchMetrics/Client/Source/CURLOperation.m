@@ -76,8 +76,24 @@ return(self.temporaryData.data);
 
 - (void)start
 {
-self.isExecuting = YES;
-self.connection = [[[NSURLConnection alloc] initWithRequest:self.request delegate:self startImmediately:YES] autorelease];
+@try
+	{
+	NSLog(@"START: %@", [NSThread currentThread]);
+
+	self.isExecuting = YES;
+	self.connection = [[[NSURLConnection alloc] initWithRequest:self.request delegate:self startImmediately:NO] autorelease];
+//	self.connection = [[[NSURLConnection alloc] initWithRequest:self.request delegate:self] autorelease];
+	
+	[self.connection scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+	[self.connection start];
+
+//	[self.connection performSelectorOnMainThread:@selector(start) withObject:NULL waitUntilDone:YES];
+	
+	}
+@catch (NSException * e)
+	{
+	NSLog(@"EXCEPTION CAUGHT: %@", e);
+	}
 }
 
 - (void)cancel
@@ -92,6 +108,7 @@ self.connection = NULL;
 
 - (NSURLRequest *)connection:(NSURLConnection *)inConnection willSendRequest:(NSURLRequest *)inRequest redirectResponse:(NSURLResponse *)response
 {
+NSLog(@"WILL SEND REQUEST: %@", [NSThread currentThread]);
 return(inRequest);
 }
 
@@ -117,6 +134,7 @@ return(inRequest);
 
 - (void)connection:(NSURLConnection *)inConnection didReceiveResponse:(NSURLResponse *)inResponse
 {
+NSLog(@"%@", inResponse);
 self.response = inResponse;
 }
 
@@ -135,14 +153,18 @@ if (theResult == NO)
 	}
 }
 
-//- (void)connection:(NSURLConnection *)inConnection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
-//{
-//}
-//
+- (void)connection:(NSURLConnection *)inConnection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
+{
+NSLog(@"%d/%d", totalBytesWritten, totalBytesExpectedToWrite);
+}
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)inConnection
 {
-NSLog(@"DID FINISH: %@", self);
+NSLog(@"DID FINISH: %@", [[[NSString alloc] initWithData:self.temporaryData.data encoding:NSUTF8StringEncoding] autorelease]);
+
+
+
+
 
 [self willChangeValueForKey:@"isFinished"];
 self.isFinished = YES;
@@ -158,7 +180,10 @@ NSLog(@"DID FAIL: %@", inError);
 
 self.error = inError;
 
+[self willChangeValueForKey:@"isFinished"];
 self.isFinished = YES;
+[self didChangeValueForKey:@"isFinished"];
+
 self.isExecuting = NO;
 self.connection = NULL;
 }

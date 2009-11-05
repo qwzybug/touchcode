@@ -50,7 +50,7 @@ class UploadHandler(webapp.RequestHandler):
 
 			theSuppliedHMACDigest = theHeaders[theSecurityHeaderKey].strip().lower()
 			theBodyHMACDigest = hmac.new(theHMACKey, body, hashlib.sha1).hexdigest().lower()
-			logging.debug('DIGESTS: %@ %@', theSuppliedHMACDigest, theBodyHMACDigest)
+#			logging.debug('DIGESTS: %s %s', theSuppliedHMACDigest, theBodyHMACDigest)
 			if theSuppliedHMACDigest != theBodyHMACDigest:
 				raise AuthError('Security failure')
 

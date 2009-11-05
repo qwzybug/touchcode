@@ -7,41 +7,86 @@
 //
 
 #import "TouchMetricsTestAppDelegate.h"
-#import "RootViewController.h"
 
+#import "NSData_HMACExtensions.h"
+#import "NSData_Extensions.h"
+#import "CPersistentRequestManager.h"
+#import "CTouchAnalyticsManager.h"
 
 @implementation TouchMetricsTestAppDelegate
 
 @synthesize window;
-@synthesize navigationController;
+@synthesize viewController;
+@synthesize imagePickerController;
+@synthesize requestManager;
 
-
-#pragma mark -
-#pragma mark Application lifecycle
-
-- (void)applicationDidFinishLaunching:(UIApplication *)application {    
-    
-    // Override point for customization after app launch    
-	
-	[window addSubview:[navigationController view]];
-    [window makeKeyAndVisible];
+- (void)dealloc
+{
+[window release];
+window = NULL;
+[viewController release];
+viewController = NULL;
+[imagePickerController release];
+imagePickerController = NULL;
+//
+[super dealloc];
 }
 
+- (void)applicationDidFinishLaunching:(UIApplication *)application
+{    
+[window addSubview:self.viewController.view];
+[window makeKeyAndVisible];
 
-- (void)applicationWillTerminate:(UIApplication *)application {
-	// Save data if appropriate
+self.requestManager = [[[CPersistentRequestManager alloc] init] autorelease];
+
+//NSDictionary *theMessage = [NSDictionary dictionaryWithObjectsAndKeys:@"test", @"test", NULL];
+//[[CTouchAnalyticsManager instance] postMessage:theMessage];
+
+#if 1
+self.imagePickerController = [[[UIImagePickerController alloc] init] autorelease];
+self.imagePickerController.delegate = self;
+self.imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+
+[self.viewController presentModalViewController:self.imagePickerController animated:YES];
+#endif
 }
 
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+UIImage *theImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+NSData *theContent = UIImagePNGRepresentation(theImage);
 
-#pragma mark -
-#pragma mark Memory management
 
-- (void)dealloc {
-	[navigationController release];
-	[window release];
-	[super dealloc];
+NSData *theKey = [@"sekret" dataUsingEncoding:NSUTF8StringEncoding];
+//NSURL *theURL = [NSURL URLWithString:@"http://localhost:8080/api/0/upload"];
+//NSURL *theURL = [NSURL URLWithString:@"http://cobweb.local.:8080/api/0/upload"];
+NSURL *theURL = [NSURL URLWithString:@"http://filer.appspot.com/api/0/upload"];
+NSString *theServiceIdentifier = @"test";
+NSString *theContentType = @"image/png";
+NSData *theDigest = [theContent HMACDigestWithKey:theKey];
+NSString *theHexDigest = [theDigest hexString];
+
+
+//NSLog(@"%d", strlen(theDigest));
+
+NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:theURL];
+[theRequest setHTTPMethod:@"POST"];
+[theRequest setValue:theContentType forHTTPHeaderField:@"Content-Type"];
+[theRequest setValue:theHexDigest forHTTPHeaderField:@"x-hmac-body-hexdigest"];
+[theRequest setValue:theServiceIdentifier forHTTPHeaderField:@"x-service-identifier"];
+
+theRequest.HTTPBody = theContent;
+
+
+[self.requestManager addRequest:theRequest];
+
+[self.viewController dismissModalViewControllerAnimated:YES];
 }
 
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+[self.viewController dismissModalViewControllerAnimated:YES];
+}
 
 @end
 

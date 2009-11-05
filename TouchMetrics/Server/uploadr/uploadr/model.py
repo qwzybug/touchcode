@@ -36,7 +36,7 @@ class Upload(db.Model):
 	environ = db.TextProperty(required=False)
 	remoteAddress = db.StringProperty(required=False)
 	bodyLength = db.IntegerProperty()
-	body = db.StringProperty(required=True)
-#	body = db.BlobProperty(required=True)
+#	body = db.StringProperty(required=True)
+	body = db.BlobProperty(required=True)
 	serviced = db.DateTimeProperty(required=False)
 

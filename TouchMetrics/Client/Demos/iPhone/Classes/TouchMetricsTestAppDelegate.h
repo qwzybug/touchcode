@@ -6,14 +6,21 @@
 //  Copyright toxicsoftware.com 2009. All rights reserved.
 //
 
-@interface TouchMetricsTestAppDelegate : NSObject <UIApplicationDelegate> {
-    
+#import <UIKit/UIKit.h>
+
+@class CPersistentRequestManager;
+
+@interface TouchMetricsTestAppDelegate : NSObject <UIApplicationDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
     UIWindow *window;
-    UINavigationController *navigationController;
+	UIViewController *viewController;
+	UIImagePickerController *imagePickerController;
+	CPersistentRequestManager *requestManager;
 }
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
+@property (readwrite, nonatomic, retain) IBOutlet UIWindow *window;
+@property (readwrite, nonatomic, retain) IBOutlet UIViewController *viewController;
+@property (readwrite, nonatomic, retain) UIImagePickerController *imagePickerController;
+@property (readwrite, nonatomic, retain) CPersistentRequestManager *requestManager;
 
 @end
 
