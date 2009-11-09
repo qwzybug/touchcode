@@ -14,14 +14,14 @@
 #import "FileFunctionLine.h"
 
 typedef enum {
-	LoggingLevel_EMERG,
-	LoggingLevel_ALERT,
-	LoggingLevel_CRIT,
-	LoggingLevel_ERR,
-	LoggingLevel_WARNING,
-	LoggingLevel_NOTICE,
-	LoggingLevel_INFO,
-	LoggingLevel_DEBUG,
+	LoggingLevel_EMERG = 0,
+	LoggingLevel_ALERT = 1,
+	LoggingLevel_CRIT = 2,
+	LoggingLevel_ERR = 3,
+	LoggingLevel_WARNING = 4,
+	LoggingLevel_NOTICE = 5,
+	LoggingLevel_INFO = 6,
+	LoggingLevel_DEBUG = 7,
 } ELoggingLevel;
 
 @class CCoreDataManager;
@@ -59,6 +59,7 @@ typedef enum {
 - (void)setFacility:(NSString *)inFacility;
 
 - (void)addHandler:(id <CLoggingHandler>)inHandler forEvents:(NSArray *)inEvents;
+- (void)removeHandler:(id <CLoggingHandler>)inHandler;
 
 /// Logging.
 - (void)logLevel:(int)inLevel format:(NSString *)inFormat, ...;

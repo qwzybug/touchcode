@@ -162,6 +162,23 @@ for (NSString *theEvent in inEvents)
 		[theHandlers addObject:inHandler];
 		}
 	}
+
+if (self.started == YES)
+	{
+	if ([inEvents containsObject:@"start"])
+		{
+		[inHandler handleLogging:self event:@"start" error:NULL];
+		}
+	}
+}
+
+- (void)removeHandler:(id <CLoggingHandler>)inHandler
+{
+for (NSMutableArray *theHandlers in [self.handlers allValues])
+	{
+	if ([theHandlers containsObject:inHandler])
+		[theHandlers removeObject:inHandler];
+	}
 }
 
 - (void)start
@@ -171,6 +188,8 @@ for (id <CLoggingHandler> theHandler in theHandlers)
 	{
 	[theHandler handleLogging:self event:@"start" error:NULL];
 	}
+	
+self.started = YES;
 }
 
 - (void)end
