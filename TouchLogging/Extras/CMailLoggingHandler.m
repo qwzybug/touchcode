@@ -37,7 +37,7 @@
 {
 if ((self = [super init]) != NULL)
 	{
-	predicate = [[NSPredicate predicateWithFormat:@"messages.level.@min < 10"] retain];
+	predicate = [[NSPredicate predicateWithFormat:@"messages.level.@min <= %@", [NSNumber numberWithInteger:LoggingLevel_ERR]] retain];
 	}
 return(self);
 }
