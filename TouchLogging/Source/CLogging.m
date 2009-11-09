@@ -212,12 +212,13 @@ va_start(theArgList, inFormat);
 NSString *theMessage = [[[NSString alloc] initWithFormat:inFormat arguments:theArgList] autorelease];
 va_end(theArgList);
 
-[self logLevel:inLevel fileFunctionLine:NULL dictionary:NULL format:@"%@", theMessage];
+SFileFunctionLine theFileFunctionLine = { 0, NULL };
+[self logLevel:inLevel fileFunctionLine:theFileFunctionLine dictionary:NULL format:@"%@", theMessage];
 
 [thePool release];
 }
 
-- (void)logLevel:(int)inLevel dictionary:(NSDictionary *)inDictionary format:(NSString *)inFormat, ...
+- (void)logLevel:(int)inLevel dictionary:(NSDictionary *)inDictionary format:(NSString *)inFormat, ...;
 {
 NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
 
@@ -226,12 +227,13 @@ va_start(theArgList, inFormat);
 NSString *theMessage = [[[NSString alloc] initWithFormat:inFormat arguments:theArgList] autorelease];
 va_end(theArgList);
 
-[self logLevel:inLevel fileFunctionLine:NULL dictionary:inDictionary format:@"%@", theMessage];
+SFileFunctionLine theFileFunctionLine = { 0, NULL };
+[self logLevel:inLevel fileFunctionLine:theFileFunctionLine dictionary:inDictionary format:@"%@", theMessage];
 
 [thePool release];
 }
 
-- (void)logLevel:(int)inLevel fileFunctionLine:(SFileFunctionLine *)inFileFunctionLine dictionary:(NSDictionary *)inDictionary format:(NSString *)inFormat, ...;
+- (void)logLevel:(int)inLevel fileFunctionLine:(SFileFunctionLine)inFileFunctionLine dictionary:(NSDictionary *)inDictionary format:(NSString *)inFormat, ...;
 {
 NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
 
@@ -243,7 +245,37 @@ va_start(theArgList, inFormat);
 NSString *theMessageString = [[[NSString alloc] initWithFormat:inFormat arguments:theArgList] autorelease];
 va_end(theArgList);
 
-fprintf(stderr, "%s\n", [theMessageString UTF8String]);
+char *theLevelString = NULL;
+switch (inLevel)
+	{
+	case LoggingLevel_EMERG:
+		theLevelString = "EMERG: ";
+		break;
+	case LoggingLevel_ALERT:
+		theLevelString = "ALERT: ";
+		break;
+	case LoggingLevel_CRIT:
+		theLevelString = "CRIT:  ";
+		break;
+	case LoggingLevel_ERR:
+		theLevelString = "ERROR: ";
+		break;
+	case LoggingLevel_WARNING:
+		theLevelString = "WARN:  ";
+		break;
+	case LoggingLevel_NOTICE:
+		theLevelString = "NOTICE:";
+		break;
+	case LoggingLevel_INFO:
+		theLevelString = "INFO:  ";
+		break;
+	case LoggingLevel_DEBUG:
+		theLevelString = "DEBUG: ";
+		break;
+	}
+
+
+fprintf(stderr, "%s %s\n", theLevelString, [theMessageString UTF8String]);
 
 NSManagedObject *theMessage = [NSEntityDescription insertNewObjectForEntityForName:@"LoggingMessage" inManagedObjectContext:self.coreDataManager.managedObjectContext];
 

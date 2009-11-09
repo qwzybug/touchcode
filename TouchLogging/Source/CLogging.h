@@ -64,7 +64,7 @@ typedef enum {
 /// Logging.
 - (void)logLevel:(int)inLevel format:(NSString *)inFormat, ...;
 - (void)logLevel:(int)inLevel dictionary:(NSDictionary *)inDictionary format:(NSString *)inFormat, ...;
-- (void)logLevel:(int)inLevel fileFunctionLine:(SFileFunctionLine *)inFileFunctionLine dictionary:(NSDictionary *)inDictionary format:(NSString *)inFormat, ...;
+- (void)logLevel:(int)inLevel fileFunctionLine:(SFileFunctionLine)inFileFunctionLine dictionary:(NSDictionary *)inDictionary format:(NSString *)inFormat, ...;
 
 - (void)logError:(NSError *)inError;
 - (void)logException:(NSException *)inException;
@@ -89,7 +89,7 @@ typedef enum {
 	do \
 		{ \
 		NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init]; \
-		[[CLogging instance] logLevel:(level) dictionary:FileFunctionLineDict_() format:__VA_ARGS__]; \
+		[[CLogging instance] logLevel:(level) fileFunctionLine:FileFunctionLine_() dictionary:FileFunctionLineDict_() format:__VA_ARGS__]; \
 		[thePool release]; \
 		} \
 	while (0)
@@ -97,7 +97,9 @@ typedef enum {
 #define LogDict_(level, dict, ...) \
 	do \
 		{ \
-		Log((level), (dict), __VA_ARGS__); \
+		NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init]; \
+		[[CLogging instance] logLevel:(level) fileFunctionLine:FileFunctionLine_() dictionary:dict format:__VA_ARGS__]; \
+		[thePool release]; \
 		} \
 	while (0)
 

@@ -62,6 +62,19 @@
 
 @synthesize delegate;
 
+#if 1
++ (void)load
+{
+#warning Setting core data debugging
+
+NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
+
+[[NSUserDefaults standardUserDefaults] setInteger:3 forKey:@"com.apple.CoreData.ThreadingDebug"];
+
+[thePool release];
+}
+#endif 0
+
 - (id)initWithModelUrl:(NSURL *)inModelUrl persistentStoreUrl:(NSURL *)inPersistentStoreUrl storeType:(NSString *)inStoreType storeOptions:(NSDictionary *)inStoreOptions
 {
 NSAssert(inModelUrl != NULL, @"inModelURL should not be NULL.");
