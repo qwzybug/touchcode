@@ -117,7 +117,6 @@ if (buttonIndex == 1)
 		NSManagedObject *theSession = [theManagedObjectContext existingObjectWithID:theSessionID error:&theError];
 		if (theSession == NULL || theError != NULL)
 			{
-			NSLog(@"Error: %@", theError);
 			return;
 			}
 		
@@ -178,7 +177,6 @@ if (result == MFMailComposeResultSaved || result == MFMailComposeResultSent)
 		NSManagedObject *theSession = [theManagedObjectContext existingObjectWithID:theSessionID error:&theError];
 		if (theSession == NULL || theError != NULL)
 			{
-			NSLog(@"Error: %@", theError);
 			return;
 			}
 		[self.logging.coreDataManager.managedObjectContext deleteObject:theSession];
