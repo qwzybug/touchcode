@@ -45,6 +45,9 @@ NSString *theRecoverySuggestion = NULL;
 
 switch ([self statusCode])
 	{
+	case 401:
+		theLocalizedDescription = @"Authorization failed.";
+		theRecoverySuggestion = @"Check your authorization credentials and try again.";
 	case 503:
 		theLocalizedDescription = @"The service is currently unavailable.";
 		theRecoverySuggestion = @"Try again later.";
