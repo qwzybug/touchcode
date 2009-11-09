@@ -63,12 +63,29 @@ if (self.delegate && [self.delegate respondsToSelector:@selector(errorPresenter:
 NSString *theTitle = NULL;
 theTitle = [inError.userInfo objectForKey:ErrorPresenter_ErrorTitleKey];
 
-NSString *theMessage = [inError.userInfo objectForKey:NSLocalizedDescriptionKey];
+if (theTitle == NULL)
+	theTitle = @"Error";
+
+NSString *theMessage = NULL;
+NSString *theLocalizedDescription = [inError.userInfo objectForKey:NSLocalizedDescriptionKey];
+if (theLocalizedDescription)
+	{
+	NSMutableString *theMutableMessage = [[theLocalizedDescription mutableCopy] autorelease];
+	
+	NSString *theRecoverySuggestion = [inError.userInfo objectForKey:NSLocalizedRecoverySuggestionErrorKey];
+	if (theRecoverySuggestion != NULL)
+		{
+		[theMutableMessage appendFormat:@"\n%@", theRecoverySuggestion];
+		}
+		
+	theMessage = theMutableMessage;
+	}
+
 if (theMessage == NULL)
 	{
-//	theMessage = [NSString stringWithFormat:@"An error (domain: '%@', code: %d) has occured.", inError.domain, inError.code];
 	theMessage = inError.localizedDescription;
 	}
+
 NSString *theCancelButtonTitle = @"OK";
 
 UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:theTitle message:theMessage delegate:NULL cancelButtonTitle:theCancelButtonTitle otherButtonTitles:NULL] autorelease];
