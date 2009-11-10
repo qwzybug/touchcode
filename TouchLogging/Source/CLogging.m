@@ -365,7 +365,13 @@ else
 
 - (void)coreDataManager:(CCoreDataManager *)inCoreDataManager didCreateNewManagedObjectContext:(NSManagedObjectContext *)inManagedObjectContext;
 {
-[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(managedObjectContextDidSaveNotification:) name:NSManagedObjectContextDidSaveNotification object:inManagedObjectContext];
+inManagedObjectContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy;
+
+if ([NSThread isMainThread] == NO)
+	{
+	NSLog(@"registering");
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(managedObjectContextDidSaveNotification:) name:NSManagedObjectContextDidSaveNotification object:inManagedObjectContext];
+	}
 }
 
 - (void)managedObjectContextDidSaveNotification:(NSNotification *)notification

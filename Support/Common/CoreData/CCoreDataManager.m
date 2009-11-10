@@ -35,6 +35,8 @@
 #import <Cocoa/Cocoa.h>
 #endif
 
+#define THREAD_PARANOIA 1
+
 @interface CCoreDataManager ()
 @property (readwrite, retain) NSURL *modelURL;
 @property (readwrite, retain) NSURL *persistentStoreURL;
@@ -179,6 +181,10 @@ return(managedObjectModel);
 	{
 	if (persistentStoreCoordinator == NULL)
 		{
+		#if THREAD_PARANOIA == 1
+		NSAssert([NSThread isMainThread] == YES, @"Should not create persistentStoreCoordinate from non-main thread");
+		#endif /* THREAD_PARANOIA == 1 */
+		
 		NSError *theError = NULL;
 		NSManagedObjectModel *theManagedObjectModel = self.managedObjectModel;
 		if (theManagedObjectModel == NULL)
@@ -198,15 +204,19 @@ return(persistentStoreCoordinator);
 
 - (NSManagedObjectContext *)managedObjectContext
 {
-NSString *theThreadStorageKey = [self threadStorageKey];
-
-NSManagedObjectContext *theManagedObjectContext = [[[NSThread currentThread] threadDictionary] objectForKey:theThreadStorageKey];
-if (theManagedObjectContext == NULL)
+NSManagedObjectContext *theManagedObjectContext = NULL;
+@synchronized(@"CCoreDataManager.managedObjectContext")
 	{
-	theManagedObjectContext = [[self newManagedObjectContext] autorelease];
+	NSString *theThreadStorageKey = [self threadStorageKey];
+
+	theManagedObjectContext = [[[NSThread currentThread] threadDictionary] objectForKey:theThreadStorageKey];
 	if (theManagedObjectContext == NULL)
-		return(NULL);
-	[[[NSThread currentThread] threadDictionary] setObject:theManagedObjectContext forKey:theThreadStorageKey];
+		{
+		theManagedObjectContext = [[self newManagedObjectContext] autorelease];
+		if (theManagedObjectContext == NULL)
+			return(NULL);
+		[[[NSThread currentThread] threadDictionary] setObject:theManagedObjectContext forKey:theThreadStorageKey];
+		}
 	}
 return(theManagedObjectContext);
 }
@@ -216,12 +226,12 @@ return(theManagedObjectContext);
 - (NSManagedObjectContext *)newManagedObjectContext
 {
 NSPersistentStoreCoordinator *thePersistentStoreCoordinator = self.persistentStoreCoordinator;
-if (thePersistentStoreCoordinator == NULL)
-	return(NULL);
+NSAssert(thePersistentStoreCoordinator != NULL, @"No persistent store coordinator!");
 NSManagedObjectContext *theManagedObjectContext = [[NSManagedObjectContext alloc] init];
 [theManagedObjectContext setPersistentStoreCoordinator:thePersistentStoreCoordinator];
 
-[self.delegate coreDataManager:self didCreateNewManagedObjectContext:theManagedObjectContext];
+if (self.delegate)
+	[self.delegate coreDataManager:self didCreateNewManagedObjectContext:theManagedObjectContext];
 
 return(theManagedObjectContext);
 }

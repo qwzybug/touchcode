@@ -68,7 +68,19 @@ NSError *theError = NULL;
 
 NSPredicate *thePredicate = NULL;
 
-NSPredicate *theNonCurrentSessionPredicate = [NSPredicate predicateWithFormat:@"self != %@", inLogging.session];;
+
+NSDate *theLastLogAlertWhen = [[NSUserDefaults standardUserDefaults] objectForKey:@"CoreLogging_LastMailLogsAlertWhen"];
+
+NSPredicate *theNonCurrentSessionPredicate = NULL;
+if (theLastLogAlertWhen == NULL)
+	theNonCurrentSessionPredicate = [NSPredicate predicateWithFormat:@"self != %@", inLogging.session];
+else
+	theNonCurrentSessionPredicate = [NSPredicate predicateWithFormat:@"self != %@ AND created > %@", inLogging.session, theLastLogAlertWhen];
+
+
+
+
+
 if (self.predicate == NULL)
 	{
 	thePredicate = theNonCurrentSessionPredicate;
@@ -98,6 +110,9 @@ if ([NSThread isMainThread] == NO)
 	[self performSelectorOnMainThread:@selector(doIt:) withObject:NULL waitUntilDone:YES];
 	return;
 	}
+	
+[[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"CoreLogging_LastMailLogsAlertWhen"];
+[[NSUserDefaults standardUserDefaults] synchronize];
 
 UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:NULL message:@"Do you want to email a log file containing debugging information to the developer of this software?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", NULL] autorelease];
 [theAlert show];
