@@ -38,6 +38,7 @@
 	NSDictionary *storeOptions;
     NSPersistentStoreCoordinator *persistentStoreCoordinator;
     NSManagedObjectModel *managedObjectModel;
+	id threadStorageKey;
 	id <CCoreDataManagerDelegate> delegate;
 }
 
@@ -77,5 +78,6 @@
 
 @optional
 - (void)coreDataManager:(CCoreDataManager *)inCoreDataManager didCreateNewManagedObjectContext:(NSManagedObjectContext *)inManagedObjectContext;
+- (void)coreDataManager:(CCoreDataManager *)inCoreDataManager presentError:(NSError *)inError;
 
 @end

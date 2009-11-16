@@ -57,6 +57,12 @@ return(gInstance);
 
 - (void)presentError:(NSError *)inError
 {
+if ([NSThread isMainThread] == NO)
+	{
+	[self performSelectorOnMainThread:@selector(presentError:) withObject:inError waitUntilDone:YES];
+	return;
+	}
+
 if (self.delegate && [self.delegate respondsToSelector:@selector(errorPresenter:shouldPresentError:)] && [self.delegate errorPresenter:self shouldPresentError:inError] == NO)
 	return;
 

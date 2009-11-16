@@ -10,6 +10,7 @@
 
 #import <MessageUI/MessageUI.h>
 
+#import "CBetterCoreDataManager.h"
 #import "NSManagedObjectContext_Extensions.h"
 #import "CJSONDataSerializer.h"
 #import "NSDate_InternetDateExtensions.h"
@@ -76,10 +77,6 @@ if (theLastLogAlertWhen == NULL)
 	theNonCurrentSessionPredicate = [NSPredicate predicateWithFormat:@"self != %@", inLogging.session];
 else
 	theNonCurrentSessionPredicate = [NSPredicate predicateWithFormat:@"self != %@ AND created > %@", inLogging.session, theLastLogAlertWhen];
-
-
-
-
 
 if (self.predicate == NULL)
 	{

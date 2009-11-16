@@ -24,23 +24,31 @@ typedef enum {
 	LoggingLevel_DEBUG = 7,
 } ELoggingLevel;
 
-@class CCoreDataManager;
+enum {
+	LoggingFlags_None = 0x00,
+	LoggingFlags_WriteToSTDERR = 0x01,
+	LoggingFlags_WriteToDatabase = 0x02,
+	};
+
+@class CBetterCoreDataManager;
 @class NSManagedObjectID;
 
 @protocol CLoggingHandler;
 
 @interface CLogging : NSObject <CCoreDataManagerDelegate> {
+	NSUInteger flags;
 	NSString *sender;
 	NSString *facility;
-	CCoreDataManager *coreDataManager;
+	CBetterCoreDataManager *coreDataManager;
 	NSManagedObjectID *sessionID;
 	NSMutableDictionary *handlers;
 	BOOL started;
 }
 
+@property (readwrite, assign) NSUInteger flags;
 @property (readwrite, copy) NSString *sender;
 @property (readwrite, copy) NSString *facility;
-@property (readonly, retain) CCoreDataManager *coreDataManager;
+@property (readonly, retain) CBetterCoreDataManager *coreDataManager;
 
 @property (readonly, copy) NSManagedObjectID *sessionID;
 @property (readonly, retain) NSManagedObject *session;
@@ -74,7 +82,10 @@ typedef enum {
 #pragma mark -
 
 @protocol CLoggingHandler <NSObject>
+
+@optional
 - (BOOL)handleLogging:(CLogging *)inLogging event:(NSString *)inEvent error:(NSError **)outError;
+
 @end
 
 #pragma mark -
