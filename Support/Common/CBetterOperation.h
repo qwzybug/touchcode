@@ -48,6 +48,8 @@
 - (void)attainResult:(id)inResult;
 - (void)failWithError:(NSError *)inError;
 
+- (BOOL)dependencyCancelled;
+
 @end
 
 #pragma mark -

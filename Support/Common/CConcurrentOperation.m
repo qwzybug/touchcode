@@ -61,6 +61,9 @@ isExecuting = YES;
 
 - (void)cancel
 {
+//Cancellation should happen before notifications are sent
+[super cancel];
+
 [self willChangeValueForKey: @"isExecuting"];
 isExecuting = NO;
 [self didChangeValueForKey: @"isExecuting"];	
@@ -69,7 +72,6 @@ isExecuting = NO;
 isFinished = YES;
 [self didChangeValueForKey: @"isFinished"];
 
-[super cancel];
 }
 
 - (void)completeOperation
