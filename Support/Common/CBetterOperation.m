@@ -81,28 +81,6 @@ for (NSOperation *dependency in [self dependencies])
 	return NO;
 }
 
-// - (void)addDependency:(NSOperation *)op {
-	// [super addDependency:op];
-	// [op addObserver:self forKeyPath:@"cancelled" options:NSKeyValueObservingOptionNew context:nil];
-// }
-
-// - (void)removeDependency:(NSOperation *)op {
-	// [super removeDependency:op];
-	// [op removeObserver:self forKeyPath:@"cancelled"];
-// }
-
-// - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-	// if ([keyPath isEqualToString:@"cancelled"]) {
-		// NSAssert([[self dependencies] containsObject:object], @"Change for non-dependency.");
-		
-	// }
-	// //Call super?
-	// if ([super respondsToSelector:@selector(observeValueForKeyPath:ofObject:change:context:)]) {
-		// [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-	// }
-// }
-
-
 #pragma mark -
 
 - (void)delegateProxyWithResult:(id)inResult
