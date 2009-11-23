@@ -113,6 +113,16 @@ if (self.tableView == NULL)
 [self.tableView setEditing:inEditing animated:inAnimated];
 }
 
+- (void)tableView:(UITableView*)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+[super setEditing:YES animated:YES];
+}
+
+- (void)tableView:(UITableView*)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+[super setEditing:NO animated:YES];
+}
+
 #pragma mark -
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
