@@ -33,6 +33,8 @@ CGRect ScaleAndAlignRectToRect(CGRect inImageRect, CGRect inDestinationRect, EIm
 {
 CGRect theScaledImageRect;
 
+BOOL flipped = YES;
+
 if (inScaling == ImageScaling_ToFit)
 	{
 	theScaledImageRect.origin = inDestinationRect.origin;
@@ -110,6 +112,15 @@ else
 		theScaledImageRect.origin.y = inDestinationRect.origin.y + (inDestinationRect.size.height - theScaledImageSize.height) / 2.0f;
 		}
 	}
+	
+if (flipped == YES)
+	{
+	CGAffineTransform theTransform = CGAffineTransformMakeScale(1, -1);
+	theTransform = CGAffineTransformTranslate(theTransform, 0, -inDestinationRect.size.height);
+	
+	theScaledImageRect = CGRectApplyAffineTransform(theScaledImageRect, theTransform);
+	}
+	
 return(theScaledImageRect);
 }
 
