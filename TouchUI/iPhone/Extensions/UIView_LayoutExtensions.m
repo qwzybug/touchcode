@@ -31,6 +31,14 @@
 
 @implementation UIView (UIView_LayoutExtensions)
 
+- (void)sizeToFit:(CGSize)inSize;
+{
+CGSize theSize = [self sizeThatFits:inSize];
+CGRect theFrame = self.frame;
+theFrame.size = theSize;
+self.frame = theFrame;
+}
+
 - (void)layoutSubviewsUsingMethod:(ELayoutMethod)inMethod
 {
 switch (inMethod)
@@ -38,7 +46,7 @@ switch (inMethod)
 	case LayoutMethod_MakeColumn:
 		{
 		CGFloat theMaxY = 0;
-		
+
 		for (UIView *theSubview in self.subviews)
 			{
 			if (theSubview.hidden == YES)
@@ -48,7 +56,7 @@ switch (inMethod)
 			CGRect theFrame = theSubview.frame;
 			theFrame.origin.y = theMaxY;
 			theSubview.frame = theFrame;
-			
+
 			theMaxY = CGRectGetMaxY(theSubview.frame);
 			}
 		}

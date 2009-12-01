@@ -36,6 +36,8 @@ typedef enum {
 
 @interface UIView (UIView_LayoutExtensions)
 
+- (void)sizeToFit:(CGSize)inSize;
+
 - (void)layoutSubviewsUsingMethod:(ELayoutMethod)inMethod;
 - (void)adjustFrameToFramesOfSubviews;
 - (void)dumpViewTree;
