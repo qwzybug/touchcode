@@ -162,6 +162,7 @@ for f in files():
 		s = file(f).read()
 		theMatches = [thePattern.search(s) for thePattern in thePatterns]
 		theMatches = [theMatch for theMatch in theMatches if theMatch]
+
 		theNewText = None
 		if not len(theMatches):
 			print 'NO MATCH:', f
@@ -179,12 +180,14 @@ for f in files():
 			thePattern = theMatch.re
 
 			d = theMatch.groupdict()
+
+			if 'creator' not in d or not d['creator']:
+				d['creator'] = 'Jonathan Wight'
+
 			d['project'] = 'TouchCode'
 			d['filename'] = os.path.split(f)[1]
 			del d['block']
 
-			if d['copyright'] == 'None':
-				raise Exception('Copyright is None: ' + f)
 			d['copyright'] = SanitizeCopyright(d['copyright'])
 
 			theReplacement = FORMAT % d
@@ -193,6 +196,8 @@ for f in files():
 		if theNewText and theNewText != s:
 			print 'Rewriting, ', f
 			file(f, 'w').write(theNewText)
+# 		else:
+# 			print 'Skipping, ', f
 	except Exception, e:
 		print 'Exception occured. Skipping: ', f
 
