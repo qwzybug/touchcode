@@ -35,6 +35,4 @@
 - (void)addOperationRecursively:(NSOperation *)inOperation;
 - (void)addDependentOperations:(NSArray *)inOperations;
 
-- (void)runSynchronousOperation:(NSOperation *)inOperation;
-
 @end
