@@ -163,35 +163,39 @@ def SanitizeCopyright(s):
 ########################################################################
 
 for f in files():
-	s = file(f).read()
-	theMatches = [thePattern.search(s) for thePattern in thePatterns]
-	theMatches = [theMatch for theMatch in theMatches if theMatch]
-	if not len(theMatches):
-		print 'NO MATCH:', f
-		d = {}
-		d['project'] = 'TouchCode'
-		d['filename'] = os.path.split(f)[1]
-		d['copyright'] = '2009 toxicsoftware.com. All rights reserved.' % d
-		d['creator'] = ''
-		d['date'] = '20090528'
-		theReplacement = FORMAT % d
-		theNewText = theReplacement + s
-		file(f, 'w').write(theNewText)
-	else:
-		theMatches.sort(lambda X,Y:cmp(len(X.groups()[0]), len(Y.groups()[0])))
-		theMatch = theMatches[-1]
-		thePattern = theMatch.re
+	try:
+		s = file(f).read()
+		theMatches = [thePattern.search(s) for thePattern in thePatterns]
+		theMatches = [theMatch for theMatch in theMatches if theMatch]
+		if not len(theMatches):
+			print 'NO MATCH:', f
+			d = {}
+			d['project'] = 'TouchCode'
+			d['filename'] = os.path.split(f)[1]
+			d['copyright'] = '2009 toxicsoftware.com. All rights reserved.' % d
+			d['creator'] = ''
+			d['date'] = '20090528'
+			theReplacement = FORMAT % d
+			theNewText = theReplacement + s
+			file(f, 'w').write(theNewText)
+		else:
+			theMatches.sort(lambda X,Y:cmp(len(X.groups()[0]), len(Y.groups()[0])))
+			theMatch = theMatches[-1]
+			thePattern = theMatch.re
 
-		d = theMatch.groupdict()
-		d['project'] = 'TouchCode'
-		d['filename'] = os.path.split(f)[1]
-		del d['block']
+			d = theMatch.groupdict()
+			d['project'] = 'TouchCode'
+			d['filename'] = os.path.split(f)[1]
+			del d['block']
 
-		if d['copyright'] == 'None':
-			raise Exception('Copyright is None: ' + f)
-		d['copyright'] = SanitizeCopyright(d['copyright'])
+			if d['copyright'] == 'None':
+				raise Exception('Copyright is None: ' + f)
+			d['copyright'] = SanitizeCopyright(d['copyright'])
 
-		theReplacement = FORMAT % d
-		theNewText = thePattern.sub(theReplacement, s)
-	#
-		file(f, 'w').write(theNewText)
+			theReplacement = FORMAT % d
+			theNewText = thePattern.sub(theReplacement, s)
+		#
+			file(f, 'w').write(theNewText)
+	except Exception, e:
+		print 'Exception occured. Skipping: ', s
+
