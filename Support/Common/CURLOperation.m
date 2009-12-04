@@ -1,9 +1,30 @@
 //
 //  CURLOperation.m
-//  TouchMetricsTest
+//  TouchCode
 //
 //  Created by Jonathan Wight on 10/21/09.
 //  Copyright 2009 toxicsoftware.com. All rights reserved.
+//
+//  Permission is hereby granted, free of charge, to any person
+//  obtaining a copy of this software and associated documentation
+//  files (the "Software"), to deal in the Software without
+//  restriction, including without limitation the rights to use,
+//  copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the
+//  Software is furnished to do so, subject to the following
+//  conditions:
+//
+//  The above copyright notice and this permission notice shall be
+//  included in all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+//  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+//  OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+//  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+//  HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+//  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+//  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+//  OTHER DEALINGS IN THE SOFTWARE.
 //
 
 #import "CURLOperation.h"
@@ -30,6 +51,7 @@
 @synthesize error;
 @dynamic data;
 @synthesize temporaryData;
+@synthesize defaultCredential;
 @synthesize userInfo;
 
 - (id)initWithRequest:(NSURLRequest *)inRequest
@@ -56,6 +78,8 @@ response = NULL;
 error = NULL;
 [temporaryData release];
 temporaryData = NULL;
+[defaultCredential release];
+defaultCredential = NULL;
 //	
 [super dealloc];
 }
@@ -78,8 +102,6 @@ return(self.temporaryData.data);
 {
 @try
 	{
-	NSLog(@"START: %@", [NSThread currentThread]);
-
 	self.isExecuting = YES;
 	self.connection = [[[NSURLConnection alloc] initWithRequest:self.request delegate:self startImmediately:NO] autorelease];
 //	self.connection = [[[NSURLConnection alloc] initWithRequest:self.request delegate:self] autorelease];
@@ -108,7 +130,7 @@ self.connection = NULL;
 
 - (NSURLRequest *)connection:(NSURLConnection *)inConnection willSendRequest:(NSURLRequest *)inRequest redirectResponse:(NSURLResponse *)response
 {
-NSLog(@"WILL SEND REQUEST: %@", [NSThread currentThread]);
+//NSLog(@"WILL SEND REQUEST: %@", [NSThread currentThread]);
 return(inRequest);
 }
 
@@ -119,11 +141,17 @@ return(inRequest);
 //- (NSInputStream *)connection:(NSURLConnection *)inConnection needNewBodyStream:(NSURLRequest *)request
 //{
 //}
-//
-//- (void)connection:(NSURLConnection *)inConnection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
-//{
-//}
-//
+
+- (void)connection:(NSURLConnection *)inConnection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)inChallenge
+{
+if (self.defaultCredential == NULL || [inChallenge previousFailureCount] > 1)
+	{
+	[[inChallenge sender] cancelAuthenticationChallenge:inChallenge];
+	}
+
+[[inChallenge sender] useCredential:self.defaultCredential forAuthenticationChallenge:inChallenge];
+}
+
 //- (void)connection:(NSURLConnection *)inConnection didCancelAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 //{
 //}
@@ -134,7 +162,6 @@ return(inRequest);
 
 - (void)connection:(NSURLConnection *)inConnection didReceiveResponse:(NSURLResponse *)inResponse
 {
-NSLog(@"%@", inResponse);
 self.response = inResponse;
 }
 
@@ -155,12 +182,12 @@ if (theResult == NO)
 
 - (void)connection:(NSURLConnection *)inConnection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
 {
-NSLog(@"%d/%d", totalBytesWritten, totalBytesExpectedToWrite);
+//NSLog(@"%d/%d", totalBytesWritten, totalBytesExpectedToWrite);
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)inConnection
 {
-NSLog(@"DID FINISH: %@", [[[NSString alloc] initWithData:self.temporaryData.data encoding:NSUTF8StringEncoding] autorelease]);
+//NSLog(@"DID FINISH: %@", [[[NSString alloc] initWithData:self.temporaryData.data encoding:NSUTF8StringEncoding] autorelease]);
 
 
 
@@ -176,7 +203,7 @@ self.connection = NULL;
 
 - (void)connection:(NSURLConnection *)inConnection didFailWithError:(NSError *)inError
 {
-NSLog(@"DID FAIL: %@", inError);
+//NSLog(@"DID FAIL: %@", inError);
 
 self.error = inError;
 
