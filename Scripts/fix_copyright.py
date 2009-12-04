@@ -119,8 +119,7 @@ thePatterns = [thePattern.replace('  ', ' +') for thePattern in thePatterns]
 
 thePatterns = [re.compile(thePattern, re.MULTILINE) for thePattern in thePatterns]
 
-path = '/Users/schwa/Development/Source/Mercurial/small-society/small-society/Externals/touchcode'
-os.chdir(path)
+path = '.'
 
 def files():
 	for root, dirs, files in os.walk('.'):
@@ -146,15 +145,19 @@ theCopyrightPatterns = [
 	]
 
 def SanitizeCopyright(s):
-	theMatches = [thePattern.match(s) for thePattern in theCopyrightPatterns]
-	theMatches = [theMatch for theMatch in theMatches if theMatch]
-	theMatch = theMatches[0]
-	d = theMatch.groupdict()
-	if d['owner'] in ['Jonathan Wight', '__MyCompanyName__', 'Toxic Software', 'TouchCode']:
-		d['owner'] = 'toxicsoftware.com'
+	try:
+		theMatches = [thePattern.match(s) for thePattern in theCopyrightPatterns]
+		theMatches = [theMatch for theMatch in theMatches if theMatch]
+		theMatch = theMatches[0]
+		d = theMatch.groupdict()
+		if d['owner'] in ['Jonathan Wight', '__MyCompanyName__', 'Toxic Software', 'TouchCode']:
+			d['owner'] = 'toxicsoftware.com'
 
-	s = '%(year)s %(owner)s. All rights reserved.' % d
-	return s
+		return '%(year)s %(owner)s. All rights reserved.' % d
+	except Exception, e:
+		print 'Exception', e
+		print '>', s
+		print type(s)
 
 
 ########################################################################
@@ -184,6 +187,8 @@ for f in files():
 		d['filename'] = os.path.split(f)[1]
 		del d['block']
 
+		if d['copyright'] == 'None':
+			raise Exception('Copyright is None: ' + f)
 		d['copyright'] = SanitizeCopyright(d['copyright'])
 
 		theReplacement = FORMAT % d
