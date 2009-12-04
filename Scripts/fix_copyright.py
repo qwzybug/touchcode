@@ -7,11 +7,11 @@ import subprocess
 ########################################################################
 
 P1 = '''(?P<block>//
-//  (?P<filename>.+)
-//  (?P<project>.+)
+//  (?P<filename>.*)
+//  (?P<project>.*)
 //
-//  Created by (?P<creator>.+) on (?P<date>.+)\.
-//  Copyright (?P<copyright>.+)
+//  Created by (?P<creator>.*) on (?P<date>.*)\.
+//  Copyright (?P<copyright>.*)
 //
 
 )'''
@@ -19,10 +19,10 @@ P1 = '''(?P<block>//
 ########################################################################
 
 P2 = '''(?P<block>//
-//  (?P<filename>.+)
+//  (?P<filename>.*)
 //
-//  Created by (?P<creator>.+) on (?P<date>.+)\.
-//  Copyright (?P<copyright>.+)
+//  Created by (?P<creator>.*) on (?P<date>.*)\.
+//  Copyright (?P<copyright>.*)
 //
 
 )'''
@@ -30,11 +30,11 @@ P2 = '''(?P<block>//
 ########################################################################
 
 P3 = '''(?P<block>/\*
- \*  (?P<filename>.+)
- \*  (?P<project>.+)
+ \*  (?P<filename>.*)
+ \*  (?P<project>.*)
  \*
- \*  Created by (?P<creator>.+) on (?P<date>.+)\.
- \*  Copyright (?P<copyright>.+)
+ \*  Created by (?P<creator>.*) on (?P<date>.*)\.
+ \*  Copyright (?P<copyright>.*)
  \*
  \*/
 
@@ -43,11 +43,11 @@ P3 = '''(?P<block>/\*
 ########################################################################
 
 P4 = '''(?P<block>//
-//  (?P<filename>.+)
-//  (?P<project>.+)
+//  (?P<filename>.*)
+//  (?P<project>.*)
 //
-//  Created by (?P<creator>.+) on (?P<date>.+)\.
-//  Copyright (?P<copyright>.+)
+//  Created by (?P<creator>.*) on (?P<date>.*)\.
+//  Copyright (?P<copyright>.*)
 //
 //  Permission is hereby granted, free of charge, to any person
 //  obtaining a copy of this software and associated documentation
@@ -197,5 +197,5 @@ for f in files():
 		#
 			file(f, 'w').write(theNewText)
 	except Exception, e:
-		print 'Exception occured. Skipping: ', s
+		print 'Exception occured. Skipping: ', f
 
