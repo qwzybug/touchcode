@@ -167,6 +167,7 @@ for f in files():
 		s = file(f).read()
 		theMatches = [thePattern.search(s) for thePattern in thePatterns]
 		theMatches = [theMatch for theMatch in theMatches if theMatch]
+		theNewText = None
 		if not len(theMatches):
 			print 'NO MATCH:', f
 			d = {}
@@ -177,7 +178,6 @@ for f in files():
 			d['date'] = '20090528'
 			theReplacement = FORMAT % d
 			theNewText = theReplacement + s
-			file(f, 'w').write(theNewText)
 		else:
 			theMatches.sort(lambda X,Y:cmp(len(X.groups()[0]), len(Y.groups()[0])))
 			theMatch = theMatches[-1]
@@ -194,7 +194,9 @@ for f in files():
 
 			theReplacement = FORMAT % d
 			theNewText = thePattern.sub(theReplacement, s)
-		#
+
+		if theNewText and theNewText != s:
+			print 'Rewriting, ', f
 			file(f, 'w').write(theNewText)
 	except Exception, e:
 		print 'Exception occured. Skipping: ', f
