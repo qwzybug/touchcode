@@ -145,19 +145,14 @@ theCopyrightPatterns = [
 	]
 
 def SanitizeCopyright(s):
-	try:
-		theMatches = [thePattern.match(s) for thePattern in theCopyrightPatterns]
-		theMatches = [theMatch for theMatch in theMatches if theMatch]
-		theMatch = theMatches[0]
-		d = theMatch.groupdict()
-		if d['owner'] in ['Jonathan Wight', '__MyCompanyName__', 'Toxic Software', 'TouchCode']:
-			d['owner'] = 'toxicsoftware.com'
+	theMatches = [thePattern.match(s) for thePattern in theCopyrightPatterns]
+	theMatches = [theMatch for theMatch in theMatches if theMatch]
+	theMatch = theMatches[0]
+	d = theMatch.groupdict()
+	if d['owner'] in ['Jonathan Wight', '__MyCompanyName__', 'Toxic Software', 'TouchCode']:
+		d['owner'] = 'toxicsoftware.com'
 
-		return '%(year)s %(owner)s. All rights reserved.' % d
-	except Exception, e:
-		print 'Exception', e
-		print '>', s
-		print type(s)
+	return '%(year)s %(owner)s. All rights reserved.' % d
 
 
 ########################################################################
