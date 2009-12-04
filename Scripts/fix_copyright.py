@@ -169,8 +169,8 @@ for f in files():
 			d['project'] = 'TouchCode'
 			d['filename'] = os.path.split(f)[1]
 			d['copyright'] = '2009 toxicsoftware.com. All rights reserved.' % d
-			d['creator'] = ''
-			d['date'] = '20090528'
+			d['creator'] = 'Jonathan Wight'
+			d['date'] = '20091204'
 			theReplacement = FORMAT % d
 			theNewText = theReplacement + s
 		else:
