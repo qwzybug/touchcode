@@ -41,11 +41,12 @@ if ([NSThread mainThread] != [NSThread currentThread])
 	}
 @catch (NSException * e)
 	{
-	NSLog(@"%@", self);
-	NSLog(@"%@", self.managedObjectContext);
-	NSLog(@"%@", self.persistentStoreCoordinator);
-	NSLog(@"%@", [self.persistentStoreCoordinator persistentStores]);
-	NSLog(@"%@", e);
+	NSLog(@"EXCEPTION RAISED");
+//	NSLog(@"%@", self);
+//	NSLog(@"%@", self.managedObjectContext);
+//	NSLog(@"%@", self.persistentStoreCoordinator);
+//	NSLog(@"%@", [self.persistentStoreCoordinator persistentStores]);
+//	NSLog(@"%@", e);
 //	NSLog(@"%@", inNotification);
 	[self presentError:[NSError errorWithException:e]];
 	}

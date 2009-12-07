@@ -117,7 +117,7 @@ NSError *theError = NULL;
 NSManagedObject *theSession = [self.coreDataManager.managedObjectContext existingObjectWithID:self.sessionID error:&theError];
 if (theError)
 	{
-	NSLog(@"ERROR >>>> %@", theError);
+//	NSLog(@"ERROR >>>> %@", theError);
 	return(NULL);
 	}
 

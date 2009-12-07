@@ -44,10 +44,12 @@
 @property (readwrite, retain) NSDictionary *storeOptions;
 @property (readwrite, retain) id threadStorageKey;
 
+- (NSPersistentStoreCoordinator *)newPersistentStoreCoordinatorWithOptions:(NSDictionary *)inOptions error:(NSError **)outError;
+
 + (NSURL *)modelURLForName:(NSString *)inName;
 + (NSURL *)persistentStoreURLForName:(NSString *)inName storeType:(NSString *)inStoreType forceReplace:(BOOL)inForceReplace;
 + (NSString *)applicationSupportFolder;
-- (NSString *)threadStorageKey;
+- (id)threadStorageKey;
 @end
 
 #pragma mark -
@@ -64,7 +66,7 @@
 @synthesize threadStorageKey;
 @synthesize delegate;
 
-#if 1
+#if 0
 + (void)load
 {
 #warning Setting core data debugging
@@ -169,7 +171,7 @@ managedObjectModel = NULL;
 	{
 	if (managedObjectModel == NULL)
 		{
-		NSLog(@"Creating MOM: %@", [self.modelURL.path lastPathComponent]);
+//		NSLog(@"Creating MOM: %@", [self.modelURL.path lastPathComponent]);
 		managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:self.modelURL];
 		}
 	}
@@ -197,7 +199,7 @@ return(persistentStoreCoordinator);
 - (NSPersistentStoreCoordinator *)newPersistentStoreCoordinatorWithOptions:(NSDictionary *)inOptions error:(NSError **)outError
 {
 NSPersistentStoreCoordinator *thePersistentStoreCoordinator = NULL;
-NSLog(@"Creating persistentStoreCoordinator: %@", [self.persistentStoreURL.path lastPathComponent]);
+//NSLog(@"Creating persistentStoreCoordinator: %@", [self.persistentStoreURL.path lastPathComponent]);
 
 NSError *theError = NULL;
 NSManagedObjectModel *theManagedObjectModel = self.managedObjectModel;
@@ -210,8 +212,8 @@ if (thePersistentStore == NULL)
 	[self presentError:theError];
 	}
 
-NSLog(@"%@", thePersistentStoreCoordinator);
-NSLog(@"%@", [thePersistentStoreCoordinator persistentStores]);
+//NSLog(@"%@", thePersistentStoreCoordinator);
+//NSLog(@"%@", [thePersistentStoreCoordinator persistentStores]);
 
 if (outError)
 	*outError = theError;
@@ -411,14 +413,14 @@ if ([[NSFileManager defaultManager] fileExistsAtPath:theApplicationSupportFolder
 return(theApplicationSupportFolder);
 }
 
-- (NSString *)threadStorageKey
+- (id)threadStorageKey
 {
 @synchronized(self)
 	{
 	if (threadStorageKey == NULL)
 		{
 		threadStorageKey = [[NSString alloc] initWithFormat:@"%@:%p", NSStringFromClass([self class]), self];
-		NSLog(@">>> %@", threadStorageKey);
+//		NSLog(@">>> %@", threadStorageKey);
 		}
 	}
 return(threadStorageKey);
