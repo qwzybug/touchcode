@@ -1,8 +1,8 @@
 //
-//  NSDecimalNumber_Extensions.h
+//  CURLOperation.h
 //  TouchCode
 //
-//  Created by Jonathan Wight on 08/19/09.
+//  Created by Jonathan Wight on 10/21/09.
 //  Copyright 2009 toxicsoftware.com. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person
@@ -29,8 +29,28 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSDecimalNumber (NSDecimalNumber_Extensions)
+@class CTemporaryData;
 
-+ (id)decimalNumberWithObject:(id)inObject;
+@interface CURLOperation : NSOperation {
+	BOOL isExecuting;
+	BOOL isFinished;
+	NSURLRequest *request;
+	NSURLConnection *connection;
+	NSURLResponse *response;
+	NSError *error;
+	CTemporaryData *temporaryData;
+	NSURLCredential *defaultCredential;
+	id userInfo;
+}
+
+@property (readonly, retain) NSURLRequest *request;
+@property (readonly, retain) NSURLConnection *connection;
+@property (readonly, retain) NSURLResponse *response;
+@property (readonly, retain) NSError *error;
+@property (readonly, retain) NSData *data;
+@property (readwrite, copy) NSURLCredential *defaultCredential;
+@property (readwrite, retain) id userInfo;
+
+- (id)initWithRequest:(NSURLRequest *)inRequest;
 
 @end

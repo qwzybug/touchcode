@@ -1,8 +1,8 @@
 //
-//  NSDecimalNumber_Extensions.h
+//  CTemporaryData.h
 //  TouchCode
 //
-//  Created by Jonathan Wight on 08/19/09.
+//  Created by Jonathan Wight on 10/21/09.
 //  Copyright 2009 toxicsoftware.com. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person
@@ -29,8 +29,20 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSDecimalNumber (NSDecimalNumber_Extensions)
+// TODO make this look & feel (perhaps even subclass?) NSMutableData
 
-+ (id)decimalNumberWithObject:(id)inObject;
+@interface CTemporaryData : NSObject {
+	size_t dataLimit;
+	id storage;
+	NSURL *tempFileURL;
+}
+
+@property (readonly, assign) size_t dataLimit;
+@property (readonly, retain) NSData *data;
+
+- (id)initWithDataLimit:(size_t)inDataLimit;
+
+- (BOOL)writeData:(NSData *)inData error:(NSError **)outError;
+- (BOOL)copyDataToURL:(NSURL *)inURL error:(NSError **)outError;
 
 @end

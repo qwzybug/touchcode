@@ -7,11 +7,11 @@ import subprocess
 ########################################################################
 
 P1 = '''(?P<block>//
-//  (?P<filename>.+)
-//  (?P<project>.+)
+//  (?P<filename>.*)
+//  (?P<project>.*)
 //
-//  Created by (?P<creator>.+) on (?P<date>.+)\.
-//  Copyright (?P<copyright>.+)
+//  Created by (?P<creator>.*) on (?P<date>.*)\.
+//  Copyright (?P<copyright>.*)
 //
 
 )'''
@@ -19,10 +19,10 @@ P1 = '''(?P<block>//
 ########################################################################
 
 P2 = '''(?P<block>//
-//  (?P<filename>.+)
+//  (?P<filename>.*)
 //
-//  Created by (?P<creator>.+) on (?P<date>.+)\.
-//  Copyright (?P<copyright>.+)
+//  Created by (?P<creator>.*) on (?P<date>.*)\.
+//  Copyright (?P<copyright>.*)
 //
 
 )'''
@@ -30,11 +30,11 @@ P2 = '''(?P<block>//
 ########################################################################
 
 P3 = '''(?P<block>/\*
- \*  (?P<filename>.+)
- \*  (?P<project>.+)
+ \*  (?P<filename>.*)
+ \*  (?P<project>.*)
  \*
- \*  Created by (?P<creator>.+) on (?P<date>.+)\.
- \*  Copyright (?P<copyright>.+)
+ \*  Created by (?P<creator>.*) on (?P<date>.*)\.
+ \*  Copyright (?P<copyright>.*)
  \*
  \*/
 
@@ -43,11 +43,11 @@ P3 = '''(?P<block>/\*
 ########################################################################
 
 P4 = '''(?P<block>//
-//  (?P<filename>.+)
-//  (?P<project>.+)
+//  (?P<filename>.*)
+//  (?P<project>.*)
 //
-//  Created by (?P<creator>.+) on (?P<date>.+)\.
-//  Copyright (?P<copyright>.+)
+//  Created by (?P<creator>.*) on (?P<date>.*)\.
+//  Copyright (?P<copyright>.*)
 //
 //  Permission is hereby granted, free of charge, to any person
 //  obtaining a copy of this software and associated documentation
@@ -119,8 +119,7 @@ thePatterns = [thePattern.replace('  ', ' +') for thePattern in thePatterns]
 
 thePatterns = [re.compile(thePattern, re.MULTILINE) for thePattern in thePatterns]
 
-path = '/Users/schwa/Development/Source/Mercurial/small-society/small-society/Externals/touchcode'
-os.chdir(path)
+path = '.'
 
 def files():
 	for root, dirs, files in os.walk('.'):
@@ -153,40 +152,52 @@ def SanitizeCopyright(s):
 	if d['owner'] in ['Jonathan Wight', '__MyCompanyName__', 'Toxic Software', 'TouchCode']:
 		d['owner'] = 'toxicsoftware.com'
 
-	s = '%(year)s %(owner)s. All rights reserved.' % d
-	return s
+	return '%(year)s %(owner)s. All rights reserved.' % d
 
 
 ########################################################################
 
 for f in files():
-	s = file(f).read()
-	theMatches = [thePattern.search(s) for thePattern in thePatterns]
-	theMatches = [theMatch for theMatch in theMatches if theMatch]
-	if not len(theMatches):
-		print 'NO MATCH:', f
-		d = {}
-		d['project'] = 'TouchCode'
-		d['filename'] = os.path.split(f)[1]
-		d['copyright'] = '2009 toxicsoftware.com. All rights reserved.' % d
-		d['creator'] = ''
-		d['date'] = '20090528'
-		theReplacement = FORMAT % d
-		theNewText = theReplacement + s
-		file(f, 'w').write(theNewText)
-	else:
-		theMatches.sort(lambda X,Y:cmp(len(X.groups()[0]), len(Y.groups()[0])))
-		theMatch = theMatches[-1]
-		thePattern = theMatch.re
+	try:
+		s = file(f).read()
+		theMatches = [thePattern.search(s) for thePattern in thePatterns]
+		theMatches = [theMatch for theMatch in theMatches if theMatch]
 
-		d = theMatch.groupdict()
-		d['project'] = 'TouchCode'
-		d['filename'] = os.path.split(f)[1]
-		del d['block']
+		theNewText = None
+		if not len(theMatches):
+			print 'NO MATCH:', f
+			d = {}
+			d['project'] = 'TouchCode'
+			d['filename'] = os.path.split(f)[1]
+			d['copyright'] = '2009 toxicsoftware.com. All rights reserved.' % d
+			d['creator'] = 'Jonathan Wight'
+			d['date'] = '20091204'
+			theReplacement = FORMAT % d
+			theNewText = theReplacement + s
+		else:
+			theMatches.sort(lambda X,Y:cmp(len(X.groups()[0]), len(Y.groups()[0])))
+			theMatch = theMatches[-1]
+			thePattern = theMatch.re
 
-		d['copyright'] = SanitizeCopyright(d['copyright'])
+			d = theMatch.groupdict()
 
-		theReplacement = FORMAT % d
-		theNewText = thePattern.sub(theReplacement, s)
-	#
-		file(f, 'w').write(theNewText)
+			if 'creator' not in d or not d['creator']:
+				d['creator'] = 'Jonathan Wight'
+
+			d['project'] = 'TouchCode'
+			d['filename'] = os.path.split(f)[1]
+			del d['block']
+
+			d['copyright'] = SanitizeCopyright(d['copyright'])
+
+			theReplacement = FORMAT % d
+			theNewText = thePattern.sub(theReplacement, s)
+
+		if theNewText and theNewText != s:
+			print 'Rewriting, ', f
+			file(f, 'w').write(theNewText)
+# 		else:
+# 			print 'Skipping, ', f
+	except Exception, e:
+		print 'Exception occured. Skipping: ', f
+
