@@ -63,7 +63,7 @@
 {
 if ((self = [super init]) != nil)
 	{
-	self.flickThreshold = 1000.0;
+	self.flickThreshold = 1000.0f;
 	}
 return(self);
 }
@@ -130,7 +130,7 @@ else if (theCount >= 2)
 	const CGPoint theStart = [[theTouches objectAtIndex:0] locationInView:[[theTouches objectAtIndex:0] view]];
 	const CGPoint theEnd = [[theTouches objectAtIndex:1] locationInView:[[theTouches objectAtIndex:1] view]];
 	const CGFloat theDistance = distance(theStart, theEnd);
-	const CGPoint theCenter = CGPointMake((theStart.x + theEnd.x) / 2.0, (theStart.y + theEnd.y) / 2.0);
+	const CGPoint theCenter = CGPointMake((theStart.x + theEnd.x) / 2.0f, (theStart.y + theEnd.y) / 2.0f);
 
 	
 	[self pinchMoved:theDistance center:theCenter];
@@ -172,7 +172,7 @@ UITouch *theTouch = self.currentTouches.anyObject;
 const CGPoint theLocation = [theTouch locationInView:self.view];
 const CGPoint theDelta = CGPointSubtract(theLocation, self.beginningLocation);
 const CGFloat theMagnitude = magnitude(theDelta);
-const CGFloat theSpeed = 1.0 / (self.currentEvent.timestamp - self.beginningTime) * theMagnitude;
+const NSTimeInterval theSpeed = 1.0f / (self.currentEvent.timestamp - self.beginningTime) * theMagnitude;
 return(theSpeed >= self.flickThreshold);
 }
 

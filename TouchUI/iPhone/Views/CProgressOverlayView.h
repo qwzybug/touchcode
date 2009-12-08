@@ -31,7 +31,7 @@
 
 #define PROGRESS_OVERLAY_VIEW_HUD_SIZE         150.0f
 #define PROGRESS_OVERLAY_VIEW_FADE_TIME        0.025f
-#define PROGRESS_OVERLAY_VIEW_BACKGROUND_COLOR [UIColor colorWithWhite:0.0 alpha:0.8]
+#define PROGRESS_OVERLAY_VIEW_BACKGROUND_COLOR [UIColor colorWithWhite:0.0f alpha:0.8f]
 
 typedef enum {
 	ProgressOverlayViewProgressModeDeterminate,

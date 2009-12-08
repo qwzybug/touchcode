@@ -81,7 +81,7 @@ NSAssert(self.template != NULL, @"template is null");
 NSScanner *theScanner = [NSScanner scannerWithString:self.template];
 [theScanner setCharactersToBeSkipped:NULL];
 
-NSInteger theLastScanLocation = [theScanner scanLocation];
+NSUInteger theLastScanLocation = [theScanner scanLocation];
 
 NSString *theString = NULL;
 while ([theScanner isAtEnd] == NO)

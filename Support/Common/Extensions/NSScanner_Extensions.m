@@ -36,7 +36,7 @@
 return([[self string] substringFromIndex:[self scanLocation]]);
 }
 
-- (BOOL)scanAtMost:(NSInteger)inMaximum commaSeparatedDoubles:(NSArray **)outDoubles
+- (BOOL)scanAtMost:(NSUInteger)inMaximum commaSeparatedDoubles:(NSArray **)outDoubles
 {
 NSMutableArray *theDoubles = [NSMutableArray array];
 
@@ -103,7 +103,7 @@ return(NO);
 return([self scanFloat:outCGFloat]);
 }
 
-- (BOOL)scanAtMost:(unsigned)N charactersFromSet:(NSCharacterSet *)set intoString:(NSString **)value;
+- (BOOL)scanAtMost:(NSUInteger)N charactersFromSet:(NSCharacterSet *)set intoString:(NSString **)value;
 {
 unsigned theCurrentLocation = [self scanLocation];
 

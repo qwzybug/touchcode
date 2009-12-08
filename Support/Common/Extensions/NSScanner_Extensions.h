@@ -38,7 +38,7 @@
 
 - (NSString *)remainingString;
 
-- (BOOL)scanAtMost:(NSInteger)inMaximum commaSeparatedDoubles:(NSArray **)outDoubles;
+- (BOOL)scanAtMost:(NSUInteger)inMaximum commaSeparatedDoubles:(NSArray **)outDoubles;
 
 - (BOOL)skipComma;
 
@@ -46,13 +46,13 @@
 
 - (BOOL)scanCGFloat:(CGFloat *)outCGFloat;
 
-- (BOOL)scanAtMost:(unsigned)N charactersFromSet:(NSCharacterSet *)set intoString:(NSString **)value;
+- (BOOL)scanAtMost:(NSUInteger)N charactersFromSet:(NSCharacterSet *)set intoString:(NSString **)value;
 
 - (BOOL)scanStringWithinParentheses:(NSString **)outString;
 
 - (BOOL)scanNumber:(NSNumber **)outNumber;
 
-- (BOOL)scanAtMost:(unsigned)N charactersFromSet:(NSCharacterSet *)set intoString:(NSString **)value;
+- (BOOL)scanAtMost:(NSUInteger)N charactersFromSet:(NSCharacterSet *)set intoString:(NSString **)value;
 
 - (BOOL)scanStringWithinParentheses:(NSString **)outString;
 

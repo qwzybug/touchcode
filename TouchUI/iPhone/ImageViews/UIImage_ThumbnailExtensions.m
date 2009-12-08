@@ -34,7 +34,7 @@
 
 - (UIImage *)thumbnail:(CGSize)thumbSize cropped:(BOOL)cropped
 {
-    CGRect destRect = CGRectMake(0.0, 0.0, thumbSize.width, thumbSize.height);
+    CGRect destRect = CGRectMake(0.0f, 0.0f, thumbSize.width, thumbSize.height);
     
 	CGImageRef srcImage;
 	
@@ -45,7 +45,7 @@
 			destRect.size.height = ceilf(self.size.height * (thumbSize.width / self.size.width));
 			
 			// Recenter
-			destRect.origin.y = (thumbSize.height - destRect.size.height) / 2.0;
+			destRect.origin.y = (thumbSize.height - destRect.size.height) / 2.0f;
 		}
 		else if (self.size.width < self.size.height)
 		{
@@ -53,7 +53,7 @@
 			destRect.size.width = ceilf(self.size.width * (thumbSize.height / self.size.height));
 			
 			// Recenter
-			destRect.origin.x = (thumbSize.width - destRect.size.width) / 2.0;
+			destRect.origin.x = (thumbSize.width - destRect.size.width) / 2.0f;
 		}
 		
 		srcImage = self.CGImage;

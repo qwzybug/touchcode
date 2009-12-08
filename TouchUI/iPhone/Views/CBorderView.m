@@ -39,7 +39,7 @@
 
 - (id)initWithFrame:(CGRect)frame
 {
-if (self = [super initWithFrame:frame])
+if ((self = [super initWithFrame:frame]) != NULL)
 	{
 	[self setup];
     }
@@ -48,7 +48,7 @@ return self;
 
 - (id)initWithCoder:(NSCoder *)inCoder
 {
-if (self = [super initWithCoder:inCoder])
+if ((self = [super initWithCoder:inCoder]) != NULL)
 	{
 	[self setup];
     }
@@ -104,9 +104,9 @@ CGContextDrawPath(theContext, kCGPathFillStroke);
 {
 self.backgroundColor = [UIColor clearColor];
 //
-self.frameInset = 1.5;
-self.cornerRadius = 10.0;
-self.frameWidth = 1.5;
+self.frameInset = 1.5f;
+self.cornerRadius = 10.0f;
+self.frameWidth = 1.5f;
 self.frameColor = [UIColor lightGrayColor];
 self.fillColor = [UIColor whiteColor];
 }

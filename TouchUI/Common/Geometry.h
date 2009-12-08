@@ -49,50 +49,70 @@ typedef enum {
 
 extern CGRect ScaleAndAlignRectToRect(CGRect inImageRect, CGRect inDestinationRect, EImageScaling inScaling, EImageAlignment inAlignment);
 
-static inline Float64 RadiansToDegrees(Float64 inValue)
+#if CGFLOAT_IS_DOUBLE == 0
+#define cos_ cosf
+#define sin_ sinf
+#define atan_ atanf
+#define abs_ fabsf
+#define pow_ powf
+#define fmod_ fmodf
+#define fabs_ fabsf
+#define sqrt_ sqrtf
+#else
+#define cos_ cos
+#define sin_ sin
+#define atan_ atan
+#define abs_ fabs
+#define pow_ pow
+#define fmod_ fmod
+#define fabs_ fabs
+#define sqrt_ sqrt
+#endif
+
+static inline CGFloat RadiansToDegrees(CGFloat inValue)
 {
-return(inValue * (180.0 / M_PI));
+return(inValue * (180.0f / (CGFloat)M_PI));
 }
 
-static inline Float64 DegreesToRadians(Float64 inValue)
+static inline CGFloat DegreesToRadians(CGFloat inValue)
 {
-return(inValue * (M_PI / 180.0));
+return(inValue * ((CGFloat)M_PI / 180.0f));
 }
 
-static inline Float64 SemicirclesToDegrees(Float64 inValue)
+static inline CGFloat SemicirclesToDegrees(CGFloat inValue)
 {
-return(inValue * (180.0 / pow(2.0, 31.0)));
+return(inValue * (180.0f / pow_(2.0f, 31.0f)));
 }
 
-static inline Float64 DegreesToSemicircles(Float64 inValue)
+static inline CGFloat DegreesToSemicircles(CGFloat inValue)
 {
-return(inValue * (pow(2.0, 31.0) / 180.0));
+return(inValue * (pow_(2.0f, 31.0f) / 180.0f));
 }
 
-static inline Float64 SemicirclesToRadians(Float64 inValue)
+static inline CGFloat SemicirclesToRadians(CGFloat inValue)
 {
 return(DegreesToRadians(SemicirclesToDegrees(inValue)));
 }
 
-static inline Float64 RadiansToSemicircles(Float64 inValue)
+static inline CGFloat RadiansToSemicircles(CGFloat inValue)
 {
 return(DegreesToSemicircles(RadiansToDegrees(inValue)));
 }
 
-static inline Float64 FeetToMeters(Float64 inValue)
+static inline CGFloat FeetToMeters(CGFloat inValue)
 {
-return(inValue * 12.0 * 2.54 / 100.0);
+return(inValue * 12.0f * 2.54f / 100.0f);
 }
 
-static inline Float64 MetersToFeet(Float64 inValue)
+static inline CGFloat MetersToFeet(CGFloat inValue)
 {
-return(inValue * 100.0 / 2.54 / 12.0);
+return(inValue * 100.0f / 2.54f / 12.0f);
 }
 
 static inline CGPoint Rotation(CGPoint inCenter, CGFloat inAngle, CGFloat inLength)
 {
-CGFloat theCosine = cos(DegreesToRadians(fmod(90.0 - inAngle, 360.0)));
-CGFloat theSine = sin(DegreesToRadians(fmod(90.0 - inAngle, 360.0)));
+CGFloat theCosine = cos_(DegreesToRadians(fmod_(90.0f - inAngle, 360.0f)));
+CGFloat theSine = sin_(DegreesToRadians(fmod_(90.0f - inAngle, 360.0f)));
 CGPoint thePoint = {
 	.x = inCenter.x + theCosine * inLength,
 	.y = inCenter.y + theSine * inLength,
@@ -102,7 +122,7 @@ return(thePoint);
 
 static inline CGRect CGRectFromPoints(CGPoint P1, CGPoint P2)
 {
-CGRect theRect = { .origin = P1, .size = { .width = fabs(P2.x - P1.x), .height = fabs(P2.y - P1.y) } };
+CGRect theRect = { .origin = P1, .size = { .width = fabs_(P2.x - P1.x), .height = fabs_(P2.y - P1.y) } };
 
 theRect.origin.x = MIN(P1.x, P2.x);
 theRect.origin.y = MIN(P1.y, P2.y);
@@ -136,19 +156,19 @@ static inline CGFloat angle(CGFloat x, CGFloat y)
 const int q = quadrant(x, y);
 if (q == 0)
 	{
-	if (y == 0)
-		return 90.0;
-	return RadiansToDegrees(atan(x / y));
+	if (y == 0.0f)
+		return 90.0f;
+	return RadiansToDegrees(atan_(x / y));
 	}
 else if (q == 1)
-	return 180.0 + RadiansToDegrees(atan(x / y));
+	return 180.0f + RadiansToDegrees(atan_(x / y));
 else if (q == 2)
-	return 180.0 + RadiansToDegrees(atan(x / y));
+	return 180.0f + RadiansToDegrees(atan_(x / y));
 else
 	{
-	if (x == 0.0)
-		return 0.0;
-	return 360.0 + RadiansToDegrees(atan(x / y));
+	if (x == 0.0f)
+		return 0.0f;
+	return 360.0f + RadiansToDegrees(atan_(x / y));
 	}
 }
 
@@ -182,13 +202,13 @@ return(CGPointMake(p1.x - p2.x, p1.y - p2.y));
 
 static inline CGFloat distance(CGPoint start, CGPoint finish)
 {
-const CGFloat theDistance = sqrtf(powf(fabsf(start.x - finish.x), 2.0) + powf(fabsf(start.y - finish.y), 2.0));
+const CGFloat theDistance = sqrt_(pow_(fabs_(start.x - finish.x), 2.0f) + pow_(abs_(start.y - finish.y), 2.0f));
 return(theDistance);
 }
 
 static inline CGFloat magnitude(CGPoint point)
 {
-const CGFloat theMagnitude = sqrtf(fabsf(point.x * point.x) + fabsf(point.y * point.y));
+const CGFloat theMagnitude = sqrt_(fabs_(point.x * point.x) + fabs_(point.y * point.y));
 return(theMagnitude);
 }
 

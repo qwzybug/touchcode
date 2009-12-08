@@ -33,7 +33,7 @@
 
 - (NSString *)hexString
 {
-NSInteger theLength = [self length];
+NSUInteger theLength = [self length];
 NSMutableData *theHex = [NSMutableData dataWithLength:theLength * 2];
 const char *IN = [self bytes];
 char *OUT = [theHex mutableBytes];
