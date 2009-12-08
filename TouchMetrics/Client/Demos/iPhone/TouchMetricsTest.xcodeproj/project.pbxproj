@@ -27,7 +27,6 @@
 		4510CFBF10A335ED0056C63A /* CEntityDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4510CFBB10A335ED0056C63A /* CEntityDataSource.m */; };
 		4510CFC010A335ED0056C63A /* NSManagedObjectContext_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4510CFBD10A335ED0056C63A /* NSManagedObjectContext_Extensions.m */; };
 		4510D04810A3361C0056C63A /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 4510CFDF10A3361C0056C63A /* CDataScanner.m */; };
-		4510D04910A3361C0056C63A /* CDataScanner.m.orig in Resources */ = {isa = PBXBuildFile; fileRef = 4510CFE010A3361C0056C63A /* CDataScanner.m.orig */; };
 		4510D04A10A3361C0056C63A /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4510CFE310A3361C0056C63A /* CDataScanner_Extensions.m */; };
 		4510D04B10A3361C0056C63A /* NSCharacterSet_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4510CFE510A3361C0056C63A /* NSCharacterSet_Extensions.m */; };
 		4510D04C10A3361C0056C63A /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4510CFE710A3361C0056C63A /* NSDictionary_JSONExtensions.m */; };
@@ -75,7 +74,6 @@
 		4510CFBD10A335ED0056C63A /* NSManagedObjectContext_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSManagedObjectContext_Extensions.m; path = ../../../../Support/Common/CoreData/NSManagedObjectContext_Extensions.m; sourceTree = "<group>"; };
 		4510CFDE10A3361C0056C63A /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner.h; sourceTree = "<group>"; };
 		4510CFDF10A3361C0056C63A /* CDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner.m; sourceTree = "<group>"; };
-		4510CFE010A3361C0056C63A /* CDataScanner.m.orig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CDataScanner.m.orig; sourceTree = "<group>"; };
 		4510CFE210A3361C0056C63A /* CDataScanner_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner_Extensions.h; sourceTree = "<group>"; };
 		4510CFE310A3361C0056C63A /* CDataScanner_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner_Extensions.m; sourceTree = "<group>"; };
 		4510CFE410A3361C0056C63A /* NSCharacterSet_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSCharacterSet_Extensions.h; sourceTree = "<group>"; };
@@ -219,7 +217,6 @@
 			children = (
 				4510CFDE10A3361C0056C63A /* CDataScanner.h */,
 				4510CFDF10A3361C0056C63A /* CDataScanner.m */,
-				4510CFE010A3361C0056C63A /* CDataScanner.m.orig */,
 				4510CFE110A3361C0056C63A /* Extensions */,
 				4510CFEA10A3361C0056C63A /* JSON */,
 			);
@@ -326,7 +323,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
-				4510D04910A3361C0056C63A /* CDataScanner.m.orig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
