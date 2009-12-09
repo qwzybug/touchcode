@@ -41,7 +41,22 @@ return([self URLWithString:theURLString]);
 
 + (NSURL *)URLWithRoot:(NSURL *)inRoot queryDictionary:(NSDictionary *)inQueryDictionary
 {
-return([self URLWithRoot:inRoot query:[self queryStringForDictionary:inQueryDictionary]]);
+NSURL *theURL = NULL;
+
+if ([inRoot query] != NULL)
+	{
+	NSMutableDictionary *theExistingQuery = [[[inRoot queryDictionary] mutableCopy] autorelease];
+	
+	[theExistingQuery addEntriesFromDictionary:inQueryDictionary];
+	
+	theURL = [self URLWithRoot:[inRoot querylessURL] query:[self queryStringForDictionary:theExistingQuery]];
+	}
+else
+	{
+	theURL = [self URLWithRoot:inRoot query:[self queryStringForDictionary:inQueryDictionary]];
+	}
+
+return(theURL);
 }
 
 + (NSString *)queryStringForDictionary:(NSDictionary *)inQueryDictionary
@@ -78,6 +93,23 @@ for (NSString *theComponent in [theQuery componentsSeparatedByString:@"&"])
 		}
 	}
 return(theQueryDictionary);
+}
+
+- (NSURL *)querylessURL
+{
+NSMutableString *theURLString = [NSMutableString stringWithString:@""];
+
+if ([self scheme])
+	[theURLString appendFormat:@"%@://", [self scheme]];
+if ([self user])
+	[theURLString appendFormat:@"%@", [self user]];
+if ([self host])
+	[theURLString appendFormat:@"%@", [self host]];
+if ([self path])
+	[theURLString appendFormat:@"%@", [self path]];
+
+NSURL *theURL = [NSURL URLWithString:theURLString];
+return(theURL);
 }
 
 @end
