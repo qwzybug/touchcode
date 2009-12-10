@@ -180,6 +180,17 @@ static inline CGPoint CGPointSubtract(CGPoint p1, CGPoint p2)
 return(CGPointMake(p1.x - p2.x, p1.y - p2.y));
 }
 
+static inline CGRect CGRectUnionOfRectsInArray(NSArray *inArray)
+{
+CGRect theUnionRect = CGRectZero;
+for (NSValue *theValue in inArray)
+	{
+	CGRect theRect = [theValue CGRectValue];
+	theUnionRect = CGRectUnion(theRect, theUnionRect);
+	}
+return(theUnionRect);
+}
+
 static inline CGFloat distance(CGPoint start, CGPoint finish)
 {
 const CGFloat theDistance = sqrtf(powf(fabsf(start.x - finish.x), 2.0) + powf(fabsf(start.y - finish.y), 2.0));
