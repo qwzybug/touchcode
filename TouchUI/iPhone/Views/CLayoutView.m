@@ -81,7 +81,7 @@ for (UIView *theView in self.subviews)
 {
 CGRect theUnionFrame = CGRectZero;
 
-CGFloat N = 0.0;
+CGFloat N = 0.0f;
 for (UIView *theView in self.subviews)
 	{
 	CGRect theFrame = theView.frame;
@@ -109,7 +109,7 @@ return(size);
 {
 const CGFloat theMax = mode == LayoutMode_VerticalStack ? self.bounds.size.height : self.bounds.size.width;
 
-CGFloat N = 0.0;
+CGFloat N = 0.0f;
 
 for (UIView *theView in self.subviews)
 	{

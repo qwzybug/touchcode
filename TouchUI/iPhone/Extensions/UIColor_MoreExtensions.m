@@ -68,7 +68,7 @@ if ([theScanner scanString:@"rgb" intoString:NULL] == YES)
 			thePercentageBasedFlag = YES;
 
 		if (thePercentageBasedFlag && N != 3)
-			theChannels[3] = 100.0;
+			theChannels[3] = 100.0f;
 
 		if ([theScanner scanString:@"," intoString:NULL] == NO)
 			{
@@ -81,9 +81,9 @@ if ([theScanner scanString:@"rgb" intoString:NULL] == YES)
 		}
 
 	if (thePercentageBasedFlag)
-		theColor = [UIColor colorWithRed:(CGFloat)theChannels[0] / 100.0 green:(CGFloat)theChannels[1] / 100.0 blue:(CGFloat)theChannels[2] / 100.0 alpha:(CGFloat)theChannels[3] / 100.0];
+		theColor = [UIColor colorWithRed:(CGFloat)theChannels[0] / 100.0f green:(CGFloat)theChannels[1] / 100.0f blue:(CGFloat)theChannels[2] / 100.0f alpha:(CGFloat)theChannels[3] / 100.0f];
 	else
-		theColor = [UIColor colorWithRed:(CGFloat)theChannels[0] / 255.0 green:(CGFloat)theChannels[1] / 255.0 blue:(CGFloat)theChannels[2] / 255.0 alpha:(CGFloat)theChannels[3] / 255.0];
+		theColor = [UIColor colorWithRed:(CGFloat)theChannels[0] / 255.0f green:(CGFloat)theChannels[1] / 255.0f blue:(CGFloat)theChannels[2] / 255.0f alpha:(CGFloat)theChannels[3] / 255.0f];
 	}
 else if ([theScanner scanString:@"url" intoString:NULL] == YES)
 	{
