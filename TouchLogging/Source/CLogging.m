@@ -267,7 +267,7 @@ va_start(theArgList, inFormat);
 NSString *theMessage = [[[NSString alloc] initWithFormat:inFormat arguments:theArgList] autorelease];
 va_end(theArgList);
 
-SFileFunctionLine theFileFunctionLine = { 0, NULL };
+SFileFunctionLine theFileFunctionLine = { .file = NULL, .function = NULL, .line = 0 };
 [self logLevel:inLevel fileFunctionLine:theFileFunctionLine dictionary:inDictionary format:@"%@", theMessage];
 
 [thePool release];
