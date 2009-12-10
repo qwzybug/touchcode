@@ -195,7 +195,7 @@
 		placeholderImageName = [inPlaceholderImageName retain];
 	}
 	
-	if (placeholderImageName && image == nil)
+	if (placeholderImageName && self.image == NULL)
 		self.image = [UIImage imageNamed:placeholderImageName];
 }
 

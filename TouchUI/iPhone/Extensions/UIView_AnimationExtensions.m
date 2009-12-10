@@ -49,7 +49,7 @@ if (inAnimationType == ViewAnimationType_SlideDown
 	[self addSubview:theMaskView];
 
 	[UIView beginAnimations:@"TODO_ADD" context:inSubview];
-	[UIView setAnimationDuration:0.4];
+	[UIView setAnimationDuration:0.4f];
 	[UIView setAnimationDelegate:self];
 
 	inSubview.frame = theMaskView.bounds;
@@ -58,14 +58,14 @@ if (inAnimationType == ViewAnimationType_SlideDown
 	}
 else if (inAnimationType == ViewAnimationType_FadeIn)
 	{
-	inSubview.alpha = 0.0;
+	inSubview.alpha = 0.0f;
 	[self addSubview:inSubview];
 
 	[UIView beginAnimations:@"TODO_FADE_IN" context:inSubview];
-	[UIView setAnimationDuration:0.4];
+	[UIView setAnimationDuration:0.4f];
 	[UIView setAnimationDelegate:self];
 
-	inSubview.alpha = 1.0;
+	inSubview.alpha = 1.0f;
 
 	[UIView commitAnimations];
 	}
@@ -122,7 +122,7 @@ else if (inAnimationType == ViewAnimationType_FadeOut)
 	[UIView setAnimationDuration:0.4];
 	[UIView setAnimationDelegate:self];
 
-	self.alpha = 0.0;
+	self.alpha = 0.0f;
 
 	[UIView commitAnimations];
 	}
