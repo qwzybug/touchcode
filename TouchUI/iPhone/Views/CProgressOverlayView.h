@@ -80,8 +80,8 @@ typedef enum {
 
 - (void)update;
 
-//- (void)showInView:(UIView *)inView withDelay:(NSTimeInterval)inTimeInterval labelText:(NSString *)inLabelText;
-//- (void)showInView:(UIView *)inView withDelay:(NSTimeInterval)inTimeInterval; // activation after a delay (recommended to turn off fading)
+- (void)showInView:(UIView *)inView withDelay:(NSTimeInterval)inTimeInterval labelText:(NSString *)inLabelText;
+- (void)showInView:(UIView *)inView withDelay:(NSTimeInterval)inTimeInterval; // activation after a delay (recommended to turn off fading)
 - (void)showInView:(UIView *)inView;                                          // activation
 - (void)hide;                                                                 // deactivation
 
