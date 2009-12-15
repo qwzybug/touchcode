@@ -38,10 +38,6 @@
 #define THREAD_PARANOIA 1
 
 @interface CCoreDataManager ()
-@property (readwrite, retain) NSURL *modelURL;
-@property (readwrite, retain) NSURL *persistentStoreURL;
-@property (readwrite, retain) NSString *storeType;
-@property (readwrite, retain) NSDictionary *storeOptions;
 @property (readwrite, retain) id threadStorageKey;
 
 - (NSPersistentStoreCoordinator *)newPersistentStoreCoordinatorWithOptions:(NSDictionary *)inOptions error:(NSError **)outError;
@@ -56,9 +52,11 @@
 
 @implementation CCoreDataManager
 
-@synthesize modelURL;
-@synthesize persistentStoreURL;
+@synthesize name;
+@dynamic modelURL;
+@dynamic persistentStoreURL;
 @synthesize storeType;
+@synthesize forceReplace;
 @synthesize storeOptions;
 @dynamic persistentStoreCoordinator;
 @dynamic managedObjectModel;
@@ -79,11 +77,8 @@ NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
 }
 #endif 0
 
-- (id)initWithModelUrl:(NSURL *)inModelUrl persistentStoreUrl:(NSURL *)inPersistentStoreUrl storeType:(NSString *)inStoreType storeOptions:(NSDictionary *)inStoreOptions
+- (id)init
 {
-NSAssert(inModelUrl != NULL, @"inModelURL should not be NULL.");
-NSAssert(inPersistentStoreUrl != NULL, @"inPersistentStoreURL should not be NULL.");
-
 if ((self = [super init]) != NULL)
 	{
 	#if TARGET_OS_IPHONE == 1
@@ -92,50 +87,7 @@ if ((self = [super init]) != NULL)
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminate:) name:NSApplicationWillTerminateNotification object:[NSApplication sharedApplication]];
 	#endif
 
-	self.modelURL = inModelUrl;
-	self.persistentStoreURL = inPersistentStoreUrl;
-	self.storeType = inStoreType ? inStoreType : NSSQLiteStoreType;
-	self.storeOptions = inStoreOptions;
-	}
-return(self);
-}
-
-- (id)initWithModelUrl:(NSURL *)inModelUrl persistentStoreName:(NSString *)inPersistentName forceReplace:(BOOL)inForceReplace storeType:(NSString *)inStoreType storeOptions:(NSDictionary *)inStoreOptions;
-{
-NSURL *thePersistentStoreURL = [[self class] persistentStoreURLForName:inPersistentName storeType:inStoreType forceReplace:inForceReplace];
-NSAssert(thePersistentStoreURL != NULL, @"thePersistentStoreURL should not be NULL.");
-
-if ((self = [self initWithModelUrl:inModelUrl persistentStoreUrl:thePersistentStoreURL storeType:inStoreType storeOptions:inStoreOptions]) != NULL)
-	{
-	
-	}
-return(self);
-}
-
-- (id)initWithModelName:(NSString *)inModelName persistentStoreName:(NSString *)inPersistentName forceReplace:(BOOL)inForceReplace storeType:(NSString *)inStoreType storeOptions:(NSDictionary *)inStoreOptions;
-{
-NSURL *theModelURL = [[self class] modelURLForName:inModelName];
-NSAssert(theModelURL != NULL, @"theModelURL should not be NULL.");
-NSURL *thePersistentStoreURL = [[self class] persistentStoreURLForName:inPersistentName storeType:inStoreType forceReplace:inForceReplace];
-NSAssert(thePersistentStoreURL != NULL, @"thePersistentStoreURL should not be NULL.");
-
-if ((self = [self initWithModelUrl:theModelURL persistentStoreUrl:thePersistentStoreURL storeType:inStoreType storeOptions:inStoreOptions]) != NULL)
-	{
-	
-	}
-return(self);
-}
-
-- (id)initWithName:(NSString *)inName forceReplace:(BOOL)inForceReplace storeType:(NSString *)inStoreType storeOptions:(NSDictionary *)inStoreOptions;
-{
-NSURL *theModelURL = [[self class] modelURLForName:inName];
-NSAssert(theModelURL != NULL, @"theModelURL should not be NULL.");
-NSURL *thePersistentStoreURL = [[self class] persistentStoreURLForName:inName storeType:inStoreType forceReplace:inForceReplace];
-NSAssert(thePersistentStoreURL != NULL, @"thePersistentStoreURL should not be NULL.");
-
-if ((self = [self initWithModelUrl:theModelURL persistentStoreUrl:thePersistentStoreURL storeType:inStoreType storeOptions:inStoreOptions]) != NULL)
-	{
-	
+	storeType = NSSQLiteStoreType;
 	}
 return(self);
 }
@@ -155,6 +107,8 @@ self.persistentStoreURL = NULL;
 self.storeType = NULL;
 self.storeOptions = NULL;
 
+[name release];
+name = NULL;
 [persistentStoreCoordinator release];
 persistentStoreCoordinator = NULL;
 [managedObjectModel release];
@@ -165,6 +119,42 @@ managedObjectModel = NULL;
 
 #pragma mark -
 
+- (NSURL *)modelURL
+{
+if (modelURL == NULL && self.name != NULL)
+	{
+	modelURL = [[self class] modelURLForName:self.name];
+	}
+return(modelURL);
+}
+
+- (void)setModelURL:(NSURL *)inModelURL
+{
+if (modelURL != inModelURL)
+	{
+	[modelURL release];
+	modelURL = [inModelURL retain];
+	}
+}
+
+- (NSURL *)persistentStoreURL
+{
+if (persistentStoreURL == NULL && self.name != NULL)
+	{
+	persistentStoreURL = [[[self class] persistentStoreURLForName:self.name storeType:self.storeType forceReplace:self.forceReplace] retain];
+	}
+return(persistentStoreURL);
+}
+
+- (void)setPersistentStoreURL:(NSURL *)inPersistentStoreURL
+{
+if (persistentStoreURL != inPersistentStoreURL)
+	{
+	[persistentStoreURL release];
+	persistentStoreURL = [inPersistentStoreURL retain];
+	}
+}
+
 - (NSManagedObjectModel *)managedObjectModel
 {
 @synchronized(self)
@@ -172,6 +162,7 @@ managedObjectModel = NULL;
 	if (managedObjectModel == NULL)
 		{
 //		NSLog(@"Creating MOM: %@", [self.modelURL.path lastPathComponent]);
+		NSAssert([[NSFileManager defaultManager] fileExistsAtPath:self.modelURL.path], @"File exists.");
 		managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:self.modelURL];
 		}
 	}
