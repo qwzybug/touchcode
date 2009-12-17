@@ -97,10 +97,4 @@
 	[super setText:newText];
 }
 
-- (void)drawTextInRect:(CGRect)rect
-{
-	CGRect newRect = [self textRectForBounds:rect limitedToNumberOfLines:self.numberOfLines];
-	[super drawTextInRect:newRect];
-}
-
 @end
