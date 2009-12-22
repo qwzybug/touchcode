@@ -34,7 +34,7 @@
 		45232A7C0FF422CA0015D9D0 /* CLazyCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLazyCache.m; path = ../Common/CLazyCache.m; sourceTree = SOURCE_ROOT; };
 		45232A800FF422FF0015D9D0 /* CLazyCacheTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLazyCacheTestCase.h; sourceTree = "<group>"; };
 		45232A810FF422FF0015D9D0 /* CLazyCacheTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLazyCacheTestCase.m; sourceTree = "<group>"; };
-		45232A8C0FF423BF0015D9D0 /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = UnitTests.octest; path = /Users/schwa/Development/Products/Debug/UnitTests.octest; sourceTree = "<absolute>"; };
+		45232A8C0FF423BF0015D9D0 /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		45232A8D0FF423BF0015D9D0 /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		4540632B0FBF5C820023C06D /* NSDate_InternetDateExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDate_InternetDateExtensions.h; sourceTree = "<group>"; };
 		4540632C0FBF5C820023C06D /* NSDate_InternetDateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDate_InternetDateExtensions.m; sourceTree = "<group>"; };
