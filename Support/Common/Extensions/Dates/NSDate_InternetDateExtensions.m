@@ -33,16 +33,16 @@
 
 @implementation NSDate (NSDate_InternetDateExtensions)
 
-+ (void)load
-{
-NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
-//
-NSDate *theDate = [NSDate date];
-NSLog(@"%@", [theDate RFC822String]);
-NSLog(@"%@", [[theDate UTCDate] RFC822String]);
-//
-[thePool release];
-}
+//+ (void)load
+//{
+//NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
+////
+//NSDate *theDate = [NSDate date];
+//NSLog(@"%@", [theDate RFC822String]);
+//NSLog(@"%@", [[theDate UTCDate] RFC822String]);
+////
+//[thePool release];
+//}
 
 - (NSData *)UTCDate
 {
