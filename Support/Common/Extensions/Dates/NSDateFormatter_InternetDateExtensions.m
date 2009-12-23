@@ -44,9 +44,28 @@ struct SDateFormatTimeZonePair {
 {
 NSDateFormatter *theFormatter = [[[NSDateFormatter alloc] init] autorelease];
 [theFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-[theFormatter setDateFormat:@"EEE, d MMM yy HH:mm:ss ZZ"];
+[theFormatter setDateFormat:@"EEE, d MMM yyyy HH:mm:ss ZZ"];
 return(theFormatter);
 }
+
++ (NSDateFormatter *)RFC2822FormatterGMT;
+{
+NSDateFormatter *theFormatter = [[[NSDateFormatter alloc] init] autorelease];
+[theFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+[theFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+[theFormatter setDateFormat:@"EEE, d MMM yyyy HH:mm:ss 'GMT'"];
+return(theFormatter);
+}
+
++ (NSDateFormatter *)RFC2822FormatterUTC;
+{
+NSDateFormatter *theFormatter = [[[NSDateFormatter alloc] init] autorelease];
+[theFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+[theFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+[theFormatter setDateFormat:@"EEE, d MMM yyyy HH:mm:ss 'UTC'"];
+return(theFormatter);
+}
+
 
 + (NSDateFormatter *)ISO8601Formatter
 {

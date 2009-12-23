@@ -32,6 +32,9 @@
 @interface NSDateFormatter (NSDateFormatter_InternetDateExtensions)
 
 + (NSDateFormatter *)RFC2822Formatter;
++ (NSDateFormatter *)RFC2822FormatterGMT;
++ (NSDateFormatter *)RFC2822FormatterUTC;
+
 + (NSDateFormatter *)ISO8601Formatter;
 + (NSDateFormatter *)ISO8601FormatterMinimal;
 

@@ -33,6 +33,25 @@
 
 @implementation NSDate (NSDate_InternetDateExtensions)
 
++ (void)load
+{
+NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
+//
+NSDate *theDate = [NSDate date];
+NSLog(@"%@", [theDate RFC822String]);
+NSLog(@"%@", [[theDate UTCDate] RFC822String]);
+//
+[thePool release];
+}
+
+- (NSData *)UTCDate
+{
+NSCalendar *theCalendar = [[[NSCalendar currentCalendar] copy] autorelease];
+NSDateComponents *theComponents = [theCalendar components:NSEraCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:self];
+theCalendar.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+return([theCalendar dateFromComponents:theComponents]);
+}
+
 + (NSDate *)dateWithRFC2822String:(NSString *)inString
 {
 NSDate *theDate = [[NSDateFormatter RFC2822Formatter] dateFromString:inString];
@@ -42,6 +61,18 @@ return(theDate);
 - (NSString *)RFC822String
 {
 NSString *theDateString = [[NSDateFormatter RFC2822Formatter] stringFromDate:self];
+return(theDateString);
+}
+
+- (NSString *)RFC822StringGMT
+{
+NSString *theDateString = [[NSDateFormatter RFC2822FormatterGMT] stringFromDate:self];
+return(theDateString);
+}
+
+- (NSString *)RFC822StringUTC
+{
+NSString *theDateString = [[NSDateFormatter RFC2822FormatterUTC] stringFromDate:self];
 return(theDateString);
 }
 
