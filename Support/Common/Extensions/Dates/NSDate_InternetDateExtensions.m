@@ -44,7 +44,7 @@
 //[thePool release];
 //}
 
-- (NSData *)UTCDate
+- (NSDate *)UTCDate
 {
 NSCalendar *theCalendar = [[[NSCalendar currentCalendar] copy] autorelease];
 NSDateComponents *theComponents = [theCalendar components:NSEraCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:self];

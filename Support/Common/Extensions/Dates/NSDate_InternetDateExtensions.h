@@ -31,6 +31,8 @@
 
 @interface NSDate (NSDate_InternetDateExtensions)
 
+- (NSDate *)UTCDate;
+
 + (NSDate *)dateWithRFC2822String:(NSString *)inString;
 - (NSString *)RFC822String;
 - (NSString *)RFC822StringGMT;
