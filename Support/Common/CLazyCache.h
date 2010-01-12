@@ -30,7 +30,7 @@
 #import <Foundation/Foundation.h>
 
 /** A really quick and easy in memory cache. Clears itself during low-memory on iPhone. */
-@interface CLazyCache : NSDateFormatter {
+@interface CLazyCache : NSObject {
 	NSUInteger capacity;
 	NSMutableDictionary *cachedObjectsByKey;
 	NSMutableArray *cachedKeys;
