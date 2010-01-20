@@ -108,12 +108,8 @@ self.startedUpdatingAtTime = NULL;
 {
 if (locationManager == NULL)
 	{
-	LogDebug_(@"#### Creating location manager object");
-	
 	locationManager = [[CLLocationManager alloc] init];
 	locationManager.delegate = self;
-	
-	LogDebug_(@"#### Location services enabled: %@", locationManager.locationServicesEnabled ? @"YES" : @"NO");
 	
 	self.location = locationManager.location;
 	}
@@ -126,8 +122,6 @@ if (locationManager != inLocationManager)
 	{
 	if (locationManager)
 		{
-		LogDebug_(@"#### Tearing down location manager");
-
 		locationManager.delegate = NULL;
 		[locationManager release];
 		locationManager = NULL;
@@ -167,11 +161,8 @@ self.locationManager.desiredAccuracy = inDesiredAccuracy;
 {
 if (self.updating == NO)
 	{
-	LogDebug_(@"#### Start updating location.");
-	
 	if (self.userDenied == YES)
 		{
-		LogDebug_(@"#### Use denied. Can't start updating location.");
 		if (outError)
 			*outError = [NSError errorWithDomain:kCLErrorDomain code:kCLErrorDenied userInfo:NULL];
 		return(NO);
@@ -199,7 +190,6 @@ return(YES);
 {
 if (self.updating == YES)
 	{
-	LogDebug_(@"#### Stop updating location.");
 	if (self.userDenied == NO && self.location != NULL)
 		{
 		NSMutableDictionary *theUserInfo = [NSMutableDictionary dictionary];
@@ -249,8 +239,6 @@ if (inNewLocation == NULL)
 
 NSTimeInterval theAge = fabs([inNewLocation.timestamp timeIntervalSinceNow]);
 
-LogDebug_(@"#### Location posted: %@", inNewLocation);
-
 if (self.staleLocationThreshold > 0.0 && theAge >= self.staleLocationThreshold)
 	{
 	NSDictionary *theUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -268,7 +256,6 @@ self.location = inNewLocation;
 
 if (self.stopUpdatingAccuracy > 0.0 && inNewLocation.horizontalAccuracy <= self.stopUpdatingAccuracy)
 	{
-	LogDebug_(@"#### ACCURACY BELOW DESIRED ACCURACY");
 	[self stopUpdatingLocation:NULL];
 	}
 
@@ -284,8 +271,6 @@ NSDictionary *theUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:
 
 - (void)stopUpdatingTimerDidFire:(NSTimer *)inTimer
 {
-LogDebug_(@"#### stopUpdatingTimerDidFire");
-
 if (self.timer)
 	{
 	[self.timer invalidate];
@@ -304,8 +289,6 @@ if (self.timer)
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)inError
 {
-LogDebug_(@"#### Location manage did fail: %@", inError);
-
 if ([inError.domain isEqualToString:kCLErrorDomain] && inError.code == kCLErrorDenied)
 	{
 	self.userDenied = YES;
