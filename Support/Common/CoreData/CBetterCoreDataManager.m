@@ -8,7 +8,7 @@
 
 #import "CBetterCoreDataManager.h"
 
-#import "NSError_Extensions.h"
+//#import "NSError_Extensions.h"
 
 @implementation CBetterCoreDataManager
 
@@ -48,7 +48,7 @@ if ([NSThread mainThread] != [NSThread currentThread])
 //	NSLog(@"%@", [self.persistentStoreCoordinator persistentStores]);
 //	NSLog(@"%@", e);
 //	NSLog(@"%@", inNotification);
-	[self presentError:[NSError errorWithException:e]];
+//	[self presentError:[NSError errorWithException:e]];
 	}
 }
 
