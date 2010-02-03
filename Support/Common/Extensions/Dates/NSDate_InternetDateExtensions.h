@@ -36,6 +36,5 @@
 
 + (NSDate *)dateWithISO8601String:(NSString *)inString;
 - (NSString *)ISO8601String;
-- (NSString *)ISO8601MinimalString;
 
 @end

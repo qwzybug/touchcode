@@ -30,6 +30,7 @@
 #import "NSDate_InternetDateExtensions.h"
 
 #import "NSDateFormatter_InternetDateExtensions.h"
+#import "ISO8601DateFormatter.h"
 
 @implementation NSDate (NSDate_InternetDateExtensions)
 
@@ -47,30 +48,16 @@ return(theDateString);
 
 + (NSDate *)dateWithISO8601String:(NSString *)inString
 {
-NSDate *theDate = NULL;
-for (NSDateFormatter *theDateFormatter in [NSDateFormatter allISO8601DateFormatters])
-	{
-	theDate = [theDateFormatter dateFromString:inString];
-	if (theDate != NULL)
-		break;
-	}
-
-NSAssert1(theDate != NULL, @"Could not convert ISO8601 date string of \"%@\" to a NSDate", inString);
-
+ISO8601DateFormatter *theFormatter = [[[ISO8601DateFormatter alloc] init] autorelease];
+NSDate *theDate = [theFormatter dateFromString:inString];
 return(theDate);
 }
 
 - (NSString *)ISO8601String
 {
-NSString *theDateString = [[NSDateFormatter ISO8601Formatter] stringFromDate:self];
+ISO8601DateFormatter *theFormatter = [[[ISO8601DateFormatter alloc] init] autorelease];
+NSString *theDateString = [theFormatter stringFromDate:self];
 return(theDateString);
 }
-
-- (NSString *)ISO8601MinimalString
-{
-NSString *theDateString = [[NSDateFormatter ISO8601FormatterMinimal] stringFromDate:self];
-return(theDateString);
-}
-
 
 @end

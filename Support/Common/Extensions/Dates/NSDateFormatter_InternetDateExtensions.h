@@ -32,12 +32,7 @@
 @interface NSDateFormatter (NSDateFormatter_InternetDateExtensions)
 
 + (NSDateFormatter *)RFC2822Formatter;
-+ (NSDateFormatter *)ISO8601Formatter;
-+ (NSDateFormatter *)ISO8601FormatterMinimal;
 
 + (NSArray *)allRFC2822DateFormatters;
-+ (NSArray *)allISO8601DateFormatters;
-
-+ (NSArray *)allInternetDateFormatters;
 
 @end

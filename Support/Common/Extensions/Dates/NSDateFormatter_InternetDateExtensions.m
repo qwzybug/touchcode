@@ -29,6 +29,8 @@
 
 #import "NSDateFormatter_InternetDateExtensions.h"
 
+#import "ISO8601DateFormatter.h"
+
 struct SDateFormatTimeZonePair {
 	NSString *dateFormat;
 	NSString *timezone;
@@ -48,27 +50,6 @@ NSDateFormatter *theFormatter = [[[NSDateFormatter alloc] init] autorelease];
 [theFormatter setDateFormat:@"EEE, d MMM yy HH:mm:ss ZZ"];
 return(theFormatter);
 }
-
-+ (NSDateFormatter *)ISO8601Formatter
-{
-NSDateFormatter *theFormatter = [[[NSDateFormatter alloc] init] autorelease];
-[theFormatter setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"] autorelease]];
-[theFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-[theFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
-[theFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
-return(theFormatter);
-}
-
-+ (NSDateFormatter *)ISO8601FormatterMinimal
-{
-NSDateFormatter *theFormatter = [[[NSDateFormatter alloc] init] autorelease];
-[theFormatter setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"] autorelease]];
-[theFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-[theFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
-[theFormatter setDateFormat:@"yyyyMMdd'T'HHmmss'Z'"];
-return(theFormatter);
-}
-
 
 + (NSArray *)allRFC2822DateFormatters
 {
@@ -98,84 +79,6 @@ static NSArray *sFormatters = NULL;
 			[theFormatters addObject:theFormatter];
 			}
 
-
-		sFormatters = [theFormatters copy];
-		}
-	}
-return(sFormatters);
-}
-
-+ (NSArray *)allISO8601DateFormatters
-{
-static NSArray *sFormatters = NULL;
-
-@synchronized(self)
-	{
-	if (sFormatters == NULL)
-		{
-		struct SDateFormatTimeZonePair thePairs[] = {
-			{ .dateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'", .timezone = @"UTC" },
-			{ .dateFormat = @"yyyyMMdd'T'HHmmss'Z'", .timezone = @"UTC" },
-			{ .dateFormat = @"HH:mm:ss'Z'", .timezone = @"UTC" },
-			{ .dateFormat = @"HHmmss'Z'", .timezone = @"UTC" },
-			{ .dateFormat = @"HH:mm:ss'Z'", .timezone = @"UTC" },
-			{ .dateFormat = @"HHmmss'Z'", .timezone = @"UTC" },
-			{ .dateFormat = @"yyyy-MM-dd", .timezone = @"UTC" },
-			{ .dateFormat = @"yyyyMMdd", .timezone = @"UTC" },
-			{ .dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZZ" },
-			{ .dateFormat = @"yyyyMMdd'T'HHmmssZZ" },
-			{ .dateFormat = @"HH:mm:ssZZ" },
-			{ .dateFormat = @"HHmmssZZ" },
-			{ NULL, NULL },
-			};
-		
-		NSMutableArray *theFormatters = [NSMutableArray array];
-		for (int N = 0; thePairs[N].dateFormat != NULL; ++N)
-			{
-			NSDateFormatter *theFormatter = [[[NSDateFormatter alloc] init] autorelease];
-			[theFormatter setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"] autorelease]];
-			[theFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-			[theFormatter setDateFormat:thePairs[N].dateFormat];
-			[theFormatter setDefaultDate:NULL];
-			[theFormatter setLenient:NO];
-			if (thePairs[N].timezone)
-				[theFormatter setTimeZone:[NSTimeZone timeZoneWithName:thePairs[N].timezone]];
-			
-			[theFormatters addObject:theFormatter];
-			}
-
-
-		sFormatters = [theFormatters copy];
-		}
-	}
-return(sFormatters);
-}
-
-
-+ (NSArray *)allInternetDateFormatters;
-{
-static NSArray *sFormatters = NULL;
-
-@synchronized(self)
-	{
-	if (sFormatters == NULL)
-		{
-		NSArray *theFormats = [NSArray arrayWithObjects:
-			@"d MMM yy HH:mm:ss zzz",
-			@"EEE, d MMM yy HH:mm:ss 'Z'",
-			@"EEE, d MMM yy HH:mm:ss zzz",
-			NULL];
-
-		NSMutableArray *theFormatters = [NSMutableArray arrayWithCapacity:[theFormats count]];
-
-		for (NSString *theFormat in theFormats)
-			{
-			NSDateFormatter *theFormatter = [[[NSDateFormatter alloc] init] autorelease];
-			[theFormatter setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"] autorelease]];
-			[theFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-			[theFormatter setDateFormat:theFormat];
-			[theFormatters addObject:theFormatter];
-			}
 
 		sFormatters = [theFormatters copy];
 		}
