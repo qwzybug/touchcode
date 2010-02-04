@@ -33,6 +33,25 @@
 		45FAB0C3111A6BA3008F8F8F /* CPopoverTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAB0C2111A6BA3008F8F8F /* CPopoverTestController.m */; };
 		45FAB118111A7243008F8F8F /* CMenu_PropertyListExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAB117111A7243008F8F8F /* CMenu_PropertyListExtensions.m */; };
 		45FAB11C111A729B008F8F8F /* Menu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 45FAB11B111A729B008F8F8F /* Menu.plist */; };
+		45FAB29C111A86A7008F8F8F /* CUserNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAB276111A86A7008F8F8F /* CUserNotification.m */; };
+		45FAB29D111A86A7008F8F8F /* CUserNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAB278111A86A7008F8F8F /* CUserNotificationManager.m */; };
+		45FAB29E111A86A7008F8F8F /* CUserNotificationState.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAB27A111A86A7008F8F8F /* CUserNotificationState.m */; };
+		45FAB29F111A86A7008F8F8F /* CUserNotificationStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAB27C111A86A7008F8F8F /* CUserNotificationStyle.m */; };
+		45FAB2A6111A86A7008F8F8F /* UIView_TestExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAB28C111A86A7008F8F8F /* UIView_TestExtensions.m */; };
+		45FAB2A7111A86A7008F8F8F /* UIWindow_TestExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAB28E111A86A7008F8F8F /* UIWindow_TestExtensions.m */; };
+		45FAB2A8111A86A7008F8F8F /* CBadgeUserNotificationStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAB291111A86A7008F8F8F /* CBadgeUserNotificationStyle.m */; };
+		45FAB2A9111A86A7008F8F8F /* CBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAB293111A86A7008F8F8F /* CBadgeView.m */; };
+		45FAB2AA111A86A7008F8F8F /* CBubbleUserNotificationStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAB295111A86A7008F8F8F /* CBubbleUserNotificationStyle.m */; };
+		45FAB2AB111A86A7008F8F8F /* CBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAB297111A86A7008F8F8F /* CBubbleView.m */; };
+		45FAB2AC111A86A7008F8F8F /* CHUDUserNotificationStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAB299111A86A7008F8F8F /* CHUDUserNotificationStyle.m */; };
+		45FAB2AD111A86A7008F8F8F /* CHUDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAB29B111A86A7008F8F8F /* CHUDView.m */; };
+		45FAB2C2111A8729008F8F8F /* UIView_AnimationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAB2C0111A8729008F8F8F /* UIView_AnimationExtensions.m */; };
+		45FAB2C7111A8739008F8F8F /* Geometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAB2C6111A8739008F8F8F /* Geometry.m */; };
+		45FAB2CD111A874E008F8F8F /* UIView_LayoutExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAB2C9111A874E008F8F8F /* UIView_LayoutExtensions.m */; };
+		45FAB2D0111A875D008F8F8F /* QuartzUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAB2CE111A875D008F8F8F /* QuartzUtilities.m */; };
+		45FAB2D5111A8769008F8F8F /* CCenteringView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAB2D3111A8769008F8F8F /* CCenteringView.m */; };
+		45FAB2DA111A8776008F8F8F /* CLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAB2D8111A8776008F8F8F /* CLayoutView.m */; };
+		45FAB2E1111A8781008F8F8F /* CNetworkActivityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAB2DD111A8781008F8F8F /* CNetworkActivityManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +100,44 @@
 		45FAB116111A7243008F8F8F /* CMenu_PropertyListExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMenu_PropertyListExtensions.h; sourceTree = "<group>"; };
 		45FAB117111A7243008F8F8F /* CMenu_PropertyListExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMenu_PropertyListExtensions.m; sourceTree = "<group>"; };
 		45FAB11B111A729B008F8F8F /* Menu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Menu.plist; sourceTree = "<group>"; };
+		45FAB275111A86A7008F8F8F /* CUserNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUserNotification.h; sourceTree = "<group>"; };
+		45FAB276111A86A7008F8F8F /* CUserNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CUserNotification.m; sourceTree = "<group>"; };
+		45FAB277111A86A7008F8F8F /* CUserNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUserNotificationManager.h; sourceTree = "<group>"; };
+		45FAB278111A86A7008F8F8F /* CUserNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CUserNotificationManager.m; sourceTree = "<group>"; };
+		45FAB279111A86A7008F8F8F /* CUserNotificationState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUserNotificationState.h; sourceTree = "<group>"; };
+		45FAB27A111A86A7008F8F8F /* CUserNotificationState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CUserNotificationState.m; sourceTree = "<group>"; };
+		45FAB27B111A86A7008F8F8F /* CUserNotificationStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUserNotificationStyle.h; sourceTree = "<group>"; };
+		45FAB27C111A86A7008F8F8F /* CUserNotificationStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CUserNotificationStyle.m; sourceTree = "<group>"; };
+		45FAB28B111A86A7008F8F8F /* UIView_TestExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIView_TestExtensions.h; sourceTree = "<group>"; };
+		45FAB28C111A86A7008F8F8F /* UIView_TestExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIView_TestExtensions.m; sourceTree = "<group>"; };
+		45FAB28D111A86A7008F8F8F /* UIWindow_TestExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIWindow_TestExtensions.h; sourceTree = "<group>"; };
+		45FAB28E111A86A7008F8F8F /* UIWindow_TestExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIWindow_TestExtensions.m; sourceTree = "<group>"; };
+		45FAB290111A86A7008F8F8F /* CBadgeUserNotificationStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBadgeUserNotificationStyle.h; sourceTree = "<group>"; };
+		45FAB291111A86A7008F8F8F /* CBadgeUserNotificationStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBadgeUserNotificationStyle.m; sourceTree = "<group>"; };
+		45FAB292111A86A7008F8F8F /* CBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBadgeView.h; sourceTree = "<group>"; };
+		45FAB293111A86A7008F8F8F /* CBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBadgeView.m; sourceTree = "<group>"; };
+		45FAB294111A86A7008F8F8F /* CBubbleUserNotificationStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBubbleUserNotificationStyle.h; sourceTree = "<group>"; };
+		45FAB295111A86A7008F8F8F /* CBubbleUserNotificationStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBubbleUserNotificationStyle.m; sourceTree = "<group>"; };
+		45FAB296111A86A7008F8F8F /* CBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBubbleView.h; sourceTree = "<group>"; };
+		45FAB297111A86A7008F8F8F /* CBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBubbleView.m; sourceTree = "<group>"; };
+		45FAB298111A86A7008F8F8F /* CHUDUserNotificationStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHUDUserNotificationStyle.h; sourceTree = "<group>"; };
+		45FAB299111A86A7008F8F8F /* CHUDUserNotificationStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHUDUserNotificationStyle.m; sourceTree = "<group>"; };
+		45FAB29A111A86A7008F8F8F /* CHUDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHUDView.h; sourceTree = "<group>"; };
+		45FAB29B111A86A7008F8F8F /* CHUDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHUDView.m; sourceTree = "<group>"; };
+		45FAB2C0111A8729008F8F8F /* UIView_AnimationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIView_AnimationExtensions.m; path = ../../../TouchUI/iPhone/Extensions/UIView_AnimationExtensions.m; sourceTree = SOURCE_ROOT; };
+		45FAB2C1111A8729008F8F8F /* UIView_AnimationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIView_AnimationExtensions.h; path = ../../../TouchUI/iPhone/Extensions/UIView_AnimationExtensions.h; sourceTree = SOURCE_ROOT; };
+		45FAB2C5111A8739008F8F8F /* Geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Geometry.h; path = ../../../TouchUI/Common/Geometry.h; sourceTree = SOURCE_ROOT; };
+		45FAB2C6111A8739008F8F8F /* Geometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Geometry.m; path = ../../../TouchUI/Common/Geometry.m; sourceTree = SOURCE_ROOT; };
+		45FAB2C9111A874E008F8F8F /* UIView_LayoutExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIView_LayoutExtensions.m; path = ../../../TouchUI/iPhone/Extensions/UIView_LayoutExtensions.m; sourceTree = SOURCE_ROOT; };
+		45FAB2CA111A874E008F8F8F /* UIView_LayoutExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIView_LayoutExtensions.h; path = ../../../TouchUI/iPhone/Extensions/UIView_LayoutExtensions.h; sourceTree = SOURCE_ROOT; };
+		45FAB2CE111A875D008F8F8F /* QuartzUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuartzUtilities.m; path = ../../../TouchUI/Common/Quartz/QuartzUtilities.m; sourceTree = SOURCE_ROOT; };
+		45FAB2CF111A875D008F8F8F /* QuartzUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuartzUtilities.h; path = ../../../TouchUI/Common/Quartz/QuartzUtilities.h; sourceTree = SOURCE_ROOT; };
+		45FAB2D3111A8769008F8F8F /* CCenteringView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCenteringView.m; path = ../../../TouchUI/iPhone/Views/CCenteringView.m; sourceTree = SOURCE_ROOT; };
+		45FAB2D4111A8769008F8F8F /* CCenteringView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCenteringView.h; path = ../../../TouchUI/iPhone/Views/CCenteringView.h; sourceTree = SOURCE_ROOT; };
+		45FAB2D8111A8776008F8F8F /* CLayoutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLayoutView.m; path = ../../../TouchUI/iPhone/Views/CLayoutView.m; sourceTree = SOURCE_ROOT; };
+		45FAB2D9111A8776008F8F8F /* CLayoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLayoutView.h; path = ../../../TouchUI/iPhone/Views/CLayoutView.h; sourceTree = SOURCE_ROOT; };
+		45FAB2DD111A8781008F8F8F /* CNetworkActivityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CNetworkActivityManager.m; path = ../../../TouchUI/iPhone/Misc/CNetworkActivityManager.m; sourceTree = SOURCE_ROOT; };
+		45FAB2DE111A8781008F8F8F /* CNetworkActivityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CNetworkActivityManager.h; path = ../../../TouchUI/iPhone/Misc/CNetworkActivityManager.h; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* Menus-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Menus-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -137,6 +194,7 @@
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources-iPad */,
+				45FAB2B8111A871C008F8F8F /* Externals */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -199,6 +257,76 @@
 			name = Source;
 			path = ../Source;
 			sourceTree = SOURCE_ROOT;
+		};
+		45FAB274111A86A7008F8F8F /* UserNotificationManager */ = {
+			isa = PBXGroup;
+			children = (
+				45FAB275111A86A7008F8F8F /* CUserNotification.h */,
+				45FAB276111A86A7008F8F8F /* CUserNotification.m */,
+				45FAB277111A86A7008F8F8F /* CUserNotificationManager.h */,
+				45FAB278111A86A7008F8F8F /* CUserNotificationManager.m */,
+				45FAB279111A86A7008F8F8F /* CUserNotificationState.h */,
+				45FAB27A111A86A7008F8F8F /* CUserNotificationState.m */,
+				45FAB27B111A86A7008F8F8F /* CUserNotificationStyle.h */,
+				45FAB27C111A86A7008F8F8F /* CUserNotificationStyle.m */,
+				45FAB28A111A86A7008F8F8F /* Extensions */,
+				45FAB28F111A86A7008F8F8F /* Styles */,
+			);
+			name = UserNotificationManager;
+			path = ../../UserNotificationManager;
+			sourceTree = SOURCE_ROOT;
+		};
+		45FAB28A111A86A7008F8F8F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				45FAB28B111A86A7008F8F8F /* UIView_TestExtensions.h */,
+				45FAB28C111A86A7008F8F8F /* UIView_TestExtensions.m */,
+				45FAB28D111A86A7008F8F8F /* UIWindow_TestExtensions.h */,
+				45FAB28E111A86A7008F8F8F /* UIWindow_TestExtensions.m */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		45FAB28F111A86A7008F8F8F /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				45FAB290111A86A7008F8F8F /* CBadgeUserNotificationStyle.h */,
+				45FAB291111A86A7008F8F8F /* CBadgeUserNotificationStyle.m */,
+				45FAB292111A86A7008F8F8F /* CBadgeView.h */,
+				45FAB293111A86A7008F8F8F /* CBadgeView.m */,
+				45FAB294111A86A7008F8F8F /* CBubbleUserNotificationStyle.h */,
+				45FAB295111A86A7008F8F8F /* CBubbleUserNotificationStyle.m */,
+				45FAB296111A86A7008F8F8F /* CBubbleView.h */,
+				45FAB297111A86A7008F8F8F /* CBubbleView.m */,
+				45FAB298111A86A7008F8F8F /* CHUDUserNotificationStyle.h */,
+				45FAB299111A86A7008F8F8F /* CHUDUserNotificationStyle.m */,
+				45FAB29A111A86A7008F8F8F /* CHUDView.h */,
+				45FAB29B111A86A7008F8F8F /* CHUDView.m */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
+		45FAB2B8111A871C008F8F8F /* Externals */ = {
+			isa = PBXGroup;
+			children = (
+				45FAB2DD111A8781008F8F8F /* CNetworkActivityManager.m */,
+				45FAB2DE111A8781008F8F8F /* CNetworkActivityManager.h */,
+				45FAB2D8111A8776008F8F8F /* CLayoutView.m */,
+				45FAB2D9111A8776008F8F8F /* CLayoutView.h */,
+				45FAB2D3111A8769008F8F8F /* CCenteringView.m */,
+				45FAB2D4111A8769008F8F8F /* CCenteringView.h */,
+				45FAB2CE111A875D008F8F8F /* QuartzUtilities.m */,
+				45FAB2CF111A875D008F8F8F /* QuartzUtilities.h */,
+				45FAB2C9111A874E008F8F8F /* UIView_LayoutExtensions.m */,
+				45FAB2CA111A874E008F8F8F /* UIView_LayoutExtensions.h */,
+				45FAB2C5111A8739008F8F8F /* Geometry.h */,
+				45FAB2C6111A8739008F8F8F /* Geometry.m */,
+				45FAB2C0111A8729008F8F8F /* UIView_AnimationExtensions.m */,
+				45FAB2C1111A8729008F8F8F /* UIView_AnimationExtensions.h */,
+				45FAB274111A86A7008F8F8F /* UserNotificationManager */,
+			);
+			name = Externals;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -275,6 +403,25 @@
 				45FAB0C0111A6B82008F8F8F /* CMenuSheet.m in Sources */,
 				45FAB0C3111A6BA3008F8F8F /* CPopoverTestController.m in Sources */,
 				45FAB118111A7243008F8F8F /* CMenu_PropertyListExtensions.m in Sources */,
+				45FAB29C111A86A7008F8F8F /* CUserNotification.m in Sources */,
+				45FAB29D111A86A7008F8F8F /* CUserNotificationManager.m in Sources */,
+				45FAB29E111A86A7008F8F8F /* CUserNotificationState.m in Sources */,
+				45FAB29F111A86A7008F8F8F /* CUserNotificationStyle.m in Sources */,
+				45FAB2A6111A86A7008F8F8F /* UIView_TestExtensions.m in Sources */,
+				45FAB2A7111A86A7008F8F8F /* UIWindow_TestExtensions.m in Sources */,
+				45FAB2A8111A86A7008F8F8F /* CBadgeUserNotificationStyle.m in Sources */,
+				45FAB2A9111A86A7008F8F8F /* CBadgeView.m in Sources */,
+				45FAB2AA111A86A7008F8F8F /* CBubbleUserNotificationStyle.m in Sources */,
+				45FAB2AB111A86A7008F8F8F /* CBubbleView.m in Sources */,
+				45FAB2AC111A86A7008F8F8F /* CHUDUserNotificationStyle.m in Sources */,
+				45FAB2AD111A86A7008F8F8F /* CHUDView.m in Sources */,
+				45FAB2C2111A8729008F8F8F /* UIView_AnimationExtensions.m in Sources */,
+				45FAB2C7111A8739008F8F8F /* Geometry.m in Sources */,
+				45FAB2CD111A874E008F8F8F /* UIView_LayoutExtensions.m in Sources */,
+				45FAB2D0111A875D008F8F8F /* QuartzUtilities.m in Sources */,
+				45FAB2D5111A8769008F8F8F /* CCenteringView.m in Sources */,
+				45FAB2DA111A8776008F8F8F /* CLayoutView.m in Sources */,
+				45FAB2E1111A8781008F8F8F /* CNetworkActivityManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

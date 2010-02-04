@@ -99,7 +99,7 @@ theMasterMenuTableViewController.title = inMenu.title;
 
 [self.detailViewController setViewControllers:[NSArray arrayWithObject:theMasterMenuTableViewController] animated:NO];
 
-return(YES);
+return(NO);
 }
 
 @end

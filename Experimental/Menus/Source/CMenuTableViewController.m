@@ -142,22 +142,22 @@ CMenuItem *theMenuItem = [self.menu.items objectAtIndex:indexPath.row];
 
 if (theRowSelectionWasHandled == NO)
 	{
+	if (self.delegate && [self.delegate respondsToSelector:@selector(menuHandler:didSelectMenuItem:)])
+		{
+		theRowSelectionWasHandled = [self.delegate menuHandler:self didSelectMenuItem:theMenuItem];
+		if (theRowSelectionWasHandled == YES)
+			[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+		}
+	}
+
+if (theRowSelectionWasHandled == NO)
+	{
 	theMenuItem.UIElement = self;
 	if (theMenuItem.target && [theMenuItem.target respondsToSelector:theMenuItem.action])
 		{
 		[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 		[theMenuItem.target performSelector:theMenuItem.action withObject:theMenuItem];
 		theRowSelectionWasHandled = YES;
-		}
-	}
-
-if (theRowSelectionWasHandled == NO)
-	{
-	if (self.delegate && [self.delegate respondsToSelector:@selector(menuHandler:didSelectMenuItem:)])
-		{
-		theRowSelectionWasHandled = [self.delegate menuHandler:self didSelectMenuItem:theMenuItem];
-		if (theRowSelectionWasHandled == YES)
-			[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 		}
 	}
 

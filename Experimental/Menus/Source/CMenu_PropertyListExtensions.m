@@ -10,7 +10,7 @@
 
 @implementation CMenu (CMenu_PropertyListExtensions)
 
-+ (CMenu *)menuFromDictionary:(NSDictionary *)inDictionary
++ (CMenu *)menuFromDictionary:(NSDictionary *)inDictionary targetRoot:(id)inTargetRoot
 {
 CMenu *theMenu = [[[CMenu alloc] init] autorelease];
 
@@ -20,7 +20,7 @@ NSMutableArray *theItems = [NSMutableArray array];
 NSArray *theItemsSpecifications = [inDictionary objectForKey:@"items"]; 
 for (NSDictionary *theItemSpecification in theItemsSpecifications)
 	{
-	CMenuItem *theMenuItem = [CMenuItem menuItemFromDictionary:theItemSpecification];
+	CMenuItem *theMenuItem = [CMenuItem menuItemFromDictionary:theItemSpecification targetRoot:inTargetRoot];
 	[theItems addObject:theMenuItem];
 	}
 theMenu.items = theItems;
@@ -31,15 +31,20 @@ return(theMenu);
 
 @implementation CMenuItem (CMenuItem_PropertyListExtensions)
 
-+ (CMenuItem *)menuItemFromDictionary:(NSDictionary *)inDictionary
++ (CMenuItem *)menuItemFromDictionary:(NSDictionary *)inDictionary targetRoot:(id)inTargetRoot;
 {
 CMenuItem *theMenuItem = [[[CMenuItem alloc] init] autorelease];
 theMenuItem.title = [inDictionary objectForKey:@"title"];
 if ([inDictionary objectForKey:@"iconName"] != NULL)
 	theMenuItem.icon = [UIImage imageNamed:[inDictionary objectForKey:@"iconName"]];
+if ([inDictionary objectForKey:@"action"] != NULL)
+	theMenuItem.action = NSSelectorFromString([inDictionary objectForKey:@"action"]);
+if ([inDictionary objectForKey:@"targetPath"] != NULL)
+	theMenuItem.target = [inTargetRoot valueForKeyPath:[inDictionary objectForKey:@"targetPath"]];
+
 if ([inDictionary objectForKey:@"submenu"])
 	{
-	theMenuItem.submenu = [CMenu menuFromDictionary:[inDictionary objectForKey:@"submenu"]];
+	theMenuItem.submenu = [CMenu menuFromDictionary:[inDictionary objectForKey:@"submenu"] targetRoot:inTargetRoot];
 	theMenuItem.submenu.superItem = theMenuItem;
 	}
 return(theMenuItem);

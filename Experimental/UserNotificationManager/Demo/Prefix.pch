@@ -1,0 +1,13 @@
+//
+// Prefix header for all source files of the 'UserNotificationManager' target in the 'UserNotificationManager' project
+//
+
+#import "TouchcodePrefix.h"
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+#endif
+
+#define DEBUG_RECT 0
+#define DELAY 1.0

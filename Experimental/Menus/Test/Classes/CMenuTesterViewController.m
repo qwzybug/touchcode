@@ -64,10 +64,7 @@ self.currentPopoverController = thePopoverController;
 if (inMenuItem.submenu != NULL)
 	return(NO);
 
-
-NSLog(@"CLICK");
-
-return(YES);
+return(NO);
 }
 
 

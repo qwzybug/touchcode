@@ -9,14 +9,26 @@
 			<string>Item #1</string>
 			<key>iconName</key>
 			<string>schwa.png</string>
+			<key>action</key>
+			<string>actionSelect:</string>
+			<key>targetPath</key>
+			<string>self</string>
 		</dict>
 		<dict>
 			<key>title</key>
 			<string>Item #2</string>
+			<key>action</key>
+			<string>actionSelect:</string>
+			<key>targetPath</key>
+			<string>self</string>
 		</dict>
 		<dict>
 			<key>title</key>
 			<string>Item #3</string>
+			<key>action</key>
+			<string>actionSelect:</string>
+			<key>targetPath</key>
+			<string>self</string>
 		</dict>
 		<dict>
 			<key>submenu</key>
@@ -26,14 +38,26 @@
 					<dict>
 						<key>title</key>
 						<string>Sub-Item #1</string>
+						<key>action</key>
+						<string>actionSelect:</string>
+						<key>targetPath</key>
+						<string>self</string>
 					</dict>
 					<dict>
 						<key>title</key>
 						<string>Sub-Item #2</string>
+						<key>action</key>
+						<string>actionSelect:</string>
+						<key>targetPath</key>
+						<string>self</string>
 					</dict>
 					<dict>
 						<key>title</key>
 						<string>Sub-Item #3</string>
+						<key>action</key>
+						<string>actionSelect:</string>
+						<key>targetPath</key>
+						<string>self</string>
 					</dict>
 					<dict>
 						<key>submenu</key>
@@ -43,10 +67,18 @@
 								<dict>
 									<key>title</key>
 									<string>Sub-Sub-Item #1</string>
+									<key>action</key>
+									<string>actionSelect:</string>
+									<key>targetPath</key>
+									<string>self</string>
 								</dict>
 								<dict>
 									<key>title</key>
 									<string>Sub-Sub-Item #2</string>
+									<key>action</key>
+									<string>actionSelect:</string>
+									<key>targetPath</key>
+									<string>self</string>
 								</dict>
 							</array>
 						</dict>

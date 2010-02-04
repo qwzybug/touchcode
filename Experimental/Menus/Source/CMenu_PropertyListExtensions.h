@@ -11,7 +11,7 @@
 
 @interface CMenu (CMenu_PropertyListExtensions)
 
-+ (CMenu *)menuFromDictionary:(NSDictionary *)inDictionary;
++ (CMenu *)menuFromDictionary:(NSDictionary *)inDictionary targetRoot:(id)inTargetRoot;
 
 @end
 
@@ -19,6 +19,6 @@
 
 @interface CMenuItem (CMenuItem_PropertyListExtensions)
 
-+ (CMenuItem *)menuItemFromDictionary:(NSDictionary *)inDictionary;
++ (CMenuItem *)menuItemFromDictionary:(NSDictionary *)inDictionary targetRoot:(id)inTargetRoot;
 
 @end

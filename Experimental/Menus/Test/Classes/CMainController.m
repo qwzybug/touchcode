@@ -11,6 +11,8 @@
 #import "CMenu.h"
 #import "CMenuItem.h"
 #import "CMenu_PropertyListExtensions.h"
+#import "CUserNotificationManager.h"
+#import "CUserNotification.h"
 
 @implementation CMainController
 
@@ -33,7 +35,7 @@ if ((self = [super init]) != NULL)
 
 	NSString *thePath = [[NSBundle mainBundle] pathForResource:@"Menu" ofType:@"plist"];
 	NSDictionary *theDictionary = [NSDictionary dictionaryWithContentsOfFile:thePath];
-	CMenu *theMenu = [CMenu menuFromDictionary:theDictionary];
+	CMenu *theMenu = [CMenu menuFromDictionary:theDictionary targetRoot:self];
 
 //	CMenu *theMenu = [[[CMenu alloc] init] autorelease];
 //	CMenuItem *theMenuItem = [CMenuItem menuItemWithTitle:@"Item 1" target:self action:@selector(actionClick:)];
@@ -76,6 +78,16 @@ window.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFl
 return(YES);
 }
 
+- (IBAction)actionSelect:(id)inSender
+{
+NSLog(@"Item selected: %@", inSender);
 
+CUserNotification *theNotification = [[[CUserNotification alloc] init] autorelease];
+theNotification.title = [NSString stringWithFormat:@"Selected: %@", inSender];
+theNotification.styleName = @"BUBBLE-TOP";
+
+[[CUserNotificationManager instance] enqueueNotification:theNotification];
+[[CUserNotificationManager instance] performSelector:@selector(dequeueNotification:) withObject:theNotification afterDelay:1.0];
+}
 
 @end
