@@ -1,4 +1,4 @@
-//
+    //
 //  CPopoverTestController.m
 //  Menus
 //
@@ -8,18 +8,12 @@
 
 #import "CPopoverTestController.h"
 
-#import "CMenu.h"
-#import "CMenuItem.h"
+#import "CMenuTableViewController.h"
 #import "CMainController.h"
-#import "CMenuSheet.h"
-
-#import "CToolbarMenuViewController.h"
-#import "CBlankViewController.h"
-#import "CHostingView.h"
 
 @implementation CPopoverTestController
 
-@synthesize toolbarMenuController;
+@synthesize popoverController;
 
 - (void)viewDidAppear:(BOOL)inAnimated
 {
@@ -27,32 +21,36 @@
 
 CMenu *theMenu = [CMainController instance].menu;
 
+CMenuTableViewController *theMenuTableViewController = [[[CMenuTableViewController alloc] initWithMenu:theMenu] autorelease];
+theMenuTableViewController.hidesNavigationBar = YES;
 
-self.toolbarMenuController = [[[CToolbarMenuViewController alloc] initWithMenu:theMenu] autorelease];
-self.toolbarMenuController.delegate = self;
 
-UIPopoverController *thePopoverController = [[[UIPopoverController alloc] initWithContentViewController:self.toolbarMenuController] autorelease];
-thePopoverController.popoverContentSize = self.toolbarMenuController.view.frame.size;
 
-[thePopoverController presentPopoverFromBarButtonItem:(UIBarButtonItem *)self.tabBarItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+UINavigationController *theNavigationController = [[[UINavigationController alloc] initWithRootViewController:theMenuTableViewController] autorelease];
+theNavigationController.navigationBarHidden = YES;
+theNavigationController.view.frame = CGRectMake(0, 0, 320, 320);
 
-[self.toolbarMenuController selectMenuItem:[theMenu.items objectAtIndex:0]];
+
+self.popoverController = [[[UIPopoverController alloc] initWithContentViewController:theNavigationController] autorelease];
+self.popoverController.popoverContentSize = CGSizeMake(320, 320);
+
+[self.popoverController presentPopoverFromBarButtonItem:(UIBarButtonItem *)self.tabBarItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
-- (BOOL)menuHandler:(id <CMenuHandler>)inMenuHandler didSelectMenuItem:(CMenuItem *)inMenuItem;
-{
-if (inMenuItem.submenu != NULL)
-	return(NO);
-	
-CBlankViewController *theBlankViewController = [[[CBlankViewController alloc] initWithText:inMenuItem.title] autorelease];
-theBlankViewController.title = inMenuItem.title;
-
-
-self.toolbarMenuController.contentView.viewController = theBlankViewController;
-
-NSLog(@"FOO");
-return(YES);
-}
+//- (BOOL)menuHandler:(id <CMenuHandler>)inMenuHandler didSelectMenuItem:(CMenuItem *)inMenuItem;
+//{
+//if (inMenuItem.submenu != NULL)
+//	return(NO);
+//	
+//CBlankViewController *theBlankViewController = [[[CBlankViewController alloc] initWithText:inMenuItem.title] autorelease];
+//theBlankViewController.title = inMenuItem.title;
+//
+//
+//self.toolbarMenuController.contentView.viewController = theBlankViewController;
+//
+//NSLog(@"FOO");
+//return(YES);
+//}
 
 
 @end

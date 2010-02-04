@@ -9,6 +9,7 @@
 #import "CMenuSplitViewController.h"
 
 #import "CMenuTableViewController.h"
+#import "CMenu.h"
 
 @interface CMenuSplitViewController ()
 @property (readwrite, nonatomic, retain) UINavigationController *masterViewController;
@@ -45,7 +46,7 @@ if (menu != inMenu)
 	menu = [inMenu retain];
 
 	CMenuTableViewController *theMasterMenuTableViewController = [[[CMenuTableViewController alloc] initWithMenu:self.menu] autorelease];
-	theMasterMenuTableViewController.title = @"Master";
+	theMasterMenuTableViewController.title = menu.title;
 	theMasterMenuTableViewController.delegate = self;
 	theMasterMenuTableViewController.submenuAccessoryType = UITableViewCellAccessoryNone;
 
@@ -94,7 +95,7 @@ if (menu != inMenu)
 {
 CMenuTableViewController *theMasterMenuTableViewController = [[[CMenuTableViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
 theMasterMenuTableViewController.menu = inMenu;
-theMasterMenuTableViewController.title = @"Detail";
+theMasterMenuTableViewController.title = inMenu.title;
 
 [self.detailViewController setViewControllers:[NSArray arrayWithObject:theMasterMenuTableViewController] animated:NO];
 

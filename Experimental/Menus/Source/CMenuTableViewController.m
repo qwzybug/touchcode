@@ -40,7 +40,20 @@ menu = NULL;
 [super viewDidLoad];
 
 self.submenuAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
+}
 
+- (void)setMenu:(CMenu *)inMenu
+{
+if (menu != inMenu)	
+	{
+	[menu release];
+	menu = NULL;
+	//
+	menu = [inMenu retain];
+	
+	self.title = menu.title;
+	[self.tableView reloadData];
+	}
 }
 
 //- (void)viewDidUnload

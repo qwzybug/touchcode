@@ -8,6 +8,7 @@
 
 #import "CMenuItem.h"
 
+#import "CMenu.h"
 
 @implementation CMenuItem
 
@@ -32,6 +33,7 @@ return(theMenuItem);
 CMenuItem *theMenuItem = [[[self alloc] init] autorelease];
 theMenuItem.title = inTitle;
 theMenuItem.submenu = inSubmenu;
+inSubmenu.superItem = theMenuItem;
 return(theMenuItem);
 }
 

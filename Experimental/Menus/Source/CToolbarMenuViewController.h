@@ -12,7 +12,7 @@
 
 @class CHostingView;
 
-@interface CToolbarMenuViewController : UIViewController <CMenuHandler> {
+@interface CToolbarMenuViewController : UIViewController <CMenuHandler, UINavigationControllerDelegate> {
 	UIToolbar *toolbar;
 	UISegmentedControl *segmentedControl;
 	CHostingView *contentView;

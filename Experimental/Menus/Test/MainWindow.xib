@@ -12,7 +12,6 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="14"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -46,13 +45,68 @@
 					<int key="IBUIStatusBarStyle">2</int>
 				</object>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+				<object class="IBUIViewController" key="IBUISelectedViewController" id="513454079">
+					<string key="IBUITitle">Popover</string>
+					<object class="IBUIView" key="IBUIView" id="294298465">
+						<nil key="NSNextResponder"/>
+						<int key="NSvFlags">274</int>
+						<object class="NSMutableArray" key="NSSubviews">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBUILabel" id="455010129">
+								<reference key="NSNextResponder" ref="294298465"/>
+								<int key="NSvFlags">274</int>
+								<string key="NSFrameSize">{768, 955}</string>
+								<reference key="NSSuperview" ref="294298465"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClipsSubviews">YES</bool>
+								<int key="IBUIContentMode">7</int>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+								<string key="IBUIText">This page intentionally left blank</string>
+								<object class="NSFont" key="IBUIFont" id="300697200">
+									<string key="NSName">Helvetica</string>
+									<double key="NSSize">48</double>
+									<int key="NSfFlags">16</int>
+								</object>
+								<object class="NSColor" key="IBUITextColor" id="817868611">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MCAwIDAAA</bytes>
+								</object>
+								<nil key="IBUIHighlightedColor"/>
+								<int key="IBUIBaselineAdjustment">1</int>
+								<float key="IBUIMinimumFontSize">10</float>
+								<int key="IBUITextAlignment">1</int>
+							</object>
+						</object>
+						<string key="NSFrame">{{0, 24}, {768, 955}}</string>
+						<object class="NSColor" key="IBUIBackgroundColor">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MQA</bytes>
+							<object class="NSColorSpace" key="NSCustomColorSpace" id="257231237">
+								<int key="NSID">2</int>
+							</object>
+						</object>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+					</object>
+					<object class="IBUITabBarItem" key="IBUITabBarItem" id="1025325368">
+						<string key="IBUITitle">Popover</string>
+						<object class="NSCustomResource" key="IBUIImage" id="975789537">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">schwa.png</string>
+						</object>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+					</object>
+					<reference key="IBUIToolbarItems" ref="0"/>
+					<reference key="IBUIParentViewController" ref="564489350"/>
+					<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+				</object>
 				<object class="NSMutableArray" key="IBUIViewControllers">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUINavigationController" id="332861416">
 						<object class="IBUITabBarItem" key="IBUITabBarItem" id="321144369">
 							<string key="IBUITitle">Menu</string>
+							<reference key="IBUIImage" ref="975789537"/>
 							<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="564489350"/>
 						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics">
@@ -100,19 +154,52 @@
 						<string key="IBUITitle">Split Menus</string>
 						<object class="IBUITabBarItem" key="IBUITabBarItem" id="65663946">
 							<string key="IBUITitle">Split Menus</string>
+							<reference key="IBUIImage" ref="975789537"/>
 							<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIToolbarItems" ref="0"/>
 						<reference key="IBUIParentViewController" ref="564489350"/>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 					</object>
-					<object class="IBUIViewController" id="991646533">
-						<string key="IBUITitle">Popover</string>
-						<object class="IBUITabBarItem" key="IBUITabBarItem" id="902868253">
-							<string key="IBUITitle">Item</string>
+					<reference ref="513454079"/>
+					<object class="IBUIViewController" id="504070693">
+						<string key="IBUITitle">Popover 2</string>
+						<object class="IBUIView" key="IBUIView" id="377260163">
+							<nil key="NSNextResponder"/>
+							<int key="NSvFlags">274</int>
+							<object class="NSMutableArray" key="NSSubviews">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="IBUILabel" id="1020153217">
+									<reference key="NSNextResponder" ref="377260163"/>
+									<int key="NSvFlags">274</int>
+									<string key="NSFrameSize">{768, 955}</string>
+									<reference key="NSSuperview" ref="377260163"/>
+									<bool key="IBUIOpaque">NO</bool>
+									<bool key="IBUIClipsSubviews">YES</bool>
+									<int key="IBUIContentMode">7</int>
+									<bool key="IBUIUserInteractionEnabled">NO</bool>
+									<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+									<string key="IBUIText">This page intentionally left blank</string>
+									<reference key="IBUIFont" ref="300697200"/>
+									<reference key="IBUITextColor" ref="817868611"/>
+									<nil key="IBUIHighlightedColor"/>
+									<int key="IBUIBaselineAdjustment">1</int>
+									<float key="IBUIMinimumFontSize">10</float>
+									<int key="IBUITextAlignment">1</int>
+								</object>
+							</object>
+							<string key="NSFrame">{{0, 24}, {768, 955}}</string>
+							<object class="NSColor" key="IBUIBackgroundColor">
+								<int key="NSColorSpace">3</int>
+								<bytes key="NSWhite">MQA</bytes>
+								<reference key="NSCustomColorSpace" ref="257231237"/>
+							</object>
 							<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-							<reference key="IBUITabBar"/>
+						</object>
+						<object class="IBUITabBarItem" key="IBUITabBarItem" id="781711042">
+							<string key="IBUITitle">Popover 2</string>
+							<reference key="IBUIImage" ref="975789537"/>
+							<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						</object>
 						<reference key="IBUIToolbarItems" ref="0"/>
 						<reference key="IBUIParentViewController" ref="564489350"/>
@@ -120,10 +207,42 @@
 					</object>
 					<object class="IBUIViewController" id="77393067">
 						<string key="IBUITitle">Menu Sheet</string>
+						<object class="IBUIView" key="IBUIView" id="1032818517">
+							<nil key="NSNextResponder"/>
+							<int key="NSvFlags">274</int>
+							<object class="NSMutableArray" key="NSSubviews">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="IBUILabel" id="1014600075">
+									<reference key="NSNextResponder" ref="1032818517"/>
+									<int key="NSvFlags">274</int>
+									<string key="NSFrameSize">{768, 955}</string>
+									<reference key="NSSuperview" ref="1032818517"/>
+									<bool key="IBUIOpaque">NO</bool>
+									<bool key="IBUIClipsSubviews">YES</bool>
+									<int key="IBUIContentMode">7</int>
+									<bool key="IBUIUserInteractionEnabled">NO</bool>
+									<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+									<string key="IBUIText">This page intentionally left blank</string>
+									<reference key="IBUIFont" ref="300697200"/>
+									<reference key="IBUITextColor" ref="817868611"/>
+									<nil key="IBUIHighlightedColor"/>
+									<int key="IBUIBaselineAdjustment">1</int>
+									<float key="IBUIMinimumFontSize">10</float>
+									<int key="IBUITextAlignment">1</int>
+								</object>
+							</object>
+							<string key="NSFrame">{{0, 24}, {768, 955}}</string>
+							<object class="NSColor" key="IBUIBackgroundColor">
+								<int key="NSColorSpace">3</int>
+								<bytes key="NSWhite">MQA</bytes>
+								<reference key="NSCustomColorSpace" ref="257231237"/>
+							</object>
+							<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						</object>
 						<object class="IBUITabBarItem" key="IBUITabBarItem" id="365954954">
 							<string key="IBUITitle">Menu Sheet</string>
+							<reference key="IBUIImage" ref="975789537"/>
 							<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIToolbarItems" ref="0"/>
 						<reference key="IBUIParentViewController" ref="564489350"/>
@@ -212,7 +331,8 @@
 							<reference ref="332861416"/>
 							<reference ref="972051572"/>
 							<reference ref="77393067"/>
-							<reference ref="991646533"/>
+							<reference ref="504070693"/>
+							<reference ref="513454079"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -262,6 +382,7 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="365954954"/>
+							<reference ref="1032818517"/>
 						</object>
 						<reference key="parent" ref="564489350"/>
 						<string key="objectName">Alerts</string>
@@ -292,18 +413,76 @@
 						<reference key="parent" ref="859832491"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">61</int>
-						<reference key="object" ref="991646533"/>
+						<int key="objectID">71</int>
+						<reference key="object" ref="504070693"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="902868253"/>
+							<reference ref="781711042"/>
+							<reference ref="377260163"/>
 						</object>
 						<reference key="parent" ref="564489350"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">69</int>
-						<reference key="object" ref="902868253"/>
-						<reference key="parent" ref="991646533"/>
+						<int key="objectID">72</int>
+						<reference key="object" ref="781711042"/>
+						<reference key="parent" ref="504070693"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">73</int>
+						<reference key="object" ref="513454079"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="1025325368"/>
+							<reference ref="294298465"/>
+						</object>
+						<reference key="parent" ref="564489350"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">74</int>
+						<reference key="object" ref="1025325368"/>
+						<reference key="parent" ref="513454079"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">76</int>
+						<reference key="object" ref="294298465"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="455010129"/>
+						</object>
+						<reference key="parent" ref="513454079"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">78</int>
+						<reference key="object" ref="455010129"/>
+						<reference key="parent" ref="294298465"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">79</int>
+						<reference key="object" ref="377260163"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="1020153217"/>
+						</object>
+						<reference key="parent" ref="504070693"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">80</int>
+						<reference key="object" ref="1020153217"/>
+						<reference key="parent" ref="377260163"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">81</int>
+						<reference key="object" ref="1032818517"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="1014600075"/>
+						</object>
+						<reference key="parent" ref="77393067"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">82</int>
+						<reference key="object" ref="1014600075"/>
+						<reference key="parent" ref="1032818517"/>
 					</object>
 				</object>
 			</object>
@@ -325,10 +504,17 @@
 					<string>59.CustomClassName</string>
 					<string>6.CustomClassName</string>
 					<string>6.IBPluginDependency</string>
-					<string>61.CustomClassName</string>
 					<string>63.CustomClassName</string>
 					<string>63.IBPluginDependency</string>
 					<string>64.IBPluginDependency</string>
+					<string>71.CustomClassName</string>
+					<string>73.CustomClassName</string>
+					<string>76.IBPluginDependency</string>
+					<string>78.IBPluginDependency</string>
+					<string>79.IBPluginDependency</string>
+					<string>80.IBPluginDependency</string>
+					<string>81.IBPluginDependency</string>
+					<string>82.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -370,8 +556,15 @@
 					<string>CAlertViewController</string>
 					<string>CMainController</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>CPopoverTestController</string>
 					<string>CMenuTesterViewController</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>CPopoverToolbarTestController</string>
+					<string>CPopoverTestController</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
@@ -392,7 +585,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">70</int>
+			<int key="maxID">82</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -484,6 +677,22 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/CPopoverTestController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">CPopoverToolbarTestController</string>
+					<string key="superclassName">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/CPopoverToolbarTestController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">CPopoverToolbarTestController</string>
+					<string key="superclassName">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBUserSource</string>
+						<string key="minorKey"/>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -638,6 +847,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">UIKit.framework/Headers/UIBarItem.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UILabel</string>
+					<string key="superclassName">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">UIKit.framework/Headers/UILabel.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -803,6 +1020,10 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<string key="IBDocument.LastKnownRelativeProjectPath">Menus.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="NS.key.0">schwa.png</string>
+			<string key="NS.object.0">{44, 44}</string>
+		</object>
 		<string key="IBCocoaTouchPluginVersion">79</string>
 		<nil key="IBCocoaTouchSimulationTargetRuntimeIdentifier"/>
 	</data>

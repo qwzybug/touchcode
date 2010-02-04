@@ -20,8 +20,7 @@
 		4543B2AF1119F87000E49AA6 /* CMenuTesterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4543B2AE1119F87000E49AA6 /* CMenuTesterViewController.m */; };
 		4543B39D111A008700E49AA6 /* CAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4543B39C111A008700E49AA6 /* CAlertViewController.m */; };
 		4543B419111A070200E49AA6 /* CSplitTesterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4543B418111A070200E49AA6 /* CSplitTesterController.m */; };
-		4543B49F111A0A5C00E49AA6 /* CMenuSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4543B49E111A0A5C00E49AA6 /* CMenuSheet.m */; };
-		4543B50D111A119500E49AA6 /* CPopoverTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4543B50C111A119500E49AA6 /* CPopoverTestController.m */; };
+		4543B50D111A119500E49AA6 /* CPopoverToolbarTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4543B50C111A119500E49AA6 /* CPopoverToolbarTestController.m */; };
 		4543B51F111A122800E49AA6 /* CToolbarMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4543B51D111A122800E49AA6 /* CToolbarMenuViewController.m */; };
 		4543B520111A122800E49AA6 /* CToolbarMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4543B51E111A122800E49AA6 /* CToolbarMenuViewController.xib */; };
 		45FAAD95111A1D77008F8F8F /* CHostingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAAD94111A1D77008F8F8F /* CHostingView.m */; };
@@ -30,6 +29,10 @@
 		45FAAE8E111A3F53008F8F8F /* CDemoTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAAE8D111A3F53008F8F8F /* CDemoTabBarController.m */; };
 		45FAAECA111A571B008F8F8F /* CMenuHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAAEC9111A571B008F8F8F /* CMenuHandler.m */; };
 		45FAB01D111A66FD008F8F8F /* schwa.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FAB01C111A66FD008F8F8F /* schwa.png */; };
+		45FAB0C0111A6B82008F8F8F /* CMenuSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAB0BF111A6B82008F8F8F /* CMenuSheet.m */; };
+		45FAB0C3111A6BA3008F8F8F /* CPopoverTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAB0C2111A6BA3008F8F8F /* CPopoverTestController.m */; };
+		45FAB118111A7243008F8F8F /* CMenu_PropertyListExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAB117111A7243008F8F8F /* CMenu_PropertyListExtensions.m */; };
+		45FAB11C111A729B008F8F8F /* Menu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 45FAB11B111A729B008F8F8F /* Menu.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,10 +59,8 @@
 		4543B39C111A008700E49AA6 /* CAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAlertViewController.m; sourceTree = "<group>"; };
 		4543B417111A070200E49AA6 /* CSplitTesterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSplitTesterController.h; sourceTree = "<group>"; };
 		4543B418111A070200E49AA6 /* CSplitTesterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSplitTesterController.m; sourceTree = "<group>"; };
-		4543B49D111A0A5C00E49AA6 /* CMenuSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMenuSheet.h; sourceTree = "<group>"; };
-		4543B49E111A0A5C00E49AA6 /* CMenuSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMenuSheet.m; sourceTree = "<group>"; };
-		4543B50B111A119500E49AA6 /* CPopoverTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPopoverTestController.h; sourceTree = "<group>"; };
-		4543B50C111A119500E49AA6 /* CPopoverTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPopoverTestController.m; sourceTree = "<group>"; };
+		4543B50B111A119500E49AA6 /* CPopoverToolbarTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPopoverToolbarTestController.h; sourceTree = "<group>"; };
+		4543B50C111A119500E49AA6 /* CPopoverToolbarTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPopoverToolbarTestController.m; sourceTree = "<group>"; };
 		4543B51C111A122800E49AA6 /* CToolbarMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CToolbarMenuViewController.h; sourceTree = "<group>"; };
 		4543B51D111A122800E49AA6 /* CToolbarMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CToolbarMenuViewController.m; sourceTree = "<group>"; };
 		4543B51E111A122800E49AA6 /* CToolbarMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CToolbarMenuViewController.xib; sourceTree = "<group>"; };
@@ -73,6 +74,13 @@
 		45FAAEC8111A571B008F8F8F /* CMenuHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMenuHandler.h; sourceTree = "<group>"; };
 		45FAAEC9111A571B008F8F8F /* CMenuHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMenuHandler.m; sourceTree = "<group>"; };
 		45FAB01C111A66FD008F8F8F /* schwa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = schwa.png; sourceTree = "<group>"; };
+		45FAB0BE111A6B82008F8F8F /* CMenuSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMenuSheet.h; sourceTree = "<group>"; };
+		45FAB0BF111A6B82008F8F8F /* CMenuSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMenuSheet.m; sourceTree = "<group>"; };
+		45FAB0C1111A6BA3008F8F8F /* CPopoverTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPopoverTestController.h; sourceTree = "<group>"; };
+		45FAB0C2111A6BA3008F8F8F /* CPopoverTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPopoverTestController.m; sourceTree = "<group>"; };
+		45FAB116111A7243008F8F8F /* CMenu_PropertyListExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMenu_PropertyListExtensions.h; sourceTree = "<group>"; };
+		45FAB117111A7243008F8F8F /* CMenu_PropertyListExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMenu_PropertyListExtensions.m; sourceTree = "<group>"; };
+		45FAB11B111A729B008F8F8F /* Menu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Menu.plist; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Menus-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Menus-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,10 +109,10 @@
 				4543B418111A070200E49AA6 /* CSplitTesterController.m */,
 				4543B39B111A008700E49AA6 /* CAlertViewController.h */,
 				4543B39C111A008700E49AA6 /* CAlertViewController.m */,
-				4543B49D111A0A5C00E49AA6 /* CMenuSheet.h */,
-				4543B49E111A0A5C00E49AA6 /* CMenuSheet.m */,
-				4543B50B111A119500E49AA6 /* CPopoverTestController.h */,
-				4543B50C111A119500E49AA6 /* CPopoverTestController.m */,
+				4543B50B111A119500E49AA6 /* CPopoverToolbarTestController.h */,
+				4543B50C111A119500E49AA6 /* CPopoverToolbarTestController.m */,
+				45FAB0C1111A6BA3008F8F8F /* CPopoverTestController.h */,
+				45FAB0C2111A6BA3008F8F8F /* CPopoverTestController.m */,
 				45FAAE27111A3C91008F8F8F /* CBlankViewController.h */,
 				45FAAE28111A3C91008F8F8F /* CBlankViewController.m */,
 				45FAAE29111A3C91008F8F8F /* CBlankViewController.xib */,
@@ -150,6 +158,7 @@
 				45FAB01C111A66FD008F8F8F /* schwa.png */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Menus-Info.plist */,
+				45FAB11B111A729B008F8F8F /* Menu.plist */,
 			);
 			name = "Resources-iPad";
 			sourceTree = "<group>";
@@ -182,6 +191,10 @@
 				45FAAD94111A1D77008F8F8F /* CHostingView.m */,
 				45FAAEC8111A571B008F8F8F /* CMenuHandler.h */,
 				45FAAEC9111A571B008F8F8F /* CMenuHandler.m */,
+				45FAB0BE111A6B82008F8F8F /* CMenuSheet.h */,
+				45FAB0BF111A6B82008F8F8F /* CMenuSheet.m */,
+				45FAB116111A7243008F8F8F /* CMenu_PropertyListExtensions.h */,
+				45FAB117111A7243008F8F8F /* CMenu_PropertyListExtensions.m */,
 			);
 			name = Source;
 			path = ../Source;
@@ -233,6 +246,7 @@
 				4543B520111A122800E49AA6 /* CToolbarMenuViewController.xib in Resources */,
 				45FAAE2B111A3C91008F8F8F /* CBlankViewController.xib in Resources */,
 				45FAB01D111A66FD008F8F8F /* schwa.png in Resources */,
+				45FAB11C111A729B008F8F8F /* Menu.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,13 +266,15 @@
 				4543B2AF1119F87000E49AA6 /* CMenuTesterViewController.m in Sources */,
 				4543B39D111A008700E49AA6 /* CAlertViewController.m in Sources */,
 				4543B419111A070200E49AA6 /* CSplitTesterController.m in Sources */,
-				4543B49F111A0A5C00E49AA6 /* CMenuSheet.m in Sources */,
-				4543B50D111A119500E49AA6 /* CPopoverTestController.m in Sources */,
+				4543B50D111A119500E49AA6 /* CPopoverToolbarTestController.m in Sources */,
 				4543B51F111A122800E49AA6 /* CToolbarMenuViewController.m in Sources */,
 				45FAAD95111A1D77008F8F8F /* CHostingView.m in Sources */,
 				45FAAE2A111A3C91008F8F8F /* CBlankViewController.m in Sources */,
 				45FAAE8E111A3F53008F8F8F /* CDemoTabBarController.m in Sources */,
 				45FAAECA111A571B008F8F8F /* CMenuHandler.m in Sources */,
+				45FAB0C0111A6B82008F8F8F /* CMenuSheet.m in Sources */,
+				45FAB0C3111A6BA3008F8F8F /* CPopoverTestController.m in Sources */,
+				45FAB118111A7243008F8F8F /* CMenu_PropertyListExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,7 @@
 
 #import "CMenu.h"
 #import "CMenuItem.h"
+#import "CMenu_PropertyListExtensions.h"
 
 @implementation CMainController
 
@@ -30,21 +31,25 @@ if ((self = [super init]) != NULL)
 	{
 	gInstance = self;
 
-	CMenu *theMenu = [[[CMenu alloc] init] autorelease];
-	CMenuItem *theMenuItem = [CMenuItem menuItemWithTitle:@"Item 1" target:self action:@selector(actionClick:)];
-	theMenuItem.icon = [UIImage imageNamed:@"schwa.png"];
+	NSString *thePath = [[NSBundle mainBundle] pathForResource:@"Menu" ofType:@"plist"];
+	NSDictionary *theDictionary = [NSDictionary dictionaryWithContentsOfFile:thePath];
+	CMenu *theMenu = [CMenu menuFromDictionary:theDictionary];
 
-	[theMenu addItem:theMenuItem];
-	[theMenu addItem:[CMenuItem menuItemWithTitle:@"Item 2" target:self action:@selector(actionClick:)]];
-	CMenu *theSubmenu = [[[CMenu alloc] init] autorelease];
-	[theSubmenu addItem:[CMenuItem menuItemWithTitle:@"Sub-Item 1" target:self action:@selector(actionClick:)]];
-	[theSubmenu addItem:[CMenuItem menuItemWithTitle:@"Sub-Item 2" target:self action:@selector(actionClick:)]];
-
-	CMenu *theSubSubmenu = [[[CMenu alloc] init] autorelease];
-	[theSubSubmenu addItem:[CMenuItem menuItemWithTitle:@"Sub-Sub-Item 1" target:self action:@selector(actionClick:)]];
-	[theSubSubmenu addItem:[CMenuItem menuItemWithTitle:@"Sub-Sub-Item 2" target:self action:@selector(actionClick:)]];
-	[theSubmenu  addItem:[CMenuItem menuItemWithTitle:@"Sub-Sub-menu" submenu:theSubSubmenu]];
-	[theMenu addItem:[CMenuItem menuItemWithTitle:@"Sub-menu" submenu:theSubmenu]];
+//	CMenu *theMenu = [[[CMenu alloc] init] autorelease];
+//	CMenuItem *theMenuItem = [CMenuItem menuItemWithTitle:@"Item 1" target:self action:@selector(actionClick:)];
+//	theMenuItem.icon = [UIImage imageNamed:@"schwa.png"];
+//
+//	[theMenu addItem:theMenuItem];
+//	[theMenu addItem:[CMenuItem menuItemWithTitle:@"Item 2" target:self action:@selector(actionClick:)]];
+//	CMenu *theSubmenu = [[[CMenu alloc] init] autorelease];
+//	[theSubmenu addItem:[CMenuItem menuItemWithTitle:@"Sub-Item 1" target:self action:@selector(actionClick:)]];
+//	[theSubmenu addItem:[CMenuItem menuItemWithTitle:@"Sub-Item 2" target:self action:@selector(actionClick:)]];
+//
+//	CMenu *theSubSubmenu = [[[CMenu alloc] init] autorelease];
+//	[theSubSubmenu addItem:[CMenuItem menuItemWithTitle:@"Sub-Sub-Item 1" target:self action:@selector(actionClick:)]];
+//	[theSubSubmenu addItem:[CMenuItem menuItemWithTitle:@"Sub-Sub-Item 2" target:self action:@selector(actionClick:)]];
+//	[theSubmenu  addItem:[CMenuItem menuItemWithTitle:@"Sub-Sub-menu" submenu:theSubSubmenu]];
+//	[theMenu addItem:[CMenuItem menuItemWithTitle:@"Sub-menu" submenu:theSubmenu]];
 
 	self.menu = theMenu;
 

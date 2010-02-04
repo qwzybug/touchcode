@@ -101,11 +101,11 @@ if (theRowSelectionWasHandled == NO && theSubmenu != NULL)
 	{
 	CMenuTableViewController *theMenuTableViewController = [[[CMenuTableViewController alloc] initWithMenu:theSubmenu] autorelease];
 	theMenuTableViewController.title = inMenuItem.title;
-//		if (self.hidesNavigationBar == YES && self.navigationController.navigationBarHidden == YES)
-//			[self.navigationController setNavigationBarHidden:NO animated:YES];
-//		[self.navigationController pushViewController:theMenuTableViewController animated:YES];
+	theMenuTableViewController.hidesNavigationBar = YES;
 
 	UINavigationController *theNavigationController = [[[UINavigationController alloc] initWithRootViewController:theMenuTableViewController] autorelease];
+	theNavigationController.navigationBarHidden = YES;
+	theNavigationController.delegate = self;
 	self.contentView.viewController = theNavigationController;
 	
 	theRowSelectionWasHandled = YES;
@@ -116,24 +116,19 @@ if (theRowSelectionWasHandled == NO)
 //	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 	NSLog(@"Did not handle submenu!");
 	}
+}
 
-//if (inMenuItem.submenu)
-//	{
-//
-//
-//
-//	CMenuTableViewController *theMenuController = [[[CMenuTableViewController alloc] initWithMenu:inMenuItem.submenu] autorelease];
-//	theMenuController.hidesNavigationBar = YES;
-//
-//	UINavigationController *theNavigationController = [[[UINavigationController alloc] initWithRootViewController:theMenuController] autorelease];
-//	theNavigationController.navigationBarHidden = YES;
-//
-//	self.contentView.viewController = theNavigationController;
-//	}
-//else
-//	{
-//	self.contentView.viewController = NULL;
-//	}
+#pragma mark -
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated;
+{
+[viewController viewWillAppear:animated];
+}
+
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated;
+{
+[viewController viewDidAppear:animated];
+
 }
 
 @end

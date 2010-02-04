@@ -8,6 +8,8 @@
 
 #import "CMenu.h"
 
+#import "CMenuItem.h"
+
 @interface CMenu ()
 
 @property (readonly, nonatomic, retain) NSMutableArray *mutableItems;
@@ -18,6 +20,8 @@
 
 @implementation CMenu
 
+@synthesize superItem;
+@synthesize title;
 @synthesize mutableItems;
 @synthesize userInfo;
 
@@ -40,9 +44,25 @@ mutableItems = NULL;
 
 #pragma mark -
 
+- (NSString *)title
+{
+if (title != NULL)
+	return(title);
+else if (self.superItem.title != NULL)
+	return(self.superItem.title);
+else
+	return(NULL);	
+}
+
 - (NSArray *)items
 {
 return(self.mutableItems);
+}
+
+- (void)setItems:(NSArray *)inItems
+{
+[mutableItems release];
+mutableItems = [inItems mutableCopy];
 }
 
 - (void)addItem:(CMenuItem *)inItem;
