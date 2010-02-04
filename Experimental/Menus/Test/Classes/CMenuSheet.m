@@ -39,6 +39,8 @@ menu = NULL;
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
 {
+if (buttonIndex == -1)
+	return;
 CMenuItem *theMenuItem = [self.menu.items objectAtIndex:buttonIndex];
 if (theMenuItem.submenu)
 	{

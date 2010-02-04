@@ -25,8 +25,11 @@
 {
 [super viewDidLoad];
 //
+NSLog(@"VIew DID LOAD");
+
+NSLog(@"%@", [CMainController instance]);
+
 self.menu = [CMainController instance].menu;
-self.title = @"Menu";
 self.hidesNavigationBar = YES;
 self.delegate = self;
 }

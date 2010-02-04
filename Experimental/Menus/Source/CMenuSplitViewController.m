@@ -90,7 +90,7 @@ if (menu != inMenu)
     [super dealloc];
 }
 
-- (BOOL)menuTableViewController:(CMenuTableViewController *)inMenuTableViewController didSelectSubmenu:(CMenu *)inMenu;
+- (BOOL)menuHandler:(id <CMenuHandler>)inMenuHandler didSelectSubmenu:(CMenu *)inMenu;
 {
 CMenuTableViewController *theMasterMenuTableViewController = [[[CMenuTableViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
 theMasterMenuTableViewController.menu = inMenu;

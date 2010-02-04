@@ -8,6 +8,7 @@
 
 #import "CMenuSplitViewController.h"
 
+#import "CMenuHandler.h"
 
 @interface CSplitTesterController : CMenuSplitViewController {
 

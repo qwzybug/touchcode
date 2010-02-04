@@ -29,10 +29,28 @@ return(gInstance);
 if ((self = [super init]) != NULL)
 	{
 	gInstance = self;
+
+	CMenu *theMenu = [[[CMenu alloc] init] autorelease];
+	CMenuItem *theMenuItem = [CMenuItem menuItemWithTitle:@"Item 1" target:self action:@selector(actionClick:)];
+	theMenuItem.icon = [UIImage imageNamed:@"schwa.png"];
+
+	[theMenu addItem:theMenuItem];
+	[theMenu addItem:[CMenuItem menuItemWithTitle:@"Item 2" target:self action:@selector(actionClick:)]];
+	CMenu *theSubmenu = [[[CMenu alloc] init] autorelease];
+	[theSubmenu addItem:[CMenuItem menuItemWithTitle:@"Sub-Item 1" target:self action:@selector(actionClick:)]];
+	[theSubmenu addItem:[CMenuItem menuItemWithTitle:@"Sub-Item 2" target:self action:@selector(actionClick:)]];
+
+	CMenu *theSubSubmenu = [[[CMenu alloc] init] autorelease];
+	[theSubSubmenu addItem:[CMenuItem menuItemWithTitle:@"Sub-Sub-Item 1" target:self action:@selector(actionClick:)]];
+	[theSubSubmenu addItem:[CMenuItem menuItemWithTitle:@"Sub-Sub-Item 2" target:self action:@selector(actionClick:)]];
+	[theSubmenu  addItem:[CMenuItem menuItemWithTitle:@"Sub-Sub-menu" submenu:theSubSubmenu]];
+	[theMenu addItem:[CMenuItem menuItemWithTitle:@"Sub-menu" submenu:theSubmenu]];
+
+	self.menu = theMenu;
+
 	}
 return(self);
 }
-
 
 - (void)dealloc
 {
@@ -42,22 +60,11 @@ return(self);
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {    
+window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
+window.backgroundColor = [UIColor whiteColor];
+window.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+
 [window makeKeyAndVisible];
-
-CMenu *theMenu = [[[CMenu alloc] init] autorelease];
-[theMenu addItem:[CMenuItem menuItemWithTitle:@"Item 1" target:self action:@selector(actionClick:)]];
-[theMenu addItem:[CMenuItem menuItemWithTitle:@"Item 2" target:self action:@selector(actionClick:)]];
-CMenu *theSubmenu = [[[CMenu alloc] init] autorelease];
-[theSubmenu addItem:[CMenuItem menuItemWithTitle:@"Sub-Item 1" target:self action:@selector(actionClick:)]];
-[theSubmenu addItem:[CMenuItem menuItemWithTitle:@"Sub-Item 2" target:self action:@selector(actionClick:)]];
-
-CMenu *theSubSubmenu = [[[CMenu alloc] init] autorelease];
-[theSubSubmenu addItem:[CMenuItem menuItemWithTitle:@"Sub-Sub-Item 1" target:self action:@selector(actionClick:)]];
-[theSubSubmenu addItem:[CMenuItem menuItemWithTitle:@"Sub-Sub-Item 2" target:self action:@selector(actionClick:)]];
-[theSubmenu  addItem:[CMenuItem menuItemWithTitle:@"Sub-Sub-menu" submenu:theSubSubmenu]];
-[theMenu addItem:[CMenuItem menuItemWithTitle:@"Sub-menu" submenu:theSubmenu]];
-
-self.menu = theMenu;
 
 [self.window addSubview:self.rootController.view];
 

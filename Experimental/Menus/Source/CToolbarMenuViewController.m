@@ -16,8 +16,10 @@
 @implementation CToolbarMenuViewController
 
 @synthesize toolbar;
+@synthesize segmentedControl;
 @synthesize contentView;
 @synthesize menu;
+@synthesize delegate;
 
 - (id)initWithMenu:(CMenu *)inMenu
 {
@@ -35,28 +37,17 @@ return(self);
 NSMutableArray *theToolbarItems = [NSMutableArray array];
 [theToolbarItems addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:NULL action:NULL] autorelease]];
 
-#if 0
-for (CMenuItem *theMenuItem in self.menu.items)
-	{
-	UIBarButtonItem *theToolbarItem = [[[UIBarButtonItem alloc] initWithTitle:theMenuItem.title style:UIBarButtonItemStyleBordered target:self action:@selector(toolbarItemHit:)] autorelease];
-	theToolbarItem.tag = [self.menu.items indexOfObject:theMenuItem];
-	[theToolbarItems addObject:theToolbarItem];
-	}
-#else
-	NSArray *theMenuItemTitles = [self.menu.items valueForKey:@"title"];
+NSArray *theMenuItemTitles = [self.menu.items valueForKey:@"title"];
 
-	UISegmentedControl *theSegmentedControl = [[[UISegmentedControl alloc] initWithItems:theMenuItemTitles] autorelease];
-	[theSegmentedControl addTarget:self action:@selector(test:) forControlEvents:UIControlEventValueChanged];
-	theSegmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-	UIBarButtonItem *theToolbarItem = [[[UIBarButtonItem alloc] initWithCustomView:theSegmentedControl] autorelease];
-	[theToolbarItems addObject:theToolbarItem];
-#endif
-	
+self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:theMenuItemTitles] autorelease];
+[self.segmentedControl addTarget:self action:@selector(test:) forControlEvents:UIControlEventValueChanged];
+self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+UIBarButtonItem *theToolbarItem = [[[UIBarButtonItem alloc] initWithCustomView:self.segmentedControl] autorelease];
+[theToolbarItems addObject:theToolbarItem];
 	
 [theToolbarItems addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:NULL action:NULL] autorelease]];
 	
 toolbar.items = theToolbarItems;
-
 }
 
 - (IBAction)toolbarItemHit:(id)inSender
@@ -73,20 +64,76 @@ CMenuItem *theMenuItem = [self.menu.items objectAtIndex:[inSender selectedSegmen
 
 - (void)selectMenuItem:(CMenuItem *)inMenuItem
 {
-if (inMenuItem.submenu)
+BOOL theRowSelectionWasHandled = NO;
+
+[self.segmentedControl setSelectedSegmentIndex:[self.menu.items indexOfObject:inMenuItem]];
+
+if (theRowSelectionWasHandled == NO)
 	{
-	CMenuTableViewController *theMenuController = [[[CMenuTableViewController alloc] initWithMenu:inMenuItem.submenu] autorelease];
-	theMenuController.hidesNavigationBar = YES;
+	inMenuItem.UIElement = self;
+	if (inMenuItem.target && [inMenuItem.target respondsToSelector:inMenuItem.action])
+		{
+//		[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+		[inMenuItem.target performSelector:inMenuItem.action withObject:inMenuItem];
+		theRowSelectionWasHandled = YES;
+		}
+	}
 
-	UINavigationController *theNavigationController = [[[UINavigationController alloc] initWithRootViewController:theMenuController] autorelease];
-	theNavigationController.navigationBarHidden = YES;
+if (theRowSelectionWasHandled == NO)
+	{
+	if (self.delegate && [self.delegate respondsToSelector:@selector(menuHandler:didSelectMenuItem:)])
+		{
+		theRowSelectionWasHandled = [self.delegate menuHandler:self didSelectMenuItem:inMenuItem];
+		}
+	}
 
+CMenu *theSubmenu = inMenuItem.submenu;
+
+if (theRowSelectionWasHandled == NO && theSubmenu != NULL)
+	{
+	if (self.delegate && [self.delegate respondsToSelector:@selector(menuHandler:didSelectSubmenu:)])
+		{
+		theRowSelectionWasHandled = [self.delegate menuHandler:self didSelectSubmenu:theSubmenu];
+		}
+	}
+
+if (theRowSelectionWasHandled == NO && theSubmenu != NULL)
+	{
+	CMenuTableViewController *theMenuTableViewController = [[[CMenuTableViewController alloc] initWithMenu:theSubmenu] autorelease];
+	theMenuTableViewController.title = inMenuItem.title;
+//		if (self.hidesNavigationBar == YES && self.navigationController.navigationBarHidden == YES)
+//			[self.navigationController setNavigationBarHidden:NO animated:YES];
+//		[self.navigationController pushViewController:theMenuTableViewController animated:YES];
+
+	UINavigationController *theNavigationController = [[[UINavigationController alloc] initWithRootViewController:theMenuTableViewController] autorelease];
 	self.contentView.viewController = theNavigationController;
+	
+	theRowSelectionWasHandled = YES;
 	}
-else
+	
+if (theRowSelectionWasHandled == NO)
 	{
-	self.contentView.viewController = NULL;
+//	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+	NSLog(@"Did not handle submenu!");
 	}
+
+//if (inMenuItem.submenu)
+//	{
+//
+//
+//
+//	CMenuTableViewController *theMenuController = [[[CMenuTableViewController alloc] initWithMenu:inMenuItem.submenu] autorelease];
+//	theMenuController.hidesNavigationBar = YES;
+//
+//	UINavigationController *theNavigationController = [[[UINavigationController alloc] initWithRootViewController:theMenuController] autorelease];
+//	theNavigationController.navigationBarHidden = YES;
+//
+//	self.contentView.viewController = theNavigationController;
+//	}
+//else
+//	{
+//	self.contentView.viewController = NULL;
+//	}
 }
 
 @end

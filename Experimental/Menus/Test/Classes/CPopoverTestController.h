@@ -8,9 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+#import "CMenuHandler.h"
 
-@interface CPopoverTestController : UIViewController {
+@class CToolbarMenuViewController;
 
+@interface CPopoverTestController : UIViewController <CMenuHandlerDelegate> {
+	CToolbarMenuViewController *toolbarMenuController;
 }
+
+@property (readwrite, nonatomic, retain) CToolbarMenuViewController *toolbarMenuController;
 
 @end

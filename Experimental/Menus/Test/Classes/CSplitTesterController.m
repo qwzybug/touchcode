@@ -21,9 +21,11 @@
 [self setValue:[NSNumber numberWithInt:0] forKey:@"hidesMasterViewInPortrait"];
 
 self.menu = [CMainController instance].menu;
+
+
 }
 
-- (BOOL)menuTableViewController:(CMenuTableViewController *)inMenuTableViewController didSelectMenuItem:(CMenuItem *)inMenuItem;
+- (BOOL)menuHandler:(id <CMenuHandler>)inMenuHandler didSelectMenuItem:(CMenuItem *)inMenuItem;
 {
 if (inMenuItem.submenu != NULL)
 	return(NO);

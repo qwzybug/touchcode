@@ -20,7 +20,7 @@
 
 - (id)initWithMenu:(CMenu *)inMenu
 {
-if ((self = [self initWithNibName:NSStringFromClass([self class]) bundle:NULL]) != NULL)
+if ((self = [self initWithStyle:UITableViewStylePlain]) != NULL)
 	{
 	menu = [inMenu retain];
     }
@@ -116,6 +116,7 @@ if (theCell == nil)
 CMenuItem *theMenuItem = [self.menu.items objectAtIndex:indexPath.row];
 theCell.textLabel.text = theMenuItem.title;
 theCell.accessoryType = theMenuItem.submenu != NULL ? self.submenuAccessoryType : UITableViewCellAccessoryNone;
+theCell.imageView.image = theMenuItem.icon;
 
 return(theCell);
 }

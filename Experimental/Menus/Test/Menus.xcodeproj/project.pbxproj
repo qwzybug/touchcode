@@ -16,7 +16,6 @@
 		4543B0901119D0E600E49AA6 /* CMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 4543B08A1119D0E600E49AA6 /* CMenu.m */; };
 		4543B0911119D0E600E49AA6 /* CMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4543B08C1119D0E600E49AA6 /* CMenuItem.m */; };
 		4543B0921119D0E600E49AA6 /* CMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4543B08E1119D0E600E49AA6 /* CMenuTableViewController.m */; };
-		4543B0931119D0E600E49AA6 /* CMenuTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4543B08F1119D0E600E49AA6 /* CMenuTableViewController.xib */; };
 		4543B21B1119F23700E49AA6 /* CMenuSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4543B21A1119F23700E49AA6 /* CMenuSplitViewController.m */; };
 		4543B2AF1119F87000E49AA6 /* CMenuTesterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4543B2AE1119F87000E49AA6 /* CMenuTesterViewController.m */; };
 		4543B39D111A008700E49AA6 /* CAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4543B39C111A008700E49AA6 /* CAlertViewController.m */; };
@@ -30,6 +29,7 @@
 		45FAAE2B111A3C91008F8F8F /* CBlankViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45FAAE29111A3C91008F8F8F /* CBlankViewController.xib */; };
 		45FAAE8E111A3F53008F8F8F /* CDemoTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAAE8D111A3F53008F8F8F /* CDemoTabBarController.m */; };
 		45FAAECA111A571B008F8F8F /* CMenuHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAAEC9111A571B008F8F8F /* CMenuHandler.m */; };
+		45FAB01D111A66FD008F8F8F /* schwa.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FAB01C111A66FD008F8F8F /* schwa.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,7 +48,6 @@
 		4543B08C1119D0E600E49AA6 /* CMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMenuItem.m; sourceTree = "<group>"; };
 		4543B08D1119D0E600E49AA6 /* CMenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMenuTableViewController.h; sourceTree = "<group>"; };
 		4543B08E1119D0E600E49AA6 /* CMenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMenuTableViewController.m; sourceTree = "<group>"; };
-		4543B08F1119D0E600E49AA6 /* CMenuTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CMenuTableViewController.xib; sourceTree = "<group>"; };
 		4543B2191119F23700E49AA6 /* CMenuSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMenuSplitViewController.h; sourceTree = "<group>"; };
 		4543B21A1119F23700E49AA6 /* CMenuSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMenuSplitViewController.m; sourceTree = "<group>"; };
 		4543B2AD1119F87000E49AA6 /* CMenuTesterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMenuTesterViewController.h; sourceTree = "<group>"; };
@@ -73,6 +72,7 @@
 		45FAAE8D111A3F53008F8F8F /* CDemoTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDemoTabBarController.m; sourceTree = "<group>"; };
 		45FAAEC8111A571B008F8F8F /* CMenuHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMenuHandler.h; sourceTree = "<group>"; };
 		45FAAEC9111A571B008F8F8F /* CMenuHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMenuHandler.m; sourceTree = "<group>"; };
+		45FAB01C111A66FD008F8F8F /* schwa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = schwa.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Menus-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Menus-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,6 +147,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources-iPad */ = {
 			isa = PBXGroup;
 			children = (
+				45FAB01C111A66FD008F8F8F /* schwa.png */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Menus-Info.plist */,
 			);
@@ -172,7 +173,6 @@
 				4543B08C1119D0E600E49AA6 /* CMenuItem.m */,
 				4543B08D1119D0E600E49AA6 /* CMenuTableViewController.h */,
 				4543B08E1119D0E600E49AA6 /* CMenuTableViewController.m */,
-				4543B08F1119D0E600E49AA6 /* CMenuTableViewController.xib */,
 				4543B2191119F23700E49AA6 /* CMenuSplitViewController.h */,
 				4543B21A1119F23700E49AA6 /* CMenuSplitViewController.m */,
 				4543B51C111A122800E49AA6 /* CToolbarMenuViewController.h */,
@@ -230,9 +230,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
-				4543B0931119D0E600E49AA6 /* CMenuTableViewController.xib in Resources */,
 				4543B520111A122800E49AA6 /* CToolbarMenuViewController.xib in Resources */,
 				45FAAE2B111A3C91008F8F8F /* CBlankViewController.xib in Resources */,
+				45FAB01D111A66FD008F8F8F /* schwa.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +276,7 @@
 				GCC_PREFIX_HEADER = Menus_Prefix.pch;
 				INFOPLIST_FILE = "Menus-Info.plist";
 				PRODUCT_NAME = Menus;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -289,7 +289,7 @@
 				GCC_PREFIX_HEADER = Menus_Prefix.pch;
 				INFOPLIST_FILE = "Menus-Info.plist";
 				PRODUCT_NAME = Menus;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -304,6 +304,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -317,6 +318,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

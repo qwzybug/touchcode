@@ -8,21 +8,25 @@
 
 #import <UIKit/UIKit.h>
 
-@class CMenu;
-@class CMenuItem;
+#import "CMenuHandler.h"
+
 @class CHostingView;
 
-@interface CToolbarMenuViewController : UIViewController {
+@interface CToolbarMenuViewController : UIViewController <CMenuHandler> {
 	UIToolbar *toolbar;
+	UISegmentedControl *segmentedControl;
 	CHostingView *contentView;
 	//
 	CMenu *menu;
+	id <CMenuHandlerDelegate> delegate;
 }
 
 @property (readwrite, nonatomic, retain) IBOutlet UIToolbar *toolbar;
+@property (readwrite, nonatomic, retain) IBOutlet UISegmentedControl *segmentedControl;
 @property (readwrite, nonatomic, retain) IBOutlet CHostingView *contentView;
 
 @property (readwrite, nonatomic, retain) CMenu *menu;
+@property (readwrite, nonatomic, assign) id <CMenuHandlerDelegate> delegate;
 
 - (id)initWithMenu:(CMenu *)inMenu;
 
