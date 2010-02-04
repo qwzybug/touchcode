@@ -32,7 +32,9 @@ return(self);
 
 - (void)dealloc
 {
-
+[mutableItems release];
+mutableItems = NULL;
+//
 [super dealloc];
 }
 

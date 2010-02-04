@@ -16,6 +16,7 @@
 @synthesize submenu;
 @synthesize target;
 @synthesize action;
+@synthesize UIElement;
 
 + (CMenuItem *)menuItemWithTitle:(NSString *)inTitle target:(id)inTarget action:(SEL)inAction;
 {
@@ -36,8 +37,19 @@ return(theMenuItem);
 
 - (void)dealloc
 {
+[title release];
+title = NULL;
+//
+[icon release];
+icon = NULL;
+//
+[submenu release];
+submenu = NULL;
+//
+[target release];
+target = NULL;
+//
 [super dealloc];
 }
-
 
 @end

@@ -16,13 +16,15 @@
 	CMenu *submenu;
 	id target;
 	SEL action;
+	id UIElement;
 }
 
 @property (readwrite, nonatomic, retain) NSString *title;
 @property (readwrite, nonatomic, retain) UIImage *icon;
 @property (readwrite, nonatomic, retain) CMenu *submenu;
-@property (readwrite, nonatomic, assign) id target;
+@property (readwrite, nonatomic, retain) id target;
 @property (readwrite, nonatomic, assign) SEL action;
+@property (readwrite, nonatomic, assign) id UIElement;
 
 + (CMenuItem *)menuItemWithTitle:(NSString *)inTitle target:(id)inTarget action:(SEL)inAction;
 + (CMenuItem *)menuItemWithTitle:(NSString *)inTitle submenu:(CMenu *)inSubmenu;
