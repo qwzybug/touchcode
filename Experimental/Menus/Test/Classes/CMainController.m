@@ -67,9 +67,9 @@ return(self);
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {    
-window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
-window.backgroundColor = [UIColor whiteColor];
-window.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+//window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
+//window.backgroundColor = [UIColor whiteColor];
+//window.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 
 [window makeKeyAndVisible];
 
