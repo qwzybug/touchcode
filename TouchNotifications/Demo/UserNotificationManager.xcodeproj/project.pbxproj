@@ -103,7 +103,7 @@
 		453C31AC10B1A5F700C4DA32 /* CHUDUserNotificationStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHUDUserNotificationStyle.m; sourceTree = "<group>"; };
 		453C31AD10B1A5F700C4DA32 /* CHUDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHUDView.h; sourceTree = "<group>"; };
 		453C31AE10B1A5F700C4DA32 /* CHUDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHUDView.m; sourceTree = "<group>"; };
-		45936BE310D2E0ED00BF1F2E /* TouchcodePrefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TouchcodePrefix.h; path = Support/Common/TouchcodePrefix.h; sourceTree = "<group>"; };
+		45CB8DA1111C7EAF007DD678 /* TouchcodePrefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TouchcodePrefix.h; path = Support/Common/TouchcodePrefix.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,11 +153,11 @@
 		4513C90010C598310053925E /* touchcode */ = {
 			isa = PBXGroup;
 			children = (
-				45936BE310D2E0ED00BF1F2E /* TouchcodePrefix.h */,
+				45CB8DA1111C7EAF007DD678 /* TouchcodePrefix.h */,
 				4513D88F10C598340053925E /* TouchUI */,
 			);
 			name = touchcode;
-			path = ../../../../touchcode;
+			path = ../..;
 			sourceTree = SOURCE_ROOT;
 		};
 		4513D88F10C598340053925E /* TouchUI */ = {

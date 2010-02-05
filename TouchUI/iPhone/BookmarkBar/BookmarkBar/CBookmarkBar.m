@@ -29,6 +29,7 @@
 @synthesize gap1;
 @synthesize gap2;
 @synthesize gap3;
+@synthesize bottomBorderHeight;
 @synthesize scrollView;
 
 - (id)initWithFrame:(CGRect)inFrame
@@ -36,6 +37,9 @@
 if ((self = [super initWithFrame:inFrame]) != NULL)
 	{
 	[self setDefaults];
+	
+	self.opaque = NO;
+	self.backgroundColor = [UIColor clearColor];
 	
 	[self setNeedsLayout];
 	}
@@ -129,8 +133,7 @@ if (selectedItem != inSelectedItem)
 			}
 
 		CBookmarkBarItemView *theView = [self viewForItem:self.selectedItem];
-		[theView layoutSubviews];
-		[theView setNeedsDisplay];
+		[theView update];
 		}
 	
 	selectedItem = inSelectedItem;
@@ -145,8 +148,7 @@ if (selectedItem != inSelectedItem)
 			}
 			
 		CBookmarkBarItemView *theView = [self viewForItem:self.selectedItem];
-		[theView layoutSubviews];
-		[theView setNeedsDisplay];
+		[theView update];
 		
 		const CGRect theItemFrame = theView.frame;
 		const CGRect theBounds = self.bounds;
@@ -162,11 +164,31 @@ if (selectedItem != inSelectedItem)
 
 #pragma mark -
 
+//- (void)drawRect:(CGRect)rect
+//{
+//NSLog(@"DRAWRECT");
+//
+////[CThemeManager instance].tableSeparatorColor
+//
+//CGContextRef theContext = UIGraphicsGetCurrentContext();
+//
+//CGContextSetStrokeColorWithColor(theContext, [UIColor redColor].CGColor);
+//
+//CGContextSetLineWidth(theContext, 2.0);
+//CGContextMoveToPoint(theContext, 0, CGRectGetMaxY(self.bounds));
+//CGContextAddLineToPoint(theContext, self.bounds.size.width, CGRectGetMaxY(self.bounds));
+//CGContextStrokePath(theContext);
+//}
+//
 - (void)layoutSubviews
 {
 if (self.scrollView == NULL)
 	{
-	self.scrollView = [[[UIScrollView alloc] initWithFrame:self.bounds] autorelease];
+	CGRect theScrollViewFrame = self.bounds;
+//	theScrollViewFrame.origin.y += self.bottomBorderHeight;
+//	theScrollViewFrame.size.height -= self.bottomBorderHeight;
+	
+	self.scrollView = [[[UIScrollView alloc] initWithFrame:theScrollViewFrame] autorelease];
 
 	self.scrollView.directionalLockEnabled = YES;
 	self.scrollView.bounces = YES;
@@ -177,7 +199,7 @@ if (self.scrollView == NULL)
 	self.scrollView.showsHorizontalScrollIndicator = NO;
 	self.scrollView.showsVerticalScrollIndicator = NO;
 	
-	CGSize theSize = self.bounds.size;
+	CGSize theSize = self.scrollView.bounds.size;
 	
 	CGRect theFrame = { .origin = { .x = self.gap1, .y = 0.0 }, .size = theSize };
 	CGRect theScrollFrame = CGRectZero;
@@ -197,7 +219,7 @@ if (self.scrollView == NULL)
 		CBookmarkBarItemView *theView = theBookmarkItem.view;
 		if (theView == NULL)
 			{
-			theView = [[self newViewForItem:theBookmarkItem] autorelease];
+			theView = [self newViewForItem:theBookmarkItem];
 			
 			CGRect theFrame = theView.frame;
 			
@@ -222,9 +244,14 @@ if (self.scrollView == NULL)
 
 - (CBookmarkBarItemView *)newViewForItem:(CBookmarkBarItem *)inItem
 {
-CGRect theFrame = { .origin = CGPointZero, .size = self.bounds.size };
+CGRect theFrame = { .origin = CGPointZero, .size = self.scrollView.bounds.size };
 
-CBookmarkBarItemView *theBookmarkItemView = [[CBookmarkBarItemView alloc] initWithFrame:theFrame];
+UIImage *theImage = [self.defaultItemAttributes objectForKey:@"image"];
+
+CBookmarkBarItemView *theBookmarkItemView = [CBookmarkBarItemView bookmarkBarItemView];
+[theBookmarkItemView setBackgroundImage:theImage forState:UIControlStateNormal];
+
+theBookmarkItemView.frame = theFrame;
 theBookmarkItemView.bookmarkBar = self;
 theBookmarkItemView.item = inItem;
 [theBookmarkItemView sizeToFit];
@@ -249,24 +276,24 @@ else
 
 - (void)setDefaults
 {
+UIImage *theUnselectedImage = [[UIImage imageNamed:@"TabUnselected.png"] stretchableImageWithLeftCapWidth:5 topCapHeight:0];
+UIImage *theSelectedImage = [[UIImage imageNamed:@"TabSelected.png"] stretchableImageWithLeftCapWidth:5 topCapHeight:0];
+
 self.defaultItemAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
 	[UIFont systemFontOfSize:[UIFont systemFontSize] + 3.0], @"font",
 	[UIColor blackColor], @"titleColor",
-	[UIColor whiteColor], @"backgroundColor",
-	[UIColor redColor], @"borderColor",
-	[NSNumber numberWithFloat:5.0], @"borderWidth",
+	theUnselectedImage, @"image", 
 	NULL];
 self.selectedItemAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
 	[UIFont systemFontOfSize:[UIFont systemFontSize] + 3.0], @"font",
 	[UIColor redColor], @"titleColor",
-	[UIColor whiteColor], @"backgroundColor",
-	[UIColor redColor], @"borderColor",
-	[NSNumber numberWithFloat:5.0], @"borderWidth",
+	theSelectedImage, @"image", 
 	NULL];
 
 gap1 = 10;
 gap2 = 10;
 gap3 = 10;
+bottomBorderHeight = 0;
 }
 
 @end

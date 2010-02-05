@@ -18,9 +18,7 @@
 	NSString *title;
 	UIFont *font;
 	UIColor *titleColor;
-	UIColor *backgroundColor;
-	UIColor *borderColor;
-	CGFloat borderWidth;
+	UIImage *image;
 	BOOL selected;
 	SEL action;
 	id target;
@@ -33,9 +31,7 @@
 @property (readwrite, nonatomic, retain) NSString *title;
 @property (readwrite, nonatomic, retain) UIFont *font;
 @property (readwrite, nonatomic, retain) UIColor *titleColor;
-@property (readwrite, nonatomic, retain) UIColor *backgroundColor;
-@property (readwrite, nonatomic, retain) UIColor *borderColor;
-@property (readwrite, nonatomic, assign) CGFloat borderWidth;
+@property (readwrite, nonatomic, retain) UIImage *image;
 
 @property (readwrite, nonatomic, assign) BOOL selected;
 @property (readwrite, nonatomic, assign) SEL action;

@@ -48,45 +48,47 @@ return(theNotification);
 {
 CUserNotification *theNotification = [self notification];
 theNotification.styleName = @"HUD";
-[[CUserNotificationManager instance] showNotification:theNotification];
+[[CUserNotificationManager instance] enqueueNotification:theNotification];
 
-[[CUserNotificationManager instance] performSelector:@selector(hideNotification:) withObject:theNotification afterDelay:DELAY];
+[[CUserNotificationManager instance] performSelector:@selector(dequeueNotification:) withObject:theNotification afterDelay:DELAY];
 }
 
 - (IBAction)actionHUDMini:(id)inSender
 {
 CUserNotification *theNotification = [self notification];
 theNotification.styleName = @"HUD-MINI";
-[[CUserNotificationManager instance] showNotification:theNotification];
+[[CUserNotificationManager instance] enqueueNotification:theNotification];
 
-[[CUserNotificationManager instance] performSelector:@selector(hideNotification:) withObject:theNotification afterDelay:DELAY];
+[[CUserNotificationManager instance] performSelector:@selector(dequeueNotification:) withObject:theNotification afterDelay:DELAY];
 }
 
 - (IBAction)actionBubbleTop:(id)inSender
 {
 CUserNotification *theNotification = [self notification];
 theNotification.styleName = @"BUBBLE-TOP";
-[[CUserNotificationManager instance] showNotification:theNotification];
+[[CUserNotificationManager instance] enqueueNotification:theNotification];
 
-[[CUserNotificationManager instance] performSelector:@selector(hideNotification:) withObject:theNotification afterDelay:DELAY];
+[[CUserNotificationManager instance] performSelector:@selector(dequeueNotification:) withObject:theNotification afterDelay:DELAY];
 }
 
 - (IBAction)actionBubbleBottom:(id)inSender
 {
+NSLog(@"FOO");
+
 CUserNotification *theNotification = [self notification];
 theNotification.styleName = @"BUBBLE-BOTTOM";
-[[CUserNotificationManager instance] showNotification:theNotification];
+[[CUserNotificationManager instance] enqueueNotification:theNotification];
 
-[[CUserNotificationManager instance] performSelector:@selector(hideNotification:) withObject:theNotification afterDelay:DELAY];
+[[CUserNotificationManager instance] performSelector:@selector(dequeueNotification:) withObject:theNotification afterDelay:DELAY];
 }
 
 - (IBAction)actionBadgeBottomRight:(id)inSender
 {
 CUserNotification *theNotification = [self notification];
 theNotification.styleName = @"BADGE-BOTTOM-RIGHT";
-[[CUserNotificationManager instance] showNotification:theNotification];
+[[CUserNotificationManager instance] enqueueNotification:theNotification];
 
-[[CUserNotificationManager instance] performSelector:@selector(hideNotification:) withObject:theNotification afterDelay:DELAY];
+[[CUserNotificationManager instance] performSelector:@selector(dequeueNotification:) withObject:theNotification afterDelay:DELAY];
 }
 
 @end
