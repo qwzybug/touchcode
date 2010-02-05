@@ -47,8 +47,11 @@
 if ((self = [super initWithCoder:inCoder]) != nil)
 	{
 	self.userInteractionEnabled = YES;
+	self.opaque = NO;
+	self.backgroundColor = [UIColor clearColor];
 	
-	self.imageLayer = [[[CALayer alloc] initWithFrame:self.bounds] autorelease];
+	self.imageLayer = [[[CALayer alloc] init] autorelease];
+	self.imageLayer.frame = self.bounds;
 	self.imageLayer.contents = (id)[UIImage imageNamed:@"CrossSwitchButton.png"].CGImage;
 	if (on == YES)
 		{
@@ -83,7 +86,7 @@ return(on);
 [self setOn:inOn animated:YES];
 }
 
-- (void)setOn:(BOOL)inOn animated:(BOOL)inAnimated; // does not send action
+- (void)setOn:(BOOL)inOn animated:(BOOL)inAnimated
 {
 if (on != inOn)
 	{
@@ -104,17 +107,37 @@ if (on != inOn)
 	}
 }
 
-- (void)touchesBegan:(NSSet *)inTouches withEvent:(UIEvent *)inEvent
+- (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
-self.on = !self.on;
+[super beginTrackingWithTouch:touch withEvent:event];
+[self setOn:!self.on animated:YES];
+return(NO);
 }
 
-- (void)touchesMoved:(NSSet *)inTouches withEvent:(UIEvent *)inEvent
-{
-}
+//- (BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
+//{
+//NSLog(@"TOUCH");
+//[self setOn:!self.on animated:YES];
+//return(NO);
+//}
 
-- (void)touchesEnded:(NSSet *)inTouches withEvent:(UIEvent *)inEvent
-{
-}
+//- (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event;
+//- (void)cancelTrackingWithEvent:(UIEvent *)event;   // event may be nil if cancelled for non-event reasons, e.g. removed from window
+
+
+//- (void)touchesBegan:(NSSet *)inTouches withEvent:(UIEvent *)inEvent
+//{
+//self.on = !self.on;
+//
+//NSLog(@"TOUCH");
+//}
+//
+//- (void)touchesMoved:(NSSet *)inTouches withEvent:(UIEvent *)inEvent
+//{
+//}
+//
+//- (void)touchesEnded:(NSSet *)inTouches withEvent:(UIEvent *)inEvent
+//{
+//}
 
 @end

@@ -29,6 +29,8 @@
 
 #import "NSDateFormatter_InternetDateExtensions.h"
 
+#import "ISO8601DateFormatter.h"
+
 struct SDateFormatTimeZonePair {
 	NSString *dateFormat;
 	NSString *timezone;
@@ -103,7 +105,7 @@ static NSArray *sFormatters = NULL;
 			{ .dateFormat = @"EEE, d MMM yy HH:mm:ss 'Z'", @"UTC", },
 			{ NULL, NULL },
 			};
-		
+
 		NSMutableArray *theFormatters = [NSMutableArray array];
 		for (int N = 0; thePairs[N].dateFormat != NULL; ++N)
 			{
@@ -113,7 +115,7 @@ static NSArray *sFormatters = NULL;
 			[theFormatter setDateFormat:thePairs[N].dateFormat];
 			if (thePairs[N].timezone)
 				[theFormatter setTimeZone:[NSTimeZone timeZoneWithName:thePairs[N].timezone]];
-			
+
 			[theFormatters addObject:theFormatter];
 			}
 
@@ -147,7 +149,7 @@ static NSArray *sFormatters = NULL;
 			{ .dateFormat = @"HHmmssZZ" },
 			{ NULL, NULL },
 			};
-		
+
 		NSMutableArray *theFormatters = [NSMutableArray array];
 		for (int N = 0; thePairs[N].dateFormat != NULL; ++N)
 			{
@@ -159,7 +161,7 @@ static NSArray *sFormatters = NULL;
 			[theFormatter setLenient:NO];
 			if (thePairs[N].timezone)
 				[theFormatter setTimeZone:[NSTimeZone timeZoneWithName:thePairs[N].timezone]];
-			
+
 			[theFormatters addObject:theFormatter];
 			}
 

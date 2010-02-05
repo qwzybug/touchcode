@@ -11,7 +11,7 @@
 @class CBookmarkBar;
 @class CBookmarkBarItem;
 
-@interface CBookmarkBarItemView : UIView {
+@interface CBookmarkBarItemView : UIButton {
 	CBookmarkBar *bookmarkBar;
 	CBookmarkBarItem *item;
 	UILabel *label;
@@ -20,5 +20,9 @@
 @property (readwrite, nonatomic, assign) CBookmarkBar *bookmarkBar;
 @property (readwrite, nonatomic, retain) CBookmarkBarItem *item;
 @property (readwrite, nonatomic, retain) UILabel *label;
+
++ (CBookmarkBarItemView *)bookmarkBarItemView;
+
+- (void)update;
 
 @end

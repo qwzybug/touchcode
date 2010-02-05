@@ -22,6 +22,15 @@
 @dynamic item;
 @synthesize label;
 
++ (CBookmarkBarItemView *)bookmarkBarItemView
+{
+CBookmarkBarItemView *theItem = [self buttonWithType:UIButtonTypeCustom];
+theItem.adjustsImageWhenHighlighted = NO;
+theItem.adjustsImageWhenDisabled = NO;
+theItem.showsTouchWhenHighlighted = YES;
+return(theItem);
+}
+
 - (void)dealloc
 {
 self.item = NULL;
@@ -49,18 +58,6 @@ if (item != inItem)
 }
 
 #pragma mark -
-
-- (void)drawRect:(CGRect)rect
-{
-CGContextRef theContext = UIGraphicsGetCurrentContext();
-
-CGContextSetFillColorWithColor(theContext, self.item.backgroundColor.CGColor);
-CGContextSetStrokeColorWithColor(theContext, self.item.borderColor.CGColor);
-CGContextFillRect(theContext, self.bounds);
-CGContextSetLineWidth(theContext, self.item.borderWidth);
-CGContextStrokeRect(theContext, self.bounds);
-}
-
 - (void)layoutSubviews
 {
 [super layoutSubviews];
@@ -96,13 +93,10 @@ theFrame.size.width = self.label.bounds.size.width + self.bookmarkBar.gap3 * 2;
 self.frame = theFrame;
 }
 
-//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-//{
-//NSLog(@"TOUCH");
-//}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+- (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event;
 {
+[super endTrackingWithTouch:touch withEvent:event];
+
 SEL theAction = self.item.action;
 id theTarget = self.item.target;
 self.bookmarkBar.selectedItem = self.item;
@@ -111,6 +105,16 @@ if (theTarget && theAction && [theTarget respondsToSelector:theAction])
 	{
 	[theTarget performSelector:theAction withObject:self.item];
 	}
+}
+
+- (void)update
+{
+NSLog(@"UPDATE: %@", self.item.image);
+
+[self setBackgroundImage:self.item.image forState:UIControlStateNormal];
+
+[self layoutSubviews];
+[self setNeedsDisplay];
 }
 
 @end

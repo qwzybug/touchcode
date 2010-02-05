@@ -15,6 +15,11 @@
 		2899E5220DE3E06400AC0155 /* SliderTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* SliderTestViewController.xib */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* SliderTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* SliderTestViewController.m */; };
+		45060DBB111B22BC0084269A /* UIImage_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45060DBA111B22BC0084269A /* UIImage_Extensions.m */; };
+		45060E37111B2B0F0084269A /* BookmarkButtonBorder_B.png in Resources */ = {isa = PBXBuildFile; fileRef = 45060E34111B2B0F0084269A /* BookmarkButtonBorder_B.png */; };
+		45060E38111B2B0F0084269A /* BookmarkButtonBorder_A.png in Resources */ = {isa = PBXBuildFile; fileRef = 45060E35111B2B0F0084269A /* BookmarkButtonBorder_A.png */; };
+		45060E3B111B2B330084269A /* BookmarkButtonBackground_A.png in Resources */ = {isa = PBXBuildFile; fileRef = 45060E39111B2B330084269A /* BookmarkButtonBackground_A.png */; };
+		45060E3C111B2B330084269A /* BookmarkButtonBackground_B.png in Resources */ = {isa = PBXBuildFile; fileRef = 45060E3A111B2B330084269A /* BookmarkButtonBackground_B.png */; };
 		4572DA1E10F4F96800B4D76D /* CBookmarkBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4572DA1910F4F96800B4D76D /* CBookmarkBar.m */; };
 		4572DA1F10F4F96800B4D76D /* CBookmarkBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4572DA1B10F4F96800B4D76D /* CBookmarkBarItem.m */; };
 		4572DA2010F4F96800B4D76D /* CBookmarkBarItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4572DA1D10F4F96800B4D76D /* CBookmarkBarItemView.m */; };
@@ -33,6 +38,12 @@
 		28D7ACF70DDB3853001CB0EB /* SliderTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderTestViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* SliderTest_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderTest_Prefix.pch; sourceTree = "<group>"; };
+		45060DB9111B22BC0084269A /* UIImage_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIImage_Extensions.h; path = ../Extensions/UIImage_Extensions.h; sourceTree = SOURCE_ROOT; };
+		45060DBA111B22BC0084269A /* UIImage_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIImage_Extensions.m; path = ../Extensions/UIImage_Extensions.m; sourceTree = SOURCE_ROOT; };
+		45060E34111B2B0F0084269A /* BookmarkButtonBorder_B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BookmarkButtonBorder_B.png; sourceTree = "<group>"; };
+		45060E35111B2B0F0084269A /* BookmarkButtonBorder_A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BookmarkButtonBorder_A.png; sourceTree = "<group>"; };
+		45060E39111B2B330084269A /* BookmarkButtonBackground_A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BookmarkButtonBackground_A.png; sourceTree = "<group>"; };
+		45060E3A111B2B330084269A /* BookmarkButtonBackground_B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BookmarkButtonBackground_B.png; sourceTree = "<group>"; };
 		4572DA1810F4F96800B4D76D /* CBookmarkBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBookmarkBar.h; sourceTree = "<group>"; };
 		4572DA1910F4F96800B4D76D /* CBookmarkBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBookmarkBar.m; sourceTree = "<group>"; };
 		4572DA1A10F4F96800B4D76D /* CBookmarkBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBookmarkBarItem.h; sourceTree = "<group>"; };
@@ -80,6 +91,8 @@
 			children = (
 				4572DA1710F4F96800B4D76D /* BookmarkBar */,
 				080E96DDFE201D6D7F000001 /* Classes */,
+				45060DB9111B22BC0084269A /* UIImage_Extensions.h */,
+				45060DBA111B22BC0084269A /* UIImage_Extensions.m */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -100,6 +113,10 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				45060E39111B2B330084269A /* BookmarkButtonBackground_A.png */,
+				45060E3A111B2B330084269A /* BookmarkButtonBackground_B.png */,
+				45060E34111B2B0F0084269A /* BookmarkButtonBorder_B.png */,
+				45060E35111B2B0F0084269A /* BookmarkButtonBorder_A.png */,
 				2899E5210DE3E06400AC0155 /* SliderTestViewController.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* SliderTest-Info.plist */,
@@ -174,6 +191,10 @@
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				2899E5220DE3E06400AC0155 /* SliderTestViewController.xib in Resources */,
+				45060E37111B2B0F0084269A /* BookmarkButtonBorder_B.png in Resources */,
+				45060E38111B2B0F0084269A /* BookmarkButtonBorder_A.png in Resources */,
+				45060E3B111B2B330084269A /* BookmarkButtonBackground_A.png in Resources */,
+				45060E3C111B2B330084269A /* BookmarkButtonBackground_B.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,6 +211,7 @@
 				4572DA1E10F4F96800B4D76D /* CBookmarkBar.m in Sources */,
 				4572DA1F10F4F96800B4D76D /* CBookmarkBarItem.m in Sources */,
 				4572DA2010F4F96800B4D76D /* CBookmarkBarItemView.m in Sources */,
+				45060DBB111B22BC0084269A /* UIImage_Extensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

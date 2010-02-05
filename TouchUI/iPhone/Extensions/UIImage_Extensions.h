@@ -33,4 +33,8 @@
 
 + (UIImage *)imageWithContentsOfURL:(NSURL *)inURL;
 
++ (UIImage *)imageWithBackgroundImage:(UIImage *)inBackgroundImage foregroundImage:(UIImage *)inForegroundImage;
+
+- (UIImage *)imageTintedWithColor:(UIColor *)inColor;
+
 @end
