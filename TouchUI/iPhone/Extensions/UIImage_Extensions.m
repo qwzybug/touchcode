@@ -42,7 +42,6 @@ return([self imageWithData:theData]);
 {
 CGRect theFrame = CGRectMake(0, 0, inBackgroundImage.size.width, inBackgroundImage.size.height);
 UIGraphicsBeginImageContext(theFrame.size);
-CGContextRef theContext = UIGraphicsGetCurrentContext();
 [inBackgroundImage drawInRect:theFrame blendMode:kCGBlendModeNormal alpha:1.0];
 [inForegroundImage drawInRect:theFrame blendMode:kCGBlendModeNormal alpha:1.0];
 UIImage *theNewImage = UIGraphicsGetImageFromCurrentImageContext();
