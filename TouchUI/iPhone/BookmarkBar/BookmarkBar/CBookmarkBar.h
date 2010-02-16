@@ -21,6 +21,8 @@
 	CGFloat gap1;
 	CGFloat gap2;
 	CGFloat gap3;
+	CGFloat bottomBorderHeight;
+	
 	
 	UIScrollView *scrollView;
 }
@@ -34,6 +36,7 @@
 @property (readonly, nonatomic, assign) CGFloat gap1;
 @property (readonly, nonatomic, assign) CGFloat gap2;
 @property (readonly, nonatomic, assign) CGFloat gap3;
+@property (readonly, nonatomic, assign) CGFloat bottomBorderHeight;
 
 @property (readonly, nonatomic, retain) UIScrollView *scrollView;
 

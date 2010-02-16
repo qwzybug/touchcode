@@ -14,9 +14,7 @@
 @synthesize title;
 @synthesize font;
 @synthesize titleColor;
-@synthesize backgroundColor;
-@synthesize borderColor;
-@synthesize borderWidth;
+@synthesize image;
 @synthesize selected;
 @synthesize action;
 @synthesize target;
@@ -30,7 +28,6 @@ if ((self = [super init]) != NULL)
 	{
 //	font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
 //	titleColor = [UIColor blackColor];
-	borderWidth = 2.0;
 	}
 return(self);
 }
