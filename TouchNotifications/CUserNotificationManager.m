@@ -122,8 +122,6 @@ if (mainView != inMainView)
 	{
 	[mainView release];
 	mainView = [inMainView retain];
-	
-	UIWindow *theKeyWindow = [UIApplication sharedApplication].keyWindow;
 	}
 }
 
