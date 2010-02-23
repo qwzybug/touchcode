@@ -48,6 +48,7 @@ switch ([self statusCode])
 	case 401:
 		theLocalizedDescription = @"Authorization failed.";
 		theRecoverySuggestion = @"Try again later.";
+		break;
 	case 503:
 		theLocalizedDescription = @"The service is currently unavailable.";
 		theRecoverySuggestion = @"Try again later.";
