@@ -11,15 +11,16 @@
 #import "CMenuTableViewController.h"
 
 @class CMenu;
+@class CDetailViewController;
 
-@interface CMenuSplitViewController : UISplitViewController <CMenuHandlerDelegate> {
+@interface CMenuSplitViewController : UISplitViewController <UISplitViewControllerDelegate, CMenuHandlerDelegate> {
 	CMenu *menu;
 	UINavigationController *masterViewController;
-	UINavigationController *detailViewController;
+	CDetailViewController *detailViewController;
 }
 
 @property (readwrite, nonatomic, retain) CMenu *menu;
 @property (readonly, nonatomic, retain) UINavigationController *masterViewController;
-@property (readonly, nonatomic, retain) UINavigationController *detailViewController;
+@property (readonly, nonatomic, retain) CDetailViewController *detailViewController;
 
 @end

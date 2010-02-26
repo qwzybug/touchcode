@@ -11,6 +11,7 @@
 #import "CMainController.h"
 #import "CBlankViewController.h"
 #import "CMenuItem.h"
+#import "CDetailViewController.h"
 
 @implementation CSplitTesterController
 
@@ -33,7 +34,7 @@ if (inMenuItem.submenu != NULL)
 CBlankViewController *theBlankViewController = [[[CBlankViewController alloc] initWithText:inMenuItem.title] autorelease];
 theBlankViewController.title = inMenuItem.title;
 
-[self.detailViewController setViewControllers:[NSArray arrayWithObject:theBlankViewController] animated:NO];
+[self.detailViewController setViewController:theBlankViewController];
 
 return(YES);
 }

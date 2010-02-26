@@ -10,10 +10,11 @@
 
 #import "CMenuTableViewController.h"
 #import "CMenu.h"
+#import "CDetailViewController.h"
 
 @interface CMenuSplitViewController ()
 @property (readwrite, nonatomic, retain) UINavigationController *masterViewController;
-@property (readwrite, nonatomic, retain) UINavigationController *detailViewController;
+@property (readwrite, nonatomic, retain) CDetailViewController *detailViewController;
 @end
 
 @implementation CMenuSplitViewController
@@ -27,13 +28,17 @@
 if ((self = [super init]) != NULL)
 	{
 	menu = [inMenu retain];
+
 	}
 return(self);
 }
 
-- (void)loadView
+- (void)viewDidLoad
 {
-[super loadView];
+[super viewDidLoad];
+//
+	self.delegate = self;
+
 }
 
 - (void)setMenu:(CMenu *)inMenu
@@ -44,6 +49,7 @@ if (menu != inMenu)
 	menu = NULL;
 	
 	menu = [inMenu retain];
+	self.title = menu.title;
 
 	CMenuTableViewController *theMasterMenuTableViewController = [[[CMenuTableViewController alloc] initWithMenu:self.menu] autorelease];
 	theMasterMenuTableViewController.title = menu.title;
@@ -53,7 +59,7 @@ if (menu != inMenu)
 	
 
 	masterViewController = [[UINavigationController alloc] initWithRootViewController:theMasterMenuTableViewController];
-	detailViewController = [[UINavigationController alloc] init];
+	detailViewController = [[CDetailViewController alloc] init];
 	self.viewControllers = [NSArray arrayWithObjects:self.masterViewController, self.detailViewController, NULL];
 	}
 }
@@ -91,13 +97,24 @@ if (menu != inMenu)
     [super dealloc];
 }
 
+- (void)splitViewController:(UISplitViewController*)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem*)barButtonItem forPopoverController: (UIPopoverController*)pc
+{
+[self.detailViewController.navigationBar.topItem setLeftBarButtonItem:barButtonItem animated:YES];
+}
+
+- (void)splitViewController:(UISplitViewController*)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem;
+{
+[self.detailViewController.navigationBar.topItem setLeftBarButtonItem:NULL animated:YES];
+
+}
+
 - (BOOL)menuHandler:(id <CMenuHandler>)inMenuHandler didSelectSubmenu:(CMenu *)inMenu;
 {
 CMenuTableViewController *theMasterMenuTableViewController = [[[CMenuTableViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
 theMasterMenuTableViewController.menu = inMenu;
 theMasterMenuTableViewController.title = inMenu.title;
 
-[self.detailViewController setViewControllers:[NSArray arrayWithObject:theMasterMenuTableViewController] animated:NO];
+[self.detailViewController setViewController:theMasterMenuTableViewController];
 
 return(NO);
 }

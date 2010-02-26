@@ -37,6 +37,9 @@
 		458868391135A0E100EC8DDF /* CHUDUserNotificationStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 458868261135A0E100EC8DDF /* CHUDUserNotificationStyle.m */; };
 		4588683A1135A0E100EC8DDF /* CHUDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 458868281135A0E100EC8DDF /* CHUDView.m */; };
 		458868471135A0FA00EC8DDF /* CHostingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 458868461135A0FA00EC8DDF /* CHostingView.m */; };
+		45EBBCFF11378FD100BCF5EF /* CDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EBBCFD11378FD100BCF5EF /* CDetailViewController.m */; };
+		45EBBD0011378FD100BCF5EF /* CDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45EBBCFE11378FD100BCF5EF /* CDetailViewController.xib */; };
+		45EBBD0411378FDC00BCF5EF /* CTabBarMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EBBD0211378FDC00BCF5EF /* CTabBarMenuViewController.m */; };
 		45FAAE2A111A3C91008F8F8F /* CBlankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAAE28111A3C91008F8F8F /* CBlankViewController.m */; };
 		45FAAE2B111A3C91008F8F8F /* CBlankViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45FAAE29111A3C91008F8F8F /* CBlankViewController.xib */; };
 		45FAAE8E111A3F53008F8F8F /* CDemoTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAAE8D111A3F53008F8F8F /* CDemoTabBarController.m */; };
@@ -111,6 +114,11 @@
 		458868281135A0E100EC8DDF /* CHUDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHUDView.m; sourceTree = "<group>"; };
 		458868451135A0FA00EC8DDF /* CHostingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHostingView.h; path = Classes/CHostingView.h; sourceTree = "<group>"; };
 		458868461135A0FA00EC8DDF /* CHostingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CHostingView.m; path = Classes/CHostingView.m; sourceTree = "<group>"; };
+		45EBBCFC11378FD100BCF5EF /* CDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDetailViewController.h; sourceTree = "<group>"; };
+		45EBBCFD11378FD100BCF5EF /* CDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDetailViewController.m; sourceTree = "<group>"; };
+		45EBBCFE11378FD100BCF5EF /* CDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CDetailViewController.xib; sourceTree = "<group>"; };
+		45EBBD0111378FDC00BCF5EF /* CTabBarMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTabBarMenuViewController.h; sourceTree = "<group>"; };
+		45EBBD0211378FDC00BCF5EF /* CTabBarMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTabBarMenuViewController.m; sourceTree = "<group>"; };
 		45FAAE27111A3C91008F8F8F /* CBlankViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBlankViewController.h; sourceTree = "<group>"; };
 		45FAAE28111A3C91008F8F8F /* CBlankViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBlankViewController.m; sourceTree = "<group>"; };
 		45FAAE29111A3C91008F8F8F /* CBlankViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBlankViewController.xib; sourceTree = "<group>"; };
@@ -251,12 +259,17 @@
 		458867F01135A0CC00EC8DDF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				45EBBCFC11378FD100BCF5EF /* CDetailViewController.h */,
+				45EBBCFD11378FD100BCF5EF /* CDetailViewController.m */,
+				45EBBCFE11378FD100BCF5EF /* CDetailViewController.xib */,
 				458867F11135A0CC00EC8DDF /* CMenuSheet.h */,
 				458867F21135A0CC00EC8DDF /* CMenuSheet.m */,
 				458867F31135A0CC00EC8DDF /* CMenuSplitViewController.h */,
 				458867F41135A0CC00EC8DDF /* CMenuSplitViewController.m */,
 				458867F51135A0CC00EC8DDF /* CMenuTableViewController.h */,
 				458867F61135A0CC00EC8DDF /* CMenuTableViewController.m */,
+				45EBBD0111378FDC00BCF5EF /* CTabBarMenuViewController.h */,
+				45EBBD0211378FDC00BCF5EF /* CTabBarMenuViewController.m */,
 				458867F71135A0CC00EC8DDF /* CToolbarMenuViewController.h */,
 				458867F81135A0CC00EC8DDF /* CToolbarMenuViewController.m */,
 				458867F91135A0CC00EC8DDF /* CToolbarMenuViewController.xib */,
@@ -383,6 +396,7 @@
 				45FAB01D111A66FD008F8F8F /* schwa.png in Resources */,
 				45FAB11C111A729B008F8F8F /* Menu.plist in Resources */,
 				458867FE1135A0CC00EC8DDF /* CToolbarMenuViewController.xib in Resources */,
+				45EBBD0011378FD100BCF5EF /* CDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,6 +444,8 @@
 				458868391135A0E100EC8DDF /* CHUDUserNotificationStyle.m in Sources */,
 				4588683A1135A0E100EC8DDF /* CHUDView.m in Sources */,
 				458868471135A0FA00EC8DDF /* CHostingView.m in Sources */,
+				45EBBCFF11378FD100BCF5EF /* CDetailViewController.m in Sources */,
+				45EBBD0411378FDC00BCF5EF /* CTabBarMenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
