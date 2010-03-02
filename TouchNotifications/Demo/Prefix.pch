@@ -10,4 +10,4 @@
 #endif
 
 #define DEBUG_RECT 0
-#define DELAY 1.0
+#define DELAY 6.0

@@ -39,6 +39,8 @@
 		453C31B210B1A5F700C4DA32 /* CBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 453C31AA10B1A5F700C4DA32 /* CBubbleView.m */; };
 		453C31B310B1A5F700C4DA32 /* CHUDUserNotificationStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 453C31AC10B1A5F700C4DA32 /* CHUDUserNotificationStyle.m */; };
 		453C31B410B1A5F700C4DA32 /* CHUDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 453C31AE10B1A5F700C4DA32 /* CHUDView.m */; };
+		5C0F5F5B113C84DE00345FEE /* CTopBadgeUserNotificationStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0F5F5A113C84DE00345FEE /* CTopBadgeUserNotificationStyle.m */; };
+		5C5D8614113C8AAC0004ECD7 /* CTopBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C5D8613113C8AAC0004ECD7 /* CTopBadgeView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,6 +106,10 @@
 		453C31AD10B1A5F700C4DA32 /* CHUDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHUDView.h; sourceTree = "<group>"; };
 		453C31AE10B1A5F700C4DA32 /* CHUDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHUDView.m; sourceTree = "<group>"; };
 		45CB8DA1111C7EAF007DD678 /* TouchcodePrefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TouchcodePrefix.h; path = Support/Common/TouchcodePrefix.h; sourceTree = "<group>"; };
+		5C0F5F59113C84DE00345FEE /* CTopBadgeUserNotificationStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTopBadgeUserNotificationStyle.h; sourceTree = "<group>"; };
+		5C0F5F5A113C84DE00345FEE /* CTopBadgeUserNotificationStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTopBadgeUserNotificationStyle.m; sourceTree = "<group>"; };
+		5C5D8612113C8AAC0004ECD7 /* CTopBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTopBadgeView.h; sourceTree = "<group>"; };
+		5C5D8613113C8AAC0004ECD7 /* CTopBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTopBadgeView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -299,6 +305,10 @@
 				453C31AC10B1A5F700C4DA32 /* CHUDUserNotificationStyle.m */,
 				453C31AD10B1A5F700C4DA32 /* CHUDView.h */,
 				453C31AE10B1A5F700C4DA32 /* CHUDView.m */,
+				5C0F5F59113C84DE00345FEE /* CTopBadgeUserNotificationStyle.h */,
+				5C0F5F5A113C84DE00345FEE /* CTopBadgeUserNotificationStyle.m */,
+				5C5D8612113C8AAC0004ECD7 /* CTopBadgeView.h */,
+				5C5D8613113C8AAC0004ECD7 /* CTopBadgeView.m */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -391,6 +401,8 @@
 				4513E86F10C598390053925E /* CLayoutManagedView.m in Sources */,
 				4513E87010C598390053925E /* CLayoutView.m in Sources */,
 				4513E87610C598390053925E /* UIViewDebugging.m in Sources */,
+				5C0F5F5B113C84DE00345FEE /* CTopBadgeUserNotificationStyle.m in Sources */,
+				5C5D8614113C8AAC0004ECD7 /* CTopBadgeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,5 +18,6 @@
 - (IBAction)actionBubbleTop:(id)inSender;
 - (IBAction)actionBubbleBottom:(id)inSender;
 - (IBAction)actionBadgeBottomRight:(id)inSender;
+- (IBAction)actionBadgeTopLeft:(id)inSender;
 
 @end
