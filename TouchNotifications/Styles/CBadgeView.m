@@ -77,7 +77,7 @@ if (titleLabel == NULL)
 	{
 	titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.layoutView.bounds.size.width, 23)];
 	titleLabel.font = [UIFont boldSystemFontOfSize:[UIFont labelFontSize]];
-	titleLabel.textAlignment = UITextAlignmentLeft;
+	titleLabel.textAlignment = UITextAlignmentRight;
 	titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
 	titleLabel.textColor = [UIColor whiteColor];
 	titleLabel.shadowColor = [UIColor blackColor];
@@ -153,6 +153,7 @@ if (titleLabel != NULL)
 	if (self.titleLabel.text.length > 0)
 		{
 		self.titleLabel.frame = CGRectMake(0, 0, self.layoutView.bounds.size.width - 10.0f, 23);
+			NSLog(@"width: %f", self.layoutView.bounds.size.width);
 		[self.titleLabel sizeToFit:CGSizeMake(INFINITY, INFINITY)];
 		[self.layoutView addSubview:self.titleLabel];
 		}
@@ -161,9 +162,6 @@ if (titleLabel != NULL)
 		[self.titleLabel removeFromSuperview];
 		}
 	}
-
-self.accessoryView = [[[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)] autorelease];
-[self.accessoryView startAnimating];
 
 if (self.accessoryView)
 	{
@@ -197,7 +195,8 @@ CGContextRef theContext = UIGraphicsGetCurrentContext();
 		default:
 			break;
 	}
-CGContextFillPath(theContext);
+
+	CGContextFillPath(theContext);
 
 #if DEBUG_RECT == 1
 [[UIColor redColor] set];
