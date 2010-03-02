@@ -24,6 +24,7 @@
 @dynamic titleLabel;
 @synthesize accessoryView;
 @dynamic layoutView;
+@synthesize badgePosition;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -36,6 +37,7 @@ if ((self = [super initWithFrame:frame]) != NULL)
 	self.backgroundColor = [UIColor clearColor];
 	self.contentMode = UIViewContentModeRedraw;
 	self.autoresizesSubviews = NO;
+		self.badgePosition = BadgePositionBottomRight;
 	}
 return(self);
 }
@@ -160,6 +162,9 @@ if (titleLabel != NULL)
 		}
 	}
 
+self.accessoryView = [[[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)] autorelease];
+[self.accessoryView startAnimating];
+
 if (self.accessoryView)
 	{
 	[self.layoutView addSubview:self.accessoryView];
@@ -176,7 +181,22 @@ CGContextRef theContext = UIGraphicsGetCurrentContext();
 
 [[UIColor colorWithWhite:0.0f alpha:0.6f] set];
 
-CGContextAddRoundRectToPath(theContext, theRect, 20, 0, 0, 0);
+	switch (badgePosition) {
+		case BadgePositionTopLeft:
+			CGContextAddRoundRectToPath(theContext, theRect, 0, 0, 0, 20);
+			break;
+		case BadgePositionTopRight:
+			CGContextAddRoundRectToPath(theContext, theRect, 0, 0, 20, 0);
+			break;
+		case BadgePositionBottomLeft:
+			CGContextAddRoundRectToPath(theContext, theRect, 0, 20, 0, 0);
+			break;
+		case BadgePositionBottomRight:
+			CGContextAddRoundRectToPath(theContext, theRect, 20, 0, 0, 0);
+			break;
+		default:
+			break;
+	}
 CGContextFillPath(theContext);
 
 #if DEBUG_RECT == 1

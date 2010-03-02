@@ -9,14 +9,14 @@
 #import "CTopBadgeUserNotificationStyle.h"
 
 #import "Geometry.h"
-#import "CTopBadgeView.h"
+#import "CBadgeView.h"
 #import "CUserNotificationManager.h"
 #import "CUserNotification.h"
 #import "UIView_AnimationExtensions.h"
 #import "UIView_LayoutExtensions.h"
 
 @interface CTopBadgeUserNotificationStyle ()
-- (CTopBadgeView *)newBadgeView;
+- (CBadgeView *)newBadgeView;
 @end
 
 #pragma mark -
@@ -35,10 +35,10 @@
 	//UIActivityIndicatorView *theActivityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
 	//[theActivityIndicator startAnimating];
 	
-	CTopBadgeView *theBadgeView = NULL;
+	CBadgeView *theBadgeView = NULL;
 	if (self.view)
 	{
-		theBadgeView = (CTopBadgeView *)self.view;
+		theBadgeView = (CBadgeView *)self.view;
 	}
 	else
 	{
@@ -78,9 +78,10 @@
 	[self.view removeFromSuperviewWithAnimationType:ViewAnimationType_SlideLeft];
 }
 
-- (CTopBadgeView *)newBadgeView
+- (CBadgeView *)newBadgeView
 {
-	CTopBadgeView *theBadgeView = [[CTopBadgeView alloc] initWithFrame:CGRectMake(0, 0, 300, 28)];
+	CBadgeView *theBadgeView = [[CBadgeView alloc] initWithFrame:CGRectMake(0, 0, 300, 28)];
+	theBadgeView.badgePosition = BadgePositionTopLeft;
 	[theBadgeView addTarget:self action:@selector(action:) forControlEvents:UIControlEventTouchUpInside];
 	theBadgeView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
 	return(theBadgeView);
