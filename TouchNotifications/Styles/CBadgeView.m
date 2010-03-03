@@ -61,6 +61,15 @@ layoutView = NULL;
 
 #pragma mark -
 
+- (UIView *)accessoryView
+{
+	if (accessoryView == NULL) {
+		accessoryView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+		[accessoryView startAnimating];
+	}
+	return accessoryView;
+}
+
 - (UIImageView *)imageView
 {
 if (imageView == NULL)
@@ -105,7 +114,6 @@ if (layoutView == NULL)
 	layoutView.mode = LayoutMode_HorizontalStack;
 	layoutView.gap = CGSizeMake(5, 5);
 	layoutView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
-
 	layoutView.userInteractionEnabled = NO;
 	}
 return(layoutView);
@@ -137,38 +145,31 @@ return(theSize);
 if (layoutView != NULL)
 	[self addSubview:self.layoutView];
 
-if (imageView != NULL)
-	{
-	if (self.imageView.image != NULL)
-		{
-		[self.layoutView addSubview:self.imageView];
+	if (imageView != NULL) {
+		if (self.imageView.image != NULL) {
+			[self.layoutView addSubview:self.imageView];
 		}
-	else
-		{
-		[self.imageView removeFromSuperview];
-		}
-	}
-if (titleLabel != NULL)
-	{
-	if (self.titleLabel.text.length > 0)
-		{
-		self.titleLabel.frame = CGRectMake(0, 0, self.layoutView.bounds.size.width - 10.0f, 23);
-			NSLog(@"width: %f", self.layoutView.bounds.size.width);
-		[self.titleLabel sizeToFit:CGSizeMake(INFINITY, INFINITY)];
-		[self.layoutView addSubview:self.titleLabel];
-		}
-	else
-		{
-		[self.titleLabel removeFromSuperview];
+		else {
+			[self.imageView removeFromSuperview];
 		}
 	}
 
-if (self.accessoryView)
-	{
-	[self.layoutView addSubview:self.accessoryView];
+	if (titleLabel != NULL) {
+		if (self.titleLabel.text.length > 0) {
+			self.titleLabel.frame = CGRectMake(0, 0, self.layoutView.bounds.size.width - 10.0f, 23);
+			[self.titleLabel sizeToFit:CGSizeMake(INFINITY, INFINITY)];
+			[self.layoutView addSubview:self.titleLabel];
+			self.layoutView.flexibleView = titleLabel;
+		} else {
+			[self.titleLabel removeFromSuperview];
+		}
 	}
 
-self.layoutView.frame = CGRectInset(self.bounds, 5, 5);
+	if (self.accessoryView) {
+		[self.layoutView addSubview:self.accessoryView];
+	}
+	
+	self.layoutView.frame = CGRectInset(self.bounds, 5, 5);
 }
 
 - (void)drawRect:(CGRect)inRect
