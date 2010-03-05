@@ -47,6 +47,7 @@ static CLogging *gInstance = NULL;
 
 @implementation CLogging
 
+@synthesize enabled;
 @synthesize flags;
 @synthesize sender;
 @synthesize facility;
@@ -103,6 +104,12 @@ switch (inLevel)
 {
 if ((self = [super init]) != NULL)
 	{
+	NSNumber *theEnabledFlag = [[[NSProcessInfo processInfo] environment] objectForKey:@"LOGGING"];
+	if (theEnabledFlag)
+		enabled = [theEnabledFlag boolValue];
+	else
+		enabled = YES;
+	
 	flags = LoggingFlags_WriteToSTDERR;
 	#if ZIPCAR_DEBUG_LOGGING_PERSISTANT
 	flags |= LoggingFlags_WriteToDatabase;
@@ -277,8 +284,12 @@ SFileFunctionLine theFileFunctionLine = { .file = NULL, .function = NULL, .line 
 {
 NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
 
+if (self.enabled == NO)
+	return;
+
 if (self.started == NO)
 	[self start];
+
 
 va_list theArgList;
 va_start(theArgList, inFormat);

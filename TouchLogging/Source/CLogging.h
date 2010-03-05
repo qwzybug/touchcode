@@ -57,6 +57,7 @@ enum {
 @protocol CLoggingHandler;
 
 @interface CLogging : NSObject <CCoreDataManagerDelegate> {
+	BOOL enabled;
 	NSUInteger flags;
 	NSString *sender;
 	NSString *facility;
@@ -66,6 +67,7 @@ enum {
 	BOOL started;
 }
 
+@property (readwrite, assign) BOOL enabled;
 @property (readwrite, assign) NSUInteger flags;
 @property (readwrite, copy) NSString *sender;
 @property (readwrite, copy) NSString *facility;

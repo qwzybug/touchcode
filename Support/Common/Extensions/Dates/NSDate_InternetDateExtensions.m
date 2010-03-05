@@ -34,6 +34,25 @@
 
 @implementation NSDate (NSDate_InternetDateExtensions)
 
+//+ (void)load
+//{
+//NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
+////
+//NSDate *theDate = [NSDate date];
+//NSLog(@"%@", [theDate RFC822String]);
+//NSLog(@"%@", [[theDate UTCDate] RFC822String]);
+////
+//[thePool release];
+//}
+
+- (NSDate *)UTCDate
+{
+NSCalendar *theCalendar = [[[NSCalendar currentCalendar] copy] autorelease];
+NSDateComponents *theComponents = [theCalendar components:NSEraCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:self];
+theCalendar.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+return([theCalendar dateFromComponents:theComponents]);
+}
+
 + (NSDate *)dateWithRFC2822String:(NSString *)inString
 {
 NSDate *theDate = [[NSDateFormatter RFC2822Formatter] dateFromString:inString];
@@ -46,10 +65,22 @@ NSString *theDateString = [[NSDateFormatter RFC2822Formatter] stringFromDate:sel
 return(theDateString);
 }
 
+- (NSString *)RFC822StringGMT
+{
+NSString *theDateString = [[NSDateFormatter RFC2822FormatterGMT] stringFromDate:self];
+return(theDateString);
+}
+
+- (NSString *)RFC822StringUTC
+{
+NSString *theDateString = [[NSDateFormatter RFC2822FormatterUTC] stringFromDate:self];
+return(theDateString);
+}
+
 + (NSDate *)dateWithISO8601String:(NSString *)inString
 {
-ISO8601DateFormatter *theFormatter = [[[ISO8601DateFormatter alloc] init] autorelease];
-NSDate *theDate = [theFormatter dateFromString:inString];
+	NSDateFormatter *theFormatter = [NSDateFormatter ISO8601FormatterMinimal];
+	NSDate *theDate = [theFormatter dateFromString:inString];
 return(theDate);
 }
 
@@ -59,5 +90,12 @@ ISO8601DateFormatter *theFormatter = [[[ISO8601DateFormatter alloc] init] autore
 NSString *theDateString = [theFormatter stringFromDate:self];
 return(theDateString);
 }
+
+- (NSString *)ISO8601MinimalString
+{
+NSString *theDateString = [[NSDateFormatter ISO8601FormatterMinimal] stringFromDate:self];
+return(theDateString);
+}
+
 
 @end

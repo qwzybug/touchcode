@@ -35,8 +35,8 @@
 {
 	if (self.size.width < inSize.width && self.size.height < inSize.height)
 		return self;
-	
-	CGRect destRect = CGRectMake(0.0f, 0.0f, inSize.width, inSize.height);
+
+		CGRect destRect = CGRectMake(0.0f, 0.0f, inSize.width, inSize.height);
 	
 	if (self.size.width > self.size.height)
 	{

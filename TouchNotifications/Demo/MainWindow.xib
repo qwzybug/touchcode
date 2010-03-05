@@ -118,7 +118,7 @@
 							<object class="IBUIButton" id="170965855">
 								<reference key="NSNextResponder" ref="434903890"/>
 								<int key="NSvFlags">290</int>
-								<string key="NSFrame">{{20, 98}, {280, 35}}</string>
+								<string key="NSFrame">{{20, 92}, {280, 35}}</string>
 								<reference key="NSSuperview" ref="434903890"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -141,7 +141,7 @@
 							<object class="IBUIButton" id="621014370">
 								<reference key="NSNextResponder" ref="434903890"/>
 								<int key="NSvFlags">290</int>
-								<string key="NSFrame">{{20, 141}, {280, 35}}</string>
+								<string key="NSFrame">{{20, 135}, {280, 35}}</string>
 								<reference key="NSSuperview" ref="434903890"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -165,7 +165,7 @@
 							<object class="IBUIButton" id="569296178">
 								<reference key="NSNextResponder" ref="434903890"/>
 								<int key="NSvFlags">290</int>
-								<string key="NSFrame">{{20, 193}, {280, 35}}</string>
+								<string key="NSFrame">{{20, 178}, {280, 35}}</string>
 								<reference key="NSSuperview" ref="434903890"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -178,6 +178,29 @@
 								<reference key="IBUIFont" ref="625519566"/>
 								<int key="IBUIButtonType">1</int>
 								<string key="IBUINormalTitle">Badge (Bottom Right)</string>
+								<reference key="IBUIHighlightedTitleColor" ref="5265405"/>
+								<object class="NSColor" key="IBUINormalTitleColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
+								</object>
+								<reference key="IBUINormalTitleShadowColor" ref="812662423"/>
+							</object>
+							<object class="IBUIButton" id="955028184">
+								<reference key="NSNextResponder" ref="434903890"/>
+								<int key="NSvFlags">290</int>
+								<string key="NSFrame">{{20, 221}, {280, 35}}</string>
+								<reference key="NSSuperview" ref="434903890"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+								<object class="IBUIAccessibilityConfiguration" key="IBUIAccessibilityConfiguration">
+									<string key="IBUIAccessibilityLabel">Klicken Sie auf die Schaltfläche bitte</string>
+									<boolean value="NO" key="IBUIIsAccessibilityElement"/>
+								</object>
+								<int key="IBUIContentHorizontalAlignment">0</int>
+								<int key="IBUIContentVerticalAlignment">0</int>
+								<reference key="IBUIFont" ref="625519566"/>
+								<int key="IBUIButtonType">1</int>
+								<string key="IBUINormalTitle">Badge (Top Left)</string>
 								<reference key="IBUIHighlightedTitleColor" ref="5265405"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
@@ -291,6 +314,15 @@
 					</object>
 					<int key="connectionID">138</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">actionBadgeTopLeft:</string>
+						<reference key="source" ref="955028184"/>
+						<reference key="destination" ref="1024858337"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">141</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -365,6 +397,7 @@
 							<reference ref="170965855"/>
 							<reference ref="621014370"/>
 							<reference ref="569296178"/>
+							<reference ref="955028184"/>
 						</object>
 						<reference key="parent" ref="1024858337"/>
 					</object>
@@ -393,6 +426,11 @@
 						<reference key="object" ref="973032952"/>
 						<reference key="parent" ref="434903890"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">139</int>
+						<reference key="object" ref="955028184"/>
+						<reference key="parent" ref="434903890"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -413,6 +451,7 @@
 					<string>128.IBPluginDependency</string>
 					<string>130.IBPluginDependency</string>
 					<string>132.IBPluginDependency</string>
+					<string>139.IBPluginDependency</string>
 					<string>2.IBAttributePlaceholdersKey</string>
 					<string>2.IBEditorWindowLastContentRect</string>
 					<string>2.IBPluginDependency</string>
@@ -427,6 +466,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>FirstViewController</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -464,7 +504,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">138</int>
+			<int key="maxID">141</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -477,6 +517,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>actionBadgeBottomRight:</string>
+							<string>actionBadgeTopLeft:</string>
 							<string>actionBubbleBottom:</string>
 							<string>actionBubbleTop:</string>
 							<string>actionHUDFullScreen:</string>
@@ -489,39 +530,54 @@
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
+							<string>id</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Demo/FirstViewController.h</string>
+						<string key="minorKey">FirstViewController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">UIView</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">UserNotifications/Extensions/UIView_AnimationExtensions.h</string>
+						<string key="minorKey">../../TouchUI/iPhone/Extensions/UIView_AnimationExtensions.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">UIView</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">UserNotifications/Extensions/UIView_LayoutExtensions.h</string>
+						<string key="minorKey">../../TouchUI/iPhone/Extensions/UIView_Extensions.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">UIView</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">UserNotifications/Extensions/UIView_TestExtensions.h</string>
+						<string key="minorKey">../../TouchUI/iPhone/Extensions/UIView_LayoutExtensions.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">../Extensions/UIView_TestExtensions.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">../../TouchUI/iPhone/Misc/CErrorPresenter.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">UIWindow</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">UserNotifications/Extensions/UIWindow_TestExtensions.h</string>
+						<string key="minorKey">../Extensions/UIWindow_TestExtensions.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -542,7 +598,7 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Demo/UserNotificationManagerAppDelegate.h</string>
+						<string key="minorKey">UserNotificationManagerAppDelegate.h</string>
 					</object>
 				</object>
 			</object>
@@ -798,7 +854,7 @@
 			<integer value="3100" key="NS.object.0"/>
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
-		<string key="IBDocument.LastKnownRelativeProjectPath">../UserNotificationManager.xcodeproj</string>
+		<string key="IBDocument.LastKnownRelativeProjectPath">UserNotificationManager.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<string key="IBCocoaTouchPluginVersion">3.1</string>
 	</data>

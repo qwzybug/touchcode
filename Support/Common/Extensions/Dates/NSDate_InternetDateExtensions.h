@@ -31,10 +31,15 @@
 
 @interface NSDate (NSDate_InternetDateExtensions)
 
+- (NSDate *)UTCDate;
+
 + (NSDate *)dateWithRFC2822String:(NSString *)inString;
 - (NSString *)RFC822String;
+- (NSString *)RFC822StringGMT;
+- (NSString *)RFC822StringUTC;
 
 + (NSDate *)dateWithISO8601String:(NSString *)inString;
 - (NSString *)ISO8601String;
+- (NSString *)ISO8601MinimalString;
 
 @end

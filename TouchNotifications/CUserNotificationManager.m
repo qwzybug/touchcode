@@ -15,6 +15,7 @@
 #import "CBubbleUserNotificationStyle.h" // REMOVE
 #import "CHUDUserNotificationStyle.h" // REMOVE
 #import "CBadgeUserNotificationStyle.h"
+#import "CTopBadgeUserNotificationStyle.h"
 #import "CNetworkActivityManager.h"
 #import "CUserNotificationState.h"
 
@@ -122,8 +123,6 @@ if (mainView != inMainView)
 	{
 	[mainView release];
 	mainView = [inMainView retain];
-	
-	UIWindow *theKeyWindow = [UIApplication sharedApplication].keyWindow;
 	}
 }
 
@@ -173,6 +172,9 @@ theOptions = [NSDictionary dictionaryWithObjectsAndKeys:
 
 // #############################################################################
 [self registerStyleName:@"BADGE-BOTTOM-RIGHT" class:[CBadgeUserNotificationStyle class] options:NULL];
+	
+// #############################################################################
+	[self registerStyleName:@"BADGE-TOP-LEFT" class:[CTopBadgeUserNotificationStyle class] options:NULL];
 
 // #############################################################################
 self.defaultStyleName = @"HUD";

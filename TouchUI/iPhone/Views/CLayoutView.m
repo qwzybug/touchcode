@@ -14,8 +14,8 @@
 
 @synthesize mode;
 @synthesize gap;
-@synthesize flexibleLastView;
 @synthesize fitViews;
+@synthesize flexibleView;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -25,8 +25,8 @@ if ((self = [super initWithFrame:frame]) != NULL)
 
 	mode = LayoutMode_VerticalStack;
 	gap = CGSizeMake(5, 5);
-	flexibleLastView = YES;
 	fitViews = YES;
+	flexibleView = nil;
 
 	self.autoresizesSubviews = NO;
 	self.backgroundColor = [UIColor clearColor];
@@ -45,8 +45,8 @@ if ((self = [super initWithCoder:inDecoder]) != NULL)
 	{
 	mode = LayoutMode_VerticalStack;
 	gap = CGSizeMake(5, 5);
-	flexibleLastView = YES;
 	fitViews = YES;
+	flexibleView = nil;
 
 	self.autoresizesSubviews = NO;
 	self.backgroundColor = [UIColor clearColor];
@@ -110,46 +110,47 @@ return(size);
 const CGFloat theMax = mode == LayoutMode_VerticalStack ? self.bounds.size.height : self.bounds.size.width;
 
 CGFloat N = 0.0f;
+	
+	if (mode == LayoutMode_VerticalStack) {
+		for (UIView *theView in self.subviews) {
+			CGRect theFrame = theView.frame;
+			theFrame.origin.y = N;
 
-for (UIView *theView in self.subviews)
-	{
-	CGRect theFrame = theView.frame;
-
-	if (mode == LayoutMode_VerticalStack)
-		{
-		theFrame.origin.y = N;
-
-		if (self.fitViews)
-			{
-			theFrame.origin.x = 0;
-			theFrame.size.width = self.bounds.size.width;
+			if (self.fitViews) {
+				theFrame.origin.x = 0;
+				theFrame.size.width = self.bounds.size.width;
 			}
-
-		if (N < theMax && theFrame.origin.y + theFrame.size.height > theMax)
-			{
-			theFrame.size.height = theMax - theFrame.origin.y;
+			if (N < theMax && theFrame.origin.y + theFrame.size.height > theMax) {
+				theFrame.size.height = theMax - theFrame.origin.y;
 			}
-		N += theView.frame.size.height + self.gap.height;
+			N += theView.frame.size.height + self.gap.height;
 		}
-	else if (mode == LayoutMode_HorizontalStack)
-		{
-		theFrame.origin.x = N;
-
-		if (self.flexibleLastView && theView == [self.subviews lastObject])
-			{
-			if (N < theMax && theFrame.origin.x + theFrame.size.width >= theMax)
-				{
-				theFrame.size.width = theMax - theFrame.origin.x;
-				}
-			else
-				{
-				theFrame.size.width = theMax - theFrame.origin.x;
-				}
+	} else if (mode == LayoutMode_HorizontalStack) {
+		CGFloat flexibleWidth = 0.0f;
+		if (flexibleView != nil) {
+			NSMutableArray *views = [self.subviews mutableCopy];
+			[views removeObject:flexibleView];
+			CGFloat staticWidth = 0.0f;
+			for (UIView *view in views) {
+				staticWidth += view.frame.size.width + self.gap.width;
 			}
-		N += theView.frame.size.width + self.gap.width;
+			flexibleWidth = self.bounds.size.width - staticWidth;
 		}
-
-	theView.frame = theFrame;
+		for (UIView *theView in self.subviews) {
+			CGRect theFrame = theView.frame;
+			theFrame.origin.x = N;
+			if (theView == flexibleView) {
+				if (flexibleWidth < theFrame.size.width) {
+					N += flexibleWidth + self.gap.width;
+					theFrame.size.width = flexibleWidth;
+				} else {
+					N += theFrame.size.width + self.gap.width;
+				}
+			} else {
+				N += theView.frame.size.width + self.gap.width;
+			}
+			theView.frame = theFrame;
+		}
 	}
 }
 
