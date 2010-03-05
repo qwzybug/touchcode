@@ -34,6 +34,9 @@
 - (void)sizeToFit:(CGSize)inSize;
 {
 CGSize theSize = [self sizeThatFits:inSize];
+// TODO: understand why its not making this large enough to show all the text
+theSize.width += 10;
+theSize.width = MIN(theSize.width, inSize.width);
 CGRect theFrame = self.frame;
 theFrame.size = theSize;
 self.frame = theFrame;

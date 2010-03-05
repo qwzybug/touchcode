@@ -30,14 +30,14 @@
 {
 if (CGRectIsEmpty(frame))
 	frame = CGRectMake(0, 0, 320, 44);
-
+	
 if ((self = [super initWithFrame:frame]) != NULL)
 	{
 	self.opaque = NO;
 	self.backgroundColor = [UIColor clearColor];
 	self.contentMode = UIViewContentModeRedraw;
 	self.autoresizesSubviews = NO;
-		self.badgePosition = BadgePositionBottomRight;
+	self.badgePosition = BadgePositionBottomRight;
 	}
 return(self);
 }
@@ -64,7 +64,7 @@ layoutView = NULL;
 - (UIView *)accessoryView
 {
 	if (accessoryView == NULL) {
-		accessoryView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+		accessoryView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 2, 20, 20)];
 		[accessoryView startAnimating];
 	}
 	return accessoryView;
@@ -72,6 +72,7 @@ layoutView = NULL;
 
 - (UIImageView *)imageView
 {
+	return nil;
 if (imageView == NULL)
 	{
 	imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 23, 23)];
@@ -86,7 +87,7 @@ if (titleLabel == NULL)
 	{
 	titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.layoutView.bounds.size.width, 23)];
 	titleLabel.font = [UIFont boldSystemFontOfSize:[UIFont labelFontSize]];
-	titleLabel.textAlignment = UITextAlignmentRight;
+	titleLabel.textAlignment = UITextAlignmentLeft;
 	titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
 	titleLabel.textColor = [UIColor whiteColor];
 	titleLabel.shadowColor = [UIColor blackColor];
@@ -105,10 +106,6 @@ return(titleLabel);
 if (layoutView == NULL)
 	{
 	CGRect theFrame = self.bounds;
-	theFrame.origin.x += 10;
-	theFrame.origin.y += 5;
-	theFrame.size.width -= 15;
-	theFrame.size.height -= 10;
 
 	layoutView = [[CLayoutView alloc] initWithFrame:theFrame];
 	layoutView.mode = LayoutMode_HorizontalStack;
@@ -157,7 +154,10 @@ if (layoutView != NULL)
 	if (titleLabel != NULL) {
 		if (self.titleLabel.text.length > 0) {
 			self.titleLabel.frame = CGRectMake(0, 0, self.layoutView.bounds.size.width - 10.0f, 23);
+			NSLog(@"title before, %f, %f: width: %f height: %f", self.titleLabel.frame.origin.x, self.titleLabel.frame.origin.y, self.titleLabel.frame.size.width, self.titleLabel.frame.size.height);
 			[self.titleLabel sizeToFit:CGSizeMake(INFINITY, INFINITY)];
+			NSLog(@"title after, %f, %f: width: %f height: %f", self.titleLabel.frame.origin.x, self.titleLabel.frame.origin.y, self.titleLabel.frame.size.width, self.titleLabel.frame.size.height);
+			NSLog(@"layout, %f, %f: width: %f height: %f", self.layoutView.frame.origin.x, self.layoutView.frame.origin.y, self.layoutView.frame.size.width, self.layoutView.frame.size.height);
 			[self.layoutView addSubview:self.titleLabel];
 			self.layoutView.flexibleView = titleLabel;
 		} else {
@@ -169,7 +169,7 @@ if (layoutView != NULL)
 		[self.layoutView addSubview:self.accessoryView];
 	}
 	
-	self.layoutView.frame = CGRectInset(self.bounds, 5, 5);
+	self.layoutView.frame = CGRectInset(self.bounds, 10, 2);
 }
 
 - (void)drawRect:(CGRect)inRect

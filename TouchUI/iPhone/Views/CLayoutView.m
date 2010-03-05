@@ -14,7 +14,6 @@
 
 @synthesize mode;
 @synthesize gap;
-@synthesize flexibleLastView;
 @synthesize fitViews;
 @synthesize flexibleView;
 
@@ -26,7 +25,6 @@ if ((self = [super initWithFrame:frame]) != NULL)
 
 	mode = LayoutMode_VerticalStack;
 	gap = CGSizeMake(5, 5);
-	flexibleLastView = YES;
 	fitViews = YES;
 	flexibleView = nil;
 
@@ -47,7 +45,6 @@ if ((self = [super initWithCoder:inDecoder]) != NULL)
 	{
 	mode = LayoutMode_VerticalStack;
 	gap = CGSizeMake(5, 5);
-	flexibleLastView = YES;
 	fitViews = YES;
 	flexibleView = nil;
 
