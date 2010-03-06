@@ -23,6 +23,13 @@
 
 @implementation CBadgeUserNotificationStyle
 
++ (void)load
+{
+NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
+[[CUserNotificationManager instance] registerStyleName:@"BADGE-BOTTOM-RIGHT" class:self options:NULL];
+[thePool release];
+}
+
 - (NSUInteger)flags
 {
 return(UserNotificationStyleFlag_ReuseStyle);
