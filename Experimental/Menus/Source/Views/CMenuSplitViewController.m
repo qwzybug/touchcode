@@ -28,7 +28,6 @@
 if ((self = [super init]) != NULL)
 	{
 	menu = [inMenu retain];
-
 	}
 return(self);
 }
@@ -37,7 +36,18 @@ return(self);
 {
 [super viewDidLoad];
 //
-	self.delegate = self;
+self.delegate = self;
+
+CMenuTableViewController *theMasterMenuTableViewController = [[[CMenuTableViewController alloc] initWithMenu:self.menu] autorelease];
+theMasterMenuTableViewController.title = menu.title;
+theMasterMenuTableViewController.delegate = self;
+theMasterMenuTableViewController.submenuAccessoryType = UITableViewCellAccessoryNone;
+
+
+
+masterViewController = [[UINavigationController alloc] initWithRootViewController:theMasterMenuTableViewController];
+detailViewController = [[CDetailViewController alloc] init];
+self.viewControllers = [NSArray arrayWithObjects:self.masterViewController, self.detailViewController, NULL];
 
 }
 
@@ -50,34 +60,8 @@ if (menu != inMenu)
 	
 	menu = [inMenu retain];
 	self.title = menu.title;
-
-	CMenuTableViewController *theMasterMenuTableViewController = [[[CMenuTableViewController alloc] initWithMenu:self.menu] autorelease];
-	theMasterMenuTableViewController.title = menu.title;
-	theMasterMenuTableViewController.delegate = self;
-	theMasterMenuTableViewController.submenuAccessoryType = UITableViewCellAccessoryNone;
-
-	
-
-	masterViewController = [[UINavigationController alloc] initWithRootViewController:theMasterMenuTableViewController];
-	detailViewController = [[CDetailViewController alloc] init];
-	self.viewControllers = [NSArray arrayWithObjects:self.masterViewController, self.detailViewController, NULL];
 	}
 }
-
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-*/
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.

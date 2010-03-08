@@ -19,6 +19,8 @@
 		4543B39D111A008700E49AA6 /* CAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4543B39C111A008700E49AA6 /* CAlertViewController.m */; };
 		4543B419111A070200E49AA6 /* CSplitTesterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4543B418111A070200E49AA6 /* CSplitTesterController.m */; };
 		4543B50D111A119500E49AA6 /* CPopoverToolbarTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4543B50C111A119500E49AA6 /* CPopoverToolbarTestController.m */; };
+		4556D3451142B9ED000158F2 /* menu.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4556D3441142B9ED000158F2 /* menu.xml */; };
+		4556D4011142C58A000158F2 /* menu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4556D4001142C58A000158F2 /* menu.plist */; };
 		458867FA1135A0CC00EC8DDF /* CMenuSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 458867F21135A0CC00EC8DDF /* CMenuSheet.m */; };
 		458867FB1135A0CC00EC8DDF /* CMenuSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 458867F41135A0CC00EC8DDF /* CMenuSplitViewController.m */; };
 		458867FC1135A0CC00EC8DDF /* CMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 458867F61135A0CC00EC8DDF /* CMenuTableViewController.m */; };
@@ -47,7 +49,6 @@
 		45FAB01D111A66FD008F8F8F /* schwa.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FAB01C111A66FD008F8F8F /* schwa.png */; };
 		45FAB0C3111A6BA3008F8F8F /* CPopoverTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAB0C2111A6BA3008F8F8F /* CPopoverTestController.m */; };
 		45FAB118111A7243008F8F8F /* CMenu_PropertyListExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAB117111A7243008F8F8F /* CMenu_PropertyListExtensions.m */; };
-		45FAB11C111A729B008F8F8F /* Menu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 45FAB11B111A729B008F8F8F /* Menu.plist */; };
 		45FAB2C2111A8729008F8F8F /* UIView_AnimationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAB2C0111A8729008F8F8F /* UIView_AnimationExtensions.m */; };
 		45FAB2C7111A8739008F8F8F /* Geometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAB2C6111A8739008F8F8F /* Geometry.m */; };
 		45FAB2CD111A874E008F8F8F /* UIView_LayoutExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FAB2C9111A874E008F8F8F /* UIView_LayoutExtensions.m */; };
@@ -79,6 +80,8 @@
 		4543B418111A070200E49AA6 /* CSplitTesterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSplitTesterController.m; sourceTree = "<group>"; };
 		4543B50B111A119500E49AA6 /* CPopoverToolbarTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPopoverToolbarTestController.h; sourceTree = "<group>"; };
 		4543B50C111A119500E49AA6 /* CPopoverToolbarTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPopoverToolbarTestController.m; sourceTree = "<group>"; };
+		4556D3441142B9ED000158F2 /* menu.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = menu.xml; sourceTree = "<group>"; };
+		4556D4001142C58A000158F2 /* menu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = menu.plist; path = "../../../../../../../Intermediates/Menus.build/Debug-iphonesimulator/Menus.build/DerivedSources/menu.plist"; sourceTree = SOURCE_ROOT; };
 		458867F11135A0CC00EC8DDF /* CMenuSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMenuSheet.h; sourceTree = "<group>"; };
 		458867F21135A0CC00EC8DDF /* CMenuSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMenuSheet.m; sourceTree = "<group>"; };
 		458867F31135A0CC00EC8DDF /* CMenuSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMenuSplitViewController.h; sourceTree = "<group>"; };
@@ -131,7 +134,6 @@
 		45FAB0C2111A6BA3008F8F8F /* CPopoverTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPopoverTestController.m; sourceTree = "<group>"; };
 		45FAB116111A7243008F8F8F /* CMenu_PropertyListExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMenu_PropertyListExtensions.h; sourceTree = "<group>"; };
 		45FAB117111A7243008F8F8F /* CMenu_PropertyListExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMenu_PropertyListExtensions.m; sourceTree = "<group>"; };
-		45FAB11B111A729B008F8F8F /* Menu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Menu.plist; sourceTree = "<group>"; };
 		45FAB2C0111A8729008F8F8F /* UIView_AnimationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIView_AnimationExtensions.m; path = ../../../TouchUI/iPhone/Extensions/UIView_AnimationExtensions.m; sourceTree = SOURCE_ROOT; };
 		45FAB2C1111A8729008F8F8F /* UIView_AnimationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIView_AnimationExtensions.h; path = ../../../TouchUI/iPhone/Extensions/UIView_AnimationExtensions.h; sourceTree = SOURCE_ROOT; };
 		45FAB2C5111A8739008F8F8F /* Geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Geometry.h; path = ../../../TouchUI/Common/Geometry.h; sourceTree = SOURCE_ROOT; };
@@ -202,6 +204,7 @@
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources-iPad */,
+				4556D4001142C58A000158F2 /* menu.plist */,
 				45FAB2B8111A871C008F8F8F /* Externals */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -221,10 +224,10 @@
 		29B97317FDCFA39411CA2CEA /* Resources-iPad */ = {
 			isa = PBXGroup;
 			children = (
+				4556D3441142B9ED000158F2 /* menu.xml */,
 				45FAB01C111A66FD008F8F8F /* schwa.png */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Menus-Info.plist */,
-				45FAB11B111A729B008F8F8F /* Menu.plist */,
 			);
 			name = "Resources-iPad";
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Menus" */;
 			buildPhases = (
+				4556D33C1142B9B2000158F2 /* ShellScript */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
@@ -394,13 +398,33 @@
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				45FAAE2B111A3C91008F8F8F /* CBlankViewController.xib in Resources */,
 				45FAB01D111A66FD008F8F8F /* schwa.png in Resources */,
-				45FAB11C111A729B008F8F8F /* Menu.plist in Resources */,
 				458867FE1135A0CC00EC8DDF /* CToolbarMenuViewController.xib in Resources */,
 				45EBBD0011378FD100BCF5EF /* CDetailViewController.xib in Resources */,
+				4556D3451142B9ED000158F2 /* menu.xml in Resources */,
+				4556D4011142C58A000158F2 /* menu.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4556D33C1142B9B2000158F2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/menu.xml",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/menu.plist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "XSLT_FILE=/Volumes/Users/schwa/Desktop/menu.xslt\nxsltproc \"$XSLT_FILE\" \"$SCRIPT_INPUT_FILE_0\" | plutil -convert xml1 -o \"$SCRIPT_OUTPUT_FILE_0\" -\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {

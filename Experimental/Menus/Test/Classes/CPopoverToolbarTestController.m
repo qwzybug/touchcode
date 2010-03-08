@@ -28,7 +28,6 @@
 
 CMenu *theMenu = [CMainController instance].menu;
 
-
 self.toolbarMenuController = [[[CToolbarMenuViewController alloc] initWithMenu:theMenu] autorelease];
 self.toolbarMenuController.delegate = self;
 
