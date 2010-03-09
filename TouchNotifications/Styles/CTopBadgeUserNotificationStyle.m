@@ -32,8 +32,8 @@
 {
 	UIView *theMainView = self.manager.mainView;
 	
-	//UIActivityIndicatorView *theActivityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
-	//[theActivityIndicator startAnimating];
+	UIActivityIndicatorView *theActivityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+	[theActivityIndicator startAnimating];
 	
 	CBadgeView *theBadgeView = NULL;
 	if (self.view)
@@ -49,7 +49,7 @@
 	theBadgeView.titleLabel.text = inNotification.title;
 	[theBadgeView.titleLabel sizeToFit:CGSizeMake(INFINITY, INFINITY)];
 	
-	//theBadgeView.accessoryView = theActivityIndicator;
+	theBadgeView.accessoryView = theActivityIndicator;
 	
 	if (self.view == NULL)
 	{
