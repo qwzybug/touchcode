@@ -101,15 +101,14 @@ for (UIView *theView in self.subviews)
 	}
 
 size = CGSizeMake(MIN(size.width, theUnionFrame.size.width), MIN(size.height, theUnionFrame.size.height));
-
 return(size);
 }
 
 - (void)layoutSubviews
 {
-const CGFloat theMax = mode == LayoutMode_VerticalStack ? self.bounds.size.height : self.bounds.size.width;
+	const CGFloat theMax = mode == LayoutMode_VerticalStack ? self.bounds.size.height : self.bounds.size.width;
 
-CGFloat N = 0.0f;
+	CGFloat N = 0.0f;
 	
 	if (mode == LayoutMode_VerticalStack) {
 		for (UIView *theView in self.subviews) {
@@ -120,11 +119,15 @@ CGFloat N = 0.0f;
 				theFrame.origin.x = 0;
 				theFrame.size.width = self.bounds.size.width;
 			}
+
 			if (N < theMax && theFrame.origin.y + theFrame.size.height > theMax) {
 				theFrame.size.height = theMax - theFrame.origin.y;
 			}
+			
 			N += theView.frame.size.height + self.gap.height;
+			theView.frame = theFrame;
 		}
+		
 	} else if (mode == LayoutMode_HorizontalStack) {
 		CGFloat flexibleWidth = 0.0f;
 		if (flexibleView != nil) {
@@ -152,6 +155,7 @@ CGFloat N = 0.0f;
 			theView.frame = theFrame;
 		}
 	}
+	NSLog(@"%@", self.subviews);
 }
 
 - (void)addSubview:(UIView *)inSubview
