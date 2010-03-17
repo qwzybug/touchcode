@@ -155,7 +155,6 @@ return(size);
 			theView.frame = theFrame;
 		}
 	}
-	NSLog(@"%@", self.subviews);
 }
 
 - (void)addSubview:(UIView *)inSubview

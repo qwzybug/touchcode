@@ -154,10 +154,7 @@ if (layoutView != NULL)
 	if (titleLabel != NULL) {
 		if (self.titleLabel.text.length > 0) {
 			self.titleLabel.frame = CGRectMake(0, 0, self.layoutView.bounds.size.width - 10.0f, 23);
-			NSLog(@"title before, %f, %f: width: %f height: %f", self.titleLabel.frame.origin.x, self.titleLabel.frame.origin.y, self.titleLabel.frame.size.width, self.titleLabel.frame.size.height);
 			[self.titleLabel sizeToFit:CGSizeMake(INFINITY, INFINITY)];
-			NSLog(@"title after, %f, %f: width: %f height: %f", self.titleLabel.frame.origin.x, self.titleLabel.frame.origin.y, self.titleLabel.frame.size.width, self.titleLabel.frame.size.height);
-			NSLog(@"layout, %f, %f: width: %f height: %f", self.layoutView.frame.origin.x, self.layoutView.frame.origin.y, self.layoutView.frame.size.width, self.layoutView.frame.size.height);
 			[self.layoutView addSubview:self.titleLabel];
 			self.layoutView.flexibleView = titleLabel;
 		} else {
