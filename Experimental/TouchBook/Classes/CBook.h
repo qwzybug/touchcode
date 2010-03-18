@@ -17,6 +17,7 @@
 @property (readonly, nonatomic, copy) NSURL *URL;
 @property (readonly, nonatomic, copy) NSURL *rootURL;
 @property (readonly, nonatomic, copy) NSArray *sections;
+@property (readonly, nonatomic, copy) NSString *title;
 
 - (id)initWithURL:(NSURL *)inURL rootURL:(NSURL *)inRootURL;
 

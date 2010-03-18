@@ -421,7 +421,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "XSLT_FILE=/Volumes/Users/schwa/Desktop/menu.xslt\nxsltproc \"$XSLT_FILE\" \"$SCRIPT_INPUT_FILE_0\" | plutil -convert xml1 -o \"$SCRIPT_OUTPUT_FILE_0\" -\n";
+			shellScript = "XSLT_FILE=$SRCROOT/../Resources/menu.xslt\nxsltproc \"$XSLT_FILE\" \"$SCRIPT_INPUT_FILE_0\" | plutil -convert xml1 -o \"$SCRIPT_OUTPUT_FILE_0\" -\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

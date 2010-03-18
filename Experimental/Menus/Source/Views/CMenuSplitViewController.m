@@ -43,12 +43,9 @@ theMasterMenuTableViewController.title = menu.title;
 theMasterMenuTableViewController.delegate = self;
 theMasterMenuTableViewController.submenuAccessoryType = UITableViewCellAccessoryNone;
 
-
-
 masterViewController = [[UINavigationController alloc] initWithRootViewController:theMasterMenuTableViewController];
 detailViewController = [[CDetailViewController alloc] init];
 self.viewControllers = [NSArray arrayWithObjects:self.masterViewController, self.detailViewController, NULL];
-
 }
 
 - (void)setMenu:(CMenu *)inMenu

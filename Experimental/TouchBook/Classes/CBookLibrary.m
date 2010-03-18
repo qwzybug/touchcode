@@ -24,6 +24,10 @@ if ((self = [super init]) != NULL)
 	for (NSString *theSubpath in [[NSFileManager defaultManager] subpathsAtPath:thePath])
 		{
 		NSURL *theURL = [NSURL fileURLWithPath:[thePath stringByAppendingPathComponent:theSubpath]];
+		NSString *thePath = [(id)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)theURL.path, NULL, NULL, kCFStringEncodingUTF8) autorelease];
+
+		NSString *theURLString = [NSString stringWithFormat:@"x-zipfile://%@/", thePath];
+		theURL = [NSURL URLWithString:theURLString];
 		
 		CBookContainer *theContainer = [[[CBookContainer alloc] initWithURL:theURL] autorelease];
 		

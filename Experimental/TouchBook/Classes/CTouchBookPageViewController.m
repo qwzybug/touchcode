@@ -30,8 +30,6 @@
 //NSString *thePath = [[NSBundle mainBundle] pathForResource:@"melville-moby-dick" ofType:@"epub"];
 NSString *thePath = self.URL.path;
 
-
-
 thePath = [(id)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)thePath, NULL, NULL, kCFStringEncodingUTF8) autorelease];
 
 NSString *theString = [NSString stringWithFormat:@"x-zipfile://%@/", thePath];
