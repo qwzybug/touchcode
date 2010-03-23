@@ -286,7 +286,7 @@ return(theNotificationStyle);
 
 	if ([NSThread isMainThread] == NO) {
 		NSInvocation *theInvocation = [NSInvocation invocationWithMethodSignature:[self methodSignatureForSelector:_cmd]];
-		[theInvocation setTarget:self];
+//		[theInvocation setTarget:self];
 	//	[theInvocation setArgument:&inImmediately atIndex:2];
 		//	
 		[theInvocation performSelectorOnMainThread:@selector(invoke) withObject:NULL waitUntilDone:YES];
@@ -432,7 +432,6 @@ theNotification.progress = INFINITY;
 [self enqueueNotification:theNotification];
 return(theNotification);
 }
-
 - (CUserNotification *)enqueueNetworkingNotificationWithMessage:(NSString *)inMessage identifier:(NSString *)inIdentifier;
 {
 NSLog(@"ENQUEUE: %@ %@", inMessage, inIdentifier);
