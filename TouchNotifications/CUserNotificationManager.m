@@ -248,7 +248,8 @@ return(theNotificationStyle);
 		{
 		NSLog(@"Did not find notification for identifier: %@", inIdentifier);
 		}
-	theState.requestedHideDate = CFAbsoluteTimeGetCurrent();
+//		CFAbsoluteTime now = CFAbsoluteTimeGetCurrent();
+		theState.requestedHideDate = theState.requestedShowDate + self.minimumDisplayTime;
 	[self nextNotification];
 	}
 
@@ -267,9 +268,11 @@ return(theNotificationStyle);
 - (BOOL)notificationExistsForIdentifier:(NSString *)inIdentifier
 {
 	BOOL notificationExists = NO;
-	for (CUserNotificationState *notificationState in notificationStates) {
-		if ([notificationState.notification.identifier isEqualToString:inIdentifier]) {
-			notificationExists = YES;
+	@synchronized(self) {
+		for (CUserNotificationState *notificationState in notificationStates) {
+			if ([notificationState.notification.identifier isEqualToString:inIdentifier]) {
+				notificationExists = YES;
+			}
 		}
 	}
 	return notificationExists;
