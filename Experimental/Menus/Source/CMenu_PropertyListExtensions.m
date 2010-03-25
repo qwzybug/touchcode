@@ -8,13 +8,25 @@
 
 #import "CMenu_PropertyListExtensions.h"
 
+#import "CMenuHandler.h"
+
 @implementation CMenu (CMenu_PropertyListExtensions)
 
 + (CMenu *)menuFromDictionary:(NSDictionary *)inDictionary targetRoot:(id)inTargetRoot
 {
 CMenu *theMenu = [[[CMenu alloc] init] autorelease];
+theMenu.title = [inDictionary objectForKey:@"title"];
 
-theMenu.title = [inDictionary objectForKey:@"title"]; 
+NSString *theControllerName = [inDictionary objectForKey:@"controller"];
+if (theControllerName)
+	{
+	Class theController = NSClassFromString(theControllerName);
+//	if (theController && [theController conformsToProtocol:@protocol(CMenuHandler)])
+//		{
+//		NSLog(@"Warning: Controller '%@' does not conform to protocol.", theControllerName);
+//		}
+	theMenu.controller = theController;
+	}
 
 NSMutableArray *theItems = [NSMutableArray array];
 NSArray *theItemsSpecifications = [inDictionary objectForKey:@"items"]; 

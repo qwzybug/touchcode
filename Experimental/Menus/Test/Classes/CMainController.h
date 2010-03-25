@@ -9,15 +9,16 @@
 #import <UIKit/UIKit.h>
 
 @class CMenu;
+@class CTabBarMenuViewController;
 
 @interface CMainController : NSObject <UIApplicationDelegate> {
     UIWindow *window;
-	UITabBarController *rootController;
+	CTabBarMenuViewController *rootController;
 	CMenu *menu;
 }
 
 @property (readwrite, nonatomic, retain) IBOutlet UIWindow *window;
-@property (readwrite, nonatomic, retain) IBOutlet UITabBarController *rootController;
+@property (readwrite, nonatomic, retain) IBOutlet CTabBarMenuViewController *rootController;
 @property (readwrite, nonatomic, retain) CMenu *menu;
 
 + (CMainController *)instance;

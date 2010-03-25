@@ -22,8 +22,6 @@
 
 - (void)viewDidLoad
 {
-[super viewDidLoad];
-
 self.title = @"Books";
 
 self.library = [[[CBookLibrary alloc] init] autorelease];
@@ -39,13 +37,13 @@ for (CBookContainer *theContainer in self.library.books)
 	[theMenu addItem:theMenuItem];
 	for (CBook *theBook in theContainer.books)
 		{
-
-	//	[theMenu addItem:[CMenuItem menuItemWithTitle:[theBook.URL.path lastPathComponent] target:self action:@selector(actionTest:)]];
+//		[theMenu addItem:[CMenuItem menuItemWithTitle:theBook.title target:self action:@selector(actionTest:)]];
 		}
 	}
 
 self.menu = theMenu;
 
+[super viewDidLoad];
 }
 
 - (IBAction)actionTest:(id)inSender

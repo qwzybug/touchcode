@@ -15,6 +15,10 @@
 		2899E5220DE3E06400AC0155 /* TouchBookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* TouchBookViewController.xib */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* CTouchBookPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* CTouchBookPageViewController.m */; };
+		452A610E1150458E007BA750 /* test.htm in Resources */ = {isa = PBXBuildFile; fileRef = 452A610C1150458E007BA750 /* test.htm */; };
+		452A610F1150458E007BA750 /* test.css in Resources */ = {isa = PBXBuildFile; fileRef = 452A610D1150458E007BA750 /* test.css */; };
+		452A6111115045C3007BA750 /* jquery-1.4.2.min.js in Sources */ = {isa = PBXBuildFile; fileRef = 452A6110115045C3007BA750 /* jquery-1.4.2.min.js */; };
+		452A61131150489D007BA750 /* test.js in Sources */ = {isa = PBXBuildFile; fileRef = 452A61121150489D007BA750 /* test.js */; };
 		4585BBE41121B50700F13399 /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4585B93B1121B50600F13399 /* CXMLDocument_CreationExtensions.m */; };
 		4585BBE51121B50700F13399 /* CXMLNode_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4585B93D1121B50600F13399 /* CXMLNode_CreationExtensions.m */; };
 		4585BBE61121B50700F13399 /* CXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4585B93F1121B50600F13399 /* CXMLDocument.m */; };
@@ -65,6 +69,10 @@
 		28D7ACF70DDB3853001CB0EB /* CTouchBookPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTouchBookPageViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* TouchBook_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchBook_Prefix.pch; sourceTree = "<group>"; };
+		452A610C1150458E007BA750 /* test.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = test.htm; sourceTree = "<group>"; };
+		452A610D1150458E007BA750 /* test.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = test.css; sourceTree = "<group>"; };
+		452A6110115045C3007BA750 /* jquery-1.4.2.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "jquery-1.4.2.min.js"; sourceTree = "<group>"; };
+		452A61121150489D007BA750 /* test.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = test.js; sourceTree = "<group>"; };
 		4585B93A1121B50600F13399 /* CXMLDocument_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument_CreationExtensions.h; sourceTree = "<group>"; };
 		4585B93B1121B50600F13399 /* CXMLDocument_CreationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument_CreationExtensions.m; sourceTree = "<group>"; };
 		4585B93C1121B50600F13399 /* CXMLNode_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode_CreationExtensions.h; sourceTree = "<group>"; };
@@ -212,6 +220,10 @@
 		29B97317FDCFA39411CA2CEA /* Resources-iPad */ = {
 			isa = PBXGroup;
 			children = (
+				452A610C1150458E007BA750 /* test.htm */,
+				452A610D1150458E007BA750 /* test.css */,
+				452A61121150489D007BA750 /* test.js */,
+				452A6110115045C3007BA750 /* jquery-1.4.2.min.js */,
 				2899E5210DE3E06400AC0155 /* TouchBookViewController.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* TouchBook-Info.plist */,
@@ -389,6 +401,8 @@
 				45E22E9711372287004DB012 /* CBookListViewController.xib in Resources */,
 				45EBBAED113777BA00BCF5EF /* CToolbarMenuViewController.xib in Resources */,
 				45EBBC38113787F400BCF5EF /* CDetailViewController.xib in Resources */,
+				452A610E1150458E007BA750 /* test.htm in Resources */,
+				452A610F1150458E007BA750 /* test.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,7 +420,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#exit 0\n\nif [ $PLATFORM_NAME == \"iphonesimulator\" ]; then\nTARGET=simulator\nfi\n\nOUTPUT_DIR=\"$SRCROOT/Externals/zzip/Output\"\n\n#rm -rf \"$OUTPUT_DIR/*\"\ncd \"$SRCROOT/Externals/zzip/zziplib\"\n$SRCROOT/Scripts/build_for_iphoneos.sh -p \"$OUTPUT_DIR\" \"$TARGET\" 2> /dev/null";
+			shellScript = "if [ -d \"$SRCROOT/DONTBUILD\"]; then\nexit 0\nfi\n\nif [ $PLATFORM_NAME == \"iphonesimulator\" ]; then\nTARGET=simulator\nfi\n\nOUTPUT_DIR=\"$SRCROOT/Externals/zzip/Output\"\n\n#rm -rf \"$OUTPUT_DIR/*\"\ncd \"$SRCROOT/Externals/zzip/zziplib\"\n$SRCROOT/Scripts/build_for_iphoneos.sh -p \"$OUTPUT_DIR\" \"$TARGET\" 2> /dev/null";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -447,6 +461,8 @@
 				45EBBB4111377A8A00BCF5EF /* CBookLibrary.m in Sources */,
 				45EBBC37113787F400BCF5EF /* CDetailViewController.m in Sources */,
 				45EBBC9E11378C5300BCF5EF /* CTabBarMenuViewController.m in Sources */,
+				452A6111115045C3007BA750 /* jquery-1.4.2.min.js in Sources */,
+				452A61131150489D007BA750 /* test.js in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

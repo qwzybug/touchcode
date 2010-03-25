@@ -23,6 +23,13 @@
 
 @implementation CTopBadgeUserNotificationStyle
 
++ (void)load
+{
+NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
+[[CUserNotificationManager instance] registerStyleName:@"BADGE-TOP-LEFT" class:self options:NULL];
+[thePool release];
+}
+
 - (NSUInteger)flags
 {
 	return(UserNotificationStyleFlag_ReuseStyle);

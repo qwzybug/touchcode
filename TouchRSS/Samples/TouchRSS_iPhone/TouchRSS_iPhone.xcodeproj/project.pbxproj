@@ -84,6 +84,7 @@
 		45AA5223107929DE00611DC1 /* CFeedFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 45AA503A1079286600611DC1 /* CFeedFetcher.m */; };
 		45AA529E10792EC800611DC1 /* CFeedEntriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45AA529D10792EC800611DC1 /* CFeedEntriesViewController.m */; };
 		45AA52A610792F9700611DC1 /* CFeedEntriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45AA52A510792F9700611DC1 /* CFeedEntriesViewController.xib */; };
+		45AE956B1147F19F00F9CD6D /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 45AE95571147F19E00F9CD6D /* ISO8601DateFormatter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -298,8 +299,6 @@
 		45AA51B71079299600611DC1 /* CBetterLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBetterLabel.m; sourceTree = "<group>"; };
 		45AA51B81079299600611DC1 /* CBorderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBorderView.h; sourceTree = "<group>"; };
 		45AA51B91079299600611DC1 /* CBorderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBorderView.m; sourceTree = "<group>"; };
-		45AA51BA1079299600611DC1 /* CCrossSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCrossSwitch.h; sourceTree = "<group>"; };
-		45AA51BB1079299600611DC1 /* CCrossSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCrossSwitch.m; sourceTree = "<group>"; };
 		45AA51BC1079299600611DC1 /* CFullScreenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFullScreenView.h; sourceTree = "<group>"; };
 		45AA51BD1079299600611DC1 /* CFullScreenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFullScreenView.m; sourceTree = "<group>"; };
 		45AA51BE1079299600611DC1 /* CImageTileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CImageTileView.h; sourceTree = "<group>"; };
@@ -312,16 +311,15 @@
 		45AA51C51079299600611DC1 /* CLinkLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLinkLabel.m; sourceTree = "<group>"; };
 		45AA51C61079299600611DC1 /* CProgressOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CProgressOverlayView.h; sourceTree = "<group>"; };
 		45AA51C71079299600611DC1 /* CProgressOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CProgressOverlayView.m; sourceTree = "<group>"; };
-		45AA51C81079299600611DC1 /* CrossSwitchButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CrossSwitchButton.png; sourceTree = "<group>"; };
 		45AA51C91079299600611DC1 /* CTapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTapView.h; sourceTree = "<group>"; };
 		45AA51CA1079299600611DC1 /* CTapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTapView.m; sourceTree = "<group>"; };
-		45AA51CB1079299600611DC1 /* UIView_LayoutExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIView_LayoutExtensions.h; sourceTree = "<group>"; };
-		45AA51CC1079299600611DC1 /* UIView_LayoutExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIView_LayoutExtensions.m; sourceTree = "<group>"; };
 		45AA51CD1079299600611DC1 /* UIViewDebugging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewDebugging.h; sourceTree = "<group>"; };
 		45AA51CE1079299600611DC1 /* UIViewDebugging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewDebugging.m; sourceTree = "<group>"; };
 		45AA529C10792EC800611DC1 /* CFeedEntriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFeedEntriesViewController.h; sourceTree = "<group>"; };
 		45AA529D10792EC800611DC1 /* CFeedEntriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFeedEntriesViewController.m; sourceTree = "<group>"; };
 		45AA52A510792F9700611DC1 /* CFeedEntriesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CFeedEntriesViewController.xib; sourceTree = "<group>"; };
+		45AE95561147F19E00F9CD6D /* ISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISO8601DateFormatter.h; sourceTree = "<group>"; };
+		45AE95571147F19E00F9CD6D /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* TouchRSS_iPhone-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TouchRSS_iPhone-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -546,6 +544,7 @@
 		45AA507D1079286F00611DC1 /* Dates */ = {
 			isa = PBXGroup;
 			children = (
+				45AE95551147F19E00F9CD6D /* ISO-8601-parser-0.5 */,
 				45AA507E1079286F00611DC1 /* NSDate_Extensions.h */,
 				45AA507F1079286F00611DC1 /* NSDate_Extensions.m */,
 				45AA50801079286F00611DC1 /* NSDate_InternetDateExtensions.h */,
@@ -899,8 +898,6 @@
 				45AA51B71079299600611DC1 /* CBetterLabel.m */,
 				45AA51B81079299600611DC1 /* CBorderView.h */,
 				45AA51B91079299600611DC1 /* CBorderView.m */,
-				45AA51BA1079299600611DC1 /* CCrossSwitch.h */,
-				45AA51BB1079299600611DC1 /* CCrossSwitch.m */,
 				45AA51BC1079299600611DC1 /* CFullScreenView.h */,
 				45AA51BD1079299600611DC1 /* CFullScreenView.m */,
 				45AA51BE1079299600611DC1 /* CImageTileView.h */,
@@ -913,15 +910,21 @@
 				45AA51C51079299600611DC1 /* CLinkLabel.m */,
 				45AA51C61079299600611DC1 /* CProgressOverlayView.h */,
 				45AA51C71079299600611DC1 /* CProgressOverlayView.m */,
-				45AA51C81079299600611DC1 /* CrossSwitchButton.png */,
 				45AA51C91079299600611DC1 /* CTapView.h */,
 				45AA51CA1079299600611DC1 /* CTapView.m */,
-				45AA51CB1079299600611DC1 /* UIView_LayoutExtensions.h */,
-				45AA51CC1079299600611DC1 /* UIView_LayoutExtensions.m */,
 				45AA51CD1079299600611DC1 /* UIViewDebugging.h */,
 				45AA51CE1079299600611DC1 /* UIViewDebugging.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		45AE95551147F19E00F9CD6D /* ISO-8601-parser-0.5 */ = {
+			isa = PBXGroup;
+			children = (
+				45AE95561147F19E00F9CD6D /* ISO8601DateFormatter.h */,
+				45AE95571147F19E00F9CD6D /* ISO8601DateFormatter.m */,
+			);
+			path = "ISO-8601-parser-0.5";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1056,6 +1059,7 @@
 				45AA5222107929A700611DC1 /* CTableViewController.m in Sources */,
 				45AA5223107929DE00611DC1 /* CFeedFetcher.m in Sources */,
 				45AA529E10792EC800611DC1 /* CFeedEntriesViewController.m in Sources */,
+				45AE956B1147F19F00F9CD6D /* ISO8601DateFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

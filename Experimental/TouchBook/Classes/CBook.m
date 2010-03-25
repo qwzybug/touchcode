@@ -65,4 +65,9 @@ if (sections == NULL)
 return(sections);
 }
 
+- (NSString *)title
+{
+return(@"TITLE");
+}
+
 @end

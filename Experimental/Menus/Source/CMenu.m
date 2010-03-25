@@ -24,6 +24,7 @@
 @synthesize title;
 @synthesize mutableItems;
 @synthesize userInfo;
+@synthesize controller;
 
 - (id)init
 {

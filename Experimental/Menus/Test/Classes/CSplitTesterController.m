@@ -19,11 +19,7 @@
 {
 [super viewDidLoad];
 //
-[self setValue:[NSNumber numberWithInt:0] forKey:@"hidesMasterViewInPortrait"];
-
 self.menu = [CMainController instance].menu;
-
-
 }
 
 - (BOOL)menuHandler:(id <CMenuHandler>)inMenuHandler didSelectMenuItem:(CMenuItem *)inMenuItem;

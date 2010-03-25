@@ -9,13 +9,10 @@
 #import "CUserNotificationManager.h"
 
 #import "CUserNotification.h"
+#import "CUserNotificationStyle.h"
 
 #import "UIView_AnimationExtensions.h"
 #import "UIWindow_TestExtensions.h"
-#import "CBubbleUserNotificationStyle.h" // REMOVE
-#import "CHUDUserNotificationStyle.h" // REMOVE
-#import "CBadgeUserNotificationStyle.h"
-#import "CTopBadgeUserNotificationStyle.h"
 #import "CNetworkActivityManager.h"
 #import "CUserNotificationState.h"
 
@@ -77,7 +74,8 @@ if ((self = [super init]) != NULL)
 	
 	notificationStates = [[NSMutableArray alloc] init];
 	
-	[self registerDefaultStyles];
+	#warning TODO What if there is no HUD style registered?
+	self.defaultStyleName = @"HUD";
 	}
 return(self);
 }
@@ -146,38 +144,13 @@ return(theNewState);
 
 - (void)registerStyleName:(NSString *)inName class:(Class)inClass options:(NSDictionary *)inOptions;
 {
+if ([self.styleClassNamesByName objectForKey:inName] != NULL)
+	{
+	NSLog(@"Warning: Already a style registered with the name '%@'. Replacing.", inName);
+	}
 [self.styleClassNamesByName setObject:NSStringFromClass(inClass) forKey:inName];
 if (inOptions)
 	[self.styleOptionsByName setObject:inOptions forKey:inName];
-}
-
-- (void)registerDefaultStyles
-{
-NSDictionary *theOptions = NULL;
-
-// #############################################################################
-theOptions = [NSDictionary dictionaryWithObjectsAndKeys:
-	[NSNumber numberWithBool:YES], kHUDNotificationFullScreenKey,
-	NULL];
-[self registerStyleName:@"HUD" class:[CHUDUserNotificationStyle class] options:theOptions];
-
-// #############################################################################
-theOptions = [NSDictionary dictionaryWithObjectsAndKeys:
-	[NSNumber numberWithBool:NO], kHUDNotificationFullScreenKey,
-	NULL];
-[self registerStyleName:@"HUD-MINI" class:[CHUDUserNotificationStyle class] options:theOptions];
-
-// #############################################################################
-[self registerStyleName:@"BUBBLE-TOP" class:[CBubbleUserNotificationStyle class] options:NULL];
-
-// #############################################################################
-[self registerStyleName:@"BADGE-BOTTOM-RIGHT" class:[CBadgeUserNotificationStyle class] options:NULL];
-	
-// #############################################################################
-	[self registerStyleName:@"BADGE-TOP-LEFT" class:[CTopBadgeUserNotificationStyle class] options:NULL];
-
-// #############################################################################
-self.defaultStyleName = @"HUD";
 }
 
 - (CUserNotificationStyle *)newStyleForNotification:(CUserNotification *)inNotification

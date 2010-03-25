@@ -35,7 +35,6 @@
 + (CUserNotificationManager *)instance;
 
 - (void)registerStyleName:(NSString *)inName class:(Class)inClass options:(NSDictionary *)inOptions;
-- (void)registerDefaultStyles;
 
 - (CUserNotificationStyle *)newStyleForNotification:(CUserNotification *)inNotification;
 

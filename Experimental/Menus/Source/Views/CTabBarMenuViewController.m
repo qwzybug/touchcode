@@ -10,7 +10,6 @@
 
 #import "CMenu.h"
 #import "CMenuItem.h"
-#import "CMenuTableViewController.h"
 
 @implementation CTabBarMenuViewController
 
@@ -67,7 +66,10 @@ return(self);
 NSMutableArray *theViewControllers = [NSMutableArray array];
 for (CMenuItem *theMenuItem in self.menu.items)
 	{
-	CMenuTableViewController *theViewController = [[[CMenuTableViewController alloc] initWithMenu:theMenuItem.submenu] autorelease];
+	CMenu *theSubmenu = theMenuItem.submenu;
+	
+	UIViewController <CMenuHandler> *theViewController = [[[theSubmenu.controller alloc] initWithMenu:theMenuItem.submenu] autorelease];
+	theViewController.title = theSubmenu.title;
 	[theViewControllers addObject:theViewController];
 	}
 self.viewControllers = theViewControllers;
