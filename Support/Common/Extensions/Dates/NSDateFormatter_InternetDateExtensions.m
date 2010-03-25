@@ -54,6 +54,7 @@ return(theFormatter);
 + (NSDateFormatter *)RFC2822FormatterGMT;
 {
 NSDateFormatter *theFormatter = [[[NSDateFormatter alloc] init] autorelease];
+[theFormatter setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"] autorelease]];
 [theFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
 [theFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
 [theFormatter setDateFormat:@"EEE, d MMM yyyy HH:mm:ss 'GMT'"];
