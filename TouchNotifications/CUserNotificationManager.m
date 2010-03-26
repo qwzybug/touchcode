@@ -214,15 +214,15 @@ return(theNotificationStyle);
 {
 @synchronized(self)
 	{
-	NSLog(@"DEQUE: %@", inIdentifier);
+	LogInformation_(@"DEQUE: %@", inIdentifier);
 	
 	CUserNotificationState *theState = [[self.notificationStates filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"notification.identifier == %@", inIdentifier]] lastObject];
 	if (theState == NULL)
 		{
 		NSLog(@"Did not find notification for identifier: %@", inIdentifier);
 		}
-//		CFAbsoluteTime now = CFAbsoluteTimeGetCurrent();
-		theState.requestedHideDate = theState.requestedShowDate + self.minimumDisplayTime;
+		CFAbsoluteTime now = CFAbsoluteTimeGetCurrent();
+		theState.requestedHideDate = MAX(theState.requestedShowDate + self.minimumDisplayTime, now + 1);
 	[self nextNotification];
 	}
 
@@ -407,7 +407,7 @@ return(theNotification);
 }
 - (CUserNotification *)enqueueNetworkingNotificationWithMessage:(NSString *)inMessage identifier:(NSString *)inIdentifier;
 {
-NSLog(@"ENQUEUE: %@ %@", inMessage, inIdentifier);
+LogInformation_(@"ENQUEUE: %@ %@", inMessage, inIdentifier);
 
 CUserNotification *theNotification = [[[CUserNotification alloc] init] autorelease];
 theNotification.identifier = inIdentifier;
@@ -416,6 +416,28 @@ theNotification.progress = INFINITY;
 theNotification.flags |= UserNotificationFlag_UsesNetwork;
 [self enqueueNotification:theNotification];
 return(theNotification);
+}
+
+- (CUserNotification *)enqueueBadgeNotificationWithTitle:(NSString *)inTitle identifier:(NSString *)inIdentifier;
+{
+	CUserNotificationState *theState = [[self.notificationStates filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"notification.identifier == %@", inIdentifier]] lastObject];
+	if (theState == NULL)
+	{
+		LogInformation_(@"ENQUEUE: %@ %@", inTitle, inIdentifier);
+		CUserNotification *theNotification = [[[CUserNotification alloc] init] autorelease];
+		theNotification.identifier = inIdentifier;
+		theNotification.title = inTitle;
+		theNotification.progress = INFINITY;
+		theNotification.styleName = @"BADGE-TOP-LEFT";
+		theNotification.flags |= UserNotificationFlag_UsesNetwork;
+		[self enqueueNotification:theNotification];
+		return theNotification;
+	} else {
+		LogInformation_(@"EXTENDING TIME");
+		//		CFAbsoluteTime now = CFAbsoluteTimeGetCurrent();
+		theState.requestedHideDate = FLT_MAX;
+		return theState.notification;
+	}
 }
 
 @end

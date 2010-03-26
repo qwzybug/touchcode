@@ -53,6 +53,7 @@
 - (CUserNotification *)enqueueNotificationWithMessage:(NSString *)inMessage;
 - (CUserNotification *)enqueueNotificationWithMessage:(NSString *)inMessage identifier:(NSString *)inIdentifier;
 - (CUserNotification *)enqueueNetworkingNotificationWithMessage:(NSString *)inMessage identifier:(NSString *)inIdentifier;
+- (CUserNotification *)enqueueBadgeNotificationWithTitle:(NSString *)inTitle identifier:(NSString *)inIdentifier;
 @end
 
 #pragma mark -
