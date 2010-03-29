@@ -21,6 +21,8 @@
 
 @property (readwrite, nonatomic, assign) id <CMenuHandlerDelegate> delegate;
 
+- (id)initWithMenu:(CMenu *)inMenu;
+
 @end
 
 #pragma mark -

@@ -60,8 +60,10 @@ return(gInstance);
 
 - (id)init
 {
-if ((self = [super initWithName:@"TouchRSS" forceReplace:NO storeType:NSSQLiteStoreType storeOptions:NULL]) != NULL)
+if ((self = [super init]) != NULL)
 	{
+	self.name = @"TouchRSS";
+	
 	self.feedFetcher = [[[[[self class] feedFetcherClass] alloc] initWithFeedStore:self] autorelease];
 	}
 return(self);

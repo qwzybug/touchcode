@@ -42,6 +42,11 @@ menu = NULL;
 self.submenuAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 
+- (CGSize)contentSizeForViewInPopoverView
+{
+return(CGSizeMake(320, self.menu.items.count * 44));
+}
+
 - (void)setMenu:(CMenu *)inMenu
 {
 if (menu != inMenu)	

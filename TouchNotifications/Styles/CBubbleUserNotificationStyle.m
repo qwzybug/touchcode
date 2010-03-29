@@ -15,6 +15,13 @@
 
 @implementation CBubbleUserNotificationStyle
 
++ (void)load
+{
+NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
+[[CUserNotificationManager instance] registerStyleName:@"BUBBLE-TOP" class:self options:NULL];
+[thePool release];
+}
+
 - (void)showNotification:(CUserNotification *)inNotification
 {
 UIView *theMainView = self.manager.mainView;

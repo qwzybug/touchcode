@@ -1,0 +1,10 @@
+prefix=/Volumes/Users/schwa/Development/Source/Mercurial/public/touchcode/Experimental/TouchBook/Externals/zzip/Output
+libdir=/Volumes/Users/schwa/Development/Source/Mercurial/public/touchcode/Experimental/TouchBook/Externals/zzip/Output/lib
+includedir=/Volumes/Users/schwa/Development/Source/Mercurial/public/touchcode/Experimental/TouchBook/Externals/zzip/Output/include
+ 
+Name: zzipwrap
+Version: 0.13.57
+Description: Callback Wrappers for ZZipLib
+Requires: zziplib
+Libs: -L${libdir} -lzzipwrap
+Cflags: -I${includedir}

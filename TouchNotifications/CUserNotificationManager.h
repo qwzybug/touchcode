@@ -35,7 +35,6 @@
 + (CUserNotificationManager *)instance;
 
 - (void)registerStyleName:(NSString *)inName class:(Class)inClass options:(NSDictionary *)inOptions;
-- (void)registerDefaultStyles;
 
 - (CUserNotificationStyle *)newStyleForNotification:(CUserNotification *)inNotification;
 
@@ -43,6 +42,8 @@
 - (void)dequeueNotification:(CUserNotification *)inNotification;
 - (void)dequeueNotificationForIdentifier:(NSString *)inIdentifier;
 - (void)dequeueCurrentNotification;
+
+- (BOOL)notificationExistsForIdentifier:(NSString *)inIdentifier;
 
 @end
 
@@ -52,6 +53,7 @@
 - (CUserNotification *)enqueueNotificationWithMessage:(NSString *)inMessage;
 - (CUserNotification *)enqueueNotificationWithMessage:(NSString *)inMessage identifier:(NSString *)inIdentifier;
 - (CUserNotification *)enqueueNetworkingNotificationWithMessage:(NSString *)inMessage identifier:(NSString *)inIdentifier;
+- (CUserNotification *)enqueueBadgeNotificationWithTitle:(NSString *)inTitle identifier:(NSString *)inIdentifier;
 @end
 
 #pragma mark -

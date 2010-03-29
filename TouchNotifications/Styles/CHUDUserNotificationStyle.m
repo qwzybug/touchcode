@@ -32,6 +32,31 @@ NSString *kHUDNotificationDontUseMaskingViewKey = @"kHUDNotificationDontUseMaski
 
 @synthesize maskingView;
 
++ (void)load
+{
+NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
+
+NSDictionary *theOptions = NULL;
+
+// #############################################################################
+
+theOptions = [NSDictionary dictionaryWithObjectsAndKeys:
+	[NSNumber numberWithBool:YES], kHUDNotificationFullScreenKey,
+	NULL];
+[[CUserNotificationManager instance] registerStyleName:@"HUD" class:self options:theOptions];
+
+// #############################################################################
+
+theOptions = [NSDictionary dictionaryWithObjectsAndKeys:
+	[NSNumber numberWithBool:NO], kHUDNotificationFullScreenKey,
+	NULL];
+[[CUserNotificationManager instance] registerStyleName:@"HUD-MINI" class:self options:theOptions];
+
+// #############################################################################
+
+[thePool release];
+}
+
 - (void)showNotification:(CUserNotification *)inNotification
 {
 //NSLog(@"SHOW NOTIFICATION: %@", inNotification);

@@ -20,13 +20,13 @@
 @implementation CPopoverToolbarTestController
 
 @synthesize toolbarMenuController;
+@synthesize popoverController;
 
 - (void)viewDidAppear:(BOOL)inAnimated
 {
 [super viewDidAppear:inAnimated];
 
 CMenu *theMenu = [CMainController instance].menu;
-
 
 self.toolbarMenuController = [[[CToolbarMenuViewController alloc] initWithMenu:theMenu] autorelease];
 self.toolbarMenuController.delegate = self;
@@ -35,6 +35,7 @@ UIPopoverController *thePopoverController = [[[UIPopoverController alloc] initWi
 thePopoverController.popoverContentSize = self.toolbarMenuController.view.frame.size;
 
 [thePopoverController presentPopoverFromBarButtonItem:(UIBarButtonItem *)self.tabBarItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+self.popoverController = thePopoverController;
 
 [self.toolbarMenuController selectMenuItem:[theMenu.items objectAtIndex:0]];
 }

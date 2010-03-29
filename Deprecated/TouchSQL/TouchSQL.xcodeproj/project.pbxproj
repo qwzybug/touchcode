@@ -91,10 +91,6 @@
 		45F5DFC60FBF4A4C004029AE /* CPersistentObjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E261BF0EEF49030014A071 /* CPersistentObjectManager.m */; };
 		45F5DFC70FBF4A4D004029AE /* CRandomAccessTemporaryTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E261C10EEF49030014A071 /* CRandomAccessTemporaryTable.m */; };
 		45F5DFCA0FBF4A99004029AE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
-		45FA852C0DEC78880071DD28 /* ToxicFrameworks_Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 45FA852A0DEC78880071DD28 /* ToxicFrameworks_Debug.xcconfig */; };
-		45FA852D0DEC78880071DD28 /* ToxicFrameworks_Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 45FA852B0DEC78880071DD28 /* ToxicFrameworks_Release.xcconfig */; };
-		45FA852E0DEC78880071DD28 /* ToxicFrameworks_Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 45FA852A0DEC78880071DD28 /* ToxicFrameworks_Debug.xcconfig */; };
-		45FA852F0DEC78880071DD28 /* ToxicFrameworks_Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 45FA852B0DEC78880071DD28 /* ToxicFrameworks_Release.xcconfig */; };
 		8DC2EF510486A6940098B216 /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF5E0370ADEE00C91783 /* Prefix.pch */; settings = {ATTRIBUTES = (); }; };
 /* End PBXBuildFile section */
 
@@ -158,8 +154,6 @@
 		45E931A50856C12500B7327A /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		45F5DFA70FBF49C7004029AE /* Demo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Demo; sourceTree = BUILT_PRODUCTS_DIR; };
 		45F5DFB10FBF49E2004029AE /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		45FA852A0DEC78880071DD28 /* ToxicFrameworks_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = ToxicFrameworks_Debug.xcconfig; sourceTree = "<group>"; };
-		45FA852B0DEC78880071DD28 /* ToxicFrameworks_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = ToxicFrameworks_Release.xcconfig; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* TouchSQL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TouchSQL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -207,7 +201,6 @@
 			isa = PBXGroup;
 			children = (
 				32DBCF5E0370ADEE00C91783 /* Prefix.pch */,
-				45FA85290DEC78880071DD28 /* Configurations */,
 				45E261AC0EEF49030014A071 /* Source */,
 				45E92DEC0856B4EF00B7327A /* Resources */,
 				45552D540856C5B7006456A2 /* UnitTests */,
@@ -340,16 +333,6 @@
 			path = Demo;
 			sourceTree = "<group>";
 		};
-		45FA85290DEC78880071DD28 /* Configurations */ = {
-			isa = PBXGroup;
-			children = (
-				45FA852A0DEC78880071DD28 /* ToxicFrameworks_Debug.xcconfig */,
-				45FA852B0DEC78880071DD28 /* ToxicFrameworks_Release.xcconfig */,
-			);
-			name = Configurations;
-			path = ../Configurations;
-			sourceTree = SOURCE_ROOT;
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -462,8 +445,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45FA852E0DEC78880071DD28 /* ToxicFrameworks_Debug.xcconfig in Resources */,
-				45FA852F0DEC78880071DD28 /* ToxicFrameworks_Release.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,8 +453,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				45E92DF20856B4EF00B7327A /* InfoPlist.strings in Resources */,
-				45FA852C0DEC78880071DD28 /* ToxicFrameworks_Debug.xcconfig in Resources */,
-				45FA852D0DEC78880071DD28 /* ToxicFrameworks_Release.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
