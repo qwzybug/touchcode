@@ -31,17 +31,85 @@
 
 @implementation NSURL (NSURL_Extensions)
 
++ (NSURL *)URLWithRoot:(NSURL *)inRoot query:(NSString *)inQuery
+{
+if (inQuery == NULL || [inQuery length] == 0)
+	return(inRoot);
+NSString *theURLString = [NSString stringWithFormat:@"%@?%@", inRoot, inQuery];
+return([self URLWithString:theURLString]);
+}
+
++ (NSURL *)URLWithRoot:(NSURL *)inRoot queryDictionary:(NSDictionary *)inQueryDictionary
+{
+NSURL *theURL = NULL;
+
+if ([inRoot query] != NULL)
+	{
+	NSMutableDictionary *theExistingQuery = [[[inRoot queryDictionary] mutableCopy] autorelease];
+	
+	[theExistingQuery addEntriesFromDictionary:inQueryDictionary];
+	
+	theURL = [self URLWithRoot:[inRoot querylessURL] query:[self queryStringForDictionary:theExistingQuery]];
+	}
+else
+	{
+	theURL = [self URLWithRoot:inRoot query:[self queryStringForDictionary:inQueryDictionary]];
+	}
+
+return(theURL);
+}
+
++ (NSString *)queryStringForDictionary:(NSDictionary *)inQueryDictionary
+{
+NSMutableArray *theQueryComponents = [NSMutableArray array];
+for (NSString *theKey in inQueryDictionary)
+	{
+	id theValue = [inQueryDictionary objectForKey:theKey];
+	// this fixes the issue of spaces in values. %@ = [value description]
+	NSString *tempValue = [theValue description];
+	[theQueryComponents addObject:[NSString stringWithFormat:@"%@=%@", theKey, [tempValue stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+	}
+return([theQueryComponents componentsJoinedByString:@"&"]);
+}
+
 - (NSDictionary *)queryDictionary
 {
-NSMutableDictionary *theDictionary = [NSMutableDictionary dictionary];
-for (NSString *theKeyValuePair in [self.query componentsSeparatedByString:@"&"])
+NSString *theQuery = [self query];
+
+NSMutableDictionary *theQueryDictionary = [NSMutableDictionary dictionary];
+
+for (NSString *theComponent in [theQuery componentsSeparatedByString:@"&"])
 	{
-	NSArray *theKeyValuePairArray = [theKeyValuePair componentsSeparatedByString:@"="];
-	NSString *theKey = [theKeyValuePairArray objectAtIndex:0];
-	NSString *theValue = [theKeyValuePairArray objectAtIndex:1];
-	[theDictionary setObject:theValue forKey:theKey];
+	if ([theComponent rangeOfString:@"="].location != NSNotFound)
+		{
+		NSArray *theComponents = [theComponent componentsSeparatedByString:@"="];
+		if ([theComponents count] != 2)
+			return(NULL);
+		[theQueryDictionary setObject:[theComponents objectAtIndex:1] forKey:[theComponents objectAtIndex:0]];
+		}
+	else
+		{
+		[theQueryDictionary setObject:[NSNull null] forKey:theComponent];
+		}
 	}
-return(theDictionary);
+return(theQueryDictionary);
+}
+
+- (NSURL *)querylessURL
+{
+NSMutableString *theURLString = [NSMutableString stringWithString:@""];
+
+if ([self scheme])
+	[theURLString appendFormat:@"%@://", [self scheme]];
+if ([self user])
+	[theURLString appendFormat:@"%@", [self user]];
+if ([self host])
+	[theURLString appendFormat:@"%@", [self host]];
+if ([self path])
+	[theURLString appendFormat:@"%@", [self path]];
+
+NSURL *theURL = [NSURL URLWithString:theURLString];
+return(theURL);
 }
 
 @end

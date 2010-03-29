@@ -138,37 +138,83 @@ return(theRect);
 
 static inline int quadrant(CGFloat x, CGFloat y)
 {
-if (x >= 0)
+#warning FIX THIS FOR NON IPHONE
+BOOL flipped = YES;
+if (flipped == NO)
 	{
-	if (y >= 0)
-		return 0;
-	if (y < 0)
-		return 1;
+	if (x >= 0)
+		{
+		if (y >= 0)
+			return 0;
+		if (y < 0)
+			return 1;
+		}
+	if (x < 0 && y < 0)
+		return 2;
+	else
+		return 3;
 	}
-if (x < 0 && y < 0)
-	return 2;
 else
-	return 3;
+	{
+	if (x >= 0)
+		{
+		if (y >= 0)
+			return 1;
+		if (y < 0)
+			return 0;
+		}
+	if (x < 0 && y < 0)
+		return 3;
+	else
+		return 2;
+	}
 }
 
 static inline CGFloat angle(CGFloat x, CGFloat y)
 {
-const int q = quadrant(x, y);
-if (q == 0)
+BOOL flipped = YES; // TODO
+if (flipped == NO)
 	{
-	if (y == 0.0f)
-		return 90.0f;
-	return RadiansToDegrees(atan_(x / y));
+	const int q = quadrant(x, y);
+	if (q == 0)
+		{
+		if (x == 0.0f)
+			return 0.0f;
+		else if (y == 0.0f)
+			return 90.0f;
+		else
+			return RadiansToDegrees(atan_(x / y));
+		}
+	else if (q == 1)
+		return 180.0f + RadiansToDegrees(atan_(x / y));
+	else if (q == 2)
+		return 180.0f + RadiansToDegrees(atan_(x / y));
+	else
+		{
+		if (x == 0.0f)
+			return 0.0f;
+		return 360.0f + RadiansToDegrees(atan_(x / y));
+		}
 	}
-else if (q == 1)
-	return 180.0f + RadiansToDegrees(atan_(x / y));
-else if (q == 2)
-	return 180.0f + RadiansToDegrees(atan_(x / y));
 else
 	{
-	if (x == 0.0f)
-		return 0.0f;
-	return 360.0f + RadiansToDegrees(atan_(x / y));
+	const int q = quadrant(x, y);
+	if (q == 0)
+		{
+		if (y == 0.0f)
+			return 90.0f;
+		return 90.0f + RadiansToDegrees(atan_(y / x));
+		}
+	else if (q == 1)
+		return 90.0f + RadiansToDegrees(atan_(y / x));
+	else if (q == 2)
+		return 270.0f + RadiansToDegrees(atan_(y / x));
+	else
+		{
+		if (x == 0.0f)
+			return 0.0f;
+		return 270.0f + RadiansToDegrees(atan_(y / x));
+		}
 	}
 }
 
