@@ -1,6 +1,6 @@
 //
 //  NSURLResponse_Extensions.h
-//  Zipcar2
+//  touchcode
 //
 //  Created by Jonathan Wight on 11/09/09.
 //  Copyright 2009 toxicsoftware.com. All rights reserved.

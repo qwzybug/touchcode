@@ -34,6 +34,8 @@ static CUserNotificationManager *gInstance = NULL;
 - (void)showNotificationInternal:(CUserNotificationState *)inState;
 - (void)hideNotificationInternal:(CUserNotificationState *)inState;
 
+- (void)timer:(NSTimer *)inTimer;
+
 @end
 
 #pragma mark -

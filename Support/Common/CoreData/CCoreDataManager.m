@@ -75,7 +75,7 @@ NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
 
 [thePool release];
 }
-#endif 0
+#endif
 
 - (id)init
 {

@@ -111,24 +111,26 @@ const CGFloat theMax = mode == LayoutMode_VerticalStack ? self.bounds.size.heigh
 
 CGFloat N = 0.0f;
 	
-	if (mode == LayoutMode_VerticalStack) {
-		for (UIView *theView in self.subviews) {
-			CGRect theFrame = theView.frame;
-			theFrame.origin.y = N;
+if (mode == LayoutMode_VerticalStack)
+	{
+	for (UIView *theView in self.subviews)
+		{
+		CGRect theFrame = theView.frame;
+		theFrame.origin.y = N;
 
-			if (self.fitViews) {
-				theFrame.origin.x = 0;
-				theFrame.size.width = self.bounds.size.width;
-			}
-			if (N < theMax && theFrame.origin.y + theFrame.size.height > theMax) {
-				theFrame.size.height = theMax - theFrame.origin.y;
-			}
-			N += theView.frame.size.height + self.gap.height;
+		if (self.fitViews) {
+			theFrame.origin.x = 0;
+			theFrame.size.width = self.bounds.size.width;
+		}
+		if (N < theMax && theFrame.origin.y + theFrame.size.height > theMax) {
+			theFrame.size.height = theMax - theFrame.origin.y;
+		}
+		N += theView.frame.size.height + self.gap.height;
 		}
 	} else if (mode == LayoutMode_HorizontalStack) {
 		CGFloat flexibleWidth = 0.0f;
 		if (flexibleView != nil) {
-			NSMutableArray *views = [self.subviews mutableCopy];
+			NSMutableArray *views = [[self.subviews mutableCopy] autorelease];
 			[views removeObject:flexibleView];
 			CGFloat staticWidth = 0.0f;
 			for (UIView *view in views) {

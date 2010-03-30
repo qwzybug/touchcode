@@ -14,11 +14,11 @@
 
 @interface CTabBarMenuViewController : UITabBarController <CMenuHandler> {
 	CMenu *menu;
-	id <CMenuHandlerDelegate> delegate;
+	id <CMenuHandlerDelegate> menuHandlerDelegate;
 }
 
 @property (readwrite, nonatomic, retain) CMenu *menu;
-@property (readwrite, nonatomic, assign) id <CMenuHandlerDelegate> delegate;
+@property (readwrite, nonatomic, assign) id <CMenuHandlerDelegate> menuHandlerDelegate;
 
 - (id)initWithMenu:(CMenu *)inMenu;
 

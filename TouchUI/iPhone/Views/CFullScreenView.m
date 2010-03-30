@@ -46,7 +46,7 @@
 
 - (id)initWithCoder:(NSCoder *)inCoder
 {
-if (self = [super initWithCoder:inCoder])
+if ((self = [super initWithCoder:inCoder]) != NULL)
 	{
 	[super setFrame:CGRectMake(0, -64, 320, 480)];
 	self.autoHideStatusBar = YES;
@@ -81,7 +81,7 @@ else
 	self.autoHideTimer = NULL;
 	//
 	if (self.autoHideStatusBar)
-		[[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
+		[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:YES];
 	//
 	for (UIView *theView in self.autoHideViews)
 		theView.alpha = 1.0;
@@ -110,7 +110,7 @@ if (self.window && self.autoHideTimer == NULL)
 self.autoHideTimer = NULL;
 
 if (self.autoHideStatusBar)
-	[[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
+	[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:YES];
 
 if (self.autoHideViews != NULL)
 	{
@@ -133,7 +133,7 @@ if (self.autoHideTimer == NULL)
 - (void)hideUI;
 {
 if (self.autoHideStatusBar)
-	[[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];
+	[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:YES];
 
 if (self.autoHideViews != NULL)
 	{	

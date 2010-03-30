@@ -162,7 +162,10 @@ return(theSession);
 		{
 //		NSLog(@"IS MAIN THREAD: %d", [NSThread isMainThread]);
 		
-		CBetterCoreDataManager *theCoreDataManager = [[[CBetterCoreDataManager alloc] initWithName:@"Logging" forceReplace:NO storeType:NSSQLiteStoreType storeOptions:NULL] autorelease];
+		CBetterCoreDataManager *theCoreDataManager = [[[CBetterCoreDataManager alloc] init] autorelease];
+		
+		theCoreDataManager.name = @"Logging";
+		
 		theCoreDataManager.defaultMergePolicy = NSMergeByPropertyStoreTrumpMergePolicy;
 
 		NSManagedObject *theSession = [NSEntityDescription insertNewObjectForEntityForName:@"LoggingSession" inManagedObjectContext:theCoreDataManager.managedObjectContext];

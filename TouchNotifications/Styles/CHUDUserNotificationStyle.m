@@ -72,6 +72,7 @@ UIViewAutoresizing theAutoresizingFlag;
 
 if (theFullScreenFlag == YES)
 	{
+	theMainView = theMainView.window;
 	theFrame = theMainView.bounds;
 	theBorderWidth = 0.0;
 	theAutoresizingFlag = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;

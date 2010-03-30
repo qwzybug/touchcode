@@ -42,6 +42,7 @@ Base64DecodeData([theEncodedData bytes], [theEncodedData length], theDecodedData
 theDecodedData = reallocf(theDecodedData, theDecodedDataSize);
 if (theDecodedData == NULL)
 	return(NULL);
+// Xcode Static analyzer (as of 20100330) thinks this is a potential leak. It is wrong.
 id theData = [self dataWithBytesNoCopy:theDecodedData length:theDecodedDataSize freeWhenDone:YES];
 return(theData);
 }

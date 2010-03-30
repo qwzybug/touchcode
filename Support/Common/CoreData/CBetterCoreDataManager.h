@@ -1,6 +1,6 @@
 //
 //  CBetterCoreDataManager.h
-//  Zipcar
+//  touchcode
 //
 //  Created by Jonathan Wight on 11/10/09.
 //  Copyright 2009 toxicsoftware.com. All rights reserved.

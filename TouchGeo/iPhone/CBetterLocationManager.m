@@ -49,6 +49,8 @@ NSString *kBetterLocationManagerOldLocationKey = @"OldLocation";
 @property (readwrite, nonatomic, assign) NSTimer *timer;
 
 - (void)postNewLocation:(CLLocation *)inNewLocation oldLocation:(CLLocation *)inOldLocation;
+
+- (void)stopUpdatingTimerDidFire:(NSTimer *)inTimer;
 @end
 
 @implementation CBetterLocationManager

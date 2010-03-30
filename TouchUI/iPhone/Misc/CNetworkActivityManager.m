@@ -13,6 +13,8 @@ static CNetworkActivityManager *gInstance = NULL;
 @interface CNetworkActivityManager ()
 @property (readwrite, assign) NSInteger count;
 @property (readwrite, assign) NSTimer *delayTimer;
+
+- (void)delayTimer:(NSTimer *)inTimer;
 @end
 
 #pragma mark -

@@ -19,7 +19,7 @@
 
 @required
 
-@property (readwrite, nonatomic, assign) id <CMenuHandlerDelegate> delegate;
+@property (readwrite, nonatomic, assign) id <CMenuHandlerDelegate> menuHandlerDelegate;
 
 - (id)initWithMenu:(CMenu *)inMenu;
 

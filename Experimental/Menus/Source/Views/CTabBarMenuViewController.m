@@ -14,7 +14,7 @@
 @implementation CTabBarMenuViewController
 
 @synthesize menu;
-@synthesize delegate;
+@synthesize menuHandlerDelegate;
 
 - (id)initWithMenu:(CMenu *)inMenu
 {

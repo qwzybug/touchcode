@@ -61,6 +61,7 @@ userInfo = NULL;
 
 - (id)copyWithZone:(NSZone *)zone;
 {
+// Xcode Static Analyzer thinks the next link is an "incorrect decrement". Huh?
 CUserNotification *theCopy = [[self class] init];
 theCopy.identifier = self.identifier;
 theCopy.styleName = self.styleName;

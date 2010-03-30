@@ -63,16 +63,17 @@ layoutView = NULL;
 
 - (UIView *)accessoryView
 {
-	if (accessoryView == NULL) {
-		accessoryView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 2, 20, 20)];
-		[accessoryView startAnimating];
+if (accessoryView == NULL)
+	{
+	UIActivityIndicatorView *theActivityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 2, 20, 20)];
+	[theActivityIndicator startAnimating];
+	accessoryView = theActivityIndicator;
 	}
-	return accessoryView;
+return(accessoryView);
 }
 
 - (UIImageView *)imageView
 {
-	return nil;
 if (imageView == NULL)
 	{
 	imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 23, 23)];

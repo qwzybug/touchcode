@@ -1,6 +1,6 @@
 //
 //  CBetterCoreDataManager.m
-//  Zipcar
+//  touchcode
 //
 //  Created by Jonathan Wight on 11/10/09.
 //  Copyright 2009 toxicsoftware.com. All rights reserved.
@@ -9,6 +9,10 @@
 #import "CBetterCoreDataManager.h"
 
 //#import "NSError_Extensions.h"
+
+@interface CBetterCoreDataManager()
+- (void)managedObjectContextDidSaveNotification:(NSNotification *)inNotification;
+@end
 
 @implementation CBetterCoreDataManager
 
