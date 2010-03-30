@@ -62,7 +62,7 @@ if (count != inCount)
 	{
 	if (count <= 0 && inCount > 0)
 		{
-		if (self.delayTimer)
+		if (self.delayTimer != NULL)
 			{
 			[self.delayTimer invalidate];
 			self.delayTimer = NULL;
@@ -71,7 +71,7 @@ if (count != inCount)
 		}
 	else if (count > 0 && inCount <= 0)
 		{
-		if (self.delayTimer)
+		if (self.delayTimer != NULL)
 			{
 			[self.delayTimer invalidate];
 			self.delayTimer = NULL;

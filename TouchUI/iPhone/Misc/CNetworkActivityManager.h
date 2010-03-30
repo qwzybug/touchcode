@@ -21,5 +21,6 @@
 
 - (void)addNetworkActivity;
 - (void)removeNetworkActivity;
+- (void)delayTimer:(NSTimer *)inTimer;
 
 @end
