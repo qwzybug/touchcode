@@ -106,53 +106,68 @@ return(size);
 
 - (void)layoutSubviews
 {
-	const CGFloat theMax = mode == LayoutMode_VerticalStack ? self.bounds.size.height : self.bounds.size.width;
+const CGFloat theMax = mode == LayoutMode_VerticalStack ? self.bounds.size.height : self.bounds.size.width;
 
-	CGFloat N = 0.0f;
-	
-	if (mode == LayoutMode_VerticalStack) {
-		for (UIView *theView in self.subviews) {
-			CGRect theFrame = theView.frame;
-			theFrame.origin.y = N;
+CGFloat N = 0.0f;
 
-			if (self.fitViews) {
-				theFrame.origin.x = 0;
-				theFrame.size.width = self.bounds.size.width;
+if (mode == LayoutMode_VerticalStack) 
+	{
+	for (UIView *theView in self.subviews) 
+		{
+		CGRect theFrame = theView.frame;
+		theFrame.origin.y = N;
+
+		if (self.fitViews) 
+			{
+			theFrame.origin.x = 0;
+			theFrame.size.width = self.bounds.size.width;
 			}
 
-			if (N < theMax && theFrame.origin.y + theFrame.size.height > theMax) {
-				theFrame.size.height = theMax - theFrame.origin.y;
+		if (N < theMax && theFrame.origin.y + theFrame.size.height > theMax) 
+			{
+			theFrame.size.height = theMax - theFrame.origin.y;
 			}
-			
-			N += theView.frame.size.height + self.gap.height;
-			theView.frame = theFrame;
-		}
 		
-	} else if (mode == LayoutMode_HorizontalStack) {
-		CGFloat flexibleWidth = 0.0f;
-		if (flexibleView != nil) {
-			NSMutableArray *views = [self.subviews mutableCopy];
-			[views removeObject:flexibleView];
-			CGFloat staticWidth = 0.0f;
-			for (UIView *view in views) {
-				staticWidth += view.frame.size.width + self.gap.width;
-			}
-			flexibleWidth = self.bounds.size.width - staticWidth;
+		N += theView.frame.size.height + self.gap.height;
+		theView.frame = theFrame;
 		}
-		for (UIView *theView in self.subviews) {
-			CGRect theFrame = theView.frame;
-			theFrame.origin.x = N;
-			if (theView == flexibleView) {
-				if (flexibleWidth < theFrame.size.width) {
-					N += flexibleWidth + self.gap.width;
-					theFrame.size.width = flexibleWidth;
-				} else {
-					N += theFrame.size.width + self.gap.width;
-				}
-			} else {
-				N += theView.frame.size.width + self.gap.width;
+	
+	} 
+else if (mode == LayoutMode_HorizontalStack) 
+	{
+	CGFloat flexibleWidth = 0.0f;
+	if (flexibleView != nil) 
+		{
+		NSMutableArray *views = [self.subviews mutableCopy];
+		[views removeObject:flexibleView];
+		CGFloat staticWidth = 0.0f;
+		for (UIView *view in views) 
+			{
+			staticWidth += view.frame.size.width + self.gap.width;
 			}
-			theView.frame = theFrame;
+		flexibleWidth = self.bounds.size.width - staticWidth;
+		}
+	for (UIView *theView in self.subviews) 
+		{
+		CGRect theFrame = theView.frame;
+		theFrame.origin.x = N;
+		if (theView == flexibleView) 
+			{
+			if (flexibleWidth < theFrame.size.width) 
+				{
+				N += flexibleWidth + self.gap.width;
+				theFrame.size.width = flexibleWidth;
+				} 
+			else 
+				{
+				N += theFrame.size.width + self.gap.width;
+				}
+			} 
+		else 
+			{
+			N += theView.frame.size.width + self.gap.width;
+			}
+		theView.frame = theFrame;
 		}
 	}
 }

@@ -142,31 +142,38 @@ return(theSize);
 if (layoutView != NULL)
 	[self addSubview:self.layoutView];
 
-	if (imageView != NULL) {
-		if (self.imageView.image != NULL) {
-			[self.layoutView addSubview:self.imageView];
+if (imageView != NULL) 
+	{
+	if (self.imageView.image != NULL) 
+		{
+		[self.layoutView addSubview:self.imageView];
 		}
-		else {
-			[self.imageView removeFromSuperview];
+	else 
+		{
+		[self.imageView removeFromSuperview];
+		}
+	}
+if (titleLabel != NULL) 
+	{
+	if (self.titleLabel.text.length > 0) 
+		{
+		self.titleLabel.frame = CGRectMake(0, 0, self.layoutView.bounds.size.width - 10.0f, 23);
+		[self.titleLabel sizeToFit:CGSizeMake(INFINITY, INFINITY)];
+		[self.layoutView addSubview:self.titleLabel];
+		self.layoutView.flexibleView = titleLabel;
+		} 
+	else 
+		{
+		[self.titleLabel removeFromSuperview];
 		}
 	}
 
-	if (titleLabel != NULL) {
-		if (self.titleLabel.text.length > 0) {
-			self.titleLabel.frame = CGRectMake(0, 0, self.layoutView.bounds.size.width - 10.0f, 23);
-			[self.titleLabel sizeToFit:CGSizeMake(INFINITY, INFINITY)];
-			[self.layoutView addSubview:self.titleLabel];
-			self.layoutView.flexibleView = titleLabel;
-		} else {
-			[self.titleLabel removeFromSuperview];
-		}
+if (self.accessoryView) 
+	{
+	[self.layoutView addSubview:self.accessoryView];
 	}
 
-	if (self.accessoryView) {
-		[self.layoutView addSubview:self.accessoryView];
-	}
-	
-	self.layoutView.frame = CGRectInset(self.bounds, 10, 2);
+self.layoutView.frame = CGRectInset(self.bounds, 10, 2);
 }
 
 - (void)drawRect:(CGRect)inRect
@@ -177,24 +184,25 @@ CGContextRef theContext = UIGraphicsGetCurrentContext();
 
 [[UIColor colorWithWhite:0.0f alpha:0.6f] set];
 
-	switch (badgePosition) {
-		case BadgePositionTopLeft:
-			CGContextAddRoundRectToPath(theContext, theRect, 0, 0, 0, 20);
-			break;
-		case BadgePositionTopRight:
-			CGContextAddRoundRectToPath(theContext, theRect, 0, 0, 20, 0);
-			break;
-		case BadgePositionBottomLeft:
-			CGContextAddRoundRectToPath(theContext, theRect, 0, 20, 0, 0);
-			break;
-		case BadgePositionBottomRight:
-			CGContextAddRoundRectToPath(theContext, theRect, 20, 0, 0, 0);
-			break;
-		default:
-			break;
+switch (badgePosition) 
+	{
+	case BadgePositionTopLeft:
+		CGContextAddRoundRectToPath(theContext, theRect, 0, 0, 0, 20);
+		break;
+	case BadgePositionTopRight:
+		CGContextAddRoundRectToPath(theContext, theRect, 0, 0, 20, 0);
+		break;
+	case BadgePositionBottomLeft:
+		CGContextAddRoundRectToPath(theContext, theRect, 0, 20, 0, 0);
+		break;
+	case BadgePositionBottomRight:
+		CGContextAddRoundRectToPath(theContext, theRect, 20, 0, 0, 0);
+		break;
+	default:
+		break;
 	}
 
-	CGContextFillPath(theContext);
+CGContextFillPath(theContext);
 
 #if DEBUG_RECT == 1
 [[UIColor redColor] set];
