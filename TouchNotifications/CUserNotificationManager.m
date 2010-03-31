@@ -427,28 +427,29 @@ return(theNotification);
 
 - (CUserNotification *)enqueueBadgeNotificationWithTitle:(NSString *)inTitle identifier:(NSString *)inIdentifier;
 {
+CUserNotification *theNotification = nil;
 @synchronized(self) 
 	{
 	CUserNotificationState *theState = [[self.notificationStates filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"notification.identifier == %@", inIdentifier]] lastObject];
 	if (theState == NULL)
 		{
 		LogInformation_(@"ENQUEUE: %@ %@", inTitle, inIdentifier);
-		CUserNotification *theNotification = [[[CUserNotification alloc] init] autorelease];
+		theNotification = [[[CUserNotification alloc] init] autorelease];
 		theNotification.identifier = inIdentifier;
 		theNotification.title = inTitle;
 		theNotification.progress = INFINITY;
 		theNotification.styleName = @"BADGE-TOP-LEFT";
 		theNotification.flags |= UserNotificationFlag_UsesNetwork;
 		[self enqueueNotification:theNotification];
-		return theNotification;
 		} 
 	else 
 		{
 		LogInformation_(@"EXTENDING TIME");
 		theState.requestedHideDate = FLT_MAX;
-		return theState.notification;
+		theNotification = theState.notification;
 		}
 	}
+return theNotification;
 }
 
 @end
