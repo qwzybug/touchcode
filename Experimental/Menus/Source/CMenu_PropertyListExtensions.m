@@ -45,7 +45,13 @@ return(theMenu);
 
 + (CMenuItem *)menuItemFromDictionary:(NSDictionary *)inDictionary targetRoot:(id)inTargetRoot;
 {
-CMenuItem *theMenuItem = [[[CMenuItem alloc] init] autorelease];
+Class theClass = [CMenuItem class];
+
+NSString *theClassName = [inDictionary objectForKey:@"className"];
+if (theClassName)
+	theClass = NSClassFromString(theClassName);
+
+CMenuItem *theMenuItem = [[[theClass alloc] init] autorelease];
 theMenuItem.title = [inDictionary objectForKey:@"title"];
 if ([inDictionary objectForKey:@"iconName"] != NULL)
 	theMenuItem.icon = [UIImage imageNamed:[inDictionary objectForKey:@"iconName"]];

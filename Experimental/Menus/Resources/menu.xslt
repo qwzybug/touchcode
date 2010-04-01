@@ -35,6 +35,14 @@
 	</dict>
 </xsl:template>
 
+<xsl:template match="separator">
+	<dict>
+		<key>className</key>
+		<string>CMenuSeparatorItem</string>
+	</dict>
+</xsl:template>
+
+
 <xsl:template match="submenu">
 	<key>submenu</key>
 	<dict>

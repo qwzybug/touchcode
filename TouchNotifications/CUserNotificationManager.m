@@ -269,7 +269,6 @@ return(theNotificationStyle);
 	}
 
 	@synchronized(self) {
-	//	NSLog(@"**** nextNotification");
 		const CFAbsoluteTime theNow = CFAbsoluteTimeGetCurrent();
 		
 		// Go through every notification and hide any that are shown AND are beyond their requestedHideDate
@@ -324,7 +323,6 @@ if (self.timer == NULL || theNextTime > [self.timer.fireDate timeIntervalSinceRe
 		[self.timer invalidate];
 		}
 	self.timer = [[[NSTimer alloc] initWithFireDate:[NSDate dateWithTimeIntervalSinceReferenceDate:theNextTime] interval:0 target:self selector:@selector(timer:) userInfo:NULL repeats:NO] autorelease];
-//	NSLog(@"Scheduling timer: %@ (fires in %g seconds)", self.timer, [[NSDate dateWithTimeIntervalSinceReferenceDate:theNextTime] timeIntervalSinceNow]);
 
 	[[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
 	}
@@ -334,8 +332,6 @@ if (self.timer == NULL || theNextTime > [self.timer.fireDate timeIntervalSinceRe
 
 - (void)showNotificationInternal:(CUserNotificationState *)inState
 {
-//NSLog(@"* SHOWING NOTIFICATION");
-
 const CFAbsoluteTime theNow = CFAbsoluteTimeGetCurrent();
 
 inState.style = [[self newStyleForNotification:inState.notification] autorelease];
@@ -349,8 +345,6 @@ inState.showDate = theNow;
 
 - (void)hideNotificationInternal:(CUserNotificationState *)inState
 {
-//NSLog(@"* HIDING NOTIFICATION");
-
 const CFAbsoluteTime theNow = CFAbsoluteTimeGetCurrent();
 
 if (self.currentNotificationState == inState)
@@ -374,8 +368,6 @@ if (inState.shown == YES)
 - (void)timer:(NSTimer *)inTimer
 {
 NSAssert(inTimer == self.timer, @"TODO");
-
-//NSLog(@"Timer firing: %@", inTimer);
 
 [self.timer invalidate];
 self.timer = NULL;
@@ -450,7 +442,6 @@ return(theNotification);
 
 - (void)notificationStyle:(CUserNotificationStyle *)inStyle actionFiredForSender:(id)inSender
 {
-//NSLog(@"ACTION");
 }
 
 @end

@@ -6,21 +6,21 @@
 //  Copyright 2010 toxicsoftware.com. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "CTableViewController.h"
 
 #import "CMenuHandler.h"
 
-@interface CMenuTableViewController : UITableViewController <CMenuHandler> {
+@interface CMenuTableViewController : CTableViewController <CMenuHandler> {
 	CMenu *menu;
-	id <CMenuHandlerDelegate> delegate;
+	NSArray *sectionRanges;
+	id <CMenuHandlerDelegate> menuHandlerDelegate;
 	BOOL hidesNavigationBar;
 	UITableViewCellAccessoryType submenuAccessoryType;
 	CGSize contentSizeForViewInPopoverView;
 }
 
 @property (readwrite, nonatomic, retain) CMenu *menu;
-
-@property (readwrite, nonatomic, assign) id <CMenuHandlerDelegate> delegate;
+@property (readwrite, nonatomic, assign) id <CMenuHandlerDelegate> menuHandlerDelegate;
 @property (readwrite, nonatomic, assign) BOOL hidesNavigationBar;
 @property (readwrite, nonatomic, assign) UITableViewCellAccessoryType submenuAccessoryType;
 

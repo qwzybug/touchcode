@@ -116,7 +116,6 @@ return(NO);
 
 //- (BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 //{
-//NSLog(@"TOUCH");
 //[self setOn:!self.on animated:YES];
 //return(NO);
 //}
@@ -128,8 +127,6 @@ return(NO);
 //- (void)touchesBegan:(NSSet *)inTouches withEvent:(UIEvent *)inEvent
 //{
 //self.on = !self.on;
-//
-//NSLog(@"TOUCH");
 //}
 //
 //- (void)touchesMoved:(NSSet *)inTouches withEvent:(UIEvent *)inEvent

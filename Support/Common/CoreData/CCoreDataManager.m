@@ -190,7 +190,6 @@ return(persistentStoreCoordinator);
 - (NSPersistentStoreCoordinator *)newPersistentStoreCoordinatorWithOptions:(NSDictionary *)inOptions error:(NSError **)outError
 {
 NSPersistentStoreCoordinator *thePersistentStoreCoordinator = NULL;
-//NSLog(@"Creating persistentStoreCoordinator: %@", [self.persistentStoreURL.path lastPathComponent]);
 
 NSError *theError = NULL;
 NSManagedObjectModel *theManagedObjectModel = self.managedObjectModel;
@@ -202,9 +201,6 @@ if (thePersistentStore == NULL)
 	{
 	[self presentError:theError];
 	}
-
-//NSLog(@"%@", thePersistentStoreCoordinator);
-//NSLog(@"%@", [thePersistentStoreCoordinator persistentStores]);
 
 if (outError)
 	*outError = theError;
@@ -411,7 +407,6 @@ return(theApplicationSupportFolder);
 	if (threadStorageKey == NULL)
 		{
 		threadStorageKey = [[NSString alloc] initWithFormat:@"%@:%p", NSStringFromClass([self class]), self];
-//		NSLog(@">>> %@", threadStorageKey);
 		}
 	}
 return(threadStorageKey);
