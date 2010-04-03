@@ -1,5 +1,6 @@
 #!/bin/sh
 
+
 function quit {
 #$cat $TEMP
 echo "`basename "$FILE"` failed. [S]kip, [O]pen or [F]ail?"

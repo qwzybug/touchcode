@@ -196,6 +196,7 @@ return(theNotificationStyle);
 	{
 	CUserNotificationState *theState = [[self.notificationStates filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"notification == %@", inNotification]] lastObject];
 	theState.requestedHideDate = CFAbsoluteTimeGetCurrent();
+	LogInformation_(@"DEQUEUE: %@", theState.notification.identifier);
 	}
 [self nextNotification];
 }
@@ -212,6 +213,8 @@ return(theNotificationStyle);
 		NSLog(@"Did not find notification for identifier: %@", inIdentifier);
 		}
 	theState.requestedHideDate = theState.requestedShowDate + self.minimumDisplayTime;
+	LogInformation_(@"DEQUEUE: %@", inIdentifier);
+
 	}
 [self nextNotification];
 }
