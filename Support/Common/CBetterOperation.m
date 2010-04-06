@@ -85,9 +85,6 @@ if (self.delegate && [self.delegate respondsToSelector:@selector(operation:didFa
 
 - (void)attainResult:(id)inResult
 {
-	if (inResult != nil) {
-		NSLog(@"We have a result at the better operation: %@ result: %@", self, inResult);
-	}
 	self.result = inResult;
 
 	[self performSelectorOnMainThread:@selector(delegateProxyWithResult:) withObject:inResult waitUntilDone:YES];
