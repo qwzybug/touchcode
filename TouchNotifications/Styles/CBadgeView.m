@@ -132,7 +132,6 @@ return(theSize);
 
 //- (void)sizeToFit
 //{
-//NSLog(@"sizeToFit");
 //[self layoutSubviews];
 //
 //[super sizeToFit];

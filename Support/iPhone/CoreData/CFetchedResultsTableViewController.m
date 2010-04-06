@@ -212,6 +212,11 @@ if ([self.fetchedResultsController.fetchedObjects count] == 0)
 	}
 }
 
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+return(UITableViewCellEditingStyleNone);
+}
+
 #pragma mark -
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
