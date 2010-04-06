@@ -109,17 +109,6 @@ if (feed != inFeed)
 
 #pragma mark Table view methods
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-NSUInteger theCount = self.fetchedResultsController.sections.count;
-return(theCount);
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-return([[self.fetchedResultsController.sections objectAtIndex:section] numberOfObjects]);
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 static NSString *theCellIdentifier = @"Cell";
@@ -141,12 +130,6 @@ return(theCell);
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 {
 
-}
-
-#pragma mark -
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath;
-{
 }
 
 @end
