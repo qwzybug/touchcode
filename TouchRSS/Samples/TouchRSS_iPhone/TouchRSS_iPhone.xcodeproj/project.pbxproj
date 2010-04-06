@@ -83,6 +83,7 @@
 		45AA529E10792EC800611DC1 /* CFeedEntriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45AA529D10792EC800611DC1 /* CFeedEntriesViewController.m */; };
 		45AA52A610792F9700611DC1 /* CFeedEntriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45AA52A510792F9700611DC1 /* CFeedEntriesViewController.xib */; };
 		45AE956B1147F19F00F9CD6D /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 45AE95571147F19E00F9CD6D /* ISO8601DateFormatter.m */; };
+		45DA932D116B9B5800594780 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45DA932C116B9B5800594780 /* MainWindow-iPad.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -297,6 +298,7 @@
 		45AA52A510792F9700611DC1 /* CFeedEntriesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CFeedEntriesViewController.xib; sourceTree = "<group>"; };
 		45AE95561147F19E00F9CD6D /* ISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISO8601DateFormatter.h; sourceTree = "<group>"; };
 		45AE95571147F19E00F9CD6D /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
+		45DA932C116B9B5800594780 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "Resources-iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* TouchRSS_iPhone-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TouchRSS_iPhone-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -344,6 +346,7 @@
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				45DA932B116B9B5000594780 /* Resources-iPad */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				45AA510B107928BB00611DC1 /* CoreData.framework */,
@@ -883,6 +886,14 @@
 			path = "ISO-8601-parser-0.5";
 			sourceTree = "<group>";
 		};
+		45DA932B116B9B5000594780 /* Resources-iPad */ = {
+			isa = PBXGroup;
+			children = (
+				45DA932C116B9B5800594780 /* MainWindow-iPad.xib */,
+			);
+			name = "Resources-iPad";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -936,6 +947,7 @@
 				45AA50531079286600611DC1 /* AtomKeywords.gperf in Resources */,
 				45AA50561079286600611DC1 /* RSSKeywords.gperf in Resources */,
 				45AA52A610792F9700611DC1 /* CFeedEntriesViewController.xib in Resources */,
+				45DA932D116B9B5800594780 /* MainWindow-iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1024,6 +1036,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1033,6 +1046,8 @@
 				INFOPLIST_FILE = "TouchRSS_iPhone-Info.plist";
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = TouchRSS_iPhone;
+				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1040,6 +1055,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TouchRSS_iPhone_Prefix.pch;
@@ -1047,6 +1063,8 @@
 				INFOPLIST_FILE = "TouchRSS_iPhone-Info.plist";
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = TouchRSS_iPhone;
+				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

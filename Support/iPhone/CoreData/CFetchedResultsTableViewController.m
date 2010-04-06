@@ -81,7 +81,7 @@ return(addButtonItem);
 {
 if (placeholderView == NULL)
 	{
-	UILabel *theLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 44 * 3, 320, 44)] autorelease];
+	UILabel *theLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 44 * 3, self.view.bounds.size.width, 44)] autorelease];
 	theLabel.textAlignment = UITextAlignmentCenter;
 	theLabel.font = [UIFont boldSystemFontOfSize:[UIFont labelFontSize] + 3];
 	theLabel.textColor = [UIColor grayColor];
