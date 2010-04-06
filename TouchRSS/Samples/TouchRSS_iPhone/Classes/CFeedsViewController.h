@@ -32,6 +32,6 @@
 @interface CFeedsViewController : CFetchedResultsTableViewController <NSFetchedResultsControllerDelegate> {
 }
 
-- (IBAction)addFeed:(id)inSender;
+- (IBAction)add:(id)inSender;
 
 @end

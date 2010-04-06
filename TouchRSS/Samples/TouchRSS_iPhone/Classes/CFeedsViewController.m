@@ -40,7 +40,11 @@
 {
 [super viewDidLoad];
 //
-self.placeholderLabel.text = @"No feeds";
+self.title = @"Feeds";
+self.navigationItem.rightBarButtonItem = [self addButtonItem];
+
+UILabel *thePlaceholderLabel = (UILabel *)self.placeholderView;
+thePlaceholderLabel.text = @"No feeds";
 
 NSEntityDescription *theEntityDescription = [NSEntityDescription entityForName:[CFeed entityName] inManagedObjectContext:[CFeedStore instance].managedObjectContext];
 NSAssert(theEntityDescription != NULL, @"No entity description.");
@@ -54,21 +58,9 @@ theFetchRequest.sortDescriptors = theSortDescriptors;
 
 self.fetchedResultsController = [[[NSFetchedResultsController alloc] initWithFetchRequest:theFetchRequest managedObjectContext:[CFeedStore instance].managedObjectContext sectionNameKeyPath:NULL cacheName:NULL] autorelease];
 self.fetchedResultsController.delegate = self;
-
-[self update];
 }
 
 #pragma mark Table view methods
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-return(self.fetchedResultsController.sections.count);
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-return([[self.fetchedResultsController.sections objectAtIndex:section] numberOfObjects]);
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -98,14 +90,7 @@ CFeedEntriesViewController *theViewController = [[[CFeedEntriesViewController al
 
 #pragma mark -
 
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath;
-{
-[self update];
-}
-
-#pragma mark -
-
-- (IBAction)addFeed:(id)inSender
+- (IBAction)add:(id)inSender
 {
 NSURL *theURL = [NSURL URLWithString:@"http://toxicsoftware.com/feed/"];
 NSError *theError = NULL;

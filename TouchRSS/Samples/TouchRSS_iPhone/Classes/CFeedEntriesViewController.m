@@ -62,9 +62,8 @@ self.feed = NULL;
 {
 [super viewDidLoad];
 //
-self.placeholderLabel.text = @"No entries";
-//
-[self update];
+UILabel *thePlaceholderLabel = (UILabel *)self.placeholderView;
+thePlaceholderLabel.text = @"No entries";
 }
 
 #pragma mark -
@@ -148,7 +147,6 @@ return(theCell);
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath;
 {
-[self update];
 }
 
 @end
