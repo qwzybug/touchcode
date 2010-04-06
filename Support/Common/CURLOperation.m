@@ -130,7 +130,6 @@ self.connection = NULL;
 
 - (NSURLRequest *)connection:(NSURLConnection *)inConnection willSendRequest:(NSURLRequest *)inRequest redirectResponse:(NSURLResponse *)response
 {
-//NSLog(@"WILL SEND REQUEST: %@", [NSThread currentThread]);
 return(inRequest);
 }
 
@@ -180,19 +179,12 @@ if (theResult == NO)
 	}
 }
 
-- (void)connection:(NSURLConnection *)inConnection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
-{
-//NSLog(@"%d/%d", totalBytesWritten, totalBytesExpectedToWrite);
-}
+//- (void)connection:(NSURLConnection *)inConnection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
+//{
+//}
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)inConnection
 {
-//NSLog(@"DID FINISH: %@", [[[NSString alloc] initWithData:self.temporaryData.data encoding:NSUTF8StringEncoding] autorelease]);
-
-
-
-
-
 [self willChangeValueForKey:@"isFinished"];
 self.isFinished = YES;
 [self didChangeValueForKey:@"isFinished"];
@@ -203,8 +195,6 @@ self.connection = NULL;
 
 - (void)connection:(NSURLConnection *)inConnection didFailWithError:(NSError *)inError
 {
-//NSLog(@"DID FAIL: %@", inError);
-
 self.error = inError;
 
 [self willChangeValueForKey:@"isFinished"];

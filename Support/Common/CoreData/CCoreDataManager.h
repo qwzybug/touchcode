@@ -32,33 +32,34 @@
 @protocol CCoreDataManagerDelegate;
 
 @interface CCoreDataManager : NSObject {
+	NSString *name;
 	NSURL *modelURL;
 	NSURL *persistentStoreURL;
 	NSString *storeType;
+	BOOL forceReplace;
 	NSDictionary *storeOptions;
     NSPersistentStoreCoordinator *persistentStoreCoordinator;
     NSManagedObjectModel *managedObjectModel;
+	id threadStorageKey;
 	id <CCoreDataManagerDelegate> delegate;
 }
 
 + (NSURL *)modelURLForName:(NSString *)inName;
 
-- (id)initWithModelUrl:(NSURL *)inModelUrl persistentStoreUrl:(NSURL *)inPersistentStoreUrl storeType:(NSString *)inStoreType storeOptions:(NSDictionary *)inStoreOptions;
-- (id)initWithModelUrl:(NSURL *)inModelUrl persistentStoreName:(NSString *)inPersistentName forceReplace:(BOOL)inForceReplace storeType:(NSString *)inStoreType storeOptions:(NSDictionary *)inStoreOptions;
-- (id)initWithModelName:(NSString *)inModelName persistentStoreName:(NSString *)inPersistentName forceReplace:(BOOL)inForceReplace storeType:(NSString *)inStoreType storeOptions:(NSDictionary *)inStoreOptions;
+@property (readwrite, retain) NSString *name;
+@property (readwrite, retain) NSURL *modelURL;
+@property (readwrite, retain) NSURL *persistentStoreURL;
+@property (readwrite, retain) NSString *storeType;
+@property (readwrite, assign) BOOL forceReplace;
+@property (readwrite, retain) NSDictionary *storeOptions;
 
-- (id)initWithName:(NSString *)inName forceReplace:(BOOL)inForceReplace storeType:(NSString *)inStoreType storeOptions:(NSDictionary *)inStoreOptions;
-
-@property (readonly, retain) NSURL *modelURL;
-@property (readonly, retain) NSURL *persistentStoreURL;
-@property (readonly, retain) NSString *storeType;
-@property (readonly, retain) NSDictionary *storeOptions;
-
-@property (readonly, retain) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-@property (readonly, retain) NSManagedObjectModel *managedObjectModel;
-@property (readonly, retain) NSManagedObjectContext *managedObjectContext;
+@property (readwrite, retain) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (readwrite, retain) NSManagedObjectModel *managedObjectModel;
+@property (readwrite, retain) NSManagedObjectContext *managedObjectContext;
 
 @property (readwrite, assign) id <CCoreDataManagerDelegate> delegate;
+
+- (id)init;
 
 /// You don't need to call this. Subclasses can override to change default behavior.
 - (NSManagedObjectContext *)newManagedObjectContext;
@@ -78,5 +79,6 @@
 
 @optional
 - (void)coreDataManager:(CCoreDataManager *)inCoreDataManager didCreateNewManagedObjectContext:(NSManagedObjectContext *)inManagedObjectContext;
+- (void)coreDataManager:(CCoreDataManager *)inCoreDataManager presentError:(NSError *)inError;
 
 @end

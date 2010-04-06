@@ -31,6 +31,12 @@
 
 @interface NSURL (NSURL_Extensions)
 
++ (NSURL *)URLWithRoot:(NSURL *)inRoot query:(NSString *)inQuery;
++ (NSURL *)URLWithRoot:(NSURL *)inRoot queryDictionary:(NSDictionary *)inQueryDictionary;
++ (NSString *)queryStringForDictionary:(NSDictionary *)inQueryDictionary;
+
 - (NSDictionary *)queryDictionary;
+
+- (NSURL *)querylessURL;
 
 @end

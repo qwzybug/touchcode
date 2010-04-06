@@ -1,0 +1,24 @@
+%token_type { char * }
+
+%left PLUS MINUS.
+%left DIVIDE TIMES.
+
+%include {
+#include <stdio.h>
+}
+
+%syntax_error { NSLog(@"Error!"); }
+
+program ::= expr(A). { NSLog(@"result: %s", A); }
+
+expr(A) ::= expr(B) MINUS expr(C).   {  }
+
+expr(A) ::= expr(B) PLUS expr(C).   {  }
+
+expr(A) ::= expr(B) TIMES  expr(C).   {  }
+
+expr(A) ::= expr(B) DIVIDE expr(C).  {
+	}  /* end of DIVIDE */
+
+
+expr(A) ::= INTEGER(B). { A = B; }

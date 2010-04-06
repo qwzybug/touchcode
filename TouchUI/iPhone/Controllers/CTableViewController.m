@@ -39,19 +39,24 @@
 
 @synthesize tableView = outletTableView;
 @synthesize initialStyle;
+@synthesize clearsSelectionOnViewWillAppear;
 
 - (id)init
 {
 if ((self = [super initWithNibName:NULL bundle:NULL]) != NULL)
 	{
-	self.initialStyle = UITableViewStylePlain;
+	initialStyle = UITableViewStylePlain;
+	clearsSelectionOnViewWillAppear = YES;
 	}
 return(self);
 }
 
 - (void)dealloc
 {
-self.tableView = NULL;
+outletTableView.delegate = NULL;
+outletTableView.dataSource = NULL;
+[outletTableView release];
+outletTableView = NULL;
 //
 [super dealloc];
 }
@@ -91,13 +96,24 @@ if (self.tableView == NULL)
 	}
 }
 
+- (void)viewDidUnload
+{
+[super viewDidUnload];
+//
+outletTableView.delegate = NULL;
+outletTableView.dataSource = NULL;
+[outletTableView release];
+outletTableView = NULL;
+}
+
 - (void)viewWillAppear:(BOOL)inAnimated
 {
 [super viewWillAppear:inAnimated];
 //
 [self.tableView reloadData];
 //
-[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:inAnimated];
+if (self.clearsSelectionOnViewWillAppear == YES)
+	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:inAnimated];
 }
 
 - (void)viewDidAppear:(BOOL)inAnimated
@@ -109,6 +125,8 @@ if (self.tableView == NULL)
 
 - (void)setEditing:(BOOL)inEditing animated:(BOOL)inAnimated
 {
+[super setEditing:inEditing animated:inAnimated];
+//
 [self.tableView setEditing:inEditing animated:inAnimated];
 }
 

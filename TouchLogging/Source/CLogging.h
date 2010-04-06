@@ -35,33 +35,43 @@
 #import "FileFunctionLine.h"
 
 typedef enum {
-	LoggingLevel_EMERG,
-	LoggingLevel_ALERT,
-	LoggingLevel_CRIT,
-	LoggingLevel_ERR,
-	LoggingLevel_WARNING,
-	LoggingLevel_NOTICE,
-	LoggingLevel_INFO,
-	LoggingLevel_DEBUG,
+	LoggingLevel_EMERG = 0,
+	LoggingLevel_ALERT = 1,
+	LoggingLevel_CRIT = 2,
+	LoggingLevel_ERR = 3,
+	LoggingLevel_WARNING = 4,
+	LoggingLevel_NOTICE = 5,
+	LoggingLevel_INFO = 6,
+	LoggingLevel_DEBUG = 7,
 } ELoggingLevel;
 
-@class CCoreDataManager;
+enum {
+	LoggingFlags_None = 0x00,
+	LoggingFlags_WriteToSTDERR = 0x01,
+	LoggingFlags_WriteToDatabase = 0x02,
+	};
+
+@class CBetterCoreDataManager;
 @class NSManagedObjectID;
 
 @protocol CLoggingHandler;
 
 @interface CLogging : NSObject <CCoreDataManagerDelegate> {
+	BOOL enabled;
+	NSUInteger flags;
 	NSString *sender;
 	NSString *facility;
-	CCoreDataManager *coreDataManager;
+	CBetterCoreDataManager *coreDataManager;
 	NSManagedObjectID *sessionID;
 	NSMutableDictionary *handlers;
 	BOOL started;
 }
 
+@property (readwrite, assign) BOOL enabled;
+@property (readwrite, assign) NSUInteger flags;
 @property (readwrite, copy) NSString *sender;
 @property (readwrite, copy) NSString *facility;
-@property (readonly, retain) CCoreDataManager *coreDataManager;
+@property (readonly, retain) CBetterCoreDataManager *coreDataManager;
 
 @property (readonly, copy) NSManagedObjectID *sessionID;
 @property (readonly, retain) NSManagedObject *session;
@@ -80,11 +90,12 @@ typedef enum {
 - (void)setFacility:(NSString *)inFacility;
 
 - (void)addHandler:(id <CLoggingHandler>)inHandler forEvents:(NSArray *)inEvents;
+- (void)removeHandler:(id <CLoggingHandler>)inHandler;
 
 /// Logging.
 - (void)logLevel:(int)inLevel format:(NSString *)inFormat, ...;
 - (void)logLevel:(int)inLevel dictionary:(NSDictionary *)inDictionary format:(NSString *)inFormat, ...;
-- (void)logLevel:(int)inLevel fileFunctionLine:(SFileFunctionLine *)inFileFunctionLine dictionary:(NSDictionary *)inDictionary format:(NSString *)inFormat, ...;
+- (void)logLevel:(int)inLevel fileFunctionLine:(SFileFunctionLine)inFileFunctionLine dictionary:(NSDictionary *)inDictionary format:(NSString *)inFormat, ...;
 
 - (void)logError:(NSError *)inError;
 - (void)logException:(NSException *)inException;
@@ -94,7 +105,10 @@ typedef enum {
 #pragma mark -
 
 @protocol CLoggingHandler <NSObject>
+
+@optional
 - (BOOL)handleLogging:(CLogging *)inLogging event:(NSString *)inEvent error:(NSError **)outError;
+
 @end
 
 #pragma mark -
@@ -109,7 +123,7 @@ typedef enum {
 	do \
 		{ \
 		NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init]; \
-		[[CLogging instance] logLevel:(level) dictionary:FileFunctionLineDict_() format:__VA_ARGS__]; \
+		[[CLogging instance] logLevel:(level) fileFunctionLine:FileFunctionLine_() dictionary:FileFunctionLineDict_() format:__VA_ARGS__]; \
 		[thePool release]; \
 		} \
 	while (0)
@@ -117,7 +131,9 @@ typedef enum {
 #define LogDict_(level, dict, ...) \
 	do \
 		{ \
-		Log((level), (dict), __VA_ARGS__); \
+		NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init]; \
+		[[CLogging instance] logLevel:(level) fileFunctionLine:FileFunctionLine_() dictionary:dict format:__VA_ARGS__]; \
+		[thePool release]; \
 		} \
 	while (0)
 

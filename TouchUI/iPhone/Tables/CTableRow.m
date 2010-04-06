@@ -125,7 +125,7 @@ return([self initWithTag:inTag title:inTitle value:inValue accessoryType:UITable
 UITableViewCell *theCell = NULL;
 if (inValue == NULL)
 	{
-	const CGRect theDefaultCellBounds = { .origin = CGPointZero, .size = { .width = 300.0, .height = 44 } };
+	const CGRect theDefaultCellBounds = { .origin = CGPointZero, .size = { .width = 300.0f, .height = 44 } };
 	theCell = [[[UITableViewCell alloc] initWithFrame:theDefaultCellBounds] autorelease];
 	}
 else
@@ -148,7 +148,7 @@ return([self initWithTag:inTag cell:theCell]);
 
 - (id)initWithTag:(NSString *)inTag title:(NSString *)inTitle buttonImage:(UIImage *)inImage target:(id)inTarget action:(SEL)inAction;
 {
-const CGRect theDefaultCellBounds = { .origin = CGPointZero, .size = { .width = 300.0, .height = 44 } };
+const CGRect theDefaultCellBounds = { .origin = CGPointZero, .size = { .width = 300.0f, .height = 44 } };
 
 UIButton *theButton = [UIButton buttonWithType:UIButtonTypeCustom];
 theButton.frame = theDefaultCellBounds;

@@ -31,14 +31,16 @@
 
 #import <CoreData/CoreData.h>
 
-@interface CFetchedResultsTableViewController : CTableViewController {
+@interface CFetchedResultsTableViewController : CTableViewController <NSFetchedResultsControllerDelegate> {
 	NSFetchedResultsController *fetchedResultsController;
-	UILabel *placeholderLabel;
+	UIBarButtonItem *addButtonItem;
+	UIView *placeholderView;
 }
 
 @property (readwrite, nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
-@property (readwrite, nonatomic, retain) UILabel *placeholderLabel;
+@property (readonly, nonatomic, retain) UIBarButtonItem *addButtonItem;
+@property (readwrite, nonatomic, retain) UIView *placeholderView;
 
-- (void)update;
+- (IBAction)add:(id)inSender;
 
 @end

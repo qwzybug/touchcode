@@ -38,4 +38,29 @@ NSData *theData = [NSData dataWithContentsOfURL:inURL options:0 error:NULL];
 return([self imageWithData:theData]);
 }
 
++ (UIImage *)imageWithBackgroundImage:(UIImage *)inBackgroundImage foregroundImage:(UIImage *)inForegroundImage;
+{
+CGRect theFrame = CGRectMake(0, 0, inBackgroundImage.size.width, inBackgroundImage.size.height);
+UIGraphicsBeginImageContext(theFrame.size);
+[inBackgroundImage drawInRect:theFrame blendMode:kCGBlendModeNormal alpha:1.0];
+[inForegroundImage drawInRect:theFrame blendMode:kCGBlendModeNormal alpha:1.0];
+UIImage *theNewImage = UIGraphicsGetImageFromCurrentImageContext();
+UIGraphicsEndImageContext();
+return(theNewImage);
+}
+
+- (UIImage *)imageTintedWithColor:(UIColor *)inColor
+{
+CGRect theFrame = CGRectMake(0, 0, self.size.width, self.size.height);
+UIGraphicsBeginImageContext(theFrame.size);
+CGContextRef theContext = UIGraphicsGetCurrentContext();
+CGContextSetFillColorWithColor(theContext, [inColor CGColor]);
+CGContextFillRect(theContext, theFrame);
+[self drawInRect:theFrame blendMode:kCGBlendModeDestinationIn alpha:1.0];
+[self drawInRect:theFrame blendMode:kCGBlendModeMultiply alpha:1.0];
+UIImage *theTintedImage = UIGraphicsGetImageFromCurrentImageContext();
+UIGraphicsEndImageContext();
+return(theTintedImage);
+}
+
 @end

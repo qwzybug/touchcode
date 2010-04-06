@@ -30,8 +30,17 @@
 #import "NSDate_InternetDateExtensions.h"
 
 #import "NSDateFormatter_InternetDateExtensions.h"
+#import "ISO8601DateFormatter.h"
 
 @implementation NSDate (NSDate_InternetDateExtensions)
+
+- (NSDate *)UTCDate
+{
+NSCalendar *theCalendar = [[[NSCalendar currentCalendar] copy] autorelease];
+NSDateComponents *theComponents = [theCalendar components:NSEraCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:self];
+theCalendar.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+return([theCalendar dateFromComponents:theComponents]);
+}
 
 + (NSDate *)dateWithRFC2822String:(NSString *)inString
 {
@@ -45,24 +54,29 @@ NSString *theDateString = [[NSDateFormatter RFC2822Formatter] stringFromDate:sel
 return(theDateString);
 }
 
+- (NSString *)RFC822StringGMT
+{
+NSString *theDateString = [[NSDateFormatter RFC2822FormatterGMT] stringFromDate:self];
+return(theDateString);
+}
+
+- (NSString *)RFC822StringUTC
+{
+NSString *theDateString = [[NSDateFormatter RFC2822FormatterUTC] stringFromDate:self];
+return(theDateString);
+}
+
 + (NSDate *)dateWithISO8601String:(NSString *)inString
 {
-NSDate *theDate = NULL;
-for (NSDateFormatter *theDateFormatter in [NSDateFormatter allISO8601DateFormatters])
-	{
-	theDate = [theDateFormatter dateFromString:inString];
-	if (theDate != NULL)
-		break;
-	}
-
-NSAssert1(theDate != NULL, @"Could not convert ISO8601 date string of \"%@\" to a NSDate", inString);
-
+ISO8601DateFormatter *theFormatter = [[[ISO8601DateFormatter alloc] init] autorelease];
+NSDate *theDate = [theFormatter dateFromString:inString];
 return(theDate);
 }
 
 - (NSString *)ISO8601String
 {
-NSString *theDateString = [[NSDateFormatter ISO8601Formatter] stringFromDate:self];
+ISO8601DateFormatter *theFormatter = [[[ISO8601DateFormatter alloc] init] autorelease];
+NSString *theDateString = [theFormatter stringFromDate:self];
 return(theDateString);
 }
 

@@ -45,13 +45,13 @@
 // undefined.
 + (id)blendedColorFromWeightingArray:(NSArray*)inArray;
 
-- (double)redComponent;
-- (double)greenComponent;
-- (double)blueComponent;
-- (double)alphaComponent;
+- (CGFloat)redComponent;
+- (CGFloat)greenComponent;
+- (CGFloat)blueComponent;
+- (CGFloat)alphaComponent;
 
-- (double)hueComponent;
-- (double)saturationComponent;
-- (double)brightnessComponent;
+- (CGFloat)hueComponent;
+- (CGFloat)saturationComponent;
+- (CGFloat)brightnessComponent;
 
 @end

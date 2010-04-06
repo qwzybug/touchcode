@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu title="Menu Test">
+	<items>
+		<item title="Menu">
+			<submenu>
+				<controller name="CMenuTableViewController"/>
+				<items>
+					<item title="Row #1"/>
+					<item title="Row #2"/>
+					<item title="Row #3"/>
+				</items>
+			</submenu>
+		</item>
+		<item title="Split View">
+			<submenu>
+				<controller name="CMenuSplitViewController"/>
+				<items>
+					<item title="Row #1"/>
+					<item title="Row #2"/>
+					<item title="Row #3"/>
+				</items>
+			</submenu>
+		</item>
+		<item title="Toolbar">
+			<submenu>
+				<controller name="CToolbarMenuViewController"/>
+				<items>
+					<item title="Row #1"/>
+					<item title="Row #2"/>
+					<item title="Row #3"/>
+				</items>
+			</submenu>
+		</item>
+		<item title="Tab #4">
+			<submenu>
+				<controller name="CMenuTableViewController"/>
+				<items>
+					<item title="Row #1"/>
+					<item title="Row #2"/>
+					<item title="Row #3"/>
+				</items>
+			</submenu>
+		</item>
+		<item title="Tab #5">
+			<submenu>
+				<controller name="CMenuTableViewController"/>
+				<items>
+					<item title="Row #1"/>
+					<item title="Row #2"/>
+					<item title="Row #3"/>
+				</items>
+			</submenu>
+		</item>
+	</items>
+</menu>

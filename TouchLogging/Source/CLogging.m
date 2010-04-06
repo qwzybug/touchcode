@@ -29,12 +29,12 @@
 
 #import "CLogging.h"
 
-#import "CCoreDataManager.h"
+#import "CBetterCoreDataManager.h"
 
 static CLogging *gInstance = NULL;
 
 @interface CLogging ()
-@property (readwrite, retain) CCoreDataManager *coreDataManager;
+@property (readwrite, retain) CBetterCoreDataManager *coreDataManager;
 @property (readwrite, copy) NSManagedObjectID *sessionID;
 @property (readwrite, retain) NSMutableDictionary *handlers;
 @property (readwrite, assign) BOOL started;
@@ -47,6 +47,8 @@ static CLogging *gInstance = NULL;
 
 @implementation CLogging
 
+@synthesize enabled;
+@synthesize flags;
 @synthesize sender;
 @synthesize facility;
 @dynamic coreDataManager;
@@ -58,7 +60,7 @@ static CLogging *gInstance = NULL;
 {
 NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
 
-@synchronized(@"CLogging")
+@synchronized(@"CLogging.instance")
 	{
 	if (gInstance == NULL)
 		{
@@ -102,6 +104,16 @@ switch (inLevel)
 {
 if ((self = [super init]) != NULL)
 	{
+	NSNumber *theEnabledFlag = [[[NSProcessInfo processInfo] environment] objectForKey:@"LOGGING"];
+	if (theEnabledFlag)
+		enabled = [theEnabledFlag boolValue];
+	else
+		enabled = YES;
+	
+	flags = LoggingFlags_WriteToSTDERR;
+	#if DEBUG_LOGGING_PERSISTANT
+	flags |= LoggingFlags_WriteToDatabase;
+	#endif
 	}
 return(self);
 }
@@ -128,33 +140,50 @@ handlers = NULL;
 
 - (NSManagedObject *)session
 {
-return([self.coreDataManager.managedObjectContext existingObjectWithID:self.sessionID error:NULL]);
+NSAssert(self.sessionID != NULL, @"No session ID");
+NSError *theError = NULL;
+NSManagedObject *theSession = [self.coreDataManager.managedObjectContext existingObjectWithID:self.sessionID error:&theError];
+if (theError)
+	{
+//	NSLog(@"ERROR >>>> %@", theError);
+	return(NULL);
+	}
+
+return(theSession);
 }
 
 #pragma mark -
 
-- (CCoreDataManager *)coreDataManager
+- (CBetterCoreDataManager *)coreDataManager
 {
-@synchronized(@"CLogging")
+@synchronized(@"CLogging.coreDataManager")
 	{
 	if (coreDataManager == NULL)
 		{
-		CCoreDataManager *theCoreDataManager = [[[CCoreDataManager alloc] initWithName:@"Logging" forceReplace:NO storeType:NSSQLiteStoreType storeOptions:NULL] autorelease];
+//		NSLog(@"IS MAIN THREAD: %d", [NSThread isMainThread]);
+		
+		CBetterCoreDataManager *theCoreDataManager = [[[CBetterCoreDataManager alloc] init] autorelease];
+		
+		theCoreDataManager.name = @"Logging";
+		
+		theCoreDataManager.defaultMergePolicy = NSMergeByPropertyStoreTrumpMergePolicy;
 
 		NSManagedObject *theSession = [NSEntityDescription insertNewObjectForEntityForName:@"LoggingSession" inManagedObjectContext:theCoreDataManager.managedObjectContext];
 		[theSession setValue:[NSDate date] forKey:@"created"];
 
-		[theCoreDataManager save];
-
 		coreDataManager = [theCoreDataManager retain];
 		coreDataManager.delegate = self;
+
+		[theCoreDataManager save];
+
+//		NSLog(@"%@", theSession.objectID);
 		self.sessionID = theSession.objectID;
 		}
 	}
 return(coreDataManager);
 }
 
-- (void)setCoreDataManager:(CCoreDataManager *)aCoreDataManager
+- (void)setCoreDataManager:(CBetterCoreDataManager *)aCoreDataManager
 {
 if (coreDataManager != aCoreDataManager)
 	{
@@ -183,6 +212,23 @@ for (NSString *theEvent in inEvents)
 		[theHandlers addObject:inHandler];
 		}
 	}
+
+if (self.started == YES)
+	{
+	if ([inEvents containsObject:@"start"])
+		{
+		[inHandler handleLogging:self event:@"start" error:NULL];
+		}
+	}
+}
+
+- (void)removeHandler:(id <CLoggingHandler>)inHandler
+{
+for (NSMutableArray *theHandlers in [self.handlers allValues])
+	{
+	if ([theHandlers containsObject:inHandler])
+		[theHandlers removeObject:inHandler];
+	}
 }
 
 - (void)start
@@ -192,6 +238,8 @@ for (id <CLoggingHandler> theHandler in theHandlers)
 	{
 	[theHandler handleLogging:self event:@"start" error:NULL];
 	}
+	
+self.started = YES;
 }
 
 - (void)end
@@ -214,12 +262,13 @@ va_start(theArgList, inFormat);
 NSString *theMessage = [[[NSString alloc] initWithFormat:inFormat arguments:theArgList] autorelease];
 va_end(theArgList);
 
-[self logLevel:inLevel fileFunctionLine:NULL dictionary:NULL format:@"%@", theMessage];
+SFileFunctionLine theFileFunctionLine = { .file = NULL, .function = NULL, .line = 0 };
+[self logLevel:inLevel fileFunctionLine:theFileFunctionLine dictionary:NULL format:@"%@", theMessage];
 
 [thePool release];
 }
 
-- (void)logLevel:(int)inLevel dictionary:(NSDictionary *)inDictionary format:(NSString *)inFormat, ...
+- (void)logLevel:(int)inLevel dictionary:(NSDictionary *)inDictionary format:(NSString *)inFormat, ...;
 {
 NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
 
@@ -228,52 +277,87 @@ va_start(theArgList, inFormat);
 NSString *theMessage = [[[NSString alloc] initWithFormat:inFormat arguments:theArgList] autorelease];
 va_end(theArgList);
 
-[self logLevel:inLevel fileFunctionLine:NULL dictionary:inDictionary format:@"%@", theMessage];
+SFileFunctionLine theFileFunctionLine = { .file = NULL, .function = NULL, .line = 0 };
+[self logLevel:inLevel fileFunctionLine:theFileFunctionLine dictionary:inDictionary format:@"%@", theMessage];
 
 [thePool release];
 }
 
-- (void)logLevel:(int)inLevel fileFunctionLine:(SFileFunctionLine *)inFileFunctionLine dictionary:(NSDictionary *)inDictionary format:(NSString *)inFormat, ...;
+- (void)logLevel:(int)inLevel fileFunctionLine:(SFileFunctionLine)inFileFunctionLine dictionary:(NSDictionary *)inDictionary format:(NSString *)inFormat, ...;
 {
 NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
 
+if (self.enabled == NO)
+	return;
+
 if (self.started == NO)
 	[self start];
+
 
 va_list theArgList;
 va_start(theArgList, inFormat);
 NSString *theMessageString = [[[NSString alloc] initWithFormat:inFormat arguments:theArgList] autorelease];
 va_end(theArgList);
 
-fprintf(stderr, "%s\n", [theMessageString UTF8String]);
-
-NSManagedObject *theMessage = [NSEntityDescription insertNewObjectForEntityForName:@"LoggingMessage" inManagedObjectContext:self.coreDataManager.managedObjectContext];
-
-NSError *theError = NULL;
-NSManagedObject *theSession = [self.coreDataManager.managedObjectContext existingObjectWithID:self.sessionID error:&theError];
-NSAssert1(theSession != NULL, @"No session found (%@)", theError);
-
-[theMessage setValue:[NSNumber numberWithInteger:inLevel] forKey:@"level"];
-[theMessage setValue:theMessageString forKey:@"message"];
-[theMessage setValue:[NSDate date] forKey:@"timestamp"];
-[theMessage setValue:self.sender forKey:@"sender"];
-[theMessage setValue:self.facility forKey:@"facility"];
-[theMessage setValue:theSession forKey:@"session"];
-
-if (inDictionary)
+if (self.flags & LoggingFlags_WriteToSTDERR)
 	{
-	NSData *theAttributesData = [NSPropertyListSerialization dataFromPropertyList:inDictionary format:NSPropertyListBinaryFormat_v1_0 errorDescription:NULL];
-	[theMessage setValue:theAttributesData forKey:@"extraAttributes"];
+	char *theLevelString = NULL;
+	switch (inLevel)
+		{
+		case LoggingLevel_EMERG:
+			theLevelString = "EMERG: ";
+			break;
+		case LoggingLevel_ALERT:
+			theLevelString = "ALERT: ";
+			break;
+		case LoggingLevel_CRIT:
+			theLevelString = "CRIT:  ";
+			break;
+		case LoggingLevel_ERR:
+			theLevelString = "ERROR: ";
+			break;
+		case LoggingLevel_WARNING:
+			theLevelString = "WARN:  ";
+			break;
+		case LoggingLevel_NOTICE:
+			theLevelString = "NOTICE:";
+			break;
+		case LoggingLevel_INFO:
+			theLevelString = "INFO:  ";
+			break;
+		case LoggingLevel_DEBUG:
+			theLevelString = "DEBUG: ";
+			break;
+		}
+		
+	fprintf(stderr, "%s %s\n", theLevelString, [theMessageString UTF8String]);
 	}
 
-[self.coreDataManager save];
-
-NSArray *theHandlers = [self.handlers objectForKey:@"log"];
-for (id <CLoggingHandler> theHandler in theHandlers)
+if (self.flags & LoggingFlags_WriteToDatabase)
 	{
-	[theHandler handleLogging:self event:@"log" error:NULL];
-	}
+	NSManagedObject *theMessage = [NSEntityDescription insertNewObjectForEntityForName:@"LoggingMessage" inManagedObjectContext:self.coreDataManager.managedObjectContext];
 
+	[theMessage setValue:[NSNumber numberWithInteger:inLevel] forKey:@"level"];
+	[theMessage setValue:theMessageString forKey:@"message"];
+	[theMessage setValue:[NSDate date] forKey:@"timestamp"];
+	[theMessage setValue:self.sender forKey:@"sender"];
+	[theMessage setValue:self.facility forKey:@"facility"];
+	[theMessage setValue:self.session forKey:@"session"];
+
+	if (inDictionary)
+		{
+		NSData *theAttributesData = [NSPropertyListSerialization dataFromPropertyList:inDictionary format:NSPropertyListBinaryFormat_v1_0 errorDescription:NULL];
+		[theMessage setValue:theAttributesData forKey:@"extraAttributes"];
+		}
+
+	[self.coreDataManager save];
+
+	NSArray *theHandlers = [self.handlers objectForKey:@"log"];
+	for (id <CLoggingHandler> theHandler in theHandlers)
+		{
+		[theHandler handleLogging:self event:@"log" error:NULL];
+		}
+	}
 
 [thePool release];
 }
@@ -329,25 +413,6 @@ else
 	}
 
 [thePool release];
-}
-
-#pragma mark -
-
-- (void)coreDataManager:(CCoreDataManager *)inCoreDataManager didCreateNewManagedObjectContext:(NSManagedObjectContext *)inManagedObjectContext;
-{
-[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(managedObjectContextDidSaveNotification:) name:NSManagedObjectContextDidSaveNotification object:inManagedObjectContext];
-}
-
-- (void)managedObjectContextDidSaveNotification:(NSNotification *)notification
-{
-if ([NSThread mainThread] != [NSThread currentThread])
-	{
-	[self performSelectorOnMainThread:@selector(managedObjectContextDidSaveNotification:) withObject:notification waitUntilDone:YES];
-	return;
-	}
-
-[self.coreDataManager.managedObjectContext mergeChangesFromContextDidSaveNotification:notification];
-[self.coreDataManager save];
 }
 
 @end

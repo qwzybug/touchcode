@@ -36,7 +36,7 @@ static unsigned int BLUE = 2;
 #define HSB_MIX 0
 
 @interface UIColor()
-- (double)componentWithIndex:(unsigned int)inIndex;
+- (CGFloat)componentWithIndex:(unsigned int)inIndex;
 @end
 
 @implementation UIColor (Blending)
@@ -47,16 +47,16 @@ static unsigned int BLUE = 2;
     NSParameterAssert( [inArray count] > 0 );
     
 #if (HSB_MIX)
-    double finalHue = 0.;
-    double finalSaturation = 0.;
-    double finalBrightness = 0.;
-    double finalAlpha = 0.;
-    double finalWeight = 0.;
+    CGFloat finalHue = 0.;
+    CGFloat finalSaturation = 0.;
+    CGFloat finalBrightness = 0.;
+    CGFloat finalAlpha = 0.;
+    CGFloat finalWeight = 0.;
     
     for ( NSDictionary *d in inArray ) {
         UIColor *c = [d objectForKey:@"color"];
         NSNumber* weightNumber = [d objectForKey:@"weight"];
-        double weight = [weightNumber doubleValue];
+        CGFloat weight = [weightNumber doubleValue];
      
         finalHue += [c hueComponent] * weight;
         finalSaturation += [c saturationComponent] * weight;
@@ -72,16 +72,16 @@ static unsigned int BLUE = 2;
         brightness:finalBrightness / finalWeight
         alpha:finalAlpha / finalWeight];
 #else
-    double finalRed = 0.;
-    double finalGreen = 0.;
-    double finalBlue = 0.;
-    double finalAlpha = 0.;
-    double finalWeight = 0.;
+    CGFloat finalRed = 0.0f;
+    CGFloat finalGreen = 0.0f;
+    CGFloat finalBlue = 0.0f;
+    CGFloat finalAlpha = 0.0f;
+    CGFloat finalWeight = 0.0f;
         
     for ( NSDictionary *d in inArray ) {
         UIColor *c = [d objectForKey:@"color"];
         NSNumber* weightNumber = [d objectForKey:@"weight"];
-        double weight = [weightNumber doubleValue];
+        CGFloat weight = (CGFloat)[weightNumber doubleValue];
      
         finalRed += [c redComponent] * weight;
         finalGreen += [c greenComponent] * weight;
@@ -101,98 +101,98 @@ static unsigned int BLUE = 2;
 
 // Using math from the Wikipedia page:
 //  http://en.wikipedia.org/wiki/HSL_color_space
-- (double)hueComponent
+- (CGFloat)hueComponent
 {
-    double red = [self redComponent];
-    double green = [self greenComponent];
-    double blue = [self blueComponent];
+    CGFloat red = [self redComponent];
+    CGFloat green = [self greenComponent];
+    CGFloat blue = [self blueComponent];
     
-    double max = MAX( red, MAX( green, blue ) );
-    double min = MIN( red, MIN( green, blue ) );
+    CGFloat max = MAX( red, MAX( green, blue ) );
+    CGFloat min = MIN( red, MIN( green, blue ) );
     
-    double hue;
+    CGFloat hue;
     
     if ( max == min ) {
-        hue = 0.;
+        hue = 0.0f;
     }
     
     else if ( max == red ) {
-        hue = ( 60. * ( ( green - blue ) / ( max - min ) ) );
-        hue = fmod( hue, 360. );
+        hue = ( 60.0f * ( ( green - blue ) / ( max - min ) ) );
+        hue = (CGFloat)fmod( hue, 360.0f);
     }
     
     else if ( max == green ) {
-        hue = ( 60. * ( ( blue - red ) / ( max - min ) ) + 120. );
+        hue = ( 60.0f * ( ( blue - red ) / ( max - min ) ) + 120.0f );
     }
     
     else if ( max == blue ) {
-        hue = ( 60. * ( ( red - green ) / ( max - min ) ) + 240. );
+        hue = ( 60.0f * ( ( red - green ) / ( max - min ) ) + 240.0f );
     }
     
-    return hue / 360.;
+    return hue / 360.0f;
 }
 
-- (double)saturationComponent
+- (CGFloat)saturationComponent
 {
-    double red = [self redComponent];
-    double green = [self greenComponent];
-    double blue = [self blueComponent];
+    CGFloat red = [self redComponent];
+    CGFloat green = [self greenComponent];
+    CGFloat blue = [self blueComponent];
     
-    double max = MAX( red, MAX( green, blue ) );
-    double min = MIN( red, MIN( green, blue ) );    
+    CGFloat max = MAX( red, MAX( green, blue ) );
+    CGFloat min = MIN( red, MIN( green, blue ) );    
     
     if ( max == min ) {
         return 0;
     }
     
-    double brightness = [self brightnessComponent];
+    CGFloat brightness = [self brightnessComponent];
     
-    if ( brightness <= 0.5 ) {
+    if ( brightness <= 0.5f ) {
         return ( max - min ) / ( max + min );
     }
     else {
-        return ( max - min ) / ( 2. - ( max + min ) );
+        return ( max - min ) / ( 2.0f - ( max + min ) );
     }
 }
 
-- (double)brightnessComponent
+- (CGFloat)brightnessComponent
 {
-    double red = [self redComponent];
-    double green = [self greenComponent];
-    double blue = [self blueComponent];
+    CGFloat red = [self redComponent];
+    CGFloat green = [self greenComponent];
+    CGFloat blue = [self blueComponent];
     
-    double max = MAX( red, MAX( green, blue ) );
-    double min = MIN( red, MIN( green, blue ) );    
+    CGFloat max = MAX( red, MAX( green, blue ) );
+    CGFloat min = MIN( red, MIN( green, blue ) );    
     
     if ( max == 0 ) {
-        return 0.;
+        return 0.0f;
     }
     
-    return ( 1. - ( min / max ) );
+    return ( 1.0f - ( min / max ) );
 }
 
-- (double)redComponent
+- (CGFloat)redComponent
 {
     return [self componentWithIndex:RED];
 }
 
-- (double)greenComponent
+- (CGFloat)greenComponent
 {
     return [self componentWithIndex:GREEN];
 }
 
-- (double)blueComponent
+- (CGFloat)blueComponent
 {
     return [self componentWithIndex:BLUE];
 }
 
-- (double)alphaComponent
+- (CGFloat)alphaComponent
 {
     CGColorRef color = [self CGColor];
     return CGColorGetAlpha( color );
 }
 
-- (double)componentWithIndex:(unsigned int)inIndex
+- (CGFloat)componentWithIndex:(unsigned int)inIndex
 {
     CGColorRef color = [self CGColor];
     const CGFloat *components = CGColorGetComponents( color );

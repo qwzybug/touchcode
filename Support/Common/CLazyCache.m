@@ -37,7 +37,12 @@
 @property (readwrite, nonatomic, assign) NSUInteger capacity;
 @property (readwrite, nonatomic, retain) NSMutableDictionary *cachedObjectsByKey;
 @property (readwrite, nonatomic, retain) NSMutableArray *cachedKeys;
+
+- (void)applicationDidReceiveMemoryWarningNotification:(NSNotification *)inNotification;
+
 @end
+
+#pragma mark -
 
 @implementation CLazyCache
 

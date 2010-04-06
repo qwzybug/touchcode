@@ -35,38 +35,50 @@
 #import <Cocoa/Cocoa.h>
 #endif
 
+#define THREAD_PARANOIA 1
+
 @interface CCoreDataManager ()
-@property (readwrite, retain) NSURL *modelURL;
-@property (readwrite, retain) NSURL *persistentStoreURL;
-@property (readwrite, retain) NSString *storeType;
-@property (readwrite, retain) NSDictionary *storeOptions;
+@property (readwrite, retain) id threadStorageKey;
+
+- (NSPersistentStoreCoordinator *)newPersistentStoreCoordinatorWithOptions:(NSDictionary *)inOptions error:(NSError **)outError;
 
 + (NSURL *)modelURLForName:(NSString *)inName;
 + (NSURL *)persistentStoreURLForName:(NSString *)inName storeType:(NSString *)inStoreType forceReplace:(BOOL)inForceReplace;
 + (NSString *)applicationSupportFolder;
-- (NSString *)threadStorageKey;
+- (id)threadStorageKey;
 @end
 
 #pragma mark -
 
 @implementation CCoreDataManager
 
-@synthesize modelURL;
-@synthesize persistentStoreURL;
+@synthesize name;
+@dynamic modelURL;
+@dynamic persistentStoreURL;
 @synthesize storeType;
+@synthesize forceReplace;
 @synthesize storeOptions;
-
 @dynamic persistentStoreCoordinator;
 @dynamic managedObjectModel;
 @dynamic managedObjectContext;
-
+@synthesize threadStorageKey;
 @synthesize delegate;
 
-- (id)initWithModelUrl:(NSURL *)inModelUrl persistentStoreUrl:(NSURL *)inPersistentStoreUrl storeType:(NSString *)inStoreType storeOptions:(NSDictionary *)inStoreOptions
+#if 0
++ (void)load
 {
-NSAssert(inModelUrl != NULL, @"inModelURL should not be NULL.");
-NSAssert(inPersistentStoreUrl != NULL, @"inPersistentStoreURL should not be NULL.");
+#warning Setting core data debugging
 
+NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
+
+[[NSUserDefaults standardUserDefaults] setInteger:3 forKey:@"com.apple.CoreData.ThreadingDebug"];
+
+[thePool release];
+}
+#endif
+
+- (id)init
+{
 if ((self = [super init]) != NULL)
 	{
 	#if TARGET_OS_IPHONE == 1
@@ -75,50 +87,7 @@ if ((self = [super init]) != NULL)
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminate:) name:NSApplicationWillTerminateNotification object:[NSApplication sharedApplication]];
 	#endif
 
-	self.modelURL = inModelUrl;
-	self.persistentStoreURL = inPersistentStoreUrl;
-	self.storeType = inStoreType ? inStoreType : NSSQLiteStoreType;
-	self.storeOptions = inStoreOptions;
-	}
-return(self);
-}
-
-- (id)initWithModelUrl:(NSURL *)inModelUrl persistentStoreName:(NSString *)inPersistentName forceReplace:(BOOL)inForceReplace storeType:(NSString *)inStoreType storeOptions:(NSDictionary *)inStoreOptions;
-{
-NSURL *thePersistentStoreURL = [[self class] persistentStoreURLForName:inPersistentName storeType:inStoreType forceReplace:inForceReplace];
-NSAssert(thePersistentStoreURL != NULL, @"thePersistentStoreURL should not be NULL.");
-
-if ((self = [self initWithModelUrl:inModelUrl persistentStoreUrl:thePersistentStoreURL storeType:inStoreType storeOptions:inStoreOptions]) != NULL)
-	{
-	
-	}
-return(self);
-}
-
-- (id)initWithModelName:(NSString *)inModelName persistentStoreName:(NSString *)inPersistentName forceReplace:(BOOL)inForceReplace storeType:(NSString *)inStoreType storeOptions:(NSDictionary *)inStoreOptions;
-{
-NSURL *theModelURL = [[self class] modelURLForName:inModelName];
-NSAssert(theModelURL != NULL, @"theModelURL should not be NULL.");
-NSURL *thePersistentStoreURL = [[self class] persistentStoreURLForName:inPersistentName storeType:inStoreType forceReplace:inForceReplace];
-NSAssert(thePersistentStoreURL != NULL, @"thePersistentStoreURL should not be NULL.");
-
-if ((self = [self initWithModelUrl:theModelURL persistentStoreUrl:thePersistentStoreURL storeType:inStoreType storeOptions:inStoreOptions]) != NULL)
-	{
-	
-	}
-return(self);
-}
-
-- (id)initWithName:(NSString *)inName forceReplace:(BOOL)inForceReplace storeType:(NSString *)inStoreType storeOptions:(NSDictionary *)inStoreOptions;
-{
-NSURL *theModelURL = [[self class] modelURLForName:inName];
-NSAssert(theModelURL != NULL, @"theModelURL should not be NULL.");
-NSURL *thePersistentStoreURL = [[self class] persistentStoreURLForName:inName storeType:inStoreType forceReplace:inForceReplace];
-NSAssert(thePersistentStoreURL != NULL, @"thePersistentStoreURL should not be NULL.");
-
-if ((self = [self initWithModelUrl:theModelURL persistentStoreUrl:thePersistentStoreURL storeType:inStoreType storeOptions:inStoreOptions]) != NULL)
-	{
-	
+	storeType = NSSQLiteStoreType;
 	}
 return(self);
 }
@@ -138,6 +107,8 @@ self.persistentStoreURL = NULL;
 self.storeType = NULL;
 self.storeOptions = NULL;
 
+[name release];
+name = NULL;
 [persistentStoreCoordinator release];
 persistentStoreCoordinator = NULL;
 [managedObjectModel release];
@@ -148,12 +119,50 @@ managedObjectModel = NULL;
 
 #pragma mark -
 
+- (NSURL *)modelURL
+{
+if (modelURL == NULL && self.name != NULL)
+	{
+	modelURL = [[self class] modelURLForName:self.name];
+	}
+return(modelURL);
+}
+
+- (void)setModelURL:(NSURL *)inModelURL
+{
+if (modelURL != inModelURL)
+	{
+	[modelURL release];
+	modelURL = [inModelURL retain];
+	}
+}
+
+- (NSURL *)persistentStoreURL
+{
+if (persistentStoreURL == NULL && self.name != NULL)
+	{
+	persistentStoreURL = [[[self class] persistentStoreURLForName:self.name storeType:self.storeType forceReplace:self.forceReplace] retain];
+	}
+return(persistentStoreURL);
+}
+
+- (void)setPersistentStoreURL:(NSURL *)inPersistentStoreURL
+{
+if (persistentStoreURL != inPersistentStoreURL)
+	{
+	[persistentStoreURL release];
+	persistentStoreURL = [inPersistentStoreURL retain];
+	}
+}
+
 - (NSManagedObjectModel *)managedObjectModel
 {
-@synchronized(@"CCoreDataManager.managedObjectModel")
+@synchronized(self)
 	{
 	if (managedObjectModel == NULL)
 		{
+//		NSLog(@"Creating MOM: %@", [self.modelURL.path lastPathComponent]);
+		NSAssert([[NSFileManager defaultManager] fileExistsAtPath:self.modelURL.path], @"File exists.");
 		managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:self.modelURL];
 		}
 	}
@@ -162,32 +171,49 @@ return(managedObjectModel);
 
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator
 {
-@synchronized(@"CCoreDataManager.persistentStoreCoordinator")
+@synchronized(self)
 	{
 	if (persistentStoreCoordinator == NULL)
 		{
-		NSError *theError = NULL;
-		NSManagedObjectModel *theManagedObjectModel = self.managedObjectModel;
-		if (theManagedObjectModel == NULL)
-			return(NULL);
-		NSPersistentStoreCoordinator *thePersistentStoreCoordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:theManagedObjectModel] autorelease];
-		NSPersistentStore *thePersistentStore = [thePersistentStoreCoordinator addPersistentStoreWithType:self.storeType configuration:NULL URL:self.persistentStoreURL options:self.storeOptions error:&theError];
-        if (thePersistentStore == NULL)
-			{
-			[self presentError:theError];
-			}
+		persistentStoreCoordinator = [[self newPersistentStoreCoordinatorWithOptions:self.storeOptions error:NULL] retain];
 		
-		persistentStoreCoordinator = [thePersistentStoreCoordinator retain];
+//		#if THREAD_PARANOIA == 1
+//		NSAssert([NSThread isMainThread] == YES, @"Should not create persistentStoreCoordinate from non-main thread");
+//		#endif /* THREAD_PARANOIA == 1 */
+
 		}
 	}
+
 return(persistentStoreCoordinator);
+}
+
+- (NSPersistentStoreCoordinator *)newPersistentStoreCoordinatorWithOptions:(NSDictionary *)inOptions error:(NSError **)outError
+{
+NSPersistentStoreCoordinator *thePersistentStoreCoordinator = NULL;
+
+NSError *theError = NULL;
+NSManagedObjectModel *theManagedObjectModel = self.managedObjectModel;
+if (theManagedObjectModel == NULL)
+	return(NULL);
+thePersistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:theManagedObjectModel];
+NSPersistentStore *thePersistentStore = [thePersistentStoreCoordinator addPersistentStoreWithType:self.storeType configuration:NULL URL:self.persistentStoreURL options:inOptions error:&theError];
+if (thePersistentStore == NULL)
+	{
+	[self presentError:theError];
+	}
+
+if (outError)
+	*outError = theError;
+return(thePersistentStoreCoordinator);
 }
 
 - (NSManagedObjectContext *)managedObjectContext
 {
+NSManagedObjectContext *theManagedObjectContext = NULL;
+
 NSString *theThreadStorageKey = [self threadStorageKey];
 
-NSManagedObjectContext *theManagedObjectContext = [[[NSThread currentThread] threadDictionary] objectForKey:theThreadStorageKey];
+theManagedObjectContext = [[[NSThread currentThread] threadDictionary] objectForKey:theThreadStorageKey];
 if (theManagedObjectContext == NULL)
 	{
 	theManagedObjectContext = [[self newManagedObjectContext] autorelease];
@@ -203,43 +229,47 @@ return(theManagedObjectContext);
 - (NSManagedObjectContext *)newManagedObjectContext
 {
 NSPersistentStoreCoordinator *thePersistentStoreCoordinator = self.persistentStoreCoordinator;
-if (thePersistentStoreCoordinator == NULL)
-	return(NULL);
+NSAssert(thePersistentStoreCoordinator != NULL, @"No persistent store coordinator!");
 NSManagedObjectContext *theManagedObjectContext = [[NSManagedObjectContext alloc] init];
 [theManagedObjectContext setPersistentStoreCoordinator:thePersistentStoreCoordinator];
 
-[self.delegate coreDataManager:self didCreateNewManagedObjectContext:theManagedObjectContext];
+if (self.delegate && [self.delegate respondsToSelector:@selector(coreDataManager:didCreateNewManagedObjectContext:)])
+	[self.delegate coreDataManager:self didCreateNewManagedObjectContext:theManagedObjectContext];
 
 return(theManagedObjectContext);
 }
 
 - (BOOL)migrate:(NSError **)outError;
 {
-NSAssert(persistentStoreCoordinator == NULL, @"Cannot migrate persistent store with it already open.");
+BOOL theResult = NO;
+@synchronized(self)
+	{
+	NSAssert(persistentStoreCoordinator == NULL, @"Cannot migrate persistent store with it already open.");
 
-NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
+	NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
 
-NSPersistentStoreCoordinator *thePersistentStoreCoordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel] autorelease];
+	NSDictionary *theOptions = [NSDictionary dictionaryWithObjectsAndKeys:
+		[NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, 
+		NULL];
 
-NSDictionary *theOptions = [NSDictionary dictionaryWithObjectsAndKeys:
-	[NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, 
-	NULL];
-    persistentStoreCoordinator = [thePersistentStoreCoordinator retain];
-NSError *theError = NULL;
-[thePersistentStoreCoordinator addPersistentStoreWithType:self.storeType configuration:NULL URL:self.persistentStoreURL options:theOptions error:&theError];
-    
-if (theError)
-	[theError retain];
+	NSError *theError = NULL;
+	[[self newPersistentStoreCoordinatorWithOptions:theOptions error:&theError] autorelease];
 
-[thePool release];
+	if (theError)
+		[theError retain];
 
-if (theError)
-	[theError autorelease];
+	[thePool release];
 
-if (outError)
-	*outError = theError;
-    
-return(theError == NULL);
+	if (theError)
+		[theError autorelease];
+
+	if (outError)
+		*outError = theError;
+		
+	theResult = theError == NULL;
+    }
+	
+return(theResult);
 }
 
 - (BOOL)save:(NSError **)outError;
@@ -278,11 +308,18 @@ if ([self save:&theError] == NO)
 
 - (void)presentError:(NSError *)inError
 {
-#if TARGET_OS_IPHONE == 1
-fprintf(stderr, "ERROR: %s (%s)\n", [[inError description] UTF8String], [[inError.userInfo description] UTF8String]);
-#else
-[[NSApplication sharedApplication] presentError:inError];
-#endif
+if (self.delegate && [self.delegate respondsToSelector:@selector(coreDataManager:presentError:)])
+	{
+	[self.delegate coreDataManager:self presentError:inError];
+	}
+else
+	{
+	#if TARGET_OS_IPHONE == 1
+	fprintf(stderr, "ERROR: %s (%s)\n", [[inError description] UTF8String], [[inError.userInfo description] UTF8String]);
+	#else
+	[[NSApplication sharedApplication] presentError:inError];
+	#endif
+	}
 }
 
 - (void)applicationWillTerminate:(NSNotification *)inNotification
@@ -363,10 +400,16 @@ if ([[NSFileManager defaultManager] fileExistsAtPath:theApplicationSupportFolder
 return(theApplicationSupportFolder);
 }
 
-- (NSString *)threadStorageKey
+- (id)threadStorageKey
 {
-NSString *theKey = [NSString stringWithFormat:@"%@:%p", NSStringFromClass([self class]), self];
-return(theKey);
+@synchronized(self)
+	{
+	if (threadStorageKey == NULL)
+		{
+		threadStorageKey = [[NSString alloc] initWithFormat:@"%@:%p", NSStringFromClass([self class]), self];
+		}
+	}
+return(threadStorageKey);
 }
 
 @end

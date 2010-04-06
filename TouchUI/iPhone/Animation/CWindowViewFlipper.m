@@ -41,7 +41,7 @@
 if ((self = [super init]) != NULL)
 	{
 	self.transition = UIViewAnimationTransitionFlipFromLeft;
-	self.animationDuration = 0.5;
+	self.animationDuration = 0.5f;
 	}
 return(self);
 }

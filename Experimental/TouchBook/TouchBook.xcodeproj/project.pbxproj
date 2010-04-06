@@ -1,0 +1,575 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D3623260D0F684500981E51 /* TouchBookAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* TouchBookAppDelegate.m */; };
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		2899E5220DE3E06400AC0155 /* TouchBookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* TouchBookViewController.xib */; };
+		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		28D7ACF80DDB3853001CB0EB /* CTouchBookPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* CTouchBookPageViewController.m */; };
+		452A610E1150458E007BA750 /* test.htm in Resources */ = {isa = PBXBuildFile; fileRef = 452A610C1150458E007BA750 /* test.htm */; };
+		452A610F1150458E007BA750 /* test.css in Resources */ = {isa = PBXBuildFile; fileRef = 452A610D1150458E007BA750 /* test.css */; };
+		452A6111115045C3007BA750 /* jquery-1.4.2.min.js in Sources */ = {isa = PBXBuildFile; fileRef = 452A6110115045C3007BA750 /* jquery-1.4.2.min.js */; };
+		452A61131150489D007BA750 /* test.js in Sources */ = {isa = PBXBuildFile; fileRef = 452A61121150489D007BA750 /* test.js */; };
+		4585BBE41121B50700F13399 /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4585B93B1121B50600F13399 /* CXMLDocument_CreationExtensions.m */; };
+		4585BBE51121B50700F13399 /* CXMLNode_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4585B93D1121B50600F13399 /* CXMLNode_CreationExtensions.m */; };
+		4585BBE61121B50700F13399 /* CXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4585B93F1121B50600F13399 /* CXMLDocument.m */; };
+		4585BBE71121B50700F13399 /* CXMLDocument_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4585B9411121B50600F13399 /* CXMLDocument_PrivateExtensions.m */; };
+		4585BBE81121B50700F13399 /* CXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 4585B9431121B50600F13399 /* CXMLElement.m */; };
+		4585BBE91121B50700F13399 /* CXMLElement_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4585B9451121B50600F13399 /* CXMLElement_CreationExtensions.m */; };
+		4585BBEA1121B50700F13399 /* CXMLElement_ElementTreeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4585B9471121B50600F13399 /* CXMLElement_ElementTreeExtensions.m */; };
+		4585BBEB1121B50700F13399 /* CXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4585B9491121B50600F13399 /* CXMLNode.m */; };
+		4585BBEC1121B50700F13399 /* CXMLNode_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4585B94B1121B50600F13399 /* CXMLNode_PrivateExtensions.m */; };
+		4585BBED1121B50700F13399 /* CXMLNode_XPathExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4585B94D1121B50600F13399 /* CXMLNode_XPathExtensions.m */; };
+		4585BBEE1121B50700F13399 /* CTidy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4585B9501121B50600F13399 /* CTidy.m */; };
+		4585BE5C1121B54C00F13399 /* CBookContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4585BE5B1121B54C00F13399 /* CBookContainer.m */; };
+		4585BE8A1121B77800F13399 /* CBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 4585BE891121B77800F13399 /* CBook.m */; };
+		4585BF161121BDCD00F13399 /* CSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4585BF151121BDCD00F13399 /* CSection.m */; };
+		45B85B601121D5160012F551 /* CZipfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B85B5F1121D5160012F551 /* CZipfile.m */; };
+		45B85C871121DA8D0012F551 /* CZipfileURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B85C861121DA8D0012F551 /* CZipfileURLProtocol.m */; };
+		45E22E3211371051004DB012 /* Books in Resources */ = {isa = PBXBuildFile; fileRef = 45E22E2711371051004DB012 /* Books */; };
+		45E22E6811371E09004DB012 /* libzzip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E22E6711371E09004DB012 /* libzzip.a */; };
+		45E22E8411372060004DB012 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 45E22E8311372060004DB012 /* Config.xcconfig */; };
+		45E22E9611372287004DB012 /* CBookListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E22E9411372287004DB012 /* CBookListViewController.m */; };
+		45E22E9711372287004DB012 /* CBookListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45E22E9511372287004DB012 /* CBookListViewController.xib */; };
+		45EBBAE5113777BA00BCF5EF /* CMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EBBAB6113777BA00BCF5EF /* CMenu.m */; };
+		45EBBAE6113777BA00BCF5EF /* CMenu_PropertyListExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EBBAB8113777BA00BCF5EF /* CMenu_PropertyListExtensions.m */; };
+		45EBBAE7113777BA00BCF5EF /* CMenuHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EBBABA113777BA00BCF5EF /* CMenuHandler.m */; };
+		45EBBAE8113777BA00BCF5EF /* CMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EBBABC113777BA00BCF5EF /* CMenuItem.m */; };
+		45EBBAE9113777BA00BCF5EF /* CMenuSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EBBABF113777BA00BCF5EF /* CMenuSheet.m */; };
+		45EBBAEA113777BA00BCF5EF /* CMenuSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EBBAC1113777BA00BCF5EF /* CMenuSplitViewController.m */; };
+		45EBBAEB113777BA00BCF5EF /* CMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EBBAC3113777BA00BCF5EF /* CMenuTableViewController.m */; };
+		45EBBAEC113777BA00BCF5EF /* CToolbarMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EBBAC5113777BA00BCF5EF /* CToolbarMenuViewController.m */; };
+		45EBBAED113777BA00BCF5EF /* CToolbarMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45EBBAC6113777BA00BCF5EF /* CToolbarMenuViewController.xib */; };
+		45EBBB0F1137781A00BCF5EF /* CHostingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EBBB0E1137781A00BCF5EF /* CHostingView.m */; };
+		45EBBB4111377A8A00BCF5EF /* CBookLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EBBB4011377A8A00BCF5EF /* CBookLibrary.m */; };
+		45EBBC37113787F400BCF5EF /* CDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EBBC35113787F400BCF5EF /* CDetailViewController.m */; };
+		45EBBC38113787F400BCF5EF /* CDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45EBBC36113787F400BCF5EF /* CDetailViewController.xib */; };
+		45EBBC9E11378C5300BCF5EF /* CTabBarMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EBBC9C11378C5300BCF5EF /* CTabBarMenuViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623240D0F684500981E51 /* TouchBookAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchBookAppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* TouchBookAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchBookAppDelegate.m; sourceTree = "<group>"; };
+		1D6058910D05DD3D006BFB54 /* TouchBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TouchBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2899E5210DE3E06400AC0155 /* TouchBookViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TouchBookViewController.xib; sourceTree = "<group>"; };
+		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		28D7ACF60DDB3853001CB0EB /* CTouchBookPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTouchBookPageViewController.h; sourceTree = "<group>"; };
+		28D7ACF70DDB3853001CB0EB /* CTouchBookPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTouchBookPageViewController.m; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* TouchBook_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchBook_Prefix.pch; sourceTree = "<group>"; };
+		452A610C1150458E007BA750 /* test.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = test.htm; sourceTree = "<group>"; };
+		452A610D1150458E007BA750 /* test.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = test.css; sourceTree = "<group>"; };
+		452A6110115045C3007BA750 /* jquery-1.4.2.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "jquery-1.4.2.min.js"; sourceTree = "<group>"; };
+		452A61121150489D007BA750 /* test.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = test.js; sourceTree = "<group>"; };
+		4585B93A1121B50600F13399 /* CXMLDocument_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument_CreationExtensions.h; sourceTree = "<group>"; };
+		4585B93B1121B50600F13399 /* CXMLDocument_CreationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument_CreationExtensions.m; sourceTree = "<group>"; };
+		4585B93C1121B50600F13399 /* CXMLNode_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode_CreationExtensions.h; sourceTree = "<group>"; };
+		4585B93D1121B50600F13399 /* CXMLNode_CreationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLNode_CreationExtensions.m; sourceTree = "<group>"; };
+		4585B93E1121B50600F13399 /* CXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument.h; sourceTree = "<group>"; };
+		4585B93F1121B50600F13399 /* CXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument.m; sourceTree = "<group>"; };
+		4585B9401121B50600F13399 /* CXMLDocument_PrivateExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument_PrivateExtensions.h; sourceTree = "<group>"; };
+		4585B9411121B50600F13399 /* CXMLDocument_PrivateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument_PrivateExtensions.m; sourceTree = "<group>"; };
+		4585B9421121B50600F13399 /* CXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLElement.h; sourceTree = "<group>"; };
+		4585B9431121B50600F13399 /* CXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLElement.m; sourceTree = "<group>"; };
+		4585B9441121B50600F13399 /* CXMLElement_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLElement_CreationExtensions.h; sourceTree = "<group>"; };
+		4585B9451121B50600F13399 /* CXMLElement_CreationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLElement_CreationExtensions.m; sourceTree = "<group>"; };
+		4585B9461121B50600F13399 /* CXMLElement_ElementTreeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLElement_ElementTreeExtensions.h; sourceTree = "<group>"; };
+		4585B9471121B50600F13399 /* CXMLElement_ElementTreeExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLElement_ElementTreeExtensions.m; sourceTree = "<group>"; };
+		4585B9481121B50600F13399 /* CXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode.h; sourceTree = "<group>"; };
+		4585B9491121B50600F13399 /* CXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLNode.m; sourceTree = "<group>"; };
+		4585B94A1121B50600F13399 /* CXMLNode_PrivateExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode_PrivateExtensions.h; sourceTree = "<group>"; };
+		4585B94B1121B50600F13399 /* CXMLNode_PrivateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLNode_PrivateExtensions.m; sourceTree = "<group>"; };
+		4585B94C1121B50600F13399 /* CXMLNode_XPathExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode_XPathExtensions.h; sourceTree = "<group>"; };
+		4585B94D1121B50600F13399 /* CXMLNode_XPathExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLNode_XPathExtensions.m; sourceTree = "<group>"; };
+		4585B94F1121B50600F13399 /* CTidy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTidy.h; sourceTree = "<group>"; };
+		4585B9501121B50600F13399 /* CTidy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTidy.m; sourceTree = "<group>"; };
+		4585B9511121B50600F13399 /* TouchXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchXML.h; sourceTree = "<group>"; };
+		4585BE5A1121B54C00F13399 /* CBookContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBookContainer.h; sourceTree = "<group>"; };
+		4585BE5B1121B54C00F13399 /* CBookContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBookContainer.m; sourceTree = "<group>"; };
+		4585BE881121B77800F13399 /* CBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBook.h; sourceTree = "<group>"; };
+		4585BE891121B77800F13399 /* CBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBook.m; sourceTree = "<group>"; };
+		4585BF141121BDCD00F13399 /* CSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSection.h; sourceTree = "<group>"; };
+		4585BF151121BDCD00F13399 /* CSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSection.m; sourceTree = "<group>"; };
+		45B85B5E1121D5160012F551 /* CZipfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CZipfile.h; sourceTree = "<group>"; };
+		45B85B5F1121D5160012F551 /* CZipfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CZipfile.m; sourceTree = "<group>"; };
+		45B85C851121DA8D0012F551 /* CZipfileURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CZipfileURLProtocol.h; sourceTree = "<group>"; };
+		45B85C861121DA8D0012F551 /* CZipfileURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CZipfileURLProtocol.m; sourceTree = "<group>"; };
+		45E22E2711371051004DB012 /* Books */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Books; sourceTree = "<group>"; };
+		45E22E6711371E09004DB012 /* libzzip.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libzzip.a; path = Externals/zzip/Output/lib/libzzip.a; sourceTree = "<group>"; };
+		45E22E8311372060004DB012 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		45E22E9311372287004DB012 /* CBookListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBookListViewController.h; sourceTree = "<group>"; };
+		45E22E9411372287004DB012 /* CBookListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBookListViewController.m; sourceTree = "<group>"; };
+		45E22E9511372287004DB012 /* CBookListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBookListViewController.xib; sourceTree = "<group>"; };
+		45EBBAB5113777BA00BCF5EF /* CMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMenu.h; sourceTree = "<group>"; };
+		45EBBAB6113777BA00BCF5EF /* CMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMenu.m; sourceTree = "<group>"; };
+		45EBBAB7113777BA00BCF5EF /* CMenu_PropertyListExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMenu_PropertyListExtensions.h; sourceTree = "<group>"; };
+		45EBBAB8113777BA00BCF5EF /* CMenu_PropertyListExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMenu_PropertyListExtensions.m; sourceTree = "<group>"; };
+		45EBBAB9113777BA00BCF5EF /* CMenuHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMenuHandler.h; sourceTree = "<group>"; };
+		45EBBABA113777BA00BCF5EF /* CMenuHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMenuHandler.m; sourceTree = "<group>"; };
+		45EBBABB113777BA00BCF5EF /* CMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMenuItem.h; sourceTree = "<group>"; };
+		45EBBABC113777BA00BCF5EF /* CMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMenuItem.m; sourceTree = "<group>"; };
+		45EBBABE113777BA00BCF5EF /* CMenuSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMenuSheet.h; sourceTree = "<group>"; };
+		45EBBABF113777BA00BCF5EF /* CMenuSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMenuSheet.m; sourceTree = "<group>"; };
+		45EBBAC0113777BA00BCF5EF /* CMenuSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMenuSplitViewController.h; sourceTree = "<group>"; };
+		45EBBAC1113777BA00BCF5EF /* CMenuSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMenuSplitViewController.m; sourceTree = "<group>"; };
+		45EBBAC2113777BA00BCF5EF /* CMenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMenuTableViewController.h; sourceTree = "<group>"; };
+		45EBBAC3113777BA00BCF5EF /* CMenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMenuTableViewController.m; sourceTree = "<group>"; };
+		45EBBAC4113777BA00BCF5EF /* CToolbarMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CToolbarMenuViewController.h; sourceTree = "<group>"; };
+		45EBBAC5113777BA00BCF5EF /* CToolbarMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CToolbarMenuViewController.m; sourceTree = "<group>"; };
+		45EBBAC6113777BA00BCF5EF /* CToolbarMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CToolbarMenuViewController.xib; sourceTree = "<group>"; };
+		45EBBB0D1137781A00BCF5EF /* CHostingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHostingView.h; path = ../Menus/Test/Classes/CHostingView.h; sourceTree = SOURCE_ROOT; };
+		45EBBB0E1137781A00BCF5EF /* CHostingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CHostingView.m; path = ../Menus/Test/Classes/CHostingView.m; sourceTree = SOURCE_ROOT; };
+		45EBBB3F11377A8A00BCF5EF /* CBookLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBookLibrary.h; sourceTree = "<group>"; };
+		45EBBB4011377A8A00BCF5EF /* CBookLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBookLibrary.m; sourceTree = "<group>"; };
+		45EBBC34113787F400BCF5EF /* CDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDetailViewController.h; sourceTree = "<group>"; };
+		45EBBC35113787F400BCF5EF /* CDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDetailViewController.m; sourceTree = "<group>"; };
+		45EBBC36113787F400BCF5EF /* CDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CDetailViewController.xib; sourceTree = "<group>"; };
+		45EBBC9B11378C5300BCF5EF /* CTabBarMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTabBarMenuViewController.h; sourceTree = "<group>"; };
+		45EBBC9C11378C5300BCF5EF /* CTabBarMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTabBarMenuViewController.m; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* TouchBook-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TouchBook-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
+				45E22E6811371E09004DB012 /* libzzip.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1D3623240D0F684500981E51 /* TouchBookAppDelegate.h */,
+				1D3623250D0F684500981E51 /* TouchBookAppDelegate.m */,
+				45E22E9311372287004DB012 /* CBookListViewController.h */,
+				45E22E9411372287004DB012 /* CBookListViewController.m */,
+				45E22E9511372287004DB012 /* CBookListViewController.xib */,
+				28D7ACF60DDB3853001CB0EB /* CTouchBookPageViewController.h */,
+				28D7ACF70DDB3853001CB0EB /* CTouchBookPageViewController.m */,
+				45EBBB3F11377A8A00BCF5EF /* CBookLibrary.h */,
+				45EBBB4011377A8A00BCF5EF /* CBookLibrary.m */,
+				4585BE5A1121B54C00F13399 /* CBookContainer.h */,
+				4585BE5B1121B54C00F13399 /* CBookContainer.m */,
+				4585BE881121B77800F13399 /* CBook.h */,
+				4585BE891121B77800F13399 /* CBook.m */,
+				4585BF141121BDCD00F13399 /* CSection.h */,
+				4585BF151121BDCD00F13399 /* CSection.m */,
+				45B85B5E1121D5160012F551 /* CZipfile.h */,
+				45B85B5F1121D5160012F551 /* CZipfile.m */,
+				45B85C851121DA8D0012F551 /* CZipfileURLProtocol.h */,
+				45B85C861121DA8D0012F551 /* CZipfileURLProtocol.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* TouchBook.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				45EBBB0D1137781A00BCF5EF /* CHostingView.h */,
+				45EBBB0E1137781A00BCF5EF /* CHostingView.m */,
+				45EBBAB3113777BA00BCF5EF /* Menus */,
+				4585B9361121B50600F13399 /* TouchXML */,
+				45E22E2711371051004DB012 /* Books */,
+				29B97317FDCFA39411CA2CEA /* Resources-iPad */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+				45E22E8311372060004DB012 /* Config.xcconfig */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* TouchBook_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources-iPad */ = {
+			isa = PBXGroup;
+			children = (
+				452A610C1150458E007BA750 /* test.htm */,
+				452A610D1150458E007BA750 /* test.css */,
+				452A61121150489D007BA750 /* test.js */,
+				452A6110115045C3007BA750 /* jquery-1.4.2.min.js */,
+				2899E5210DE3E06400AC0155 /* TouchBookViewController.xib */,
+				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+				8D1107310486CEB800E47090 /* TouchBook-Info.plist */,
+			);
+			name = "Resources-iPad";
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				45E22E6711371E09004DB012 /* libzzip.a */,
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4585B9361121B50600F13399 /* TouchXML */ = {
+			isa = PBXGroup;
+			children = (
+				4585B9371121B50600F13399 /* Common */,
+			);
+			name = TouchXML;
+			path = ../../TouchXML;
+			sourceTree = SOURCE_ROOT;
+		};
+		4585B9371121B50600F13399 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				4585B9381121B50600F13399 /* Source */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		4585B9381121B50600F13399 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				4585B9391121B50600F13399 /* Creation */,
+				4585B93E1121B50600F13399 /* CXMLDocument.h */,
+				4585B93F1121B50600F13399 /* CXMLDocument.m */,
+				4585B9401121B50600F13399 /* CXMLDocument_PrivateExtensions.h */,
+				4585B9411121B50600F13399 /* CXMLDocument_PrivateExtensions.m */,
+				4585B9421121B50600F13399 /* CXMLElement.h */,
+				4585B9431121B50600F13399 /* CXMLElement.m */,
+				4585B9441121B50600F13399 /* CXMLElement_CreationExtensions.h */,
+				4585B9451121B50600F13399 /* CXMLElement_CreationExtensions.m */,
+				4585B9461121B50600F13399 /* CXMLElement_ElementTreeExtensions.h */,
+				4585B9471121B50600F13399 /* CXMLElement_ElementTreeExtensions.m */,
+				4585B9481121B50600F13399 /* CXMLNode.h */,
+				4585B9491121B50600F13399 /* CXMLNode.m */,
+				4585B94A1121B50600F13399 /* CXMLNode_PrivateExtensions.h */,
+				4585B94B1121B50600F13399 /* CXMLNode_PrivateExtensions.m */,
+				4585B94C1121B50600F13399 /* CXMLNode_XPathExtensions.h */,
+				4585B94D1121B50600F13399 /* CXMLNode_XPathExtensions.m */,
+				4585B94E1121B50600F13399 /* Tidy */,
+				4585B9511121B50600F13399 /* TouchXML.h */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		4585B9391121B50600F13399 /* Creation */ = {
+			isa = PBXGroup;
+			children = (
+				4585B93A1121B50600F13399 /* CXMLDocument_CreationExtensions.h */,
+				4585B93B1121B50600F13399 /* CXMLDocument_CreationExtensions.m */,
+				4585B93C1121B50600F13399 /* CXMLNode_CreationExtensions.h */,
+				4585B93D1121B50600F13399 /* CXMLNode_CreationExtensions.m */,
+			);
+			path = Creation;
+			sourceTree = "<group>";
+		};
+		4585B94E1121B50600F13399 /* Tidy */ = {
+			isa = PBXGroup;
+			children = (
+				4585B94F1121B50600F13399 /* CTidy.h */,
+				4585B9501121B50600F13399 /* CTidy.m */,
+			);
+			path = Tidy;
+			sourceTree = "<group>";
+		};
+		45EBBAB3113777BA00BCF5EF /* Menus */ = {
+			isa = PBXGroup;
+			children = (
+				45EBBAB4113777BA00BCF5EF /* Source */,
+			);
+			name = Menus;
+			path = ../Menus;
+			sourceTree = SOURCE_ROOT;
+		};
+		45EBBAB4113777BA00BCF5EF /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				45EBBAB5113777BA00BCF5EF /* CMenu.h */,
+				45EBBAB6113777BA00BCF5EF /* CMenu.m */,
+				45EBBAB7113777BA00BCF5EF /* CMenu_PropertyListExtensions.h */,
+				45EBBAB8113777BA00BCF5EF /* CMenu_PropertyListExtensions.m */,
+				45EBBAB9113777BA00BCF5EF /* CMenuHandler.h */,
+				45EBBABA113777BA00BCF5EF /* CMenuHandler.m */,
+				45EBBABB113777BA00BCF5EF /* CMenuItem.h */,
+				45EBBABC113777BA00BCF5EF /* CMenuItem.m */,
+				45EBBABD113777BA00BCF5EF /* Views */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		45EBBABD113777BA00BCF5EF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				45EBBABE113777BA00BCF5EF /* CMenuSheet.h */,
+				45EBBABF113777BA00BCF5EF /* CMenuSheet.m */,
+				45EBBAC0113777BA00BCF5EF /* CMenuSplitViewController.h */,
+				45EBBAC1113777BA00BCF5EF /* CMenuSplitViewController.m */,
+				45EBBC34113787F400BCF5EF /* CDetailViewController.h */,
+				45EBBC35113787F400BCF5EF /* CDetailViewController.m */,
+				45EBBC36113787F400BCF5EF /* CDetailViewController.xib */,
+				45EBBAC2113777BA00BCF5EF /* CMenuTableViewController.h */,
+				45EBBAC3113777BA00BCF5EF /* CMenuTableViewController.m */,
+				45EBBAC4113777BA00BCF5EF /* CToolbarMenuViewController.h */,
+				45EBBAC5113777BA00BCF5EF /* CToolbarMenuViewController.m */,
+				45EBBAC6113777BA00BCF5EF /* CToolbarMenuViewController.xib */,
+				45EBBC9B11378C5300BCF5EF /* CTabBarMenuViewController.h */,
+				45EBBC9C11378C5300BCF5EF /* CTabBarMenuViewController.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* TouchBook */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "TouchBook" */;
+			buildPhases = (
+				45E22E53113717C6004DB012 /* ShellScript */,
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TouchBook;
+			productName = TouchBook;
+			productReference = 1D6058910D05DD3D006BFB54 /* TouchBook.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TouchBook" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* TouchBook */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+				2899E5220DE3E06400AC0155 /* TouchBookViewController.xib in Resources */,
+				45E22E3211371051004DB012 /* Books in Resources */,
+				45E22E8411372060004DB012 /* Config.xcconfig in Resources */,
+				45E22E9711372287004DB012 /* CBookListViewController.xib in Resources */,
+				45EBBAED113777BA00BCF5EF /* CToolbarMenuViewController.xib in Resources */,
+				45EBBC38113787F400BCF5EF /* CDetailViewController.xib in Resources */,
+				452A610E1150458E007BA750 /* test.htm in Resources */,
+				452A610F1150458E007BA750 /* test.css in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		45E22E53113717C6004DB012 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ -d \"$SRCROOT/DONTBUILD\"]; then\nexit 0\nfi\n\nif [ $PLATFORM_NAME == \"iphonesimulator\" ]; then\nTARGET=simulator\nfi\n\nOUTPUT_DIR=\"$SRCROOT/Externals/zzip/Output\"\n\n#rm -rf \"$OUTPUT_DIR/*\"\ncd \"$SRCROOT/Externals/zzip/zziplib\"\n$SRCROOT/Scripts/build_for_iphoneos.sh -p \"$OUTPUT_DIR\" \"$TARGET\" 2> /dev/null";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				1D3623260D0F684500981E51 /* TouchBookAppDelegate.m in Sources */,
+				28D7ACF80DDB3853001CB0EB /* CTouchBookPageViewController.m in Sources */,
+				4585BBE41121B50700F13399 /* CXMLDocument_CreationExtensions.m in Sources */,
+				4585BBE51121B50700F13399 /* CXMLNode_CreationExtensions.m in Sources */,
+				4585BBE61121B50700F13399 /* CXMLDocument.m in Sources */,
+				4585BBE71121B50700F13399 /* CXMLDocument_PrivateExtensions.m in Sources */,
+				4585BBE81121B50700F13399 /* CXMLElement.m in Sources */,
+				4585BBE91121B50700F13399 /* CXMLElement_CreationExtensions.m in Sources */,
+				4585BBEA1121B50700F13399 /* CXMLElement_ElementTreeExtensions.m in Sources */,
+				4585BBEB1121B50700F13399 /* CXMLNode.m in Sources */,
+				4585BBEC1121B50700F13399 /* CXMLNode_PrivateExtensions.m in Sources */,
+				4585BBED1121B50700F13399 /* CXMLNode_XPathExtensions.m in Sources */,
+				4585BBEE1121B50700F13399 /* CTidy.m in Sources */,
+				4585BE5C1121B54C00F13399 /* CBookContainer.m in Sources */,
+				4585BE8A1121B77800F13399 /* CBook.m in Sources */,
+				4585BF161121BDCD00F13399 /* CSection.m in Sources */,
+				45B85B601121D5160012F551 /* CZipfile.m in Sources */,
+				45B85C871121DA8D0012F551 /* CZipfileURLProtocol.m in Sources */,
+				45E22E9611372287004DB012 /* CBookListViewController.m in Sources */,
+				45EBBAE5113777BA00BCF5EF /* CMenu.m in Sources */,
+				45EBBAE6113777BA00BCF5EF /* CMenu_PropertyListExtensions.m in Sources */,
+				45EBBAE7113777BA00BCF5EF /* CMenuHandler.m in Sources */,
+				45EBBAE8113777BA00BCF5EF /* CMenuItem.m in Sources */,
+				45EBBAE9113777BA00BCF5EF /* CMenuSheet.m in Sources */,
+				45EBBAEA113777BA00BCF5EF /* CMenuSplitViewController.m in Sources */,
+				45EBBAEB113777BA00BCF5EF /* CMenuTableViewController.m in Sources */,
+				45EBBAEC113777BA00BCF5EF /* CToolbarMenuViewController.m in Sources */,
+				45EBBB0F1137781A00BCF5EF /* CHostingView.m in Sources */,
+				45EBBB4111377A8A00BCF5EF /* CBookLibrary.m in Sources */,
+				45EBBC37113787F400BCF5EF /* CDetailViewController.m in Sources */,
+				45EBBC9E11378C5300BCF5EF /* CTabBarMenuViewController.m in Sources */,
+				452A6111115045C3007BA750 /* jquery-1.4.2.min.js in Sources */,
+				452A61131150489D007BA750 /* test.js in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = TouchBook_Prefix.pch;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/Externals/zzip/Output/include\"",
+					/usr/include/libxml2,
+				);
+				INFOPLIST_FILE = "TouchBook-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Externals/zzip/Output/lib\"",
+				);
+				OTHER_LDFLAGS = (
+					"-lz",
+					"-lxml2",
+				);
+				PRODUCT_NAME = TouchBook;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = TouchBook_Prefix.pch;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/Externals/zzip/Output/include\"",
+					/usr/include/libxml2,
+				);
+				INFOPLIST_FILE = "TouchBook-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Externals/zzip/Output/lib\"",
+				);
+				OTHER_LDFLAGS = (
+					"-lz",
+					"-lxml2",
+				);
+				PRODUCT_NAME = TouchBook;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.2;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "TouchBook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TouchBook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

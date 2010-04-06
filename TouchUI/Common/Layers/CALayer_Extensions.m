@@ -51,13 +51,13 @@ return(self);
 - (CGFloat)zoom
 {
 const CATransform3D theTransform = self.transform;
-if (theTransform.m11 == theTransform.m22 == theTransform.m33)
+if ((theTransform.m11 == theTransform.m22) && (theTransform.m22 == theTransform.m33))
 	{
 	return(theTransform.m11);
 	}
 else
 	{
-	return((theTransform.m11 + theTransform.m22 + theTransform.m33) / 3.0);
+	return((theTransform.m11 + theTransform.m22 + theTransform.m33) / 3.0f);
 	}
 }
 
@@ -72,11 +72,11 @@ self.transform = theTransform;
 {
 CATransform3D theTransform = self.transform;
 
-theTransform = CATransform3DTranslate(theTransform, inPoint.x, inPoint.y, 0.0);
+theTransform = CATransform3DTranslate(theTransform, inPoint.x, inPoint.y, 0.0f);
 
 theTransform.m11 = theTransform.m22 = theTransform.m33 = inZoom;
 
-theTransform = CATransform3DTranslate(theTransform, -inPoint.x, -inPoint.y, 0.0);
+theTransform = CATransform3DTranslate(theTransform, -inPoint.x, -inPoint.y, 0.0f);
 
 self.transform = theTransform;
 }
