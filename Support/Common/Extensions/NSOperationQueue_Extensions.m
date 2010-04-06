@@ -39,23 +39,24 @@
 
 @implementation NSOperationQueue (NSOperationQueue_Extensions)
 
+#if TARGET_OS_IPHONE == 1
 static NSOperationQueue *gDefaultOperationQueue = NULL;
+#endif
 
 + (NSOperationQueue *)defaultOperationQueue
 {
-#if 0
-NSOperationQueue *theQueue = [self currentQueue];
-return(theQueue);
-#else
+#if TARGET_OS_IPHONE == 1
 @synchronized(@"+[NSOperationQueue defaultOperationQueue]")
 	{
 	if (gDefaultOperationQueue == NULL)
 		{
-		NSLog(@"CREATING OPERATION QUEUE");
 		gDefaultOperationQueue = [[self alloc] init];
 		}
 	}
 return(gDefaultOperationQueue);
+#else
+NSOperationQueue *theQueue = [self currentQueue];
+return(theQueue);
 #endif
 }
 
@@ -105,7 +106,7 @@ NSString *theContext = @"-[CRunloopHelper runSynchronousOperation:onQueue] conte
 [inOperation addObserver:self forKeyPath:@"isFinished" options:NSKeyValueObservingOptionNew context:theContext];
 [inOperation addObserver:self forKeyPath:@"isCancelled" options:NSKeyValueObservingOptionNew context:theContext];
 
-[inQueue addOperation:inOperation];
+[inQueue addOperationRecursively:inOperation];
 
 self.flag = YES;
 while (self.flag == YES)
