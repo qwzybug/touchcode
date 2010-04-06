@@ -1,0 +1,44 @@
+<html>
+	<body>
+
+		<h1>Hello {{ user }}</h1>
+
+		<table>
+			<tr>
+				<th>Created</th>
+				<th>Identifier</th>
+				<th>Owner</th>
+				<th>Unprocessed Uploads</th>
+			</tr>
+		{% for service in services %}
+			<tr>
+				<td>{{ service.created }}</td>
+				<td>{{ service.identifier }}</td>
+				<td>{{ service.owner.nickname }}</td>
+			</tr>
+		{% endfor %}
+		</table>
+
+		<hr/>
+
+		<form action="service?action=create" method="get">
+			<input name="action" type="hidden" value="create">
+			<input name="identifier" type="text" maxlength="128">
+			<input type="submit" value="Create Service">
+		</form>
+
+		<hr/>
+
+		<table>
+			<tr>
+				<td>Action:</td>
+				<td>{{ action }}</td>
+			</tr>
+			<tr>
+				<td>Headers:</td>
+				<td>{{ headers }}</td>
+			</tr>
+		</table>
+
+	</body>
+</html>
