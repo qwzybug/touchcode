@@ -40,7 +40,7 @@
 
 - (id)initWithFeedStore:(CFeedStore *)inFeedStore feed:(CFeed *)inFeed;
 {
-if ((self = [super initWithNibName:NSStringFromClass([self class]) bundle:NULL]) != NULL)
+if ((self = [super init]) != NULL)
 	{
 	self.title = inFeed.title;
 	//
@@ -56,6 +56,13 @@ self.feedStore = NULL;
 self.feed = NULL;
 //
 [super dealloc];
+}
+
+#pragma mark -
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+return(YES);
 }
 
 - (void)viewDidLoad

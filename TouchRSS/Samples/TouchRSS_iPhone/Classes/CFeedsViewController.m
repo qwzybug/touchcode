@@ -60,6 +60,12 @@ self.fetchedResultsController = [[[NSFetchedResultsController alloc] initWithFet
 self.fetchedResultsController.delegate = self;
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+//return(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? YES : [UIDevice currentDevice].orientation == UIDeviceOrientationPortrait);
+return(YES);
+}
+
 #pragma mark Table view methods
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

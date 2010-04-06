@@ -30,39 +30,55 @@
 #import "TouchRSS_iPhoneAppDelegate.h"
 #import "CFeedsViewController.h"
 
-
 @implementation TouchRSS_iPhoneAppDelegate
 
 @synthesize window;
-@synthesize navigationController;
+@synthesize rootViewController;
 
+- (void)dealloc
+{
+[rootViewController release];
+rootViewController = NULL;
+//
+[window release];
+window = NULL;
+//
+[super dealloc];
+}
+
+- (void)applicationDidFinishLaunching:(UIApplication *)application
+{        
+[self.window addSubview:self.rootViewController.view];
+[self.window makeKeyAndVisible];
+}
+
+- (void)applicationWillTerminate:(UIApplication *)application
+{
+}
 
 #pragma mark -
-#pragma mark Application lifecycle
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application {    
-    
-    // Override point for customization after app launch    
-	
-	[window addSubview:[navigationController view]];
-    [window makeKeyAndVisible];
+#if defined(__IPHONE_3_2) && __IPHONE_3_2 <= __IPHONE_OS_VERSION_MAX_ALLOWED
+
+// Called when a button should be added to a toolbar for a hidden view controller
+- (void)splitViewController: (UISplitViewController*)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem*)barButtonItem forPopoverController: (UIPopoverController*)pc
+{
+[[[[svc.viewControllers objectAtIndex:1] viewControllers] objectAtIndex:0] navigationItem].leftBarButtonItem = barButtonItem;
 }
 
-
-- (void)applicationWillTerminate:(UIApplication *)application {
-	// Save data if appropriate
+// Called when the view is shown again in the split view, invalidating the button and popover controller
+- (void)splitViewController: (UISplitViewController*)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
+{
+NSLog(@"B");
 }
 
-
-#pragma mark -
-#pragma mark Memory management
-
-- (void)dealloc {
-	[navigationController release];
-	[window release];
-	[super dealloc];
+// Called when the view controller is shown in a popover so the delegate can take action like hiding other popovers.
+- (void)splitViewController: (UISplitViewController*)svc popoverController: (UIPopoverController*)pc willPresentViewController:(UIViewController *)aViewController
+{
+NSLog(@"C");
 }
 
+#endif
 
 @end
 
