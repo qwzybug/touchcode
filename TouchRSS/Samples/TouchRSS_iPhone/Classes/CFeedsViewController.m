@@ -62,7 +62,7 @@ self.fetchedResultsController.delegate = self;
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-//return(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? YES : [UIDevice currentDevice].orientation == UIDeviceOrientationPortrait);
+//return(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? YES : toInterfaceOrientation == UIDeviceOrientationPortrait);
 return(YES);
 }
 

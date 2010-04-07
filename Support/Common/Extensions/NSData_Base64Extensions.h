@@ -1,9 +1,9 @@
 //
-//  NSData_Extensions.m
+//  NSData_Base64Extensions.h
 //  TouchCode
 //
-//  Created by Jonathan Wight on 05/09/09.
-//  Copyright 2009 toxicsoftware.com. All rights reserved.
+//  Created by Jonathan Wight on 5/10/06.
+//  Copyright 2006 toxicsoftware.com. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person
 //  obtaining a copy of this software and associated documentation
@@ -27,27 +27,15 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import "NSData_Extensions.h"
+#import <Foundation/Foundation.h>
 
-@implementation NSData (NSData_Extensions)
+/**
+ * @category NSObject (NSData_Base64Extensions)
+ */
+@interface NSData (NSData_Base64Extensions)
 
-- (NSString *)hexString
-{
-NSInteger theLength = [self length];
-NSMutableData *theHex = [NSMutableData dataWithLength:theLength * 2];
-const char *IN = [self bytes];
-char *OUT = [theHex mutableBytes];
-const char theHexTable[] = "0123456789ABCDEF";
-size_t INX = 0;
-for (; INX < theLength; ++INX)
-	{
-	const uint8_t theOctet = IN[INX];
-	*OUT++ = theHexTable[(theOctet >> 4) & 0x0F];
-	*OUT++ = theHexTable[theOctet & 0x0F];
-	}
-
-NSString *theString = [[[NSString alloc] initWithData:theHex encoding:NSASCIIStringEncoding] autorelease];
-return(theString);
-}
++ (id)dataWithBase64EncodedString:(NSString *)inString;
+- (NSString *)asBase64EncodedString;
+- (NSString *)asBase64EncodedString:(NSInteger)inFlags;
 
 @end

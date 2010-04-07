@@ -103,23 +103,23 @@ const u_int8_t kBits_11000000 = 0xC0;
 const u_int8_t kBits_11110000 = 0xF0;
 const u_int8_t kBits_11111100 = 0xFC;
 
-size_t EstimateBas64EncodedDataSize(size_t inDataSize)
+size_t EstimateBas64EncodedDataSize(size_t inDataSize, int32_t inFlags)
 {
 size_t theEncodedDataSize = (int)ceil(inDataSize / 3.0) * 4;
-theEncodedDataSize = theEncodedDataSize / 72 * 74 + theEncodedDataSize % 72;
+theEncodedDataSize = theEncodedDataSize / 72 * 74 + theEncodedDataSize % 72 + 1;
 return(theEncodedDataSize);
 }
 
-size_t EstimateBas64DecodedDataSize(size_t inDataSize)
+size_t EstimateBas64DecodedDataSize(size_t inDataSize, int32_t inFlags)
 {
 size_t theDecodedDataSize = (int)ceil(inDataSize / 4.0) * 3;
 //theDecodedDataSize = theDecodedDataSize / 72 * 74 + theDecodedDataSize % 72;
 return(theDecodedDataSize);
 }
 
-bool Base64EncodeData(const void *inInputData, size_t inInputDataSize, char *outOutputData, size_t *ioOutputDataSize)
+bool Base64EncodeData(const void *inInputData, size_t inInputDataSize, char *outOutputData, size_t *ioOutputDataSize, int32_t inFlags)
 {
-size_t theEncodedDataSize = EstimateBas64EncodedDataSize(inInputDataSize);
+size_t theEncodedDataSize = EstimateBas64EncodedDataSize(inInputDataSize, inFlags);
 if (*ioOutputDataSize < theEncodedDataSize)
 	return(false);
 *ioOutputDataSize = theEncodedDataSize;
@@ -131,7 +131,7 @@ for (; theInIndex < (inInputDataSize / 3) * 3; theInIndex += 3)
 	outOutputData[theOutIndex++] = kBase64EncodeTable[(theInPtr[theInIndex] & kBits_00000011) << 4 | (theInPtr[theInIndex + 1] & kBits_11110000) >> 4];
 	outOutputData[theOutIndex++] = kBase64EncodeTable[(theInPtr[theInIndex + 1] & kBits_00001111) << 2 | (theInPtr[theInIndex + 2] & kBits_11000000) >> 6];
 	outOutputData[theOutIndex++] = kBase64EncodeTable[(theInPtr[theInIndex + 2] & kBits_00111111) >> 0];
-	if (theOutIndex % 74 == 72)
+	if (inFlags & Base64Flags_IncludeNewlines && theOutIndex % 74 == 72)
 		{
 		outOutputData[theOutIndex++] = '\r';
 		outOutputData[theOutIndex++] = '\n';
@@ -144,10 +144,10 @@ if (theRemainingBytes == 1)
 	outOutputData[theOutIndex++] = kBase64EncodeTable[(theInPtr[theInIndex] & kBits_00000011) << 4 | (0 & kBits_11110000) >> 4];
 	outOutputData[theOutIndex++] = '=';
 	outOutputData[theOutIndex++] = '=';
-	if (theOutIndex % 74 == 72)
+	if (inFlags & Base64Flags_IncludeNewlines && theOutIndex % 74 == 72)
 		{
 		outOutputData[theOutIndex++] = '\r';
-		outOutputData[theOutIndex] = '\n';
+		outOutputData[theOutIndex++] = '\n';
 		}
 	}
 else if (theRemainingBytes == 2)
@@ -156,20 +156,23 @@ else if (theRemainingBytes == 2)
 	outOutputData[theOutIndex++] = kBase64EncodeTable[(theInPtr[theInIndex] & kBits_00000011) << 4 | (theInPtr[theInIndex + 1] & kBits_11110000) >> 4];
 	outOutputData[theOutIndex++] = kBase64EncodeTable[(theInPtr[theInIndex + 1] & kBits_00001111) << 2 | (0 & kBits_11000000) >> 6];
 	outOutputData[theOutIndex++] = '=';
-	if (theOutIndex % 74 == 72)
+	if (inFlags & Base64Flags_IncludeNewlines & theOutIndex % 74 == 72)
 		{
 		outOutputData[theOutIndex++] = '\r';
-		outOutputData[theOutIndex] = '\n';
+		outOutputData[theOutIndex++] = '\n';
 		}
 	}
+	
+outOutputData[theOutIndex] = 0;
+
 return(true);
 }
 
-bool Base64DecodeData(const void *inInputData, size_t inInputDataSize, void *ioOutputData, size_t *ioOutputDataSize)
+bool Base64DecodeData(const void *inInputData, size_t inInputDataSize, void *ioOutputData, size_t *ioOutputDataSize, int32_t inFlags)
 {
 memset(ioOutputData, '.', *ioOutputDataSize);
 
-size_t theDecodedDataSize = EstimateBas64DecodedDataSize(inInputDataSize);
+size_t theDecodedDataSize = EstimateBas64DecodedDataSize(inInputDataSize, inFlags);
 if (*ioOutputDataSize < theDecodedDataSize)
 	return(false);
 *ioOutputDataSize = 0;

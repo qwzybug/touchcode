@@ -31,31 +31,33 @@
 
 @interface CWebViewController : UIViewController <UIWebViewDelegate, UIActionSheetDelegate> {
 	NSURL *homeURL;
-	NSString *initialHTMLString;
 	BOOL dontChangeTitle;
+	BOOL loading;
 	
 	NSURL *currentURL;
 
 	IBOutlet UIWebView *webView;
-	IBOutlet UIToolbar *outletToolbar;
-	IBOutlet UIBarButtonItem *outletBackButton;
-	IBOutlet UIBarButtonItem *outletForwardsButton;
+	IBOutlet UIToolbar *toolbar;
+	IBOutlet UIBarButtonItem *homeButton;
+	IBOutlet UIBarButtonItem *backButton;
+	IBOutlet UIBarButtonItem *forwardsButton;
+	IBOutlet UIBarButtonItem *reloadButton;
 }
 
 @property (readwrite, nonatomic, retain) NSURL *homeURL;
-@property (readwrite, nonatomic, retain) NSString *initialHTMLString;
 @property (readwrite, nonatomic, assign) BOOL dontChangeTitle;
+
+@property (readonly, nonatomic, assign) BOOL loading;
 @property (readonly, nonatomic, retain) NSURL *currentURL;
 
-@property (readonly, nonatomic, retain) UIWebView *webView;
-@property (readonly, nonatomic, retain) UIToolbar *toolbar;
-@property (readonly, nonatomic, retain) UIBarButtonItem *backButton;
-@property (readonly, nonatomic, retain) UIBarButtonItem *forwardsButton;
-
-+ (id)webViewController;
+@property (readonly, nonatomic, retain) IBOutlet UIWebView *webView;
+@property (readonly, nonatomic, retain) IBOutlet UIToolbar *toolbar;
+@property (readonly, nonatomic, retain) IBOutlet UIBarButtonItem *homeButton;
+@property (readonly, nonatomic, retain) IBOutlet UIBarButtonItem *backButton;
+@property (readonly, nonatomic, retain) IBOutlet UIBarButtonItem *forwardsButton;
+@property (readonly, nonatomic, retain) IBOutlet UIBarButtonItem *reloadButton;
 
 - (void)loadURL:(NSURL *)inURL;
-- (void)loadHTMLString:(NSString *)inHTML baseURL:(NSURL *)inBaseURL;
 
 - (IBAction)actionBack:(id)inSender;
 - (IBAction)actionForwards:(id)inSender;

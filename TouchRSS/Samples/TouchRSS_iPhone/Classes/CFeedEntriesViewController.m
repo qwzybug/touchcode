@@ -29,9 +29,11 @@
 
 #import "CFeedEntriesViewController.h"
 
+#import "CFeedEntryViewController.h"
 #import "CFeedStore.h"
 #import "CFeedEntry.h"
 #import "CFeed.h"
+#import "NSURL_DataExtensions.h"
 
 @implementation CFeedEntriesViewController
 
@@ -136,6 +138,15 @@ return(theCell);
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 {
+CFeedEntryViewController *theFeedEntryView = [[[CFeedEntryViewController alloc] init] autorelease];
+
+NSURL *theURL = [NSURL dataURLWithData:[@"HELLO WORLD" dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"text/plain" charset:NULL];
+NSLog(@"%@", theURL);
+
+
+theFeedEntryView.homeURL = [NSURL URLWithString:@"http://google.com"];
+
+[self.navigationController pushViewController:theFeedEntryView animated:YES];
 
 }
 
