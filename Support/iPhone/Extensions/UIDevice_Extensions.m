@@ -39,7 +39,7 @@
 	NSString *model = [self model];
 	if ([model isEqualToString:@"iPhone Simulator"])
 		return(kSimulatorCanDial);
-	else if ([[model substringToIndex:6] isEqualToString:@"iPhone"])
+	else if ([[model substringToIndex:4] isEqualToString:@"iPho"])
 		return(YES);
 	else
 		return(NO);
