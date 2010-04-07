@@ -23,6 +23,7 @@
 
 @property (readwrite, nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (readwrite, nonatomic, assign) NSInteger currentEntryIndex;
+@property (readonly, nonatomic, assign) NSInteger countOfEntries;
 @property (readwrite, nonatomic, retain) CFeedEntry *entry;
 @property (readwrite, nonatomic, retain) CTrivialTemplate *contentTemplate;
 @property (readonly, nonatomic, retain) UISegmentedControl *nextPreviousSegmentedControl;

@@ -57,7 +57,12 @@ self.navigationItem.rightBarButtonItem = self.nextPreviousBarButtonItem;
 NSInteger theCurrentEntryIndex = self.currentEntryIndex;
 
 [self.nextPreviousSegmentedControl setEnabled:theCurrentEntryIndex > 0 forSegmentAtIndex:0];
-[self.nextPreviousSegmentedControl setEnabled:theCurrentEntryIndex < [self.fetchedResultsController.fetchedObjects count] - 1 forSegmentAtIndex:1];
+[self.nextPreviousSegmentedControl setEnabled:theCurrentEntryIndex < self.countOfEntries - 1 forSegmentAtIndex:1];
+
+//if (self.isHome)
+//	[self hideToolbar];
+//else
+//	[self showToolbar];
 }
 
 #pragma mark -
@@ -71,7 +76,7 @@ return([self.fetchedResultsController.fetchedObjects indexOfObject:self.entry]);
 {
 if (inCurrentRow < 0)
 	return;
-if (inCurrentRow > [self.fetchedResultsController.fetchedObjects count] - 1)
+else if (inCurrentRow > [self.fetchedResultsController.fetchedObjects count] - 1)
 	return;
 
 CFeedEntry *theEntry = [self.fetchedResultsController.fetchedObjects objectAtIndex:inCurrentRow];
