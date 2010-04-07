@@ -19,7 +19,7 @@ NSString *theEncodedData = [inData asBase64EncodedString:0];
 
 NSString *theString = [NSString stringWithFormat:@"data:%@;%@base64,%@",
 	inMimeType,
-	inCharset ? [NSString stringWithFormat:@"charset=\"%@\";", inCharset] : @"",
+	inCharset ? [NSString stringWithFormat:@"charset=%@;", inCharset] : @"",
 	theEncodedData];
 
 NSURL *theURL = [NSURL URLWithString:theString];

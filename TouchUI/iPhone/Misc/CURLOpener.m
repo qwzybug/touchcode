@@ -14,6 +14,8 @@ static CURLOpener *gInstance = NULL;
 
 @interface CURLOpener ()
 @property (readwrite, nonatomic, retain) NSArray *selectors;
+
+- (void)addButtonsForURL:(NSURL *)inURL;
 @end
 
 #pragma mark -
@@ -35,8 +37,7 @@ if ((self = [super initWithTitle:NULL delegate:self cancelButtonTitle:NULL destr
 	[self addButtonsForURL:inURL];
 
 	[self addButtonWithTitle:@"Cancel"];
-	self.cancelButtonIndex = 2;
-
+	self.cancelButtonIndex = self.numberOfButtons - 1;
 	
 	if (gInstance)
 		{

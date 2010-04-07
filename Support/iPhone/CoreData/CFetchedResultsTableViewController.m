@@ -33,12 +33,16 @@ const double kPlaceholderHideShowAnimationDuration = 0.4;
 
 @implementation CFetchedResultsTableViewController
 
+@synthesize managedObjectContext;
+@synthesize fetchRequest;
 @synthesize fetchedResultsController;
 @synthesize addButtonItem;
 @synthesize placeholderView;
 
 - (void)dealloc
 {
+[fetchRequest release];
+fetchRequest = NULL;
 fetchedResultsController.delegate = NULL;
 [fetchedResultsController release];
 fetchedResultsController = NULL;
@@ -67,6 +71,29 @@ addButtonItem.enabled = !inEditing;
 }
 
 #pragma mark -
+
+- (void)setFetchRequest:(NSFetchRequest *)inFetchRequest
+{
+if (fetchRequest != inFetchRequest)
+	{
+	[fetchRequest release];
+	fetchRequest = NULL;
+	//
+	fetchRequest = [inFetchRequest retain];
+	
+	self.fetchedResultsController = NULL;
+	}
+}
+
+- (NSFetchedResultsController *)fetchedResultsController
+{
+if (fetchedResultsController == NULL)
+	{
+	fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:NULL cacheName:NULL];
+	fetchedResultsController.delegate = self;
+	}
+return(fetchedResultsController);
+}
 
 - (UIBarButtonItem *)addButtonItem
 {
@@ -176,12 +203,10 @@ return(theNumberOfRows);
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-NSManagedObjectContext *theManagedObjectContext = self.fetchedResultsController.managedObjectContext;
-
 if (editingStyle == UITableViewCellEditingStyleDelete)
 	{
 	NSManagedObject *theObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
-	[theManagedObjectContext deleteObject:theObject];
+	[self.managedObjectContext deleteObject:theObject];
 //	[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }   
 else if (editingStyle == UITableViewCellEditingStyleInsert)
@@ -189,7 +214,7 @@ else if (editingStyle == UITableViewCellEditingStyleInsert)
     }
 	
 NSError *theError = NULL;
-if ([theManagedObjectContext save:&theError] == NO)
+if ([self.managedObjectContext save:&theError] == NO)
 	{
 	NSLog(@"Error: %@", theError);
 	}

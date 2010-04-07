@@ -17,7 +17,6 @@
 		4515E6CF116CD13A00E6822E /* NSURL_DataExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4515E6CE116CD13A00E6822E /* NSURL_DataExtensions.m */; };
 		4515E6D8116CD32800E6822E /* NSData_Base64Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4515E6D5116CD32800E6822E /* NSData_Base64Extensions.m */; };
 		4515E6D9116CD32800E6822E /* NSData_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4515E6D7116CD32800E6822E /* NSData_Extensions.m */; };
-		4515E6E8116CD44400E6822E /* CWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45AA51851079299600611DC1 /* CWebViewController.xib */; };
 		4515E6E9116CD44400E6822E /* CWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45AA51841079299600611DC1 /* CWebViewController.m */; };
 		4515E6EA116CD44600E6822E /* browser-home.png in Resources */ = {isa = PBXBuildFile; fileRef = 45AA51821079299600611DC1 /* browser-home.png */; };
 		4515E6EB116CD44700E6822E /* browser-forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 45AA51811079299600611DC1 /* browser-forward.png */; };
@@ -25,6 +24,9 @@
 		4515E765116CD7A100E6822E /* browser-snapback.png in Resources */ = {isa = PBXBuildFile; fileRef = 4515E764116CD7A100E6822E /* browser-snapback.png */; };
 		4515E7A2116CDB5400E6822E /* CURLOpener.m in Sources */ = {isa = PBXBuildFile; fileRef = 4515E7A1116CDB5400E6822E /* CURLOpener.m */; };
 		4515E7AC116CDD3900E6822E /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4515E7AB116CDD3900E6822E /* MessageUI.framework */; };
+		4515E8D2116CF49600E6822E /* Entry_Template.html in Resources */ = {isa = PBXBuildFile; fileRef = 4515E8D1116CF49600E6822E /* Entry_Template.html */; };
+		4515EB00116D174600E6822E /* browser-next.png in Resources */ = {isa = PBXBuildFile; fileRef = 4515EAFE116D174600E6822E /* browser-next.png */; };
+		4515EB01116D174600E6822E /* browser-previous.png in Resources */ = {isa = PBXBuildFile; fileRef = 4515EAFF116D174600E6822E /* browser-previous.png */; };
 		45AA50511079286600611DC1 /* CFeedStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 45AA503C1079286600611DC1 /* CFeedStore.m */; };
 		45AA50521079286600611DC1 /* CObjectTranscoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 45AA503E1079286600611DC1 /* CObjectTranscoder.m */; };
 		45AA50531079286600611DC1 /* AtomKeywords.gperf in Resources */ = {isa = PBXBuildFile; fileRef = 45AA50401079286600611DC1 /* AtomKeywords.gperf */; };
@@ -117,6 +119,9 @@
 		4515E7A0116CDB5400E6822E /* CURLOpener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CURLOpener.h; sourceTree = "<group>"; };
 		4515E7A1116CDB5400E6822E /* CURLOpener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CURLOpener.m; sourceTree = "<group>"; };
 		4515E7AB116CDD3900E6822E /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		4515E8D1116CF49600E6822E /* Entry_Template.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Entry_Template.html; sourceTree = "<group>"; };
+		4515EAFE116D174600E6822E /* browser-next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "browser-next.png"; sourceTree = "<group>"; };
+		4515EAFF116D174600E6822E /* browser-previous.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "browser-previous.png"; sourceTree = "<group>"; };
 		45AA50391079286600611DC1 /* CFeedFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFeedFetcher.h; sourceTree = "<group>"; };
 		45AA503A1079286600611DC1 /* CFeedFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFeedFetcher.m; sourceTree = "<group>"; };
 		45AA503B1079286600611DC1 /* CFeedStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFeedStore.h; sourceTree = "<group>"; };
@@ -264,7 +269,6 @@
 		45AA51821079299600611DC1 /* browser-home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "browser-home.png"; sourceTree = "<group>"; };
 		45AA51831079299600611DC1 /* CWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWebViewController.h; sourceTree = "<group>"; };
 		45AA51841079299600611DC1 /* CWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWebViewController.m; sourceTree = "<group>"; };
-		45AA51851079299600611DC1 /* CWebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CWebViewController.xib; sourceTree = "<group>"; };
 		45AA518A1079299600611DC1 /* UIColor_Blending.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIColor_Blending.h; sourceTree = "<group>"; };
 		45AA518B1079299600611DC1 /* UIColor_Blending.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIColor_Blending.m; sourceTree = "<group>"; };
 		45AA518C1079299600611DC1 /* UIColor_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIColor_Extensions.h; sourceTree = "<group>"; };
@@ -300,8 +304,6 @@
 		45AA51BD1079299600611DC1 /* CFullScreenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFullScreenView.m; sourceTree = "<group>"; };
 		45AA51C01079299600611DC1 /* CLayoutManagedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLayoutManagedView.h; sourceTree = "<group>"; };
 		45AA51C11079299600611DC1 /* CLayoutManagedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLayoutManagedView.m; sourceTree = "<group>"; };
-		45AA51C21079299600611DC1 /* CLinkActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLinkActionSheet.h; sourceTree = "<group>"; };
-		45AA51C31079299600611DC1 /* CLinkActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLinkActionSheet.m; sourceTree = "<group>"; };
 		45AA51C41079299600611DC1 /* CLinkLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLinkLabel.h; sourceTree = "<group>"; };
 		45AA51C51079299600611DC1 /* CLinkLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLinkLabel.m; sourceTree = "<group>"; };
 		45AA51C91079299600611DC1 /* CTapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTapView.h; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 				45AA529D10792EC800611DC1 /* CFeedEntriesViewController.m */,
 				45B28A2E116BADCF00F81177 /* CFeedEntryViewController.h */,
 				45B28A2F116BADCF00F81177 /* CFeedEntryViewController.m */,
+				4515E8D1116CF49600E6822E /* Entry_Template.html */,
 				1D3623240D0F684500981E51 /* TouchRSS_iPhoneAppDelegate.h */,
 				1D3623250D0F684500981E51 /* TouchRSS_iPhoneAppDelegate.m */,
 			);
@@ -807,9 +810,10 @@
 				45AA51801079299600611DC1 /* browser-back.png */,
 				45AA51811079299600611DC1 /* browser-forward.png */,
 				45AA51821079299600611DC1 /* browser-home.png */,
+				4515EAFE116D174600E6822E /* browser-next.png */,
+				4515EAFF116D174600E6822E /* browser-previous.png */,
 				45AA51831079299600611DC1 /* CWebViewController.h */,
 				45AA51841079299600611DC1 /* CWebViewController.m */,
-				45AA51851079299600611DC1 /* CWebViewController.xib */,
 			);
 			path = WebViewController;
 			sourceTree = "<group>";
@@ -889,8 +893,6 @@
 				45AA51BD1079299600611DC1 /* CFullScreenView.m */,
 				45AA51C01079299600611DC1 /* CLayoutManagedView.h */,
 				45AA51C11079299600611DC1 /* CLayoutManagedView.m */,
-				45AA51C21079299600611DC1 /* CLinkActionSheet.h */,
-				45AA51C31079299600611DC1 /* CLinkActionSheet.m */,
 				45AA51C41079299600611DC1 /* CLinkLabel.h */,
 				45AA51C51079299600611DC1 /* CLinkLabel.m */,
 				45AA51C91079299600611DC1 /* CTapView.h */,
@@ -971,11 +973,13 @@
 				45AA50531079286600611DC1 /* AtomKeywords.gperf in Resources */,
 				45AA50561079286600611DC1 /* RSSKeywords.gperf in Resources */,
 				45DA932D116B9B5800594780 /* MainWindow-iPad.xib in Resources */,
-				4515E6E8116CD44400E6822E /* CWebViewController.xib in Resources */,
 				4515E6EA116CD44600E6822E /* browser-home.png in Resources */,
 				4515E6EB116CD44700E6822E /* browser-forward.png in Resources */,
 				4515E6EC116CD44700E6822E /* browser-back.png in Resources */,
 				4515E765116CD7A100E6822E /* browser-snapback.png in Resources */,
+				4515E8D2116CF49600E6822E /* Entry_Template.html in Resources */,
+				4515EB00116D174600E6822E /* browser-next.png in Resources */,
+				4515EB01116D174600E6822E /* browser-previous.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

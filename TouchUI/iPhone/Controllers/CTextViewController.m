@@ -23,7 +23,6 @@
 {
 if ((self = [self initWithNibName:NSStringFromClass([self class]) bundle:NULL]) != NULL)
 	{
-	self.title = @"Memo";
 	self.initialText = inText;
 	}
 return(self);

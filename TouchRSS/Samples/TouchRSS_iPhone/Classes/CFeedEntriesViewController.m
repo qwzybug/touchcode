@@ -38,7 +38,8 @@
 @implementation CFeedEntriesViewController
 
 @synthesize feedStore;
-@synthesize feed;
+@dynamic feed;
+@synthesize feeds;
 
 - (id)initWithFeedStore:(CFeedStore *)inFeedStore feed:(CFeed *)inFeed;
 {
@@ -47,15 +48,15 @@ if ((self = [super init]) != NULL)
 	self.title = inFeed.title;
 	//
 	self.feedStore = inFeedStore;
-	self.feed = inFeed;
+	self.managedObjectContext = inFeedStore.managedObjectContext;
+
+	self.feed = inFeed;	
 	}
 return(self);
 }
 
 - (void)dealloc
 {
-self.feedStore = NULL;
-self.feed = NULL;
 //
 [super dealloc];
 }
@@ -79,39 +80,41 @@ thePlaceholderLabel.text = @"No entries";
 
 - (CFeed *)feed
 {
-return(feed);
+return([self.feeds lastObject]);
 }
 
 - (void)setFeed:(CFeed *)inFeed
 {
-if (feed != inFeed)
+[self setFeeds:[NSArray arrayWithObject:inFeed]];
+}
+
+- (void)setFeeds:(NSArray *)inFeeds
+{
+if (feeds != inFeeds)
 	{
-	if (feed)
+	if (feeds != NULL)
 		{
-		[feed release];
-		feed = NULL;
-		
+		[feeds release];
+		feeds = NULL;
+
 		self.fetchedResultsController.delegate = NULL;
 		self.fetchedResultsController = NULL;
 		}
-	
-	if (inFeed)
+
+	if (inFeeds)
 		{
-		feed = [inFeed retain];
-		
-		NSEntityDescription *theEntityDescription = [NSEntityDescription entityForName:[CFeedEntry entityName] inManagedObjectContext:self.feedStore.managedObjectContext];
+		NSEntityDescription *theEntityDescription = [NSEntityDescription entityForName:[CFeedEntry entityName] inManagedObjectContext:self.managedObjectContext];
 		NSAssert(theEntityDescription != NULL, @"No entity description.");
 		NSFetchRequest *theFetchRequest = [[[NSFetchRequest alloc] init] autorelease];
 		theFetchRequest.entity = theEntityDescription;
-		theFetchRequest.predicate = [NSPredicate predicateWithFormat:@"feed = %@", inFeed];
+		theFetchRequest.predicate = [NSPredicate predicateWithFormat:@"feed IN %@", inFeeds];
 
 		NSArray *theSortDescriptors = [NSArray arrayWithObjects:
 			[[[NSSortDescriptor alloc] initWithKey:@"updated" ascending:NO] autorelease],
 			NULL];
 		theFetchRequest.sortDescriptors = theSortDescriptors;
 
-		self.fetchedResultsController = [[[NSFetchedResultsController alloc] initWithFetchRequest:theFetchRequest managedObjectContext:self.feedStore.managedObjectContext sectionNameKeyPath:NULL cacheName:NULL] autorelease];
-		self.fetchedResultsController.delegate = self;
+		self.fetchRequest = theFetchRequest;
 		}
 	}
 }
@@ -138,13 +141,10 @@ return(theCell);
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-CFeedEntryViewController *theFeedEntryView = [[[CFeedEntryViewController alloc] init] autorelease];
+CFeedEntry *theEntry = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
-NSURL *theURL = [NSURL dataURLWithData:[@"HELLO WORLD" dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"text/plain" charset:NULL];
-NSLog(@"%@", theURL);
-
-
-theFeedEntryView.homeURL = [NSURL URLWithString:@"http://google.com"];
+CFeedEntryViewController *theFeedEntryView = [[[CFeedEntryViewController alloc] initWithFetchedResultsController:self.fetchedResultsController] autorelease];
+theFeedEntryView.entry = theEntry;
 
 [self.navigationController pushViewController:theFeedEntryView animated:YES];
 

@@ -60,8 +60,8 @@ Base64EncodeData([self bytes], [self length], theEncodedData, &theEncodedDataSiz
 theEncodedData = reallocf(theEncodedData, theEncodedDataSize);
 if (theEncodedData == NULL)
 	return(NULL);
-id theData = [NSData dataWithBytesNoCopy:theEncodedData length:theEncodedDataSize freeWhenDone:YES];
-NSString *theString = [[[NSString alloc] initWithData:theData encoding:NSASCIIStringEncoding] autorelease];
+NSString *theString = [NSString stringWithUTF8String:theEncodedData];
+free(theEncodedData);
 return(theString);
 }
 

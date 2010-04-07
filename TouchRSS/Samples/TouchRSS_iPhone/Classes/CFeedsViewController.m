@@ -46,6 +46,8 @@ self.navigationItem.rightBarButtonItem = [self addButtonItem];
 UILabel *thePlaceholderLabel = (UILabel *)self.placeholderView;
 thePlaceholderLabel.text = @"No feeds";
 
+self.managedObjectContext = [CFeedStore instance].managedObjectContext;
+
 NSEntityDescription *theEntityDescription = [NSEntityDescription entityForName:[CFeed entityName] inManagedObjectContext:[CFeedStore instance].managedObjectContext];
 NSAssert(theEntityDescription != NULL, @"No entity description.");
 NSFetchRequest *theFetchRequest = [[[NSFetchRequest alloc] init] autorelease];
@@ -56,8 +58,7 @@ NSArray *theSortDescriptors = [NSArray arrayWithObjects:
 	NULL];
 theFetchRequest.sortDescriptors = theSortDescriptors;
 
-self.fetchedResultsController = [[[NSFetchedResultsController alloc] initWithFetchRequest:theFetchRequest managedObjectContext:[CFeedStore instance].managedObjectContext sectionNameKeyPath:NULL cacheName:NULL] autorelease];
-self.fetchedResultsController.delegate = self;
+self.fetchRequest = theFetchRequest;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation

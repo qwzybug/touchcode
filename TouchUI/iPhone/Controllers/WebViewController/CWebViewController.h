@@ -32,8 +32,8 @@
 @interface CWebViewController : UIViewController <UIWebViewDelegate, UIActionSheetDelegate> {
 	NSURL *homeURL;
 	BOOL dontChangeTitle;
-	BOOL loading;
 	
+	NSURL *requestedURL;
 	NSURL *currentURL;
 
 	IBOutlet UIWebView *webView;
@@ -42,13 +42,16 @@
 	IBOutlet UIBarButtonItem *backButton;
 	IBOutlet UIBarButtonItem *forwardsButton;
 	IBOutlet UIBarButtonItem *reloadButton;
+	UIBarButtonItem *activitySpinnerButton;
+	IBOutlet UIBarButtonItem *actionButton;	
 }
 
 @property (readwrite, nonatomic, retain) NSURL *homeURL;
 @property (readwrite, nonatomic, assign) BOOL dontChangeTitle;
 
-@property (readonly, nonatomic, assign) BOOL loading;
+@property (readwrite, nonatomic, assign) NSURL *requestedURL;
 @property (readonly, nonatomic, retain) NSURL *currentURL;
+@property (readonly, nonatomic, assign) BOOL isHome;
 
 @property (readonly, nonatomic, retain) IBOutlet UIWebView *webView;
 @property (readonly, nonatomic, retain) IBOutlet UIToolbar *toolbar;
@@ -56,14 +59,20 @@
 @property (readonly, nonatomic, retain) IBOutlet UIBarButtonItem *backButton;
 @property (readonly, nonatomic, retain) IBOutlet UIBarButtonItem *forwardsButton;
 @property (readonly, nonatomic, retain) IBOutlet UIBarButtonItem *reloadButton;
+@property (readonly, nonatomic, retain) UIBarButtonItem *activitySpinnerButton;
+@property (readonly, nonatomic, retain) IBOutlet UIBarButtonItem *actionButton;
 
 - (void)loadURL:(NSURL *)inURL;
+- (void)updateUI;
+- (void)resetWebView;
+
+- (void)hideToolbar;
+- (void)showToolbar;
 
 - (IBAction)actionBack:(id)inSender;
 - (IBAction)actionForwards:(id)inSender;
 - (IBAction)actionReload:(id)inSender;
 - (IBAction)actionHome:(id)inSender;
 - (IBAction)actionUtilityPopup:(id)inSender;
-
 
 @end
