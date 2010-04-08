@@ -51,6 +51,8 @@ return(self);
 
 - (void)dealloc
 {
+self.tableView.delegate = NULL;
+self.tableView.dataSource = NULL;
 self.tableView = NULL;
 //
 [super dealloc];
