@@ -79,7 +79,7 @@ else if (self.type == PickerType_Modal)
 	self.viewController.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)] autorelease];
 	self.viewController.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)] autorelease];
 
-	self.navigationController.modalPresentationStyle = UIModalPresentationPageSheet;
+	self.navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
 	[inParentViewController presentModalViewController:self.navigationController animated:inAnimated];
 	}
 }
@@ -93,11 +93,11 @@ if (self.delegate && [self.delegate respondsToSelector:@selector(picker:didFinis
 	[self.delegate picker:self didFinishWithValue:self.value];
 	}
 
-if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+if (self.type == PickerType_Popover)
 	{
 	[self.popoverController dismissPopoverAnimated:YES];
 	}
-else
+else if (self.type == PickerType_Modal)
 	{
 	[self.viewController dismissModalViewControllerAnimated:YES];
 	}

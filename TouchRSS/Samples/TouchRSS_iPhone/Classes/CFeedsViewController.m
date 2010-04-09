@@ -102,25 +102,27 @@ CFeedEntriesViewController *theViewController = [[[CFeedEntriesViewController al
 {
 CPicker *thePicker = [[[CPicker alloc] init] autorelease];
 thePicker.type = PickerType_Modal;
-thePicker.initialValue = @"http://toxicsoftware.com/feed/";
+thePicker.value = @"http://toxicsoftware.com/feed/";
 thePicker.delegate = self;
 
 CTextEntryPickerViewController *theTextViewController = [[[CTextEntryPickerViewController alloc] initWithPicker:thePicker] autorelease];
+theTextViewController.title = @"Add Feed";
 theTextViewController.field.keyboardType = UIKeyboardTypeURL;
+theTextViewController.label.text = @"Feed";
 //theTextViewController.field.dataDetectorTypes = UIDataDetectorTypeLink;
 
 [thePicker presentModal:self fromBarButtonItem:inSender animated:YES];
 
 
-
-//NSURL *theURL = [NSURL URLWithString:@"http://toxicsoftware.com/feed/"];
-//NSError *theError = NULL;
-//[[CFeedStore instance].feedFetcher subscribeToURL:theURL error:&theError];
 }
 
 - (void)picker:(CPicker *)inPicker didFinishWithValue:(id)inValue;
 {
-NSLog(@"NEW VALUE: %@", inValue);
+NSLog(@"DONE: %@", inValue);
+
+NSURL *theURL = [NSURL URLWithString:inValue];
+NSError *theError = NULL;
+[[CFeedStore instance].feedFetcher subscribeToURL:theURL error:&theError];
 }
 
 @end

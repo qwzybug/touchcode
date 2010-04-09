@@ -10,6 +10,7 @@
 
 @implementation CTextEntryPickerViewController
 
+@synthesize cell;
 @synthesize label;
 @synthesize field;
 
@@ -18,9 +19,50 @@
 if ((self = [super initWithPicker:inPicker]) != NULL)
 	{
 	self.initialStyle = UITableViewStyleGrouped;
+	
+	[self cell];
 	}
 return(self);
 }
+
+- (UITableViewCell *)cell
+{
+if (cell == NULL)
+	{
+	UITableViewCell *theCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:NULL] autorelease];
+	theCell.textLabel.text = @"Text";
+	theCell.selectionStyle = UITableViewCellSelectionStyleNone;
+	
+	self.label = theCell.textLabel;
+	
+	[theCell.contentView addSubview:self.field];
+	
+	cell = [theCell retain];
+	}
+return(cell);
+}
+
+- (UITextField *)field
+{
+if (field == NULL)
+	{
+	UITextField *theField = [[[UITextField alloc] initWithFrame:CGRectMake(100, 0, 210, 44)] autorelease];
+	theField.tag = 0;
+	theField.delegate = self;
+	theField.textAlignment = UITextAlignmentLeft;
+	theField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+	theField.textColor = [UIColor colorWithRed:0.31f green:0.408f blue:0.584f alpha:1.0f];
+	theField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+	theField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+	theField.text = self.picker.value;
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldTextDidChangeNotification:) name:UITextFieldTextDidChangeNotification object:theField];
+	
+	field = [theField retain];
+	}
+return(field);
+}
+
+#pragma mark -
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
@@ -54,24 +96,7 @@ switch (indexPath.section)
 			{
 			case 0:
 				{
-				self.label = theCell.textLabel;
-				
-				theCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:NULL] autorelease];
-				theCell.textLabel.text = @"Feed";
-				theCell.selectionStyle = UITableViewCellSelectionStyleNone;
-				self.field = [[[UITextField alloc] initWithFrame:CGRectMake(100, 0, 210, 44)] autorelease];
-				self.field.tag = 0;
-				self.field.delegate = self;
-				self.field.textAlignment = UITextAlignmentLeft;
-				self.field.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-				self.field.textColor = [UIColor colorWithRed:0.31f green:0.408f blue:0.584f alpha:1.0f];
-				self.field.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-				self.field.autocapitalizationType = UITextAutocapitalizationTypeNone;
-				self.field.text = self.picker.value;
-				
-				[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldTextDidChangeNotification:) name:UITextFieldTextDidChangeNotification object:self.field];
-				
-				[theCell.contentView addSubview:self.field];
+				theCell = self.cell;
 				}
 				break;
 			}
