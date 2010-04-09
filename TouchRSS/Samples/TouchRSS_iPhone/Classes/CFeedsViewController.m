@@ -107,13 +107,13 @@ thePicker.delegate = self;
 
 CTextEntryPickerViewController *theTextViewController = [[[CTextEntryPickerViewController alloc] initWithPicker:thePicker] autorelease];
 theTextViewController.title = @"Add Feed";
+theTextViewController.field.autocapitalizationType = UITextAutocapitalizationTypeNone;
+theTextViewController.field.autocorrectionType = UITextAutocorrectionTypeNo;
 theTextViewController.field.keyboardType = UIKeyboardTypeURL;
 theTextViewController.label.text = @"Feed";
 //theTextViewController.field.dataDetectorTypes = UIDataDetectorTypeLink;
 
 [thePicker presentModal:self fromBarButtonItem:inSender animated:YES];
-
-
 }
 
 - (void)picker:(CPicker *)inPicker didFinishWithValue:(id)inValue;
