@@ -90,8 +90,9 @@ CGRect theFrame = [UIScreen mainScreen].applicationFrame;
 self.view = [[[UIView alloc] initWithFrame:theFrame] autorelease];
 self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 
-CGRect theWebViewFrame = self.view.bounds;
+//
 
+CGRect theWebViewFrame = self.view.bounds;
 self.webView.frame = theWebViewFrame;
 [self.view addSubview:self.webView];
 
@@ -102,6 +103,7 @@ if (YES)
 	
 	theWebViewFrame.size.height -= theToolbarFrame.size.height;
 	theToolbarFrame.origin.y = CGRectGetMaxY(theWebViewFrame);
+	theToolbarFrame.size.width = theWebViewFrame.size.width;
 
 	self.webView.frame = theWebViewFrame;
 	theToolbar.frame = theToolbarFrame;
@@ -163,7 +165,7 @@ return(toolbar);
 {
 if (homeButton == NULL)
 	{
-	homeButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"browser-snapback.png"] style:UIBarButtonItemStylePlain target:self action:@selector(actionHome:)];
+	homeButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"browser-snapback.png"] style:UIBarButtonItemStylePlain target:self action:@selector(home:)];
 	}
 return(homeButton);
 }
@@ -172,7 +174,7 @@ return(homeButton);
 {
 if (backButton == NULL)
 	{
-	backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"browser-back.png"] style:UIBarButtonItemStylePlain target:self action:@selector(actionBack:)];
+	backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"browser-back.png"] style:UIBarButtonItemStylePlain target:self action:@selector(back:)];
 	}
 return(backButton);
 }
@@ -181,7 +183,7 @@ return(backButton);
 {
 if (forwardsButton == NULL)
 	{
-	forwardsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"browser-forward.png"] style:UIBarButtonItemStylePlain target:self action:@selector(actionForwards:)];
+	forwardsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"browser-forward.png"] style:UIBarButtonItemStylePlain target:self action:@selector(forward:)];
 	}
 return(forwardsButton);
 }
@@ -190,7 +192,7 @@ return(forwardsButton);
 {
 if (reloadButton == NULL)
 	{
-	reloadButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(actionReload:)];
+	reloadButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reload:)];
 	}
 return(reloadButton);
 }
@@ -211,7 +213,7 @@ return(activitySpinnerButton);
 {
 if (actionButton == NULL)
 	{
-	actionButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(actionUtilityPopup:)];
+	actionButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(action:)];
 	}
 return(actionButton);
 }
@@ -315,31 +317,35 @@ self.toolbar.hidden = NO;
 
 #pragma mark -
 
-- (IBAction)actionBack:(id)inSender
+- (IBAction)back:(id)inSender
 {
 [self.webView goBack];
 }
 
-- (IBAction)actionForwards:(id)inSender
+- (IBAction)forward:(id)inSender
 {
 [self.webView goForward];
 }
 
-- (IBAction)actionReload:(id)inSender
+- (IBAction)reload:(id)inSender
 {
 [self.webView reload];
 }
 
-- (IBAction)actionHome:(id)inSender
+- (IBAction)home:(id)inSender
 {
 if (self.homeURL)
 	[self loadURL:self.homeURL];
 }
 
-- (IBAction)actionUtilityPopup:(id)inSender
+- (IBAction)action:(id)inSender
 {
 CURLOpener *theActionSheet = [[[CURLOpener alloc] initWithParentViewController:self URL:self.currentURL] autorelease];
-[theActionSheet showFromToolbar:self.toolbar];
+
+if ([theActionSheet respondsToSelector:@selector(showFromBarButtonItem:animated:)])
+	[theActionSheet showFromBarButtonItem:inSender animated:YES];
+else
+	[theActionSheet showFromToolbar:self.toolbar];
 }
 
 #pragma mark -

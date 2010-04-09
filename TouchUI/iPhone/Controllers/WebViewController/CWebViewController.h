@@ -42,7 +42,7 @@
 	IBOutlet UIBarButtonItem *backButton;
 	IBOutlet UIBarButtonItem *forwardsButton;
 	IBOutlet UIBarButtonItem *reloadButton;
-	UIBarButtonItem *activitySpinnerButton;
+	IBOutlet UIBarButtonItem *activitySpinnerButton;
 	IBOutlet UIBarButtonItem *actionButton;	
 }
 
@@ -59,7 +59,7 @@
 @property (readonly, nonatomic, retain) IBOutlet UIBarButtonItem *backButton;
 @property (readonly, nonatomic, retain) IBOutlet UIBarButtonItem *forwardsButton;
 @property (readonly, nonatomic, retain) IBOutlet UIBarButtonItem *reloadButton;
-@property (readonly, nonatomic, retain) UIBarButtonItem *activitySpinnerButton;
+@property (readonly, nonatomic, retain) IBOutlet UIBarButtonItem *activitySpinnerButton;
 @property (readonly, nonatomic, retain) IBOutlet UIBarButtonItem *actionButton;
 
 - (void)loadURL:(NSURL *)inURL;
@@ -69,10 +69,10 @@
 - (void)hideToolbar;
 - (void)showToolbar;
 
-- (IBAction)actionBack:(id)inSender;
-- (IBAction)actionForwards:(id)inSender;
-- (IBAction)actionReload:(id)inSender;
-- (IBAction)actionHome:(id)inSender;
-- (IBAction)actionUtilityPopup:(id)inSender;
+- (IBAction)back:(id)inSender;
+- (IBAction)forward:(id)inSender;
+- (IBAction)reload:(id)inSender;
+- (IBAction)home:(id)inSender;
+- (IBAction)action:(id)inSender;
 
 @end

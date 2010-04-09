@@ -33,6 +33,8 @@
 #import "CFeed.h"
 #import "CFeedFetcher.h"
 #import "CFeedEntriesViewController.h"
+#import "CTextEntryPickerViewController.h"
+#import "CPicker.h"
 
 @implementation CFeedsViewController
 
@@ -63,8 +65,7 @@ self.fetchRequest = theFetchRequest;
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-//return(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? YES : toInterfaceOrientation == UIDeviceOrientationPortrait);
-return(YES);
+return(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? YES : toInterfaceOrientation == UIDeviceOrientationPortrait);
 }
 
 #pragma mark Table view methods
@@ -99,9 +100,27 @@ CFeedEntriesViewController *theViewController = [[[CFeedEntriesViewController al
 
 - (IBAction)add:(id)inSender
 {
-NSURL *theURL = [NSURL URLWithString:@"http://toxicsoftware.com/feed/"];
-NSError *theError = NULL;
-[[CFeedStore instance].feedFetcher subscribeToURL:theURL error:&theError];
+CPicker *thePicker = [[[CPicker alloc] init] autorelease];
+thePicker.type = PickerType_Modal;
+thePicker.initialValue = @"http://toxicsoftware.com/feed/";
+thePicker.delegate = self;
+
+CTextEntryPickerViewController *theTextViewController = [[[CTextEntryPickerViewController alloc] initWithPicker:thePicker] autorelease];
+theTextViewController.field.keyboardType = UIKeyboardTypeURL;
+//theTextViewController.field.dataDetectorTypes = UIDataDetectorTypeLink;
+
+[thePicker presentModal:self fromBarButtonItem:inSender animated:YES];
+
+
+
+//NSURL *theURL = [NSURL URLWithString:@"http://toxicsoftware.com/feed/"];
+//NSError *theError = NULL;
+//[[CFeedStore instance].feedFetcher subscribeToURL:theURL error:&theError];
+}
+
+- (void)picker:(CPicker *)inPicker didFinishWithValue:(id)inValue;
+{
+NSLog(@"NEW VALUE: %@", inValue);
 }
 
 @end

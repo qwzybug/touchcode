@@ -34,6 +34,7 @@
 #import "CFeedEntry.h"
 #import "CFeed.h"
 #import "NSURL_DataExtensions.h"
+#import "TouchRSS_iPhoneAppDelegate.h"
 
 @implementation CFeedEntriesViewController
 
@@ -146,8 +147,14 @@ CFeedEntry *theEntry = [self.fetchedResultsController objectAtIndexPath:indexPat
 CFeedEntryViewController *theFeedEntryView = [[[CFeedEntryViewController alloc] initWithFetchedResultsController:self.fetchedResultsController] autorelease];
 theFeedEntryView.entry = theEntry;
 
-[self.navigationController pushViewController:theFeedEntryView animated:YES];
-
+if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+	{
+	[[[TouchRSS_iPhoneAppDelegate instance].splitViewController.viewControllers objectAtIndex:1] setViewControllers:[NSArray arrayWithObject:theFeedEntryView]];
+	}
+else
+	{
+	[self.navigationController pushViewController:theFeedEntryView animated:YES];	
+	}
 }
 
 @end

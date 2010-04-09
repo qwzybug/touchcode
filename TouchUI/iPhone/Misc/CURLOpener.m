@@ -54,7 +54,7 @@ return(self);
 {
 NSMutableArray *theSelectors = [NSMutableArray array];
 
-if (YES)
+if ([inURL.scheme isEqual:@"http"])
 	{
 	[self addButtonWithTitle:@"Open in Safari"];
 	[theSelectors addObject:NSStringFromSelector(@selector(openURL:))];

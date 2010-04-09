@@ -11,6 +11,7 @@
 #import "CFeedEntry.h"
 #import "NSURL_DataExtensions.h"
 #import "CTrivialTemplate.h"
+#import "CURLOpener.h"
 
 @implementation CFeedEntryViewController
 
@@ -141,7 +142,7 @@ if (nextPreviousSegmentedControl == NULL)
 	nextPreviousSegmentedControl = [[UISegmentedControl alloc] initWithItems:theItems];
 	nextPreviousSegmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
 	nextPreviousSegmentedControl.momentary = YES;
-	[nextPreviousSegmentedControl addTarget:self action:@selector(actionTest:) forControlEvents:UIControlEventValueChanged];
+	[nextPreviousSegmentedControl addTarget:self action:@selector(actionPreviousNext:) forControlEvents:UIControlEventValueChanged];
 	}
 return(nextPreviousSegmentedControl);
 }
@@ -167,7 +168,7 @@ self.currentEntryIndex += 1;
 self.currentEntryIndex -= 1;
 }
 
-- (IBAction)actionTest:(id)inSender
+- (IBAction)actionPreviousNext:(id)inSender
 {
 switch ([(UISegmentedControl *)inSender selectedSegmentIndex])
 	{
@@ -179,5 +180,20 @@ switch ([(UISegmentedControl *)inSender selectedSegmentIndex])
 		break;
 	}
 }
+
+- (IBAction)action:(id)inSender
+{
+NSURL *theURL = self.currentURL;
+if (self.isHome)
+	theURL = [NSURL URLWithString:self.entry.link];
+
+
+CURLOpener *theActionSheet = [[[CURLOpener alloc] initWithParentViewController:self URL:theURL] autorelease];
+if ([theActionSheet respondsToSelector:@selector(showFromBarButtonItem:animated:)])
+	[theActionSheet showFromBarButtonItem:inSender animated:YES];
+else
+	[theActionSheet showFromToolbar:self.toolbar];
+}
+
 
 @end

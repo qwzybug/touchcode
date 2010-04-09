@@ -8,22 +8,17 @@
 
 #import "CTextViewController.h"
 
-@interface CTextViewController ()
-@property (readwrite, nonatomic, retain) NSString *initialText;
-@end
-
 #pragma mark -
 
 @implementation CTextViewController
 
 @synthesize textView;
-@synthesize initialText;
+@synthesize picker;
 
-- (id)initWithText:(NSString *)inText
+- (id)init
 {
 if ((self = [self initWithNibName:NSStringFromClass([self class]) bundle:NULL]) != NULL)
 	{
-	self.initialText = inText;
 	}
 return(self);
 }
@@ -31,16 +26,21 @@ return(self);
 - (void)dealloc
 {
 self.textView = NULL;
-self.initialText = NULL;
+self.picker = NULL;
 //
 [super dealloc];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+return(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? YES : toInterfaceOrientation == UIDeviceOrientationPortrait);
 }
 
 - (void)viewDidLoad
 {
 [super viewDidLoad];
 //
-self.textView.text = self.initialText;
+self.textView.text = self.picker.value;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -48,6 +48,11 @@ self.textView.text = self.initialText;
 [super viewDidAppear:animated];
 
 [self.textView becomeFirstResponder];
+}
+
+- (void)textViewDidChange:(UITextView *)inTextView;
+{
+self.picker.value = inTextView.text;
 }
 
 @end

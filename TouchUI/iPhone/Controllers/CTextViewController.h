@@ -8,13 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CTextViewController : UIViewController <UITextViewDelegate> {
-	IBOutlet UITextView *textView;
-	NSString *initialText;
+#import "CPicker.h"
+
+@interface CTextViewController : UIViewController <UITextViewDelegate, CPickerController> {
+	UITextView *textView;
+	CPicker *picker;
 }
 
-@property (readwrite, nonatomic, retain) UITextView *textView;
+@property (readwrite, nonatomic, retain) IBOutlet UITextView *textView;
 
-- (id)initWithText:(NSString *)inText;
+- (id)init;
 
 @end

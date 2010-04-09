@@ -29,7 +29,9 @@
 
 #import "CFetchedResultsTableViewController.h"
 
-@interface CFeedsViewController : CFetchedResultsTableViewController <NSFetchedResultsControllerDelegate> {
+#import "CPicker.h"
+
+@interface CFeedsViewController : CFetchedResultsTableViewController <NSFetchedResultsControllerDelegate, CPickerDelegate> {
 }
 
 - (IBAction)add:(id)inSender;

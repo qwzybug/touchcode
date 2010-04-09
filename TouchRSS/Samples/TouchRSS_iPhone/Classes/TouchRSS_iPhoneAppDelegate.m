@@ -34,9 +34,29 @@
 
 @synthesize window;
 @synthesize rootViewController;
+@synthesize splitViewController;
+
+static TouchRSS_iPhoneAppDelegate *gInstance = NULL;
+
++ (TouchRSS_iPhoneAppDelegate *)instance;
+{
+return(gInstance);
+}
+
+- (id)init
+{
+if ((self = [super init]) != NULL)
+	{
+	gInstance = self;
+	}
+return(self);
+}
 
 - (void)dealloc
 {
+if (gInstance == self)
+	gInstance = NULL;
+
 [rootViewController release];
 rootViewController = NULL;
 //
@@ -47,7 +67,7 @@ window = NULL;
 }
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application
-{        
+{       
 [self.window addSubview:self.rootViewController.view];
 [self.window makeKeyAndVisible];
 }
@@ -63,6 +83,10 @@ window = NULL;
 // Called when a button should be added to a toolbar for a hidden view controller
 - (void)splitViewController: (UISplitViewController*)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem*)barButtonItem forPopoverController: (UIPopoverController*)pc
 {
+
+//[[[TouchRSS_iPhoneAppDelegate instance].splitViewController.viewControllers objectAtIndex:1] 
+
+barButtonItem.title = @"Feeds";
 [[[[svc.viewControllers objectAtIndex:1] viewControllers] objectAtIndex:0] navigationItem].leftBarButtonItem = barButtonItem;
 }
 

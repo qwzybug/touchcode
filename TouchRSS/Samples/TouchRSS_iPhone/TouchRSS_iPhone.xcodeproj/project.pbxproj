@@ -14,6 +14,9 @@
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* CFeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* CFeedsViewController.m */; };
+		450B3EA8116F8A180083E0C1 /* CPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 450B3EA7116F8A180083E0C1 /* CPicker.m */; };
+		450B3FF2116F98B20083E0C1 /* CPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FDB517116E815700297EBA /* CPickerTableViewController.m */; };
+		450B40F3116FA24D0083E0C1 /* CTextEntryPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 450B40F1116FA24D0083E0C1 /* CTextEntryPickerViewController.m */; };
 		4515E6CF116CD13A00E6822E /* NSURL_DataExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4515E6CE116CD13A00E6822E /* NSURL_DataExtensions.m */; };
 		4515E6D8116CD32800E6822E /* NSData_Base64Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4515E6D5116CD32800E6822E /* NSData_Base64Extensions.m */; };
 		4515E6D9116CD32800E6822E /* NSData_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4515E6D7116CD32800E6822E /* NSData_Extensions.m */; };
@@ -27,6 +30,7 @@
 		4515E8D2116CF49600E6822E /* Entry_Template.html in Resources */ = {isa = PBXBuildFile; fileRef = 4515E8D1116CF49600E6822E /* Entry_Template.html */; };
 		4515EB00116D174600E6822E /* browser-next.png in Resources */ = {isa = PBXBuildFile; fileRef = 4515EAFE116D174600E6822E /* browser-next.png */; };
 		4515EB01116D174600E6822E /* browser-previous.png in Resources */ = {isa = PBXBuildFile; fileRef = 4515EAFF116D174600E6822E /* browser-previous.png */; };
+		455A1B71116E66E4005915CF /* UIDevice_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 455A1B70116E66E4005915CF /* UIDevice_Extensions.m */; };
 		45AA50511079286600611DC1 /* CFeedStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 45AA503C1079286600611DC1 /* CFeedStore.m */; };
 		45AA50521079286600611DC1 /* CObjectTranscoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 45AA503E1079286600611DC1 /* CObjectTranscoder.m */; };
 		45AA50531079286600611DC1 /* AtomKeywords.gperf in Resources */ = {isa = PBXBuildFile; fileRef = 45AA50401079286600611DC1 /* AtomKeywords.gperf */; };
@@ -95,6 +99,9 @@
 		45AE956B1147F19F00F9CD6D /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 45AE95571147F19E00F9CD6D /* ISO8601DateFormatter.m */; };
 		45B28A31116BADCF00F81177 /* CFeedEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B28A2F116BADCF00F81177 /* CFeedEntryViewController.m */; };
 		45DA932D116B9B5800594780 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45DA932C116B9B5800594780 /* MainWindow-iPad.xib */; };
+		45FDB4D5116E804800297EBA /* CTextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45AA517E1079299600611DC1 /* CTextViewController.xib */; };
+		45FDB4D6116E804800297EBA /* CTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45AA517D1079299600611DC1 /* CTextViewController.m */; };
+		45FDB533116E818D00297EBA /* UIViewController_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FDB532116E818D00297EBA /* UIViewController_Extensions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -109,6 +116,10 @@
 		28C286DF0D94DF7D0034E888 /* CFeedsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFeedsViewController.h; sourceTree = "<group>"; };
 		28C286E00D94DF7D0034E888 /* CFeedsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFeedsViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		450B3EA6116F8A180083E0C1 /* CPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPicker.h; sourceTree = "<group>"; };
+		450B3EA7116F8A180083E0C1 /* CPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPicker.m; sourceTree = "<group>"; };
+		450B40F0116FA24D0083E0C1 /* CTextEntryPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTextEntryPickerViewController.h; sourceTree = "<group>"; };
+		450B40F1116FA24D0083E0C1 /* CTextEntryPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTextEntryPickerViewController.m; sourceTree = "<group>"; };
 		4515E6CD116CD13A00E6822E /* NSURL_DataExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSURL_DataExtensions.h; sourceTree = "<group>"; };
 		4515E6CE116CD13A00E6822E /* NSURL_DataExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSURL_DataExtensions.m; sourceTree = "<group>"; };
 		4515E6D4116CD32800E6822E /* NSData_Base64Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSData_Base64Extensions.h; sourceTree = "<group>"; };
@@ -122,6 +133,8 @@
 		4515E8D1116CF49600E6822E /* Entry_Template.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Entry_Template.html; sourceTree = "<group>"; };
 		4515EAFE116D174600E6822E /* browser-next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "browser-next.png"; sourceTree = "<group>"; };
 		4515EAFF116D174600E6822E /* browser-previous.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "browser-previous.png"; sourceTree = "<group>"; };
+		455A1B6F116E66E4005915CF /* UIDevice_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDevice_Extensions.h; sourceTree = "<group>"; };
+		455A1B70116E66E4005915CF /* UIDevice_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIDevice_Extensions.m; sourceTree = "<group>"; };
 		45AA50391079286600611DC1 /* CFeedFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFeedFetcher.h; sourceTree = "<group>"; };
 		45AA503A1079286600611DC1 /* CFeedFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFeedFetcher.m; sourceTree = "<group>"; };
 		45AA503B1079286600611DC1 /* CFeedStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFeedStore.h; sourceTree = "<group>"; };
@@ -255,10 +268,6 @@
 		45AA51701079299600611DC1 /* QuartzUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuartzUtilities.m; sourceTree = "<group>"; };
 		45AA51731079299600611DC1 /* CWindowViewFlipper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWindowViewFlipper.h; sourceTree = "<group>"; };
 		45AA51741079299600611DC1 /* CWindowViewFlipper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWindowViewFlipper.m; sourceTree = "<group>"; };
-		45AA51761079299600611DC1 /* CGenericHelperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGenericHelperViewController.h; sourceTree = "<group>"; };
-		45AA51771079299600611DC1 /* CGenericHelperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGenericHelperViewController.m; sourceTree = "<group>"; };
-		45AA51781079299600611DC1 /* CGenericTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGenericTextViewController.h; sourceTree = "<group>"; };
-		45AA51791079299600611DC1 /* CGenericTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGenericTextViewController.m; sourceTree = "<group>"; };
 		45AA517A1079299600611DC1 /* CTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTableViewController.h; sourceTree = "<group>"; };
 		45AA517B1079299600611DC1 /* CTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTableViewController.m; sourceTree = "<group>"; };
 		45AA517C1079299600611DC1 /* CTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTextViewController.h; sourceTree = "<group>"; };
@@ -317,6 +326,18 @@
 		45B28A2E116BADCF00F81177 /* CFeedEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFeedEntryViewController.h; sourceTree = "<group>"; };
 		45B28A2F116BADCF00F81177 /* CFeedEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFeedEntryViewController.m; sourceTree = "<group>"; };
 		45DA932C116B9B5800594780 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "Resources-iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
+		45FDB512116E815700297EBA /* CLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLoginViewController.h; sourceTree = "<group>"; };
+		45FDB513116E815700297EBA /* CLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLoginViewController.m; sourceTree = "<group>"; };
+		45FDB516116E815700297EBA /* CPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPickerTableViewController.h; sourceTree = "<group>"; };
+		45FDB517116E815700297EBA /* CPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPickerTableViewController.m; sourceTree = "<group>"; };
+		45FDB518116E815700297EBA /* CValuesPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CValuesPickerController.h; sourceTree = "<group>"; };
+		45FDB519116E815700297EBA /* CValuesPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CValuesPickerController.m; sourceTree = "<group>"; };
+		45FDB51A116E815700297EBA /* CValuesPickerController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CValuesPickerController.xib; sourceTree = "<group>"; };
+		45FDB51C116E815700297EBA /* CDateRangePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDateRangePickerController.h; sourceTree = "<group>"; };
+		45FDB51D116E815700297EBA /* CDateRangePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDateRangePickerController.m; sourceTree = "<group>"; };
+		45FDB51E116E815700297EBA /* CDateRangePickerController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CDateRangePickerController.xib; sourceTree = "<group>"; };
+		45FDB531116E818D00297EBA /* UIViewController_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewController_Extensions.h; sourceTree = "<group>"; };
+		45FDB532116E818D00297EBA /* UIViewController_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewController_Extensions.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -789,15 +810,12 @@
 		45AA51751079299600611DC1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				45AA51761079299600611DC1 /* CGenericHelperViewController.h */,
-				45AA51771079299600611DC1 /* CGenericHelperViewController.m */,
-				45AA51781079299600611DC1 /* CGenericTextViewController.h */,
-				45AA51791079299600611DC1 /* CGenericTextViewController.m */,
 				45AA517A1079299600611DC1 /* CTableViewController.h */,
 				45AA517B1079299600611DC1 /* CTableViewController.m */,
 				45AA517C1079299600611DC1 /* CTextViewController.h */,
 				45AA517D1079299600611DC1 /* CTextViewController.m */,
 				45AA517E1079299600611DC1 /* CTextViewController.xib */,
+				45FDB511116E815700297EBA /* Pickers */,
 				45AA517F1079299600611DC1 /* WebViewController */,
 			);
 			path = Controllers;
@@ -821,6 +839,8 @@
 		45AA51891079299600611DC1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				45FDB531116E818D00297EBA /* UIViewController_Extensions.h */,
+				45FDB532116E818D00297EBA /* UIViewController_Extensions.m */,
 				45AA518A1079299600611DC1 /* UIColor_Blending.h */,
 				45AA518B1079299600611DC1 /* UIColor_Blending.m */,
 				45AA518C1079299600611DC1 /* UIColor_Extensions.h */,
@@ -833,6 +853,8 @@
 				45AA51931079299600611DC1 /* UIImage_MaskExtensions.m */,
 				45AA51941079299600611DC1 /* UIView_Extensions.h */,
 				45AA51951079299600611DC1 /* UIView_Extensions.m */,
+				455A1B6F116E66E4005915CF /* UIDevice_Extensions.h */,
+				455A1B70116E66E4005915CF /* UIDevice_Extensions.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -920,6 +942,35 @@
 			name = "Resources-iPad";
 			sourceTree = "<group>";
 		};
+		45FDB511116E815700297EBA /* Pickers */ = {
+			isa = PBXGroup;
+			children = (
+				45FDB512116E815700297EBA /* CLoginViewController.h */,
+				45FDB513116E815700297EBA /* CLoginViewController.m */,
+				45FDB516116E815700297EBA /* CPickerTableViewController.h */,
+				45FDB517116E815700297EBA /* CPickerTableViewController.m */,
+				45FDB518116E815700297EBA /* CValuesPickerController.h */,
+				45FDB519116E815700297EBA /* CValuesPickerController.m */,
+				45FDB51A116E815700297EBA /* CValuesPickerController.xib */,
+				450B40F0116FA24D0083E0C1 /* CTextEntryPickerViewController.h */,
+				450B40F1116FA24D0083E0C1 /* CTextEntryPickerViewController.m */,
+				45FDB51B116E815700297EBA /* DeprecatedButWorthSaving */,
+				450B3EA6116F8A180083E0C1 /* CPicker.h */,
+				450B3EA7116F8A180083E0C1 /* CPicker.m */,
+			);
+			path = Pickers;
+			sourceTree = "<group>";
+		};
+		45FDB51B116E815700297EBA /* DeprecatedButWorthSaving */ = {
+			isa = PBXGroup;
+			children = (
+				45FDB51C116E815700297EBA /* CDateRangePickerController.h */,
+				45FDB51D116E815700297EBA /* CDateRangePickerController.m */,
+				45FDB51E116E815700297EBA /* CDateRangePickerController.xib */,
+			);
+			path = DeprecatedButWorthSaving;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -980,6 +1031,7 @@
 				4515E8D2116CF49600E6822E /* Entry_Template.html in Resources */,
 				4515EB00116D174600E6822E /* browser-next.png in Resources */,
 				4515EB01116D174600E6822E /* browser-previous.png in Resources */,
+				45FDB4D5116E804800297EBA /* CTextViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1062,6 +1114,12 @@
 				4515E6D9116CD32800E6822E /* NSData_Extensions.m in Sources */,
 				4515E6E9116CD44400E6822E /* CWebViewController.m in Sources */,
 				4515E7A2116CDB5400E6822E /* CURLOpener.m in Sources */,
+				455A1B71116E66E4005915CF /* UIDevice_Extensions.m in Sources */,
+				45FDB4D6116E804800297EBA /* CTextViewController.m in Sources */,
+				45FDB533116E818D00297EBA /* UIViewController_Extensions.m in Sources */,
+				450B3EA8116F8A180083E0C1 /* CPicker.m in Sources */,
+				450B3FF2116F98B20083E0C1 /* CPickerTableViewController.m in Sources */,
+				450B40F3116FA24D0083E0C1 /* CTextEntryPickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1110,8 +1168,9 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.1;
+				SDKROOT = iphoneos3.2;
 			};
 			name = Debug;
 		};
@@ -1123,8 +1182,9 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.1;
+				SDKROOT = iphoneos3.2;
 			};
 			name = Release;
 		};

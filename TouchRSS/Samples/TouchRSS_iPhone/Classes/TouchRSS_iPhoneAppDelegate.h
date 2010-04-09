@@ -30,10 +30,14 @@
 @interface TouchRSS_iPhoneAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
     UIViewController *rootViewController;
+	UISplitViewController *splitViewController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UIViewController *rootViewController;
+@property (nonatomic, retain) IBOutlet UISplitViewController *splitViewController;
+
++ (TouchRSS_iPhoneAppDelegate *)instance;
 
 @end
 
