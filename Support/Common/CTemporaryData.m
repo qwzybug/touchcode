@@ -29,6 +29,8 @@
 
 #import "CTemporaryData.h"
 
+#include <unistd.h>
+
 @interface CTemporaryData ()
 @property (readwrite, assign) size_t dataLimit;
 @property (readwrite, retain) id storage;
@@ -91,8 +93,8 @@ if ([self.storage isKindOfClass:[NSFileHandle class]])
 else if ([self.storage length] + [inData length] > self.dataLimit)
 	{
 	NSString *theTemplate = [NSTemporaryDirectory() stringByAppendingPathComponent:@"XXXXXXXXXXXXXXXX.tmp"];
-	char thePathBuffer[theTemplate.length + 1];
-	strncpy(thePathBuffer, theTemplate.UTF8String, theTemplate.length);
+	char thePathBuffer[strlen([theTemplate UTF8String]) + 1];
+	strncpy(thePathBuffer, [theTemplate UTF8String], strlen([theTemplate UTF8String]));
 	mkstemps(thePathBuffer, 4);
 	NSString *thePath = [NSString stringWithUTF8String:thePathBuffer];
 	self.tempFileURL = [NSURL fileURLWithPath:thePath];
