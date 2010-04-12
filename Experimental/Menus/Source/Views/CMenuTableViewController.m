@@ -184,7 +184,7 @@ if (theCell == nil)
 CMenuItem *theMenuItem = [self.menu.items objectAtIndex:theIndex];
 theCell.textLabel.text = theMenuItem.title;
 
-if (theMenuItem.submenu != NULL || (theMenuItem.action != NULL && theMenuItem.target != NULL))
+if (theMenuItem.submenu != NULL || (theMenuItem.action != NULL && theMenuItem.target != NULL) || theMenuItem.controller != NULL)
 	theCell.accessoryType = self.submenuAccessoryType;
 else
 	theCell.accessoryType = UITableViewCellAccessoryNone;
@@ -217,6 +217,19 @@ if (theRowSelectionWasHandled == NO)
 		{
 		[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 		[theMenuItem.target performSelector:theMenuItem.action withObject:theMenuItem];
+		theRowSelectionWasHandled = YES;
+		}
+	}
+
+if (theRowSelectionWasHandled == NO)
+	{
+	if (theMenuItem.controller)
+		{
+		UIViewController *theController = [[[theMenuItem.controller alloc] initWithMenuItem:theMenuItem] autorelease];
+		
+		
+		[self.navigationController pushViewController:theController animated:YES];
+		
 		theRowSelectionWasHandled = YES;
 		}
 	}
