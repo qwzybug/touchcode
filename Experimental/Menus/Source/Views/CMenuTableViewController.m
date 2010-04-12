@@ -50,6 +50,13 @@ menu = NULL;
 {
 [super viewDidLoad];
 
+if (self.menu == NULL)
+	{
+	NSString *thePath = [[NSBundle mainBundle] pathForResource:NSStringFromClass([self class]) ofType:@"plist"];
+	NSDictionary *theDictionary = [NSDictionary dictionaryWithContentsOfFile:thePath];
+	self.menu = [CMenu menuFromDictionary:theDictionary targetRoot:self];
+	}
+
 self.submenuAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 
