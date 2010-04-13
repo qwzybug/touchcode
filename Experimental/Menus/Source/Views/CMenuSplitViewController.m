@@ -40,7 +40,7 @@ self.delegate = self;
 
 CMenuTableViewController *theMasterMenuTableViewController = [[[CMenuTableViewController alloc] initWithMenu:self.menu] autorelease];
 theMasterMenuTableViewController.title = menu.title;
-theMasterMenuTableViewController.delegate = self;
+theMasterMenuTableViewController.menuHandlerDelegate = self;
 theMasterMenuTableViewController.submenuAccessoryType = UITableViewCellAccessoryNone;
 
 masterViewController = [[UINavigationController alloc] initWithRootViewController:theMasterMenuTableViewController];
