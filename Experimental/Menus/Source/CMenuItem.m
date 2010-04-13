@@ -19,6 +19,7 @@
 @synthesize action;
 @synthesize userInfo;
 @synthesize UIElement;
+@synthesize controller;
 
 + (CMenuItem *)menuItemWithTitle:(NSString *)inTitle target:(id)inTarget action:(SEL)inAction;
 {

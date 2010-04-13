@@ -59,6 +59,12 @@ if ([inDictionary objectForKey:@"action"] != NULL)
 	theMenuItem.action = NSSelectorFromString([inDictionary objectForKey:@"action"]);
 if ([inDictionary objectForKey:@"targetPath"] != NULL)
 	theMenuItem.target = [inTargetRoot valueForKeyPath:[inDictionary objectForKey:@"targetPath"]];
+if ([inDictionary objectForKey:@"userInfo"] != NULL)
+	theMenuItem.userInfo = [inDictionary objectForKey:@"userInfo"];
+if ([inDictionary objectForKey:@"controller"] != NULL)
+	{
+	theMenuItem.controller = NSClassFromString([inDictionary objectForKey:@"controller"]);
+	}
 
 if ([inDictionary objectForKey:@"submenu"])
 	{

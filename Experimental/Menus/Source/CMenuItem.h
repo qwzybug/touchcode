@@ -18,6 +18,7 @@
 	SEL action;
 	id userInfo;
 	id UIElement;
+	Class controller;
 }
 
 @property (readwrite, nonatomic, retain) NSString *title;
@@ -27,6 +28,7 @@
 @property (readwrite, nonatomic, assign) SEL action;
 @property (readwrite, nonatomic, retain) id userInfo;
 @property (readwrite, nonatomic, assign) id UIElement;
+@property (readwrite, nonatomic, assign) id controller;
 
 + (CMenuItem *)menuItemWithTitle:(NSString *)inTitle target:(id)inTarget action:(SEL)inAction;
 + (CMenuItem *)menuItemWithTitle:(NSString *)inTitle submenu:(CMenu *)inSubmenu;
