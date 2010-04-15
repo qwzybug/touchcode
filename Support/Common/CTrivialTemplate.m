@@ -68,12 +68,12 @@ self.template = NULL;
 
 #pragma mark -
 
-- (NSString *)transform:(NSDictionary *)inReplacementDictionary error:(NSError **)outError
+- (NSString *)transform:(id)inParameters error:(NSError **)outError
 {
-return [self transform:inReplacementDictionary error:outError usedKeys:NULL];
+return [self transform:inParameters error:outError usedKeys:NULL];
 }
 
-- (NSString *)transform:(NSDictionary *)inReplacementDictionary error:(NSError **)outError usedKeys:(NSArray **)outKeys
+- (NSString *)transform:(id)inParameters error:(NSError **)outError usedKeys:(NSArray **)outKeys
 {
 NSMutableString *theOutputString = [NSMutableString stringWithCapacity:self.template.length];
 NSMutableArray *theUsedKeyArray = [NSMutableArray array];
@@ -104,7 +104,7 @@ while ([theScanner isAtEnd] == NO)
 		if (theComponents.count == 2)
 			theTransformerName = [theComponents objectAtIndex:1];
 
-		id theValue = [inReplacementDictionary valueForKeyPath:theKeyValuePath];
+		id theValue = [inParameters valueForKeyPath:theKeyValuePath];
 		[theUsedKeyArray addObject:theKeyValuePath];
 
 		if (theTransformerName)

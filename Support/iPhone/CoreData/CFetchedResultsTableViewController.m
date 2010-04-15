@@ -76,12 +76,20 @@ addButtonItem.enabled = !inEditing;
 {
 if (fetchRequest != inFetchRequest)
 	{
-	[fetchRequest release];
-	fetchRequest = NULL;
+	if (fetchRequest != NULL)
+		{
+		[fetchRequest release];
+		fetchRequest = NULL;
+		
+		self.fetchedResultsController = NULL;
+		}
 	//
-	fetchRequest = [inFetchRequest retain];
-	
-	self.fetchedResultsController = NULL;
+	if (inFetchRequest != NULL)
+		{
+		fetchRequest = [inFetchRequest retain];
+		[self.fetchedResultsController performFetch:NULL];
+		[self.tableView reloadData];
+		}
 	}
 }
 
@@ -89,8 +97,11 @@ if (fetchRequest != inFetchRequest)
 {
 if (fetchedResultsController == NULL)
 	{
-	fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:NULL cacheName:NULL];
-	fetchedResultsController.delegate = self;
+	if (self.fetchRequest)
+		{
+		fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:NULL cacheName:NULL];
+		fetchedResultsController.delegate = self;
+		}
 	}
 return(fetchedResultsController);
 }

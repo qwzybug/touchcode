@@ -39,8 +39,9 @@
 - (id)initWithPath:(NSString *)inPath;
 - (id)initWithTemplateName:(NSString *)inTemplateName;
 
-- (NSString *)transform:(NSDictionary *)inReplacementDictionary error:(NSError **)outError;
-- (NSString *)transform:(NSDictionary *)inReplacementDictionary error:(NSError **)outError usedKeys:(NSArray **)outKeys;
+- (NSString *)transform:(id)inParameters error:(NSError **)outError;
+- (NSString *)transform:(id)inParameters error:(NSError **)outError usedKeys:(NSArray **)outKeys;
+
 
 @end
 
