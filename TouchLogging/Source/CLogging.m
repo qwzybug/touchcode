@@ -111,9 +111,9 @@ if ((self = [super init]) != NULL)
 		enabled = YES;
 	
 	flags = LoggingFlags_WriteToSTDERR;
-	#if DEBUG_LOGGING_PERSISTANT
+//	#if DEBUG_LOGGING_PERSISTANT
 	flags |= LoggingFlags_WriteToDatabase;
-	#endif
+//	#endif
 	}
 return(self);
 }
