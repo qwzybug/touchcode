@@ -128,6 +128,30 @@ self.connection = NULL;
 
 #pragma mark -
 
+- (void)didFinish
+{
+[self willChangeValueForKey:@"isFinished"];
+self.isFinished = YES;
+[self didChangeValueForKey:@"isFinished"];
+
+self.isExecuting = NO;
+self.connection = NULL;
+}
+
+- (void)didFail:(NSError *)inError
+{
+self.error = inError;
+
+[self willChangeValueForKey:@"isFinished"];
+self.isFinished = YES;
+[self didChangeValueForKey:@"isFinished"];
+
+self.isExecuting = NO;
+self.connection = NULL;
+}
+
+#pragma mark -
+
 - (NSURLRequest *)connection:(NSURLConnection *)inConnection willSendRequest:(NSURLRequest *)inRequest redirectResponse:(NSURLResponse *)response
 {
 return(inRequest);
@@ -185,24 +209,12 @@ if (theResult == NO)
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)inConnection
 {
-[self willChangeValueForKey:@"isFinished"];
-self.isFinished = YES;
-[self didChangeValueForKey:@"isFinished"];
-
-self.isExecuting = NO;
-self.connection = NULL;
+[self didFinish];
 }
 
 - (void)connection:(NSURLConnection *)inConnection didFailWithError:(NSError *)inError
 {
-self.error = inError;
-
-[self willChangeValueForKey:@"isFinished"];
-self.isFinished = YES;
-[self didChangeValueForKey:@"isFinished"];
-
-self.isExecuting = NO;
-self.connection = NULL;
+[self didFailWithError:inError];
 }
 
 //- (NSCachedURLResponse *)connection:(NSURLConnection *)inConnection willCacheResponse:(NSCachedURLResponse *)cachedResponse

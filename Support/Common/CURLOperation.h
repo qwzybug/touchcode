@@ -53,4 +53,7 @@
 
 - (id)initWithRequest:(NSURLRequest *)inRequest;
 
+- (void)didFinish;
+- (void)didFail:(NSError *)inError;
+
 @end

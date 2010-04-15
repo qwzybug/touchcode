@@ -37,8 +37,8 @@
 
 - (long)asLongFromHex;
 
-- (NSString *)stringByAddingPercentEscapesWithCharactersToLeaveUnescaped:(NSString *)inCharactersToLeaveUnescaped legalURLCharactersToBeEscaped:(NSString *)inLegalURLCharactersToBeEscaped usingEncoding:(NSStringEncoding)inEncoding;
+- (NSString *)stringByAddingPercentEscapesWithCharactersToLeaveUnescaped:(NSString *)inCharactersToLeaveUnescaped legalURLCharactersToBeEscaped:(NSString *)inLegalURLCharactersToBeEscaped;
 
-- (NSString *)stringByObsessivelyAddingPercentEscapesUsingEncoding:(NSStringEncoding)inEncoding;
+- (NSString *)stringByObsessivelyAddingPercentEscapes;
 
 @end

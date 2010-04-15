@@ -29,6 +29,8 @@
 
 #import "NSOperationQueue_Extensions.h"
 
+#define USE_MAIN_QUEUE 1
+
 @interface CRunloopHelper : NSObject {
 	BOOL flag;
 }
@@ -36,16 +38,17 @@
 - (void)runSynchronousOperation:(NSOperation *)inOperation onQueue:(NSOperationQueue *)inQueue;
 @end
 
+#pragma mark -
 
 @implementation NSOperationQueue (NSOperationQueue_Extensions)
 
-#if TARGET_OS_IPHONE == 1
+#if USE_MAIN_QUEUE == 0
 static NSOperationQueue *gDefaultOperationQueue = NULL;
 #endif
 
 + (NSOperationQueue *)defaultOperationQueue
 {
-#if TARGET_OS_IPHONE == 1
+#if USE_MAIN_QUEUE == 0
 @synchronized(@"+[NSOperationQueue defaultOperationQueue]")
 	{
 	if (gDefaultOperationQueue == NULL)
