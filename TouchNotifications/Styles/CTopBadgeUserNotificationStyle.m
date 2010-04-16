@@ -32,66 +32,66 @@ NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
 
 - (NSUInteger)flags
 {
-	return(UserNotificationStyleFlag_ReuseStyle);
+return(UserNotificationStyleFlag_ReuseStyle);
 }
 
 - (void)showNotification:(CUserNotification *)inNotification
 {
-	UIView *theMainView = self.manager.mainView;
-	
-	//UIActivityIndicatorView *theActivityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
-	//[theActivityIndicator startAnimating];
-	
-	CBadgeView *theBadgeView = NULL;
-	if (self.view)
+UIView *theMainView = self.manager.mainView;
+
+UIActivityIndicatorView *theActivityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+[theActivityIndicator startAnimating];
+
+CBadgeView *theBadgeView = NULL;
+if (self.view)
 	{
-		theBadgeView = (CBadgeView *)self.view;
+	theBadgeView = (CBadgeView *)self.view;
 	}
-	else
+else
 	{
-		theBadgeView = [[self newBadgeView] autorelease];
+	theBadgeView = [[self newBadgeView] autorelease];
 	}
-	
-	theBadgeView.imageView.image = inNotification.icon;
-	theBadgeView.titleLabel.text = inNotification.title;
-	[theBadgeView.titleLabel sizeToFit:CGSizeMake(INFINITY, INFINITY)];
-	
-	//theBadgeView.accessoryView = theActivityIndicator;
-	
-	if (self.view == NULL)
+
+theBadgeView.imageView.image = inNotification.icon;
+theBadgeView.titleLabel.text = inNotification.title;
+[theBadgeView.titleLabel sizeToFit:CGSizeMake(INFINITY, INFINITY)];
+
+theBadgeView.accessoryView = theActivityIndicator;
+
+if (self.view == NULL)
 	{
-		[theBadgeView layoutSubviews];
-		[theBadgeView sizeToFit];
-		theBadgeView.frame = ScaleAndAlignRectToRect(theBadgeView.frame, theMainView.bounds, ImageScaling_None, ImageAlignment_TopLeft);
-		
-		self.view = theBadgeView;
-		
-		[theMainView addSubview:self.view withAnimationType:ViewAnimationType_SlideRight];
+	[theBadgeView layoutSubviews];
+	[theBadgeView sizeToFit];
+	theBadgeView.frame = ScaleAndAlignRectToRect(theBadgeView.frame, theMainView.bounds, ImageScaling_None, ImageAlignment_TopLeft);
+	
+	self.view = theBadgeView;
+	
+	[theMainView addSubview:self.view withAnimationType:ViewAnimationType_SlideRight];
 	}
-	else
+else
 	{
-		[UIView beginAnimations:@"TODO_MOVE" context:NULL];
-		
-		CGRect theFrame = { .origin = theBadgeView.frame.origin, .size = { theBadgeView.superview.bounds.size.width - 20, theBadgeView.frame.size.height } };
-		theFrame.size = [theBadgeView sizeThatFits:theFrame.size];
-		theBadgeView.frame = ScaleAndAlignRectToRect(theFrame, theMainView.bounds, ImageScaling_None, ImageAlignment_TopLeft);
-		
-		[UIView commitAnimations];
+	[UIView beginAnimations:@"TODO_MOVE" context:NULL];
+	
+	CGRect theFrame = { .origin = theBadgeView.frame.origin, .size = { theBadgeView.superview.bounds.size.width - 20, theBadgeView.frame.size.height } };
+	theFrame.size = [theBadgeView sizeThatFits:theFrame.size];
+	theBadgeView.frame = ScaleAndAlignRectToRect(theFrame, theMainView.bounds, ImageScaling_None, ImageAlignment_TopLeft);
+	
+	[UIView commitAnimations];
 	}
 }
 
 - (void)hideNotification:(CUserNotification *)inNotification
 {
-	[self.view removeFromSuperviewWithAnimationType:ViewAnimationType_SlideLeft];
+[self.view removeFromSuperviewWithAnimationType:ViewAnimationType_SlideLeft];
 }
 
 - (CBadgeView *)newBadgeView
 {
-	CBadgeView *theBadgeView = [[CBadgeView alloc] initWithFrame:CGRectMake(0, 0, 300, 28)];
-	theBadgeView.badgePosition = BadgePositionTopLeft;
-	[theBadgeView addTarget:self action:@selector(action:) forControlEvents:UIControlEventTouchUpInside];
-	theBadgeView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-	return(theBadgeView);
+CBadgeView *theBadgeView = [[CBadgeView alloc] initWithFrame:CGRectMake(0, 0, 300, 28)];
+theBadgeView.badgePosition = BadgePositionTopLeft;
+[theBadgeView addTarget:self action:@selector(action:) forControlEvents:UIControlEventTouchUpInside];
+theBadgeView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+return(theBadgeView);
 }
 
 @end
