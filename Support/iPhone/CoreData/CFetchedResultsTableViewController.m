@@ -31,6 +31,12 @@
 
 const double kPlaceholderHideShowAnimationDuration = 0.4;
 
+@interface CFetchedResultsTableViewController ()
+- (void)updatePlacholder:(BOOL)inAnimated;
+@end
+
+#pragma mark -
+
 @implementation CFetchedResultsTableViewController
 
 @synthesize managedObjectContext;
@@ -88,8 +94,11 @@ if (fetchRequest != inFetchRequest)
 		{
 		fetchRequest = [inFetchRequest retain];
 		[self.fetchedResultsController performFetch:NULL];
-		[self.tableView reloadData];
 		}
+		
+	[self updatePlacholder:YES];
+
+	[self.tableView reloadData];
 	}
 }
 
@@ -169,11 +178,11 @@ if ([self.fetchedResultsController performFetch:&theError] == NO)
 	
 [self.tableView reloadData];
 
+[self updatePlacholder:NO];
+
 if ([self.fetchedResultsController.fetchedObjects count] == 0)
 	{
 	[self editButtonItem].enabled = NO;
-	if (self.placeholderView.superview != self.tableView)
-		[self.tableView addSubview:self.placeholderView];
 	}
 else
 	{
@@ -186,6 +195,58 @@ else
 
 - (IBAction)add:(id)inSender
 {
+}
+
+#pragma mark -
+
+- (void)updatePlacholder:(BOOL)inAnimated
+{
+if (inAnimated)
+	{
+	if ([self.fetchedResultsController.fetchedObjects count] == 0)
+		{
+		if (self.placeholderView.superview != self.tableView)
+			{
+			self.placeholderView.alpha = 0.0f;
+			[self.tableView addSubview:self.placeholderView];
+			
+			[UIView beginAnimations:@"SHOW_PLACEHOLDER" context:NULL];
+			[UIView setAnimationDelegate:self];
+			[UIView setAnimationDuration:kPlaceholderHideShowAnimationDuration];
+			self.placeholderView.alpha = 1.0f;
+			[UIView commitAnimations];
+			}
+		}
+	else
+		{
+		if (self.placeholderView.superview == self.tableView)
+			{
+			[UIView beginAnimations:@"HIDE_PLACEHOLDER" context:NULL];
+			[UIView setAnimationDelegate:self];
+			[UIView setAnimationDuration:kPlaceholderHideShowAnimationDuration];
+			self.placeholderView.alpha = 0.0f;
+			[UIView commitAnimations];
+			}
+		}
+	}
+else
+	{
+	if ([self.fetchedResultsController.fetchedObjects count] == 0)
+		{
+		if (self.placeholderView.superview != self.tableView)
+			{
+			[self.tableView addSubview:self.placeholderView];
+			self.placeholderView.alpha = 1.0f;
+			}
+		}
+	else
+		{
+		if (self.placeholderView.superview == self.tableView)
+			{
+			[self.placeholderView removeFromSuperview];
+			}
+		}
+	}
 }
 
 #pragma mark -
@@ -234,18 +295,9 @@ if ([self.managedObjectContext save:&theError] == NO)
 if ([self.fetchedResultsController.fetchedObjects count] == 0)
 	{
 	[self setEditing:NO animated:YES];
-	if (self.placeholderView.superview != self.tableView)
-		{
-		self.placeholderView.alpha = 0.0f;
-		[self.tableView addSubview:self.placeholderView];
-		
-		[UIView beginAnimations:@"SHOW_PLACEHOLDER" context:NULL];
-		[UIView setAnimationDelegate:self];
-		[UIView setAnimationDuration:kPlaceholderHideShowAnimationDuration];
-		self.placeholderView.alpha = 1.0f;
-		[UIView commitAnimations];
-		}
 	}
+	
+[self updatePlacholder:YES];
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath;
@@ -297,30 +349,13 @@ switch (type)
 if ([self.fetchedResultsController.fetchedObjects count] == 0)
 	{
 	[self editButtonItem].enabled = NO;
-	if (self.placeholderView.superview != self.tableView)
-		{
-		self.placeholderView.alpha = 0.0f;
-		[self.tableView addSubview:self.placeholderView];
-		
-		[UIView beginAnimations:@"SHOW_PLACEHOLDER" context:NULL];
-		[UIView setAnimationDelegate:self];
-		[UIView setAnimationDuration:kPlaceholderHideShowAnimationDuration];
-		self.placeholderView.alpha = 1.0f;
-		[UIView commitAnimations];
-		}
 	}
 else
 	{
 	[self editButtonItem].enabled = YES;
-	if (self.placeholderView.superview == self.tableView)
-		{
-		[UIView beginAnimations:@"HIDE_PLACEHOLDER" context:NULL];
-		[UIView setAnimationDelegate:self];
-		[UIView setAnimationDuration:kPlaceholderHideShowAnimationDuration];
-		self.placeholderView.alpha = 0.0f;
-		[UIView commitAnimations];
-		}
 	}
+
+[self updatePlacholder:YES];
 }
  
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
