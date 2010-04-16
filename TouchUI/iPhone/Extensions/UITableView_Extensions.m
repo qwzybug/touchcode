@@ -38,6 +38,7 @@ if (self.style == UITableViewStyleGrouped)
 else
 	{
 	UILabel *theLabel = [[[UILabel alloc] initWithFrame:CGRectMake(20, 0, 280, kReallyBigNumber)] autorelease];
+	theLabel.textAlignment = UITextAlignmentCenter;
 	theLabel.lineBreakMode = UILineBreakModeWordWrap;
 	theLabel.numberOfLines = 0;
 	theLabel.text = inText;
