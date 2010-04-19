@@ -29,7 +29,7 @@
 
 #import "NSOperationQueue_Extensions.h"
 
-#define USE_MAIN_QUEUE 1
+#define USE_MAIN_QUEUE 0
 
 @interface CRunloopHelper : NSObject {
 	BOOL flag;

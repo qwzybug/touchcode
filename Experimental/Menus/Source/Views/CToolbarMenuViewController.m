@@ -19,7 +19,7 @@
 @synthesize segmentedControl;
 @synthesize contentView;
 @synthesize menu;
-@synthesize delegate;
+@synthesize menuHandlerDelegate;
 
 - (id)initWithMenu:(CMenu *)inMenu
 {
@@ -81,9 +81,9 @@ if (theRowSelectionWasHandled == NO)
 
 if (theRowSelectionWasHandled == NO)
 	{
-	if (self.delegate && [self.delegate respondsToSelector:@selector(menuHandler:didSelectMenuItem:)])
+	if (self.menuHandlerDelegate && [self.menuHandlerDelegate respondsToSelector:@selector(menuHandler:didSelectMenuItem:)])
 		{
-		theRowSelectionWasHandled = [self.delegate menuHandler:self didSelectMenuItem:inMenuItem];
+		theRowSelectionWasHandled = [self.menuHandlerDelegate menuHandler:self didSelectMenuItem:inMenuItem];
 		}
 	}
 
@@ -91,9 +91,9 @@ CMenu *theSubmenu = inMenuItem.submenu;
 
 if (theRowSelectionWasHandled == NO && theSubmenu != NULL)
 	{
-	if (self.delegate && [self.delegate respondsToSelector:@selector(menuHandler:didSelectSubmenu:)])
+	if (self.menuHandlerDelegate && [self.menuHandlerDelegate respondsToSelector:@selector(menuHandler:didSelectSubmenu:)])
 		{
-		theRowSelectionWasHandled = [self.delegate menuHandler:self didSelectSubmenu:theSubmenu];
+		theRowSelectionWasHandled = [self.menuHandlerDelegate menuHandler:self didSelectSubmenu:theSubmenu];
 		}
 	}
 

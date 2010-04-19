@@ -138,7 +138,9 @@ return(theRect);
 
 static inline int quadrant(CGFloat x, CGFloat y)
 {
+#if TARGET_OS_IPHONE == 0
 #warning FIX THIS FOR NON IPHONE
+#endif /* TARGET_OS_IPHONE == 0 */
 BOOL flipped = YES;
 if (flipped == NO)
 	{

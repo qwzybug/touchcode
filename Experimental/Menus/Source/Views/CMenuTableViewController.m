@@ -10,7 +10,7 @@
 
 #import "CMenu.h"
 #import "CMenuItem.h"
-
+#import "CMenu_PropertyListExtensions.h"
 #import "CMenuSeparatorItem.h"
 
 @interface CMenuTableViewController ()
