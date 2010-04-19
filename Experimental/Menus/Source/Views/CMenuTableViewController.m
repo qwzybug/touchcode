@@ -225,10 +225,7 @@ if (theRowSelectionWasHandled == NO)
 	{
 	if (theMenuItem.controller)
 		{
-		UIViewController *theController = [[[theMenuItem.controller alloc] initWithMenuItem:theMenuItem] autorelease];
-		
-		
-		[self.navigationController pushViewController:theController animated:YES];
+		[self selectMenuItem:theMenuItem];
 		
 		theRowSelectionWasHandled = YES;
 		}
@@ -265,6 +262,13 @@ if (theRowSelectionWasHandled == NO)
 	}
 }
 
+- (void)selectMenuItem:(CMenuItem *)inItem;
+{
+UIViewController *theController = [[[inItem.controller alloc] initWithMenuItem:inItem] autorelease];
+
+
+[self.navigationController pushViewController:theController animated:YES];
+}
 
 @end
 

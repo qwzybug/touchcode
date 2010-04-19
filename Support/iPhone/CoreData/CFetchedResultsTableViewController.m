@@ -171,7 +171,7 @@ placeholderView = NULL;
 self.fetchedResultsController.delegate = self;
 
 NSError *theError = NULL;
-if ([self.fetchedResultsController performFetch:&theError] == NO)
+if (self.fetchedResultsController && [self.fetchedResultsController performFetch:&theError] == NO)
 	{
 	NSLog(@"Error: %@", theError);
 	}

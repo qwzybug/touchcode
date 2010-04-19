@@ -28,4 +28,6 @@
 
 - (NSIndexPath *)indexPathForMenuItem:(CMenuItem *)inMenuItem;
 
+- (void)selectMenuItem:(CMenuItem *)inItem;
+
 @end

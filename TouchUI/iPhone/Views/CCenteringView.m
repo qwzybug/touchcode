@@ -20,7 +20,6 @@ if ((self = [super initWithFrame:inView.frame]) != NULL)
 
 	CGRect theFrame = { CGPointZero, inView.frame.size };
 
-
 	inView.frame = theFrame;
 
 	[self addSubview:inView];
