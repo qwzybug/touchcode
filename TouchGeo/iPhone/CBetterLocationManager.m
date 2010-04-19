@@ -295,13 +295,13 @@ if (self.timer)
 return(YES);
 }
 
-- (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
-{
-}
-
-- (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
-{
-}
+//- (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
+//{
+//}
+//
+//- (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
+//{
+//}
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)inError
 {
@@ -320,8 +320,8 @@ NSDictionary *theUserInfo = [NSDictionary dictionaryWithObjectsAndKeys: inError,
 [[NSNotificationCenter defaultCenter] postNotificationName:kBetterLocationManagerDidFailWithErrorNotification object:self userInfo:theUserInfo];
 }
 
-- (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error
-{
-}
+//- (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error
+//{
+//}
 
 @end

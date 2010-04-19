@@ -18,7 +18,7 @@
 	CHostingView *contentView;
 	//
 	CMenu *menu;
-	id <CMenuHandlerDelegate> delegate;
+	id <CMenuHandlerDelegate> menuHandlerDelegate;
 }
 
 @property (readwrite, nonatomic, retain) IBOutlet UIToolbar *toolbar;
@@ -26,7 +26,7 @@
 @property (readwrite, nonatomic, retain) IBOutlet CHostingView *contentView;
 
 @property (readwrite, nonatomic, retain) CMenu *menu;
-@property (readwrite, nonatomic, assign) id <CMenuHandlerDelegate> delegate;
+@property (readwrite, nonatomic, assign) id <CMenuHandlerDelegate> menuHandlerDelegate;
 
 - (id)initWithMenu:(CMenu *)inMenu;
 

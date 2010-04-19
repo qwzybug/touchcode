@@ -33,7 +33,9 @@ CGRect ScaleAndAlignRectToRect(CGRect inImageRect, CGRect inDestinationRect, EIm
 {
 CGRect theScaledImageRect;
 
+#if TARGET_OS_IPHONE == 0
 #warning FIX THIS FOR NON IPHONE
+#endif /* TARGET_OS_IPHONE == 0 */
 BOOL flipped = YES;
 
 if (inScaling == ImageScaling_ToFit)
