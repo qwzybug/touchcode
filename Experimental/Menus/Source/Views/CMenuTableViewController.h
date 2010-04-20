@@ -15,6 +15,7 @@
 	id <CMenuHandlerDelegate> delegate;
 	BOOL hidesNavigationBar;
 	UITableViewCellAccessoryType submenuAccessoryType;
+	CGSize contentSizeForViewInPopoverView;
 }
 
 @property (readwrite, nonatomic, retain) CMenu *menu;

@@ -17,13 +17,13 @@ typedef enum {
 @interface CLayoutView : UIView {
 	ELayoutMode mode;
 	CGSize gap;
-	BOOL flexibleLastView;
 	BOOL fitViews;
+	UIView *flexibleView;
 }
 
 @property (readwrite, nonatomic, assign) ELayoutMode mode;
 @property (readwrite, nonatomic, assign) CGSize gap;
-@property (readwrite, nonatomic, assign) BOOL flexibleLastView;
 @property (readwrite, nonatomic, assign) BOOL fitViews;
+@property (nonatomic, assign) UIView *flexibleView;
 
 @end

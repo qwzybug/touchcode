@@ -23,6 +23,13 @@
 
 @implementation CBadgeUserNotificationStyle
 
++ (void)load
+{
+NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
+[[CUserNotificationManager instance] registerStyleName:@"BADGE-BOTTOM-RIGHT" class:self options:NULL];
+[thePool release];
+}
+
 - (NSUInteger)flags
 {
 return(UserNotificationStyleFlag_ReuseStyle);
@@ -81,6 +88,7 @@ else
 - (CBadgeView *)newBadgeView
 {
 CBadgeView *theBadgeView = [[CBadgeView alloc] initWithFrame:CGRectMake(0, 0, 300, 28)];
+theBadgeView.badgePosition = BadgePositionBottomRight;
 [theBadgeView addTarget:self action:@selector(action:) forControlEvents:UIControlEventTouchUpInside];
 theBadgeView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
 return(theBadgeView);

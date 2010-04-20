@@ -18,8 +18,6 @@
 {
 if ((self = [super initWithNibName:NSStringFromClass([self class]) bundle:NULL]) != NULL)
 	{
-	NSLog(@"> %@", self.view);
-	NSLog(@"> %@", self.label);
 	self.label.text = inText;
 	}
 return(self);

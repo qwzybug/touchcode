@@ -79,8 +79,8 @@ return(theDateString);
 
 + (NSDate *)dateWithISO8601String:(NSString *)inString
 {
-ISO8601DateFormatter *theFormatter = [[[ISO8601DateFormatter alloc] init] autorelease];
-NSDate *theDate = [theFormatter dateFromString:inString];
+	NSDateFormatter *theFormatter = [NSDateFormatter ISO8601FormatterMinimal];
+	NSDate *theDate = [theFormatter dateFromString:inString];
 return(theDate);
 }
 

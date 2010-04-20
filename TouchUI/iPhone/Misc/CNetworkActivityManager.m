@@ -12,7 +12,7 @@ static CNetworkActivityManager *gInstance = NULL;
 
 @interface CNetworkActivityManager ()
 @property (readwrite, assign) NSInteger count;
-@property (readwrite, assign) NSTimer *delayTimer;
+@property (readwrite, retain) NSTimer *delayTimer;
 @end
 
 #pragma mark -
@@ -59,20 +59,20 @@ return(count);
 if (count != inCount)
 	{
 	if (count <= 0 && inCount > 0)
+		
 		{
-		if (self.delayTimer)
-			{
+		if (self.delayTimer != NULL) {
 			[self.delayTimer invalidate];
 			self.delayTimer = NULL;
-			}
+		}
 		self.delayTimer = [NSTimer scheduledTimerWithTimeInterval:self.delay target:self selector:@selector(delayTimer:) userInfo:[NSNumber numberWithBool:YES] repeats:NO];
 		}
 	else if (count > 0 && inCount <= 0)
 		{
-		if (self.delayTimer)
+		if (self.delayTimer != NULL)
 			{
-			[self.delayTimer invalidate];
-			self.delayTimer = NULL;
+				[self.delayTimer invalidate];
+				self.delayTimer = NULL;
 			}
 		self.delayTimer = [NSTimer scheduledTimerWithTimeInterval:self.delay target:self selector:@selector(delayTimer:) userInfo:[NSNumber numberWithBool:NO] repeats:NO];
 		}

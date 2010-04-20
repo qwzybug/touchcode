@@ -19,7 +19,9 @@ if (viewController != inViewController)
 	{
 	if (viewController)
 		{
+		[viewController viewWillDisappear:NO];
 		[viewController.view removeFromSuperview];
+		[viewController viewDidDisappear:NO];
 		
 		[viewController release];
 		viewController = NULL;
@@ -30,9 +32,11 @@ if (viewController != inViewController)
 		viewController = [inViewController retain];
 		
 		viewController.view.frame = self.bounds;
-//		viewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+		viewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 		
+		[viewController viewWillAppear:NO];
 		[self addSubview:viewController.view];
+		[viewController viewDidAppear:NO];
 		}
 	}
 }

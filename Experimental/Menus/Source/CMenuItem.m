@@ -17,6 +17,7 @@
 @synthesize submenu;
 @synthesize target;
 @synthesize action;
+@synthesize userInfo;
 @synthesize UIElement;
 
 + (CMenuItem *)menuItemWithTitle:(NSString *)inTitle target:(id)inTarget action:(SEL)inAction;

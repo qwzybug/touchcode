@@ -91,4 +91,14 @@ theNotification.styleName = @"BADGE-BOTTOM-RIGHT";
 [[CUserNotificationManager instance] performSelector:@selector(dequeueNotification:) withObject:theNotification afterDelay:DELAY];
 }
 
+
+- (IBAction)actionBadgeTopLeft:(id)inSender
+{
+	CUserNotification *theNotification = [self notification];
+	theNotification.styleName = @"BADGE-TOP-LEFT";
+	[[CUserNotificationManager instance] enqueueNotification:theNotification];
+	
+	[[CUserNotificationManager instance] performSelector:@selector(dequeueNotification:) withObject:theNotification afterDelay:DELAY];
+}
+
 @end

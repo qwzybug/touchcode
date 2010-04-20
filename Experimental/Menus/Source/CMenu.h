@@ -15,12 +15,14 @@
 	NSString *title;
 	NSMutableArray *mutableItems;
 	id userInfo;
+	Class controller;
 }
 
 @property (readwrite, nonatomic, assign) CMenuItem *superItem;
 @property (readwrite, nonatomic, copy) NSString *title;
 @property (readwrite, nonatomic, copy) NSArray *items;
 @property (readwrite, nonatomic, retain) id userInfo;
+@property (readwrite, nonatomic, assign) Class controller;
 
 - (void)addItem:(CMenuItem *)inItem;
 
