@@ -4,9 +4,10 @@ Repository of iPhone and iPod Touch source code, including [TouchJSON][TouchJSON
 
 A Google group for [TouchCode][TouchCode] development has been created. [Check it out!][Group].
 
-[Donate][Donate] to [TouchCode][TouchCode] (via Paypal).
+![Donate Logo][Donate Logo] to [TouchCode][TouchCode] (via Paypal).
 
 See [News][News] for the latest info on what's happening.
+
 
 [LOGO]: http://touchcode.googlecode.com/svn/wiki/touchcode_logo_1.png
 [News]: http://code.google.com/p/touchcode/wiki/News
@@ -16,3 +17,4 @@ See [News][News] for the latest info on what's happening.
 [Group]: http://groups.google.com/group/touchcode-dev
 [More]: http://code.google.com/p/touchcode/w/list
 [Donate]: http://toxicsoftware.com/touchcodedonate/
+[Donate Logo]: http://touchcode.googlecode.com/svn/wiki/paypal_donate.gif
