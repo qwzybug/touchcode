@@ -138,7 +138,7 @@ self.isExecuting = NO;
 self.connection = NULL;
 }
 
-- (void)didFail:(NSError *)inError
+- (void)didFailWithError:(NSError *)inError
 {
 self.error = inError;
 
