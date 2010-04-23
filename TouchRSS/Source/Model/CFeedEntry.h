@@ -56,6 +56,7 @@
 
 // Attributes
 @property (readwrite, retain) NSDate *updated;
+@property (readwrite, retain) NSString *thumbnailURL;
 @property (readwrite, retain) NSString *content;
 @property (readwrite, retain) NSString *subtitle;
 @property (readwrite, retain) id extraXML;

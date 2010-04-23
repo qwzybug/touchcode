@@ -70,6 +70,8 @@ return(@"Entry");
 
 @dynamic updated;
 
+@dynamic thumbnailURL;
+
 @dynamic content;
 
 @dynamic subtitle;
