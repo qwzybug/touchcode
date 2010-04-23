@@ -1,6 +1,6 @@
 #!/bin/sh
 
-COMPONENTS=( TouchXML TouchJSON TouchSQL TouchRSS )
+COMPONENTS=( TouchXML TouchJSON )
 VERSION=1.0.8
 
 REPO="https://jwight@touchcode.googlecode.com/hg/"
