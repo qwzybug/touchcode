@@ -43,6 +43,7 @@ extern NSString *kBetterLocationManagerOldLocationKey /* = @"OldLocation" */;
 
 @interface CBetterLocationManager : NSObject <CLLocationManagerDelegate> {
 	CLLocationManager *locationManager;
+	BOOL storeLastLocation;
 	CLLocation *previousLocation;
 	CLLocation *location;
 	BOOL updating;
@@ -63,10 +64,15 @@ extern NSString *kBetterLocationManagerOldLocationKey /* = @"OldLocation" */;
 /// This is just a proxy for the CLLocationManager desiredAccuracy property.
 @property (readwrite, nonatomic, assign) CLLocationAccuracy desiredAccuracy;
 
+/// If YES, then the last location is stored in NSUserDefaults.
+@property (readonly, nonatomic, assign) BOOL storeLastLocation;
+
 @property (readonly, nonatomic, retain) CLLocation *previousLocation;
 
 /// This is the location manager's location. It is a little bit more reliable than CLLocationManager.location.
 @property (readonly, nonatomic, retain) CLLocation *location;
+
+
 
 /// YES if CoreLocation is currenly updating location (i.e. trying to get a fix)
 @property (readonly, nonatomic, assign) BOOL updating;

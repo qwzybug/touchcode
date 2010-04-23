@@ -57,6 +57,7 @@ NSString *kBetterLocationManagerOldLocationKey = @"OldLocation";
 @implementation CBetterLocationManager
 
 @dynamic locationManager;
+@synthesize storeLastLocation;
 @dynamic distanceFilter;
 @dynamic desiredAccuracy;
 @synthesize previousLocation;
@@ -84,11 +85,20 @@ return(gInstance);
 {
 if ((self = [super init]) != NULL)
 	{
-	self.stopUpdatingAccuracy = kCLLocationAccuracyHundredMeters;
-	self.staleLocationThreshold = 120.0;
-	self.stopUpdatingAfterInterval = 10.0;
-	if (self.location)
-		[self postNewLocation:self.location oldLocation:NULL];
+	storeLastLocation = YES;
+	stopUpdatingAccuracy = kCLLocationAccuracyHundredMeters;
+	staleLocationThreshold = 120.0;
+	stopUpdatingAfterInterval = 10.0;
+	
+	if (self.locationManager.locationServicesEnabled == YES)
+		{
+		NSData *theData = [[NSUserDefaults standardUserDefaults] objectForKey:@"BetterLocationManager_LastLocation"];
+		if (theData)
+			{
+			CLLocation *theLastLocation = [NSKeyedUnarchiver unarchiveObjectWithData:theData];
+			self.previousLocation = theLastLocation;
+			}
+		}
 	}
 return(self);
 }
@@ -116,6 +126,8 @@ if (locationManager == NULL)
 	locationManager.delegate = self;
 	
 	self.location = locationManager.location;
+	if (self.location)
+		[self postNewLocation:self.location oldLocation:NULL];
 	}
 return(locationManager);
 }
@@ -240,6 +252,13 @@ if (updating == YES && stopUpdatingAfterInterval > 0.0)
 {
 if (inNewLocation == NULL)
 	return;
+	
+if (self.storeLastLocation)
+	{
+	NSData *theData = [NSKeyedArchiver archivedDataWithRootObject:inNewLocation];
+	[[NSUserDefaults standardUserDefaults] setObject:theData forKey:@"BetterLocationManager_LastLocation"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+	}
 
 self.previousLocation = inOldLocation;
 
@@ -308,6 +327,11 @@ return(YES);
 if ([inError.domain isEqualToString:kCLErrorDomain] && inError.code == kCLErrorDenied)
 	{
 	self.userDenied = YES;
+	
+	// If we get a user denied error we want to clear thelast stored location.
+	[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"BetterLocationManager_LastLocation"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+	
 	// We ought to stop updating here and set the location manager to NULL. But this seems to cause weird problems. Better to just set a flag and move on.
 //	[self stopUpdatingLocation:NULL];
 //	self.locationManager = NULL;
