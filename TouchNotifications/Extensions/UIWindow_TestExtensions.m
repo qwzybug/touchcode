@@ -14,11 +14,20 @@
 
 - (UIView *)mainView
 {
-#warning Private API usage ahoy!
+UIView *theMainView = NULL;
 
+#if defined(__IPHONE_4_0)
+//__OSX_AVAILABLE_STARTING(__MAC_NA,__IPHONE_4_0)
+theMainView = self.rootViewController.view;
+#else
+#warning Private API usage ahoy!
 UIView *theWrapperView = [self findDeepViewOfClass:NSClassFromString(@"UIViewControllerWrapperView")];
-UIView *theView = [theWrapperView.subviews lastObject];
-return(theView);
+NSAssert(theWrapperView != NULL, @"Could not find view of class.");
+theMainView = [theWrapperView.subviews lastObject];
+#endif
+
+NSAssert(theMainView != NULL, @"Could not find mainView");
+return(theMainView);
 }
 
 @end

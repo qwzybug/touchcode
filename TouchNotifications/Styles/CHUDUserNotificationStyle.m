@@ -17,7 +17,7 @@
 #import "CCenteringView.h"
 #import "UIView_LayoutExtensions.h"
 
-#define NO_ANIMATION 1
+#define NO_ANIMATION 0
 
 NSString *kHUDNotificationFullScreenKey = @"kHUDNotificationFullScreenKey";
 NSString *kHUDNotificationDontUseMaskingViewKey = @"kHUDNotificationDontUseMaskingViewKey";
@@ -72,7 +72,7 @@ UIViewAutoresizing theAutoresizingFlag;
 
 if (theFullScreenFlag == YES)
 	{
-	theMainView = theMainView.window;
+//	theMainView = theMainView;
 	theFrame = theMainView.bounds;
 	theBorderWidth = 0.0;
 	theAutoresizingFlag = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -159,6 +159,7 @@ else if (theDontUseMaskingViewFlag == NO)
 
 #if NO_ANIMATION == 1
 [self.view removeFromSuperview];
+[self.maskingView removeFromSuperview];
 #else
 [UIView beginAnimations:@"TODO_FADE_OUT" context:self];
 [UIView setAnimationDuration:0.4];
