@@ -30,7 +30,7 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-	FeedDictinaryType_Feed,
+	FeedDictionaryType_Feed,
 	FeedDictinaryType_Entry,
 } ERSSFeedDictinaryType;
 

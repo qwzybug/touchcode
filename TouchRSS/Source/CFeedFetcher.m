@@ -38,6 +38,7 @@
 #import "CURLConnectionManager.h"
 #import "CURLConnectionManagerChannel.h"
 #import "NSManagedObjectContext_Extensions.h"
+#import "CXMLElement.h"
 
 @interface CFeedFetcher ()
 @property (readwrite, nonatomic, assign) CFeedStore *feedStore;
@@ -164,10 +165,8 @@ for (id theDictionary in theDeserializer)
 	ERSSFeedDictinaryType theType = [[theDictionary objectForKey:@"type"] intValue];
 	switch (theType)
 		{
-		case FeedDictinaryType_Feed:
+		case FeedDictionaryType_Feed:
 			{
-			NSLog(@"FEED");
-
 			NSURL *theFeedURL = theConnection.request.URL;
 			NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"URL == %@", theFeedURL.absoluteString];
 			theFeed = [self.feedStore.managedObjectContext fetchObjectOfEntityForName:[CFeed entityName] predicate:thePredicate createIfNotFound:YES wasCreated:NULL error:&theError];
@@ -190,10 +189,10 @@ for (id theDictionary in theDeserializer)
 			break;
 		case FeedDictinaryType_Entry:
 			{
-			NSLog(@"ENTRY");
 			NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"identifier == %@", [theDictionary objectForKey:@"identifier"]];
 
-			CFeedEntry *theEntry = [self.feedStore.managedObjectContext fetchObjectOfEntityForName:[CFeedEntry entityName] predicate:thePredicate createIfNotFound:YES wasCreated:NULL error:&theError];
+			BOOL theWasCreatedFlag = NO;
+			CFeedEntry *theEntry = [self.feedStore.managedObjectContext fetchObjectOfEntityForName:[CFeedEntry entityName] predicate:thePredicate createIfNotFound:YES wasCreated:&theWasCreatedFlag error:&theError];
 
 			NSError *theError = NULL;
 			CObjectTranscoder *theTranscoder = [[theEntry class] objectTranscoder];
