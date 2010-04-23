@@ -74,6 +74,8 @@ return(@"Entry");
 
 @dynamic subtitle;
 
+@dynamic extraXML;
+
 @dynamic title;
 
 @dynamic feed;
@@ -93,9 +95,9 @@ return(theResult);
 [self didChangeValueForKey:@"feed"];
 }
 
-@dynamic link;
-
 @dynamic identifier;
+
+@dynamic link;
 
 #pragma mark end emogenerator accessors
 

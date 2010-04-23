@@ -158,10 +158,17 @@ for (NSString *theKey in inDictionary)
 		}
 	else
 		{
-		char theBuffer[strlen(thePropertyType) + 1];
-		strncpy(theBuffer, thePropertyType + 2, strlen(thePropertyType) - 3);
-		theBuffer[strlen(thePropertyType) - 3] = '\0';
-		theValue = [self transformObject:theValue toObjectOfClass:NSClassFromString([NSString stringWithUTF8String:theBuffer]) error:outError];
+		if (strcmp(thePropertyType, "@") == 0)
+			{
+			// Nothing to do here.
+			}
+		else
+			{
+			char theBuffer[strlen(thePropertyType) + 1];
+			strncpy(theBuffer, thePropertyType + 2, strlen(thePropertyType) - 3);
+			theBuffer[strlen(thePropertyType) - 3] = '\0';
+			theValue = [self transformObject:theValue toObjectOfClass:NSClassFromString([NSString stringWithUTF8String:theBuffer]) error:outError];
+			}
 
 		}
 		
