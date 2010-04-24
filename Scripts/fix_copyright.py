@@ -146,6 +146,7 @@ theCopyrightPatterns = [
 	re.compile(r'^(?P<year>\d\d\d\d) (?P<owner>.+)\. All rights reserved\.$', re.IGNORECASE),
 	re.compile(r'^(?P<year>\d\d\d\d) (?P<owner>.+) All rights reserved\.$', re.IGNORECASE),
 	re.compile(r'^(?P<owner>.+) (?P<year>\d\d\d\d)\. All rights reserved\.$', re.IGNORECASE),
+	re.compile(r'^(?P<owner>.+) (?P<year>\d\d\d\d) +\. All rights reserved\.$', re.IGNORECASE),
 	re.compile(r'^\(c\) (?P<year>\d\d\d\d) (?P<owner>.+)\. All rights reserved\.$', re.IGNORECASE),
 	re.compile(r'^\(c\) (?P<year>\d\d\d\d) (?P<owner>.+)\.?$', re.IGNORECASE),
 	]
@@ -155,6 +156,9 @@ theCopyrightPatterns = [
 def SanitizeCopyright(s):
 	theMatches = [thePattern.match(s) for thePattern in theCopyrightPatterns]
 	theMatches = [theMatch for theMatch in theMatches if theMatch]
+
+	if not len(theMatches):
+		raise Exception('Could not match copyright: %s' % s)
 
 	theMatch = theMatches[0]
 	d = theMatch.groupdict()
@@ -209,4 +213,4 @@ for f in files():
 # 			print 'Skipping, ', f
 	except Exception, e:
 		print 'Exception occured (%s). Skipping: %s' % (e, f)
-		traceback.print_tb(sys.exc_info()[2])
+#		traceback.print_tb(sys.exc_info()[2])
