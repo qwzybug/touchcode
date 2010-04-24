@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "CPickerController.h"
+#import "CPicker.h"
 
 @interface CValuesPickerController : UITableViewController <CPickerController> {
 	NSInteger selectedValueIndex;
@@ -16,11 +16,7 @@
 	NSString *textLabelKeyPath;
 	NSValueTransformer *textLabelTransformer;
 	NSString *imageViewKeyPath;
-	id initialValue;
-	id value;
-	NSString *validator;
-	id <CPickerControllerDelegate> pickerDelegate;
-	id userInfo;
+	CPicker *picker;
 }
 
 @property (readwrite, nonatomic, assign) NSInteger selectedValueIndex;

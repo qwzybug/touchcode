@@ -119,8 +119,8 @@ inPassword = inPassword != NULL ? (id)inPassword : (id)[NSNull null];
 {
 [super viewDidLoad];
 //
-self.title = LOC_(@"Sign In", @"Sign In");
-self.navigationItem.prompt = LOC_(@"TODO Enter your twitter info yo!", @"TODO Enter your twitter info yo!");
+self.title = @"Sign In";
+self.navigationItem.prompt = @"TODO Enter your twitter info yo!";
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -180,7 +180,7 @@ switch (indexPath.section)
 			case 0:
 				{
 				theCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:NULL] autorelease];
-				theCell.textLabel.text = LOC_(@"Username", @"Username");
+				theCell.textLabel.text = @"Username";
 				theCell.selectionStyle = UITableViewCellSelectionStyleNone;
 				self.usernameField = [[[UITextField alloc] initWithFrame:CGRectMake(100, 0, 210, 44)] autorelease];
 				self.usernameField.tag = 0;
@@ -202,7 +202,7 @@ switch (indexPath.section)
 			case 1:
 				{
 				theCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:NULL] autorelease];
-				theCell.textLabel.text = LOC_(@"Password", @"Password");
+				theCell.textLabel.text = @"Password";
 				theCell.selectionStyle = UITableViewCellSelectionStyleNone;
 				self.passwordField = [[[UITextField alloc] initWithFrame:CGRectMake(100, 0, 210, 44)] autorelease];
 				self.passwordField.tag = 1;
@@ -237,7 +237,7 @@ switch (indexPath.section)
 					theButtonCell.selectionStyle = UITableViewCellSelectionStyleNone;
 					theButtonCell.backgroundColor = [UIColor redColor];
 					theButtonCell.backgroundView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
-					[theButtonCell.button setTitle:LOC_(@"Sign In", @"Sign In") forState:UIControlStateNormal];
+					[theButtonCell.button setTitle:@"Sign In" forState:UIControlStateNormal];
 					theButtonCell.target = self;
 					theButtonCell.action = @selector(done:);
 					theButtonCell.button.enabled = NO;

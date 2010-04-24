@@ -9,7 +9,6 @@
 #import "CDateRangePickerController.h"
 
 #import "NSDate_Extensions.h"
-#import "NSDate_ConvenienceExtensions.h"
 
 @interface CDateRangePickerController ()
 @property (readwrite, nonatomic, retain) UITableView *tableView;
@@ -25,20 +24,17 @@
 @synthesize datePicker = outletDatePicker;
 @synthesize durationPicker = outletDurationPicker;
 
-@synthesize initialValue;
-@dynamic value;
-@synthesize validator;
-@synthesize pickerDelegate;
-@synthesize userInfo;
+@synthesize picker;
 
 @synthesize starts;
 @synthesize ends;
 @synthesize minimumDuration;
 
-- (id)init
+- (id)initWithPicker:(CPicker *)inPicker;
 {
 if ((self = [super initWithNibName:NSStringFromClass([self class]) bundle:NULL]) != NULL)
 	{
+	self.picker = inPicker;
 	}
 return(self);
 }
@@ -49,9 +45,7 @@ self.tableView = NULL;
 self.datePicker = NULL;
 self.durationPicker = NULL;
 	
-self.initialValue = NULL;
-self.pickerDelegate = NULL;
-self.userInfo = NULL;
+self.picker = NULL;
 //
 self.starts = NULL;
 self.ends = NULL;
@@ -63,8 +57,8 @@ self.ends = NULL;
 
 - (id)value
 {
-Assert_(self.starts != NULL, @"start date is null");
-Assert_(self.ends != NULL, @"end date is null");
+NSAssert(self.starts != NULL, @"start date is null");
+NSAssert(self.ends != NULL, @"end date is null");
 return([NSDictionary dictionaryWithObjectsAndKeys:
 	self.starts, @"starts",
 	self.ends, @"ends",
@@ -97,8 +91,9 @@ self.datePicker.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutor
 
 - (void)reset
 {
-if (self.initialValue)
-	self.value = self.initialValue;
+// TODO move to CPicker
+if (self.picker.initialValue)
+	self.picker.value = self.picker.initialValue;
 
 [self.tableView reloadData];
 
@@ -185,11 +180,6 @@ if (self.tableView.indexPathForSelectedRow.row == 0)
 			}
 
 		[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-	
-		if (self.pickerDelegate && [self.pickerDelegate respondsToSelector:@selector(pickerController:valueDidChange:)])
-			{
-			[self.pickerDelegate pickerController:self valueDidChange:self.value];
-			}
 		}
 	}
 else if (self.tableView.indexPathForSelectedRow.row == 1)
@@ -199,11 +189,6 @@ else if (self.tableView.indexPathForSelectedRow.row == 1)
 		self.ends = self.datePicker.date;
 
 		[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-
-		if (self.pickerDelegate && [self.pickerDelegate respondsToSelector:@selector(pickerController:valueDidChange:)])
-			{
-			[self.pickerDelegate pickerController:self valueDidChange:self.value];
-			}
 		}
 	}
 }

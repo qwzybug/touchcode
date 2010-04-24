@@ -20,11 +20,7 @@
 @synthesize textLabelKeyPath;
 @synthesize textLabelTransformer;
 @synthesize imageViewKeyPath;
-@synthesize initialValue;
-@synthesize value;
-@synthesize validator;
-@synthesize pickerDelegate;
-@synthesize userInfo;
+@synthesize picker;
 
 - (id)init
 {
@@ -35,10 +31,7 @@ if ((self = [super initWithNibName:NSStringFromClass([self class]) bundle:NULL])
 	self.textLabelKeyPath = NULL;
 	self.textLabelTransformer = NULL;
 	self.imageViewKeyPath = NULL;
-	self.initialValue = NULL;
-	self.value = NULL;
-	self.pickerDelegate = NULL;
-	self.userInfo = NULL;
+
 	}
 return(self);
 }
@@ -49,10 +42,7 @@ self.values = NULL;
 self.textLabelKeyPath = NULL;
 self.textLabelTransformer = NULL;
 self.imageViewKeyPath = NULL;
-self.initialValue = NULL;
-self.value = NULL;
-self.pickerDelegate = NULL;
-self.userInfo = NULL;
+self.picker = NULL;
 //
 [super dealloc];
 }
@@ -64,8 +54,7 @@ self.userInfo = NULL;
 self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(actionCancel:)] autorelease];
 self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(actionDone:)] autorelease];
 //
-self.value = self.initialValue;
-self.selectedValueIndex = [self.values indexOfObject:self.value];
+self.selectedValueIndex = [self.values indexOfObject:self.picker.value];
 }
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
@@ -76,7 +65,7 @@ return(self.values.count);
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 self.selectedValueIndex = indexPath.row;
-self.value = [self.values objectAtIndex:self.selectedValueIndex];
+self.picker.value = [self.values objectAtIndex:self.selectedValueIndex];
 [self.tableView reloadData];
 [self performSelector:@selector(unselectRow:) withObject:indexPath afterDelay:0.0];
 }
@@ -120,9 +109,6 @@ return(theCell);
 
 - (void)actionCancel:(id)inSender
 {
-if (self.pickerDelegate && [self.pickerDelegate respondsToSelector:@selector(pickerControllerDidCancel:)])
-	[self.pickerDelegate pickerControllerDidCancel:self];
-
 [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -130,13 +116,9 @@ if (self.pickerDelegate && [self.pickerDelegate respondsToSelector:@selector(pic
 {
 if (self.selectedValueIndex != NSNotFound)
 	{
-	if (self.pickerDelegate && [self.pickerDelegate respondsToSelector:@selector(pickerController:didFinishWithValue:)])
-		[self.pickerDelegate pickerController:self didFinishWithValue:[self.values objectAtIndex:self.selectedValueIndex]];
 	}
 else
 	{
-	if (self.pickerDelegate && [self.pickerDelegate respondsToSelector:@selector(pickerControllerDidCancel:)])
-		[self.pickerDelegate pickerControllerDidCancel:self];
 	}
 
 [self.navigationController popViewControllerAnimated:YES];

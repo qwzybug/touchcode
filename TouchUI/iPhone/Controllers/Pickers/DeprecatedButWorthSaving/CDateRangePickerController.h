@@ -8,17 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-#import "CPickerController.h"
+#import "CPicker.h"
 
 @interface CDateRangePickerController : UIViewController <CPickerController, UITableViewDataSource, UITableViewDelegate> {
 	IBOutlet UITableView *outletTableView;
 	IBOutlet UIDatePicker *outletDatePicker;
 	IBOutlet UIPickerView *outletDurationPicker;
 	
-	id initialValue;
-	NSString *validator;
-	id <CPickerControllerDelegate> pickerDelegate;
-	id userInfo;
+	CPicker *picker;
 
 	NSDate *starts;
 	NSDate *ends;
@@ -28,6 +25,8 @@
 @property (readwrite, nonatomic, retain) NSDate *starts;
 @property (readwrite, nonatomic, retain) NSDate *ends;
 @property (readwrite, nonatomic, assign) NSTimeInterval minimumDuration;
+
+- (id)initWithPicker:(CPicker *)inPicker;
 
 - (void)reset;
 
