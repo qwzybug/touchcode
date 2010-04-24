@@ -144,6 +144,7 @@ def files():
 
 theCopyrightPatterns = [
 	re.compile(r'^(?P<year>\d\d\d\d) (?P<owner>.+)\. All rights reserved\.$', re.IGNORECASE),
+	re.compile(r'^(?P<year>\d\d\d\d) (?P<owner>.+) All rights reserved\.$', re.IGNORECASE),
 	re.compile(r'^(?P<owner>.+) (?P<year>\d\d\d\d)\. All rights reserved\.$', re.IGNORECASE),
 	re.compile(r'^\(c\) (?P<year>\d\d\d\d) (?P<owner>.+)\. All rights reserved\.$', re.IGNORECASE),
 	re.compile(r'^\(c\) (?P<year>\d\d\d\d) (?P<owner>.+)\.?$', re.IGNORECASE),
