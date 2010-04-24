@@ -200,5 +200,5 @@ for f in files():
 # 		else:
 # 			print 'Skipping, ', f
 	except Exception, e:
-		print 'Exception occured. Skipping: ', f
+		print 'Exception occured (%s). Skipping: %s' % (e, f)
 
