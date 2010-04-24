@@ -38,8 +38,6 @@ Unless otherwise stated all (see below) code created as part of the Touchcode pr
 
 Touchcode includes portions of other code libraries. This code may be supplied under a different license to Touchcode.
 
-Touchcode has changed licenses over the years and as such not all source files reflect the correct license. I hope to fix this situation.
-
 ## Sub-Projects Directories
 
 ### TouchFoundation
