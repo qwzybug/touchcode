@@ -3,7 +3,9 @@
 import os
 import re
 import subprocess
+
 import sys
+import traceback
 
 ########################################################################
 
@@ -133,6 +135,8 @@ def files():
 				continue
 			if re.match('.+/TouchJSON/Benchmarking/.+', theFile):
 				continue
+			if re.match('.+/ISO-8601-parser-0.5/.+', theFile):
+				continue
 
 			yield theFile
 
@@ -145,9 +149,12 @@ theCopyrightPatterns = [
 	re.compile(r'^\(c\) (?P<year>\d\d\d\d) (?P<owner>.+)\.?$', re.IGNORECASE),
 	]
 
+# 2009 toxicsoftware.com All rights reserved.
+
 def SanitizeCopyright(s):
 	theMatches = [thePattern.match(s) for thePattern in theCopyrightPatterns]
 	theMatches = [theMatch for theMatch in theMatches if theMatch]
+
 	theMatch = theMatches[0]
 	d = theMatch.groupdict()
 	if d['owner'] in ['Jonathan Wight', '__MyCompanyName__', 'Toxic Software', 'TouchCode']:
@@ -201,4 +208,4 @@ for f in files():
 # 			print 'Skipping, ', f
 	except Exception, e:
 		print 'Exception occured (%s). Skipping: %s' % (e, f)
-
+		traceback.print_tb(sys.exc_info()[2])
