@@ -3,6 +3,7 @@
 import os
 import re
 import subprocess
+import sys
 
 ########################################################################
 
@@ -119,10 +120,10 @@ thePatterns = [thePattern.replace('  ', ' +') for thePattern in thePatterns]
 
 thePatterns = [re.compile(thePattern, re.MULTILINE) for thePattern in thePatterns]
 
-path = '.'
+path = sys.argv[1]
 
 def files():
-	for root, dirs, files in os.walk('.'):
+	for root, dirs, files in os.walk(path):
 		for theFile in files:
 			theName, theExtension = os.path.splitext(theFile)
 			if theExtension not in ['.m', '.h', '.c']:
