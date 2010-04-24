@@ -265,11 +265,20 @@ while (theCurrentNode != NULL && self.error == NULL)
 						[inItem setObject:theDate forKey:@"updated"];
 					xmlFree(theContentBytes);
 					}
+				else if (strcmp((const char *)theElementName, "thumbnail") == 0)
+					{
+					NSLog(@"THUMBNAIL!");
+					
+					CXMLElement *theElement = [CXMLElement nodeWithLibXMLNode:theCurrentNode freeOnDealloc:NO];
+					NSLog(@"%@", theElement);
+					NSString *theThumbnailURLString = [[theElement attributeForName:@"url"] stringValue];
+					[inItem setObject:theThumbnailURLString forKey:@"thumbnailURL"];					
+					}
 				else
 					{
 					xmlNodePtr theNodeCopy = xmlCopyNode(theCurrentNode, 1);
 					
-					CXMLElement *theElement = [CXMLElement nodeWithLibXMLNode:theNodeCopy freeOnRelease:YES];
+					CXMLElement *theElement = [CXMLElement nodeWithLibXMLNode:theNodeCopy freeOnDealloc:YES];
 					NSMutableDictionary *theDictionary = [inItem objectForKey:@"extraXML"];
 					if (theDictionary == NULL)
 						{
