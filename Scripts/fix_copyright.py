@@ -172,7 +172,7 @@ for f in files():
 			d['filename'] = os.path.split(f)[1]
 			d['copyright'] = '2009 toxicsoftware.com. All rights reserved.' % d
 			d['creator'] = 'Jonathan Wight'
-			d['date'] = '20091204'
+			d['date'] = '20100422'
 			theReplacement = FORMAT % d
 			theNewText = theReplacement + s
 		else:
