@@ -109,13 +109,13 @@ static inline CGFloat MetersToFeet(CGFloat inValue)
 return(inValue * 100.0f / 2.54f / 12.0f);
 }
 
-static inline CGPoint Rotation(CGPoint inCenter, CGFloat inAngle, CGFloat inLength)
+static inline CGPoint Rotation(CGFloat inAngle, CGFloat inLength)
 {
 CGFloat theCosine = cos_(DegreesToRadians(fmod_(90.0f - inAngle, 360.0f)));
 CGFloat theSine = sin_(DegreesToRadians(fmod_(90.0f - inAngle, 360.0f)));
 CGPoint thePoint = {
-	.x = inCenter.x + theCosine * inLength,
-	.y = inCenter.y + theSine * inLength,
+	.x = theCosine * inLength,
+	.y = theSine * inLength,
 	};
 return(thePoint);
 }
@@ -270,6 +270,21 @@ static inline CGFloat magnitude(CGPoint point)
 const CGFloat theMagnitude = sqrt_(fabs_(point.x * point.x) + fabs_(point.y * point.y));
 return(theMagnitude);
 }
+
+#pragma mark -
+
+static inline CGPoint CGPointAdd(CGPoint a, CGPoint b)
+{
+const CGPoint r = { .x = a.x + b.x, .y = a.y + b.y };
+return(r);
+}
+
+static inline CGPoint CGPointMultiply(CGPoint a, CGPoint b)
+{
+const CGPoint r = { .x = a.x * b.x, .y = a.y * b.y };
+return(r);
+}
+
 
 #pragma mark -
 
