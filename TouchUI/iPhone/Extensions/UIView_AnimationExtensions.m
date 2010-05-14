@@ -29,6 +29,47 @@
 
 #import "UIView_AnimationExtensions.h"
 
+@interface UIView_AnimationExtensionsHelper : NSObject 
+
+@end
+
+@implementation UIView_AnimationExtensionsHelper
+
+- (void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
+{
+if ([animationID isEqualToString:@"TODO_ADD"])
+	{
+		UIView *theSubview = context;
+		
+		[theSubview retain];
+		
+		UIView *theMaskView = theSubview.superview;
+		UIView *theParentView = theMaskView.superview;
+		theSubview.frame = theMaskView.frame;
+		[theSubview removeFromSuperview];
+		[theParentView addSubview:theSubview];
+		[theMaskView removeFromSuperview];
+		
+		[theSubview release];
+	}
+	else if ([animationID isEqualToString:@"TODO_REMOVE"])
+	{
+		UIView *theSubview = context;
+		
+		UIView *theMaskView = theSubview.superview;
+		[theMaskView removeFromSuperview];
+	}
+	else if ([animationID isEqualToString:@"TODO_FADE_OUT"])
+	{
+		UIView *theSubview = context;
+		[theSubview removeFromSuperview];
+	}
+	
+	[self release];
+}
+
+@end
+
 @implementation UIView (UIView_AnimationExtensions)
 
 - (void)addSubview:(UIView *)inSubview withAnimationType:(EViewAnimationType)inAnimationType
@@ -71,7 +112,7 @@ if (inAnimationType == ViewAnimationType_SlideDown
 
 	[UIView beginAnimations:@"TODO_ADD" context:inSubview];
 	[UIView setAnimationDuration:0.4f];
-	[UIView setAnimationDelegate:self];
+	[UIView setAnimationDelegate:[[UIView_AnimationExtensionsHelper alloc] init]];
 
 	inSubview.frame = theMaskView.bounds;
 
@@ -84,7 +125,7 @@ else if (inAnimationType == ViewAnimationType_FadeIn)
 
 	[UIView beginAnimations:@"TODO_FADE_IN" context:inSubview];
 	[UIView setAnimationDuration:0.4f];
-	[UIView setAnimationDelegate:self];
+	[UIView setAnimationDelegate:[[UIView_AnimationExtensionsHelper alloc] init]];
 
 	inSubview.alpha = 1.0f;
 
@@ -113,7 +154,7 @@ if (inAnimationType == ViewAnimationType_SlideDown
 
 	[UIView beginAnimations:@"TODO_REMOVE" context:self];
 	[UIView setAnimationDuration:0.4];
-	[UIView setAnimationDelegate:self];
+	[UIView setAnimationDelegate:[[UIView_AnimationExtensionsHelper alloc] init]];
 
 	theFrame.origin = CGPointZero;
 
@@ -141,7 +182,7 @@ else if (inAnimationType == ViewAnimationType_FadeOut)
 	{
 	[UIView beginAnimations:@"TODO_FADE_OUT" context:self];
 	[UIView setAnimationDuration:0.4];
-	[UIView setAnimationDelegate:self];
+	[UIView setAnimationDelegate:[[UIView_AnimationExtensionsHelper alloc] init]];
 
 	self.alpha = 0.0f;
 
@@ -149,36 +190,5 @@ else if (inAnimationType == ViewAnimationType_FadeOut)
 	}
 }
 
-#pragma mark -
-
-- (void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
-{
-if ([animationID isEqualToString:@"TODO_ADD"])
-	{
-	UIView *theSubview = context;
-
-	[theSubview retain];
-
-	UIView *theMaskView = theSubview.superview;
-	theSubview.frame = theMaskView.frame;
-	[theSubview removeFromSuperview];
-	[self addSubview:theSubview];
-	[theMaskView removeFromSuperview];
-
-	[theSubview release];
-	}
-else if ([animationID isEqualToString:@"TODO_REMOVE"])
-	{
-	UIView *theSubview = context;
-
-	UIView *theMaskView = theSubview.superview;
-	[theMaskView removeFromSuperview];
-	}
-else if ([animationID isEqualToString:@"TODO_FADE_OUT"])
-	{
-	UIView *theSubview = context;
-	[theSubview removeFromSuperview];
-	}
-}
 
 @end

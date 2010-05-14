@@ -34,6 +34,7 @@
 		453C31B310B1A5F700C4DA32 /* CHUDUserNotificationStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 453C31AC10B1A5F700C4DA32 /* CHUDUserNotificationStyle.m */; };
 		453C31B410B1A5F700C4DA32 /* CHUDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 453C31AE10B1A5F700C4DA32 /* CHUDView.m */; };
 		5C0F5F5B113C84DE00345FEE /* CTopBadgeUserNotificationStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0F5F5A113C84DE00345FEE /* CTopBadgeUserNotificationStyle.m */; };
+		B61517C21184F3CF00F54B9F /* UIView_LayoutExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B61517C11184F3CF00F54B9F /* UIView_LayoutExtensions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,6 +90,8 @@
 		453C31AE10B1A5F700C4DA32 /* CHUDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHUDView.m; sourceTree = "<group>"; };
 		5C0F5F59113C84DE00345FEE /* CTopBadgeUserNotificationStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTopBadgeUserNotificationStyle.h; sourceTree = "<group>"; };
 		5C0F5F5A113C84DE00345FEE /* CTopBadgeUserNotificationStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTopBadgeUserNotificationStyle.m; sourceTree = "<group>"; };
+		B61517C01184F3CF00F54B9F /* UIView_LayoutExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIView_LayoutExtensions.h; sourceTree = "<group>"; };
+		B61517C11184F3CF00F54B9F /* UIView_LayoutExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIView_LayoutExtensions.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +189,8 @@
 		4513D8B210C598340053925E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B61517C01184F3CF00F54B9F /* UIView_LayoutExtensions.h */,
+				B61517C11184F3CF00F54B9F /* UIView_LayoutExtensions.m */,
 				4513D8BD10C598340053925E /* UIView_AnimationExtensions.h */,
 				4513D8BE10C598340053925E /* UIView_AnimationExtensions.m */,
 			);
@@ -361,6 +366,7 @@
 				5C0F5F5B113C84DE00345FEE /* CTopBadgeUserNotificationStyle.m in Sources */,
 				451923381182ADFB00DFFB9E /* QuartzUtilities.m in Sources */,
 				451923471182AE4400DFFB9E /* Geometry.m in Sources */,
+				B61517C21184F3CF00F54B9F /* UIView_LayoutExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
