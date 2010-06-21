@@ -39,7 +39,19 @@ UIView *theMainView = NULL;
 
 #if defined(__IPHONE_4_0)
 //__OSX_AVAILABLE_STARTING(__MAC_NA,__IPHONE_4_0)
-theMainView = self.rootViewController.view;
+
+UIViewController *theViewController = self.rootViewController;
+if ([theViewController respondsToSelector:@selector(viewControllers)])
+    {
+    theViewController = [[(id)theViewController viewControllers] lastObject];
+    }
+
+if (theViewController.modalViewController)
+    theViewController = theViewController.modalViewController;
+
+// UIPopoverController
+
+theMainView = theViewController.view;
 #else
 #warning Private API usage ahoy!
 UIView *theWrapperView = [self findDeepViewOfClass:NSClassFromString(@"UIViewControllerWrapperView")];

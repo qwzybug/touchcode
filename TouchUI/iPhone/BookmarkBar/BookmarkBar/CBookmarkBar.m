@@ -109,7 +109,7 @@ if (items != inItems)
 		items = NULL;
 		//
 		[self.scrollView removeFromSuperview];
-		self.scrollView == NULL;
+		self.scrollView = NULL;
 		}
 		
 	if (inItems != NULL)

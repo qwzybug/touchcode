@@ -102,6 +102,10 @@ if (inAnimationType == ViewAnimationType_SlideDown
 		case ViewAnimationType_SlideRight:
 			theFrame.origin.x -= theFrame.size.width;
 			break;
+		case ViewAnimationType_FadeIn:
+		case ViewAnimationType_FadeOut:
+            NSAssert(NO, @"Not implemented");
+            break;
 		}
 
 	inSubview.frame = theFrame;
@@ -172,6 +176,10 @@ if (inAnimationType == ViewAnimationType_SlideDown
 		case ViewAnimationType_SlideRight:
 			theFrame.origin.x += theFrame.size.width;
 			break;
+		case ViewAnimationType_FadeIn:
+		case ViewAnimationType_FadeOut:
+            NSAssert(NO, @"Not implemented");
+            break;
 		}
 
 	self.frame = theFrame;

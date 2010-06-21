@@ -49,7 +49,7 @@ static CURLOpener *gInstance = NULL;
 
 - (id)initWithParentViewController:(UIViewController *)inViewController URL:(NSURL *)inURL
 {
-if ((self = [super initWithTitle:NULL delegate:self cancelButtonTitle:NULL destructiveButtonTitle:NULL otherButtonTitles:NULL]) != NULL)
+if ((self = [super initWithTitle:NULL delegate:self cancelButtonTitle:NULL destructiveButtonTitle:NULL otherButtonTitles:NULL, NULL]) != NULL)
 	{
 	parentViewController = inViewController;
 	URL = [inURL retain];

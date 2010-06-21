@@ -38,7 +38,7 @@
 
 - (id)initWithMenu:(CMenu *)inMenu;
 {
-if ((self = [super initWithTitle:inMenu.title delegate:self cancelButtonTitle:NULL destructiveButtonTitle:NULL otherButtonTitles:NULL]) != NULL)
+if ((self = [super initWithTitle:inMenu.title delegate:self cancelButtonTitle:NULL destructiveButtonTitle:NULL otherButtonTitles:NULL, NULL]) != NULL)
 	{
 	menu = [inMenu retain];
 	
