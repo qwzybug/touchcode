@@ -100,7 +100,11 @@ return(NO);
 - (BOOL)scanCGFloat:(CGFloat *)outCGFloat;
 {
 // TODO handle 64-bit
-return([self scanFloat:outCGFloat]);
+double theDouble;
+BOOL theResult = [self scanDouble:&theDouble];
+if (outCGFloat)
+	*outCGFloat = theDouble;
+return(theResult);
 }
 
 - (BOOL)scanAtMost:(NSUInteger)N charactersFromSet:(NSCharacterSet *)set intoString:(NSString **)value;
