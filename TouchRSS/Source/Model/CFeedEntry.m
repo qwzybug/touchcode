@@ -70,9 +70,13 @@ return(@"Entry");
 
 @dynamic updated;
 
+@dynamic thumbnailURL;
+
 @dynamic content;
 
 @dynamic subtitle;
+
+@dynamic extraXML;
 
 @dynamic title;
 
@@ -93,9 +97,9 @@ return(theResult);
 [self didChangeValueForKey:@"feed"];
 }
 
-@dynamic link;
-
 @dynamic identifier;
+
+@dynamic link;
 
 #pragma mark end emogenerator accessors
 

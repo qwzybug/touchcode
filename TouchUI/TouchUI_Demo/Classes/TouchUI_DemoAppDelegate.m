@@ -28,23 +28,22 @@
 //
 
 #import "TouchUI_DemoAppDelegate.h"
-#import "TouchUI_DemoViewController.h"
 
 @implementation TouchUI_DemoAppDelegate
 
 @synthesize window;
-@synthesize viewController;
+@synthesize rootViewController;
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
     
     // Override point for customization after app launch    
-    [window addSubview:viewController.view];
+    [window addSubview:rootViewController.view];
     [window makeKeyAndVisible];
 }
 
 
 - (void)dealloc {
-    [viewController release];
+    [rootViewController release];
     [window release];
     [super dealloc];
 }
