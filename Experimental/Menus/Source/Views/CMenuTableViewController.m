@@ -285,6 +285,7 @@ if (theRowSelectionWasHandled == NO)
 
 - (void)selectMenuItem:(CMenuItem *)inItem;
 {
+#warning
 UIViewController *theController = [[[inItem.controller alloc] initWithMenuItem:inItem] autorelease];
 
 

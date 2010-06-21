@@ -30,6 +30,7 @@
 #import "CDateRangePickerController.h"
 
 #import "NSDate_Extensions.h"
+#import "NSDate_ConvenienceExtensions.h"
 
 @interface CDateRangePickerController ()
 @property (readwrite, nonatomic, retain) UITableView *tableView;

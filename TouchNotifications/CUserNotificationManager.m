@@ -97,7 +97,7 @@ if ((self = [super init]) != NULL)
 	
 	notificationStates = [[NSMutableArray alloc] init];
 	
-	#warning TODO What if there is no HUD style registered?
+	// TODO What if there is no HUD style registered?
 	self.defaultStyleName = @"HUD";
 	}
 return(self);
@@ -248,6 +248,7 @@ return(theNotificationStyle);
 }
 
 #pragma mark -
+
 - (BOOL)notificationExistsForIdentifier:(NSString *)inIdentifier
 {
 BOOL notificationExists = NO;

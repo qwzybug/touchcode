@@ -94,7 +94,7 @@ if (theMessage == NULL)
 
 NSString *theCancelButtonTitle = @"OK";
 
-UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:theTitle message:theMessage delegate:NULL cancelButtonTitle:theCancelButtonTitle otherButtonTitles:NULL] autorelease];
+UIAlertView *theAlert = [[[UIAlertView alloc] initWithTitle:theTitle message:theMessage delegate:NULL cancelButtonTitle:theCancelButtonTitle otherButtonTitles:NULL, NULL] autorelease];
 [theAlert show];
 }
 

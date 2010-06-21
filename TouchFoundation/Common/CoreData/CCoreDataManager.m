@@ -38,7 +38,7 @@
 #define THREAD_PARANOIA 1
 
 @interface CCoreDataManager ()
-@property (readwrite, retain) id threadStorageKey;
+@property (readonly, retain) id threadStorageKey;
 
 - (NSPersistentStoreCoordinator *)newPersistentStoreCoordinatorWithOptions:(NSDictionary *)inOptions error:(NSError **)outError;
 
@@ -370,9 +370,7 @@ if ([[NSFileManager defaultManager] fileExistsAtPath:theStorePath] == NO)
 		BOOL theResult = [[NSFileManager defaultManager] copyItemAtPath:theSourceFile toPath:theStorePath error:&theError];
 		if (theResult == NO)
 			{
-			[self release];
-			self = NULL;
-			return(self);
+			return(NULL);
 			}
 		}
 	}
