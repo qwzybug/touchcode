@@ -38,7 +38,9 @@
 @property (readwrite, nonatomic, retain) NSMutableDictionary *cachedObjectsByKey;
 @property (readwrite, nonatomic, retain) NSMutableArray *cachedKeys;
 
+#if TARGET_OS_IPHONE
 - (void)applicationDidReceiveMemoryWarningNotification:(NSNotification *)inNotification;
+#endif
 
 @end
 

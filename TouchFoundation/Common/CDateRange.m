@@ -137,7 +137,7 @@ if (start != inStart)
 		{
 		NSTimeInterval theDuration = self.duration;
 		[super setStart:inStart];
-		[super setEnd:[inStart addTimeInterval:theDuration]];
+		[super setEnd:[inStart dateByAddingTimeInterval:theDuration]];
 		}
 	
     }
@@ -158,7 +158,7 @@ if (end != inEnd)
 
 - (void)setDuration:(NSTimeInterval)inDuration
 {
-self.end = [self.start addTimeInterval:inDuration];
+self.end = [self.start dateByAddingTimeInterval:inDuration];
 }
 
 @end

@@ -29,6 +29,8 @@
 
 #import "CTempFile.h"
 
+#include <unistd.h>
+
 @interface CTempFile ()
 @property (readwrite, retain) NSString *path;
 @property (readwrite, assign) int fileDescriptor;
