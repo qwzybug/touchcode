@@ -34,7 +34,6 @@
 @implementation CUserNotificationStyle
 
 @synthesize manager;
-@dynamic flags;
 @synthesize styleOptions;
 @synthesize view;
 

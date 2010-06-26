@@ -41,7 +41,6 @@
 @implementation CCompletionTicket
 
 @synthesize identifier;
-@dynamic delegates;
 @synthesize delegatePointers;
 @synthesize userInfo;
 @synthesize subTicket;
@@ -77,7 +76,7 @@ return(self);
 {
 if ((self = [self initWithIdentifier:inIdentifier delegates:[NSArray arrayWithObject:inDelegate] userInfo:inUserInfo subTicket:inSubTicket]) != NULL)
 	{
-	
+
 	}
 return(self);
 }

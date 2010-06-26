@@ -47,8 +47,6 @@ NSString *TouchSQLErrorDomain = @"TouchSQLErrorDomain";
 @implementation CSqliteDatabase
 
 @synthesize path;
-@dynamic sql;
-@dynamic userDictionary;
 
 - (id)initWithPath:(NSString *)inPath
 {

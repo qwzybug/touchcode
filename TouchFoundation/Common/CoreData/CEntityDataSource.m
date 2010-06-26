@@ -37,9 +37,6 @@
 
 @synthesize managedObjectContext;
 @synthesize entityDescription;
-@dynamic sortDescriptors;
-@dynamic predicate;
-@dynamic items;
 
 - (id)initWithManagedObjectContext:(NSManagedObjectContext *)inManagedObjectContext entityDescription:(NSEntityDescription *)inEntityDescription
 {

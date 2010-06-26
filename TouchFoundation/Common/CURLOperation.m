@@ -49,7 +49,6 @@
 @synthesize connection;
 @synthesize response;
 @synthesize error;
-@dynamic data;
 @synthesize temporaryData;
 @synthesize defaultCredential;
 @synthesize userInfo;
@@ -60,7 +59,7 @@ if ((self = [self init]) != NULL)
 	{
 	isExecuting = NO;
 	isFinished = NO;
-	
+
 	request = [inRequest copy];
 	}
 return(self);
@@ -80,7 +79,7 @@ error = NULL;
 temporaryData = NULL;
 [defaultCredential release];
 defaultCredential = NULL;
-//	
+//
 [super dealloc];
 }
 
@@ -105,12 +104,12 @@ return(self.temporaryData.data);
 	self.isExecuting = YES;
 	self.connection = [[[NSURLConnection alloc] initWithRequest:self.request delegate:self startImmediately:NO] autorelease];
 //	self.connection = [[[NSURLConnection alloc] initWithRequest:self.request delegate:self] autorelease];
-	
+
 	[self.connection scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
 	[self.connection start];
 
 //	[self.connection performSelectorOnMainThread:@selector(start) withObject:NULL waitUntilDone:YES];
-	
+
 	}
 @catch (NSException * e)
 	{

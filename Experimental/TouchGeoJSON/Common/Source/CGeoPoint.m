@@ -32,8 +32,6 @@
 @implementation CGeoPoint
 
 @synthesize x, y;
-@dynamic z;
-@dynamic zDefined;
 
 + (NSString *)geoTypeName
 {

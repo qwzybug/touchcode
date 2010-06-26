@@ -39,7 +39,6 @@
 @implementation CFeedEntriesViewController
 
 @synthesize feedStore;
-@dynamic feed;
 @synthesize feeds;
 
 - (id)initWithFeedStore:(CFeedStore *)inFeedStore feed:(CFeed *)inFeed;
@@ -51,7 +50,7 @@ if ((self = [super init]) != NULL)
 	self.feedStore = inFeedStore;
 	self.managedObjectContext = inFeedStore.managedObjectContext;
 
-	self.feed = inFeed;	
+	self.feed = inFeed;
 	}
 return(self);
 }
@@ -153,7 +152,7 @@ if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 	}
 else
 	{
-	[self.navigationController pushViewController:theFeedEntryView animated:YES];	
+	[self.navigationController pushViewController:theFeedEntryView animated:YES];
 	}
 }
 

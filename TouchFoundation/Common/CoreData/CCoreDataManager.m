@@ -53,14 +53,9 @@
 @implementation CCoreDataManager
 
 @synthesize name;
-@dynamic modelURL;
-@dynamic persistentStoreURL;
 @synthesize storeType;
 @synthesize forceReplace;
 @synthesize storeOptions;
-@dynamic persistentStoreCoordinator;
-@dynamic managedObjectModel;
-@dynamic managedObjectContext;
 @synthesize threadStorageKey;
 @synthesize delegate;
 
@@ -176,7 +171,7 @@ return(managedObjectModel);
 	if (persistentStoreCoordinator == NULL)
 		{
 		persistentStoreCoordinator = [[self newPersistentStoreCoordinatorWithOptions:self.storeOptions error:NULL] retain];
-		
+
 //		#if THREAD_PARANOIA == 1
 //		NSAssert([NSThread isMainThread] == YES, @"Should not create persistentStoreCoordinate from non-main thread");
 //		#endif /* THREAD_PARANOIA == 1 */
@@ -249,7 +244,7 @@ BOOL theResult = NO;
 	NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
 
 	NSDictionary *theOptions = [NSDictionary dictionaryWithObjectsAndKeys:
-		[NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, 
+		[NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
 		NULL];
 
 	NSError *theError = NULL;
@@ -265,10 +260,10 @@ BOOL theResult = NO;
 
 	if (outError)
 		*outError = theError;
-		
+
 	theResult = theError == NULL;
     }
-	
+
 return(theResult);
 }
 
@@ -360,7 +355,7 @@ if (inForceReplace == YES)
 		[[NSFileManager defaultManager] removeItemAtPath:theStorePath error:&theError];
 		}
 	}
-	
+
 if ([[NSFileManager defaultManager] fileExistsAtPath:theStorePath] == NO)
 	{
 	NSError *theError = NULL;

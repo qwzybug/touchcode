@@ -34,8 +34,6 @@
 
 @implementation CHTTPMessage (CHTTPMessage_ConvenienceExtensions)
 
-@dynamic contentType;
-@dynamic contentLength;
 
 + (NSString *)statusDescriptionForStatusCode:(NSInteger)inStatusCode;
 {

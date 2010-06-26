@@ -42,7 +42,6 @@
 @implementation CHTTPLoggingHandler
 
 @synthesize logFile;
-@dynamic fileHandle;
 
 - (id)init
 {
@@ -50,7 +49,7 @@ if ((self = [super init]) != NULL)
 	{
 	if (self.logFile == NULL)
 		self.logFile = [@"~/Library/Logs/TouchHTTPD.log" stringByExpandingTildeInPath];
-	
+
 	NSString *theDirectory = [self.logFile stringByDeletingLastPathComponent];
 	BOOL theFileExistsFlag = [[NSFileManager defaultManager] fileExistsAtPath:theDirectory];
 	if (theFileExistsFlag == NO)
@@ -107,7 +106,7 @@ if (fileHandle == NULL)
 	[theFileHandle seekToEndOfFile];
 	self.fileHandle = theFileHandle;
 	}
-return(fileHandle); 
+return(fileHandle);
 }
 
 - (void)setFileHandle:(NSFileHandle *)inFileHandle
@@ -128,11 +127,11 @@ if (fileHandle != inFileHandle)
 if ([[inRequest requestMethod] isEqualToString:@"GET"] && [inRequest.requestURL.path isEqualToString:@"/logs/TouchHTTPD.log"])
 	{
 	self.fileHandle = NULL;
-	
+
 	CHTTPMessage *theResponse = [CHTTPMessage HTTPMessageResponseWithStatusCode:200];
 	[theResponse setContentType:@"text/plain"];
 	theResponse.bodyData = [NSData dataWithContentsOfFile:self.logFile options:0 error:NULL];
-	
+
 	if (ioResponse)
 		*ioResponse = theResponse;
 	}

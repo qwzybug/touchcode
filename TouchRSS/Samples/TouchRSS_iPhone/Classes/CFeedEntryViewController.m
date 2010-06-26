@@ -37,7 +37,6 @@
 @implementation CFeedEntryViewController
 
 @synthesize fetchedResultsController;
-@dynamic currentEntryIndex;
 @synthesize entry;
 @synthesize contentTemplate;
 @synthesize nextPreviousSegmentedControl;
@@ -48,7 +47,7 @@
 if ((self = [super init]) != NULL)
 	{
 	fetchedResultsController = [inFetchedResultsController retain];
-	
+
 	NSError *theError = NULL;
 	[fetchedResultsController performFetch:&theError];
 	}
@@ -119,11 +118,11 @@ if (entry != inEntry)
 		[entry release];
 		entry = NULL;
 		}
-	
+
 	if (inEntry)
 		{
 		entry = [inEntry retain];
-		
+
 		NSDictionary *theReplacementDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
 			inEntry, @"entry",
 			self, @"controller",
@@ -132,9 +131,9 @@ if (entry != inEntry)
 		NSString *theContent = [self.contentTemplate transform:theReplacementDictionary error:&theError];
 		NSData *theData = [theContent dataUsingEncoding:NSUTF8StringEncoding];
 		NSURL *theURL = [NSURL dataURLWithData:theData mimeType:@"text/html" charset:@"utf-8"];
-		
+
 		[self resetWebView];
-		
+
 		self.homeURL = theURL;
 		self.requestedURL = theURL;
 		}
@@ -159,7 +158,7 @@ if (nextPreviousSegmentedControl == NULL)
 		[UIImage imageNamed:@"browser-next.png"],
 		NULL
 		];
-	
+
 	nextPreviousSegmentedControl = [[UISegmentedControl alloc] initWithItems:theItems];
 	nextPreviousSegmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
 	nextPreviousSegmentedControl.momentary = YES;

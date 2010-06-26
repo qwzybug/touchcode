@@ -56,12 +56,7 @@ static void TCPSocketListenerAcceptCallBack(CFSocketRef socket, CFSocketCallBack
 @synthesize delegate;
 @synthesize connectionCreationDelegate;
 @synthesize port;
-@dynamic domain;
-@dynamic name;
 @synthesize type;
-@dynamic netService;
-@dynamic IPV4Socket;
-@dynamic IPV6Socket;
 @synthesize connections = mutableConnections;
 @synthesize mutableConnections;
 @synthesize listening;
@@ -99,7 +94,7 @@ self.type = NULL;
 {
 if (domain == NULL)
 	return(@"");
-return(domain); 
+return(domain);
 }
 
 - (void)setDomain:(NSString *)inDomain
@@ -121,7 +116,7 @@ if (name == NULL)
 		self.name = [theHostName substringToIndex:([theHostName length] - 6)];
 		}
 	}
-return(name); 
+return(name);
 }
 
 - (void)setName:(NSString *)inName
@@ -152,7 +147,7 @@ if (IPV4Socket != inIPV4Socket)
 	if (inIPV4Socket != NULL)
 		{
 		CFRetain(inIPV4Socket);
-		IPV4Socket = inIPV4Socket;		
+		IPV4Socket = inIPV4Socket;
 		}
 	}
 }
@@ -176,7 +171,7 @@ if (IPV6Socket != inIPV6Socket)
 	if (inIPV6Socket != NULL)
 		{
 		CFRetain(inIPV6Socket);
-		IPV6Socket = inIPV6Socket;		
+		IPV6Socket = inIPV6Socket;
 		}
 	}
 }
@@ -187,7 +182,7 @@ if (netService == NULL)
 	{
 	self.netService = [[[NSNetService alloc] initWithDomain:self.domain type:self.type name:self.name port:port] autorelease];
 	}
-return(netService); 
+return(netService);
 }
 
 - (void)setNetService:(NSNetService *)inNetService
@@ -310,12 +305,12 @@ if (!theInputStream || !theOutputStream)
 	if (theOutputStream)
 		CFRelease(theOutputStream);
 	close(inNativeHandle);
-	
+
 	if (outError)
 		{
 		*outError = [NSError errorWithDomain:@"UNKNOWN_DOMAIN" code:-1 userInfo:NULL];
 		}
-	
+
 	return(NO);
 	}
 
@@ -334,7 +329,7 @@ if (theConnection == NULL)
 
 	if (outError)
 		*outError = [NSError errorWithDomain:@"UNKNOWN_DOMAIN" code:-1 userInfo:NULL];
-	
+
 	return(NO);
 	}
 
@@ -370,7 +365,7 @@ CFSocketError theResult = CFSocketSetAddress(theSocket, (CFDataRef)theAddress4);
 if (theResult != kCFSocketSuccess)
 	{
 	CFRelease(theSocket);
-	
+
 	if (outError)
 		*outError = [NSError errorWithDomain:@"UNKNOWN_DOMAIN" code:1 userInfo:NULL];
 	return(NO);
@@ -378,7 +373,7 @@ if (theResult != kCFSocketSuccess)
 
 if (self.port == 0)
 	{
-	// now that the binding was successful, we get the port number 
+	// now that the binding was successful, we get the port number
 	// -- we will need it for the v6 endpoint and for the NSNetService
 	NSData *addr = [(NSData *)CFSocketCopyAddress(theSocket) autorelease];
 	memcpy(&addr4, [addr bytes], [addr length]);
@@ -420,7 +415,7 @@ CFSocketError theResult = CFSocketSetAddress(theSocket, (CFDataRef)address6);
 if (theResult != kCFSocketSuccess)
 	{
 	CFRelease(theSocket);
-	
+
 	if (outError)
 		*outError = [NSError errorWithDomain:@"UNKNOWN_DOMAIN" code:1 userInfo:NULL];
 	return(NO);
@@ -448,7 +443,7 @@ static void TCPSocketListenerAcceptCallBack(CFSocketRef inSocket, CFSocketCallBa
 
 CTCPSocketListener *theTCPSocketListener = (CTCPSocketListener *)ioInfo;
 if (inCallbackType == kCFSocketAcceptCallBack)
-	{ 
+	{
 	// for an AcceptCallBack, the data parameter is a pointer to a CFSocketNativeHandle
 	CFSocketNativeHandle theNativeSocketHandle = *(CFSocketNativeHandle *)inData;
 	uint8_t theSocketName[SOCK_MAXADDRLEN];
@@ -458,9 +453,9 @@ if (inCallbackType == kCFSocketAcceptCallBack)
 		{
 		thePeerAddress = [NSData dataWithBytes:theSocketName length:theSocketNameLength];
 		}
-		
+
 	if ([theTCPSocketListener shouldHandleNewConnectionFromAddress:(NSData *)inAddress] == YES)
-		{		
+		{
 		NSError *theError = NULL;
 		BOOL theResult = [theTCPSocketListener handleNewConnectionFromAddress:thePeerAddress nativeHandle:theNativeSocketHandle error:&theError];
 		if (theResult == NO)

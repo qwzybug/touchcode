@@ -42,16 +42,14 @@
 @implementation CBadgeView
 
 @synthesize imageView;
-@dynamic titleLabel;
 @synthesize accessoryView;
-@dynamic layoutView;
 @synthesize badgePosition;
 
 - (id)initWithFrame:(CGRect)frame
 {
 if (CGRectIsEmpty(frame))
 	frame = CGRectMake(0, 0, 320, 44);
-	
+
 if ((self = [super initWithFrame:frame]) != NULL)
 	{
 	self.opaque = NO;
@@ -163,33 +161,33 @@ return(theSize);
 if (layoutView != NULL)
 	[self addSubview:self.layoutView];
 
-if (imageView != NULL) 
+if (imageView != NULL)
 	{
-	if (self.imageView.image != NULL) 
+	if (self.imageView.image != NULL)
 		{
 		[self.layoutView addSubview:self.imageView];
 		}
-	else 
+	else
 		{
 		[self.imageView removeFromSuperview];
 		}
 	}
-if (titleLabel != NULL) 
+if (titleLabel != NULL)
 	{
-	if (self.titleLabel.text.length > 0) 
+	if (self.titleLabel.text.length > 0)
 		{
 		self.titleLabel.frame = CGRectMake(0, 0, self.layoutView.bounds.size.width - 10.0f, 23);
 		[self.titleLabel sizeToFit:CGSizeMake(INFINITY, INFINITY)];
 		[self.layoutView addSubview:self.titleLabel];
 		self.layoutView.flexibleView = titleLabel;
-		} 
-	else 
+		}
+	else
 		{
 		[self.titleLabel removeFromSuperview];
 		}
 	}
 
-if (self.accessoryView) 
+if (self.accessoryView)
 	{
 	[self.layoutView addSubview:self.accessoryView];
 	}
@@ -205,7 +203,7 @@ CGContextRef theContext = UIGraphicsGetCurrentContext();
 
 [[UIColor colorWithWhite:0.0f alpha:0.6f] set];
 
-switch (badgePosition) 
+switch (badgePosition)
 	{
 	case BadgePositionTopLeft:
 		CGContextAddRoundRectToPath(theContext, theRect, 0, 0, 0, 20);

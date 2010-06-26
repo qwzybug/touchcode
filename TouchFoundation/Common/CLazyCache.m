@@ -49,7 +49,6 @@
 @implementation CLazyCache
 
 @synthesize capacity;
-@dynamic count;
 @synthesize cachedObjectsByKey;
 @synthesize cachedKeys;
 
@@ -94,7 +93,7 @@ if (cachedObjectsByKey == NULL)
 	{
 	self.cachedObjectsByKey = [NSMutableDictionary dictionaryWithCapacity:self.capacity];
 	}
-return(cachedObjectsByKey); 
+return(cachedObjectsByKey);
 }
 
 - (void)setCachedObjectsByKey:(NSMutableDictionary *)inCachedObjectsByKey
@@ -112,7 +111,7 @@ if (cachedKeys == NULL)
 	{
 	self.cachedKeys = [NSMutableArray arrayWithCapacity:self.capacity];
 	}
-return(cachedKeys); 
+return(cachedKeys);
 }
 
 - (void)setCachedKeys:(NSMutableArray *)inCachedKeys

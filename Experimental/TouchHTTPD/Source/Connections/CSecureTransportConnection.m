@@ -42,7 +42,6 @@ static OSStatus MySSLWriteFunc(SSLConnectionRef connection, const void *data, si
 @implementation CSecureTransportConnection
 
 @synthesize certificates;
-@dynamic context;
 @synthesize inputBuffer;
 
 - (id)init
@@ -59,7 +58,7 @@ return(self);
 self.certificates = NULL;
 self.context = NULL;
 self.inputBuffer = NULL;
-	
+
 [super dealloc];
 }
 
@@ -73,16 +72,16 @@ if (context == NULL)
 	OSStatus theStatus = SSLNewContext(YES, &theContext);
 	if (theStatus != noErr)
 		[NSException raise:NSGenericException format:@"SSLNewContext failed with %d", theStatus];
-		
+
 	theStatus = SSLSetIOFuncs(theContext, MySSLReadFunc, MySSLWriteFunc);
 	if (theStatus != noErr)
 		[NSException raise:NSGenericException format:@"SSLSetIOFuncs failed with %d", theStatus];
-	
+
 	theStatus = SSLSetCertificate(theContext, (CFArrayRef)self.certificates);
 	if (theStatus != noErr)
 		[NSException raise:NSGenericException format:@"SSLSetCertificate failed with %d", theStatus];
 
-	theStatus = SSLSetConnection(theContext, self); 
+	theStatus = SSLSetConnection(theContext, self);
 	if (theStatus != noErr)
 		[NSException raise:NSGenericException format:@"SSLSetConnection failed with %d", theStatus];
 
@@ -135,7 +134,7 @@ else if (theState >= kSSLConnected)
 	theStatus = SSLGetBufferedReadSize(self.context, &theBufferLength);
 	if (theStatus != noErr)
 		[NSException raise:NSGenericException format:@"SSLGetBufferedReadSize failed with %d", theStatus];
-	
+
 	if (theBufferLength > 0)
 		{
 		NSMutableData *theData = [NSMutableData dataWithLength:theBufferLength];

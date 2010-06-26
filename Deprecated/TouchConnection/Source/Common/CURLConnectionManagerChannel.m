@@ -46,7 +46,6 @@
 @synthesize name;
 @synthesize activeConnections;
 @synthesize waitingConnections;
-@dynamic maximumConnections;
 
 - (id)initWithManager:(CURLConnectionManager *)inManager name:(NSString *)inName
 {

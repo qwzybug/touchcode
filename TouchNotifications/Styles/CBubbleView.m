@@ -44,10 +44,7 @@
 
 @implementation CBubbleView
 
-@dynamic titleLabel;
-@dynamic messageLabel;
 @synthesize accessoryViews;
-@dynamic layoutView;
 
 - (id)initWithFrame:(CGRect)frame
 {

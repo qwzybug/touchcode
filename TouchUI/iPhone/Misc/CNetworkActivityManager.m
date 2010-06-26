@@ -42,7 +42,6 @@ static CNetworkActivityManager *gInstance = NULL;
 
 @implementation CNetworkActivityManager
 
-@dynamic count;
 @synthesize delay;
 @synthesize delayTimer;
 

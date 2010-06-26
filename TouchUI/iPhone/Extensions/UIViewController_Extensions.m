@@ -31,8 +31,6 @@
 
 @implementation UIViewController (UIViewController_Extensions)
 
-@dynamic isModal;
-
 - (BOOL)isModal
 {
 return(self.navigationController.parentViewController.modalViewController == self.navigationController);

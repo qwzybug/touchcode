@@ -45,7 +45,6 @@
 @implementation CPersistentObject
 
 @synthesize persistentObjectManager;
-@dynamic persistentIdentifier;
 @synthesize rowID;
 @synthesize created;
 @synthesize modified;

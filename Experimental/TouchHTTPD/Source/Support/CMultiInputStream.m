@@ -48,8 +48,6 @@
 @synthesize mode;
 @synthesize delegate;
 @synthesize streams;
-@dynamic currentStream;
-@dynamic nextStream;
 @synthesize enumerator;
 
 - (id)initWithStreams:(NSArray *)inStreams

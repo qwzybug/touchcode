@@ -52,7 +52,6 @@
 @synthesize connection;
 @synthesize response;
 @synthesize privateData;
-@dynamic data;
 @synthesize startTime;
 @synthesize endTime;
 @synthesize credential;
@@ -87,7 +86,7 @@ self.privateData = NULL;
 
 - (NSData *)data
 {
-return(privateData); 
+return(privateData);
 }
 
 - (void)start
@@ -118,7 +117,7 @@ if (self.connection)
 		{
 		[[challenge sender] cancelAuthenticationChallenge:challenge];
 		}
-	
+
 	[[challenge sender] useCredential:self.credential forAuthenticationChallenge:challenge];
 }
 

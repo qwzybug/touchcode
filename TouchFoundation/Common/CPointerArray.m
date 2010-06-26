@@ -39,15 +39,13 @@
 
 @implementation CPointerArray
 
-@dynamic count;
-@dynamic buffer;
 
 - (id)init
 {
 if ((self = [super init]) != NULL)
 	{
 	count = 0;
-	buffer = NULL;	
+	buffer = NULL;
 	}
 return(self);
 }
@@ -81,10 +79,10 @@ if (count != inCount)
 
 	if (theNewBuffer == NULL)
 		[NSException raise:NSMallocException format:@"realloc failed trying to allocate %d bytes, (errno: %d)", theNewSize, errno];
-	
+
 	if (theNewSize > theOldSize)
 		memset(theNewBuffer + theOldCount, 0, theNewSize - theOldSize);
-	
+
 	buffer = theNewBuffer;
 	count = inCount;
 	}
@@ -97,10 +95,10 @@ if (buffer == NULL && self.count > 0)
 	const size_t theSize = sizeof(void *) * self.count;
 	void **theNewBuffer = malloc(theSize);
 	memset(theNewBuffer, 0, theSize);
-	
+
 	if (theNewBuffer == NULL)
 		[NSException raise:NSMallocException format:@"-[CPointerArray buffer] malloc failed trying to allocate %d bytes, (errno: %d)", theSize, errno];
-		
+
 	buffer = theNewBuffer;
 	}
 return(buffer);
@@ -109,7 +107,7 @@ return(buffer);
 - (void)setBuffer:(void **)inBuffer
 {
 if (buffer != inBuffer)
-	{	
+	{
 	buffer = inBuffer;
 	//
 	if (buffer == NULL)

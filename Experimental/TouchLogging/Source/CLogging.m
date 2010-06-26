@@ -51,7 +51,6 @@ static CLogging *gInstance = NULL;
 @synthesize flags;
 @synthesize sender;
 @synthesize facility;
-@dynamic coreDataManager;
 @synthesize sessionID;
 @synthesize handlers;
 @synthesize started;
@@ -109,7 +108,7 @@ if ((self = [super init]) != NULL)
 		enabled = [theEnabledFlag boolValue];
 	else
 		enabled = YES;
-	
+
 	flags = LoggingFlags_WriteToSTDERR;
 //	#if DEBUG_LOGGING_PERSISTANT
 	flags |= LoggingFlags_WriteToDatabase;
@@ -161,11 +160,11 @@ return(theSession);
 	if (coreDataManager == NULL)
 		{
 //		NSLog(@"IS MAIN THREAD: %d", [NSThread isMainThread]);
-		
+
 		CBetterCoreDataManager *theCoreDataManager = [[[CBetterCoreDataManager alloc] init] autorelease];
-		
+
 		theCoreDataManager.name = @"Logging";
-		
+
 		theCoreDataManager.defaultMergePolicy = NSMergeByPropertyStoreTrumpMergePolicy;
 
 		NSManagedObject *theSession = [NSEntityDescription insertNewObjectForEntityForName:@"LoggingSession" inManagedObjectContext:theCoreDataManager.managedObjectContext];
@@ -238,7 +237,7 @@ for (id <CLoggingHandler> theHandler in theHandlers)
 	{
 	[theHandler handleLogging:self event:@"start" error:NULL];
 	}
-	
+
 self.started = YES;
 }
 
@@ -329,7 +328,7 @@ if (self.flags & LoggingFlags_WriteToSTDERR)
 			theLevelString = "DEBUG: ";
 			break;
 		}
-		
+
 	fprintf(stderr, "%s %s\n", theLevelString, [theMessageString UTF8String]);
 	}
 

@@ -39,7 +39,6 @@
 
 @implementation CCrossSwitch
 
-@dynamic on;
 @synthesize imageLayer;
 
 - (id)initWithCoder:(NSCoder *)inCoder
@@ -49,7 +48,7 @@ if ((self = [super initWithCoder:inCoder]) != nil)
 	self.userInteractionEnabled = YES;
 	self.opaque = NO;
 	self.backgroundColor = [UIColor clearColor];
-	
+
 	self.imageLayer = [[[CALayer alloc] init] autorelease];
 	self.imageLayer.frame = self.bounds;
 	self.imageLayer.contents = (id)[UIImage imageNamed:@"CrossSwitchButton.png"].CGImage;
@@ -63,7 +62,7 @@ if ((self = [super initWithCoder:inCoder]) != nil)
 		{
 		self.imageLayer.transform = CATransform3DIdentity;
 		}
-	
+
 	[self.layer addSublayer:self.imageLayer];
 	}
 return(self);
@@ -102,7 +101,7 @@ if (on != inOn)
 		{
 		self.imageLayer.transform = CATransform3DIdentity;
 		}
-	
+
 	[self sendActionsForControlEvents:UIControlEventValueChanged];
 	}
 }

@@ -43,9 +43,6 @@
 
 @synthesize deleteOnDealloc;
 @synthesize suffix;
-@dynamic path;
-@dynamic fileDescriptor;
-@dynamic fileHandle;
 
 + (NSString *)temporaryDirectory
 {
@@ -96,7 +93,7 @@ self.path = NULL;
 {
 if (path == NULL)
 	[self create];
-return(path); 
+return(path);
 }
 
 - (void)setPath:(NSString *)inPath
@@ -126,7 +123,7 @@ if (fileHandle == NULL)
 	{
 	fileHandle = [[NSFileHandle alloc] initWithFileDescriptor:self.fileDescriptor closeOnDealloc:YES];
 	}
-return(fileHandle); 
+return(fileHandle);
 }
 
 - (void)setFileHandle:(NSFileHandle *)inFileHandle

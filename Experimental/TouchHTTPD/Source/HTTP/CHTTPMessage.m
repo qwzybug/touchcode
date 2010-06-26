@@ -41,9 +41,6 @@
 @implementation CHTTPMessage
 
 @synthesize message;
-@dynamic headerData;
-@dynamic bodyData;
-@dynamic bodyStream;
 @synthesize body;
 @synthesize error;
 @synthesize chunked;
@@ -152,7 +149,7 @@ if (inData.length == 0)
 	return;
 
 if (self.isHeaderComplete == NO)
-	{	
+	{
 	NSAssert(self.message != NULL, @"Message is NULL.");
 	BOOL theResult = CFHTTPMessageAppendBytes(self.message, inData.bytes, inData.length);
 	if (theResult == NO)
@@ -170,7 +167,7 @@ if (self.isHeaderComplete == NO)
 				self.chunked = YES;
 				}
 			}
-		
+
 		NSData *theData = [(NSData *)CFHTTPMessageCopyBody(self.message) autorelease];
 
 		// Clear the CFHTTPMessage's body - we keep track of the body ourself
@@ -178,7 +175,7 @@ if (self.isHeaderComplete == NO)
 
 		CTempFile *theTempFile = [CTempFile tempFile];;
 		self.body = theTempFile;
-		
+
 		self.bodyWriter = theTempFile.fileHandle;
 		if (self.chunked == YES)
 			{
@@ -187,7 +184,7 @@ if (self.isHeaderComplete == NO)
 			theWriter.outputFile = self.bodyWriter;
 			self.bodyWriter = theWriter;
 			}
-		
+
 		// JIWTODO do not cast here
 		[(NSFileHandle *)self.bodyWriter writeData:theData];
 		}
@@ -217,7 +214,7 @@ return(NO);
 {
 if ([self isHeaderComplete] == NO)
 	return(NO);
-	
+
 if ([self requestHasBody] == NO)
 	return(YES);
 
@@ -239,9 +236,9 @@ else
 		return(NO);
 
 	NSInteger theContentLength = [theContentLengthString integerValue];
-	
+
 	// JIWTODO this is all horribly hacky. Horrible horrible horrible.
-	
+
 	if ([self.body isKindOfClass:[CTempFile class]])
 		{
 		CTempFile *theTempFile = self.body;

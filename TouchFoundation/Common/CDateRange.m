@@ -42,9 +42,8 @@
 
 @synthesize start;
 @synthesize end;
-@dynamic duration;
 
-- (id)initWithStart:(NSDate *)inStart end:(NSDate *)inEnd; 
+- (id)initWithStart:(NSDate *)inStart end:(NSDate *)inEnd;
 {
 if ((self = [super init]) != NULL)
 	{
@@ -108,12 +107,9 @@ else
 
 @implementation CMutableDateRange
 
-@dynamic start;
-@dynamic end;
-@dynamic duration;
 @synthesize durationPinnedFlag;
 
-- (id)initWithStart:(NSDate *)inStart end:(NSDate *)inEnd; 
+- (id)initWithStart:(NSDate *)inStart end:(NSDate *)inEnd;
 {
 if ((self = [super initWithStart:inStart end:inEnd]) != NULL)
 	{
@@ -124,7 +120,7 @@ return(self);
 
 - (NSDate *)start
 {
-return(start); 
+return(start);
 }
 
 - (void)setStart:(NSDate *)inStart
@@ -139,13 +135,13 @@ if (start != inStart)
 		[super setStart:inStart];
 		[super setEnd:[inStart dateByAddingTimeInterval:theDuration]];
 		}
-	
+
     }
 }
 
 - (NSDate *)end
 {
-return end; 
+return end;
 }
 
 - (void)setEnd:(NSDate *)inEnd

@@ -40,7 +40,6 @@
 @implementation CBookmarkBarItemView
 
 @synthesize bookmarkBar;
-@dynamic item;
 @synthesize label;
 
 + (CBookmarkBarItemView *)bookmarkBarItemView
@@ -64,7 +63,7 @@ self.label = NULL;
 
 - (CBookmarkBarItem *)item
 {
-return(item); 
+return(item);
 }
 
 - (void)setItem:(CBookmarkBarItem *)inItem
@@ -87,7 +86,7 @@ if (self.label == NULL)
 	{
 	self.label = [[[UILabel alloc] initWithFrame:self.bounds] autorelease];
 	self.label.backgroundColor = [UIColor clearColor];
-	
+
 	[self addSubview:self.label];
 	}
 

@@ -31,7 +31,6 @@
 
 @implementation CSpinnerTableViewCell
 
-@dynamic spinning;
 @synthesize activityIndictor;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

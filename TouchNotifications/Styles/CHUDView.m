@@ -34,7 +34,6 @@
 @implementation CHUDView
 
 @synthesize borderWidth;
-@dynamic contentView;
 
 - (id)initWithFrame:(CGRect)frame
 {

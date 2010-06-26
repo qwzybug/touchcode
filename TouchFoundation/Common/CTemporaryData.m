@@ -42,7 +42,6 @@
 @implementation CTemporaryData
 
 @synthesize dataLimit;
-@dynamic data;
 @synthesize storage;
 @synthesize tempFileURL;
 
@@ -87,7 +86,7 @@ return(theData);
 - (BOOL)writeData:(NSData *)inData error:(NSError **)outError
 {
 if ([self.storage isKindOfClass:[NSFileHandle class]])
-	{		
+	{
 	[(NSFileHandle *)self.storage writeData:inData];
 	}
 else if ([self.storage length] + [inData length] > self.dataLimit)
@@ -99,7 +98,7 @@ else if ([self.storage length] + [inData length] > self.dataLimit)
 	NSString *thePath = [NSString stringWithUTF8String:thePathBuffer];
 	self.tempFileURL = [NSURL fileURLWithPath:thePath];
 	NSError *theError = NULL;
-	
+
 	// Create an empty file.
 	BOOL theResult = [[NSData data] writeToURL:self.tempFileURL options:0 error:&theError];
 	if (theResult == NO || theError != NULL)
@@ -138,7 +137,7 @@ else if ([self.storage isKindOfClass:[NSData class]])
 	self.storage = [[self.storage mutableCopy] autorelease];
 	[self.storage appendData:inData];
 	}
-	
+
 return(YES);
 }
 

@@ -42,12 +42,6 @@ return(self);
 
 #pragma mark -
 
-@dynamic name;
-
-#pragma mark -
-
-@dynamic zoom;
-
 - (CGFloat)zoom
 {
 const CATransform3D theTransform = self.transform;

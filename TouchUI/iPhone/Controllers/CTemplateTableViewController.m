@@ -49,8 +49,6 @@ static UITableViewCellStyle UITableViewCellStyleForString(NSString *inString);
 @implementation CTemplateTableViewController
 
 @synthesize templateFilePath;
-@dynamic templateDictionary;
-@dynamic sections;
 @synthesize heightsForRows;
 @synthesize cellsByRow;
 
@@ -96,7 +94,7 @@ if (sections == NULL)
 	{
 	sections = [[self processTemplate] retain];
 	}
-return(sections); 
+return(sections);
 }
 
 - (void)setSections:(NSArray *)inSections
@@ -179,7 +177,7 @@ if (theCell == NULL)
 		theCell = [[[theClass alloc] initWithReuseIdentifier:theReuseIdentifier] autorelease];
 		}
 	}
-	
+
 NSString *theActionString = [theRow objectForKey:@"action"];
 SEL theAction = NSSelectorFromString(theActionString);
 if (theAction)
@@ -204,11 +202,11 @@ for (NSString *theKey in theSettingsDictionary)
 	}
 
 [theCell sizeToFit];
-	
+
 if ([theCell conformsToProtocol:@protocol(CDynamicCell)])
 	{
 	id <CDynamicCell> theDynamicCell = (id <CDynamicCell>)theCell;
-	
+
 	theDynamicCell.delegate = self;
 	}
 
@@ -288,24 +286,24 @@ for (NSDictionary *theSectionDictionary in [self.templateDictionary objectForKey
 	for (NSDictionary *theRowDictionary in [theSectionDictionary objectForKey:@"rows"])
 		{
 		NSString *theHiddenPredicateString = [theRowDictionary objectForKey:@"hiddenPredicate"];
-		
+
 		if (theHiddenPredicateString)
 			{
 			NSPredicate *thePredicate = [NSPredicate predicateWithFormat:theHiddenPredicateString];
 			if ([thePredicate evaluateWithObject:self])
 				continue;
 			}
-		
+
 		[theRows addObject:theRowDictionary];
 		}
-	
+
 	if (theRows.count > 0)
 		{
 		NSDictionary *theSection = [NSDictionary dictionaryWithObjectsAndKeys:
 			theSectionDictionary, @"template",
 			theRows, @"rows",
 			NULL];
-		
+
 		[theSections addObject:theSection];
 		}
 	}
@@ -335,7 +333,7 @@ for (NSDictionary *theSetting in theSettings)
 		NSPredicate *thePredicate = [NSPredicate predicateWithFormat:thePredicateString];
 		theDontUseAltValuesFlag = [thePredicate evaluateWithObject:self];
 		}
-		
+
 	NSString *theValueKey = theDontUseAltValuesFlag ? @"value" : @"altValue";
 	NSString *theValuePathKey = theDontUseAltValuesFlag ? @"valuePath" : @"altValuePath";
 	NSString *theValueFormatKey = theDontUseAltValuesFlag ? @"valueFormat" : @"altValueFormat";

@@ -40,7 +40,6 @@
 
 @synthesize lowerLink;
 @synthesize upperLink;
-@dynamic transport;
 
 - (void)dealloc
 {
@@ -54,7 +53,7 @@ self.upperLink = NULL;
 
 - (CWireProtocol *)upperLink
 {
-return(upperLink); 
+return(upperLink);
 }
 
 - (void)setUpperLink:(CWireProtocol *)inUpperLink
@@ -68,7 +67,7 @@ if (upperLink != inUpperLink)
 		[upperLink release];
 		upperLink = NULL;
 		}
-	
+
 	if (inUpperLink != NULL)
 		{
 		upperLink = [inUpperLink retain];
