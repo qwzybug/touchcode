@@ -40,7 +40,6 @@ static const char* getPropertyType(objc_property_t property);
 
 @synthesize targetObjectClass;
 @synthesize propertyNameMappings;
-@dynamic invertedPropertyNameMappings;
 
 - (id)initWithTargetObjectClass:(Class)inTargetObjectClass
 {
@@ -90,14 +89,14 @@ for (NSString *theKey in inDictionary)
 		{
 		theKey = [self.propertyNameMappings objectForKey:theKey];
 		}
-		
+
 	objc_property_t theProperty = class_getProperty(theClass, [theKey UTF8String]);
 	if (theProperty == NULL)
 		{
 //		NSLog(@"WARNING: NO SUCH PROPERTY: %@", theKey);
 		continue;
 		}
-	
+
 	const char *thePropertyAttributes = property_getAttributes(theProperty);
 	BOOL theIsObjectFlag = NO;
 	if (strncmp(thePropertyAttributes, "T@", 2) == 0)
@@ -126,7 +125,7 @@ for (NSString *theKey in inDictionary)
 						}
 					return(NULL);
 					}
-				[inObject setValue:theValue forKey:theKey];	
+				[inObject setValue:theValue forKey:theKey];
 				}
 				break;
 			case 'd':
@@ -147,10 +146,10 @@ for (NSString *theKey in inDictionary)
 						}
 					return(NULL);
 					}
-				[inObject setValue:theValue forKey:theKey];	
+				[inObject setValue:theValue forKey:theKey];
 				}
 				break;
-			default:	
+			default:
 				NSLog(@"#### NOT HANDLING TYPE: %s", thePropertyType);
 				NSAssert(NO, @"");
 				break;
@@ -158,13 +157,20 @@ for (NSString *theKey in inDictionary)
 		}
 	else
 		{
-		char theBuffer[strlen(thePropertyType) + 1];
-		strncpy(theBuffer, thePropertyType + 2, strlen(thePropertyType) - 3);
-		theBuffer[strlen(thePropertyType) - 3] = '\0';
-		theValue = [self transformObject:theValue toObjectOfClass:NSClassFromString([NSString stringWithUTF8String:theBuffer]) error:outError];
+		if (strcmp(thePropertyType, "@") == 0)
+			{
+			// Nothing to do here.
+			}
+		else
+			{
+			char theBuffer[strlen(thePropertyType) + 1];
+			strncpy(theBuffer, thePropertyType + 2, strlen(thePropertyType) - 3);
+			theBuffer[strlen(thePropertyType) - 3] = '\0';
+			theValue = [self transformObject:theValue toObjectOfClass:NSClassFromString([NSString stringWithUTF8String:theBuffer]) error:outError];
+			}
 
 		}
-		
+
 	if (theValue)
 		[theMappedValuesAndKeys setObject:theValue forKey:theKey];
 	}
@@ -178,7 +184,7 @@ for (NSString *theKey in inDictionary)
 	id theValue = [inDictionary objectForKey:theKey];
 	[inObject setValue:theValue forKey:theKey];
 	}
-	
+
 return(YES);
 }
 

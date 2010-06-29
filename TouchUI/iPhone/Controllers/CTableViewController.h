@@ -32,9 +32,11 @@
 @interface CTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
 	IBOutlet UITableView *outletTableView;
 	UITableViewStyle initialStyle;
+	BOOL clearsSelectionOnViewWillAppear;
 }
 
 @property (readwrite, nonatomic, retain) UITableView *tableView;
 @property (readwrite, nonatomic, assign) UITableViewStyle initialStyle;
+@property (readwrite, nonatomic, assign) BOOL clearsSelectionOnViewWillAppear;
 
 @end

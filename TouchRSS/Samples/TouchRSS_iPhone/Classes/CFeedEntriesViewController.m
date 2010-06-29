@@ -29,22 +29,27 @@
 
 #import "CFeedEntriesViewController.h"
 
+#import "CFeedEntryViewController.h"
 #import "CFeedStore.h"
 #import "CFeedEntry.h"
 #import "CFeed.h"
+#import "NSURL_DataExtensions.h"
+#import "TouchRSS_iPhoneAppDelegate.h"
 
 @implementation CFeedEntriesViewController
 
 @synthesize feedStore;
-@synthesize feed;
+@synthesize feeds;
 
 - (id)initWithFeedStore:(CFeedStore *)inFeedStore feed:(CFeed *)inFeed;
 {
-if ((self = [super initWithNibName:NSStringFromClass([self class]) bundle:NULL]) != NULL)
+if ((self = [super init]) != NULL)
 	{
 	self.title = inFeed.title;
 	//
 	self.feedStore = inFeedStore;
+	self.managedObjectContext = inFeedStore.managedObjectContext;
+
 	self.feed = inFeed;
 	}
 return(self);
@@ -52,74 +57,69 @@ return(self);
 
 - (void)dealloc
 {
-self.feedStore = NULL;
-self.feed = NULL;
 //
 [super dealloc];
+}
+
+#pragma mark -
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+return(YES);
 }
 
 - (void)viewDidLoad
 {
 [super viewDidLoad];
 //
-self.placeholderLabel.text = @"No entries";
-//
-[self update];
+UILabel *thePlaceholderLabel = (UILabel *)self.placeholderView;
+thePlaceholderLabel.text = @"No entries";
 }
 
 #pragma mark -
 
 - (CFeed *)feed
 {
-return(feed);
+return([self.feeds lastObject]);
 }
 
 - (void)setFeed:(CFeed *)inFeed
 {
-if (feed != inFeed)
+[self setFeeds:[NSArray arrayWithObject:inFeed]];
+}
+
+- (void)setFeeds:(NSArray *)inFeeds
+{
+if (feeds != inFeeds)
 	{
-	if (feed)
+	if (feeds != NULL)
 		{
-		[feed release];
-		feed = NULL;
-		
+		[feeds release];
+		feeds = NULL;
+
 		self.fetchedResultsController.delegate = NULL;
 		self.fetchedResultsController = NULL;
 		}
-	
-	if (inFeed)
+
+	if (inFeeds)
 		{
-		feed = [inFeed retain];
-		
-		NSEntityDescription *theEntityDescription = [NSEntityDescription entityForName:[CFeedEntry entityName] inManagedObjectContext:self.feedStore.managedObjectContext];
+		NSEntityDescription *theEntityDescription = [NSEntityDescription entityForName:[CFeedEntry entityName] inManagedObjectContext:self.managedObjectContext];
 		NSAssert(theEntityDescription != NULL, @"No entity description.");
 		NSFetchRequest *theFetchRequest = [[[NSFetchRequest alloc] init] autorelease];
 		theFetchRequest.entity = theEntityDescription;
-		theFetchRequest.predicate = [NSPredicate predicateWithFormat:@"feed = %@", inFeed];
+		theFetchRequest.predicate = [NSPredicate predicateWithFormat:@"feed IN %@", inFeeds];
 
 		NSArray *theSortDescriptors = [NSArray arrayWithObjects:
 			[[[NSSortDescriptor alloc] initWithKey:@"updated" ascending:NO] autorelease],
 			NULL];
 		theFetchRequest.sortDescriptors = theSortDescriptors;
 
-		self.fetchedResultsController = [[[NSFetchedResultsController alloc] initWithFetchRequest:theFetchRequest managedObjectContext:self.feedStore.managedObjectContext sectionNameKeyPath:NULL cacheName:NULL] autorelease];
-		self.fetchedResultsController.delegate = self;
+		self.fetchRequest = theFetchRequest;
 		}
 	}
 }
 
 #pragma mark Table view methods
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-NSUInteger theCount = self.fetchedResultsController.sections.count;
-return(theCount);
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-return([[self.fetchedResultsController.sections objectAtIndex:section] numberOfObjects]);
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -141,14 +141,19 @@ return(theCell);
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 {
+CFeedEntry *theEntry = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
-}
+CFeedEntryViewController *theFeedEntryView = [[[CFeedEntryViewController alloc] initWithFetchedResultsController:self.fetchedResultsController] autorelease];
+theFeedEntryView.entry = theEntry;
 
-#pragma mark -
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath;
-{
-[self update];
+if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+	{
+	[[[TouchRSS_iPhoneAppDelegate instance].splitViewController.viewControllers objectAtIndex:1] setViewControllers:[NSArray arrayWithObject:theFeedEntryView]];
+	}
+else
+	{
+	[self.navigationController pushViewController:theFeedEntryView animated:YES];
+	}
 }
 
 @end

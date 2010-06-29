@@ -31,37 +31,48 @@
 
 @interface CWebViewController : UIViewController <UIWebViewDelegate, UIActionSheetDelegate> {
 	NSURL *homeURL;
-	NSString *initialHTMLString;
 	BOOL dontChangeTitle;
 	
+	NSURL *requestedURL;
 	NSURL *currentURL;
 
 	IBOutlet UIWebView *webView;
-	IBOutlet UIToolbar *outletToolbar;
-	IBOutlet UIBarButtonItem *outletBackButton;
-	IBOutlet UIBarButtonItem *outletForwardsButton;
+	IBOutlet UIToolbar *toolbar;
+	IBOutlet UIBarButtonItem *homeButton;
+	IBOutlet UIBarButtonItem *backButton;
+	IBOutlet UIBarButtonItem *forwardsButton;
+	IBOutlet UIBarButtonItem *reloadButton;
+	IBOutlet UIBarButtonItem *activitySpinnerButton;
+	IBOutlet UIBarButtonItem *actionButton;	
 }
 
 @property (readwrite, nonatomic, retain) NSURL *homeURL;
-@property (readwrite, nonatomic, retain) NSString *initialHTMLString;
 @property (readwrite, nonatomic, assign) BOOL dontChangeTitle;
+
+@property (readwrite, nonatomic, assign) NSURL *requestedURL;
 @property (readonly, nonatomic, retain) NSURL *currentURL;
+@property (readonly, nonatomic, assign) BOOL isHome;
 
-@property (readonly, nonatomic, retain) UIWebView *webView;
-@property (readonly, nonatomic, retain) UIToolbar *toolbar;
-@property (readonly, nonatomic, retain) UIBarButtonItem *backButton;
-@property (readonly, nonatomic, retain) UIBarButtonItem *forwardsButton;
-
-+ (id)webViewController;
+@property (readonly, nonatomic, retain) IBOutlet UIWebView *webView;
+@property (readonly, nonatomic, retain) IBOutlet UIToolbar *toolbar;
+@property (readonly, nonatomic, retain) IBOutlet UIBarButtonItem *homeButton;
+@property (readonly, nonatomic, retain) IBOutlet UIBarButtonItem *backButton;
+@property (readonly, nonatomic, retain) IBOutlet UIBarButtonItem *forwardsButton;
+@property (readonly, nonatomic, retain) IBOutlet UIBarButtonItem *reloadButton;
+@property (readonly, nonatomic, retain) IBOutlet UIBarButtonItem *activitySpinnerButton;
+@property (readonly, nonatomic, retain) IBOutlet UIBarButtonItem *actionButton;
 
 - (void)loadURL:(NSURL *)inURL;
-- (void)loadHTMLString:(NSString *)inHTML baseURL:(NSURL *)inBaseURL;
+- (void)updateUI;
+- (void)resetWebView;
 
-- (IBAction)actionBack:(id)inSender;
-- (IBAction)actionForwards:(id)inSender;
-- (IBAction)actionReload:(id)inSender;
-- (IBAction)actionHome:(id)inSender;
-- (IBAction)actionUtilityPopup:(id)inSender;
+- (void)hideToolbar;
+- (void)showToolbar;
 
+- (IBAction)back:(id)inSender;
+- (IBAction)forward:(id)inSender;
+- (IBAction)reload:(id)inSender;
+- (IBAction)home:(id)inSender;
+- (IBAction)action:(id)inSender;
 
 @end

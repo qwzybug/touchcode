@@ -52,7 +52,6 @@ static void MyXMLTextReaderErrorFunc(void *arg, const char *msg, xmlParserSeveri
 
 @implementation CRSSFeedDeserializer
 
-@synthesize delegate;
 @synthesize reader;
 @synthesize error;
 
@@ -109,7 +108,7 @@ while (theObjectCount < len && theReturnCode == 1 && self.error == NULL)
 		switch (theCode)
 			{
 			case RSSElementNameCode_RSS:
-				theDictionary = theCurrentFeed = [NSMutableDictionary dictionaryWithObject:[NSNumber numberWithInt:FeedDictinaryType_Feed] forKey:@"type"];
+				theDictionary = theCurrentFeed = [NSMutableDictionary dictionaryWithObject:[NSNumber numberWithInt:FeedDictionaryType_Feed] forKey:@"type"];
 				break;
 			case RSSElementNameCode_Channel:
 				[self updateAttributesOfChannel:theCurrentFeed];
@@ -215,13 +214,11 @@ while (theCurrentNode != NULL && self.error == NULL)
 				xmlChar *theContentBytes = xmlNodeGetContent(theCurrentNode);
 				NSString *theContent = [NSString stringWithUTF8String:(const char *)theContentBytes];
 
-				// TODO Fix link
 				theContent = [theContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-//				theContent = [theContent stringByReplacingOccurrencesOfString:@":" withString:@"%3A" options:0 range:NSMakeRange(6, theContent.length - 6)];
 
 				NSURL *theLink = [NSURL URLWithString:theContent];
 				if (theLink)
-				[inItem setObject:theLink forKey:@"link"];
+					[inItem setObject:theLink forKey:@"link"];
 				xmlFree(theContentBytes);
 				}
 				break;
@@ -231,7 +228,7 @@ while (theCurrentNode != NULL && self.error == NULL)
 				NSString *theContent = [NSString stringWithUTF8String:(const char *)theContentBytes];
 				theContent = [theContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 				if (theContent)
-				[inItem setObject:theContent forKey:@"content"];
+					[inItem setObject:theContent forKey:@"content"];
 				xmlFree(theContentBytes);
 				}
 				break;
@@ -242,7 +239,7 @@ while (theCurrentNode != NULL && self.error == NULL)
 				theContent = [theContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 				NSDate *theDate = [NSDate dateWithRFC2822String:theContent];
 				if (theDate)
-				[inItem setObject:theDate forKey:@"updated"];
+					[inItem setObject:theDate forKey:@"updated"];
 				xmlFree(theContentBytes);
 				}
 				break;
@@ -252,7 +249,7 @@ while (theCurrentNode != NULL && self.error == NULL)
 				NSString *theContent = [NSString stringWithUTF8String:(const char *)theContentBytes];
 				theContent = [theContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 				if (theContent)
-				[inItem setObject:theContent forKey:@"identifier"];
+					[inItem setObject:theContent forKey:@"identifier"];
 				xmlFree(theContentBytes);
 				}
 				break;
@@ -268,15 +265,31 @@ while (theCurrentNode != NULL && self.error == NULL)
 						[inItem setObject:theDate forKey:@"updated"];
 					xmlFree(theContentBytes);
 					}
+				else if (strcmp((const char *)theElementName, "thumbnail") == 0)
+					{
+					NSLog(@"THUMBNAIL!");
+					
+					CXMLElement *theElement = [CXMLElement nodeWithLibXMLNode:theCurrentNode freeOnDealloc:NO];
+					NSLog(@"%@", theElement);
+					NSString *theThumbnailURLString = [[theElement attributeForName:@"url"] stringValue];
+					[inItem setObject:theThumbnailURLString forKey:@"thumbnailURL"];					
+					}
 				else
 					{
-				CXMLElement *theElement = [CXMLElement nodeWithLibXMLNode:theCurrentNode];
-				if (self.delegate && [self.delegate respondsToSelector:@selector(feedDeserializer:handleElement:)])
-					{
-					NSDictionary *theExtraDictionary = [self.delegate feedDeserializer:self handleElement:theElement];
-					[inItem addEntriesFromDictionary:theExtraDictionary];
+					xmlNodePtr theNodeCopy = xmlCopyNode(theCurrentNode, 1);
+					
+					CXMLElement *theElement = [CXMLElement nodeWithLibXMLNode:theNodeCopy freeOnDealloc:YES];
+					NSMutableDictionary *theDictionary = [inItem objectForKey:@"extraXML"];
+					if (theDictionary == NULL)
+						{
+						theDictionary = [NSMutableDictionary dictionaryWithObject:theElement forKey:theElement.name];
+						[inItem setObject:theDictionary forKey:@"extraXML"];
+						}
+					else
+						{
+						[theDictionary setObject:theElement forKey:theElement.name];
+						}
 					}
-				}
 				}
 				break;
 			}

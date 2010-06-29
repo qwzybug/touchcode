@@ -4,6 +4,9 @@ import os
 import re
 import subprocess
 
+import sys
+import traceback
+
 ########################################################################
 
 P1 = '''(?P<block>//
@@ -119,10 +122,10 @@ thePatterns = [thePattern.replace('  ', ' +') for thePattern in thePatterns]
 
 thePatterns = [re.compile(thePattern, re.MULTILINE) for thePattern in thePatterns]
 
-path = '.'
+path = sys.argv[1]
 
 def files():
-	for root, dirs, files in os.walk('.'):
+	for root, dirs, files in os.walk(path):
 		for theFile in files:
 			theName, theExtension = os.path.splitext(theFile)
 			if theExtension not in ['.m', '.h', '.c']:
@@ -132,6 +135,8 @@ def files():
 				continue
 			if re.match('.+/TouchJSON/Benchmarking/.+', theFile):
 				continue
+			if re.match('.+/ISO-8601-parser-0.5/.+', theFile):
+				continue
 
 			yield theFile
 
@@ -139,14 +144,22 @@ def files():
 
 theCopyrightPatterns = [
 	re.compile(r'^(?P<year>\d\d\d\d) (?P<owner>.+)\. All rights reserved\.$', re.IGNORECASE),
+	re.compile(r'^(?P<year>\d\d\d\d) (?P<owner>.+) All rights reserved\.$', re.IGNORECASE),
 	re.compile(r'^(?P<owner>.+) (?P<year>\d\d\d\d)\. All rights reserved\.$', re.IGNORECASE),
+	re.compile(r'^(?P<owner>.+) (?P<year>\d\d\d\d) +\. All rights reserved\.$', re.IGNORECASE),
 	re.compile(r'^\(c\) (?P<year>\d\d\d\d) (?P<owner>.+)\. All rights reserved\.$', re.IGNORECASE),
 	re.compile(r'^\(c\) (?P<year>\d\d\d\d) (?P<owner>.+)\.?$', re.IGNORECASE),
 	]
 
+# 2009 toxicsoftware.com All rights reserved.
+
 def SanitizeCopyright(s):
 	theMatches = [thePattern.match(s) for thePattern in theCopyrightPatterns]
 	theMatches = [theMatch for theMatch in theMatches if theMatch]
+
+	if not len(theMatches):
+		raise Exception('Could not match copyright: %s' % s)
+
 	theMatch = theMatches[0]
 	d = theMatch.groupdict()
 	if d['owner'] in ['Jonathan Wight', '__MyCompanyName__', 'Toxic Software', 'TouchCode']:
@@ -171,7 +184,7 @@ for f in files():
 			d['filename'] = os.path.split(f)[1]
 			d['copyright'] = '2009 toxicsoftware.com. All rights reserved.' % d
 			d['creator'] = 'Jonathan Wight'
-			d['date'] = '20091204'
+			d['date'] = '20100422'
 			theReplacement = FORMAT % d
 			theNewText = theReplacement + s
 		else:
@@ -199,5 +212,5 @@ for f in files():
 # 		else:
 # 			print 'Skipping, ', f
 	except Exception, e:
-		print 'Exception occured. Skipping: ', f
-
+		print 'Exception occured (%s). Skipping: %s' % (e, f)
+#		traceback.print_tb(sys.exc_info()[2])

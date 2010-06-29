@@ -20,7 +20,6 @@
 		4543B419111A070200E49AA6 /* CSplitTesterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4543B418111A070200E49AA6 /* CSplitTesterController.m */; };
 		4543B50D111A119500E49AA6 /* CPopoverToolbarTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4543B50C111A119500E49AA6 /* CPopoverToolbarTestController.m */; };
 		4556D3451142B9ED000158F2 /* menu.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4556D3441142B9ED000158F2 /* menu.xml */; };
-		4556D4011142C58A000158F2 /* menu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4556D4001142C58A000158F2 /* menu.plist */; };
 		458867FA1135A0CC00EC8DDF /* CMenuSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 458867F21135A0CC00EC8DDF /* CMenuSheet.m */; };
 		458867FB1135A0CC00EC8DDF /* CMenuSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 458867F41135A0CC00EC8DDF /* CMenuSplitViewController.m */; };
 		458867FC1135A0CC00EC8DDF /* CMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 458867F61135A0CC00EC8DDF /* CMenuTableViewController.m */; };
@@ -81,7 +80,6 @@
 		4543B50B111A119500E49AA6 /* CPopoverToolbarTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPopoverToolbarTestController.h; sourceTree = "<group>"; };
 		4543B50C111A119500E49AA6 /* CPopoverToolbarTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPopoverToolbarTestController.m; sourceTree = "<group>"; };
 		4556D3441142B9ED000158F2 /* menu.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = menu.xml; sourceTree = "<group>"; };
-		4556D4001142C58A000158F2 /* menu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = menu.plist; path = "../../../../../../../Intermediates/Menus.build/Debug-iphonesimulator/Menus.build/DerivedSources/menu.plist"; sourceTree = SOURCE_ROOT; };
 		458867F11135A0CC00EC8DDF /* CMenuSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMenuSheet.h; sourceTree = "<group>"; };
 		458867F21135A0CC00EC8DDF /* CMenuSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMenuSheet.m; sourceTree = "<group>"; };
 		458867F31135A0CC00EC8DDF /* CMenuSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMenuSplitViewController.h; sourceTree = "<group>"; };
@@ -204,7 +202,6 @@
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources-iPad */,
-				4556D4001142C58A000158F2 /* menu.plist */,
 				45FAB2B8111A871C008F8F8F /* Externals */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -401,7 +398,6 @@
 				458867FE1135A0CC00EC8DDF /* CToolbarMenuViewController.xib in Resources */,
 				45EBBD0011378FD100BCF5EF /* CDetailViewController.xib in Resources */,
 				4556D3451142B9ED000158F2 /* menu.xml in Resources */,
-				4556D4011142C58A000158F2 /* menu.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

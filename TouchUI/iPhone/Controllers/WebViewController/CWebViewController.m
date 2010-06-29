@@ -29,15 +29,20 @@
 
 #import "CWebViewController.h"
 
-//#import "CLinkHandler.h"
+#import "CURLOpener.h"
 
 @interface CWebViewController ()
 @property (readwrite, nonatomic, retain) NSURL *currentURL;
 
-@property (readwrite, nonatomic, retain) UIWebView *webView;
-@property (readwrite, nonatomic, retain) UIToolbar *toolbar;
-@property (readwrite, nonatomic, retain) UIBarButtonItem *backButton;
-@property (readwrite, nonatomic, retain) UIBarButtonItem *forwardsButton;
+@property (readwrite, nonatomic, retain) IBOutlet UIWebView *webView;
+@property (readwrite, nonatomic, retain) IBOutlet UIToolbar *toolbar;
+@property (readwrite, nonatomic, retain) IBOutlet UIBarButtonItem *homeButton;
+@property (readwrite, nonatomic, retain) IBOutlet UIBarButtonItem *backButton;
+@property (readwrite, nonatomic, retain) IBOutlet UIBarButtonItem *forwardsButton;
+@property (readwrite, nonatomic, retain) IBOutlet UIBarButtonItem *reloadButton;
+@property (readwrite, nonatomic, retain) UIBarButtonItem *activitySpinnerButton;
+@property (readwrite, nonatomic, retain) IBOutlet UIBarButtonItem *actionButton;
+
 @end
 
 #pragma mark -
@@ -45,31 +50,28 @@
 @implementation CWebViewController
 
 @synthesize homeURL;
-@synthesize initialHTMLString;
 @synthesize dontChangeTitle;
+@synthesize requestedURL;
 @synthesize currentURL;
 @synthesize webView;
-@synthesize toolbar = outletToolbar;
-@synthesize backButton = outletBackButton, forwardsButton = outletForwardsButton;
+@synthesize toolbar;
+@synthesize homeButton;
+@synthesize backButton;
+@synthesize forwardsButton;
+@synthesize reloadButton;
+@synthesize activitySpinnerButton;
+@synthesize actionButton;
 
-+ (id)webViewController;
+- (id)init
 {
-CWebViewController *theWebViewController = [[[self alloc] initWithNibName:NULL bundle:NULL] autorelease];
-return(theWebViewController);
+if ((self = [super initWithNibName:NULL bundle:NULL]) != NULL)
+	{
+	}
+return(self);
 }
 
 - (void)dealloc
 {
-self.webView.delegate = NULL;
-
-self.homeURL = NULL;
-self.initialHTMLString = NULL;
-self.currentURL = NULL;
-//
-self.webView = NULL;
-self.toolbar = NULL;
-self.backButton = NULL;
-self.forwardsButton = NULL;
 
 //
 [super dealloc];
@@ -77,78 +79,272 @@ self.forwardsButton = NULL;
 
 #pragma mark UIViewController
 
+- (void)loadView
+{
+[super loadView];
+//
+
+CGRect theFrame = [UIScreen mainScreen].applicationFrame;
+
+self.view = [[[UIView alloc] initWithFrame:theFrame] autorelease];
+self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+
+//
+
+CGRect theWebViewFrame = self.view.bounds;
+self.webView.frame = theWebViewFrame;
+[self.view addSubview:self.webView];
+
+if (YES)
+	{
+	UIToolbar *theToolbar = self.toolbar;
+	CGRect theToolbarFrame = theToolbar.frame;
+	
+	theWebViewFrame.size.height -= theToolbarFrame.size.height;
+	theToolbarFrame.origin.y = CGRectGetMaxY(theWebViewFrame);
+	theToolbarFrame.size.width = theWebViewFrame.size.width;
+
+	self.webView.frame = theWebViewFrame;
+	theToolbar.frame = theToolbarFrame;
+	[self.view addSubview:self.toolbar];
+	}
+}
+
 - (void)viewDidLoad;
 {
 [super viewDidLoad];
 
-self.webView.scalesPageToFit = YES;
-
-
-#if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_3_0
-self.webView.dataDetectorTypes = UIDataDetectorTypeLink;
-#else
-self.webView.detectsPhoneNumbers = NO;
-#endif
-
-if (self.initialHTMLString)
-	[self loadHTMLString:self.initialHTMLString baseURL:self.homeURL];
-else if (self.homeURL)
+if (self.homeURL)
 	[self loadURL:self.homeURL];
 
-self.backButton.enabled = self.webView.canGoBack;
-self.forwardsButton.enabled = self.webView.canGoForward;
+[self updateUI];
 }
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+return(YES);
+}
+
+#pragma mark -
+
+- (UIWebView *)webView
+{
+if (webView == NULL)
+	{
+	webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+	webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	webView.scalesPageToFit = YES;
+	webView.dataDetectorTypes = UIDataDetectorTypeLink;
+	webView.delegate = self;
+	}
+return(webView);
+}
+
+- (UIToolbar *)toolbar
+{
+if (toolbar == NULL)
+	{
+	toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+//	toolbar.barStyle = UIBarStyleBlack;
+	toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+	
+	toolbar.items = [NSArray arrayWithObjects:
+		self.homeButton,
+		self.backButton,
+		self.forwardsButton,
+		[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:NULL action:NULL] autorelease],
+		self.reloadButton,
+		self.actionButton,
+		NULL];
+	}
+return(toolbar);
+}
+
+- (UIBarButtonItem *)homeButton
+{
+if (homeButton == NULL)
+	{
+	homeButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"browser-snapback.png"] style:UIBarButtonItemStylePlain target:self action:@selector(home:)];
+	}
+return(homeButton);
+}
+
+- (UIBarButtonItem *)backButton
+{
+if (backButton == NULL)
+	{
+	backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"browser-back.png"] style:UIBarButtonItemStylePlain target:self action:@selector(back:)];
+	}
+return(backButton);
+}
+
+- (UIBarButtonItem *)forwardsButton
+{
+if (forwardsButton == NULL)
+	{
+	forwardsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"browser-forward.png"] style:UIBarButtonItemStylePlain target:self action:@selector(forward:)];
+	}
+return(forwardsButton);
+}
+
+- (UIBarButtonItem *)reloadButton
+{
+if (reloadButton == NULL)
+	{
+	reloadButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reload:)];
+	}
+return(reloadButton);
+}
+
+- (UIBarButtonItem *)activitySpinnerButton
+{
+if (activitySpinnerButton == NULL)
+	{
+	UIActivityIndicatorView *theSpinner = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+	[theSpinner startAnimating];
+	
+	activitySpinnerButton = [[UIBarButtonItem alloc] initWithCustomView:theSpinner];	
+	}
+return(activitySpinnerButton);
+}
+
+- (UIBarButtonItem *)actionButton
+{
+if (actionButton == NULL)
+	{
+	actionButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(action:)];
+	}
+return(actionButton);
+}
+
+#pragma mark -
+
+- (void)setRequestedURL:(NSURL *)inURL;
+{
+if (requestedURL != inURL)
+	{
+	if (requestedURL != NULL)
+		{
+		[requestedURL release];
+		requestedURL = NULL;
+		}
+	
+	if (inURL != NULL)
+		{
+		requestedURL = [inURL retain];
+
+		NSURLRequest *theRequest = [NSURLRequest requestWithURL:inURL];
+		[self.webView loadRequest:theRequest];
+		}
+	}
+}
+
+- (BOOL)isHome
+{
+return([self.currentURL isEqual:self.homeURL]);
+}
+
+#pragma mark -
 
 - (void)loadURL:(NSURL *)inURL;
 {
-NSURLRequest *theRequest = [NSURLRequest requestWithURL:inURL];
+if (requestedURL != NULL)
+	{
+	[requestedURL release];
+	requestedURL = NULL;
+	}
+requestedURL = [inURL retain];
+
+NSURLRequest *theRequest = [NSURLRequest requestWithURL:self.requestedURL];
 [self.webView loadRequest:theRequest];
 }
 
-- (void)loadHTMLString:(NSString *)inHTML baseURL:(NSURL *)inBaseURL;
+- (void)updateUI
 {
-self.initialHTMLString = inHTML;
-self.homeURL = inBaseURL;
-[self.webView loadHTMLString:inHTML baseURL:inBaseURL];
-}
+self.homeButton.enabled = !self.isHome;
 
-#pragma mark -
-
-- (void)updateToolbar
-{
 self.backButton.enabled = self.webView.canGoBack;
 self.forwardsButton.enabled = self.webView.canGoForward;
+
+self.actionButton.enabled = !self.webView.loading;
+
+if (self.webView.loading == YES)
+	{
+	UIBarButtonItem *theBarButtonItem = self.activitySpinnerButton;
+	NSMutableArray *theItems = [[self.toolbar.items mutableCopy] autorelease];
+	NSInteger theIndex = [theItems indexOfObject:self.reloadButton];
+	if (theIndex != NSNotFound)
+		{
+		[theItems replaceObjectAtIndex:theIndex withObject:theBarButtonItem];
+		self.toolbar.items = theItems;
+		}
+	}
+else
+	{
+	UIBarButtonItem *theBarButtonItem = self.reloadButton;
+	NSMutableArray *theItems = [[self.toolbar.items mutableCopy] autorelease];
+	NSInteger theIndex = [theItems indexOfObject:self.activitySpinnerButton];
+	if (theIndex != NSNotFound)
+		{
+		[theItems replaceObjectAtIndex:theIndex withObject:theBarButtonItem];
+		self.toolbar.items = theItems;
+		}
+	}
+}
+
+- (void)resetWebView
+{
+CGRect theFrame = self.webView.frame;
+
+[webView removeFromSuperview];
+[webView release];
+webView = NULL;
+
+self.webView.frame = theFrame;
+[self.view addSubview:self.webView];
+}
+
+- (void)hideToolbar
+{
+self.toolbar.hidden = YES;
+}
+
+- (void)showToolbar
+{
+self.toolbar.hidden = NO;
 }
 
 #pragma mark -
 
-- (IBAction)actionBack:(id)inSender
+- (IBAction)back:(id)inSender
 {
 [self.webView goBack];
 }
 
-- (IBAction)actionForwards:(id)inSender
+- (IBAction)forward:(id)inSender
 {
 [self.webView goForward];
 }
 
-- (IBAction)actionReload:(id)inSender
+- (IBAction)reload:(id)inSender
 {
 [self.webView reload];
 }
 
-- (IBAction)actionHome:(id)inSender
+- (IBAction)home:(id)inSender
 {
-if (self.initialHTMLString)
-	[self loadHTMLString:self.initialHTMLString baseURL:self.homeURL];
-else if (self.homeURL)
+if (self.homeURL)
 	[self loadURL:self.homeURL];
 }
 
-- (IBAction)actionUtilityPopup:(id)inSender
+- (IBAction)action:(id)inSender
 {
-UIActionSheet *theActionSheet = [[[UIActionSheet  alloc] initWithTitle:NULL delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:NULL otherButtonTitles:@"Open in Safari", @"E-mail Link", NULL] autorelease];
-[theActionSheet showFromToolbar:self.toolbar];
+CURLOpener *theActionSheet = [[[CURLOpener alloc] initWithParentViewController:self URL:self.currentURL] autorelease];
+
+if ([theActionSheet respondsToSelector:@selector(showFromBarButtonItem:animated:)])
+	[theActionSheet showFromBarButtonItem:inSender animated:YES];
+else
+	[theActionSheet showFromToolbar:self.toolbar];
 }
 
 #pragma mark -
@@ -160,6 +356,7 @@ return(YES);
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
+[self updateUI];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
@@ -169,25 +366,12 @@ if (!self.dontChangeTitle)
 
 self.currentURL = [[NSURL URLWithString:[self.webView stringByEvaluatingJavaScriptFromString:@"window.location.href"]] standardizedURL];
 
-[self updateToolbar];
+[self updateUI];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
-{
-if (buttonIndex == 0)
-	{
-	[[UIApplication sharedApplication] openURL:self.currentURL];
-	}
-else if (buttonIndex == 1)
-	{
-//	NSString *theTitle = [self.webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-//	NSURL *theLink = [[CLinkHandler instance] makeMailLink:[self.currentURL description] title:theTitle templateName:@"share_page_mail.txt"];
-//	[[UIApplication sharedApplication] openURL:theLink];
-	}
+[self updateUI];
 }
 
 @end

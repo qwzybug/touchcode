@@ -35,6 +35,14 @@
 	</dict>
 </xsl:template>
 
+<xsl:template match="separator">
+	<dict>
+		<key>className</key>
+		<string>CMenuSeparatorItem</string>
+	</dict>
+</xsl:template>
+
+
 <xsl:template match="submenu">
 	<key>submenu</key>
 	<dict>
@@ -63,4 +71,8 @@
 	<string><xsl:value-of select="@targetPath"/></string>
 </xsl:template>
 
+<xsl:template match="userInfo">
+	<key>userInfo</key>
+	<string><xsl:value-of select="."/></string>
+</xsl:template>
 </xsl:stylesheet>

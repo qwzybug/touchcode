@@ -109,13 +109,13 @@ static inline CGFloat MetersToFeet(CGFloat inValue)
 return(inValue * 100.0f / 2.54f / 12.0f);
 }
 
-static inline CGPoint Rotation(CGPoint inCenter, CGFloat inAngle, CGFloat inLength)
+static inline CGPoint Rotation(CGFloat inAngle, CGFloat inLength)
 {
 CGFloat theCosine = cos_(DegreesToRadians(fmod_(90.0f - inAngle, 360.0f)));
 CGFloat theSine = sin_(DegreesToRadians(fmod_(90.0f - inAngle, 360.0f)));
 CGPoint thePoint = {
-	.x = inCenter.x + theCosine * inLength,
-	.y = inCenter.y + theSine * inLength,
+	.x = theCosine * inLength,
+	.y = theSine * inLength,
 	};
 return(thePoint);
 }
@@ -138,37 +138,85 @@ return(theRect);
 
 static inline int quadrant(CGFloat x, CGFloat y)
 {
-if (x >= 0)
+#if TARGET_OS_IPHONE == 0
+#warning FIX THIS FOR NON IPHONE
+#endif /* TARGET_OS_IPHONE == 0 */
+BOOL flipped = YES;
+if (flipped == NO)
 	{
-	if (y >= 0)
-		return 0;
-	if (y < 0)
-		return 1;
+	if (x >= 0)
+		{
+		if (y >= 0)
+			return 0;
+		if (y < 0)
+			return 1;
+		}
+	if (x < 0 && y < 0)
+		return 2;
+	else
+		return 3;
 	}
-if (x < 0 && y < 0)
-	return 2;
 else
-	return 3;
+	{
+	if (x >= 0)
+		{
+		if (y >= 0)
+			return 1;
+		if (y < 0)
+			return 0;
+		}
+	if (x < 0 && y < 0)
+		return 3;
+	else
+		return 2;
+	}
 }
 
 static inline CGFloat angle(CGFloat x, CGFloat y)
 {
-const int q = quadrant(x, y);
-if (q == 0)
+BOOL flipped = YES; // TODO
+if (flipped == NO)
 	{
-	if (y == 0.0f)
-		return 90.0f;
-	return RadiansToDegrees(atan_(x / y));
+	const int q = quadrant(x, y);
+	if (q == 0)
+		{
+		if (x == 0.0f)
+			return 0.0f;
+		else if (y == 0.0f)
+			return 90.0f;
+		else
+			return RadiansToDegrees(atan_(x / y));
+		}
+	else if (q == 1)
+		return 180.0f + RadiansToDegrees(atan_(x / y));
+	else if (q == 2)
+		return 180.0f + RadiansToDegrees(atan_(x / y));
+	else
+		{
+		if (x == 0.0f)
+			return 0.0f;
+		return 360.0f + RadiansToDegrees(atan_(x / y));
+		}
 	}
-else if (q == 1)
-	return 180.0f + RadiansToDegrees(atan_(x / y));
-else if (q == 2)
-	return 180.0f + RadiansToDegrees(atan_(x / y));
 else
 	{
-	if (x == 0.0f)
-		return 0.0f;
-	return 360.0f + RadiansToDegrees(atan_(x / y));
+	const int q = quadrant(x, y);
+	if (q == 0)
+		{
+		if (y == 0.0f)
+			return 90.0f;
+		return 90.0f + RadiansToDegrees(atan_(y / x));
+		}
+	else if (q == 1)
+		return 90.0f + RadiansToDegrees(atan_(y / x));
+	else if (q == 2)
+		return 270.0f + RadiansToDegrees(atan_(y / x));
+	else
+		{
+		if (x == 0.0f)
+			return 0.0f;
+		return 270.0f + RadiansToDegrees(atan_(y / x));
+		}
 	}
 }
 
@@ -222,6 +270,21 @@ static inline CGFloat magnitude(CGPoint point)
 const CGFloat theMagnitude = sqrt_(fabs_(point.x * point.x) + fabs_(point.y * point.y));
 return(theMagnitude);
 }
+
+#pragma mark -
+
+static inline CGPoint CGPointAdd(CGPoint a, CGPoint b)
+{
+const CGPoint r = { .x = a.x + b.x, .y = a.y + b.y };
+return(r);
+}
+
+static inline CGPoint CGPointMultiply(CGPoint a, CGPoint b)
+{
+const CGPoint r = { .x = a.x * b.x, .y = a.y * b.y };
+return(r);
+}
+
 
 #pragma mark -
 

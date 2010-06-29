@@ -1,26 +1,56 @@
 //
 //  CMenuTableViewController.m
-//  Corkpad
+//  TouchCode
 //
 //  Created by Jonathan Wight on 02/02/10.
 //  Copyright 2010 toxicsoftware.com. All rights reserved.
+//
+//  Permission is hereby granted, free of charge, to any person
+//  obtaining a copy of this software and associated documentation
+//  files (the "Software"), to deal in the Software without
+//  restriction, including without limitation the rights to use,
+//  copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the
+//  Software is furnished to do so, subject to the following
+//  conditions:
+//
+//  The above copyright notice and this permission notice shall be
+//  included in all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+//  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+//  OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+//  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+//  HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+//  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+//  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+//  OTHER DEALINGS IN THE SOFTWARE.
 //
 
 #import "CMenuTableViewController.h"
 
 #import "CMenu.h"
 #import "CMenuItem.h"
+#import "CMenu_PropertyListExtensions.h"
+#import "CMenuSeparatorItem.h"
+
+@interface CMenuTableViewController ()
+@property (readonly, nonatomic, retain) NSArray *sectionRanges;
+@end
+
+#pragma mark -
 
 @implementation CMenuTableViewController
 
 @synthesize menu;
-@synthesize delegate;
+@synthesize sectionRanges;
+@synthesize menuHandlerDelegate;
 @synthesize hidesNavigationBar;
 @synthesize submenuAccessoryType;
 
 - (id)initWithMenu:(CMenu *)inMenu
 {
-if ((self = [self initWithStyle:UITableViewStylePlain]) != NULL)
+if ((self = [super init]) != NULL)
 	{
 	menu = [inMenu retain];
     }
@@ -35,9 +65,18 @@ menu = NULL;
 [super dealloc];
 }
 
+#pragma mark -
+
 - (void)viewDidLoad
 {
 [super viewDidLoad];
+
+if (self.menu == NULL)
+	{
+	NSString *thePath = [[NSBundle mainBundle] pathForResource:NSStringFromClass([self class]) ofType:@"plist"];
+	NSDictionary *theDictionary = [NSDictionary dictionaryWithContentsOfFile:thePath];
+	self.menu = [CMenu menuFromDictionary:theDictionary targetRoot:self];
+	}
 
 self.submenuAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
@@ -57,8 +96,33 @@ if (menu != inMenu)
 	menu = [inMenu retain];
 	
 	self.title = menu.title;
+		
 	[self.tableView reloadData];
 	}
+}
+
+- (NSArray *)sectionRanges
+{
+if (sectionRanges == NULL)
+	{
+	NSMutableArray *theSectionRanges = [NSMutableArray array];
+	NSRange theRange = { .location = 0, .length = 0 };
+	for (id theMenuItem in self.menu.items)
+		{
+		if ([theMenuItem isKindOfClass:[CMenuSeparatorItem class]])
+			{
+			[theSectionRanges addObject:[NSValue valueWithRange:theRange]];
+			theRange = NSMakeRange(theRange.location + theRange.length + 1, 0);
+			}
+		else
+			{
+			theRange.length += 1;
+			}
+		}
+	[theSectionRanges addObject:[NSValue valueWithRange:theRange]];
+	sectionRanges = [theSectionRanges copy];
+	}
+return(sectionRanges);
 }
 
 //- (void)viewDidUnload
@@ -105,6 +169,9 @@ return(YES);
 
 - (NSIndexPath *)indexPathForMenuItem:(CMenuItem *)inMenuItem
 {
+// TODO make work with groups
+#warning TODO
+
 NSUInteger theRow = [self.menu.items indexOfObject:inMenuItem];
 NSIndexPath *theIndexPath = [NSIndexPath indexPathForRow:theRow inSection:0];
 return(theIndexPath);
@@ -114,16 +181,20 @@ return(theIndexPath);
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-return(1);
+return([self.sectionRanges count]);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-return(self.menu.items.count);
+NSRange theSectionRange = [[self.sectionRanges objectAtIndex:section] rangeValue];
+return(theSectionRange.length);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+NSRange theSectionRange = [[self.sectionRanges objectAtIndex:indexPath.section] rangeValue];
+NSInteger theIndex = theSectionRange.location + indexPath.row;
+
 static NSString *kCellIdentifier = @"Cell";
 UITableViewCell *theCell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
 if (theCell == nil)
@@ -131,9 +202,14 @@ if (theCell == nil)
 	theCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier] autorelease];
 	}
 
-CMenuItem *theMenuItem = [self.menu.items objectAtIndex:indexPath.row];
+CMenuItem *theMenuItem = [self.menu.items objectAtIndex:theIndex];
 theCell.textLabel.text = theMenuItem.title;
-theCell.accessoryType = theMenuItem.submenu != NULL ? self.submenuAccessoryType : UITableViewCellAccessoryNone;
+
+if (theMenuItem.submenu != NULL || (theMenuItem.action != NULL && theMenuItem.target != NULL) || theMenuItem.controller != NULL)
+	theCell.accessoryType = self.submenuAccessoryType;
+else
+	theCell.accessoryType = UITableViewCellAccessoryNone;
+
 theCell.imageView.image = theMenuItem.icon;
 
 return(theCell);
@@ -147,9 +223,9 @@ CMenuItem *theMenuItem = [self.menu.items objectAtIndex:indexPath.row];
 
 if (theRowSelectionWasHandled == NO)
 	{
-	if (self.delegate && [self.delegate respondsToSelector:@selector(menuHandler:didSelectMenuItem:)])
+	if (self.menuHandlerDelegate && [self.menuHandlerDelegate respondsToSelector:@selector(menuHandler:didSelectMenuItem:)])
 		{
-		theRowSelectionWasHandled = [self.delegate menuHandler:self didSelectMenuItem:theMenuItem];
+		theRowSelectionWasHandled = [self.menuHandlerDelegate menuHandler:self didSelectMenuItem:theMenuItem];
 		if (theRowSelectionWasHandled == YES)
 			[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 		}
@@ -166,13 +242,23 @@ if (theRowSelectionWasHandled == NO)
 		}
 	}
 
+if (theRowSelectionWasHandled == NO)
+	{
+	if (theMenuItem.controller)
+		{
+		[self selectMenuItem:theMenuItem];
+		
+		theRowSelectionWasHandled = YES;
+		}
+	}
+
 CMenu *theSubmenu = theMenuItem.submenu;
 
 if (theRowSelectionWasHandled == NO && theSubmenu != NULL)
 	{
-	if (self.delegate && [self.delegate respondsToSelector:@selector(menuHandler:didSelectSubmenu:)])
+	if (self.menuHandlerDelegate && [self.menuHandlerDelegate respondsToSelector:@selector(menuHandler:didSelectSubmenu:)])
 		{
-		theRowSelectionWasHandled = [self.delegate menuHandler:self didSelectSubmenu:theSubmenu];
+		theRowSelectionWasHandled = [self.menuHandlerDelegate menuHandler:self didSelectSubmenu:theSubmenu];
 		}
 	}
 
@@ -197,6 +283,14 @@ if (theRowSelectionWasHandled == NO)
 	}
 }
 
+- (void)selectMenuItem:(CMenuItem *)inItem;
+{
+#warning
+UIViewController *theController = [[[inItem.controller alloc] initWithMenuItem:inItem] autorelease];
+
+
+[self.navigationController pushViewController:theController animated:YES];
+}
 
 @end
 

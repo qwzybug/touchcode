@@ -33,11 +33,11 @@
 
 @interface TouchUI_DemoAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
-    TouchUI_DemoViewController *viewController;
+    UIViewController *rootViewController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet TouchUI_DemoViewController *viewController;
+@property (nonatomic, retain) IBOutlet UIViewController *rootViewController;
 
 @end
 

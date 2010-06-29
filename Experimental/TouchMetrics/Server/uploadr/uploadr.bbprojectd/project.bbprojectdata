@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>HierarchyData</key>
+	<array>
+		<string>0A7F1BC3-0C58-4EB6-89D1-A047481A0414</string>
+	</array>
+	<key>ProjectItems</key>
+	<dict>
+		<key>0A7F1BC3-0C58-4EB6-89D1-A047481A0414</key>
+		<dict>
+			<key>ItemData</key>
+			<dict>
+				<key>AliasData</key>
+				<data>
+				AAAAAAHgAAIAAQVVc2VycwAAAAAAAAAAAAAAAAAAAAAA
+				AAAAAADG1NVCSCsAAAAJjR0HdXBsb2FkcgAAAAAAAAAA
+				AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+				AAAAAAAAAAAAAAAAAAAAAAmNH8aWIhgAAAAAAAAAAP//
+				//8AAAkAAAAAAAAAAAAAAAAAAAAAB3VwbG9hZHIAABAA
+				CAAAxtU3sgAAABEACAAAxpaEiAAAAAEAJAAJjR0AHPQI
+				ABzz5gABjXMAATj8AAAh3QAAGdUAABF2AAAJOgACAF1V
+				c2VyczpzY2h3YTpEZXZlbG9wbWVudDpTb3VyY2U6TWVy
+				Y3VyaWFsOnB1YmxpYzp0b3VjaGNvZGU6VG91Y2hNZXRy
+				aWNzOlNlcnZlcjp1cGxvYWRyOnVwbG9hZHIAAA4AEAAH
+				AHUAcABsAG8AYQBkAHIADwAMAAUAVQBzAGUAcgBzABIA
+				WC9zY2h3YS9EZXZlbG9wbWVudC9Tb3VyY2UvTWVyY3Vy
+				aWFsL3B1YmxpYy90b3VjaGNvZGUvVG91Y2hNZXRyaWNz
+				L1NlcnZlci91cGxvYWRyL3VwbG9hZHIAEwAOL1ZvbHVt
+				ZXMvVXNlcnMAFQACABT//wAA
+				</data>
+				<key>FileURL</key>
+				<string>file://localhost/Volumes/Users/schwa/Development/Source/Mercurial/public/touchcode/TouchMetrics/Server/uploadr/uploadr/</string>
+				<key>RelativePath</key>
+				<string>./uploadr</string>
+				<key>TypeID</key>
+				<string>_CFileLocator</string>
+				<key>Version</key>
+				<integer>1</integer>
+			</dict>
+			<key>ItemName</key>
+			<string>filer</string>
+			<key>ItemType</key>
+			<string>FolderReference</string>
+		</dict>
+	</dict>
+	<key>com.barebones.DocumentFormatVersion</key>
+	<integer>5</integer>
+	<key>com.barebones.DocumentType</key>
+	<string>Project</string>
+</dict>
+</plist>
