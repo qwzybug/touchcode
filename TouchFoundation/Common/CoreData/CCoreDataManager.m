@@ -56,6 +56,9 @@
 @synthesize storeType;
 @synthesize forceReplace;
 @synthesize storeOptions;
+@synthesize persistentStoreCoordinator;
+@synthesize managedObjectModel;
+@synthesize managedObjectContext;
 @synthesize threadStorageKey;
 @synthesize delegate;
 

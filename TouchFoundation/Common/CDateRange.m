@@ -152,6 +152,11 @@ if (end != inEnd)
     }
 }
 
+- (NSTimeInterval)duration
+{
+return([self.end timeIntervalSinceDate:self.start]);
+}
+
 - (void)setDuration:(NSTimeInterval)inDuration
 {
 self.end = [self.start dateByAddingTimeInterval:inDuration];
