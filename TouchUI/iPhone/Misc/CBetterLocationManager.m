@@ -85,16 +85,6 @@ if ((self = [super init]) != NULL)
 	stopUpdatingAccuracy = kCLLocationAccuracyHundredMeters;
 	staleLocationThreshold = 120.0;
 	stopUpdatingAfterInterval = 10.0;
-
-	if (self.locationManager.locationServicesEnabled == YES)
-		{
-		NSData *theData = [[NSUserDefaults standardUserDefaults] objectForKey:@"BetterLocationManager_LastLocation"];
-		if (theData)
-			{
-			CLLocation *theLastLocation = [NSKeyedUnarchiver unarchiveObjectWithData:theData];
-			self.previousLocation = theLastLocation;
-			}
-		}
 	}
 return(self);
 }
@@ -171,6 +161,16 @@ self.locationManager.desiredAccuracy = inDesiredAccuracy;
 
 - (BOOL)startUpdatingLocation:(NSError **)outError
 {
+if (self.locationManager.locationServicesEnabled == YES)
+	{
+	NSData *theData = [[NSUserDefaults standardUserDefaults] objectForKey:@"BetterLocationManager_LastLocation"];
+	if (theData)
+		{
+		CLLocation *theLastLocation = [NSKeyedUnarchiver unarchiveObjectWithData:theData];
+		self.previousLocation = theLastLocation;
+		}
+	}
+
 if (self.updating == NO)
 	{
 	if (self.userDenied == YES)
